@@ -1,0 +1,365 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc, patterns}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+\begin{comment}
+	
+
+% --- FONDO (Membrete Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		% Ruta local para el fondo del Liceo VAL
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{"/home/camilo/Descargas/Liceo VAL/Taller 1/FondoVAL.pdf"}%
+	}%
+}
+\end{comment}
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+\definecolor{valpurple}{RGB}{120, 40, 160}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo Guiado Paso a Paso}}, arc=2mm, boxrule=1pt}
+
+% --- NUEVO ENTORNO DE PRÁCTICA (Sin caja contenedora para permitir saltos de página fluidos) ---
+\newenvironment{practica}[1]{
+	\vspace{0.6cm}
+	\begin{tcolorbox}[colback=white, colframe=valdark, boxrule=1pt, borderline west={4pt}{0pt}{valdark!50}, arc=2mm, top=3pt, bottom=3pt]
+		\large\bfseries \ding{46} \textbf{¡Tu Turno! (#1)}
+	\end{tcolorbox}
+	\vspace{0.2cm}
+}{
+	\vspace{0.4cm}
+}
+
+% --- COMANDOS PARA ESTRUCTURAR LA UNIDAD ---
+\newcommand{\titulounidad}[2]{
+	\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+		\centering \Huge \textbf{UNIDAD #1}\\[0.2cm]
+		\Large \textbf{#2}
+	\end{tcolorbox}
+	\vspace{0.3cm}
+}
+
+\newcommand{\finunidad}[1]{
+	\vspace{0.6cm}
+	\begin{center}
+		\begin{tcolorbox}[colback=valred!5, colframe=valred, width=14cm, arc=3mm, boxrule=2pt]
+			\centering \Huge \textbf{\ding{55} ¡ALTO AQUÍ!} \\[0.4cm]
+			\Large \textbf{FIN DE LA UNIDAD #1}\\[0.2cm]
+			\large \textit{Has completado las misiones de este tema.}\\
+			\normalsize Repasa tus respuestas y avisa a tu profesor. \textbf{¡Prepárate para tu evaluación!}
+		\end{tcolorbox}
+	\end{center}
+}
+
+% --- COMANDOS PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][0.6cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                    PORTADA DE LA UNIDAD
+	% =======================================================
+	\begin{center}
+	%	\vspace*{0.5cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.3cm]
+		{\Large \textbf{MATEMÁTICAS ADAPTADAS}}\\[0.3cm]
+		
+		\titulounidad{7}{FRACCIONES: ADICIÓN Y SUSTRACCIÓN}
+		
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.2cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.4cm]
+			\textbf{Código:} \underline{06M - 07} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.2cm}
+		\end{tcolorbox}
+		
+		\vspace{0.3cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	% =======================================================
+	% SUBTEMA 1: HOMOGÉNEAS (Igual denominador)
+	% =======================================================
+	\subsection*{Subtema 1: Fracciones Homogéneas (Igual Denominador)}
+	
+	\begin{concepto}{El Mismo Tamaño}
+		Cuando las fracciones tienen el \textbf{mismo número abajo} (denominador), significa que los pedazos de pizza son del mismo tamaño.
+		\\[0.2cm]
+		\textbf{Regla:} El número de abajo \textbf{NUNCA} se suma ni se resta, se queda exactamente igual. Solo sumamos o restamos los números de arriba (los numeradores).
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{center}
+			%\textbf{Suma Visual:}\\
+			Tengo $\dfrac{1}{4}$ de pizza y me regalan $\dfrac{2}{4}$ más. Como ambas están cortadas en 4, solo sumo los pedazos que tengo: $1 + 2 = 3$. El 4 de abajo se queda igual.
+			\\[0.4cm]
+			\Large $\dfrac{1}{4} + \dfrac{2}{4} = \dfrac{1 + 2}{4} = \mathbf{\dfrac{3}{4}}$
+			\\[0.6cm]
+			\begin{tikzpicture}[scale=0.9]
+				% 1/4
+				\draw[thick] (0,0) circle (1.2cm);
+				\fill[valblue!40] (0,0) -- (1.2,0) arc (0:90:1.2cm) -- cycle;
+				\draw[thick] (-1.2,0) -- (1.2,0); \draw[thick] (0,-1.2) -- (0,1.2);
+				
+				\node at (1.8,0) {\Large $+$};
+				
+				% 2/4
+				\begin{scope}[xshift=3.6cm]
+					\draw[thick] (0,0) circle (1.2cm);
+					\fill[valblue!40] (0,0) -- (1.2,0) arc (0:180:1.2cm) -- cycle;
+					\draw[thick] (-1.2,0) -- (1.2,0); \draw[thick] (0,-1.2) -- (0,1.2);
+				\end{scope}
+				
+				\node at (5.4,0) {\Large $=$};
+				
+				% 3/4
+				\begin{scope}[xshift=7.2cm]
+					\draw[thick] (0,0) circle (1.2cm);
+					\fill[valblue!40] (0,0) -- (1.2,0) arc (0:270:1.2cm) -- cycle;
+					\draw[thick] (-1.2,0) -- (1.2,0); \draw[thick] (0,-1.2) -- (0,1.2);
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+	\end{ejemplo}
+	
+	\begin{practica}{Misión 1: Sumas y Restas Homogéneas}
+		\textit{¡Ojo con el signo! Suma o resta los números de arriba y pasa el número de abajo igualito a la respuesta final.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm, leftmargin=*]
+				\item $\dfrac{2}{5} + \dfrac{1}{5} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{4}{7} - \dfrac{2}{7} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{3}{8} + \dfrac{4}{8} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{5}{9} - \dfrac{1}{9} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{1}{3} + \dfrac{1}{3} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{7}{10} - \dfrac{4}{10} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{2}{6} + \dfrac{3}{6} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{8}{11} - \dfrac{3}{11} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{4}{12} + \dfrac{7}{12} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{9}{15} - \dfrac{2}{15} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{6}{8} - \dfrac{3}{8} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{2}{9} + \dfrac{5}{9} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{10}{14} - \dfrac{5}{14} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{3}{10} + \dfrac{6}{10} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $\dfrac{12}{20} - \dfrac{7}{20} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	
+	% =======================================================
+	% SUBTEMA 2: HETEROGÉNEAS (Diferente denominador)
+	% =======================================================
+	\subsection*{Subtema 2: Fracciones Heterogéneas (Diferente Denominador)}
+	
+	\begin{concepto}{El Truco de la Mariposa (Productos Cruzados)}
+		Cuando los números de abajo \textbf{son diferentes}, los pedazos son de distinto tamaño y ¡no podemos sumarlos ni restarlos directamente! Tenemos que usar el \textbf{Método de la Mariposa} para igualarlos.
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{center}
+			\begin{tikzpicture}[scale=1.1]
+				% --- Fracciones iniciales (Más separadas) ---
+				\node (A) at (0, 1) {\Huge 3};
+				\node (B) at (0, -1) {\Huge 4};
+				\draw[line width=1.5pt] (-0.4, 0) -- (0.4, 0);
+				
+				\node at (1.75, 0) {\Huge $+$}; % Signo más centrado
+				
+				\node (C) at (3.5, 1) {\Huge 1}; % Segunda fracción más a la derecha
+				\node (D) at (3.5, -1) {\Huge 5};
+				\draw[line width=1.5pt] (3.1, 0) -- (3.9, 0);
+				
+				% --- Alas (Elipses) ---
+				% Rotadas desde el nuevo centro (1.75, 0) y más anchas
+				\draw[valred, ultra thick, rotate around={-35:(1.75,0)}] (1.75,0) ellipse (2.8cm and 0.7cm);
+				\draw[valblue, ultra thick, rotate around={35:(1.75,0)}] (1.75,0) ellipse (2.8cm and 0.7cm);
+				
+				% --- Antenas (Multiplicación cruzada) ---
+				% Flechas más altas y abiertas para evitar superposición
+				
+				% Antena Izquierda (3 * 5 = 15)
+				\draw[valred, ultra thick, ->] (0, 1.8) to[out=110, in=-30] (-1.5, 3.8) node[above left] {\Large \textbf{15} \ \small ($3 \times 5$)};
+				
+				% Antena Derecha (4 * 1 = 4)
+				\draw[valblue, ultra thick, ->] (3.5, 1.8) to[out=70, in=210] (5.0, 3.8) node[above right] {\small ($4 \times 1$) \ \Large \textbf{4}};
+				
+				% --- Cuerpo (Multiplicación denominadores) ---
+				\draw[valgreen, ultra thick, <->] (0, -1.8) to[out=-90, in=-90] (3.5, -1.8);
+				\node[valgreen, below] at (1.75, -2) {\Large \textbf{20} \ \small ($4 \times 5$)};
+				
+				% --- Proceso final ---
+				\node[right, align=left] at (6.0, 0) { % Movido a la derecha
+					\Large $\mathbf{= \frac{\textcolor{valred}{15} + \textcolor{valblue}{4}}{\textcolor{valgreen}{20}}}$ \\[0.4cm]
+					\Large $\mathbf{= \frac{19}{20}}$
+				};
+			\end{tikzpicture}
+		\end{center}
+		\vspace{0.2cm}
+		\textbf{Pasos de la Mariposa:}\\
+		1. Multiplica cruzado (las alas).\\
+		2. Multiplica los de abajo.\\
+		3. Suma o resta los cruzados y mantén el resultado de la multiplicación de abajo igual
+	\end{ejemplo}
+	
+	\begin{practica}{Misión 2: Sumas y Restas Heterogéneas}
+		\textit{Multiplica cruzado para llenar las cajas de arriba, multiplica los de abajo para la caja inferior, y luego resuelve.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm, leftmargin=*]
+				\item $\dfrac{1}{2} + \dfrac{1}{3} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{3}{4} - \dfrac{1}{5} = \dfrac{\boxfill[0.6cm] - \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{2}{3} + \dfrac{1}{4} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{4}{5} - \dfrac{1}{2} = \dfrac{\boxfill[0.6cm] - \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{1}{5} + \dfrac{2}{3} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{5}{6} - \dfrac{2}{5} = \dfrac{\boxfill[0.6cm] - \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{2}{7} + \dfrac{1}{2} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{3}{2} - \dfrac{3}{4} = \dfrac{\boxfill[0.6cm] - \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{1}{4} + \dfrac{2}{5} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{7}{8} - \dfrac{1}{3} = \dfrac{\boxfill[0.6cm] - \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{3}{5} + \dfrac{1}{6} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{5}{7} - \dfrac{1}{2} = \dfrac{\boxfill[0.6cm] - \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{2}{9} + \dfrac{1}{2} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{4}{3} - \dfrac{4}{5} = \dfrac{\boxfill[0.6cm] - \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+				
+				\item $\dfrac{1}{6} + \dfrac{3}{4} = \dfrac{\boxfill[0.6cm] + \boxfill[0.6cm]}{\boxfill[0.8cm]} = \dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	
+	% =======================================================
+	% SUBTEMA 3: PROBLEMAS DE APLICACIÓN
+	% =======================================================
+	\subsection*{Subtema 3: Resolución de Problemas con Fracciones}
+	
+	\begin{concepto}{Traducir Historias a Fracciones}
+		Lee con atención el problema para saber si debes \textbf{sumar o restar}.
+		\begin{itemize}
+			\item \textbf{Suma (+):} Juntar, añadir, comprar más, total entre los dos.
+			\item \textbf{Resta (-):} Comer, regalar, gastar, cortar, cuánto le queda, la diferencia.
+		\end{itemize}
+		¡Fíjate bien en los denominadores (los números de abajo)! Si son iguales o si son diferentes.
+	\end{concepto}
+	\newpage
+	\begin{practica}{Misión 3: Problemas de la Vida Real}
+		\textit{Lee el problema y escribe la respuesta en fracción dentro de la casilla. Puedes hacer los cálculos en tu cuaderno o a un lado de la hoja.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm, leftmargin=*]
+				
+				\item Juan comió $\dfrac{2}{8}$ de pizza y Ana $\dfrac{3}{8}$. ¿Cuánta pizza comieron entre los dos en total? \\
+				\textbf{Resp:} Comieron $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de pizza.
+				
+				\item María tenía $\dfrac{5}{6}$ de un pastel y le regaló $\dfrac{1}{6}$ a su prima. ¿Cuánto pastel le quedó? \\
+				\textbf{Resp:} Le quedó $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de pastel.
+				
+				\item Para preparar un jugo nutritivo, uso $\dfrac{1}{2}$ taza de agua y $\dfrac{1}{3}$ taza de leche. ¿Cuánto líquido uso en total? \\
+				\textbf{Resp:} Usa $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de líquido.
+				
+				\item Luis tenía $\dfrac{3}{4}$ de metro de cinta roja y cortó $\dfrac{1}{5}$ para adornar un regalo. ¿Cuánta cinta le sobra? \\
+				\textbf{Resp:} Le sobran $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de cinta.
+				
+				\item En una huerta del colegio, $\dfrac{3}{10}$ son tomates y $\dfrac{4}{10}$ son lechugas. ¿Qué parte de la huerta está sembrada en total? \\
+				\textbf{Resp:} Están sembrados $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$.
+				
+				\item Un tanque de agua estaba lleno a $\dfrac{7}{8}$ de su capacidad y se gastaron $\dfrac{2}{8}$ en lavar ropa. ¿Cuánto queda en el tanque? \\
+				\textbf{Resp:} Quedan $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ del tanque.
+				
+				\item Caminé $\dfrac{2}{5}$ de kilómetro por la mañana y $\dfrac{1}{2}$ por la tarde. ¿Cuánto caminé en total durante el día? \\
+				\textbf{Resp:} Caminó $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de kilómetro.
+				
+				\item Carlos compró $\dfrac{4}{5}$ de kilo de arroz y gastó $\dfrac{1}{3}$ en el almuerzo. ¿Cuánto arroz le quedó? \\
+				\textbf{Resp:} Le quedó $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de arroz.
+				
+				\item Pintamos $\dfrac{1}{4}$ de la pared de color azul y $\dfrac{2}{4}$ de color blanco. ¿Qué parte de la pared ya está pintada? \\
+				\textbf{Resp:} Pintaron $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de pared.
+				
+				\item Tengo $\dfrac{8}{9}$ de una barra de chocolate y me como $\dfrac{4}{9}$. ¿Cuánto chocolate me sobra para mañana? \\
+				\textbf{Resp:} Sobran $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de chocolate.
+				
+				\item Mi perrito comió $\dfrac{1}{4}$ de kilo de croquetas ayer y $\dfrac{2}{3}$ de kilo hoy. ¿Cuánto comió en total en los dos días? \\
+				\textbf{Resp:} Comió $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de kilo.
+				
+				\item Un frasco de miel contenía $\dfrac{5}{6}$ y usamos $\dfrac{1}{2}$ para preparar unos panqueques. ¿Cuánta miel quedó en el frasco? \\
+				\textbf{Resp:} Quedaron $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de miel.
+				
+				\item Leí $\dfrac{2}{7}$ de las páginas del libro el lunes y $\dfrac{3}{7}$ el martes. ¿Qué fracción del libro he leído hasta ahora? \\
+				\textbf{Resp:} He leído $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ del libro.
+				
+				\item Un sastre tenía $\dfrac{7}{8}$ de una tela y cortó $\dfrac{1}{4}$ para coser una manga. ¿Cuánta tela le queda libre? \\
+				\textbf{Resp:} Le quedan $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de tela.
+				
+				\item Mezclamos $\dfrac{1}{5}$ de vaso de pintura roja con $\dfrac{1}{4}$ de pintura amarilla. ¿Qué fracción de mezcla logramos en total? \\
+				\textbf{Resp:} Logramos $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$ de mezcla.
+				
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\finunidad{7}
+	
+\end{document}

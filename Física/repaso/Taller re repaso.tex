@@ -1,0 +1,155 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+% Margen ajustado para papel Carta y espacio para el fondo
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+  \IfFileExists{FondoVAL.pdf}{%
+    \AtPageLowerLeft{%
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{FondoVAL.pdf}%
+    }%
+  }{}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valdark}{RGB}{50, 50, 50}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][2.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+
+% --- ENCABEZADO ---
+\vspace*{0.5cm}
+
+\begin{center}
+    {\Large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+    \textbf{TALLER DE REPASO (PRE-EXAMEN) - FÍSICA}\\[0.1cm]
+    %Óptica: El comportamiento de la Luz
+\end{center}
+
+\vspace{0.3cm}
+\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hfill \textbf{Grado:} \underline{\hspace{3cm}}
+
+
+% --- PUNTO 1 ---
+\noindent \textbf{\textcolor{valblue}{1. ENTRENANDO LAS PALABRAS MÁGICAS}}
+
+\vspace{0.2cm}
+\noindent \textit{Lee la pista y escribe la palabra correcta usando el "Banco de Palabras":}
+
+\begin{center}
+    \textbf{Banco de Palabras:} [ DISPERSIÓN \ \ -- \ \ REFLEXIÓN \ \ -- \ \ REFRACCIÓN ]
+\end{center}
+
+\vspace{0.2cm}
+\begin{enumerate}[itemsep=0.4cm]
+    \item Cuando la luz choca contra un espejo y \textbf{rebota} hacia ti: \boxfill[3cm]
+    \item Cuando la luz pasa por una gota de agua y se \textbf{separa} en un arcoíris: \boxfill[3cm]
+    \item Cuando la luz \textbf{atraviesa} un vaso con agua y el rayo parece doblarse: \boxfill[3cm]
+\end{enumerate}
+
+\vspace{0.6cm}
+
+% --- PUNTO 2 ---
+\noindent \textbf{\textcolor{valblue}{2. LA REGLA DE ORO DEL REBOTE}}
+
+\vspace{0.2cm}
+\noindent \textit{Aplica lo que sabes sobre los ángulos en los espejos y marca con una X:}
+
+\vspace{0.2cm}
+\noindent \textbf{Situación:} Juegas con un láser frente al espejo del baño. Si apuntas el rayo de luz para que golpee el espejo con un ángulo de \textbf{40 grados}... ¿Con qué ángulo va a rebotar la luz hacia afuera?
+
+\vspace{0.2cm}
+\begin{itemize}[itemsep=0.3cm]
+    \item[$\square$] Rebotará con 20 grados (la mitad).
+    \item[$\square$] Rebotará con 40 grados (exactamente igual).
+    \item[$\square$] Rebotará con 80 grados (el doble).
+\end{itemize}
+\noindent \textit{(Pista: ¡Recuerda que el espejo es muy obediente y exacto!)}
+
+\vspace{0.6cm}
+
+% --- PUNTO 3 ---
+\noindent \textbf{\textcolor{valblue}{3. EL TRUCO DE LA CUCHARA}}
+
+\vspace{0.2cm}
+\noindent \textit{Completa las frases escribiendo CÓNCAVO o CONVEXO según corresponda.}
+
+\vspace{0.2cm}
+\begin{enumerate}[label=\Alph*), itemsep=0.4cm]
+    \item Al mirar la parte de la cuchara que parece una \textbf{cueva} hundida, estoy viendo un espejo \boxfill.
+    \item Al mirar la parte de la cuchara que sobresale como una \textbf{barriguita}, estoy viendo un espejo \boxfill.
+\end{enumerate}
+
+\newpage % Salto de página para el cálculo matemático
+
+% --- PUNTO 4 ---
+\noindent \textbf{\textcolor{valblue}{4. PRACTICANDO LA VELOCIDAD DE LA LUZ}}
+
+\vspace{0.2cm}
+\noindent \textit{¡Vamos a practicar la fórmula para el examen con un ejemplo diferente!}
+
+\vspace{0.2cm}
+\noindent \textbf{Contexto:} La luz es lo más rápido del universo, viaja a \textbf{300.000} km/s. Pero si entra a un diamante brillante, "frena" muchísimo.
+
+\vspace{0.2cm}
+\noindent \textbf{Ejercicio:} El índice del diamante es \textbf{3}. Vamos a dividir la velocidad original de la luz entre 3 para saber a qué velocidad viaja adentro del diamante:
+
+\vspace{0.4cm}
+\begin{center}
+    \textbf{Fórmula:} \quad Velocidad en Diamante $= \frac{\textbf{Velocidad Original}}{\textbf{Índice del Diamante}}$
+\end{center}
+
+\vspace{0.4cm}
+\begin{center}
+    \textit{(Reemplaza y divide. Pista: ¿Cuál es la tercera parte de 300.000? Piensa en $3 \div 3$ y agrega los ceros)}\\[0.5cm]
+    
+    \Large 
+    Velocidad en Diamante $= \frac{300.000}{3} =$ \boxfill[3cm] km/s
+\end{center}
+
+\vspace{0.8cm}
+
+% --- PUNTO 5 ---
+\noindent \textbf{\textcolor{valblue}{5. EL SECRETO DE LA LUZ BLANCA}}
+
+\vspace{0.2cm}
+\noindent \textit{Analiza la siguiente frase y encierra en un círculo la palabra VERDADERO o FALSO:}
+
+\vspace{0.4cm}
+\begin{center}
+    \begin{tcolorbox}[colback=white, colframe=valdark, boxrule=0.5pt, width=13cm, arc=2mm]
+        \textit{"Aunque la luz del sol nos parece de color blanco o amarillo claro, adentro de ella están escondidos todos los colores del arcoíris. Solo necesitamos un prisma (o gotas de agua) para que esos colores salgan y podamos verlos."}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{0.6cm}
+\begin{center}
+    \Large
+    \textbf{VERDADERO} \hspace{3cm} \textbf{FALSO}
+\end{center}
+
+\vspace{1.5cm}
+
+
+\end{document}

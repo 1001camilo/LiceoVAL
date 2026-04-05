@@ -1,0 +1,1233 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+\begin{comment}
+
+    % --- FONDO (Membrete) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \IfFileExists{FondoVAL.pdf}{%
+    \AtPageLowerLeft{%
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{FondoVAL.pdf}%
+    }%
+  }{}%
+}
+
+\end{comment}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+
+% 1. Cambiamos 'objetivo' a un entorno de solo título para evitar anidar cajas (lo que impedía el salto)
+\newenvironment{objetivo}[1]{%
+    \begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=2mm, boxrule=1.5pt]
+        {\large\bfseries \ding{118} #1}
+    \end{tcolorbox}
+}{}
+
+% 2. Añadimos 'breakable' a concepto y ejemplo para que salten de página libremente
+\newtcolorbox{concepto}{breakable, colback=white, colframe=valdark!50, title={\ding{111} \textbf{Concepto}}, arc=2mm, boxrule=1pt, fonttitle=\bfseries, coltitle=black}
+\newtcolorbox{ejemplo}{breakable, colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo Guiado}}, arc=2mm, boxrule=1pt}
+% breakable permite que la práctica pase a otra hoja sin dejar espacios en blanco
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{Práctica: #1}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDOS PARA ESTRUCTURAR ---
+\newcommand{\titulounidad}[2]{
+    \begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+        \centering \Huge \textbf{UNIDAD #1}\\[0.2cm]
+        \Large \textbf{#2}
+    \end{tcolorbox}
+    \vspace{0.5cm}
+}
+\newcommand{\seccionlibro}[1]{
+    \vspace{0.8cm}
+    \begin{center}
+        \begin{tcolorbox}[colback=valdark, colframe=valdark, coltext=white, arc=2mm, boxrule=0pt, width=\textwidth]
+            \centering \LARGE \textbf{#1}
+        \end{tcolorbox}
+    \end{center}
+    \vspace{0.3cm}
+}
+
+% --- COMANDOS PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][0.8cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+
+% =======================================================
+%                     PORTADA
+% =======================================================
+\begin{center}
+    %\vspace*{1cm}
+    %{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+    %{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+    %{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+    
+    \titulounidad{6}{Fracciones: Introducción, Multiplicación, \\ División, Simplificación y Recíproco}
+Nombre: \underline{\hspace{8cm}}\hfill Fecha:\underline{\hspace{4cm}}
+\end{center}
+
+%\newpage
+
+% =======================================================
+% SECCIÓN 2.1: INTRODUCCIÓN A LAS FRACCIONES
+% =======================================================
+\seccionlibro{SECCIÓN 2.1: Introducción a las Fracciones}
+
+% ---------------- OBJETIVO 1 ----------------
+\begin{objetivo}{Objetivo 1: Identificar el numerador y el denominador}
+    \begin{concepto}
+        Una fracción describe un número de partes iguales de un todo.
+        \vspace{0.4cm}
+        \begin{center}
+        \begin{tikzpicture}
+            % Fracción central
+            \node[font=\fontsize{40}{48}\selectfont\bfseries, text=valdark] (num) at (0, 1.8) {5};
+            \draw[line width=3pt, valdark] (-1, 0.9) -- (1, 0.9);
+            \node[font=\fontsize{40}{48}\selectfont\bfseries, text=valdark] (den) at (0, 0) {6};
+
+            % Flecha y etiqueta Numerador
+            \node[align=left, anchor=west] (lnum) at (1.8, 1.8) {\Large \textbf{\textcolor{valred}{Numerador}}\\[0.1cm] \normalsize Indica cuántas partes tomamos.};
+            \draw[->, ultra thick, valred] (lnum.west) -- (num.east);
+
+            % Flecha y etiqueta Barra
+            \node[align=right, anchor=east] (lbar) at (-1.8, 0.9) {\Large \textbf{\textcolor{valblue}{Barra de fracción}}};
+            \draw[->, ultra thick, valblue] (lbar.east) -- (-1.1, 0.9);
+
+            % Flecha y etiqueta Denominador
+            \node[align=left, anchor=west] (lden) at (1.8, 0) {\Large \textbf{\textcolor{valgreen}{Denominador}}\\[0.1cm] \normalsize Indica en cuántas partes IGUALES\\[0.05cm] \normalsize se cortó el total.};
+            \draw[->, ultra thick, valgreen] (lden.west) -- (den.east);
+        \end{tikzpicture}
+        \end{center}
+    \end{concepto}
+    \newpage
+    \begin{practica}{Identificar partes}
+        \textit{Escribe el Numerador (N) y el Denominador (D) de cada fracción:}
+        \vspace{0.2cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.4cm]
+                \item $\dfrac{3}{7} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{9}{12} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{1}{4} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{5}{6} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{2}{3} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{8}{15} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{7}{10} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{11}{20} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{4}{9} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{6}{11} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{1}{2} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{13}{25} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{7}{8} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{2}{5} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+                \item $\dfrac{10}{10} \rightarrow$ N: \boxfill[0.5cm] D: \boxfill[0.5cm]
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+    \begin{practica}{Fracciones en la vida real}
+        \textit{Observa las siguientes imágenes cotidianas. Cuenta bien y escribe la fracción que representa la parte coloreada (lo que tomamos) sobre el total de partes iguales.}
+        
+        \vspace{0.4cm}
+        \begin{multicols}{2}
+            % 1. Pizza
+            \begin{center}
+                \textbf{1. Pedazos de Pizza}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.8]
+                    \fill[valorange!50] (0,0) -- (0:1.5cm) arc (0:135:1.5cm) -- cycle;
+                    \draw[thick, valdark] (0,0) circle (1.5cm);
+                    \foreach \a in {0,45,...,315} \draw[thick, valdark] (0,0) -- (\a:1.5cm);
+                \end{tikzpicture}\\[0.3cm]
+                Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+            \end{center}
+            
+            % 2. Chocolatina
+            \begin{center}
+                \textbf{2. Barra de Chocolatina}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.6]
+                    \fill[valblue!40] (0,2) rectangle (4,3); 
+                    \fill[valblue!40] (0,1) rectangle (1,2); 
+                    \draw[thick, valdark, step=1cm] (0,0) grid (4,3); 
+                \end{tikzpicture}\\[0.3cm]
+                Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+            \end{center}
+
+            % 3. Reloj
+            \vspace{5mm}
+            \begin{center}
+                \textbf{3. El Reloj}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.8]
+                    \fill[valgreen!30] (0,0) -- (90:1.5cm) arc (90:0:1.5cm) -- cycle;
+                    \draw[thick, valdark] (0,0) circle (1.5cm);
+                    \foreach \a in {30,60,...,360} \draw[thick, valdark] (\a:1.3cm) -- (\a:1.5cm);
+                    \draw[ultra thick, ->, valdark] (0,0) -- (90:1.1cm);
+                    \draw[ultra thick, ->, valdark] (0,0) -- (0:1.3cm);
+                \end{tikzpicture}\\[0.3cm]
+                Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+            \end{center}
+
+            % 4. Jarra
+            \begin{center}
+                \textbf{4. Jarra de Jugo}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.6]
+                    \fill[valred!30] (0,0) rectangle (2,3);
+                    \draw[thick, valdark] (0,0) rectangle (2,5);
+                    \foreach \y in {1,2,3,4} \draw[thick, valdark] (0,\y) -- (2,\y);
+                \end{tikzpicture}\\[0.3cm]
+                Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]}$
+            \end{center}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+\vspace{0.4cm}
+
+% ---------------- OBJETIVO 2 ----------------
+\begin{objetivo}{Objetivo 2: Simplificar formas especiales}
+    \begin{concepto}
+        Existen cuatro reglas de oro para las fracciones especiales:
+        \begin{enumerate}
+            \item \textbf{Mismo número:} {\large$\dfrac{a}{a} = 1$}. (Siempre da 1, es cómo tomar toda la pizza completa).\\
+            \item \textbf{Denominador 1:} {\large$\dfrac{a}{1} = a$}. (Siempre da el mismo numerador es cómo no ``cortar'' el objeto).\\
+            \item \textbf{Numerador 0:} {\large$\dfrac{0}{a} = 0$}. (Siempre da 0, es cómo no tomar ningún pedazo).\\
+            \item \textbf{Denominador 0:} {\large$\dfrac{a}{0} = $} \textbf{Indefinido}. (¡NUNCA se puede dividir por cero!).\\
+        \end{enumerate}
+    \end{concepto}
+    
+    \begin{practica}{Formas especiales}
+        \textit{Evalúa las siguientes fracciones especiales. Si no existe, escribe "Ind."}
+        \vspace{0.2cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.4cm]
+                \item $\dfrac{8}{8} = $ \boxfill[1cm]
+                \item $\dfrac{15}{1} = $ \boxfill[1cm]
+                \item $\dfrac{0}{9} = $ \boxfill[1cm]
+                \item $\dfrac{5}{0} = $ \boxfill[1cm]
+                \item $\dfrac{100}{100} = $ \boxfill[1cm]
+                \item $\dfrac{0}{25} = $ \boxfill[1cm]
+                \item $\dfrac{7}{1} = $ \boxfill[1cm]
+                \item $\dfrac{14}{0} = $ \boxfill[1cm]
+                \item $\dfrac{1}{1} = $ \boxfill[1cm]
+                \item $\dfrac{0}{10} = $ \boxfill[1cm]
+                \item $\dfrac{42}{42} = $ \boxfill[1cm]
+                \item $\dfrac{99}{1} = $ \boxfill[1cm]
+                \item $\dfrac{3}{0} = $ \boxfill[1cm]
+                \item $\dfrac{0}{1} = $ \boxfill[1cm]
+                \item $\dfrac{55}{55} = $ \boxfill[1cm]
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+    \newpage
+    \begin{practica}{Formas Especiales en la Vida Real}
+    \textit{Observa las imágenes, lee la situación y arma la fracción. ¡Aplica las reglas mágicas para poner el resultado final!}
+    
+    \vspace{0.4cm}
+    \begin{multicols}{2}
+        % 1. Pizza Completa (a/a = 1)
+        \begin{center}
+            \textbf{1. La Pizza}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.8]
+                % Pizza toda pintada
+                \fill[valorange!50] (0,0) circle (1.5cm);
+                \draw[thick, valdark] (0,0) circle (1.5cm);
+                \draw[thick, valdark] (-1.5,0) -- (1.5,0);
+                \draw[thick, valdark] (0,-1.5) -- (0,1.5);
+            \end{tikzpicture}\\[0.3cm]
+            Cortada en 4 pedazos, me comí 4.\\
+            Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]} = \boxfill[0.8cm]$
+        \end{center}
+        
+        % 2. Chocolatina Intocable (0/a = 0)
+        \begin{center}
+            \textbf{2. Chocolatina}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.6]
+                % Chocolatina sin pintar
+                \fill[white] (0,0) rectangle (3,2); 
+                \draw[thick, valdark, step=1cm] (0,0) grid (3,2); 
+            \end{tikzpicture}\\[0.3cm]
+            Tiene 6 trozos, pero me comí 0.\\
+            Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]} = \boxfill[0.8cm]$
+        \end{center}
+
+        % 3. Galletas Enteras (a/1 = a)
+        \begin{center}
+            \textbf{3. Galletas Enteras}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.8]
+                % 3 Galletas sin partir
+                \fill[valorange!30] (-1.8,0) circle (0.6cm); \draw[thick, valdark] (-1.8,0) circle (0.6cm);
+                \fill[valorange!30] (0,0) circle (0.6cm);    \draw[thick, valdark] (0,0) circle (0.6cm);
+                \fill[valorange!30] (1.8,0) circle (0.6cm);  \draw[thick, valdark] (1.8,0) circle (0.6cm);
+            \end{tikzpicture}\\[0.3cm]
+            Tengo 3 galletas enteras sin partir.\\
+            Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]} = \boxfill[0.8cm]$
+        \end{center}
+
+        % 4. Misión Imposible (a/0 = Indefinido)
+        \begin{center}
+            \textbf{4. Misión Imposible}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.6]
+                % 5 Dulces
+                \foreach \x in {-2.5, -1.25, 0, 1.25, 2.5} {
+                    \fill[valred!40] (\x,0) circle (0.4cm);
+                    \draw[thick, valdark] (\x,0) circle (0.4cm);
+                    \draw[thick, valdark] (\x-0.4,0) -- (\x-0.6,0.2) -- (\x-0.6,-0.2) -- cycle;
+                    \draw[thick, valdark] (\x+0.4,0) -- (\x+0.6,0.2) -- (\x+0.6,-0.2) -- cycle;
+                }
+                % Letrero de 0 personas
+                \node[valred, font=\bfseries] at (0, -1) {¡Repartidos a 0 personas!};
+            \end{tikzpicture}\\[0.3cm]
+            5 dulces repartidos a 0 niños.\\
+            Fracción: \Large $\dfrac{\boxfill[0.8cm]}{\boxfill[0.8cm]} =$ \boxfill[2.5cm]
+        \end{center}
+    \end{multicols}
+\end{practica}
+\end{objetivo}
+
+%\newpage
+
+% ---------------- OBJETIVOS 3 Y 4 ----------------
+\begin{objetivo}{Objetivos 3 y 4: Definir y construir equivalentes}
+    \begin{concepto}{Fracciones Equivalentes y Amplificación (Visual)}
+    \textbf{1. ¿Qué son? (Objetivo 3)} \\
+    Dos fracciones son \textbf{equivalentes} si valen exactamente lo mismo. Visualmente, significa que ocupan la misma cantidad de espacio, aunque estén cortadas en pedazos más pequeños.
+    
+    \vspace{0.4cm}
+    \begin{center}
+        \begin{tikzpicture}[scale=0.8]
+            % Pizza 1/2
+            \fill[valblue!30] (-4,0) -- (-4,1.5) arc (90:-90:1.5) -- cycle;
+            \draw[thick, valdark] (-4,0) circle (1.5cm);
+            \draw[thick, valdark] (-4,-1.5) -- (-4,1.5);
+            \node[below] at (-4,-1.8) {\Large $\mathbf{\dfrac{1}{2}}$};
+
+            % Símbolo =
+            \node at (-1.5,0) {\Huge $\mathbf{=}$};
+
+            % Pizza 2/4
+            \fill[valblue!30] (1,0) -- (1,1.5) arc (90:-90:1.5) -- cycle;
+            \draw[thick, valdark] (1,0) circle (1.5cm);
+            \draw[thick, valdark] (1,-1.5) -- (1,1.5);
+            \draw[thick, valdark] (-0.5,0) -- (2.5,0); % Corte horizontal
+            \node[below] at (1,-1.8) {\Large $\mathbf{\dfrac{2}{4}}$};
+            
+            % Símbolo =
+            \node at (4,0) {\Huge $\mathbf{=}$};
+
+            % Pizza 4/8
+            \fill[valblue!30] (6.5,0) -- (6.5,1.5) arc (90:-90:1.5) -- cycle;
+            \draw[thick, valdark] (6.5,0) circle (1.5cm);
+            \draw[thick, valdark] (6.5,-1.5) -- (6.5,1.5);
+            \draw[thick, valdark] (5,0) -- (8,0);
+            \draw[thick, valdark] (5.44,-1.06) -- (7.56,1.06);
+            \draw[thick, valdark] (5.44,1.06) -- (7.56,-1.06);
+            \node[below] at (6.5,-1.8) {\Large $\mathbf{\dfrac{4}{8}}$};
+        \end{tikzpicture}
+    \end{center}
+    \vspace{0.2cm}
+    \newpage
+    \textbf{2. ¿Cómo construirlas?} \\
+    Para \textbf{construir} una fracción equivalente más grande (a esto le llamamos \textbf{Amplificar}), el truco mágico es multiplicar el número de arriba y el de abajo por el \textbf{mismo número}. ¡Es como usar un cuchillo para cortar cada pedazo en porciones más pequeñas!
+    
+    \vspace{0.3cm}
+    \begin{center}
+        \begin{tikzpicture}
+            \node (frac1) at (0,0) {\Huge $\mathbf{\dfrac{1}{2}}$};
+            \node (frac2) at (4,0) {\Huge $\mathbf{\dfrac{3}{6}}$};
+            
+            \draw[->, ultra thick, valred] (0.8, 0.4) to[bend left=30] node[midway, above] {\textbf{Multiplica $\times 3$}} (3.2, 0.4);
+            \draw[->, ultra thick, valgreen] (0.8, -0.4) to[bend right=30] node[midway, below] {\textbf{Multiplica $\times 3$}} (3.2, -0.4);
+        \end{tikzpicture}
+    \end{center}
+\end{concepto}
+    
+    \begin{ejemplo}
+        Construir una fracción equivalente a $\dfrac{3}{5}$ multiplicando por $2$:\\
+        $\dfrac{3 \times 2}{5 \times 2} = \mathbf{\dfrac{6}{10}}$
+    \end{ejemplo}
+    %\newpage
+    \begin{practica}{Construyendo Fracciones Equivalentes}
+    \textit{Observa las imágenes, descubre por qué número se multiplicó arriba y abajo, y completa la fracción final.}
+    
+    \vspace{0.4cm}
+    \begin{multicols}{2}
+        % Ejercicio 1 (Pizza 1/4 a 2/8)
+        \begin{center}
+            \textbf{1. Cortando la pizza a la mitad}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.7]
+                % 1/4
+                \fill[valorange!40] (-3,0) -- (-3,1.2) arc (90:0:1.2) -- cycle;
+                \draw[thick, valdark] (-3,0) circle (1.2cm);
+                \draw[thick, valdark] (-4.2,0) -- (-1.8,0);
+                \draw[thick, valdark] (-3,-1.2) -- (-3,1.2);
+                
+                \node at (-1.2, 0) {\Large $\mathbf{\rightarrow}$};
+                
+                % 2/8
+                \fill[valorange!40] (0.5,0) -- (0.5,1.2) arc (90:0:1.2) -- cycle;
+                \draw[thick, valdark] (0.5,0) circle (1.2cm);
+                \draw[thick, valdark] (-0.7,0) -- (1.7,0);
+                \draw[thick, valdark] (0.5,-1.2) -- (0.5,1.2);
+                \draw[thick, valdark] (-0.35,-0.85) -- (1.35,0.85);
+                \draw[thick, valdark] (-0.35,0.85) -- (1.35,-0.85);
+            \end{tikzpicture}\\[0.3cm]
+            \Large $\dfrac{1\times\hspace{1cm}}{4\times\hspace{1cm}} \Rightarrow \dfrac{\boxfill[0.6cm]}{8}$
+        \end{center}
+
+        % Ejercicio 2 (Chocolatina 1/2 a 3/6) - CORREGIDO
+        \begin{center}
+            \textbf{2. Partiendo la chocolatina}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.7]
+                % 1/2
+                \fill[valgreen!30] (-3,0) rectangle (-2,2);
+                \draw[thick, valdark] (-3,0) rectangle (-1,2);
+                \draw[thick, valdark] (-2,0) -- (-2,2);
+                
+                \node at (-0.2, 1) {\Large $\mathbf{\rightarrow}$};
+                
+                % 3/6 - CORREGIDO: 2 columnas, 3 filas (Líneas manuales)
+                \fill[valgreen!30] (0.5,0) rectangle (1.5,2);
+                \draw[thick, valdark] (0.5,0) rectangle (2.5,2);
+                
+                % Línea vertical central (crea 2 columnas)
+                \draw[thick, valdark] (1.5,0) -- (1.5,2);
+                
+                % Líneas horizontales (crean 3 filas exactas)
+                \draw[thick, valdark] (0.5,0.667) -- (2.5,0.667);
+                \draw[thick, valdark] (0.5,1.333) -- (2.5,1.333);
+            \end{tikzpicture}\\[0.3cm]
+            \Large $\dfrac{1\times\hspace{1cm}}{2\times\hspace{1cm}} \Rightarrow \dfrac{\boxfill[0.6cm]}{6}$
+        \end{center}
+
+        % Ejercicio 3 (Circulo 1/3 a 2/6)
+        \begin{center}
+            \textbf{3. La torta dividida}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.7]
+                % 1/3
+                \fill[valred!30] (-3,0) -- (-3,1.2) arc (90:210:1.2) -- cycle;
+                \draw[thick, valdark] (-3,0) circle (1.2cm);
+                \draw[thick, valdark] (-3,0) -- (-3,1.2);
+                \draw[thick, valdark] (-3,0) -- ++(210:1.2cm);
+                \draw[thick, valdark] (-3,0) -- ++(330:1.2cm);
+                
+                \node at (-1.2, 0) {\Large $\mathbf{\rightarrow}$};
+                
+                % 2/6
+                \fill[valred!30] (0.5,0) -- (0.5,1.2) arc (90:210:1.2) -- cycle;
+                \draw[thick, valdark] (0.5,0) circle (1.2cm);
+                \foreach \a in {90, 150, 210, 270, 330, 30} {
+                    \draw[thick, valdark] (0.5,0) -- ++(\a:1.2cm);
+                }
+            \end{tikzpicture}\\[0.3cm]
+            \Large $\dfrac{1\times\hspace{1cm}}{3\times\hspace{1cm}} \Rightarrow \dfrac{\boxfill[0.6cm]}{6}$
+        \end{center}
+
+        % Ejercicio 4 (Tira 2/3 a 4/6)
+        \begin{center}
+            \textbf{4. Cinta de colores}\\[0.2cm]
+            \begin{tikzpicture}[scale=0.7]
+                % 2/3
+                \fill[cyan!30] (-4,0) rectangle (-2,0.8);
+                \draw[thick, valdark, xstep=1cm, ystep=0.8cm] (-4,0) grid (-1,0.8);
+                
+                \node at (-0.2, 0.4) {\Large $\mathbf{\rightarrow}$};
+                
+                % 4/6
+                \fill[cyan!30] (0.5,0) rectangle (2.5,0.8);
+                \draw[thick, valdark, xstep=0.5cm, ystep=0.8cm] (0.5,0) grid (3.5,0.8);
+            \end{tikzpicture}\\[0.3cm]
+            \Large $\dfrac{2\times\hspace{1cm}}{3\times\hspace{1cm}} \Rightarrow \dfrac{\boxfill[0.6cm]}{6}$
+        \end{center}
+    \end{multicols}
+\end{practica}
+\newpage
+    \begin{practica}{Construyendo Fracciones Equivalentes}
+        \textit{Escribe la fracción equivalente realizando la multiplicación indicada:}
+        \vspace{0.2cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.4cm]
+                \item $\dfrac{1\times2}{4\times2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{2\times3}{5\times3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{3\times4}{8\times4} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{5\times2}{6\times2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{1\times5}{3\times5}  = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{7\times2}{8\times2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{2\times3}{7\times3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{3\times4}{10\times4}  = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{4\times2}{9\times2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{1\times10}{2\times10} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{5\times3}{7\times3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{3\times4}{5\times4} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{1\times6}{6\times6} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{8\times2}{9\times2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{2\times7}{3\times7} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+\vspace{0.4cm}
+
+% ---------------- OBJETIVO 5 ----------------
+\begin{objetivo}{Objetivo 5: Simplificar fracciones}
+    \begin{concepto}{Simplificación: Agrupar pedazos}
+        \textbf{Simplificar} es exactamente el proceso contrario a construir. En lugar de cortar en más pedazos, \textbf{agrupamos} pedazos pequeños para formar pedazos más grandes, sin cambiar la cantidad total. 
+        
+        Visualmente, se borran las líneas de corte. Matemáticamente, logramos esto \textbf{dividiendo} el número de arriba y el de abajo por el \textbf{mismo número} (mitad, tercera, quinta) hasta llegar a una fracción \textbf{irreducible}.
+        
+        \vspace{0.4cm}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                % Pizza 4/8
+                \fill[valblue!30] (-4,0) -- (-4,1.5) arc (90:-90:1.5) -- cycle;
+                \draw[thick, valdark] (-4,0) circle (1.5cm);
+                \draw[thick, valdark] (-5.5,0) -- (-2.5,0);
+                \draw[thick, valdark] (-4,-1.5) -- (-4,1.5);
+                \draw[thick, valdark] (-5.06,-1.06) -- (-2.94,1.06);
+                \draw[thick, valdark] (-5.06,1.06) -- (-2.94,-1.06);
+                \node[below] at (-4,-1.8) {\Large $\mathbf{\dfrac{4}{8}}$};
+
+                % Símbolos y Flechas
+                \draw[->, ultra thick, valred] (-1.5, 0.8) to[bend left=30] node[midway, above] {\textbf{Divide $\div 4$}} (1.5, 0.8);
+                \draw[->, ultra thick, valgreen] (-1.5, -0.8) to[bend right=30] node[midway, below] {\textbf{Divide $\div 4$}} (1.5, -0.8);
+                \node at (0,0) {\Huge $\mathbf{=}$};
+
+                % Pizza 1/2 (Simplificada)
+                \fill[valblue!30] (4,0) -- (4,1.5) arc (90:-90:1.5) -- cycle;
+                \draw[thick, valdark] (4,0) circle (1.5cm);
+                \draw[thick, valdark] (4,-1.5) -- (4,1.5);
+                \node[below] at (4,-1.8) {\Large $\mathbf{\dfrac{1}{2}}$};
+            \end{tikzpicture}
+        \end{center}
+    \end{concepto}
+
+    \vspace{0.4cm}
+    
+    \begin{practica}{Simplificando Fracciones}
+        \textit{Observa cómo se agrupan los pedazos borrando líneas. Descubre por qué número se dividió arriba y abajo para hacer la fracción más pequeña y complétalo.}
+        
+        \vspace{0.4cm}
+        \begin{multicols}{2}
+            % Ejercicio 1 (Pizza 6/8 a 3/4)
+            \begin{center}
+                \textbf{1. Agrupando la pizza}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.7]
+                    % 6/8
+                    \fill[valorange!40] (-3,0) -- (-3,1.2) arc (90:360:1.2) -- cycle;
+                    \draw[thick, valdark] (-3,0) circle (1.2cm);
+                    \foreach \a in {0,45,...,315} \draw[thick, valdark] (-3,0) -- ++(\a:1.2cm);
+                    
+                    \node at (-1.2, 0) {\Large $\mathbf{\rightarrow}$};
+                    
+                    % 3/4
+                    \fill[valorange!40] (0.5,0) -- (0.5,1.2) arc (90:360:1.2) -- cycle;
+                    \draw[thick, valdark] (0.5,0) circle (1.2cm);
+                    \draw[thick, valdark] (-0.7,0) -- (1.7,0);
+                    \draw[thick, valdark] (0.5,-1.2) -- (0.5,1.2);
+                \end{tikzpicture}\\[0.3cm]
+                \Large $\dfrac{6\div\hspace{1cm}}{8\div\hspace{1cm}}  \Rightarrow \dfrac{3}{\boxfill[0.6cm]}$
+            \end{center}
+    
+            % Ejercicio 2 (Cuadrícula 3/9 a 1/3)
+            \begin{center}
+                \textbf{2. Uniendo la chocolatina}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.7]
+                    % 3/9
+                    \fill[valgreen!30] (-3.5,0.8) rectangle (-1.1,1.6); 
+                    \draw[thick, valdark] (-3.5,-0.8) rectangle (-1.1,1.6); % Borde exterior explícito
+                    % Líneas verticales manuales para 3 columnas exactas
+                    \foreach \x in {-2.7, -1.9} \draw[thick, valdark] (\x, -0.8) -- (\x, 1.6);
+                    % Líneas horizontales manuales para 3 filas exactas
+                    \foreach \y in {0, 0.8} \draw[thick, valdark] (-3.5, \y) -- (-1.1, \y);
+                    
+                    \node at (-0.2, 0.4) {\Large $\mathbf{\rightarrow}$};
+                    
+                    % 1/3
+                    \fill[valgreen!30] (0.5,0.8) rectangle (2.9,1.6);
+                    \draw[thick, valdark] (0.5,-0.8) rectangle (2.9,1.6); % Borde exterior
+                    % Líneas horizontales manuales para 3 filas exactas
+                    \foreach \y in {0, 0.8} \draw[thick, valdark] (0.5, \y) -- (2.9, \y);
+                \end{tikzpicture}\\[0.3cm]
+                \Large $\dfrac{3\div\hspace{1cm}}{9\div\hspace{1cm}}  \Rightarrow \dfrac{\boxfill[0.6cm]}{3}$
+            \end{center}
+    
+            % Ejercicio 3 (Circulo 2/6 a 1/3)
+            \begin{center}
+                \textbf{3. Torta en pedazos grandes}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.7]
+                    % 2/6
+                    \fill[valred!30] (-3,0) -- ++(90:1.2) arc (90:-30:1.2) -- cycle;
+                    \draw[thick, valdark] (-3,0) circle (1.2cm);
+                    \foreach \a in {90, 30, -30, -90, -150, 210} \draw[thick, valdark] (-3,0) -- ++(\a:1.2cm);
+                    
+                    \node at (-1.2, 0) {\Large $\mathbf{\rightarrow}$};
+                    
+                    % 1/3
+                    \fill[valred!30] (0.5,0) -- ++(90:1.2) arc (90:-30:1.2) -- cycle;
+                    \draw[thick, valdark] (0.5,0) circle (1.2cm);
+                    \foreach \a in {90, -30, 210} \draw[thick, valdark] (0.5,0) -- ++(\a:1.2cm);
+                \end{tikzpicture}\\[0.3cm]
+                \Large $\dfrac{2\div\hspace{1cm}}{6\div\hspace{1cm}} \Rightarrow \dfrac{1}{\boxfill[0.6cm]}$
+            \end{center}
+    
+            % Ejercicio 4 (Tira 4/10 a 2/5)
+            \begin{center}
+                \textbf{4. Juntando la cinta}\\[0.2cm]
+                \begin{tikzpicture}[scale=0.7]
+                    % 4/10
+                    \fill[cyan!30] (-4,0) rectangle (-2,0.8);
+                    \draw[thick, valdark] (-4,0) rectangle (1,0.8); % Borde exterior explícito
+                    % Líneas manuales para 10 columnas exactas
+                    \foreach \x in {-3.5, -3.0, -2.5, -2.0, -1.5, -1.0, -0.5, 0, 0.5} 
+                        \draw[thick, valdark] (\x, 0) -- (\x, 0.8);
+                    
+                    \node at (1.8, 0.4) {\Large $\mathbf{\rightarrow}$};
+                    
+                    % 2/5
+                    \fill[cyan!30] (2.5,0) rectangle (4.5,0.8);
+                    \draw[thick, valdark] (2.5,0) rectangle (7.5,0.8); % Borde exterior explícito
+                    % Líneas manuales para 5 columnas exactas
+                    \foreach \x in {3.5, 4.5, 5.5, 6.5} 
+                        \draw[thick, valdark] (\x, 0) -- (\x, 0.8);
+                \end{tikzpicture}\\[0.3cm]
+                \Large $\dfrac{4\div\hspace{1cm}}{10\div\hspace{1cm}} \Rightarrow \dfrac{\boxfill[0.6cm]}{5}$
+            \end{center}
+        \end{multicols}
+    \end{practica}
+
+    \vspace{0.4cm}
+    
+    \begin{practica}{Hacerlo pequeño}
+        \textit{Ahora sin dibujos. Simplifica las fracciones hasta su mínima expresión (mitad, tercera, quinta):}
+        \vspace{0.2cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.4cm]
+                \item $\dfrac{2}{4} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{6}{8} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{10}{15} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{12}{18} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{20}{30} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{14}{20} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{9}{12} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{15}{20} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{8}{16} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{30}{40} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{6}{18} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{16}{32} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{25}{35} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{12}{24} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{18}{27} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+%\newpage
+
+% =======================================================
+% SECCIÓN 2.2: MULTIPLICACIÓN DE FRACCIONES
+% =======================================================
+\seccionlibro{SECCIÓN 2.2: Multiplicación de Fracciones}
+
+% ---------------- OBJETIVO 1 ----------------
+\begin{objetivo}{Objetivo 1: Multiplicar fracciones}
+
+\begin{concepto}{Multiplicar Fracciones:}
+    A diferencia de la suma, para multiplicar fracciones NO nos importa si los números de abajo son diferentes.
+    
+    \vspace{0.2cm}
+    \textbf{La Regla de Oro:} Multiplicamos de frente. Numerador con Numerador (Arriba con Arriba) y Denominador con Denominador (Abajo con Abajo).
+    
+    \vspace{0.6cm}
+    \begin{center}
+        \begin{tikzpicture}[scale=1.2]
+            % Fracción 1
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valred] (num1) at (0, 0.8) {3};
+            \draw[line width=2.5pt, valdark] (-0.5, 0) -- (0.5, 0);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valblue] (den1) at (0, -0.8) {4};
+
+            % Signo Por
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valdark] at (1.5, 0) {$\times$};
+
+            % Fracción 2
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valred] (num2) at (3, 0.8) {1};
+            \draw[line width=2.5pt, valdark] (2.5, 0) -- (3.5, 0);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valblue] (den2) at (3, -0.8) {2};
+
+            % Signo Igual
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valdark] at (4.5, 0) {$=$};
+
+            % Resultado
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valred] (num3) at (6, 0.8) {3};
+            \draw[line width=2.5pt, valdark] (5.5, 0) -- (6.5, 0);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valblue] (den3) at (6, -0.8) {8};
+
+            % Flechas Arriba (Rojas)
+            \draw[->, line width=2pt, valred] (0.6, 0.8) -- (2.4, 0.8) node[midway, above, font=\large\bfseries] {$\mathbf{3 \times 1}$};
+            \draw[->, line width=2pt, valred] (3.6, 0.8) -- (5.4, 0.8);
+
+            % Flechas Abajo (Azules)
+            \draw[->, line width=2pt, valblue] (0.6, -0.8) -- (2.4, -0.8) node[midway, below, font=\large\bfseries] {$\mathbf{4 \times 2}$};
+            \draw[->, line width=2pt, valblue] (3.6, -0.8) -- (5.4, -0.8);
+        \end{tikzpicture}
+    \end{center}
+    
+    %\vspace{0.4cm}
+    %\textit{Como ves, el 3 y el 1 viajan juntos por el puente de arriba, y el 4 y el 2 viajan juntos por el puente de abajo. ¡Es la operación más fácil!}
+\end{concepto}
+
+\vspace{0.6cm}
+    \begin{practica}{Multiplicar de frente}
+        \textit{Multiplica las siguientes fracciones en línea recta:}
+        \vspace{0.2cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.4cm]
+                \item $\dfrac{1}{2} \times \dfrac{1}{3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{2}{3} \times \dfrac{4}{7} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{3}{5} \times \dfrac{1}{2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{4}{9} \times \dfrac{2}{3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{1}{4} \times \dfrac{5}{6} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{7}{8} \times \dfrac{1}{5} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{2}{5} \times \dfrac{3}{5} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{3}{10} \times \dfrac{3}{4} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{5}{7} \times \dfrac{2}{3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{1}{6} \times \dfrac{1}{6} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{8}{3} \times \dfrac{2}{5} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{4}{5} \times \dfrac{4}{5} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{9}{10} \times \dfrac{1}{2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{3}{7} \times \dfrac{5}{2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item $\dfrac{1}{8} \times \dfrac{3}{8} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+\vspace{0.4cm}
+
+% ---------------- OBJETIVO 2 ----------------
+\begin{objetivo}{Objetivo 2: Simplificar respuestas al multiplicar}
+    \begin{concepto}{¡Simplificar ANTES de multiplicar!}
+        Si multiplicamos de frente números muy grandes, el resultado será gigante y será muy difícil simplificarlo al final.
+        
+        Antes de multiplicar, busca un número de ARRIBA y un número de ABAJO que estén en la misma tabla de multiplicar. ¡Táchalos y divídelos por ese número para hacerlos más pequeños!
+        
+        \vspace{0.6cm}
+        \begin{center}
+            \begin{tikzpicture}[scale=1.1]
+                % Fracción 1
+                \node[font=\fontsize{30}{36}\selectfont\bfseries, text=valdark] (n1) at (0, 0.8) {3};
+                \draw[line width=2pt, valdark] (-0.5, 0) -- (0.5, 0);
+                \node[font=\fontsize{30}{36}\selectfont\bfseries, text=valdark] (d1) at (0, -0.8) {4};
+                
+                \node[font=\Huge\bfseries] at (1.5, 0) {$\times$};
+                
+                % Fracción 2
+                \node[font=\fontsize{30}{36}\selectfont\bfseries, text=valdark] (n2) at (3, 0.8) {8};
+                \draw[line width=2pt, valdark] (2.5, 0) -- (3.5, 0);
+                \node[font=\fontsize{30}{36}\selectfont\bfseries, text=valdark] (d2) at (3, -0.8) {9};
+                
+                % Tachón Rojo (El 3 y el 9 se dividen entre 3)
+                \draw[ultra thick, valred] (-0.4, 0.4) -- (0.4, 1.2);
+                \node[font=\Large\bfseries, valred] at (-0.6, 1.4) {1}; 
+                
+                \draw[ultra thick, valred] (2.6, -1.2) -- (3.4, -0.4);
+                \node[font=\Large\bfseries, valred] at (3.6, -1.4) {3}; 
+                
+                % Explicación Roja (Limpia en la parte superior)
+                \node[valred, font=\small\bfseries, align=center] at (1.5, 2.4) {¡El 3 y el 9 se dividen entre 3!};
+
+                % Tachón Azul (El 4 y el 8 se dividen entre 4)
+                \draw[ultra thick, valblue] (-0.4, -1.2) -- (0.4, -0.4);
+                \node[font=\Large\bfseries, valblue] at (-0.6, -1.4) {1}; 
+                
+                \draw[ultra thick, valblue] (2.6, 0.4) -- (3.4, 1.2);
+                \node[font=\Large\bfseries, valblue] at (3.6, 1.4) {2}; 
+
+                % Explicación Azul (Limpia en la parte inferior)
+                \node[valblue, font=\small\bfseries, align=center] at (1.5, -2.4) {¡El 4 y el 8 se dividen entre 4!};
+
+                % Resultado Final
+                \node[font=\Huge\bfseries] at (5, 0) {$=$};
+                
+                \node[font=\Large\bfseries] at (7.5, 0) {$\dfrac{1 \times 2}{1 \times 3} = \mathbf{\dfrac{2}{3}}$};
+            \end{tikzpicture}
+        \end{center}
+        
+        %\vspace{0.4cm}
+        %\textit{¡Mira qué fácil! Al tachar antes de cruzar el puente, solo tuvimos que multiplicar $1 \times 2$ y $1 \times 3$. ¡Ya nos quedó el resultado totalmente simplificado!}
+    \end{concepto}
+    
+    \vspace{0.4cm}
+    \newpage
+    \begin{practica}{Simplificar ANTES de Multiplicar}
+        \textit{Aplica el truco. Tacha con tu lápiz los números de arriba y de abajo que estén en la misma tabla de multiplicar, pon los números pequeñitos y luego multiplica. Si no hay nada que tachar, multiplica normal.}
+        
+        \vspace{0.4cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=1cm]
+                \item $\dfrac{3}{5} \times \dfrac{5}{7} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{4}{9} \times \dfrac{3}{4} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{2}{3} \times \dfrac{6}{7} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{5}{8} \times \dfrac{4}{5} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{7}{10} \times \dfrac{5}{7} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{9}{4} \times \dfrac{2}{9} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{8}{5} \times \dfrac{15}{16} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{3}{8} \times \dfrac{4}{9} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{10}{3} \times \dfrac{6}{5} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{7}{12} \times \dfrac{6}{7} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $4 \times \dfrac{3}{8} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{5}{6} \times \dfrac{12}{25} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{14}{9} \times \dfrac{3}{7} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{2}{11} \times \dfrac{11}{4} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\dfrac{15}{2} \times \dfrac{4}{5} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\times\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}\\=\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+\newpage
+
+% ---------------- OBJETIVO 3 ----------------
+\begin{objetivo}{Objetivo 3: Expresiones exponenciales}
+    \begin{concepto}{Potencias con Fracciones: ¡El exponente se reparte!}
+        Una fracción elevada a una potencia (o exponente) significa que debes multiplicar la fracción por sí misma. Tienes dos caminos fáciles para resolverlo y ambos te llevan al mismo lugar:
+        
+        \vspace{0.6cm}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.95]
+                % Expresión Inicial
+                \node (base) at (0, 0) {\Huge $\left( \mathbf{\dfrac{2}{3}} \right)^{\textcolor{valred}{\mathbf{2}}}$};
+                
+                % Camino 1: Expansión (Arriba)
+                \node (camino1) at (6.5, 2.8) {\Huge $\mathbf{\dfrac{2}{3} \times \dfrac{2}{3}}$};
+                \draw[->, ultra thick, valblue] (base.north east) to[bend left=30] 
+                    node[midway, above=0.3cm, text=valblue, font=\small\bfseries, align=center] {Camino 1: Multiplicar\\la fracción por sí misma} 
+                    (camino1.west);
+                
+                % Camino 2: Repartir el exponente (Abajo)
+                \node (camino2) at (6.5, -2.8) {\Huge $\mathbf{\dfrac{2^{\textcolor{valred}{2}}}{3^{\textcolor{valred}{2}}}}$};
+                \draw[->, ultra thick, valorange] (base.south east) to[bend right=30] 
+                    node[midway, below=0.3cm, text=valorange, font=\small\bfseries, align=center] {Camino 2: Repartir el\\exponente al de ARRIBA y\\al de ABAJO} 
+                    (camino2.west);
+                
+                % Resultado Final
+                \node (resultado) at (11.5, 0) {\Huge $\mathbf{= \dfrac{4}{9}}$};
+                
+                % Flechas hacia el resultado
+                \draw[->, ultra thick, valblue] (camino1.east) to[bend left=20] (resultado.north west);
+                \draw[->, ultra thick, valorange] (camino2.east) to[bend right=20] (resultado.south west);
+            \end{tikzpicture}
+        \end{center}
+        
+        %\vspace{0.4cm}
+        %\textit{¡Cuidado! El error más común es ponerle el exponente solo al número de arriba. Recuerda: ¡El paréntesis abraza a toda la fracción, así que el exponente es para los dos!}
+    \end{concepto}
+    
+    %\vspace{0.4cm}
+    %\newpage
+    \begin{practica}{Potencias con fracciones}
+        \textit{Evalúa las siguientes expresiones exponenciales usando el camino que más te guste. ¡Asegúrate de elevar tanto el de arriba como el de abajo!}
+        
+        \vspace{0.2cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.6cm]
+                \item $\left(\dfrac{1}{2}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{3}{5}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{1}{4}\right)^3 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{2}{3}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{2}{3}\right)^3 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{4}{7}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{1}{5}\right)^3 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{10}{3}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{5}{2}\right)^3 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{6}{5}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{1}{10}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{8}{9}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{2}{10}\right)^3 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{7}{4}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $\left(\dfrac{11}{2}\right)^2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+% ---------------- OBJETIVO 4 ----------------
+\begin{objetivo}{Objetivo 4: Resolver problemas de aplicación}
+    \begin{concepto}
+        Cuando un problema nos pide calcular ``una parte \textbf{DE} otra'' (ejemplo: ``la mitad \textbf{de} un cuarto''), esa palabra ``DE'' significa \textbf{MULTIPLICAR} por la fracción correspondiente\\ por ejemplo: La mitad de $\dfrac{2}{5}$ se halla multiplicando por $\dfrac{1}{2}$, es decir $\dfrac{2}{5}\times\dfrac{1}{2}=\dfrac{2}{10}=\dfrac{1}{5}$.
+    \end{concepto}
+    
+    \begin{practica}{Traducción de problemas }
+        \textit{Traduce el problema a una multiplicación y halla la respuesta:}
+        \vspace{0.2cm}
+        \begin{multicols}{2}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.4cm]
+                \item La mitad de $\dfrac{1}{2}$ kg $\rightarrow \dfrac{1}{2} \times \dfrac{1}{2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ kg
+                \item Un tercio de $\dfrac{3}{4}$ m $\rightarrow \dfrac{1}{3} \times \dfrac{3}{4} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ m
+                \item Un cuarto de $\dfrac{4}{5}$ L $\rightarrow \dfrac{1}{4} \times \dfrac{4}{5} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ L
+                \item La mitad de $\dfrac{2}{3}$ g $\rightarrow \dfrac{1}{2} \times \dfrac{2}{3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ g
+                \item Dos tercios de $\dfrac{1}{5}$ $\rightarrow \dfrac{2}{3} \times \dfrac{1}{5} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item Tres cuartos de $\dfrac{1}{2}$ $\rightarrow \dfrac{3}{4} \times \dfrac{1}{2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item Un quinto de $\dfrac{5}{6}$ m $\rightarrow \dfrac{1}{5} \times \dfrac{5}{6} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ m
+                \item La mitad de $\dfrac{4}{7}$ L $\rightarrow \dfrac{1}{2} \times \dfrac{4}{7} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ L
+                \item Dos quintos de $\dfrac{3}{2}$ $\rightarrow \dfrac{2}{5} \times \dfrac{3}{2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item Un tercio de $\dfrac{6}{5}$ g $\rightarrow \dfrac{1}{3} \times \dfrac{6}{5} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ g
+                \item Tres medios de $\dfrac{1}{4}$ $\rightarrow \dfrac{3}{2} \times \dfrac{1}{4} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item La mitad de $\dfrac{8}{9}$ $\rightarrow \dfrac{1}{2} \times \dfrac{8}{9} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item Cuatro tercios de $\dfrac{1}{2}$ $\rightarrow \dfrac{4}{3} \times \dfrac{1}{2} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item Un sexto de $\dfrac{2}{3}$ kg $\rightarrow \dfrac{1}{6} \times \dfrac{2}{3} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ kg
+                \item La mitad de $\dfrac{10}{7}$ $\rightarrow \dfrac{1}{2} \times \dfrac{10}{7} = \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+%\newpage
+
+% ---------------- OBJETIVO 5 ----------------
+\begin{objetivo}{Objetivo 5: Encontrar el área de un triángulo}
+    \begin{concepto}{Geometría con Fracciones:}
+        Para encontrar el espacio interior (\textbf{Área}) de un triángulo, existe una fórmula en geometría. Siempre debes multiplicar su \textbf{base} por su \textbf{altura}, y luego multiplicarlo por \textbf{un medio} ($\dfrac{1}{2}$). 
+        
+        \vspace{0.6cm}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.95]
+                % Triángulo a la izquierda
+                \fill[valgreen!10] (0,0) -- (4,0) -- (1.5,3) -- cycle;
+                \draw[thick, valdark] (0,0) -- (4,0) -- (1.5,3) -- cycle;
+                
+                % Base (Azul)
+                \draw[line width=3pt, valblue] (0,0) -- (4,0);
+                \node[valblue] (base) at (2, -0.6) {\Large $\mathbf{b = \dfrac{3}{4} \, m}$};
+                
+                % Altura (Rojo)
+                \draw[dashed, line width=2.5pt, valred] (1.5,0) -- (1.5,3);
+                \draw[thick, valdark] (1.5,0.25) -- (1.75,0.25) -- (1.75,0); % Ángulo recto
+                \node[valred] (altura) at (0.2, 1.5) {\Large $\mathbf{h = \dfrac{2}{5} \, m}$};
+
+                % Caja de la fórmula a la derecha
+                \node[align=left, anchor=west] at (5, 1.5) {
+                    \textbf{\Large 1. Escribe la Fórmula:} \\[0.2cm]
+                    {\Large $\mathbf{A = \dfrac{1}{2} \times \textcolor{valblue}{base} \times \textcolor{valred}{altura}}$} \\[0.6cm]
+                    \textbf{\Large 2. Reemplaza con los colores:} \\[0.2cm]
+                    {\Large $A = \mathbf{\dfrac{1}{2}} \times \textcolor{valblue}{\mathbf{\dfrac{3}{4}}} \times \textcolor{valred}{\mathbf{\dfrac{2}{5}}}$} \\[0.6cm]
+                    \textbf{\Large 3. ¡Multiplica de frente y simplifica!} \\[0.2cm]
+                    {\Large $A = \dfrac{1 \times 3 \times 2}{2 \times 4 \times 5} = \dfrac{6}{40} \xrightarrow{\div 2} \mathbf{\dfrac{3}{20} \, m^2}$}
+                };
+            \end{tikzpicture}
+        \end{center}
+        
+        %\vspace{0.2cm}
+        %\textit{Recuerda: El $\dfrac{1}{2}$ siempre es parte de la fórmula. ¡Nunca lo olvides al multiplicar! Además, el resultado siempre se expresa en unidades cuadradas (como $\text{m}^2$ o $\text{cm}^2$).}
+    \end{concepto}
+    
+    \vspace{0.4cm}
+    
+    \begin{practica}{Áreas fraccionarias (15 Ejercicios)}
+        \textit{Halla el área de los triángulos multiplicando $\dfrac{1}{2} \times \text{base} \times \text{altura}$. ¡Multiplica los tres de frente y luego simplifica el resultado!}
+        \vspace{0.2cm}
+        \begin{multicols}{2}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.6cm]
+                \item $b = \dfrac{3}{4}$, $h = \dfrac{1}{2} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{2}{3}$, $h = \dfrac{1}{5} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{1}{2}$, $h = \dfrac{1}{2} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{4}{5}$, $h = \dfrac{3}{2} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{5}{6}$, $h = \dfrac{1}{3} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{3}{2}$, $h = \dfrac{3}{4} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{1}{4}$, $h = \dfrac{1}{4} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{2}{7}$, $h = \dfrac{3}{2} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{4}{3}$, $h = \dfrac{1}{5} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{5}{2}$, $h = \dfrac{1}{2} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{6}{5}$, $h = \dfrac{1}{3} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{1}{5}$, $h = \dfrac{3}{5} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{7}{4}$, $h = \dfrac{1}{2} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{3}{8}$, $h = \dfrac{1}{3} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+                \item $b = \dfrac{2}{5}$, $h = \dfrac{5}{2} \\A = \dfrac{1}{2} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} \times \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+\newpage
+
+% =======================================================
+% SECCIÓN 2.3: DIVISIÓN DE FRACCIONES
+% =======================================================
+\seccionlibro{SECCIÓN 2.3: División de Fracciones}
+
+% ---------------- OBJETIVO 1 ----------------
+\begin{objetivo}{Objetivo 1: Encontrar el recíproco}
+    \begin{concepto}
+        En matemáticas, la palabra \textbf{Recíproco} (o Inverso Multiplicativo) significa darle una voltereta completa a la fracción. ¡El número que estaba abajo se va para arriba, y el que estaba arriba se cae para abajo!
+        
+        \vspace{0.6cm}
+        \begin{center}
+            \begin{tikzpicture}[scale=1.1]
+                % --- EJEMPLO 1: FRACCIÓN NORMAL ---
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=valred] (n1) at (0, 0.8) {3};
+                \draw[line width=2pt, valdark] (-0.5, 0) -- (0.5, 0);
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=valblue] (d1) at (0, -0.8) {4};
+                
+                % Flechas cruzadas
+                \draw[->, ultra thick, valred, dashed] (0.5, 0.6) to[out=0, in=180] node[midway, above right, text=valdark, font=\small\bfseries] {} (2.5, -0.6);
+                \draw[->, ultra thick, valblue, dashed] (0.5, -0.6) to[out=0, in=180] node[midway, below right, text=valdark, font=\small\bfseries] {} (2.5, 0.6);
+                
+                % Fracción volteada
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=valblue] (n2) at (3, 0.8) {4};
+                \draw[line width=2pt, valdark] (2.5, 0) -- (3.5, 0);
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=valred] (d2) at (3, -0.8) {3};
+                
+                \node[font=\large\bfseries, text=valdark] at (1.5, -1.8) {Fracción};
+
+                % --- LÍNEA DIVISORIA ---
+                \draw[thick, gray, dotted] (4.5, 1.5) -- (4.5, -2);
+
+                % --- EJEMPLO 2: NÚMERO ENTERO ---
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=valdark] (entero) at (5.5, 0) {5};
+                \node[font=\Large\bfseries] at (6.5, 0) {$\rightarrow$};
+                
+                % Paso a fracción
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=valdark] (n3) at (7.5, 0.8) {5};
+                \draw[line width=2pt, valdark] (7, 0) -- (8, 0);
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=gray] (d3) at (7.5, -0.8) {1};
+                \node[gray, font=\footnotesize\bfseries, align=center] at (7.5, -1.6) {El 1\\invisible};
+
+                % Flecha curva de voltereta
+                \draw[->, ultra thick, valdark, dashed] (8.5, 0) to[bend left=40] node[midway, above] {\small Voltear} (10, 0);
+                
+                % Resultado Final
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=gray] (n4) at (11, 0.8) {1};
+                \draw[line width=2pt, valdark] (10.5, 0) -- (11.5, 0);
+                \node[font=\fontsize{25}{30}\selectfont\bfseries, text=valdark] (d4) at (11, -0.8) {5};
+                
+                \node[font=\large\bfseries, text=valdark] at (8.5, -2.2) {Número Entero};
+            \end{tikzpicture}
+        \end{center}
+        \vspace{0.2cm}
+        %\textit{Nota:} Darle la vuelta a la fracción no significa resolver una operación, es solo preparar el número para el truco de la división que veremos en el siguiente objetivo.
+    \end{concepto}
+    
+    \begin{practica}{Dando volteretas (15 Ejercicios)}
+        \textit{Escribe el recíproco de cada número:}
+        \vspace{0.2cm}
+        \begin{multicols}{3}
+            \raggedcolumns
+            \begin{enumerate}[itemsep=0.4cm]
+                \item De $\dfrac{2}{7}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{3}{8}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $4$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{1}{9}$ es $\boxfill[1cm]$
+                \item De $\dfrac{5}{2}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{6}{5}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $10$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{4}{9}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{1}{12}$ es $\boxfill[1cm]$
+                \item De $7$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{8}{3}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{15}{4}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $2$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+                \item De $\dfrac{1}{20}$ es $\boxfill[1cm]$
+                \item De $\dfrac{9}{10}$ es $\dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+            \end{enumerate}
+        \end{multicols}
+    \end{practica}
+\end{objetivo}
+
+\vspace{0.4cm}
+
+% ---------------- OBJETIVO 2 ----------------
+\begin{objetivo}{Objetivo 2: Dividir fracciones}
+    \begin{concepto}{Dividir Fracciones:}
+    Para dividir, convertimos la operación en una multiplicación usando un truco llamado \textbf{M-C-V} (Mantener - Cambiar - Voltear). Si te das cuenta, este truco es cambiar la división por una multiplicación y cambiar la fracción de la derecha o la que hace de divisor, por su reciproco.
+    
+    \vspace{0.8cm}
+    \begin{center}
+        \begin{tikzpicture}[scale=1.1]
+            % --- ARRIBA: DIVISIÓN ORIGINAL ---
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valdark] (n1) at (0, 0.8) {3};
+            \draw[line width=2.5pt, valdark] (-0.5, 0) -- (0.5, 0);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valdark] (d1) at (0, -0.8) {4};
+
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valdark] at (2, 0) {$\div$};
+
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valred] (n2) at (4, 0.8) {2};
+            \draw[line width=2.5pt, valred] (3.5, 0) -- (4.5, 0);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valred] (d2) at (4, -0.8) {5};
+
+            % --- FLECHAS EXPLICATIVAS (M-C-V) ---
+            \draw[->, line width=2pt, valblue] (0, -1.5) -- (0, -2.5) node[midway, left] {\textbf{M}antener};
+            \draw[->, line width=2pt, valorange] (2, -1.5) -- (2, -2.5) node[midway, right] {\textbf{C}ambiar};
+
+            % Flechas curvas punteadas para el efecto "Voltear"
+            % El 2 baja (curva por la derecha)
+            \draw[->, line width=2pt, valred, dashed] (4.6, 0.8) to[out=0, in=0] node[midway, right] {\textbf{V}oltear} (4.6, -4.8); 
+            % El 5 sube (curva por la izquierda)
+            \draw[->, line width=2pt, valred, dashed] (3.4, -0.8) to[out=180, in=180] (3.4, -3.2); 
+
+            % --- ABAJO: TRANSFORMADA A MULTIPLICACIÓN ---
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valblue] (n1b) at (0, -3.2) {3};
+            \draw[line width=2.5pt, valblue] (-0.5, -4) -- (0.5, -4);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valblue] (d1b) at (0, -4.8) {4};
+
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valorange] at (2, -4) {$\times$};
+
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valred] (n2b) at (4, -3.2) {5};
+            \draw[line width=2.5pt, valred] (3.5, -4) -- (4.5, -4);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valred] (d2b) at (4, -4.8) {2};
+
+            % --- RESULTADO FINAL ---
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valdark] at (5.8, -4) {$=$};
+
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valgreen] (n3) at (7.5, -3.2) {15};
+            \draw[line width=2.5pt, valgreen] (6.8, -4) -- (8.2, -4);
+            \node[font=\fontsize{35}{42}\selectfont\bfseries, text=valgreen] (d3) at (7.5, -4.8) {8};
+
+            % Pequeñas flechas rectas para indicar que se multiplica de frente
+            \draw[->, thick, valgreen] (0.8, -3.2) -- (3.2, -3.2);
+            \draw[->, thick, valgreen] (0.8, -4.8) -- (3.2, -4.8);
+
+        \end{tikzpicture}
+    \end{center}
+
+    \vspace{0.4cm}
+    \textit{Una vez que aplicas el M-C-V y le das la voltereta a la segunda fracción, el signo cambia a multiplicación ($\times$) y ya puedes operar en línea recta (arriba con arriba, abajo con abajo).}
+\end{concepto}
+    
+    \begin{practica}{División}
+    \textit{Aplica la regla M-C-V (Mantener - Cambiar - Voltear). Convierte la división en multiplicación llenando los primeros cuadros, y luego resuelve multiplicando de frente.}
+    
+    \vspace{0.4cm}
+    \begin{multicols}{3}
+        \raggedcolumns
+        \begin{enumerate}[itemsep=0.8cm]
+            \item $\dfrac{1}{2} \div \dfrac{3}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{4}{9} \div \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{2}{3} \div \dfrac{4}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{1}{4} \div \dfrac{1}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{5}{6} \div \dfrac{2}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{7}{8} \div \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{3}{5} \div \dfrac{2}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{1}{6} \div \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{8}{9} \div \dfrac{2}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{3}{10} \div \dfrac{1}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{4}{7} \div \dfrac{3}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{5}{2} \div \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{2}{5} \div \dfrac{4}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{1}{8} \div \dfrac{3}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+            
+            \item $\dfrac{7}{3} \div \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \\= \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+        \end{enumerate}
+    \end{multicols}
+\end{practica}
+\end{objetivo}
+
+%\newpage
+
+% ---------------- OBJETIVO 3 ----------------
+\begin{objetivo}{Objetivo 3: Resolver problemas con división}
+    \begin{concepto}
+        Cuando un problema habla de \textbf{repartir}, \textbf{envasar}, o \textbf{cortar} una cantidad en partes fraccionarias más pequeñas, utilizamos la \textbf{División}.
+    \end{concepto}
+    
+    \begin{practica}{Cortar y Envasar}
+    \textit{Traduce el problema a una división, luego aplica la regla M-C-V llenando los cuadros para convertirla a multiplicación y resuelve:}
+    
+    \vspace{0.4cm}
+    \begin{multicols}{2}
+        \raggedcolumns
+        \begin{enumerate}[itemsep=0.8cm]
+            \item Repartir $\dfrac{1}{2}$ kg en bolsas de $\dfrac{1}{4}$ kg.
+            \\ $\rightarrow \dfrac{1}{2} \div \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ bolsas.
+            
+            \item Cortar cinta de $\dfrac{3}{4}$ m en tiras de $\dfrac{1}{4}$ m.
+            \\ $\rightarrow \dfrac{3}{4} \div \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ tiras.
+            
+            \item Repartir $\dfrac{4}{5}$ L en vasos de $\dfrac{1}{5}$ L.
+            \\ $\rightarrow \dfrac{4}{5} \div \dfrac{1}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ vasos.
+            
+            \item Cortar tubo de $\dfrac{7}{8}$ pulg en partes de $\dfrac{1}{8}$ pulg.
+            \\ $\rightarrow \dfrac{7}{8} \div \dfrac{1}{8} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ partes.
+            
+            \item Repartir $\dfrac{5}{2}$ kg en bolsas de $\dfrac{1}{2}$ kg.
+            \\ $\rightarrow \dfrac{5}{2} \div \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ bolsas.
+            
+            \item Cortar tela de $\dfrac{9}{4}$ m en retazos de $\dfrac{3}{4}$ m.
+            \\ $\rightarrow \dfrac{9}{4} \div \dfrac{3}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ retazos.
+            
+            \item Repartir $\dfrac{8}{3}$ L en jarras de $\dfrac{2}{3}$ L.
+            \\ $\rightarrow \dfrac{8}{3} \div \dfrac{2}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ jarras.
+            
+            \item Cortar madera de $\dfrac{10}{7}$ m en partes de $\dfrac{2}{7}$ m.
+            \\ $\rightarrow \dfrac{10}{7} \div \dfrac{2}{7} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ partes.
+            
+            \item Repartir $\dfrac{6}{5}$ kg en porciones de $\dfrac{1}{5}$ kg.
+            \\ $\rightarrow \dfrac{6}{5} \div \dfrac{1}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ porciones.
+            
+            \item Cortar alambre de $\dfrac{15}{2}$ m en tiras de $\dfrac{5}{2}$ m.
+            \\ $\rightarrow \dfrac{15}{2} \div \dfrac{5}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ tiras.
+            
+            \item Repartir $\dfrac{12}{5}$ L de sopa en platos de $\dfrac{3}{5}$ L.
+            \\ $\rightarrow \dfrac{12}{5} \div \dfrac{3}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ platos.
+            
+            \item Cortar papel de $\dfrac{20}{9}$ m en hojas de $\dfrac{4}{9}$ m.
+            \\ $\rightarrow \dfrac{20}{9} \div \dfrac{4}{9} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ hojas.
+            
+            \item Repartir $\dfrac{14}{3}$ kg en sacos de $\dfrac{7}{3}$ kg.
+            \\ $\rightarrow \dfrac{14}{3} \div \dfrac{7}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ sacos.
+            
+            \item Cortar lazo de $\dfrac{25}{4}$ m en partes de $\dfrac{5}{4}$ m.
+            \\ $\rightarrow \dfrac{25}{4} \div \dfrac{5}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ partes.
+            
+            %\item Repartir $\dfrac{18}{7}$ L en vasos de $\dfrac{6}{7}$ L.
+            %\\ $\rightarrow \dfrac{18}{7} \div \dfrac{6}{7} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ vasos.
+        \end{enumerate}
+    \end{multicols}
+\end{practica}
+
+\end{objetivo}
+
+
+\end{document}

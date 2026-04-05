@@ -1,0 +1,156 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+% Márgenes de 1 pulgada en todos los lados
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO (RUTA LOCAL TEXSTUDIO) ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		% Usamos comillas dobles porque la ruta tiene espacios
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{"/home/camilo/Descargas/Liceo VAL/Taller 1/FondoVAL.pdf"}%
+	}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=black, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{MATEMÁTICAS}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \textbf{6M\_03 AC}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1.} Resuelve las siguientes sumas de dinero. \textbf{(25\%)}
+	
+	\vspace{0.5cm}
+	\begin{multicols}{3}
+		\textbf{A)}\\
+		\begin{tabular}{rr}
+			\$ & 3.584 \\
+			+ \$ & 2.641 \\
+			\hline
+			\$ & \boxfill[1.5cm]
+		\end{tabular}
+		
+		\textbf{B)}\\
+		\begin{tabular}{rr}
+			\$ & 28.547 \\
+			+ \$ & 14.685 \\
+			\hline
+			\$ & \boxfill[1.5cm]
+		\end{tabular}
+		
+		\textbf{C)}\\
+		\begin{tabular}{rr}
+			\$ & 356.842 \\
+			+ \$ & 164.579 \\
+			\hline
+			\$ & \boxfill[1.5cm]
+		\end{tabular}
+	\end{multicols}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2.} Acomoda los precios correctamente en forma vertical alineando las unidades y resuelve. \textbf{(25\%)}
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\textbf{A)} \$ 48.950 + \$ 25.460 \\[0.3cm]
+		\begin{tabular}{rr}
+			\$ & \boxfill[2cm] \\
+			+ \$ & \boxfill[2cm] \\
+			\hline
+			\$ & \boxfill[2cm]
+		\end{tabular}
+		
+		\textbf{B)} \$ 135.840 + \$ 94.270 \\[0.3cm]
+		\begin{tabular}{rr}
+			\$ & \boxfill[2cm] \\
+			+ \$ & \boxfill[2cm] \\
+			\hline
+			\$ & \boxfill[2cm]
+		\end{tabular}
+	\end{multicols}
+	
+	\vspace{0.8cm}
+	\newpage
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3.} Lee la siguiente situación de compras y calcula el total. \textbf{(25\%)}
+	
+	\vspace{0.3cm}
+	\noindent \textit{La tía Sofía fue al supermercado. Compró un mercado por \textbf{\$ 148.950} y artículos de aseo para el hogar por \textbf{\$ 65.470}. ¿Cuánto dinero pagó en total en la caja?}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tabular}{c c c}
+			\textbf{Operación:} & \hspace{2cm} & \textbf{Respuesta:} \\[0.5cm]
+			\Large
+			\begin{tabular}{r}
+				148.950 \\
+				+ 65.470 \\
+				\hline
+				\boxfill[2.5cm]
+			\end{tabular}
+			& &
+			La tía Sofía pagó \$ \boxfill[2.5cm]
+		\end{tabular}
+	\end{center}
+	
+	\vspace{1.5cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4.} Lee el problema de gastos escolares y calcula la suma total. \textbf{(25\%)}
+	
+	\vspace{0.3cm}
+	\noindent \textit{Para la escuela, la matrícula de este año costó \textbf{\$ 456.800} y la caja de libros costó \textbf{\$ 175.400}. ¿Cuánto dinero invirtieron mis papás en total para la educación?}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tabular}{c c c}
+			\textbf{Operación:} & \hspace{2cm} & \textbf{Respuesta:} \\[0.5cm]
+			\Large
+			\begin{tabular}{r}
+				456.800 \\
+				+ 175.400 \\
+				\hline
+				\boxfill[2.5cm]
+			\end{tabular}
+			& &
+			Mis papás invirtieron \$ \boxfill[2.5cm]
+		\end{tabular}
+	\end{center}
+	
+	\vspace{1.5cm}
+	
+\end{document}

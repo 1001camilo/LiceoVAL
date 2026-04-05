@@ -1,0 +1,632 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% SOLUCIÓN DEL ERROR: Se agrega es-noshorthands para evitar conflictos entre TikZ, tcolorbox y Babel
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=3.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete Ruta Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{"/home/camilo/Descargas/Liceo VAL/Taller 1/FondoVAL.pdf"}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo Guiado Paso a Paso}}, arc=2mm, boxrule=1pt}
+
+% --- NUEVO ENTORNO DE PRÁCTICA (Sin caja contenedora para permitir saltos de página fluidos) ---
+\newenvironment{practica}[1]{
+	\vspace{0.6cm}
+	\begin{tcolorbox}[colback=white, colframe=valdark, boxrule=1pt, borderline west={4pt}{0pt}{valdark!50}, arc=2mm, top=3pt, bottom=3pt]
+		\large\bfseries \ding{46} \textbf{¡Tu Turno! (#1)}
+	\end{tcolorbox}
+	\vspace{0.2cm}
+}{
+	\vspace{0.4cm}
+}
+
+% --- COMANDOS PARA ESTRUCTURAR LA UNIDAD ---
+\newcommand{\titulounidad}[2]{
+	\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+		\centering \Huge \textbf{UNIDAD #1}\\[0.2cm]
+		\Large \textbf{#2}
+	\end{tcolorbox}
+	\vspace{0.5cm}
+}
+
+\newcommand{\finunidad}[1]{
+	\vspace{1cm}
+	\begin{center}
+		\begin{tcolorbox}[colback=valred!5, colframe=valred, width=14cm, arc=3mm, boxrule=2pt]
+			\centering \Huge \textbf{\ding{55} ¡ALTO AQUÍ!} \\[0.4cm]
+			\Large \textbf{FIN DE LA UNIDAD #1}\\[0.2cm]
+			\large \textit{Has completado las misiones de este tema.}\\
+			\normalsize Repasa tus respuestas y avisa a tu profesor para presentar tu examen. \textbf{¡No avances hasta aprobarlo!}
+		\end{tcolorbox}
+	\end{center}
+	%\newpage
+}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+% SOLUCIÓN DEL ERROR: Se añade el comando boxline que faltaba para las cajas largas
+\newcommand{\boxline}[1][4cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		
+		\titulounidad{8}{NÚMEROS MIXTOS:\\ Operaciones y Transformaciones}
+		
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-08} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+		
+	\end{center}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 1: ¿QUÉ ES UN NÚMERO MIXTO?
+	% =======================================================
+	\section*{Misión 1: El Gigante y el Enano}
+	
+	\begin{concepto}{Conociendo a los Números Mixtos}
+		En la vida real, no todo es exacto. A veces nos comemos pizzas completas y un pedacito más. Un \textbf{Número Mixto} se llama así porque mezcla dos cosas diferentes:
+		\begin{itemize}
+			\item Un número \textbf{Entero} (que representa cosas completas).
+			\item Una \textbf{Fracción} (que representa el pedazo que sobra).
+		\end{itemize}
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.8]
+				% Pizza 1 Completa
+				\fill[valorange!40] (-6,0) circle (1.5cm);
+				\draw[thick, valdark] (-6,0) circle (1.5cm);
+				\draw[thick, valdark] (-7.5,0) -- (-4.5,0);
+				\draw[thick, valdark] (-6,-1.5) -- (-6,1.5);
+				\node at (-6,-2) {\textbf{1 Completa}};
+				
+				% Símbolo más
+				\node at (-3.75,0) {\Huge $\mathbf{+}$};
+				
+				% Pizza 2 Completa
+				\fill[valorange!40] (-1.5,0) circle (1.5cm);
+				\draw[thick, valdark] (-1.5,0) circle (1.5cm);
+				\draw[thick, valdark] (-3,0) -- (0,0);
+				\draw[thick, valdark] (-1.5,-1.5) -- (-1.5,1.5);
+				\node at (-1.5,-2) {\textbf{1 Completa}};
+				
+				% Símbolo más
+				\node at (0.8,0) {\Huge $\mathbf{+}$};
+				
+				% Pizza 3 Incompleta (1/4)
+				\fill[valorange!40] (3,0) -- (3,1.5) arc (90:0:1.5) -- cycle;
+				\draw[thick, valdark] (3,0) circle (1.5cm);
+				\draw[thick, valdark] (1.5,0) -- (4.5,0);
+				\draw[thick, valdark] (3,-1.5) -- (3,1.5);
+				\node at (3,-2) {\textbf{Un Cuarto ($\dfrac{1}{4}$)}};
+				
+				% Igual y Número Mixto
+				\node at (5.5,0) {\Huge $\mathbf{=}$};
+				\node[text=valblue] at (7.5,0) {\Huge $\mathbf{2}$};
+				\node[text=valred] at (8.5,0) {\Huge $\mathbf{\dfrac{1}{4}}$};
+				\node at (9,-2) {\textbf{Dos enteros y un cuarto}};
+			\end{tikzpicture}
+		\end{center}
+		\vspace{0.2cm}
+		Si los sumamos, tenemos $\mathbf{2 \dfrac{1}{4}}$ (Dos y un cuarto).\\\\
+		
+		\textbf{NOTA: \textit{Ten en cuenta que la fracción de un número mixto, no puede ser impropia, es decir, el numerador no puede ser más grande que el denominador}}
+	\end{concepto}
+	
+	\begin{practica}{Identificando Mixtos}
+		\textit{Escribe el número mixto que corresponde a cada lectura o viceversa:}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item Tres enteros y un medio $\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item Cinco enteros y dos tercios \\
+				$\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item Un entero y tres cuartos $\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item Cuatro y dos quintos $\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item Ocho y un séptimo $\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item Seis y cinco octavos $\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item Dos y cuatro novenos $\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item Siete y un décimo $\rightarrow$ \boxfill[1cm] $\dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $4 \dfrac{1}{2} \rightarrow$ \boxline[5cm]
+				\item $2 \dfrac{3}{4} \rightarrow$ \boxline[5cm]
+				\item $5 \dfrac{1}{3} \rightarrow$ \boxline[5cm]
+				\item $1 \dfrac{2}{5} \rightarrow$ \boxline[5cm]
+				\item $3 \dfrac{5}{6} \rightarrow$ \boxline[5cm]
+				\item $10 \dfrac{1}{8} \rightarrow$ \boxline[5cm]
+				\item $7 \dfrac{4}{7} \rightarrow$ \boxline[5cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 2: CONVERTIR DE MIXTO A FRACCIÓN (EL MOLINO)
+	% =======================================================
+	\section*{Misión 2: De Mixto a Fracción}
+	
+	\begin{concepto}{Fracciones Impropias}
+		A los matemáticos no les gusta operar con el \textbf{entero} y la \textbf{fracción} separados. Prefieren juntar todo en una sola fracción donde el número de arriba es más grande que el de abajo. A esto se le llama \textbf{Fracción Impropia}.
+	\end{concepto}
+	
+	\begin{truco}{El Movimiento del Molino}
+		Para convertir un número mixto en una sola fracción, hacemos un giro de abajo hacia arriba:
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2]
+				% Números separados para evitar superposición
+				\node[font=\fontsize{40}{48}\selectfont\bfseries] (entero) at (0,0) {3};
+				\draw[line width=2.5pt] (0.6, 0) -- (1.4, 0);
+				\node[font=\fontsize{30}{36}\selectfont\bfseries] (num) at (1, 0.7) {3};
+				\node[font=\fontsize{30}{36}\selectfont\bfseries] (den) at (1, -0.7) {4};
+				
+				% Flecha de multiplicar (Azul) - Abajo
+				\draw[->, line width=2pt, valblue] (den.south west) to[out=200, in=270] node[midway, below left] {\Large $\mathbf{\times}$} (entero.south);
+				
+				% Flecha de sumar (Rojo) - Arriba
+				\draw[->, line width=2pt, valred] (entero.north) to[out=90, in=160] node[midway, above left] {\Large $\mathbf{+}$} (num.north west);
+				
+				% Igualdad y fracción impropia resultante
+				\node[font=\fontsize{40}{48}\selectfont\bfseries] at (2.2, 0) {$=$};
+				\draw[line width=2.5pt] (2.8, 0) -- (3.6, 0);
+				\node[font=\fontsize{30}{36}\selectfont\bfseries] at (3.2, 0.7) {15};
+				\node[font=\fontsize{30}{36}\selectfont\bfseries] at (3.2, -0.7) {4};
+			\end{tikzpicture}
+		\end{center}
+		\textbf{Paso 1:} Multiplica el \textbf{denominador} (4) por el de \textbf{Entero}(3). $4 \times 3 = 12$.\\
+		\textbf{Paso 2:} A ese resultado, súmale el de Arriba (3). $12 + 3 = 15$. ¡Ese es tu nuevo numerador!\\
+		\textbf{Paso 3:} El número de abajo (4) NUNCA cambia. Resultado Final: $\mathbf{\dfrac{15}{4}}$.
+	\end{truco}
+	
+	\begin{practica}{Halla la fracción impropia}
+		\textit{Resuelve y escribe la fracción impropia equivalente.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $1 \dfrac{1}{2} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $2 \dfrac{1}{3} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $3 \dfrac{1}{4} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $1 \dfrac{3}{4} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $2 \dfrac{2}{5} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $4 \dfrac{1}{2} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $5 \dfrac{1}{3} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $1 \dfrac{2}{7} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $2 \dfrac{3}{8} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $3 \dfrac{2}{5} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $1 \dfrac{4}{9} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $6 \dfrac{1}{2} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $2 \dfrac{5}{6} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $1 \dfrac{7}{10} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $4 \dfrac{3}{4} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 3: CONVERTIR DE FRACCIÓN A MIXTO
+	% =======================================================
+	\section*{Misión 3: De Fracción a Mixto}
+	
+	\begin{concepto}{El proceso en reversa}
+		Si te dan una fracción gigante (impropia) como $\dfrac{7}{3}$ y quieres saber cuántas pizzas enteras hay ahí, debes hacer el proceso al revés: ¡Una \textbf{división}!
+	\end{concepto}
+	
+	\begin{truco}{Dividir para armar el Mixto}
+		Para convertir una fracción gigante (impropia) como $\mathbf{\dfrac{7}{3}}$ a número mixto, tienes que hacer una división normal. Cada parte de la división viajará para ocupar un nuevo lugar en el número mixto:
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1]
+				% --- LA DIVISIÓN ---
+				\node[font=\fontsize{25}{30}\selectfont\bfseries] (dividendo) at (0, 0) {7};
+				\draw[line width=2pt, valdark] (0.6, 0.4) -- (0.6, -0.4) -- (1.8, -0.4);
+				\node[font=\fontsize{25}{30}\selectfont\bfseries, text=valblue] (divisor) at (1.2, 0) {3};
+				
+				\node[font=\fontsize{25}{30}\selectfont\bfseries, text=valgreen] (cociente) at (1.2, -1) {2};
+				
+				\node[font=\large\bfseries] at (0, -1) {- 6};
+				\draw[line width=1.5pt, valdark] (-0.4, -1.4) -- (0.4, -1.4);
+				\node[font=\fontsize{25}{30}\selectfont\bfseries, text=valred] (residuo) at (0, -2) {1};
+				
+				% --- ETIQUETAS DE LA DIVISIÓN ---
+				\node[valgreen, font=\small\bfseries, align=left] (lblCociente) at (3.3, -1) {Cociente\\(El Gigante)};
+				\node[valred, font=\small\bfseries, align=right] at (-1.8, -2) {Residuo\\(Lo que sobra)};
+				\node[valblue, font=\small\bfseries, align=left] at (3.3, 0) {Divisor\\(El de abajo)};
+				
+				% --- EL NÚMERO MIXTO ---
+				\node[font=\fontsize{40}{48}\selectfont\bfseries, text=valgreen] (entero) at (7, -0.5) {2};
+				
+				\node[font=\fontsize{25}{30}\selectfont\bfseries, text=valred] (num) at (8, 0.3) {1};
+				\draw[line width=2.5pt, valdark] (7.5, -0.5) -- (8.5, -0.5);
+				\node[font=\fontsize{25}{30}\selectfont\bfseries, text=valblue] (den) at (8, -1.3) {3};
+				
+				% --- FLECHAS CONECTORAS MAGICAS ---
+				% Cociente -> Entero (Verde)
+				\draw[->, line width=2.5pt, valgreen] (lblCociente.east) -- (entero.west);
+				
+				% Residuo -> Numerador (Rojo) - Viaja por debajo
+				\draw[->, line width=2pt, valred, dashed, rounded corners=10pt] 
+				(residuo.south) -- (0, -3) -- node[below, text=valred] {\textbf{Sube para ser el nuevo numerador}} (9.4, -3) -- (9.4, 0.3) -- (num.east);
+				
+				% Divisor -> Denominador (Azul) - Viaja por arriba
+				\draw[->, line width=2pt, valblue, dashed, rounded corners=10pt] 
+				(divisor.north) -- (1.2, 1.5) -- node[above, text=valblue] {\textbf{¡El denominador nunca cambia!}} (9.4, 1.5) -- (9.4, -1.3) -- (den.east);
+				
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=0.2cm]
+			\item \textbf{Divide} el de numerador (7) entre el denominador (3). 
+			\item El \textbf{Cociente} (2) será tu nuevo \textbf{\textcolor{valgreen}{Entero}}.
+			\item Lo que te \textbf{Sobra} o Residuo (1) será el \textbf{\textcolor{valred}{Nuevo numerador}}.
+			\item El denominador (3) \textbf{\textcolor{valblue}{NUNCA cambia}}.
+		\end{enumerate}
+	\end{truco}
+	
+	\begin{practica}{Rescatando Enteros}
+		\textit{Divide el número de arriba entre el de abajo. Anota cuántos enteros completos caben, lo que sobra arriba, y deja el mismo denominador.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $\dfrac{5}{2} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{7}{3} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{9}{4} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{11}{5} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{8}{3} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{10}{7} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{13}{4} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{15}{2} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{14}{5} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{17}{3} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{21}{10} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{9}{2} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{11}{8} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{19}{6} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $\dfrac{25}{4} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 4: ADICIÓN Y SUSTRACCIÓN DE MIXTOS
+	% =======================================================
+	\section*{Misión 4: Suma y Resta de Mixtos}
+	
+	\begin{concepto}{Gigantes con Gigantes, Pequeños con Pequeños}
+		Para sumar o restar números mixtos que tienen el \textbf{mismo denominador} (homogéneos), la regla es muy sencilla:
+		1. Suma o resta los \textbf{números enteros} (los gigantes).
+		2. Suma o resta las \textbf{fracciones} (los pequeños).
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{\Large 1. ¿Cómo sumar Homogéneos?}\\[0.2cm]
+		Para sumar (o restar) números mixtos que tienen el \textbf{mismo denominador}, la regla es sencilla: juntamos las cosas completas con las completas (los enteros), y los pedacitos con los pedacitos (las fracciones).
+		
+		\vspace{0.6cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.75]
+				% --- PRIMER NÚMERO: 1 1/4 ---
+				% Entero (1)
+				\fill[valgreen!30] (0,0) circle (1.2cm);
+				\draw[thick, valdark] (0,0) circle (1.2cm);
+				\draw[thick, valdark] (-1.2,0) -- (1.2,0); \draw[thick, valdark] (0,-1.2) -- (0,1.2);
+				% Fracción (1/4)
+				\fill[valgreen!30] (2.8,0) -- (2.8,1.2) arc (90:0:1.2) -- cycle;
+				\draw[thick, valdark] (2.8,0) circle (1.2cm);
+				\draw[thick, valdark] (1.6,0) -- (4,0); \draw[thick, valdark] (2.8,-1.2) -- (2.8,1.2);
+				
+				\node[font=\huge\bfseries, text=valgreen!60!black] at (1.4, -1.8) {$1 \dfrac{1}{4}$};
+				
+				% SÍMBOLO MÁS
+				\node[font=\fontsize{40}{48}\selectfont\bfseries, text=valdark] at (5, 0) {$+$};
+				
+				% --- SEGUNDO NÚMERO: 2 1/4 ---
+				% Entero (1)
+				\fill[valblue!30] (7.2,0) circle (1.2cm);
+				\draw[thick, valdark] (7.2,0) circle (1.2cm);
+				\draw[thick, valdark] (6,0) -- (8.4,0); \draw[thick, valdark] (7.2,-1.2) -- (7.2,1.2);
+				% Entero (2)
+				\fill[valblue!30] (10,0) circle (1.2cm);
+				\draw[thick, valdark] (10,0) circle (1.2cm);
+				\draw[thick, valdark] (8.8,0) -- (11.2,0); \draw[thick, valdark] (10,-1.2) -- (10,1.2);
+				% Fracción (1/4)
+				\fill[valblue!30] (12.8,0) -- (12.8,1.2) arc (90:0:1.2) -- cycle;
+				\draw[thick, valdark] (12.8,0) circle (1.2cm);
+				\draw[thick, valdark] (11.6,0) -- (14,0); \draw[thick, valdark] (12.8,-1.2) -- (12.8,1.2);
+				
+				\node[font=\huge\bfseries, text=valblue] at (10, -1.8) {$2 \dfrac{1}{4}$};
+				
+				% --- RESULTADO ---
+				% Flechas bajando
+				\draw[->, ultra thick, valdark, dashed] (6.4, -2.5) -- (6.4, -3.5);
+				\node[font=\fontsize{40}{48}\selectfont\bfseries, text=valdark] at (6.4, -3) {$=$};
+				
+				% Enteros Resultantes (1 + 2 = 3)
+				\fill[valorange!40] (3,-6) circle (1.2cm); \draw[thick, valdark] (3,-6) circle (1.2cm);
+				\draw[thick, valdark] (1.8,-6) -- (4.2,-6); \draw[thick, valdark] (3,-7.2) -- (3,-4.8);
+				
+				\fill[valorange!40] (5.8,-6) circle (1.2cm); \draw[thick, valdark] (5.8,-6) circle (1.2cm);
+				\draw[thick, valdark] (4.6,-6) -- (7,-6); \draw[thick, valdark] (5.8,-7.2) -- (5.8,-4.8);
+				
+				\fill[valorange!40] (8.6,-6) circle (1.2cm); \draw[thick, valdark] (8.6,-6) circle (1.2cm);
+				\draw[thick, valdark] (7.4,-6) -- (9.8,-6); \draw[thick, valdark] (8.6,-7.2) -- (8.6,-4.8);
+				
+				% Fracción Resultante (1/4 + 1/4 = 2/4)
+				\fill[valorange!40] (11.4,-6) -- (11.4,-4.8) arc (90:-90:1.2) -- cycle;
+				\draw[thick, valdark] (11.4,-6) circle (1.2cm);
+				\draw[thick, valdark] (10.2,-6) -- (12.6,-6); \draw[thick, valdark] (11.4,-7.2) -- (11.4,-4.8);
+				
+				\node[font=\Huge\bfseries, text=valorange!80!black] at (7.2, -8) {$3 \dfrac{2}{4}$};
+				
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.4cm}
+		\begin{itemize}
+			\item \textbf{Paso 1 (Los Enteros):} Sumamos las pizzas completas: $1 + 2 = \mathbf{3}$.
+			\item \textbf{Paso 2 (Las Fracciones):} Sumamos los pedazos sueltos: $\dfrac{1}{4} + \dfrac{1}{4} = \mathbf{\dfrac{2}{4}}$.
+			\item \textbf{Resultado Final:} Unimos el entero y la fracción  $\mathbf{3 \dfrac{2}{4}}$.
+		\end{itemize}
+	\end{ejemplo}
+	
+	\vspace{0.4cm}
+	
+	\begin{ejemplo}
+		\textbf{\Large 2. ¿Y si son Heterogéneos?}\\[0.2cm]
+		Si los números de abajo son diferentes, ¡no podemos sumarlos directamente! El truco infalible es convertirlos primero a fracciones gigantes (impropias) usando \textbf{El Molino} y luego operarlos con la \textbf{Carita Feliz}.
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.85]
+				% CAJA 1: EL MOLINO
+				\node[fill=valblue!10, draw=valblue, thick, rounded corners, minimum width=13cm, minimum height=2.5cm] at (0, 3) {};
+				\node[font=\large\bfseries, text=valblue] at (-3.5, 3.8) {1. Gira el Molino};
+				
+				\node[font=\Large\bfseries] at (-2.5, 2.8) {$1 \dfrac{1}{2} \ \xrightarrow{\text{Molino}} \ \mathbf{\dfrac{3}{2}}$};
+				\node[font=\Large\bfseries] at (3, 2.8) {$2 \dfrac{1}{3} \ \xrightarrow{\text{Molino}} \ \mathbf{\dfrac{7}{3}}$};
+				
+				% CAJA 2: CARITA FELIZ
+				\node[fill=valgreen!10, draw=valgreen, thick, rounded corners, minimum width=13cm, minimum height=3cm] at (0, -0.5) {};
+				\node[font=\large\bfseries, text=valgreen!60!black] at (-3, 0.6) {2. Usa la Carita Feliz};
+				
+				\node[font=\Huge\bfseries] (frac1) at (-3.5, -1) {$\dfrac{3}{2}$};
+				\node[font=\Huge\bfseries] at (-2.3, -1) {$+$};
+				\node[font=\Huge\bfseries] (frac2) at (-1.1, -1) {$\dfrac{7}{3}$};
+				
+				% Ojos (Cruzado)
+				\draw[thick, valblue, ->] (-3.3, -0.6) -- (-1.3, -1.4); % 3x3
+				\draw[thick, valgreen!60!black, ->] (-3.3, -1.4) -- (-1.3, -0.6); % 2x7
+				% Sonrisa (Abajo)
+				\draw[thick, valred, ->] (-3.5, -1.6) to[bend right=30] (-1.1, -1.6); % 2x3
+				
+				\node[font=\Large\bfseries] at (3, -1) {$= \dfrac{\textcolor{valblue}{9} + \textcolor{valgreen!60!black}{14}}{\textcolor{valred}{6}} = \mathbf{\dfrac{23}{6}}$};
+				
+				% CAJA 3: DEVOLVER A MIXTO
+				\node[fill=valorange!10, draw=valorange, thick, rounded corners, minimum width=13cm, minimum height=2cm] at (0, -4) {};
+				\node[font=\large\bfseries, text=valorange!80!black] at (-2.5, -3.4) {3. Rescata los Enteros (Opcional)};
+				
+				\node[font=\Large\bfseries] at (0, -4.3) {$23 \div 6 = \mathbf{3} \text{ enteros y sobran } \mathbf{5} \quad \longrightarrow \quad \mathbf{3 \dfrac{5}{6}}$};
+				
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\textit{¡La resta se hace exactamente igual! Solo cambias el signo de más ($+$) por el de menos ($-$) en el paso de la Carita Feliz.}
+	\end{ejemplo}
+	
+	\begin{practica}{Sumas y Restas Directas (15 Ejercicios)}
+		\textit{Opera los enteros con los enteros, y las fracciones con las fracciones. ¡Recuerda que el denominador no cambia!}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $1 \dfrac{1}{4} + 2 \dfrac{2}{4} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $3 \dfrac{2}{5} + 1 \dfrac{1}{5} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $5 \dfrac{1}{3} + 2 \dfrac{1}{3} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $4 \dfrac{3}{7} + 4 \dfrac{2}{7} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $2 \dfrac{1}{8} + 5 \dfrac{4}{8} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $6 \dfrac{3}{10} + 3 \dfrac{4}{10} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $1 \dfrac{2}{9} + 7 \dfrac{5}{9} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $2 \dfrac{1}{2} + 2 \dfrac{1}{2} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$ \textit{(¡Ojo, da entero!)}
+				
+				\item $4 \dfrac{3}{4} - 1 \dfrac{1}{4} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $5 \dfrac{4}{5} - 2 \dfrac{1}{5} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $7 \dfrac{2}{3} - 4 \dfrac{1}{3} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $6 \dfrac{5}{8} - 3 \dfrac{2}{8} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $8 \dfrac{6}{7} - 5 \dfrac{4}{7} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $3 \dfrac{7}{9} - 1 \dfrac{2}{9} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+				\item $9 \dfrac{9}{10} - 4 \dfrac{6}{10} = \boxfill[0.6cm] \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]}$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 5: MULTIPLICACIÓN Y DIVISIÓN DE MIXTOS
+	% =======================================================
+	\section*{Misión 5: Multiplicar y Dividir Mixtos}
+	
+	\begin{concepto}{¡Prohibido operar directamente!}
+		\textbf{ATENCIÓN:} A diferencia de la suma, \textbf{NO PUEDES} multiplicar los enteros con los enteros y las fracciones con las fracciones. ¡El resultado quedará mal!
+		\\[0.2cm]
+		\textbf{La Regla Obligatoria:} Siempre que vayas a multiplicar o dividir números mixtos, \textbf{PRIMERO debes convertirlos a fracciones impropias} (girando el molino). Luego, operas las fracciones normalmente.
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{Multiplicar:} $\mathbf{1 \dfrac{1}{2} \times 2 \dfrac{1}{3}}$\\[0.1cm]
+		\textbf{Paso 1 (El Molino):} Convertimos el primero: $\dfrac{3}{2}$. Convertimos el segundo: $\dfrac{7}{3}$.\\
+		\textbf{Paso 2 (Multiplicar de frente):} $\dfrac{3}{2} \times \dfrac{7}{3} = \dfrac{3 \times 7}{2 \times 3} = \mathbf{\dfrac{21}{6}}$.
+	\end{ejemplo}
+	
+	
+	\begin{practica}{El proceso completo (15 Ejercicios)}
+		\textit{Primero usa el molino para convertir cada mixto en fracción impropia llenando los dos primeros recuadros. Luego multiplica o divide (M-C-V) para hallar el resultado final.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $1 \dfrac{1}{2} \times 1 \dfrac{1}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $2 \dfrac{1}{4} \times 1 \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $1 \dfrac{2}{5} \times 2 \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $3 \dfrac{1}{2} \times 1 \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $1 \dfrac{1}{3} \times 2 \dfrac{1}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $2 \dfrac{1}{2} \times 2 \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $1 \dfrac{3}{4} \times 1 \dfrac{1}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \times \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $1 \dfrac{1}{2} \div 1 \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $2 \dfrac{1}{3} \div 1 \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $3 \dfrac{1}{2} \div 2 \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $1 \dfrac{2}{5} \div 1 \dfrac{1}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $2 \dfrac{1}{4} \div 1 \dfrac{1}{5} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $4 \dfrac{1}{2} \div 1 \dfrac{1}{2} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $1 \dfrac{1}{6} \div 1 \dfrac{1}{3} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				
+				\item $2 \dfrac{2}{3} \div 1 \dfrac{1}{4} \rightarrow \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} \div \dfrac{\boxfill[0.5cm]}{\boxfill[0.5cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 6: PROBLEMAS DE APLICACIÓN
+	% =======================================================
+	\section*{Misión 6: Los Mixtos en la Vida Real}
+	
+	\begin{concepto}{Midiendo el Mundo}
+		En la vida real usamos los números mixtos todo el tiempo sin darnos cuenta: al comprar libras de carne ($1\dfrac{1}{2}$ kg), al medir tablas de madera o al seguir recetas de cocina. 
+		\\ Lee con atención si debes \textbf{juntar} (sumar), \textbf{quitar} (restar), encontrar \textbf{una parte de algo} (multiplicar) o \textbf{repartir} (dividir).
+	\end{concepto}
+	
+	\begin{practica}{Resuelve los problemas (15 Ejercicios)}
+		\textit{Escribe la operación necesaria usando fracciones impropias si es multiplicación/división, o suma/resta directamente, y anota el resultado.}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=1cm]
+			\item Un carpintero necesita $2 \dfrac{1}{4}$ metros de madera para una mesa y $1 \dfrac{2}{4}$ metros para una silla. ¿Cuánta madera necesita en total?
+			\\ \textbf{RTA:} Necesita \boxfill[1.5cm] metros.
+			
+			\item Tenías $4 \dfrac{3}{5}$ litros de pintura y gastaste $2 \dfrac{1}{5}$ litros en pintar tu cuarto. ¿Cuánta pintura te sobró?
+			\\ \textbf{RTA:} Sobraron \boxfill[1.5cm] litros.
+			
+			\item Una receta pide $1 \dfrac{1}{2}$ tazas de azúcar. Si vas a preparar el \textbf{doble} (multiplicar por 2), ¿cuánta azúcar necesitas?
+			\\ \textbf{RTA:} Necesitas \boxfill[1.5cm] tazas.
+			
+			\item Tienes $3 \dfrac{1}{2}$ litros de jugo y quieres \textbf{repartirlos} en botellas que tienen una capacidad de $\dfrac{1}{2}$ litro cada una. ¿Cuántas botellas llenas?
+			\\ \textbf{RTA:} Llenas \boxfill[1.5cm] botellas.
+			
+			\item Caminaste $1 \dfrac{1}{3}$ kilómetros el lunes y $2 \dfrac{1}{3}$ kilómetros el martes. ¿Qué distancia caminaste en los dos días?
+			\\ \textbf{RTA:} Caminaste \boxfill[1.5cm] kilómetros.
+			
+			\item Un sastre tiene $5 \dfrac{4}{7}$ metros de tela y corta un pedazo de $1 \dfrac{2}{7}$ metros para hacer un pantalón. ¿Cuánta tela le queda?
+			\\ \textbf{RTA:} Le quedan \boxfill[1.5cm] metros.
+			
+			\item Cada bolsa de galletas pesa $1 \dfrac{1}{4}$ kg. Si compras \textbf{3} bolsas, ¿cuánto peso llevas en total?
+			\\ \textbf{RTA:} Llevas \boxfill[1.5cm] kg.
+			
+			\item Tienes $4 \dfrac{1}{2}$ metros de cinta para decorar cajas. Si cada caja necesita $\dfrac{1}{2}$ metro de cinta, ¿cuántas cajas puedes decorar?
+			\\ \textbf{RTA:} Puedes decorar \boxfill[1.5cm] cajas.
+			
+			\item Compraste $2 \dfrac{1}{5}$ kilos de manzanas y $3 \dfrac{2}{5}$ kilos de peras. ¿Cuántos kilos de fruta compraste en total?
+			\\ \textbf{RTA:} Compraste \boxfill[1.5cm] kilos.
+			
+			\item Un atleta debía correr $10 \dfrac{5}{8}$ kilómetros, pero solo logró correr $6 \dfrac{2}{8}$ kilómetros. ¿Cuánto le faltó por correr?
+			\\ \textbf{RTA:} Le faltaron \boxfill[1.5cm] kilómetros.
+			
+			\item Si un ladrillo pesa $1 \dfrac{1}{2}$ kg, ¿cuánto pesarán \textbf{la mitad} ($\dfrac{1}{2}$) de un ladrillo?
+			\\ \textbf{RTA:} Pesará \boxfill[1.5cm] kg.
+			
+			\item Quieres cortar una tabla de $5 \dfrac{1}{4}$ metros en pedazos que midan $\dfrac{3}{4}$ de metro. ¿Cuántos pedazos logras sacar?
+			\\ \textbf{RTA:} Sacas \boxfill[1.5cm] pedazos.
+			
+			\item El panadero usó $2 \dfrac{3}{10}$ kilos de harina en la mañana y $1 \dfrac{4}{10}$ kilos en la tarde. ¿Cuánta harina usó en el día?
+			\\ \textbf{RTA:} Usó \boxfill[1.5cm] kilos.
+			
+			\item Tenías un rollo de alambre de $8 \dfrac{7}{9}$ metros y vendiste $3 \dfrac{2}{9}$ metros. ¿Cuánto alambre te sobró?
+			\\ \textbf{RTA:} Sobraron \boxfill[1.5cm] metros.
+			
+			\item Si una botella tiene $2 \dfrac{1}{2}$ litros de agua y te tomas $\dfrac{1}{2}$ litro cada día, ¿para cuántos días te alcanza el agua?
+			\\ \textbf{RTA:} Alcanza para \boxfill[1.5cm] días.
+		\end{enumerate}
+	\end{practica}
+	
+	%\finunidad{8}
+	
+\end{document}

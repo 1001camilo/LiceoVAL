@@ -1,0 +1,620 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \IfFileExists{FondoVAL.pdf}{%
+    \AtPageLowerLeft{%
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{FondoVAL.pdf}%
+    }%
+  }{}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo Guiado Paso a Paso}}, arc=2mm, boxrule=1pt}
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDOS PARA ESTRUCTURAR LA UNIDAD ---
+\newcommand{\titulounidad}[2]{
+    \begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+        \centering \Huge \textbf{UNIDAD #1}\\[0.2cm]
+        \Large \textbf{#2}
+    \end{tcolorbox}
+    \vspace{0.5cm}
+}
+
+\newcommand{\finunidad}[1]{
+    \vspace{1cm}
+    \begin{center}
+        \begin{tcolorbox}[colback=valred!5, colframe=valred, width=14cm, arc=3mm, boxrule=2pt]
+            \centering \Huge \textbf{\ding{55} ¡ALTO AQUÍ!} \\[0.4cm]
+            \Large \textbf{FIN DE LA UNIDAD #1}\\[0.2cm]
+            \large \textit{Has completado las misiones de este tema.}\\
+            \normalsize Repasa todas tus respuestas y avisa a tu profesor para presentar tu examen. \textbf{¡No avances hasta aprobarlo!}
+        \end{tcolorbox}
+    \end{center}
+    \newpage
+}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxline}[1][4cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+
+% =======================================================
+%                     PORTADA
+% =======================================================
+\begin{center}
+    %\vspace*{1cm}
+    {\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+    % {\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+    {\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+    \begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+        \centering \Huge \textbf{UNIDAD 3}\\[0.2cm]
+        \Large \textit{Adición Reagrupando y Manejo del Dinero}
+    \end{tcolorbox}
+    
+    \vspace{0.8cm}
+    \begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+        \centering
+        \vspace{0.3cm}
+        \textbf{Nombre del Estudiante:}\\[0.3cm]
+        \underline{\hspace{9cm}}\\[0.5cm]
+        \textbf{Curso:} \underline{Taller 1} \hspace{1cm} \textbf{Año:} \underline{2025}
+        \vspace{0.3cm}
+    \end{tcolorbox}
+    
+    \vspace{0.8cm}
+    \textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+    
+ 
+\end{center}
+
+%\newpage
+
+% =======================================================
+% UNIDAD 3: ADICIÓN REAGRUPANDO (LLEVANDO)
+% =======================================================
+\titulounidad{3}{ADICIÓN REAGRUPANDO (LLEVANDO)}
+
+\begin{concepto}{Cuando no caben más números}
+Recuerda que en cada columna (unidades, decenas, centenas...) \textbf{solo cabe un número del 0 al 9}. 
+\\[0.2cm]
+¿Qué pasa si al sumar una columna el resultado es 10 o mayor (por ejemplo, 12 o 15)?\\
+No podemos poner los dos números abajo. Dejamos el de la derecha y \textbf{"llevamos"} el otro número hacia arriba, a la siguiente columna de la izquierda, como si fuera un regalito para el vecino.
+\end{concepto}
+
+\begin{truco}{}
+Siempre suma de \textbf{derecha a izquierda}. Si la suma da 14, pones el \textbf{4} abajo y te llevas el \textbf{1} chiquitico arriba de la siguiente columna. ¡No olvides sumar ese ``1'' cuando llegues a esa columna!
+\end{truco}
+
+% --- SUBTEMA 1 ---
+\vspace{0.5cm}
+\noindent\begin{minipage}{\textwidth}
+\subsection*{Subtema 1: Sumas "Llevando" (4 y 5 cifras)}
+
+\begin{ejemplo}
+\begin{multicols}{2}
+    \textbf{Compra de Ropa:}\\
+    Unos tenis cuestan \textbf{\$ 46.850} y un pantalón \textbf{\$ 25.470}. ¿Cuánto se paga en total?
+
+    \columnbreak
+
+    \textbf{Alineamos y sumamos llevando:}\\
+    \begin{tabular}{r@{\quad}l}
+      \small \textcolor{valred}{1} \ \textcolor{valred}{1} \ \ \textcolor{valred}{1} \ \ \ \ \ \ \ \ & \\[-1ex]
+      \$ \ 4 6 . 8 5 0 & \\
+    + \$ \ 2 5 . 4 7 0 & \\
+    \hline
+      \textbf{\$ \ 7 2 . 3 2 0} & 
+    \end{tabular}
+    \\[0.2cm]
+    \small \textit{(En las decenas: 5+7=12. Pongo 2, llevo 1. En las centenas: 1+8+4=13. Pongo 3, llevo 1. En los miles: 1+6+5=12. Pongo 2, llevo 1. Al final: 1+4+2=7).}
+\end{multicols}
+\end{ejemplo}
+\end{minipage}
+
+\vspace{0.2cm}
+\begin{practica}{Misión 1}
+\textit{Anota el número chiquito arriba de la siguiente columna cuando el resultado sea 10 o mayor.}
+
+\vspace{0.4cm}
+\begin{multicols}{3}
+    \textbf{1.}\\
+    \begin{tabular}{rr}
+      \$ & 3.584 \\
+    + \$ & 2.641 \\
+    \hline
+      \$ & \boxfill[1.5cm]
+    \end{tabular}
+
+    \textbf{2.}\\
+    \begin{tabular}{rr}
+      \$ & 4.756 \\
+    + \$ & 3.825 \\
+    \hline
+      \$ & \boxfill[1.5cm]
+    \end{tabular}
+
+    \textbf{3.}\\
+    \begin{tabular}{rr}
+      \$ & 8.495 \\
+    + \$ & 1.738 \\
+    \hline
+      \$ & \boxfill[1.5cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\begin{multicols}{3}
+    \textbf{4.}\\
+    \begin{tabular}{rr}
+      \$ & 5.629 \\
+    + \$ & 2.894 \\
+    \hline
+      \$ & \boxfill[1.5cm]
+    \end{tabular}
+
+    \textbf{5.}\\
+    \begin{tabular}{rr}
+      \$ & 7.348 \\
+    + \$ & 6.953 \\
+    \hline
+      \$ & \boxfill[1.5cm]
+    \end{tabular}
+
+    \textbf{6.}\\
+    \begin{tabular}{rr}
+      \$ & 2.567 \\
+    + \$ & 8.645 \\
+    \hline
+      \$ & \boxfill[1.5cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.6cm}
+
+\begin{multicols}{3}
+    \textbf{7.}\\
+    \begin{tabular}{rr}
+      \$ & 28.547 \\
+    + \$ & 14.685 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+
+    \textbf{8.}\\
+    \begin{tabular}{rr}
+      \$ & 56.394 \\
+    + \$ & 35.817 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+
+    \textbf{9.}\\
+    \begin{tabular}{rr}
+      \$ & 47.958 \\
+    + \$ & 26.375 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\begin{multicols}{3}
+    \textbf{10.}\\
+    \begin{tabular}{rr}
+      \$ & 63.854 \\
+    + \$ & 19.468 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+
+    \textbf{11.}\\
+    \begin{tabular}{rr}
+      \$ & 84.693 \\
+    + \$ & 47.528 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+
+    \textbf{12.}\\
+    \begin{tabular}{rr}
+      \$ & 35.749 \\
+    + \$ & 26.852 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\begin{multicols}{3}
+    \textbf{13.}\\
+    \begin{tabular}{rr}
+      \$ & 78.496 \\
+    + \$ & 15.634 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+
+    \textbf{14.}\\
+    \begin{tabular}{rr}
+      \$ & 59.842 \\
+    + \$ & 23.579 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+
+    \textbf{15.}\\
+    \begin{tabular}{rr}
+      \$ & 46.587 \\
+    + \$ & 34.698 \\
+    \hline
+      \$ & \boxfill[1.8cm]
+    \end{tabular}
+\end{multicols}
+\end{practica}
+
+%\newpage
+
+% --- SUBTEMA 2 ---
+\vspace{0.5cm}
+\noindent\begin{minipage}{\textwidth}
+\subsection*{Subtema 2: Sumas de 6 cifras Llevando}
+
+\begin{concepto}{¡Suman los Cientos de Miles!}
+Para compras grandes de electrodomésticos, motos o materiales de la casa, manejamos números de \textbf{seis cifras} (Centenas de mil). El truco es exactamente el mismo: si te da 10 o más, el número de la izquierda se lo llevas al vecino de arriba.
+\end{concepto}
+
+\begin{ejemplo}
+\begin{multicols}{2}
+    \textbf{Arreglos de la cocina:}\\
+    Una nevera cuesta \textbf{\$ 685.940} y un horno \textbf{\$ 247.380}. ¿Cuánto cuestan los dos juntos?
+
+    \columnbreak
+
+    \textbf{Alineamos y sumamos:}\\
+    \begin{tabular}{r@{\quad}l}
+      \small \ \ \textcolor{valred}{1} \ \textcolor{valred}{1} \ \textcolor{valred}{1} \ \ \textcolor{valred}{1}  \ \ \ \ \ \ \ & \\[-1ex]
+      \$ \ 6 8 5 . 9 4 0 & \\
+    + \$ \ 2 4 7 . 3 8 0 & \\
+    \hline
+      \textbf{\$ \ 9 3 3 . 3 2 0} & 
+    \end{tabular}
+\end{multicols}
+\end{ejemplo}
+\end{minipage}
+
+\vspace{0.2cm}
+\begin{practica}{Misión 2: }
+\textit{No olvides bajar el puntico de ``mil'' exactamente en la misma línea.}
+
+\vspace{0.4cm}
+\begin{multicols}{3}
+    \textbf{1.}\\
+    \begin{tabular}{rr}
+      \$ & 356.842 \\
+    + \$ & 164.579 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{2.}\\
+    \begin{tabular}{rr}
+      \$ & 428.695 \\
+    + \$ & 293.416 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{3.}\\
+    \begin{tabular}{rr}
+      \$ & 574.839 \\
+    + \$ & 186.495 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\begin{multicols}{3}
+    \textbf{4.}\\
+    \begin{tabular}{rr}
+      \$ & 295.684 \\
+    + \$ & 347.528 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{5.}\\
+    \begin{tabular}{rr}
+      \$ & 683.475 \\
+    + \$ & 149.856 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{6.}\\
+    \begin{tabular}{rr}
+      \$ & 157.926 \\
+    + \$ & 485.394 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.6cm}
+
+\begin{multicols}{3}
+    \textbf{7.}\\
+    \begin{tabular}{rr}
+      \$ & 346.857 \\
+    + \$ & 275.469 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{8.}\\
+    \begin{tabular}{rr}
+      \$ & 459.784 \\
+    + \$ & 163.548 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{9.}\\
+    \begin{tabular}{rr}
+      \$ & 738.645 \\
+    + \$ & 194.576 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\begin{multicols}{3}
+    \textbf{10.}\\
+    \begin{tabular}{rr}
+      \$ & 285.496 \\
+    + \$ & 346.725 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{11.}\\
+    \begin{tabular}{rr}
+      \$ & 569.837 \\
+    + \$ & 254.394 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{12.}\\
+    \begin{tabular}{rr}
+      \$ & 684.759 \\
+    + \$ & 136.485 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.6cm}
+\begin{multicols}{3}
+    \textbf{13.}\\
+    \begin{tabular}{rr}
+      \$ & 395.648 \\
+    + \$ & 247.583 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{14.}\\
+    \begin{tabular}{rr}
+      \$ & 476.859 \\
+    + \$ & 365.492 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{15.}\\
+    \begin{tabular}{rr}
+      \$ & 189.475 \\
+    + \$ & 653.846 \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+\end{practica}
+
+%\newpage
+
+% --- SUBTEMA 3 ---
+\vspace{0.5cm}
+\noindent\begin{minipage}{\textwidth}
+\subsection*{Subtema 3: El Arquitecto de Números}
+
+\begin{concepto}{Organizando la Torre}
+En la vida real las compras no te las dan acomodadas hacia abajo, te dan los precios en una línea o en una factura. Tu trabajo es organizar los números verticalmente, de modo que las unidades queden alineadas.
+\end{concepto}
+
+\begin{ejemplo}
+Acomodar y sumar: \$ 145.890 + \$ 67.350 \\[0.2cm]
+\begin{tabular}{rr}
+  \$ & 145.890 \\
++ \$ & 67.350 \\
+\hline
+  \textbf{\$} & \textbf{213.240}
+\end{tabular}
+\\[0.2cm]
+\small \textit{Nota que el 67.350 está alineado perfectamente a la derecha.}
+\end{ejemplo}
+\end{minipage}
+
+\vspace{0.2cm}
+\begin{practica}{Misión 3: }
+\textit{¡Cuidado con las columnas! Acomoda los números uno debajo del otro y súmalos.}
+
+\vspace{0.4cm}
+\begin{multicols}{2}
+    \textbf{1.} \$ 48.950 + \$ 25.460 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{2.} \$ 76.580 + \$ 49.630 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.5cm}
+\begin{multicols}{2}
+    \textbf{3.} \$ 135.840 + \$ 94.270 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{4.} \$ 284.690 + \$ 85.740 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.5cm}
+\begin{multicols}{2}
+    \textbf{5.} \$ 546.890 + \$ 275.430 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{6.} \$ 389.750 + \$ 452.680 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+
+\vspace{0.5cm}
+\begin{multicols}{2}
+    \textbf{7.} \$ 678.940 + \$ 145.290 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+
+    \textbf{8.} \$ 495.630 + \$ 384.580 \\[0.3cm]
+    \begin{tabular}{rr}
+      \$ & \boxfill[2cm] \\
+    + \$ & \boxfill[2cm] \\
+    \hline
+      \$ & \boxfill[2cm]
+    \end{tabular}
+\end{multicols}
+\end{practica}
+
+%\newpage
+
+% --- SUBTEMA 4 ---
+\vspace{0.5cm}
+\noindent\begin{minipage}{\textwidth}
+\subsection*{Subtema 4: Problemas con el Dinero}
+
+\begin{concepto}{El Administrador de la Tienda}
+En la vida diaria, muchas veces necesitamos sumar precios grandes para saber si nos alcanza el dinero. Lee bien la historia de cada cliente, suma los dos productos que quiere comprar y encuentra el total.
+\end{concepto}
+\end{minipage}
+
+\vspace{0.2cm}
+\begin{practica}{Misión 4: }
+\textit{Realiza las sumas en tu cuaderno o en un borrador (recuerda reagrupar o "llevar") y escribe el valor total a pagar.}
+
+\vspace{0.4cm}
+\begin{enumerate}[itemsep=1.2cm]
+    \item La tía Sofía compró un mercado por \textbf{\$ 148.950} y artículos de aseo por \textbf{\$ 65.470}. \\ 
+    La tía Sofía pagó en la caja: \$ \boxfill[2.5cm]
+
+    \item En la juguetería, un patineta cuesta \textbf{\$ 135.800} y un casco de protección vale \textbf{\$ 46.500}. \\ 
+    Para llevarse los dos, se debe pagar: \$ \boxfill[2.5cm]
+
+    \item La familia arregló el carro. Compraron unas llantas por \textbf{\$ 358.900} y pagaron al mecánico \textbf{\$ 125.600}. \\ 
+    El arreglo del carro costó en total: \$ \boxfill[2.5cm]
+
+    \item Mi hermano está ahorrando. En enero guardó \textbf{\$ 45.850} y en febrero logró ahorrar \textbf{\$ 56.480}. \\ 
+    En su alcancía ya tiene ahorrado: \$ \boxfill[2.5cm]
+
+    \item Para la escuela, la matrícula costó \textbf{\$ 456.800} y la caja de libros costó \textbf{\$ 175.400}. \\ 
+    Mis papás invirtieron en la educación: \$ \boxfill[2.5cm]
+
+    \item Compramos ropa deportiva. Una chaqueta de \textbf{\$ 184.650} y unos tenis de \textbf{\$ 238.550}. \\ 
+    La ropa deportiva costó en total: \$ \boxfill[2.5cm]
+
+    \item En la ferretería compramos pintura por \textbf{\$ 265.800} y herramientas por \textbf{\$ 154.300}. \\ 
+    En la ferretería nos cobraron: \$ \boxfill[2.5cm]
+
+    \item Para el negocio, compraron sillas por \textbf{\$ 348.700} y una mesa principal por \textbf{\$ 165.800}. \\ 
+    El mobiliario del negocio costó: \$ \boxfill[2.5cm]
+
+    \item Un celular de gama media vale \textbf{\$ 658.900} y sus audífonos originales valen \textbf{\$ 145.600}. \\ 
+    Comprar ambas cosas cuesta en total: \$ \boxfill[2.5cm]
+
+    \item La factura del agua llegó por \textbf{\$ 85.650} y la factura de la energía eléctrica por \textbf{\$ 134.850}. \\ 
+    El total a pagar en servicios es de: \$ \boxfill[2.5cm]
+\end{enumerate}
+\end{practica}
+
+%\finunidad{3}
+
+\end{document}

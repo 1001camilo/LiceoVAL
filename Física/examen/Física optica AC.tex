@@ -1,0 +1,163 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+% Margen ajustado para papel Carta y espacio para el fondo
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+  \IfFileExists{FondoVAL.pdf}{%
+    \AtPageLowerLeft{%
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{FondoVAL.pdf}%
+    }%
+  }{}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valdark}{RGB}{50, 50, 50}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+
+% --- ENCABEZADO ---
+\vspace*{0.5cm}
+
+\begin{center}
+    {\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+    {\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+    \textbf{EXAMEN DE FÍSICA}\\[0.1cm]
+    %Suma, Valor Posicional y Problemas
+\end{center}
+
+\vspace{0.3cm}
+\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \textbf{Grado:} \underline{\hspace{2cm}}\textbf{Código:} \underline{\hspace{2cm}}
+
+\vspace{0.5cm}
+\noindent \textbf{Instrucciones:} Lee despacio cada pregunta. Usa lápiz.\\
+
+
+
+% --- PUNTO 1 ---
+\noindent \textbf{\textcolor{valblue}{1. FENÓMENOS (40\%)}}
+
+\vspace{0.2cm}
+\noindent \textit{Une con una línea cada concepto de la izquierda con su significado a la derecha:}
+
+\vspace{0.2cm}
+\begin{center}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{r c l}
+        \textbf{Reflexión} & \hspace{0.5cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{0.5cm} & La luz se \textbf{separa} en colores (como el arcoíris). \\[0.2cm]
+        \textbf{Refracción}   & \hspace{0.5cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{0.5cm} & La luz choca y \textbf{rebota} (como en un espejo). \\[0.2cm]
+        \textbf{Dispersión}    & \hspace{0.5cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{0.5cm} & La luz \textbf{atraviesa} algo y parece doblarse (como en el agua).
+    \end{tabular}
+\end{center}
+
+\vspace{0.6cm}
+
+% --- PUNTO 2 ---
+\noindent \textbf{\textcolor{valblue}{2. EL REBOTE DE LA LUZ (15\%)}}
+
+\vspace{0.2cm}
+\noindent \textit{Lee el caso y marca con una X la respuesta correcta:}
+
+\vspace{0.2cm}
+\noindent \textbf{Caso:} Apuntas con una linterna a un espejo. La luz hace una "reflexión". Según las reglas de la luz, el ángulo con el que llega la luz y el ángulo con el que rebota...
+
+\vspace{0.2cm}
+\begin{itemize}[itemsep=0.3cm]
+    \item[$\square$] Son exactamente \textbf{IGUALES}.
+    \item[$\square$] Son totalmente \textbf{DIFERENTES}.
+    \item[$\square$] El ángulo de rebote es siempre más \textbf{GRANDE}.
+\end{itemize}
+
+\vspace{0.6cm}
+
+% --- PUNTO 3 ---
+\noindent \textbf{\textcolor{valblue}{3. LOS ESPEJOS CURVOS (15\%)}}
+
+\vspace{0.2cm}
+\noindent \textit{Lee la historia y encierra en un círculo la letra correcta.}
+
+\vspace{0.2cm}
+\noindent Imagina que te miras en una cuchara de metal brillante. Si te miras por la parte hundida ¿qué tipo de espejo es?
+
+\vspace{0.2cm}
+\begin{enumerate}[label=\Alph*), itemsep=0.2cm]
+    \item Cóncavo 
+    \item Convexo 
+\end{enumerate}
+
+% Salto de página para que el punto 4 no quede cortado
+
+% --- PUNTO 4 ---
+\noindent \textbf{\textcolor{valblue}{4. LA VELOCIDAD DE LA LUZ EN EL CRISTAL (15\%)}}
+
+\vspace{0.2cm}
+%\noindent \textit{Lee el contexto y completa la operación matemática con una fórmula real de la física.}
+
+\vspace{0.2cm}
+\noindent Cuando la luz entra a un material transparente (como el cristal), ``frena'' y viaja más lento. A esto le llamamos refracción. Para saber su nueva velocidad, dividimos la velocidad original entre el "índice" del material.
+
+\vspace{0.2cm}
+\noindent Si la luz viaja en el espacio a \textbf{300.000} kilómetros por segundo, y el índice del cristal es \textbf{2}, ¿Cúal es la velocidad de la luz en el cristal?:
+
+\vspace{0.4cm}
+\begin{center}
+    \quad Velocidad Nueva $V= \frac{\textbf{Velocidad Original}}{\textbf{Índice del Cristal}}$
+\end{center}
+
+\vspace{0.4cm}
+\begin{center}
+    %\textit{(Reemplaza los datos y haz la división para hallar el resultado)}\\[0.5cm]
+    
+    \Large 
+    Velocidad Nueva $= \frac{300.000}{2} =$ \boxfill[3cm] km/s
+\end{center}
+
+\vspace{0.3cm}
+\begin{center}
+    \normalsize \textit{Pista: La línea de la mitad significa dividir. ¿Cuál es la mitad de 300.000?\\ (Piensa en la mitad de 30 y agrégale los ceros correspondientes).}
+\end{center}
+
+\vspace{0.8cm}
+% --- PUNTO 5 ---
+\noindent \textbf{\textcolor{valblue}{5. EL MISTERIO DEL ARCOÍRIS (15\%)}}
+
+\vspace{0.2cm}
+\noindent \textit{Lee la siguiente afirmación y marca con una X si es Verdadera (V) o Falsa (F):}
+
+\vspace{0.3cm}
+\begin{center}
+    \begin{tcolorbox}[colback=white, colframe=valdark, boxrule=0.5pt, width=13cm, arc=2mm]
+        \textit{"La luz blanca que viene del sol está hecha en realidad de la mezcla de todos los colores del arcoíris, y podemos verlos cuando la luz atraviesa un prisma (a esto le llamamos dispersión)."}
+    \end{tcolorbox}
+\end{center}
+
+\vspace{0.4cm}
+\begin{center}
+    \Large
+    $\square$ VERDADERO \hspace{3cm} $\square$ FALSO
+\end{center}
+
+
+\end{document}
