@@ -1,0 +1,166 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen de 1 pulgada en todos los lados
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{EVALUACIÓN ADAPTADA (AC) - MATEMÁTICAS 6º}\\[0.1cm]
+		Unidad 5: La Sustracción Prestando (Reagrupación)
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \underline{06M-05 AC}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Resta columna por columna. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tabular}{r}
+				\\[0.3cm] % Espacio para los números que se llevan
+				6 3 \\
+				- 2 8 \\
+				\hline
+				\boxfill[1.2cm]
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			\begin{tabular}{r}
+				\\[0.3cm]
+				8 1 \\
+				- 4 5 \\
+				\hline
+				\boxfill[1.2cm]
+			\end{tabular}
+		\end{center}
+
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Aplica el mismo proceso de pedir prestado para los siguientes números más grandes de tres cifras.! (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tabular}{r}
+				\\[0.3cm]
+				4 5 2 \\
+				- 1 2 8 \\
+				\hline
+				\boxfill[1.5cm]
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			\begin{tabular}{r}
+				\\[0.3cm]
+				7 2 4 \\
+				- 3 6 1 \\
+				\hline
+				\boxfill[1.5cm]
+			\end{tabular}
+		\end{center}
+		
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. Resuelve las siguientes restas que tienen ceros arriba. Recuerda que el cero debe pedirle prestado a su vecino de la izquierda para poder prestarte a ti. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tabular}{r}
+				\\[0.3cm]
+				5 0 0 \\
+				- 1 4 6 \\
+				\hline
+				\boxfill[1.5cm]
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			\begin{tabular}{r}
+				\\[0.3cm]
+				8 0 3 \\
+				- 2 5 7 \\
+				\hline
+				\boxfill[1.5cm]
+			\end{tabular}
+		\end{center}
+
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	\newpage
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Lee el siguiente problema. Escribe la resta de forma vertical en el espacio de la izquierda, resuélvela y anota el resultado final en la respuesta a la derecha. (25\%)}
+	
+	\vspace{0.4cm}
+	\noindent \textbf{Problema:} Tenías guardados \textbf{\$ 950} en tu alcancía. Fuiste a la tienda y compraste un paquete de galletas que costó \textbf{\$ 380}. ¿Cuánto dinero te quedó después de la compra?
+	
+	\vspace{0.8cm}
+	\begin{center}
+		\begin{tabular}{c c c}
+			\textbf{Operación:} & \hspace{2cm} & \textbf{Respuesta:} \\[0.5cm]
+			\Large
+			\begin{tabular}{r}
+				\\[0.3cm]
+				9 5 0 \\
+				- 3 8 0 \\
+				\hline
+				\boxfill[2cm]
+			\end{tabular}
+			& &
+			Me quedaron \$ \boxfill[2cm]
+		\end{tabular}
+	\end{center}
+	
+	\vspace{1.5cm}
+
+	
+\end{document}

@@ -1,0 +1,412 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=3.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete Ruta Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo}}, arc=2mm, boxrule=1pt}
+
+% Caja de práctica "breakable"
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxline}[1][4cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+			\centering \Huge \textbf{UNIDAD 4}\\[0.2cm]
+			\Large \textbf{La Sustracción (Resta) Sin Prestar}
+		\end{tcolorbox}
+		
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-04 AC} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+		
+	
+	\end{center}
+	
+	
+	
+	% =======================================================
+	% MISIÓN 1: ¿QUÉ ES RESTAR Y CUÁLES SON SUS PARTES?
+	% =======================================================
+	\section*{Misión 1: La Magia de Quitar}
+	
+	\begin{concepto}{Restar es buscar la diferencia}
+		Restar (o sustraer) significa \textbf{quitar} una cantidad a otra que ya teníamos, para saber cuánto nos queda al final. También sirve para saber qué diferencia hay entre dos números.
+		\\[0.2cm]
+		Toda resta tiene tres partes importantes que debes conocer:
+		\begin{itemize}
+			\item \textbf{Minuendo:} Es el número gigante, la cantidad que tienes al principio. \textbf{¡Siempre va arriba!}
+			\item \textbf{Sustraendo:} Es el número que vas a quitar, gastar o regalar. \textbf{¡Va abajo!}
+			\item \textbf{Diferencia:} Es el resultado final, lo que te sobra.
+		\end{itemize}
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.2]
+			\node[font=\Huge\bfseries] (min) at (0, 1.5) {9};
+			\node[font=\Huge\bfseries] (sus) at (0, 0.5) {4};
+			\node[font=\Huge\bfseries] (dif) at (0, -0.7) {5};
+			\node[font=\Huge\bfseries] at (-1, 0.5) {$-$};
+			\draw[ultra thick] (-1.5, 0) -- (1, 0);
+			
+			% Flechas y nombres
+			\draw[->, thick, valblue] (0.5, 1.5) -- (2, 1.5) node[right, text=valblue] {\Large \textbf{Minuendo} (El grande)};
+			\draw[->, thick, valred] (0.5, 0.5) -- (2, 0.5) node[right, text=valred] {\Large \textbf{Sustraendo} (Lo que quito)};
+			\draw[->, thick, valgreen] (0.5, -0.7) -- (2, -0.7) node[right, text=valgreen] {\Large \textbf{Diferencia} (El resultado)};
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\begin{practica}{Restas Rápidas}
+		\textit{haz LOS cálculos para quitarle al número grande el número pequeño.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{4}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $8 - 3 = $ \boxfill[0.8cm]
+				\item $9 - 5 = $ \boxfill[0.8cm]
+				\item $7 - 2 = $ \boxfill[0.8cm]
+				\item $6 - 4 = $ \boxfill[0.8cm]
+				\item $5 - 1 = $ \boxfill[0.8cm]
+				\item $10 - 6 = $ \boxfill[0.8cm]
+				\item $15 - 5 = $ \boxfill[0.8cm]
+				\item $18 - 8 = $ \boxfill[0.8cm]
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	
+	
+	% =======================================================
+	% MISIÓN 2: RESTAS EN VERTICAL (EL ORDEN)
+	% =======================================================
+	\section*{Misión 2: El Edificio de la Resta}
+	
+	\begin{concepto}{El Secreto de las Columnas}
+		Para restar números más grandes, los organizamos hacia abajo como si fueran pisos de un edificio. \textbf{Es obligatorio} que las unidades queden debajo de las unidades, y las decenas debajo de las decenas.
+		\\[0.2cm]
+		Como estamos haciendo restas \textbf{"Sin Prestar"}, te darás cuenta de que el número de arriba siempre es igual o más grande que el de abajo.
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{multicols}{2}
+			\textbf{Tengo 78 galletas y me como 25.}
+			\\ ¿Cuántas me quedan?
+			
+			\vspace{0.4cm}
+			\textbf{Pasos:}
+			\begin{enumerate}
+				\item Pongo el más grande arriba (78).
+				\item Pongo el pequeño abajo (25).
+				\item Resto primero las Unidades (8 - 5 = 3).
+				\item Resto luego las Decenas (7 - 2 = 5).
+			\end{enumerate}
+			
+			\columnbreak
+			
+			\begin{center}
+				\Large
+				\begin{tabular}{r c c}
+					& \textbf{D} & \textbf{U} \\
+					& 7 & 8 \\
+					$-$ & 2 & 5 \\
+					\hline
+					& \textbf{5} & \textbf{3}
+				\end{tabular}
+				\\[0.4cm]
+				\normalsize \textbf{¡Me quedan 53 galletas!}
+			\end{center}
+		\end{multicols}
+	\end{ejemplo}
+	
+	\begin{practica}{Restas de 2 y 3 cifras (8 Ejercicios)}
+		\textit{Resta cada columna de arriba hacia abajo. Pon el resultado en el cuadrito.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{4}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				\item 
+				\begin{tabular}{r}
+					4 5 \\
+					- 1 2 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					8 7 \\
+					- 3 5 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					9 8 \\
+					- 4 1 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					6 5 \\
+					- 2 3 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					4 5 8 \\
+					- 1 2 3 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					9 7 5 \\
+					- 3 4 1 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					6 8 4 \\
+					- 2 5 0 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					8 9 6 \\
+					- 5 3 2 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	
+	
+	% =======================================================
+	% MISIÓN 3: RESTANDO NÚMEROS GIGANTES
+	% =======================================================
+	\section*{Misión 3: Restas de Gigantes}
+	
+	\begin{concepto}{Muchos números, el mismo proceso}
+		No importa si el número tiene 4, 5 o 6 cifras. El proceso sigue siendo el mismo: empieza por las Unidades (derecha), luego las Decenas, y así sucesivamente. No olvides poner el punto que indica "mil" en tu respuesta.
+	\end{concepto}
+	\newpage
+	\begin{practica}{Restas de 4 y 5 cifras }
+		\textit{Resta columna por columna. ¡Asegúrate de bajar el punto de los miles en el mismo lugar!}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				\item 
+				\begin{tabular}{r}
+					5 . 8 9 4 \\
+					- 2 . 3 6 1 \\
+					\hline
+					\boxfill[1.8cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					9 . 7 8 6 \\
+					- 4 . 2 5 3 \\
+					\hline
+					\boxfill[1.8cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					7 . 5 9 8 \\
+					- 1 . 2 4 5 \\
+					\hline
+					\boxfill[1.8cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					6 . 4 8 7 \\
+					- 3 . 1 5 2 \\
+					\hline
+					\boxfill[1.8cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					4 9 . 8 7 5 \\
+					- 1 2 . 3 4 2 \\
+					\hline
+					\boxfill[2.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					8 6 . 5 9 7 \\
+					- 4 1 . 2 8 4 \\
+					\hline
+					\boxfill[2.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					7 5 . 9 4 8 \\
+					- 3 4 . 6 1 5 \\
+					\hline
+					\boxfill[2.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					9 8 . 7 6 5 \\
+					- 5 2 . 4 1 0 \\
+					\hline
+					\boxfill[2.2cm]
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	
+	
+	% =======================================================
+	% MISIÓN 4: PROBLEMAS SENCILLOS
+	% =======================================================
+	\section*{Misión 4: Detectives de Problemas}
+	
+	\begin{truco}{Las Palabras Clave de la Resta}
+		Cuando leas un problema, ¿cómo saber que tienes que restar? Busca estas palabras clave: \textbf{Quedan, Sobran, Gastó, Perdió, Comió, Regaló, Faltan, o ¿Cuál es la Diferencia?}
+		\\[0.2cm]
+		Recuerda: En la resta, \textbf{el número más grande siempre va arriba}.
+	\end{truco}
+	\newpage
+	\begin{practica}{Resuelve los casos}
+		\textit{Lee el caso. Escribe la resta (de forma vertical) en el espacio a la izquierda, y anota el resultado en la respuesta a la derecha.}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=1.5cm]
+			\item Tenía \textbf{\$ 5.800} en mi bolsillo y gasté \textbf{\$ 2.500} en un jugo. ¿Cuánto dinero me queda? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Me quedan \$ \boxfill[1.5cm]
+			\end{tabular}
+			
+			\item Un libro tiene \textbf{458} páginas. Si ya leí \textbf{123} páginas, ¿cuántas páginas me faltan por leer? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Me faltan \boxfill[1.5cm] páginas.
+			\end{tabular}
+			
+			\item En una granja hay \textbf{875} gallinas, y el granjero vende \textbf{341} de ellas. ¿Cuántas gallinas sobran en la granja? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Sobran \boxfill[1.5cm] gallinas.
+			\end{tabular}
+			
+			\item Mi mamá me dio \textbf{\$ 8.500}. Fui a la papelería y compré un lápiz de \textbf{\$ 3.200}. ¿Cuánto dinero me sobró? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Me sobraron \$ \boxfill[1.5cm]
+			\end{tabular}
+			
+			\item En un estadio caben \textbf{9.850} personas. Si ya han entrado \textbf{4.210} personas, ¿cuántos asientos vacíos quedan? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Quedan \boxfill[1.5cm] asientos vacíos.
+			\end{tabular}
+			
+			\item Una fábrica hizo \textbf{6.785} juguetes y repartió \textbf{2.340} a las tiendas. ¿Cuántos juguetes le quedaron en la fábrica? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Le quedaron \boxfill[1.5cm] juguetes.
+			\end{tabular}
+			
+			\item El camión repartidor llevaba \textbf{798} cajas de leche. Dejó \textbf{254} cajas en el supermercado. ¿Cuántas cajas le quedan en el camión? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Le quedan \boxfill[1.5cm] cajas.
+			\end{tabular}
+			
+			\item Un rompecabezas tiene \textbf{5.968} fichas. Si ya hemos armado \textbf{1.453} fichas, ¿cuántas faltan por poner? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Faltan \boxfill[1.5cm] fichas.
+			\end{tabular}
+		\end{enumerate}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	\vspace{1cm}
+	% --- MENSAJE FINAL ---
+	\begin{center}
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, width=14cm, arc=3mm, boxrule=1.5pt]
+			\centering \Large \textbf{¡MÓDULO UNIDAD 4 COMPLETADO!\\
+			FELICITACIONES}\\[0.2cm]
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}

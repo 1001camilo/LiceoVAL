@@ -1,0 +1,452 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=3.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo}}, arc=2mm, boxrule=1pt}
+
+% Caja de práctica "breakable"
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\cajitaLlevada}{\tcbox[on line, size=minimal, colframe=valblue!60, colback=valblue!5, boxrule=0.5pt, arc=1mm, boxsep=1pt]{\makebox[0.4cm]{\vphantom{0}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+			\centering \Huge \textbf{UNIDAD 5}\\[0.2cm]
+			\Large \textbf{La Sustracción Prestando (Reagrupación)}
+		\end{tcolorbox}
+		
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-05 AC} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+		
+	
+	\end{center}
+	
+	
+	% =======================================================
+	% MISIÓN 1: ¿QUÉ ES PEDIR PRESTADO?
+	% =======================================================
+	\section*{Misión 1: El Vecino Amable}
+	
+	\begin{concepto}{Cuando no alcanza}
+		En la resta, siempre quitamos el número de abajo al número de arriba. Pero, ¿qué hacemos si a \textbf{2} le queremos quitar \textbf{8}? ¡No se puede porque 2 es más pequeño!
+		\\[0.2cm]
+		Cuando el número de arriba es menor que el de abajo, tiene que tocarle la puerta a su vecino de la izquierda y decirle: \textbf{"Vecino, ¿me prestas 1?"}.
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{multicols}{2}
+			\textbf{Tengo 52 galletas y me como 18.}
+			\\ ¿Cuántas me quedan?
+			
+			\vspace{0.4cm}
+			\textbf{Pasos:}
+			\begin{enumerate}
+				\item Como a 2 no le puedo quitar 8, el 5 le presta \textbf{1}. 
+				\item El 2 se convierte en \textbf{12}. (Y $12 - 8 = \mathbf{4}$).
+				\item El 5, como prestó 1, se convierte en \textbf{4}. (Y $4 - 1 = \mathbf{3}$).
+			\end{enumerate}
+			
+			\columnbreak
+			
+			\begin{center}
+				\begin{tikzpicture}[scale=1]
+					% Números originales
+					\node at (0, 0) {\Large 5};
+					\node at (1, 0) {\Large 2};
+					\node at (-0.8, -0.6) {\Large $-$};
+					\node at (0, -0.6) {\Large 1};
+					\node at (1, -0.6) {\Large 8};
+					\draw[thick] (-1, -1) -- (1.5, -1);
+					
+					% Tachones y nuevos números
+					\draw[ultra thick, valred] (-0.3, -0.3) -- (0.3, 0.3);
+					\node[valred, font=\large\bfseries] at (-0.2, 0.8) {4};
+					
+					\draw[ultra thick, valblue] (0.7, -0.3) -- (1.3, 0.3);
+					\node[valblue, font=\large\bfseries] at (1.3, 0.8) {12};
+					
+					% Flecha de préstamo
+					\draw[->, thick, valblue] (0.1, 0.9) to[bend left=40] node[above, yshift=2pt] {\small presta 1} (0.9, 0.9);
+					
+					% Resultado
+					\node at (0, -1.6) {\Large \textbf{3}};
+					\node at (1, -1.6) {\Large \textbf{4}};
+				\end{tikzpicture}
+				\\[0.4cm]
+				\normalsize \textbf{¡Me quedan 34 galletas!}
+			\end{center}
+		\end{multicols}
+	\end{ejemplo}
+	
+	\begin{practica}{Restas de 2 Cifras Prestando }
+		\textit{Si el de arriba es menor, táchalo, pon el nuevo número arriba y tacha también al vecino que prestó. Pon el resultado abajo.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{4}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				\item 
+				\begin{tabular}{r}
+					4 3 \\
+					- 1 5 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					7 1 \\
+					- 3 4 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					6 0 \\
+					- 2 8 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					9 2 \\
+					- 4 6 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					8 4 \\
+					- 5 7 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					5 3 \\
+					- 1 9 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					3 5 \\
+					- 1 8 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					7 4 \\
+					- 4 6 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	% =======================================================
+	% MISIÓN 2: RESTAS DE TRES CIFRAS
+	% =======================================================
+	\section*{Misión 2: Números Más Grandes}
+	
+	\begin{concepto}{La regla se repite}
+		No importa cuántas cifras tenga el número, la regla siempre es igual: si el de arriba es menor, le pide 1 prestado al vecino de la izquierda. A veces tendrás que pedir prestado dos veces en la misma resta.
+	\end{concepto}
+	\newpage
+	\begin{practica}{Restas de 3 Cifras }
+		\textit{Recuerda tachar a los vecinos para que no se te olvide que ahora valen 1 menos.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{4}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				\item 
+				\begin{tabular}{r}
+					3 4 2 \\
+					- 1 2 5 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					5 6 1 \\
+					- 2 3 4 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					8 3 4 \\
+					- 5 6 1 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					9 1 5 \\
+					- 4 7 2 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					4 5 3 \\
+					- 1 8 6 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					7 2 8 \\
+					- 3 4 5 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					6 4 1 \\
+					- 2 9 0 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					8 5 0 \\
+					- 3 2 7 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	\vspace{0.8cm}
+	
+	% =======================================================
+	% MISIÓN 3: EL RETO DE LOS CEROS
+	% =======================================================
+	\section*{Misión 3: Ceros Arriba}
+	
+	\begin{truco}{Pedir prestado en cadena}
+		¿Qué pasa si necesitas pedir prestado pero tu vecino es un \textbf{0}? (Ejemplo: $500 - 124$). ¡El cero no te puede prestar nada porque está pobre!
+		\\[0.2cm]
+		\textbf{El Truco:} El cero primero le pide prestado a su otro vecino de la izquierda para convertirse en \textbf{10}. Ahora que es un 10 y es "rico", ¡ya puede prestarte 1 a ti y él se convierte en un \textbf{9}!
+	\end{truco}
+	
+	\begin{practica}{Restas con Ceros }
+		\textit{Si hay ceros, pide prestado en cadena. El primer 0 se vuelve 10, y si presta, se vuelve 9.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{4}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				\item 
+				\begin{tabular}{r}
+					4 0 0 \\
+					- 1 2 5 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					6 0 0 \\
+					- 2 3 4 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					8 0 5 \\
+					- 3 4 7 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					5 0 0 \\
+					- 1 8 6 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					7 0 2 \\
+					- 2 5 8 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					9 0 0 \\
+					- 4 1 5 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					3 0 0 \\
+					- 1 0 9 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					5 0 4 \\
+					- 2 9 5 \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 4: PROBLEMAS SENCILLOS
+	% =======================================================
+	\section*{Misión 4: Detectives de Problemas}
+	
+	\begin{concepto}{Palabras Clave de la Resta}
+		Recuerda que cuando un problema dice: \textbf{Quedan, Sobran, Gastó, Perdió, Comió, Regaló, Faltan, o ¿Cuál es la Diferencia?}, ¡tienes que RESTAR! 
+	\end{concepto}
+	
+	\begin{practica}{Resuelve los casos }
+		\textit{Lee el caso. Escribe la resta de forma vertical en el espacio, resuélvela y anota la respuesta final.}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=1.5cm]
+			\item Tenía \textbf{450} canicas en mi colección y perdí \textbf{125} jugando en el parque. ¿Cuántas canicas me quedan? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Me quedan \boxfill[1.5cm] canicas.
+			\end{tabular}
+			
+			\item Un libro de aventuras tiene \textbf{312} páginas. Si ya he leído \textbf{148} páginas, ¿cuántas páginas me faltan por leer? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Me faltan \boxfill[1.5cm] páginas.
+			\end{tabular}
+			
+			\item En una granja hay \textbf{500} gallinas. Un día el granjero vende \textbf{234} gallinas. ¿Cuántas gallinas sobraron en la granja? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Sobraron \boxfill[1.5cm] gallinas.
+			\end{tabular}
+			
+			\item Mi mamá me dio \textbf{\$ 850}. Fui a la tienda y compré unas galletas de \textbf{\$ 370}. ¿Cuánto dinero me sobró de cambio? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Me sobraron \$ \boxfill[1.5cm]
+			\end{tabular}
+			
+			\item En un colegio hay \textbf{725} estudiantes. Si \textbf{458} estudiantes son niñas, ¿cuántos niños hay en el colegio? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Hay \boxfill[1.5cm] niños.
+			\end{tabular}
+			
+			\item Una panadería horneó \textbf{600} panes frescos. Por la tarde ya había vendido \textbf{415} panes. ¿Cuántos panes le quedaron sin vender? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Le quedaron \boxfill[1.5cm] panes.
+			\end{tabular}
+			
+			\item El viaje de mi ciudad a la playa es de \textbf{540} kilómetros. Si ya hemos viajado \textbf{265} kilómetros, ¿cuántos kilómetros faltan para llegar? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Faltan \boxfill[1.5cm] kilómetros.
+			\end{tabular}
+			
+			\item Rompí mi alcancía y tenía \textbf{\$ 905}. Compré un juguete que costaba \textbf{\$ 548}. ¿Cuánto dinero me quedó guardado? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Me quedaron \$ \boxfill[1.5cm]
+			\end{tabular}
+		\end{enumerate}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	\vspace{1cm}
+	% --- MENSAJE FINAL ---
+	\begin{center}
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, width=14cm, arc=3mm, boxrule=1.5pt]
+			\centering \Large \textbf{¡MÓDULO UNIDAD 5 COMPLETADO!\\
+			FELICITACIONES}\\[0.2cm]
+			
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}

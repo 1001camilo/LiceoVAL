@@ -1,0 +1,148 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen de 1 pulgada en todos los lados
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{EVALUACIÓN ADAPTADA (AC) - MATEMÁTICAS 6º}\\[0.1cm]
+		Unidad 4: La Sustracción (Resta) Sin Prestar
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \textbf{\underline{06M-04 AC}}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Une con una línea cada parte de la resta con su significado correspondiente. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\begin{tabular}{r c l}
+			\textbf{\large Minuendo} & \hspace{1cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{1cm} & \large Es el resultado final, lo que sobra. \\[0.2cm]
+			\textbf{\large Sustraendo}   & \hspace{1cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{1cm} & \large Es el número que tienes al principio. \\[0.2cm]
+			\textbf{\large Diferencia}    & \hspace{1cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{1cm} & \large Es el número que vas a quitar o gastar.
+		\end{tabular}
+	\end{center}
+	
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Resta columna por columna, de arriba hacia abajo. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tabular}{r}
+				8 7 \\
+				- 3 5 \\
+				\hline
+				\boxfill[1.2cm]
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			\begin{tabular}{r}
+				5 8 \\
+				- 2 4 \\
+				\hline
+				\boxfill[1.2cm]
+			\end{tabular}
+		\end{center}
+	
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. Aplica el mismo proceso de resta para los siguientes números más grandes. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tabular}{r}
+				9 . 7 8 6 \\
+				- 4 . 2 5 3 \\
+				\hline
+				\boxfill[2cm]
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			\begin{tabular}{r}
+				4 8 . 9 7 5 \\
+				- 1 2 . 3 4 2 \\
+				\hline
+				\boxfill[2.5cm]
+			\end{tabular}
+		\end{center}
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	\newpage
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Lee el siguiente problema. Resuelve la operación y anota el resultado en la respuesta a la derecha. (25\%)}
+	
+	\vspace{0.4cm}
+	\noindent \textbf{Problema:} Tu mamá te dio \textbf{\$ 8.500}. Fuiste a la papelería y compraste un paquete de marcadores que costó \textbf{\$ 3.200}. ¿Cuánto dinero te sobró?
+	
+	\vspace{0.8cm}
+	\begin{center}
+		\begin{tabular}{c c c}
+			\textbf{Operación:} & \hspace{2cm} & \textbf{Respuesta:} \\[0.5cm]
+			\Large
+			\begin{tabular}{r}
+				8.500 \\
+				- 3.200 \\
+				\hline
+				\boxfill[2.5cm]
+			\end{tabular}
+			& &
+			Te sobraron \$ \boxfill[2.5cm]
+		\end{tabular}
+	\end{center}
+	
+	\vspace{1.5cm}
+	
+
+	
+\end{document}

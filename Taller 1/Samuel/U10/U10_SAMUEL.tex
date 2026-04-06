@@ -1,0 +1,563 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel} % es-noshorthands evita conflictos con TikZ
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\IfFileExists{FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+		}%
+	}{}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+\definecolor{valpurple}{RGB}{120, 40, 160}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo}}, arc=2mm, boxrule=1pt}
+
+% Caja de práctica "breakable" para que no queden huecos blancos en la hoja
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDOS PARA ESTRUCTURAR LA UNIDAD ---
+\newcommand{\titulounidad}[2]{
+	\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+		\centering \Huge \textbf{UNIDAD #1}\\[0.2cm]
+		\Large \textbf{#2}
+	\end{tcolorbox}
+	\vspace{0.5cm}
+}
+
+% --- COMANDOS PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxline}[1][4cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE COMPLETO}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		
+		\titulounidad{10}{División de Decimales, Comparación \\ y Recta Numérica}
+		
+		\vspace{0.4cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-10} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+	
+	\end{center}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 1: DIVISIÓN DE DECIMALES
+	% =======================================================
+	\section*{Misión 1: Dividiendo decimales}
+	
+	\begin{concepto}{El problema de la coma en el divisor}
+		Dividir un número cuando el \textbf{divisor} tiene una coma decimal es muy incómodo. ¡A los matemáticos no les gusta! Por eso inventaron un truco para desaparecer esa coma antes de empezar a dividir.
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\begin{truco}{Correr la coma}
+		Para quitar la coma del divisor, multiplicamos ambos números por $10$, $100$ o $1.000$. En la práctica, esto significa \textbf{dar saltos con la coma hacia la derecha}.
+		\\[0.2cm]
+		\textbf{Regla de Oro:} La misma cantidad de saltos que des en el divisor, ¡tienes que darlos obligatoriamente en el dividendo (el primer número)! Si te quedas sin números para saltar, agregas ceros.
+	\end{truco}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% Primer número
+			\node[font=\fontsize{35}{42}\selectfont\bfseries] at (0,0) {2,4};
+			\node[font=\fontsize{35}{42}\selectfont\bfseries] at (1.5,0) {$\div$};
+			\node[font=\fontsize{35}{42}\selectfont\bfseries] at (3,0) {0,3};
+			
+			% Flechas saltando
+			\draw[->, ultra thick, valred] (0.3, 0.4) to[bend left=60] node[above] {\small 1 salto} (1.0, 0.4);
+			\draw[->, ultra thick, valblue] (3.3, 0.4) to[bend left=60] node[above] {\small 1 salto} (4.0, 0.4);
+			
+			% Transformación
+			\node[font=\fontsize{25}{30}\selectfont\bfseries] at (1.5, -1.5) {$\downarrow$};
+			\node[font=\fontsize{30}{36}\selectfont\bfseries] at (1.5, -2.5) {$24 \div 3 = \mathbf{8}$};
+		\end{tikzpicture}
+	\end{center}
+	\vspace{0.2cm}
+	
+	\begin{practica}{Saltar y Dividir}
+		\textit{A) Mueve la coma la misma cantidad de veces en ambos lados para que los números queden enteros. Luego, realiza la división mentalmente o en el cuaderno y anota la respuesta:}
+		\vspace{0.3cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $4,2 \div 0,6 \rightarrow 42 \div 6 = $ \boxfill[1cm]
+				\item $8,1 \div 0,9 \rightarrow 81 \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $3,5 \div 0,5 \rightarrow \boxfill[0.8cm] \div 5 = $ \boxfill[1cm]
+				\item $1,2 \div 0,4 \rightarrow \boxfill[0.8cm] \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $2,5 \div 0,5 \rightarrow \boxfill[0.8cm] \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $0,8 \div 0,2 \rightarrow \boxfill[0.8cm] \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $6,4 \div 0,8 \rightarrow \boxfill[0.8cm] \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $7,5 \div 1,5 \rightarrow \boxfill[0.8cm] \div \boxfill[0.8cm] = $ \boxfill[1cm]
+			\end{enumerate}
+		\end{multicols}
+		\newpage
+		\textit{B) }
+		\vspace{0.3cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm, resume]
+				\item $1,44 \div 1,2 \rightarrow 14,4 \div 12 = $ \boxfill[1cm] 
+				\item $0,24 \div 0,6 \rightarrow 2,4 \div 6 = $ \boxfill[1cm] 
+				\item $0,45 \div 0,9 \rightarrow \boxfill[0.8cm] \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $1,25 \div 0,25 \rightarrow 125 \div 25 = $ \boxfill[1cm] 
+				\item $10,5 \div 0,5 \rightarrow 105 \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $3,6 \div 0,6 \rightarrow \boxfill[0.8cm] \div \boxfill[0.6cm] = $ \boxfill[1cm]
+				\item $0,9 \div 0,3 \rightarrow \boxfill[0.8cm] \div \boxfill[0.6cm] = $ \boxfill[1cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	
+	% =======================================================
+	% MISIÓN 2: DE FRACCIÓN A DECIMAL
+	% =======================================================
+	\section*{Misión 2: Los Dos Idiomas}
+	
+	\begin{concepto}{Son exactamente lo mismo}
+		Las fracciones y los números decimales son dos idiomas diferentes para escribir exactamente la misma cantidad.
+		\begin{itemize}
+			\item \textbf{Fracción a Decimal:} ¡Solo tienes que dividir el número de arriba entre el de abajo!
+			\item \textbf{Decimal a Fracción:} Escribe el número completo arriba (sin la coma). Abajo pon un $1$ acompañado de tantos ceros como espacios haya después de la coma. (Ejemplo: $0,75 = \dfrac{75}{100}$, que simplificado es $\dfrac{3}{4}$).
+		\end{itemize}
+	\end{concepto}
+	
+	\begin{truco}{Dividir hasta que sobre cero}
+		Hasta ahora, si una división no era exacta, dejábamos un "residuo". Ahora, cuando el número que vas a dividir sea más pequeño que el divisor, o cuando te sobre un residuo, pones una \textbf{coma (,)} en el resultado y le regalas un \textbf{cero (0)} al número para poder seguir dividiendo hasta que sobre cero.
+	\end{truco}
+	
+	\begin{ejemplo}
+		\textbf{Ejemplo 1: Numerador menor que denominador ($\mathbf{\dfrac{3}{4} = 3 \div 4}$)}
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tabular}{c c c}
+				\textbf{Paso 1} & \textbf{Paso 2} & \textbf{Paso 3} \\
+				El 4 no cabe en el 3. & $30 \div 4 = 7$ (sobran $2$). & $20 \div 4 = 5$ (sobra $0$). \\
+				Ponemos \textcolor{valred}{\textbf{0,}} y un \textcolor{valred}{\textbf{0}} al 3. & Bajamos un \textcolor{valblue}{\textbf{0}}. & ¡Terminamos! \\[0.3cm]
+				\Large
+				\begin{tabular}{r | l}
+					3\textcolor{valred}{\textbf{0}} & 4 \\ \cline{2-2}
+					& \textcolor{valred}{\textbf{0,}}
+				\end{tabular}
+				&
+				\Large
+				\begin{tabular}{r | l}
+					30 & 4 \\ \cline{2-2}
+					- 28 & 0,7 \\ \cline{1-1}
+					2\textcolor{valblue}{\textbf{0}} & 
+				\end{tabular}
+				&
+				\Large
+				\begin{tabular}{r | l}
+					30 & 4 \\ \cline{2-2}
+					- 28 & 0,75 \\ \cline{1-1}
+					20 & \\
+					- 20 & \\ \cline{1-1}
+					\textcolor{valgreen}{\textbf{0}} &
+				\end{tabular}
+			\end{tabular}
+		\end{center}
+		
+		\vspace{0.5cm}
+		
+		\textbf{Ejemplo 2: Numerador mayor y necesitamos decimales ($\mathbf{\dfrac{14}{5} = 14 \div 5}$)}
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tabular}{c c}
+				\textbf{Paso 1} & \textbf{Paso 2} \\
+				$14 \div 5 = 2$. Sobran 4. & $40 \div 5 = 8$. Sobra 0. \\
+				Para seguir, ponemos \textcolor{valred}{\textbf{,}} al cociente y \textcolor{valred}{\textbf{0}} al residuo. & ¡Terminamos la división! \\[0.3cm]
+				\Large
+				\begin{tabular}{r | l}
+					14 & 5 \\ \cline{2-2}
+					- 10 & 2\textcolor{valred}{\textbf{,}} \\ \cline{1-1}
+					4\textcolor{valred}{\textbf{0}} & 
+				\end{tabular}
+				&
+				\Large
+				\begin{tabular}{r | l}
+					14 & 5 \\ \cline{2-2}
+					- 10 & 2,8 \\ \cline{1-1}
+					40 & \\
+					- 40 & \\ \cline{1-1}
+					\textcolor{valgreen}{\textbf{0}} &
+				\end{tabular}
+			\end{tabular}
+		\end{center}
+		
+		\vspace{0.5cm}
+		
+		\textbf{Ejemplo 3: División que nunca termina (Periódica) ($\mathbf{\dfrac{10}{3} = 10 \div 3}$)}
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tabular}{c c}
+				\textbf{Paso 1} & \textbf{Paso 2} \\
+				$10 \div 3 = 3$. Sobra 1. & $10 \div 3 = 3$. Vuelve a sobrar 1. \\
+				Ponemos \textcolor{valred}{\textbf{,}} y bajamos un \textcolor{valred}{\textbf{0}}. & El número se repetirá por siempre ($3,333...$) \\[0.3cm]
+				\Large
+				\begin{tabular}{r | l}
+					10 & 3 \\ \cline{2-2}
+					- \ 9 & 3\textcolor{valred}{\textbf{,}} \\ \cline{1-1}
+					1\textcolor{valred}{\textbf{0}} & 
+				\end{tabular}
+				&
+				\Large
+				\begin{tabular}{r | l}
+					10 & 3 \\ \cline{2-2}
+					- \ 9 & 3,33 \\ \cline{1-1}
+					10 & \\
+					- \ 9 & \\ \cline{1-1}
+					1\textcolor{valblue}{\textbf{0}} &
+				\end{tabular}
+			\end{tabular}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\textbf{Decimal a Fracción:}\\
+		$\mathbf{0,2} \rightarrow$ Hay un número después de la coma, usamos un 10. $\rightarrow \dfrac{2}{10}$. Simplificando (sacando mitad): $\mathbf{\dfrac{1}{5}}$.
+	\end{ejemplo}
+	
+	\vspace{0.2cm}
+	\begin{practica}{Traductores Numéricos}
+		\textit{A) Traduce estas fracciones a decimales:}
+		\vspace{0.3cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $\dfrac{1}{2} = $ \boxfill[1.5cm] \textit{(La mitad)}
+				\item $\dfrac{1}{4} = $ \boxfill[1.5cm] \textit{(Un cuarto)}
+				\item $\dfrac{3}{4} = $ \boxfill[1.5cm] \textit{(Tres cuartos)}
+				\item $\dfrac{1}{10} = $ \boxfill[1.5cm] \textit{(Una décima)}
+				\item $\dfrac{1}{5} = $ \boxfill[1.5cm] \textit{(La quinta parte)}
+				\item $\dfrac{2}{5} = $ \boxfill[1.5cm] 
+				\item $\dfrac{4}{5} = $ \boxfill[1.5cm] 
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textit{B) Traduce estos decimales a fracción. Primero escríbelo con 10 o 100 abajo, y luego simplifica si es posible:}
+		\vspace{0.3cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm, resume]
+				\item $0,5 = \dfrac{5}{10} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ 
+				\item $0,25 = \dfrac{25}{100} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ 
+				\item $0,75 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ 
+				\item $0,1 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $0,2 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $0,8 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$
+				\item $1,5 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ 
+				\item $2,5 = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]} = \dfrac{\boxfill[0.6cm]}{\boxfill[0.6cm]}$ 
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 3: COMPARACIÓN DE DECIMALES
+	% =======================================================
+	\section*{Misión 3: ¿Quién es el Mayor?}
+	
+	\begin{concepto}{El truco de rellenar con ceros}
+		A simple vista, el número $3,45$ parece más grande que $3,5$ porque "cuarenta y cinco" es más grande que "cinco".
+		\\[0.2cm]
+		Para comparar decimales sin equivocarte, debes hacer que ambos tengan \textbf{la misma cantidad de números después de la coma} rellenando los huecos con ceros ($0$).
+	\end{concepto}
+	
+	\begin{ejemplo}
+		Comparar $\mathbf{3,45}$ y $\mathbf{3,5}$.
+		\begin{itemize}
+			\item Alineamos las comas:
+			\begin{tabular}{l}
+				3 , 4 5 \\
+				3 , 5 \textcolor{valred}{\textbf{0}} \quad $\leftarrow$ Le agregamos un cero para igualar el largo.
+			\end{tabular}
+			\item Ahora sí es justo comparar: ¿Qué es más grande, 45 o 50? (El 50)
+			\item Entonces: $\mathbf{3,5 > 3,45}$ (3,5 es mayor).
+		\end{itemize}
+	\end{ejemplo}
+	
+	\begin{practica}{Guerra de Números}
+		\textit{A) Escribe el símbolo Mayor que ($>$), Menor que ($<$) o Igual ($=$). ¡Alinea las comas mentalmente y pon los ceros invisibles!}
+		\vspace{0.3cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $2,5$ \boxfill[0.8cm] $2,05$
+				\item $3,4$ \boxfill[0.8cm] $3,40$
+				\item $0,9$ \boxfill[0.8cm] $0,99$
+				\item $1,1$ \boxfill[0.8cm] $1,11$
+				\item $5,6$ \boxfill[0.8cm] $5,60$
+				\item $0,05$ \boxfill[0.8cm] $0,5$
+				\item $4,2$ \boxfill[0.8cm] $4,19$
+				\item $7,8$ \boxfill[0.8cm] $7,800$
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textit{B) ¿Fracción o Decimal? Traduce uno de los dos a su otro idioma para poder compararlos con los signos ($>, <, =$):}
+		\vspace{0.3cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm, resume]
+				\item $\dfrac{1}{2}$ \boxfill[0.8cm] $0,5$
+				\item $\dfrac{1}{4}$ \boxfill[0.8cm] $0,3$
+				\item $\dfrac{3}{4}$ \boxfill[0.8cm] $0,7$
+				\item $0,2$ \boxfill[0.8cm] $\dfrac{1}{5}$
+				\item $0,8$ \boxfill[0.8cm] $\dfrac{3}{4}$
+				\item $1,5$ \boxfill[0.8cm] $1,05$
+				\item $2,1$ \boxfill[0.8cm] $2,10$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 4: LA RECTA NUMÉRICA
+	% =======================================================
+	\section*{Misión 4: La Recta Numérica}
+	
+	\begin{concepto}{El mapa de los pedacitos}
+		La recta numérica es como una gran regla. Los números enteros (0, 1, 2, 3) son las líneas grandes y largas. El espacio entre un entero y otro está dividido en 10 partes iguales, y cada rayita pequeña representa una \textbf{décima} ($0,1$; $0,2$; $0,3$...).
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.2]
+			\draw[<->, ultra thick, valdark] (-0.5,0) -- (10.5,0);
+			
+			% Enteros
+			\foreach \x in {0, 10} {
+				\draw[ultra thick, valdark] (\x, 0.3) -- (\x, -0.3);
+			}
+			\node[below, font=\Large\bfseries] at (0, -0.4) {0};
+			\node[below, font=\Large\bfseries] at (10, -0.4) {1};
+			
+			% Decimales
+			\foreach \x in {1, 2, ..., 9} {
+				\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15);
+			}
+			
+			% Ejemplos
+			\draw[->, ultra thick, valblue] (2, 1) -- (2, 0.3);
+			\node[valblue, font=\large\bfseries] at (2, 1.3) {0,2};
+			
+			\draw[->, ultra thick, valred] (5, 1) -- (5, 0.3);
+			\node[valred, font=\large\bfseries] at (5, 1.3) {0,5 o $\dfrac{1}{2}$};
+			
+			\draw[->, ultra thick, valgreen] (8, 1) -- (8, 0.3);
+			\node[valgreen, font=\large\bfseries] at (8, 1.3) {0,8};
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\begin{practica}{Descifra el Mapa}
+		\textit{A) Observa la siguiente recta numérica que va del 0 al 2. Escribe el número decimal que corresponde a cada letra señalada por las flechas.}
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2]
+				\draw[<->, ultra thick, valdark] (-0.5,0) -- (10.5,0);
+				
+				% Enteros
+				\foreach \x/\val in {0/0, 5/1, 10/2} {
+					\draw[ultra thick, valdark] (\x, 0.3) -- (\x, -0.3) node[below, font=\Large\bfseries] {\val};
+				}
+				
+				% Décimas (cada 0.5 unidades de distancia es 0.1 decimal)
+				\foreach \x in {0.5, 1.0, ..., 9.5} {
+					\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15);
+				}
+				
+				% Flechas letras
+				\draw[->, ultra thick, valblue] (1.5, 0.8) -- (1.5, 0.3); \node[valblue, font=\large\bfseries] at (1.5, 1.1) {A};
+				\draw[->, ultra thick, valblue] (3.5, 0.8) -- (3.5, 0.3); \node[valblue, font=\large\bfseries] at (3.5, 1.1) {B};
+				\draw[->, ultra thick, valblue] (6.0, 0.8) -- (6.0, 0.3); \node[valblue, font=\large\bfseries] at (6.0, 1.1) {C};
+				\draw[->, ultra thick, valblue] (8.5, 0.8) -- (8.5, 0.3); \node[valblue, font=\large\bfseries] at (8.5, 1.1) {D};
+				\draw[->, ultra thick, valblue] (9.5, 0.8) -- (9.5, 0.3); \node[valblue, font=\large\bfseries] at (9.5, 1.1) {E};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\begin{multicols}{5}
+			\begin{enumerate}[itemsep=0.4cm]
+				\item A: \boxfill[0.8cm]
+				\item B: \boxfill[0.8cm]
+				\item C: \boxfill[0.8cm]
+				\item D: \boxfill[0.8cm]
+				\item E: \boxfill[0.8cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textit{B) Ahora observa esta recta que va del 4 al 5. Sigue contando las décimas y descubre el valor de cada letra.}
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2]
+				\draw[<->, ultra thick, valdark] (-0.5,0) -- (10.5,0);
+				
+				% Enteros
+				\foreach \x/\val in {0/4, 10/5} {
+					\draw[ultra thick, valdark] (\x, 0.3) -- (\x, -0.3) node[below, font=\Large\bfseries] {\val};
+				}
+				
+				% Décimas
+				\foreach \x in {1, 2, ..., 9} {
+					\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15);
+				}
+				
+				% Flechas letras
+				\draw[->, ultra thick, valred] (1, 0.8) -- (1, 0.3); \node[valred, font=\large\bfseries] at (1, 1.1) {F};
+				\draw[->, ultra thick, valred] (4, 0.8) -- (4, 0.3); \node[valred, font=\large\bfseries] at (4, 1.1) {G};
+				\draw[->, ultra thick, valred] (5, 0.8) -- (5, 0.3); \node[valred, font=\large\bfseries] at (5, 1.1) {H};
+				\draw[->, ultra thick, valred] (7, 0.8) -- (7, 0.3); \node[valred, font=\large\bfseries] at (7, 1.1) {I};
+				\draw[->, ultra thick, valred] (9, 0.8) -- (9, 0.3); \node[valred, font=\large\bfseries] at (9, 1.1) {J};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\begin{multicols}{5}
+			\begin{enumerate}[itemsep=0.4cm, resume]
+				\item F: \boxfill[0.8cm]
+				\item G: \boxfill[0.8cm]
+				\item H: \boxfill[0.8cm]
+				\item I: \boxfill[0.8cm]
+				\item J: \boxfill[0.8cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textit{C) Ubicando Fracciones. Dibuja un punto (o haz una marquita con lápiz) donde creas que van estos 5 números en la recta que va del 0 al 1:}
+		
+		\vspace{0.2cm}
+		\textbf{11.} $\dfrac{1}{2}$  \hspace{1cm} \textbf{12.} $\dfrac{1}{4}$  \hspace{1cm} \textbf{13.} $0,9$ \hspace{1cm} \textbf{14.} $0,1$ \hspace{1cm} \textbf{15.} $0,8$
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2]
+				\draw[<->, ultra thick, valdark] (-0.5,0) -- (10.5,0);
+				\foreach \x/\val in {0/0, 10/1} {
+					\draw[ultra thick, valdark] (\x, 0.3) -- (\x, -0.3) node[below, font=\Large\bfseries] {\val};
+				}
+				\foreach \x in {1, 2, ..., 9} {
+					\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15);
+				}
+			\end{tikzpicture}
+		\end{center}
+	\end{practica}
+	
+	% =======================================================
+	% MISIÓN 5: PROBLEMAS DEL MUNDO REAL
+	% =======================================================
+	\section*{Misión 5: Detectives del Mundo Real}
+	
+	\begin{concepto}{Traduciendo el problema}
+		La vida real está llena de decimales (en el dinero, en los kilómetros que caminamos, en los kilos de comida que compramos). Lee atentamente si debes dividir (repartir), multiplicar o comparar tamaños.
+	\end{concepto}
+	
+	\begin{practica}{Resolución de Problemas}
+		\textit{Escribe la operación y encuentra el resultado. Puedes usar un lado de la hoja o tu cuaderno para hacer tus cálculos.}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=1cm]
+			\item Un carpintero tiene una cinta que mide $\mathbf{4,5}$ metros y quiere cortarla en pedazos que midan $\mathbf{0,5}$ metros cada uno. ¿Cuántos pedazos logra sacar? \\
+			Operación: $4,5 \div 0,5 \rightarrow$ \boxfill[1cm] $\div$ \boxfill[1cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] pedazos.
+			
+			\item Si te reúnes con 4 amigos (son \textbf{5} en total) para pagar una cuenta de pizza que costó $\mathbf{\$ 12.500}$, ¿cuánto dinero le toca pagar a cada uno en partes iguales? \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+			
+			\item El tendero tiene un gran queso de $\mathbf{2,4}$ kilos y lo va a vender en porciones empacadas de $\mathbf{0,3}$ kilos. ¿Cuántas porciones de queso saldrán a la venta? \\
+			Operación: $2,4 \div 0,3 \rightarrow$ \boxfill[1cm] $\div$ \boxfill[1cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] porciones.
+			
+			\item Durante mis vacaciones, me gasté $\mathbf{\$ 4.500}$ en el viaje comprando botellas de agua. Si gasté exactamente lo mismo durante los \textbf{3} días del viaje, ¿cuánto gasté cada día? \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \$ \boxfill[2cm] diarios.
+			
+			\item Observa estos dos precios en el supermercado para el mismo chocolate: Tienda A \textbf{\$ 1.250,50} y Tienda B \textbf{\$ 1.250,05}. ¿Qué tienda tiene el chocolate \textbf{más barato}? \\
+			\textbf{Respuesta:} La tienda \boxfill[2cm]
+			
+			\item Quieres servir sopa. Tienes un cucharón que sirve \textbf{$\dfrac{1}{2}$} de litro, y otro que sirve \textbf{$0,4$} litros. ¿Cuál de los dos cucharones es \textbf{más grande}? \\
+			\textbf{Respuesta:} El cucharón de \boxfill[2cm]
+			
+			\item Un atleta corrió un total de $\mathbf{10,5}$ kilómetros a lo largo de \textbf{5} días seguidos, corriendo la misma distancia cada día. ¿Cuántos kilómetros corrió diariamente? \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] kilómetros.
+			
+			\item Para arreglar la plomería de la casa, necesitas cortar un tubo de PVC que mide $\mathbf{6,4}$ metros en \textbf{8} partes iguales. ¿Cuánto medirá cada parte? \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] metros.
+			
+			\item Tienes una jarra de \textbf{1,5} litros de jugo de naranja y quieres repartirlo en vasos pequeños de \textbf{0,25} litros. ¿Cuántos vasos llenas? \\
+			Operación: $1,5 \div 0,25 \rightarrow$ \boxfill[1cm] $\div$ \boxfill[1cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] vasos.
+			
+			\item Vas a la carnicería y pides \textbf{0,5} kilogramos de carne. Si el kilo cuesta \textbf{\$ 12.000}, ¿cuánto debes pagar? \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+			
+			\item En salto largo, Pedro saltó \textbf{3,45} metros y Juan saltó \textbf{3,5} metros. ¿Quién ganó la competencia saltando \textbf{más lejos}? \\
+			\textbf{Respuesta:} Ganó \boxfill[3cm]
+			
+			\item El tiempo de espera para una atracción del parque es de \textbf{0,75} de hora. Si una hora tiene 60 minutos, ¿cuántos minutos de espera son en realidad? \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] minutos.
+			\newpage
+			
+			\item Un ciclista logra recorrer \textbf{15,5} kilómetros en \textbf{0,5} horas (media hora). Si mantuviera ese ritmo, ¿qué distancia recorrería en una hora completa? (Pista: dividir $15,5 \div 0,5$). \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] km.
+			
+			\item Compraste una barra gigante de chocolate que pesa \textbf{0,15} kilogramos y quieres compartirla repartiéndola en \textbf{3} partes exactamente iguales para ti y dos amigos. ¿Cuánto pesará cada parte? \\
+			Operación: \boxline[3cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] kg.
+			
+			\item En el laboratorio de química, debes envasar $\mathbf{5,5}$ litros de una mezcla secreta en frascos que solo pueden guardar $\mathbf{0,5}$ litros. ¿Cuántos frascos usarás en total? \\
+			Operación: $5,5 \div 0,5 \rightarrow$ \boxfill[1cm] $\div$ \boxfill[1cm] \hspace{1cm} \textbf{Respuesta:} \boxfill[2cm] frascos.
+		\end{enumerate}
+	\end{practica}
+	
+
+	
+\end{document}

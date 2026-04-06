@@ -1,0 +1,178 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Se agrega es-noshorthands para evitar conflictos
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen superior de 3.5cm para respetar el encabezado del fondo
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valdark}{RGB}{50, 50, 50}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{EVALUACIÓN DE MATEMÁTICAS 6º}\\[0.1cm]
+		Unidad 9: Operaciones con Decimales y Estimación
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \textbf{06M-09 FL}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+
+	\vspace{0.5cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. VALOR POSICIONAL Y COMPARACIÓN DECIMAL (20\%)}
+	
+	\vspace{0.2cm}
+	\noindent \textit{A) Observa el número \textbf{14,835} y escribe qué número está en la posición indicada:}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.4cm]
+			\item En las \textbf{Décimas}: \boxfill[1cm]
+			\item En las \textbf{Centésimas}: \boxfill[1cm]
+			\item En las \textbf{Unidades}: \boxfill[1cm]
+			\item En las \textbf{Milésimas}: \boxfill[1cm]
+		\end{enumerate}
+	\end{multicols}
+	
+	\vspace{0.2cm}
+	\noindent \textit{B) Encierra en un círculo el número \textbf{MAYOR} de cada pareja:}
+	\begin{multicols}{3}
+		\begin{itemize}[itemsep=0.4cm, label={}]
+			\item 3,5 \quad o \quad 3,12
+			\item 0,8 \quad o \quad 0,09
+			\item 7,4 \quad o \quad 7,40
+		\end{itemize}
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. ADICIÓN Y SUSTRACCIÓN DE DECIMALES (20\%)}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Organiza los números verticalmente, \textbf{alineando la coma decimal}.}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\textbf{A)} $24,5 + 3,82$ \\[0.3cm]
+		\begin{tabular}{rr}
+			& \boxfill[2cm] \\
+			+ & \boxfill[2cm] \\
+			\hline
+			& \boxfill[2cm]
+		\end{tabular}
+		
+		\textbf{B)} $15,3 - 4,15$ \\[0.3cm]
+		\begin{tabular}{rr}
+			& \boxfill[2cm] \\
+			- & \boxfill[2cm] \\
+			\hline
+			& \boxfill[2cm]
+		\end{tabular}
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. MULTIPLICACIÓN (20\%)}
+	
+	\vspace{0.2cm}
+	\noindent \textit{A) Multiplica los siguientes números:}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{itemize}[itemsep=0.4cm, label={}]
+			\item $4,2 \times 3 =$ \boxfill[2cm]
+			\item $1,5 \times 1,2 =$ \boxfill[2cm]
+		\end{itemize}
+	\end{multicols}
+	
+	\vspace{0.4cm}
+	\noindent \textit{B) Multiplica los siguientes números:}
+	
+	\vspace{0.2cm}
+	\begin{multicols}{2}
+		\begin{itemize}[itemsep=0.4cm, label={}]
+			\item $5,42 \times 10 = $ \boxfill[2cm]
+			\item $0,35 \times 100 = $ \boxfill[2cm]
+		\end{itemize}
+	\end{multicols}
+	
+	\newpage
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. ESTIMACIÓN Y REDONDEO (20\%)}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Observa a qué posición debes redondear:}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{itemize}[itemsep=0.6cm, label={}]
+			\item Redondea \textbf{4,8} a la UNIDAD: \boxfill[1.5cm]
+			\item Redondea \textbf{7,2} a la UNIDAD: \boxfill[1.5cm]
+			\item Redondea \textbf{3,46} a la DÉCIMA: \boxfill[1.5cm]
+			\item Redondea \textbf{8,12} a la DÉCIMA: \boxfill[1.5cm]
+		\end{itemize}
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 5 ---
+	\noindent \textbf{5. PROBLEMAS DEL MUNDO REAL (20\%)}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Lee la siguiente situación, completa la operación y calcula el resultado final.}
+	
+	\vspace{0.3cm}
+	\noindent \textit{Fui a la tienda de la esquina y compré un paquete de papas de $\mathbf{\$2,50}$ y un jugo de $\mathbf{\$1,35}$. ¿Cuánto dinero pagué en total?}
+	
+	\vspace{0.6cm}
+	\begin{center}
+		\begin{tabular}{c c c}
+			\textbf{Operación:} & \hspace{2cm} & \textbf{Respuesta:} \\[0.6cm]
+			\Large $2,50 + 1,35 = \boxfill[2cm]$ & & 
+			Pagué en total \$ \boxfill[2cm]
+		\end{tabular}
+	\end{center}
+	
+	\vspace{1.5cm}
+	
+
+	
+\end{document}

@@ -1,0 +1,653 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% SOLUCIÓN DEL ERROR: Se agrega es-noshorthands para evitar conflictos entre TikZ, tcolorbox y Babel
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\IfFileExists{FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+		}%
+	}{}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+\definecolor{valpurple}{RGB}{120, 40, 160}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco del Maestro: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo}}, arc=2mm, boxrule=1pt}
+
+% Caja de práctica "breakable" para que no queden huecos blancos en la hoja
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDOS PARA ESTRUCTURAR LA UNIDAD ---
+\newcommand{\titulounidad}[2]{
+	\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+		\centering \Huge \textbf{UNIDAD #1}\\[0.2cm]
+		\Large \textbf{#2}
+	\end{tcolorbox}
+	\vspace{0.5cm}
+}
+
+% --- COMANDOS PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxline}[1][4cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		
+		\titulounidad{9}{Operaciones con Decimales y Estimación}
+		
+		\vspace{0.4cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-09} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+	\end{center}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 1: VALOR POSICIONAL DECIMAL
+	% =======================================================
+	\section*{Misión 1: Conociendo el Mundo Decimal}
+	
+	\begin{concepto}{A la derecha de la coma}
+		La \textbf{Coma Decimal} separa a los números enteros gigantes de los pedacitos más pequeños que 1. A la izquierda viven los enteros (Unidades, Decenas...). A la derecha de la coma viven los pedacitos: \textbf{Décimas}, \textbf{Centésimas} y \textbf{Milésimas}.
+	\end{concepto}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% Números centrales espaciados para evitar superposición
+			\node[font=\fontsize{50}{60}\selectfont\bfseries] at (0,0) {3};
+			\node[font=\fontsize{50}{60}\selectfont\bfseries, text=valred] at (1.2,-0.2) {,};
+			\node[font=\fontsize{50}{60}\selectfont\bfseries] at (2.5,0) {1};
+			\node[font=\fontsize{50}{60}\selectfont\bfseries] at (4.5,0) {4};
+			\node[font=\fontsize{50}{60}\selectfont\bfseries] at (6.5,0) {5};
+			
+			% Flechas superiores intercaladas (arriba y abajo) para evitar choques
+			\draw[->, ultra thick, valblue] (0, 1.2) -- (0, 0.8);
+			\node[valblue, font=\large\bfseries] at (0, 1.5) {Unidades};
+			
+			\draw[->, ultra thick, valgreen] (2.5, 2.2) -- (2.5, 0.8);
+			\node[valgreen, font=\large\bfseries] at (2.5, 2.5) {Décimas};
+			
+			\draw[->, ultra thick, valorange] (4.5, 1.2) -- (4.5, 0.8);
+			\node[valorange, font=\large\bfseries] at (4.5, 1.5) {Centésimas};
+			
+			\draw[->, ultra thick, valpurple] (6.5, 2.2) -- (6.5, 0.8);
+			\node[valpurple, font=\large\bfseries] at (6.5, 2.5) {Milésimas};
+			
+			% Texto explicativo abajo
+			\draw[->, ultra thick, valred] (1.2, -1.2) -- (1.2, -0.6);
+			\node[valred, font=\Large\bfseries] at (1.2, -1.6) {Coma Decimal};
+		\end{tikzpicture}
+	\end{center}
+	\vspace{0.2cm}
+	
+	\begin{practica}{Encuentra la posición a la que pertenece}
+		\textit{A) Observa el número \textbf{8,732} y escribe qué número está en cada posición:}
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.4cm]
+				\item El número en las \textbf{Décimas}: \boxfill[1cm]
+				\item El número en las \textbf{Milésimas}: \boxfill[1cm]
+				\item El número en las \textbf{Unidades}: \boxfill[1cm]
+				\item El número en las \textbf{Centésimas}: \boxfill[1cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		\textit{B) Escribe el número decimal usando la coma:}
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.6cm, resume]
+				\item Cinco unidades y cuatro décimas\\ $\rightarrow$ \boxfill[2cm]
+				\item Cero unidades y doce centésimas\\ $\rightarrow$ \boxfill[2cm]\vspace{1cm}
+				\item Nueve unidades y tres décimas\\ $\rightarrow$ \boxfill[2cm]
+				\item Dos unidades y ocho milésimas\\ $\rightarrow$ \boxfill[2cm] \textit{(Pista: usa ceros)}
+				\item Quince unidades y cinco centésimas\\ $\rightarrow$ \boxfill[2cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		\textit{C) ¿Quién es más grande? (Encierra en un círculo el número mayor):}
+		\vspace{0.2cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.6cm, resume]
+				\item $3,5$ \quad o \quad $3,2$
+				\item $4,1$ \quad o \quad $4,15$
+				\item $0,8$ \quad o \quad $0,09$
+				\item $2,50$ \quad o \quad $2,5$
+				\item $7,3$ \quad o \quad $7,29$
+				\item $1,9$ \quad o \quad $2,0$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 2: SUMA Y RESTA DE DECIMALES
+	% =======================================================
+	\section*{Misión 2: Adición y Sustracción}
+	
+	\begin{concepto}{}
+		Para sumar o restar decimales, hay una sola regla obligatoria: \textbf{¡La coma decimal siempre debe ir una debajo de la otra.}
+		\\
+		Si a un número le faltan pedacitos para quedar del mismo largo, simplemente \textbf{rellenamos los huecos con ceros ($0$)}.
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\noindent\begin{minipage}{\textwidth}
+		\begin{ejemplo}
+			\begin{multicols}{2}
+				\textbf{1. Suma: $12,5 + 3,42$}\\
+				Alineamos la coma y ponemos un $0$ al $12,5$:
+				\begin{center}
+					\begin{tabular}{r@{\quad}l}
+						$1 2 \textbf{,} 5 \textcolor{valred}{\mathbf{0}}$ & \\
+						+ $\phantom{0} 3 \textbf{,} 4 2$ & \\
+						\hline
+						$\mathbf{1 5 \textbf{,} 9 2}$ & 
+					\end{tabular}
+				\end{center}
+				
+				\columnbreak
+				
+				\textbf{2. Resta: $8,4 - 2,15$}\\
+				Alineamos la coma y ponemos un $0$ al $8,4$:
+				\begin{center}
+					\begin{tabular}{r@{\quad}l}
+						$8 \textbf{,} 4 \textcolor{valred}{\mathbf{0}}$ & \\
+						- $2 \textbf{,} 1 5$ & \\
+						\hline
+						$\mathbf{6 \textbf{,} 2 5}$ & 
+					\end{tabular}
+				\end{center}
+			\end{multicols}
+		\end{ejemplo}
+	\end{minipage}
+	
+	\vspace{0.4cm}
+	\begin{practica}{Alinea y Resuelve}
+		\textit{Resuelve las operaciones verticalmente. ¡Cuidado con rellenar con ceros si es necesario!}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				% Fila 1
+				\item 
+				\begin{tabular}{r}
+					$4,2$ \\
+					+ $3,5$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					$6,8$ \\
+					- $2,3$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					$5,40$ \\
+					+ $1,32$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				% Fila 2
+				\item 
+				\begin{tabular}{r}
+					$9,56$ \\
+					- $4,21$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					$7,5\phantom{0}$ \\
+					+ $2,14$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					$8,6\phantom{0}$ \\
+					- $3,45$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				% Fila 3
+				\item 
+				\begin{tabular}{r}
+					$10,2\phantom{0}$ \\
+					+ $\phantom{0}4,55$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					$15,8\phantom{0}$ \\
+					- $\phantom{0}2,63$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					$1,25$ \\
+					+ $0,4\phantom{0}$ \\
+					\hline
+					\boxfill[1.5cm]
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+		
+		\newpage
+		\textit{Organiza verticalmente (alineando la coma) y resuelve en tu cuaderno. Anota la respuesta:}
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[itemsep=0.6cm, resume]
+				\item $14,5 + 3,2 = $ \boxfill[1.5cm]
+				\item $20,4 - 5,1 = $ \boxfill[1.5cm]
+				\item $6,75 + 2,1 = $ \boxfill[1.5cm]
+				\item $9,8 - 4,25 = $ \boxfill[1.5cm] 
+				\item $12 + 3,5 = $ \boxfill[1.5cm] 
+				\item $15 - 2,4 = $ \boxfill[1.5cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 3: MULTIPLICACIÓN DE DECIMALES
+	% =======================================================
+	\section*{Misión 3: Multiplicación de Decimales}
+	
+	\begin{concepto}{Ignorar y Contar}
+		Para multiplicar números con coma decimal, \textbf{no necesitas alinearlos}. Sigue estos dos pasos:
+		\begin{enumerate}
+			\item Multiplica normal, \textbf{ignorando por completo} las comas (como si no existieran).
+			\item Al final, cuenta cuántos números hay \textbf{después} de la coma en toda la operación, y mueve la coma en tu respuesta esa misma cantidad de espacios hacia la izquierda.
+		\end{enumerate}
+	\end{concepto}
+	
+	\vspace{0.3cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% Números alineados a la derecha (anchor=east) en x=0 para evitar superposición
+			\node[font=\Large, anchor=east] at (0, 2) {$\mathbf{2,5}$};
+			\node[font=\large\bfseries, text=valblue, anchor=west] at (0.5, 2) {$\leftarrow$ 1 espacio decimal};
+			
+			\node[font=\Large, anchor=east] at (-1.2, 1) {$\times$};
+			\node[font=\Large, anchor=east] at (0, 1) {$\mathbf{1,3}$};
+			\node[font=\large\bfseries, text=valblue, anchor=west] at (0.5, 1) {$\leftarrow$ 1 espacio decimal};
+			
+			\draw[thick] (-1.5, 0.5) -- (0.3, 0.5);
+			
+			\node[font=\large, anchor=east] at (0, 0) {$75$};
+			\node[font=\large, anchor=east] at (-0.05, -0.6) {$25\phantom{0}$};
+			
+			\draw[thick] (-1.5, -1) -- (0.3, -1);
+			
+			\node[font=\Large, anchor=east] (resultado) at (0, -1.6) {$\mathbf{3,25}$};
+			\node[font=\large\bfseries, text=valred, anchor=west] at (0.5, -1.6) {$\leftarrow$ Contamos \textbf{2} espacios en total};
+			
+			% Flechas saltando en el resultado (de derecha a izquierda bajo el 2 y el 5)
+			\draw[->, thick, valred] (-0.1, -1.9) to[bend left=45] (-0.4, -1.9);
+			\draw[->, thick, valred] (-0.4, -1.9) to[bend left=45] (-0.7, -1.9);
+		\end{tikzpicture}
+	\end{center}
+	%\newpage
+	%\vspace{0.2cm}
+	\begin{practica}{Multiplicación}
+		\textit{A) Cuenta cuántos espacios decimales EN TOTAL tienen los números que se multiplican:}
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.4cm]
+				\item $4,2 \times 1,5 \rightarrow$ Total espacios: \boxfill[0.6cm]
+				\item $3,14 \times 2,1 \rightarrow$ Total espacios: \boxfill[0.6cm]
+				\item $5,2 \times 4 \rightarrow$ Total espacios: \boxfill[0.6cm]
+				\item $0,03 \times 0,2 \rightarrow$ Total espacios: \boxfill[0.6cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		\textit{B) La multiplicación ya está hecha. Solo debes \textbf{poner la coma decimal} en el lugar correcto en la respuesta.}
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.4cm, resume]
+				\item $2,4 \times 3 = 72 \rightarrow$ Respuesta real: \boxfill[1.5cm]
+				\item $1,5 \times 1,2 = 180 \rightarrow$ Respuesta real: \boxfill[1.5cm]
+				\item $4,1 \times 0,2 = 82 \rightarrow$ Respuesta real: \boxfill[1.5cm]
+				\item $3,12 \times 2 = 624 \rightarrow$ Respuesta real: \boxfill[1.5cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		\textit{C) Multiplica de forma normal en un papel y escribe tu respuesta con la coma correcta:}
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.6cm, resume]
+				\item $3,2 \times 4 = $ \boxfill[1.5cm]
+				\item $1,4 \times 1,2 = $ \boxfill[1.5cm]
+				\item $2,5 \times 2,5 = $ \boxfill[1.5cm]
+				\item $5,1 \times 0,3 = $ \boxfill[1.5cm]
+				\item $4,2 \times 2 = $ \boxfill[1.5cm]
+				\item $1,11 \times 3 = $ \boxfill[1.5cm]
+				\item $0,5 \times 0,5 = $ \boxfill[1.5cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 4: POTENCIAS DE 10
+	% =======================================================
+	\section*{Misión 4: Multiplicar por 10, 100 y 1000}
+	
+	\begin{concepto}{Multiplicar por múltiplos de 10}
+		Cuando multiplicas cualquier número por $10$, $100$ o $1.000$, \textbf{no tienes que hacer ninguna operación matemática complicada}. 
+		\\[0.2cm]
+		Solo debes hacer que la coma decimal "salte" hacia la \textbf{derecha} tantas veces como \textbf{ceros} tenga el número.
+		\begin{itemize}
+			\item Por \textbf{10} (1 cero) $\rightarrow$ Salta \textbf{1} vez a la derecha.
+			\item Por \textbf{100} (2 ceros) $\rightarrow$ Salta \textbf{2} veces a la derecha.
+			\item Por \textbf{1000} (3 ceros) $\rightarrow$ Salta \textbf{3} veces a la derecha.
+		\end{itemize}
+		\textit{Nota: Si se te acaban los números para saltar, ¡pones ceros en los huecos vacíos!}
+	\end{concepto}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% Números y coma espaciados uniformemente
+			\node[font=\fontsize{40}{48}\selectfont\bfseries, inner sep=1pt] (n3) at (0,0) {3};
+			\node[font=\fontsize{40}{48}\selectfont\bfseries, text=valred, inner sep=1pt] (coma) at (0.45,-0.15) {,};
+			\node[font=\fontsize{40}{48}\selectfont\bfseries, inner sep=1pt] (n4) at (1.1,0) {4};
+			\node[font=\fontsize{40}{48}\selectfont\bfseries, inner sep=1pt] (n5) at (2.0,0) {5};
+			\node[font=\fontsize{40}{48}\selectfont\bfseries, inner sep=1pt] (n6) at (2.9,0) {6};
+			
+			% Texto de la operación
+			\node[font=\Large\bfseries, anchor=west] at (3.8, 0) {$\times \ 100 \quad \text{(2 ceros = 2 saltos)}$};
+			
+			% Saltos (Arcos rojos)
+			\draw[->, ultra thick, valred] (0.5, 0.4) to[bend left=60] (1.55, 0.4);
+			\draw[->, ultra thick, valred] (1.55, 0.4) to[bend left=60] (2.45, 0.4);
+			
+			% Resultado
+			\node[font=\Large\bfseries, anchor=west] at (-0.5, -1.5) {Resultado: 345,6};
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\begin{practica}{Saltos de coma}
+		\textit{Mueve la coma hacia la derecha y escribe el resultado final. ¡Cuidado con los huecos vacíos!}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $4,25 \times 10 = $ \boxfill[2cm]
+				\item $4,25 \times 100 = $ \boxfill[2cm]
+				\item $4,25 \times 1000 = $ \boxfill[2cm] \textit{(Rellena con 0)}
+				\item $7,81 \times 10 = $ \boxfill[2cm]
+				\item $0,345 \times 100 = $ \boxfill[2cm]
+				\item $12,5 \times 10 = $ \boxfill[2cm]
+				\item $12,5 \times 100 = $ \boxfill[2cm]
+				\item $0,08 \times 10 = $ \boxfill[2cm]
+				\item $0,08 \times 100 = $ \boxfill[2cm]
+				\item $9,1 \times 1000 = $ \boxfill[2cm]
+				\item $3,141 \times 100 = $ \boxfill[2cm]
+				\item $5,6 \times 10 = $ \boxfill[2cm]
+				\item $0,99 \times 100 = $ \boxfill[2cm]
+				\item $2,0 \times 10 = $ \boxfill[2cm]
+				\item $1,234 \times 1000 = $ \boxfill[2cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 5: ESTIMACIÓN Y REDONDEO
+	% =======================================================
+	\section*{Misión 5: Estimación (Redondeo)}
+	
+	\begin{concepto}{Acercándose a la verdad}
+		En la vida real, a veces no necesitamos el número exacto, sino uno aproximado. A esto le llamamos \textbf{Estimar} o \textbf{Redondear}. 
+		\\[0.2cm]
+		\textbf{Regla del Vecino de la Derecha:}
+		\begin{itemize}
+			\item Si el número vecino es \textbf{5, 6, 7, 8 o 9}: Sumas $1$ al número que estás redondeando (Sube).
+			\item Si el número vecino es \textbf{0, 1, 2, 3 o 4}: Lo dejas exactamente igual (Se queda).
+		\end{itemize}
+		¡Todo lo que esté después del vecino desaparece!
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{multicols}{2}
+			\textbf{1. Redondear $3,7$ a la Unidad:} \\
+			El número entero es $3$. Su vecino es $7$. \\
+			Como $7$ es grande (5 o más), el $3$ sube a $\mathbf{4}$.
+			
+			\columnbreak
+			
+			\textbf{2. Redondear $8,24$ a la Décima:} \\
+			El número en la décima es $2$. Su vecino es $4$. \\
+			Como $4$ es pequeño, el $2$ se queda igual: $\mathbf{8,2}$.
+		\end{multicols}
+	\end{ejemplo}
+	
+	\begin{practica}{Aproximación }
+		\textit{Observa a qué posición debes redondear, mira el vecino de la derecha y aplica la regla.}
+		
+		\vspace{0.4cm}
+		\textbf{A) Redondea al número ENTERO más cercano (Unidad):}
+		\vspace{0.2cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.5cm]
+				\item $4,8 \approx $ \boxfill[1.2cm]
+				\item $7,2 \approx $ \boxfill[1.2cm]
+				\item $9,5 \approx $ \boxfill[1.2cm]
+				\item $12,1 \approx $ \boxfill[1.2cm]
+				\item $0,9 \approx $ \boxfill[1.2cm]
+				\item $3,4 \approx $ \boxfill[1.2cm]
+				\item $15,6 \approx $ \boxfill[1.2cm]
+				\item $8,3 \approx $ \boxfill[1.2cm]
+				\item $19,8 \approx $ \boxfill[1.2cm]
+				\item $2,5 \approx $ \boxfill[1.2cm]
+				\item $6,1 \approx $ \boxfill[1.2cm]
+				\item $14,7 \approx $ \boxfill[1.2cm]
+				\item $0,2 \approx $ \boxfill[1.2cm]
+				\item $25,5 \approx $ \boxfill[1.2cm]
+				\item $99,9 \approx $ \boxfill[1.2cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textbf{B) Redondea a la DÉCIMA más cercana (1 número después de la coma):}
+		\vspace{0.2cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.5cm, resume]
+				\item $3,46 \approx $ \boxfill[1.2cm]
+				\item $8,12 \approx $ \boxfill[1.2cm]
+				\item $5,95 \approx $ \boxfill[1.2cm]
+				\item $2,73 \approx $ \boxfill[1.2cm]
+				\item $0,48 \approx $ \boxfill[1.2cm]
+				\item $9,21 \approx $ \boxfill[1.2cm]
+				\item $14,55 \approx $ \boxfill[1.2cm]
+				\item $7,89 \approx $ \boxfill[1.2cm]
+				\item $1,04 \approx $ \boxfill[1.2cm]
+				\item $6,37 \approx $ \boxfill[1.2cm]
+				\item $20,65 \approx $ \boxfill[1.2cm]
+				\item $3,92 \approx $ \boxfill[1.2cm]
+				\item $0,08 \approx $ \boxfill[1.2cm]
+				\item $12,44 \approx $ \boxfill[1.2cm]
+				\item $8,96 \approx $ \boxfill[1.2cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\newpage
+		\textbf{C) Redondea a la CENTÉSIMA más cercana (2 números después de la coma):}
+		\vspace{0.2cm}
+		\begin{multicols}{3}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.5cm, resume]
+				\item $1,234 \approx $ \boxfill[1.2cm]
+				\item $4,567 \approx $ \boxfill[1.2cm]
+				\item $9,885 \approx $ \boxfill[1.2cm]
+				\item $3,141 \approx $ \boxfill[1.2cm]
+				\item $0,009 \approx $ \boxfill[1.2cm]
+				\item $7,452 \approx $ \boxfill[1.2cm]
+				\item $2,896 \approx $ \boxfill[1.2cm]
+				\item $5,103 \approx $ \boxfill[1.2cm]
+				\item $12,675 \approx $ \boxfill[1.2cm]
+				\item $8,044 \approx $ \boxfill[1.2cm]
+				\item $0,999 \approx $ \boxfill[1.2cm]
+				\item $15,321 \approx $ \boxfill[1.2cm]
+				\item $6,785 \approx $ \boxfill[1.2cm]
+				\item $4,111 \approx $ \boxfill[1.2cm]
+				\item $9,008 \approx $ \boxfill[1.2cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 6: PROBLEMAS DE LA VIDA REAL
+	% =======================================================
+	\section*{Misión 6: Problemas del Mundo Real}
+	
+	\begin{concepto}{Traducir historias a Matemáticas}
+		\begin{itemize}
+			\item \textbf{Suma (+):} Juntar cosas, añadir dinero, distancia total.
+			\item \textbf{Resta (-):} Gastar dinero, cortar algo, ver cuánto falta o cuánto sobra (la diferencia).
+			\item \textbf{Multiplicar ($\times$):} Comprar varias cosas iguales, repetir una medida varias veces.
+		\end{itemize}
+	\end{concepto}
+	
+	\begin{practica}{Detective de Problemas (15 Ejercicios)}
+		\textit{Lee el problema con atención. Anota la operación (puedes usar el espacio para calcular) y escribe la respuesta final con la coma en su lugar.}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=0.8cm]
+			\item Fui a la tienda y compré unas papas de $\mathbf{\$2,50}$ y un jugo de $\mathbf{\$1,20}$. ¿Cuánto pagué en total? \\
+			Operación: $2,50 + 1,20$ \hspace{2cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+			
+			\item Tenía un billete de $\mathbf{\$10}$ y me gasté $\mathbf{\$4,50}$ en dulces. ¿Cuánto dinero me sobró?.\\
+			Operación: $10,00 - 4,50$ \hspace{2cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+			
+			\item Cada cuaderno vale $\mathbf{\$3,15}$. Si compro \textbf{3} cuadernos para el colegio, ¿cuánto pago en total?\\
+			Operación: $3,15 \times 3$ \hspace{2cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+			\newpage
+			
+			\item Un deportista corrió $\mathbf{4,5}$ km el lunes y $\mathbf{3,25}$ km el martes. ¿Cuántos km corrió en los dos días?.\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] km.
+			
+			\item Un pedazo de madera medía $\mathbf{5,8}$ metros y el carpintero cortó $\mathbf{2,3}$ metros. ¿Cuánto mide el pedazo que quedó?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] metros.
+			
+			\item Un paquete de galletas pesa $\mathbf{0,25}$ kilos. Si compro \textbf{10} paquetes, ¿cuánto pesan en total?.\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] kilos.
+			
+			\item Mi temperatura era de $\mathbf{36,5}$ grados. Luego subió $\mathbf{1,2}$ grados porque tuve fiebre. ¿Cuál es mi temperatura ahora?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] grados.
+			
+			\item Un frasco de miel pesa $\mathbf{1,4}$ kilos. Si en la caja hay \textbf{2} frascos iguales, ¿cuánto pesan juntos?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] kilos.
+			
+			\item Quieres comprar un juguete de $\mathbf{\$15,50}$, pero solo tienes $\mathbf{\$12,00}$. ¿Cuánto dinero te falta?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+			
+			\item El colegio regaló $\mathbf{0,5}$ litros de leche a cada niño. Si hay \textbf{100} niños, ¿cuántos litros de leche regalaron en total?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] litros.
+			
+			\item Para hacer un pastel, mezclo $\mathbf{1,25}$ kg de harina y $\mathbf{0,50}$ kg de azúcar. ¿Cuánto pesa la mezcla completa?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] kilos.
+			
+			\item Una tela medía $\mathbf{8,0}$ metros y cortaron $\mathbf{4,5}$ metros para unas cortinas. ¿Cuánta tela sobró?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] metros.
+			\newpage
+			
+			\item El kilo de manzanas vale $\mathbf{\$2,10}$. Si llevo $\mathbf{3}$ kilos, ¿cuánto me cuestan?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+			
+			\item Tu hermano mide $\mathbf{1,45}$ metros y tú mides $\mathbf{1,60}$ metros. ¿Cuántos metros de diferencia hay entre los dos?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \boxfill[2cm] metros.
+			
+			\item Ganas $\mathbf{\$5,25}$ diarios por ayudar en casa. Si ayudas durante \textbf{10} días seguidos, ¿cuánto dinero tendrás?\\
+			Operación: \boxline[3cm] \hspace{2cm} \textbf{Respuesta:} \$ \boxfill[2cm]
+		\end{enumerate}
+	\end{practica}
+	
+	\vspace{1cm}
+	% --- MENSAJE FINAL ---
+	
+	
+\end{document}
