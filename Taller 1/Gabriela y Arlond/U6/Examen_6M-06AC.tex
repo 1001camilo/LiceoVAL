@@ -1,0 +1,105 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen de 1 pulgada en todos los lados
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{EVALUACIÓN - MATEMÁTICAS 6º}\\[0.1cm]
+		Unidad 6: Números Pares e Impares
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \textbf{06M-06 AC}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Une con una línea qué significa cada tipo de número. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\begin{tabular}{r c p{8cm}}
+			\textbf{\large Número PAR} & \hspace{1cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{1cm} & \large Al agrupar de dos en dos, siempre sobra uno. \\[0.2cm]
+			\textbf{\large Número IMPAR} & \hspace{1cm} $\bullet$ \hspace{2cm} $\bullet$ \hspace{1cm} & \large Al agrupar de dos en dos, no sobra ninguno.
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Subraya el último número (las unidades) de estos números y escribe si el número completo es PAR o IMPAR. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{itemize}[itemsep=1cm, label={}]
+			\item $348 \rightarrow$ \boxfill[2.5cm]
+			\item $1.007 \rightarrow$ \boxfill[2.5cm]
+			\item $50.492 \rightarrow$ \boxfill[2.5cm]
+			\item $89.005 \rightarrow$ \boxfill[2.5cm]
+		\end{itemize}
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. Resuelve las siguientes sumas y marca con una X si el resultado final es Par o Impar. (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[itemsep=0.8cm, label=\textbf{\Alph*)}]
+		\item $6 + 4 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+		\item $5 + 3 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+	\end{enumerate}
+	\newpage
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Lee la situación y responde. (25\%)}
+	
+	\vspace{0.6cm}
+	\noindent \textbf{Problema:} Para la fiesta de cumpleaños, la mamá de Ana compró \textbf{24} sorpresas para repartir exactamente entre 2 equipos de niños. ¿Se podrán repartir las sorpresas en dos grupos iguales sin que sobre ninguna?
+	
+	\vspace{0.8cm}
+	\begin{itemize}[itemsep=1cm, label={}]
+		\item \textbf{A)} El número 24 es: \hspace{1cm} $\square$ PAR \hspace{1cm} $\square$ IMPAR
+		\item \textbf{B)} ¿Se pueden repartir exactamente sin que sobre nada? \hspace{1cm} $\square$ SÍ \hspace{1cm} $\square$ NO
+	\end{itemize}
+	
+	
+\end{document}

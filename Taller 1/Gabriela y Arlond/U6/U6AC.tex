@@ -1,0 +1,303 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete Ruta Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo}}, arc=2mm, boxrule=1pt}
+
+% Caja de práctica "breakable"
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA ---
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxline}[1][4cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		%\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+			\centering \Huge \textbf{UNIDAD 6}\\[0.2cm]
+			\Large \textbf{Números Pares e Impares}
+		\end{tcolorbox}
+		
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-06 AC} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+		
+	\end{center}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 1: CONCEPTOS BÁSICOS
+	% =======================================================
+	\section*{Misión 1: Hacer Parejas}
+	
+	\begin{concepto}{¿Qué es un número PAR y qué es IMPAR?}
+		\begin{itemize}
+			\item Un número es \textbf{PAR} si al dibujar esa cantidad podemos agrupar todo de dos en dos y \textbf{NO SOBRA NINGUNO}.
+			\item Un número es \textbf{IMPAR} si al agrupar de dos en dos, siempre \textbf{SOBRA UNO} que se queda sin pareja.
+		\end{itemize}
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% CAJA PARES
+			\draw[ultra thick, valblue, rounded corners, fill=valblue!5] (0,0) rectangle (4.5, 2.5);
+			% Etiqueta sobre el borde superior
+			\node[font=\Large\bfseries, valblue, fill=valblue!5, inner xsep=10pt] at (2.25, 3) {NÚMERO PAR (6)};
+			
+			% Pareja 1
+			\fill[valorange] (0.9, 1.5) circle (0.18); \fill[valorange] (0.9, 0.7) circle (0.18);
+			\draw[valdark, thick] (0.9, 1.1) ellipse (0.4 and 0.8);
+			
+			% Pareja 2
+			\fill[valorange] (2.25, 1.5) circle (0.18); \fill[valorange] (2.25, 0.7) circle (0.18);
+			\draw[valdark, thick] (2.25, 1.1) ellipse (0.4 and 0.8);
+			
+			% Pareja 3
+			\fill[valorange] (3.6, 1.5) circle (0.18); \fill[valorange] (3.6, 0.7) circle (0.18);
+			\draw[valdark, thick] (3.6, 1.1) ellipse (0.4 and 0.8);
+			
+			% Texto inferior
+			\node[font=\bfseries, valblue] at (2.25, -0.4) {¡Todos tienen pareja!};
+			
+			% CAJA IMPARES
+			\draw[ultra thick, valred, rounded corners, fill=valred!5] (5.5,0) rectangle (11, 2.5);
+			% Etiqueta sobre el borde superior
+			\node[font=\Large\bfseries, valred, fill=valred!5, inner xsep=10pt] at (8, 3) {NÚMERO IMPAR (7)};
+			
+			% Pareja 1
+			\fill[valorange] (6.4, 1.5) circle (0.18); \fill[valorange] (6.4, 0.7) circle (0.18);
+			\draw[valdark, thick] (6.4, 1.1) ellipse (0.4 and 0.8);
+			
+			% Pareja 2
+			\fill[valorange] (7.75, 1.5) circle (0.18); \fill[valorange] (7.75, 0.7) circle (0.18);
+			\draw[valdark, thick] (7.75, 1.1) ellipse (0.4 and 0.8);
+			
+			% Pareja 3
+			\fill[valorange] (9.1, 1.5) circle (0.18); \fill[valorange] (9.1, 0.7) circle (0.18);
+			\draw[valdark, thick] (9.1, 1.1) ellipse (0.4 and 0.8);
+			
+			% El que sobra
+			\fill[valorange] (10.2, 0.9) circle (0.18); 
+			\node[valgreen, font=\small\bfseries] at (10.2, 0.4) {¡Sobra!};
+			
+			% Texto inferior
+			\node[font=\bfseries, valred] at (8, -0.4) {¡Siempre sobra uno!};
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.6cm}
+	\begin{truco}{La Regla de Memoria}
+		\begin{itemize}
+			\item Son PARES si terminan en: \textbf{0, 2, 4, 6, 8}.
+			\item Son IMPARES si terminan en: \textbf{1, 3, 5, 7, 9}.
+		\end{itemize}
+	\end{truco}
+	
+	\begin{practica}{A Clasificar }
+		\textit{Escribe la palabra \textbf{PAR} o \textbf{IMPAR} en la casilla, según corresponda.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm]
+				\item El número \textbf{4} es: \boxfill[2cm]
+				\item El número \textbf{7} es: \boxfill[2cm]
+				\item El número \textbf{10} es: \boxfill[2cm]
+				\item El número \textbf{3} es: \boxfill[2cm]
+				\item El número \textbf{8} es: \boxfill[2cm]
+				\item El número \textbf{15} es: \boxfill[2cm]
+				\item El número \textbf{2} es: \boxfill[2cm]
+				\item El número \textbf{11} es: \boxfill[2cm]
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 2: EL TRUCO DEL ÚLTIMO NÚMERO
+	% =======================================================
+	\section*{Misión 2: El Truco de la Cola}
+	
+	\begin{concepto}{No importa qué tan grande sea}
+		¿Qué pasa si te dan un número gigante como el $45.892$? No vas a dibujar 45.892 bolitas para hacer parejas, gastariamos mucho tiempo.
+		\\[0.2cm]
+		Para saber si un número grande es Par o Impar, el truco es \textbf{mirar SOLAMENTE el último número} (la cola o las \textbf{Unidades}). Si el último número es par, ¡todo el número gigante es par!
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{itemize}
+			\item Observa el número $3.45\mathbf{\textcolor{valred}{7}}$. Termina en \textbf{7}. Como el 7 es Impar, \textbf{todo el número es Impar}.
+			\item Observa el número $12.89\mathbf{\textcolor{valblue}{4}}$. Termina en \textbf{4}. Como el 4 es Par, \textbf{todo el número es Par}.
+		\end{itemize}
+	\end{ejemplo}
+	\newpage
+	\begin{practica}{Mirando la unidad}
+		\textit{Subraya con tu lápiz el último número de cada cifra \textbf{(Las unidades)}. Luego, escribe si el número completo es \textbf{PAR} o \textbf{IMPAR}.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				\item $45 \rightarrow$ \boxfill[2.5cm]
+				\item $128 \rightarrow$ \boxfill[2.5cm]
+				\item $301 \rightarrow$ \boxfill[2.5cm]
+				\item $890 \rightarrow$ \boxfill[2.5cm]
+				\item $4.567 \rightarrow$ \boxfill[2.5cm]
+				\item $10.002 \rightarrow$ \boxfill[2.5cm]
+				\item $35.889 \rightarrow$ \boxfill[2.5cm]
+				\item $100.000 \rightarrow$ \boxfill[2.5cm]
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 3: MAGIA AL SUMAR
+	% =======================================================
+	\section*{Misión 3: Sumando pares e impares}
+	
+	\begin{concepto}{¿Qué pasa cuando los sumamos?}
+		\begin{itemize}
+			\item Si sumas dos números PARES, el resultado siempre será \textbf{PAR} (Ejemplo: $2 + 2 = 4$).
+			\item Si sumas dos números IMPARES, se juntan los que sobraban y forman una nueva pareja. ¡El resultado será \textbf{PAR}! (Ejemplo: $3 + 3 = 6$).
+			\item Si sumas un PAR con un IMPAR, uno se queda solo. ¡El resultado será \textbf{IMPAR}! (Ejemplo: $2 + 3 = 5$).
+		\end{itemize}
+	\end{concepto}
+	
+	\begin{practica}{La suma es \textbf{PAR} o \textbf{IMPAR}}
+		\textit{Resuelve la suma6 y escribe su resultado en la cajita gris. Luego, marca con una \textbf{X} si ese resultado final es Par o Impar.}
+		
+		\vspace{0.6cm}
+		\begin{enumerate}[itemsep=1.2cm]
+			\item $10 + 2 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+			
+			\item $7 + 3 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+			
+			\item $8 + 5 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+			
+			\item $12 + 4 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+			
+			\item $9 + 9 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+			
+			\item $15 + 4 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+			
+			\item $20 + 10 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+			
+			\item $11 + 2 = $ \boxfill[1cm] \quad $\rightarrow$ \quad $\square$ Par \hspace{0.5cm} $\square$ Impar
+		\end{enumerate}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 4: PROBLEMAS DE LA VIDA REAL
+	% =======================================================
+	\section*{Misión 4: Detectives de la Vida Real}
+	
+	\begin{truco}{Repartir entre Dos}
+		En la vida diaria usamos estos números todo el tiempo. La regla más importante de la vida real es: \textbf{Solo las cantidades PARES se pueden repartir exactamente entre 2 personas sin tener que partir ni romper nada.} Si la cantidad es Impar, siempre le sobrará a alguien o habrá que cortarlo.
+	\end{truco}
+	
+	\begin{practica}{Historias de Números }
+		\textit{Lee cada situación. Identifica el número del que están hablando y escribe si es \textbf{PAR} o \textbf{IMPAR}.}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=1.5cm]
+			\item En la granja hay \textbf{15} gallinas comiendo. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+			\newpage
+			\item El libro de cuentos de mi hermana tiene \textbf{120} páginas en total. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+			
+			\item Fuimos de compras y los zapatos costaron \textbf{\$45}. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+			
+			\item En la fiesta de cumpleaños del sábado hay \textbf{32} invitados. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+			
+			\item El edificio donde vive mi abuela es muy alto y tiene \textbf{8} pisos. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+			
+			\item Mi primo mayor acaba de cumplir \textbf{11} años. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+			
+			\item El bus escolar de la mañana lleva \textbf{40} pasajeros sentados. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+			
+			\item Ayer me comí \textbf{3} porciones de pizza de queso. \\
+			Número: \boxfill[1.5cm] \hspace{1cm} Este número es: \boxfill[2.5cm]
+		\end{enumerate}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	\vspace{1cm}
+	% --- MENSAJE FINAL ---
+	\begin{center}
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, width=14cm, arc=3mm, boxrule=1.5pt]
+			\centering \Large \textbf{¡MÓDULO UNIDAD 6 COMPLETADO!\\
+			FELICITACIONES}
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}
