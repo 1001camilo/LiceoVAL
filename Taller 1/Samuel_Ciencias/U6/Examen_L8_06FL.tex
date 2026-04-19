@@ -1,0 +1,132 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO --- 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish]{babel} 
+\usepackage{xcolor} % Para colorear las respuestas
+\usepackage{graphicx} 
+\usepackage[most]{tcolorbox} 
+\usepackage{enumitem} 
+\usepackage{multicol}
+
+% Márgenes de 2cm en todos los lados 
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} 
+\usepackage{graphicx} 
+\usepackage[most]{tcolorbox} 
+\usepackage{enumitem} 
+\usepackage{amssymb} 
+\usepackage{amsmath}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS --- 
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=black, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifshowanswers
+
+% ---> MODO PROFESOR (Muestra respuestas en azul): Deja la siguiente línea sin comentar.
+% ---> MODO ESTUDIANTE (Deja las casillas en blanco para imprimir): Pon un % al inicio de la línea.
+%\showanswerstrue 
+ \showanswersfalse 
+
+% Comandos auxiliares para pintar las respuestas
+\newcommand{\casillaVerdadera}{\ifshowanswers \textcolor{blue}{$\blacksquare$} \else $\square$ \fi}
+\newcommand{\casillaFalsa}{\ifshowanswers $\square$ \else $\square$ \fi}
+\newcommand{\casillaNum}[1]{\ifshowanswers \textcolor{blue}{\textbf{#1}} \else $\square$ \fi}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm] 
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm] 
+		\textbf{Examen de CIENCIAS }\\[0.1cm] 
+		TAU 6: ¿Se puede ver la energía? 
+	\end{center}
+	
+	\vspace{0.3cm}
+	\hfill \textbf{Código:} \textbf{L8-06 FL}\\
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.8cm}
+	% --- PUNTO 1 --- 
+	\noindent \textbf{1.} Según lo que aprendiste sobre el ``ciclo de la energía'', ¿qué relación existe entre la energía y el trabajo? Marca con una \textbf{X} la opción correcta. \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm] 
+		\item[ \casillaFalsa ] El trabajo destruye la energía para siempre haciendo que desaparezca del universo. 
+		\item[ \casillaVerdadera ] Con energía puedo efectuar trabajos, y a su vez, con trabajo puedo conseguir energía. 
+		\item[ \casillaFalsa ] El trabajo y la energía son dos cosas distintas que no tienen ninguna relación. 
+	\end{itemize}
+	
+	\vspace{0.5cm}
+	% --- PUNTO 2 --- 
+	\noindent \textbf{2.} Lee cada frase sobre las características de la energía y marca con una \textbf{X} si es Verdadera (V) o Falsa (F): \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.6cm, label={}] 
+		\item \textbf{A.} La energía tiene forma redonda y color transparente, por eso es\\ que no podemos verla a simple vista. \hfill  \casillaFalsa  V \quad  \casillaVerdadera  F 
+		\item \textbf{B.} Según la Ley de Causalidad, sabemos que la energía existe (causa)\\ porque podemos ver los trabajos que produce (efecto). \hfill  \casillaVerdadera  V \quad  \casillaFalsa  F 
+	\end{itemize}
+	
+	\vspace{0.5cm}
+	% --- PUNTO 3 --- 
+	\noindent \textbf{3.} Relaciona el "apellido" de la energía con el lugar donde se manifiesta poniendo la letra en el paréntesis correspondiente:
+	
+	\vspace{0.3cm}
+	\begin{multicols}{2}
+		\begin{itemize}[itemsep=0.5cm, label={}]
+			\item \textbf{A.} Energía Lúminica
+			\item \textbf{B.} Energía Química
+			\item \textbf{C.} Energía Calórica
+			\item \textbf{D.} Energía Eléctrica
+		\end{itemize}
+		\columnbreak
+		\begin{itemize}[itemsep=0.5cm, label={}]
+			\item ( \ifshowanswers \textcolor{blue}{\textbf{C}} \else \hspace{0.5cm} \fi ) Al destapar una olla hirviendo.
+			\item ( \ifshowanswers \textcolor{blue}{\textbf{D}} \else \hspace{0.5cm} \fi ) En los cables de la licuadora.
+			\item ( \ifshowanswers \textcolor{blue}{\textbf{B}} \else \hspace{0.5cm} \fi ) En la gasolina o los alimentos.
+			\item ( \ifshowanswers \textcolor{blue}{\textbf{A}} \else \hspace{0.5cm} \fi ) La que proviene del Sol.
+		\end{itemize}
+	\end{multicols} 
+	\newpage
+	% --- PUNTO 4 --- 
+	\vspace*{0.5cm} 
+	\noindent \textbf{4.} ¿Por qué el autor del libro compara a la energía con el dios griego \textbf{Proteo}? Marca con una \textbf{X} la respuesta correcta. \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.5cm] 
+		\item[ \casillaFalsa ] Porque ambos son invisibles y lanzaban rayos luminosos a la Tierra. 
+		\item[ \casillaVerdadera ] Porque ambos pueden cambiar de forma (transformarse) bajo distintas apariencias, pero en el fondo siguen siendo los mismos. 
+		\item[ \casillaFalsa ] Porque la energía fue inventada por los guerreros griegos en la Guerra de Troya. 
+	\end{itemize}
+	
+	\vspace{0.5cm}
+	% --- PUNTO 5 --- 
+	\noindent \textbf{5.} Cuando escuchas hablar de ``energía eólica'', ``eléctrica'', o ``calórica'', ¿qué significa esto científicamente? \hfill\textbf{(20\%)}
+	
+	\vspace{0.4cm} 
+	\begin{itemize}[itemsep=0.5cm] 
+		\item[ \casillaFalsa ] Significa que existen cientos de tipos de energías diferentes como si fueran sustancias distintas. 
+		\item[ \casillaVerdadera ] Significa que la energía es una sola; esas palabras son solo ``apellidos'' para saber de dónde proviene o bajo qué forma se está manifestando. 
+		\item[ \casillaFalsa ] Significa que la naturaleza crea una energía totalmente nueva cada vez que encendemos una máquina. 
+	\end{itemize}
+	\vspace{1.5cm}
+	
+\end{document}
