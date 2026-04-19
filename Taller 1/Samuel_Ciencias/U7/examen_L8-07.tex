@@ -1,0 +1,123 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO --- 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish]{babel} 
+\usepackage{xcolor} 
+
+% Márgenes de 2cm
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} 
+\usepackage{graphicx} 
+\usepackage[most]{tcolorbox} 
+\usepackage{enumitem} 
+\usepackage{amssymb} 
+\usepackage{amsmath}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifshowanswers
+
+% ---> MODO PROFESOR (Muestra respuestas en azul): Deja la siguiente línea sin comentar.
+% ---> MODO ESTUDIANTE: Pon un % al inicio de la línea.
+%\showanswerstrue 
+\showanswersfalse 
+
+% --- COMANDOS INTELIGENTES PARA RESPUESTAS ---
+% \choice{V} -> Muestra una X azul si es verdadera, o cuadro vacío si es modo estudiante.
+% \choice{F} -> Siempre muestra un cuadro vacío (opción incorrecta).
+\newcommand{\choice}[1]{%
+	\ifshowanswers
+	\if#1V \textcolor{blue}{$\boxtimes$}\else $\square$\fi
+	\else
+	$\square$
+	\fi
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm] 
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm] 
+		\textbf{Examen de CIENCIAS }\\[0.1cm] 
+		TAU 7: Midamos la energía 
+	\end{center}
+	
+	\vspace{0.3cm}
+	\hfill \textbf{Código:} \textbf{L8-07 FL}\\
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 1 --- 
+	\noindent \textbf{1.} Según el inventor inglés James Joule, ¿a qué equivale realizar exactamente \textbf{un (1) julio} de trabajo mecánico? Marca con una \textbf{X} la opción correcta. \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm, label={}] 
+		\item[ \choice{F} ] A levantar un bulto de cemento de 50 kilos hasta un segundo piso. 
+		\item[ \choice{V} ] A levantar un huevo de gallina normal desde el piso hasta la altura de la cintura (un metro). 
+		\item[ \choice{F} ] A calentar un litro de agua en una estufa durante una hora. 
+	\end{itemize}
+	
+	\vspace{0.5cm}
+	% --- PUNTO 2 --- 
+	\noindent \textbf{2.} La regla matemática del libro nos enseña que \textit{``subir 1 kilo de peso a 1 metro de altura equivale a efectuar 10 julios de trabajo''}. Sabiendo esto, si subes un morral de \textbf{10 kilos} por una escalera de \textbf{5 metros} de altura, ¿qué trabajo realizas? \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm, label={}] 
+		\item[ \choice{F} ] 15 julios. 
+		\item[ \choice{F} ] 50 julios. 
+		\item[ \choice{V} ] 500 julios. 
+	\end{itemize}
+	
+	\vspace{0.5cm}
+	% --- PUNTO 3 --- 
+	\noindent \textbf{3.} Lee cada frase sobre el trabajo del cuerpo humano y marca con una \textbf{X} si es Verdadera (V) o Falsa (F): \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.6cm, label={}] 
+		\item \textbf{A.} Por cada 1 julio de trabajo mecánico (externo) que haces, tu cuerpo\\
+		 gasta unos 3 julios en trabajo interno (bioquímico y calórico). \hfill  \choice{V} V \quad  \choice{F} F 
+		\item \textbf{B.} El único trabajo verdadero que existe en la ciencia es el mecánico;\\
+		los trabajos bioquímicos y la respiración no gastan energía. \hfill  \choice{F} V \quad  \choice{V} F 
+	\end{itemize}
+	
+	\newpage
+	% --- PUNTO 4 --- 
+	\noindent \textbf{4.} ¿En qué consistía la famosa ``máquina'' o experimento del señor Joule y qué logró demostrar con ella? \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.5cm, label={}] 
+		\item[ \choice{F} ] Era una licuadora que funcionaba con electricidad para demostrar que el hielo absorbe el calor. 
+		\item[ \choice{V} ] Era una piedra que al caer hacía girar un molinillo de paletas dentro de agua, demostrando que el trabajo mecánico se transforma en calor. 
+		\item[ \choice{F} ] Era un globo de aire caliente que flotaba para medir la energía del viento. 
+	\end{itemize}
+	
+	\vspace{0.5cm}
+	% --- PUNTO 5 --- 
+	\noindent \textbf{5.} Joule logró calcular con exactitud el trabajo calórico. ¿Cuántos julios hacen falta exactamente para calentar \textbf{un (1) litro de agua en un (1) grado centígrado}? \hfill\textbf{(20\%)}
+	
+	\vspace{0.4cm} 
+	\begin{itemize}[itemsep=0.5cm, label={}] 
+		\item[ \choice{F} ] Exactamente 100 julios. 
+		\item[ \choice{V} ] Exactamente 4.280 julios. 
+		\item[ \choice{F} ] 8.560 julios. 
+	\end{itemize}
+	
+\end{document}

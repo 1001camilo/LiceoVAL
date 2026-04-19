@@ -1,0 +1,160 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=2cm, right=2cm}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifshowanswers
+
+% ---> MODO PROFESOR (Muestra la franja y la respuesta justificada en azul).
+% ---> MODO ESTUDIANTE (Pon un % al inicio de la línea para ocultarlas).
+%\showanswerstrue
+\showanswersfalse
+
+% --- COMANDOS ESTILO "TAU" ---
+% Se define con 3 argumentos: 
+% #1: Opción correcta (letra)
+% #2: Justificación del BIEN
+% #3: Justificación del MAL (opcional)
+\newcommand{\retroalimentacion}[3]{
+	\ifshowanswers
+	\vspace{0.2cm}
+	\noindent\textcolor{gray}{\rule{\textwidth}{2pt}} % Franja gruesa simulando el libro
+	\par\vspace{0.1cm}
+	\noindent \textbf{\textcolor{blue}{BIEN: #1 \quad \textit{(#2)}}}
+	
+	% Verifica si el argumento 3 no está vacío
+	\if\relax\detokenize{#3}\relax
+	\else
+	\par\vspace{0.1cm}
+	\noindent \textbf{\textcolor{red}{MAL: \textit{#3}}}
+	\fi
+	\vspace{0.6cm}
+	\else
+	\vspace{1.2cm} % Espacio en blanco para el estudiante
+	\fi
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de visto OK} \\[0.1cm]
+		Ciencias 1 - TAU 7: Midamos la energía
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 1 ---
+	\noindent \textbf{1.} La unidad de trabajo que se inventó el inglés James Joule hace unos 150 años se bautizó con su apellido. ¿A qué cantidad de esfuerzo físico equivale exactamente \textbf{un (1) julio}?
+	\begin{enumerate}[label=\alph*)]
+		\item A calentar un litro de agua en la estufa.
+		\item A levantar un huevo de gallina (normal) desde el piso hasta la altura de la cintura.
+		\item A subir un bulto de cemento hasta un quinto piso.
+		\item A correr cien metros planos a toda velocidad.
+	\end{enumerate}
+	\retroalimentacion{b}{Ese es un trabajo fácil de ver y medir. Un huevo pesa más o menos la décima parte de un kilo (100 gramos), y al subirlo 1 metro hacemos 1 julio de trabajo.}{a, c y d. Esas opciones requieren cantidades inmensas de energía, muchísimo mayores a un solo julio.}
+	
+	% --- PREGUNTA 2 ---
+	\noindent \textbf{2.} La regla matemática del TAU nos dice que "subir un kilo de peso a una altura de un metro equivale a efectuar 10 julios de trabajo". Sabiendo esto, si subes un morral de \textbf{10 kilos} por una escalera de \textbf{5 metros} de altura, efectúas un trabajo de:
+	\begin{enumerate}[label=\alph*)]
+		\item 15 julios.
+		\item 50 julios.
+		\item 500 julios.
+		\item 5.000 julios.
+	\end{enumerate}
+	\retroalimentacion{c}{10 kilos equivalen a unos 100 huevos. Por cada metro que subes esos 10 kilos, haces un trabajo de 100 julios. Como son 5 metros: 100 x 5 = 500 julios.}{(10 kilos x 5 metros x 10 = 500).}
+	
+	% --- PREGUNTA 3 ---
+	\noindent \textbf{3.} María va a sacar agua del fondo de un pozo que tiene una profundidad de 5 metros. Saca el balde lleno de agua (el agua pesa 7 kilos y el balde vacío pesa 1 kilo). ¿Cuánto trabajo total efectúa María?
+	\begin{enumerate}[label=\alph*)]
+		\item 50 julios.
+		\item 400 julios.
+		\item 350 julios.
+		\item 500 julios.
+	\end{enumerate}
+	\retroalimentacion{b}{El peso total que levanta María es de 8 kilos (7 de agua + 1 del balde). 8 kilos x 5 metros x 10 = 400 julios de trabajo mecánico.}{c. El peso del balde también cuenta; María también tiene que subirlo.}
+	
+	% --- PREGUNTA 4 ---
+	\noindent \textbf{4.} Cuando uno hace un esfuerzo físico fuerte, no solo efectúa trabajo mecánico (como mover el objeto). También realiza trabajos "internos", que son:
+	\begin{enumerate}[label=\alph*)]
+		\item Trabajo eléctrico y trabajo eólico.
+		\item Trabajo bioquímico (respiración y circulación) y trabajo calórico (el cuerpo desprende calor).
+		\item Trabajo de rozamiento y trabajo de pensamiento.
+	\end{enumerate}
+	\retroalimentacion{b}{Cuando haces ejercicio, la respiración y los latidos se aceleran (trabajo bioquímico) y el cuerpo desprende gran cantidad de calor.}{}
+	
+	% --- PREGUNTA 5 ---
+	\noindent \textbf{5.} Científicamente, por cada 1 julio de trabajo externo (mecánico), el cuerpo gasta unos 3 julios en trabajo interno (bioquímico y calórico). Si recoges un objeto del piso y realizas un trabajo externo de \textbf{100 julios}, en total tu cuerpo ha efectuado un trabajo de:
+	\begin{enumerate}[label=\alph*)]
+		\item 100 julios.
+		\item 300 julios.
+		\item 400 julios.
+	\end{enumerate}
+	\retroalimentacion{c}{100 julios de trabajo externo (mecánico) más el triple de trabajo interno (300 julios). Total: 100 + 300 = 400 julios.}{a y b. Recuerda que siempre debes sumar ambos trabajos para saber cuánto gastó el organismo.}
+	
+	% --- PREGUNTA 6 ---
+	\noindent \textbf{6.} ¿De qué se trataba la máquina o el "experimento mental" del señor Joule?
+	\begin{enumerate}[label=\alph*)]
+		\item Una piedra cayendo que movía un molinillo de paletas dentro de un recipiente cerrado con agua.
+		\item Una estufa eléctrica calentando un litro de leche.
+		\item Un globo que flotaba para medir el viento.
+	\end{enumerate}
+	\retroalimentacion{a}{La piedra al caer movía las paletas. El rozamiento agitaba el agua y la energía del movimiento se transformaba en calor.}{}
+	
+	% --- PREGUNTA 7 ---
+	\noindent \textbf{7.} Con el experimento del molinillo, Joule logró descubrir el número exacto de trabajo necesario para calentar \textbf{un litro de agua en un grado centígrado}. Ese resultado fue:
+	\begin{enumerate}[label=\alph*)]
+		\item Exactamente 100 julios.
+		\item 8.560 julios.
+		\item Exactamente 4.280 julios.
+		\item 1.000 julios.
+	\end{enumerate}
+	\retroalimentacion{c}{Ese es el valor exacto. Joule calculó que se necesitan exactamente 4.280 julios de trabajo para subir un grado a un litro de agua.}{}
+	
+	% --- PREGUNTA 8 ---
+	\noindent \textbf{8.} Tienes un litro de agua a \textbf{20º} centígrados y lo pones al fogón para calentarlo hasta una temperatura de \textbf{30º} centígrados. ¿Cuánto trabajo calórico tuvo que hacer la estufa?
+	\begin{enumerate}[label=\alph*)]
+		\item 4.280 julios.
+		\item 42.800 julios.
+		\item 85.600 julios.
+		\item 128.400 julios.
+	\end{enumerate}
+	\retroalimentacion{b}{La temperatura subió 10 grados (de 20º a 30º). Por cada grado son 4.280 julios. 10 $\times$ 4.280 = 42.800 julios.}{a. Ese valor sería si la calentaras un solo grado.}
+	
+	% --- PREGUNTA 9 ---
+	\noindent \textbf{9.} Según el termómetro, a nivel del mar, el agua se congela y hierve exactamente a las siguientes temperaturas:
+	\begin{enumerate}[label=\alph*)]
+		\item Se congela a 10º centígrados y hierve a 90º centígrados.
+		\item Se congela a 0º centígrados y hierve a 100º centígrados.
+		\item Se congela a 15º centígrados y hierve a 160º centígrados.
+	\end{enumerate}
+	\retroalimentacion{b}{El agua se congela a los 0º y hierve al llegar a los 100º centígrados.}{}
+	
+	% --- PREGUNTA 10 ---
+	\noindent \textbf{10.} Si estás en una ciudad alta en las cordilleras (como Bogotá), el agua ya no hierve a los 100º centígrados, sino a menor temperatura (ej. 92º). Esto se debe a que:
+	\begin{enumerate}[label=\alph*)]
+		\item En las ciudades altas los fogones calientan más lento por el frío.
+		\item El agua de la montaña es más pura y hierve diferente.
+		\item A mayor altura hay menor presión atmosférica, facilitando que el agua se evapore.
+	\end{enumerate}
+	\retroalimentacion{c}{Exacto. Esta técnica de medir la altura por la ebullición se llama "Hipsometría".}{}
+	
+\end{document}
