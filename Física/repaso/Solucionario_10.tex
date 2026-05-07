@@ -1,0 +1,2113 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{multicol}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifshowanswers
+\showanswerstrue
+
+% --- COMANDO DE RESPUESTAS SOBRIO ---
+\long\def\respOperacional[#1]#2{
+	\ifshowanswers
+	\par\vspace{0.3cm}
+	\noindent\textbf{\color{blue}Solución Detallada:} 
+	{\color{blue}#2}
+	\par\vspace{0.4cm}
+	\else
+	\par\vspace{#1}
+	\fi
+}
+
+\begin{document}
+	
+	% =================================================================
+	% TEMA 1 (10F01): INICIANDO EN LA FÍSICA
+	% =================================================================
+	\begin{center}
+		{\Huge \textbf{SOLUCIONARIO DE FÍSICA}}\\[0.2cm]
+		{\LARGE \textbf{Grado 10° - Liceo V.A.L.}}\\[0.3cm]
+		{\Large \textbf{TEMA 1: El Proceso de la Medida}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\section*{ACTIVIDAD 1.1: Magnitudes y Clasificación}
+	
+	\subsection*{1. Relación Medida-Magnitud}
+	\noindent \textbf{Enunciado:} Con tus conocimientos, relaciona cada medida con su correspondiente magnitud: a. 35 cm, b. 240 L, c. 8.3 m$^2$, d. 18 °C, e. 2.5 kg.
+	
+	\respOperacional[1cm]{
+		\begin{itemize}[label=$\checkmark$, noitemsep]
+			\item \textbf{35 cm:} Longitud.
+			\item \textbf{240 litros:} Volumen.
+			\item \textbf{8.3 m$^2$:} Área.
+			\item \textbf{18 °C:} Temperatura.
+			\item \textbf{2.5 kg:} Masa.
+		\end{itemize}
+	}
+	
+	\subsection*{2. Cuadro de Clasificación de Magnitudes}
+	\noindent \textbf{Enunciado:} Llena el cuadro completando con una unidad o magnitud (incluyendo símbolo) y clasifíquela en básica o derivada.
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|l|c|l|c|}
+			\hline
+			\textbf{MAGNITUD} & \textbf{UNIDAD} & \textbf{SÍMBOLO} & \textbf{TIPO} \\ \hline
+			Densidad & Gramo/cm$^3$ & g/cm$^3$ & Derivada \\ \hline
+			Masa & Kilogramo & kg & Básica \\ \hline
+			Tiempo & Segundo & s & Básica \\ \hline
+			Volumen & Metro cúbico & m$^3$ & Derivada \\ \hline
+			Amplitud Angular & Grado & $^\circ$ & Suplementaria \\ \hline
+			Longitud & Metro & m & Básica \\ \hline
+			Área & Metro cuadrado & m$^2$ & Derivada \\ \hline
+			Temperatura & Kelvin & K & Básica \\ \hline
+		\end{tabular}
+	\end{center}
+	
+	%%%%\newpage
+	\section*{ACTIVIDAD 1.2: Entrenamiento Operativo (Conversiones)}
+	
+	\noindent \textbf{1. Convertir las siguientes medidas a la unidad pedida, mostrar los procedimientos:}
+	
+	\noindent \textbf{a. 5.8 pies a metros y a centímetros.}
+	\respOperacional[2cm]{
+		$5.8 \text{ ft} \times \dfrac{30.48 \text{ cm}}{1 \text{ ft}} = \mathbf{176.78 \text{ cm}}$ \\
+		$176.78 \text{ cm} \times \dfrac{1 \text{ m}}{100 \text{ cm}} = \mathbf{1.767 \text{ m}}$
+	}
+	
+	\noindent \textbf{b. 4800 metros a kilómetros y a pulgadas.}
+	\respOperacional[2cm]{
+		$4800 \text{ m} \times \dfrac{1 \text{ km}}{1000 \text{ m}} = \mathbf{4.8 \text{ km}}$ \\
+		$4800 \text{ m} \times \dfrac{100 \text{ cm}}{1 \text{ m}} \times \dfrac{1 \text{ in}}{2.54 \text{ cm}} = \mathbf{188976.37 \text{ in}}$
+	}
+	
+	\noindent \textbf{c. 0.006 metros a milímetros, a micrómetros ($\mu$m) y a nanómetros (nm).}
+	\respOperacional[2cm]{
+		$0.006 \text{ m} \times 10^3 = \mathbf{6 \text{ mm}}$ \\
+		$0.006 \text{ m} \times 10^6 = \mathbf{6000 \mu\text{m}}$ \\
+		$0.006 \text{ m} \times 10^9 = \mathbf{6.000.000 \text{ nm}}$
+	}
+	
+	\noindent \textbf{d. 0.032 toneladas a libras y a kilogramos.}
+	\respOperacional[2cm]{
+		$0.032 \text{ ton} \times 1000 \dfrac{\text{kg}}{\text{ton}} = \mathbf{32 \text{ kg}}$ \\
+		$32 \text{ kg} \times 2.204 \dfrac{\text{lb}}{\text{kg}} = \mathbf{70.52 \text{ lb}}$
+	}
+	
+	\noindent \textbf{e. 42000 pulgadas/minuto a (metros/segundo) y a (kilómetros/hora).}
+	\respOperacional[2cm]{
+		$42000 \dfrac{\text{in}}{\text{min}} \times \dfrac{0.0254 \text{ m}}{1 \text{ in}} \times \dfrac{1 \text{ min}}{60 \text{ s}} = \mathbf{17.78 \text{ m/s}}$ \\
+		$17.78 \text{ m/s} \times 3.6 = \mathbf{64.00 \text{ km/h}}$
+	}
+	
+	\noindent \textbf{f. 0.92 gramos/mililitro a (kilogramos/metro cúbico) y a (kilogramos/litro).}
+	\respOperacional[2cm]{
+		$0.92 \dfrac{\text{g}}{\text{cm}^3} \times \dfrac{1 \text{ kg}}{1000 \text{ g}} \times \dfrac{10^6 \text{ cm}^3}{1 \text{ m}^3} = \mathbf{920 \text{ kg/m}^3}$ \\
+		$0.92 \dfrac{\text{g}}{\text{ml}} \text{ es equivalente a } \mathbf{0.92 \text{ kg/L}}$
+	}
+	
+	\noindent \textbf{g. 0.8 horas a minutos y a segundos.}
+	\respOperacional[2cm]{
+		$0.8 \text{ h} \times 60 \dfrac{\text{min}}{\text{h}} = \mathbf{48 \text{ min}}$ \\
+		$48 \text{ min} \times 60 \dfrac{\text{s}}{\text{min}} = \mathbf{2880 \text{ s}}$
+	}
+	
+	\noindent \textbf{h. 2.3 años a segundos y a días.}
+	\respOperacional[2cm]{
+		$2.3 \text{ años} \times 365 \dfrac{\text{días}}{\text{año}} = \mathbf{839.5 \text{ días}}$ \\
+		$839.5 \text{ días} \times 86400 \dfrac{\text{s}}{\text{día}} = \mathbf{72.532.800 \text{ s}}$
+	}
+	
+	\noindent \textbf{i. 29000 cm$^2$ a m$^2$ y a Hm$^2$.}
+	\respOperacional[2cm]{
+		$29000 \text{ cm}^2 \times \dfrac{1 \text{ m}^2}{10000 \text{ cm}^2} = \mathbf{2.9 \text{ m}^2}$ \\
+		$2.9 \text{ m}^2 \times \dfrac{1 \text{ Hm}^2}{10000 \text{ m}^2} = \mathbf{0.00029 \text{ Hm}^2}$
+	}
+	
+	\noindent \textbf{j. 3470000 m$^3$ a cm$^3$ y a pie$^3$.}
+	\respOperacional[2cm]{
+		$3.47 \times 10^6 \text{ m}^3 \times 10^6 = \mathbf{3.47 \times 10^{12} \text{ cm}^3}$ \\
+		$3.47 \times 10^6 \text{ m}^3 \times (3.28 \text{ ft/m})^3 = \mathbf{1.22 \times 10^8 \text{ ft}^3}$
+	}
+	
+	\noindent \textbf{k. 3.5 gal a litros, a cm$^3$ y a in$^3$.}
+	\respOperacional[2cm]{
+		$3.5 \text{ gal} \times 3.785 \dfrac{\text{L}}{\text{gal}} = \mathbf{13.24 \text{ L}}$ \\
+		$13.24 \text{ L} \times 1000 = \mathbf{13247 \text{ cm}^3}$ \\
+		$13247 \text{ cm}^3 \times (\dfrac{1 \text{ in}}{2.54 \text{ cm}})^3 = \mathbf{808.4 \text{ in}^3}$
+	}
+	
+	\subsection*{2. Problema del Patio}
+	\noindent \textbf{Enunciado:} Un patio rectangular tiene 24 pies de ancho por 1500 pulgadas de largo. Determine cuántos m$^2$ de césped se necesitan para cubrirlo.
+	\respOperacional[2cm]{
+		Ancho: $24 \text{ ft} \times 0.3048 = 7.31 \text{ m}$ \\
+		Largo: $1500 \text{ in} \times 0.0254 = 38.1 \text{ m}$ \\
+		Área: $7.31 \text{ m} \times 38.1 \text{ m} = \mathbf{278.51 \text{ m}^2}$
+	}
+	
+	\subsection*{3. Problema de Densidad}
+	\noindent \textbf{Enunciado:} Se llena un recipiente de 3.8 L con un líquido del cual se utilizan 2.5 lb. ¿Cuál es su densidad en g/cm$^3$, kg/L y kg/m$^3$?
+	\respOperacional[2cm]{
+		Masa: $2.5 \text{ lb} \times 453.6 = 1134 \text{ g}$. Volumen: $3800 \text{ cm}^3$. \\
+		$D = \dfrac{1134}{3800} = \mathbf{0.298 \text{ g/cm}^3} = \mathbf{0.298 \text{ kg/L}} = \mathbf{298.4 \text{ kg/m}^3}$
+	}
+	
+	\subsection*{4. Altura del Cilindro}
+	\noindent \textbf{Enunciado:} El volumen de un cilindro de 8 cm de radio es de 980 in$^3$. ¿Cuál es la altura en pies?
+	\respOperacional[2cm]{
+		$V = 980 \text{ in}^3 \times 16.387 = 16059.3 \text{ cm}^3$. \\
+		$h = \dfrac{V}{\pi \cdot r^2} = \dfrac{16059.3}{\pi \cdot 64} = 79.87 \text{ cm} = \mathbf{2.62 \text{ ft}}$
+	}
+	
+	\section*{ACTIVIDAD 1.3: Análisis Dimensional}
+	\noindent \textbf{Enunciado:} Determinar cuáles de las siguientes ecuaciones son homogéneas.
+	
+	\respOperacional[3cm]{
+		\textbf{a. $x = at + 2vt$:} $[L] = [\dfrac{L}{T^2} \cdot T] + [\dfrac{L}{T} \cdot T] \rightarrow [L] = \dfrac{L}{T} + L \quad \mathbf{(No)}$. \\
+		\textbf{b. $v = at - 3x/t$:} $[\dfrac{L}{T}] = [\dfrac{L}{T^2} \cdot T] - [\dfrac{L}{T}] \rightarrow \dfrac{L}{T} = \dfrac{L}{T} \quad \mathbf{(S\acute{i})}$. \\
+		\textbf{c. $a = (v_f - v_0)/t$:} $[\dfrac{L}{T^2}] = \dfrac{[L/T]}{[T]} \rightarrow \dfrac{L}{T^2} = \dfrac{L}{T^2} \quad \mathbf{(S\acute{i})}$. \\
+		\textbf{d. $x = v/a + 5x_1$:} $[L] = \dfrac{[L/T]}{[L/T^2]} + [L] \rightarrow [L] = T + L \quad \mathbf{(No)}$.
+	}
+	
+	%%%%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-01P}
+	
+	\respOperacional[8cm]{
+		\begin{enumerate}
+			\item \textbf{Margen de Error:} Se observa que la estimación sensorial ("a ojo") presenta un porcentaje de error significativamente mayor (frecuentemente superior al 20\%) comparado con la medición instrumental. Esto confirma que los sentidos humanos son subjetivos y limitados para la cuantificación científica.
+			\item \textbf{Precisión de Instrumentos:} El Calibrador (Pie de Rey) demostró ser el instrumento más preciso para dimensiones pequeñas (diámetros y profundidades) debido a su escala de nonio, la cual permite apreciar fracciones de milímetro que son invisibles en una regla común o flexómetro.
+			\item \textbf{Método de Arquímedes:} Para objetos de geometría irregular, la medición de volumen por desplazamiento de agua en la probeta resulta ser el método más eficaz y directo, ya que no depende de fórmulas geométricas que asumen formas perfectas.
+			\item \textbf{Importancia de los Patrones:} La práctica evidencia que para que una medida sea válida internacionalmente, debe compararse contra un patrón convencional (S.I.), eliminando la incertidumbre del observador.
+		\end{enumerate}
+	}
+	
+% =================================================================
+% TAU 2 - EL MOVIMIENTO
+% =================================================================
+%%%\newpage
+\section*{TAU 2 - EL MOVIMIENTO}
+
+\section*{ACTIVIDAD 2.1: Movimiento Uniforme (M.U.)}
+
+\subsection*{1. Velocidad de un automóvil}
+\noindent \textbf{Enunciado:} Un automóvil se desplaza 75 km empleando 90 s. ¿Cuál es su velocidad? En m/s y en km/h.
+
+\respOperacional[3cm]{
+	\textbf{Datos:} $d = 75 \text{ km} = 75.000 \text{ m}$, $t = 90 \text{ s}$. \\
+	\\
+	\textbf{Paso 1: Cálculo en m/s.} \\
+	$v = \dfrac{d}{t} = \dfrac{75.000 \text{ m}}{90 \text{ s}} = \mathbf{833.33 \text{ m/s}}$. \\
+	\\
+	\textbf{Paso 2: Cálculo en km/h.} \\
+	$v = 833.33 \text{ m/s} \times 3.6 = \mathbf{3.000 \text{ km/h}}$. \\
+	\textit{Nota física:} Esta velocidad es supersónica (aprox. Mach 2.4), lo que indica que es un ejercicio de entrenamiento operativo de conversiones.
+}
+
+\subsection*{2. Distancia de un tren}
+\noindent \textbf{Enunciado:} Un tren emite un sonido, el cual es percibido por la estación a la que va a llegar 2.5 s después. ¿A qué distancia está el tren de la estación cuando emite el sonido? Velocidad del sonido en el aire: 340 m/s.
+
+\respOperacional[2cm]{
+	\textbf{Datos:} $v = 340 \text{ m/s}$, $t = 2.5 \text{ s}$. \\
+	$d = v \cdot t = 340 \text{ m/s} \times 2.5 \text{ s} = \mathbf{850 \text{ metros}}$.
+}
+
+\subsection*{3. Tiempo de un atleta}
+\noindent \textbf{Enunciado:} ¿Cuántos minutos le toma recorrer 800 metros a un atleta que trota con una velocidad constante de 10 km/h?
+
+\respOperacional[2.5cm]{
+	\textbf{Paso 1: Convertir velocidad a m/s.} \\
+	$v = 10 \text{ km/h} \div 3.6 = 2.77 \text{ m/s}$. \\
+	\\
+	\textbf{Paso 2: Calcular tiempo en segundos.} \\
+	$t = \dfrac{d}{v} = \dfrac{800 \text{ m}}{2.77 \text{ m/s}} = 288.8 \text{ s}$. \\
+	\\
+	\textbf{Paso 3: Convertir a minutos.} \\
+	$t = 288.8 \div 60 = \mathbf{4.8 \text{ minutos}}$.
+}
+
+\subsection*{4. Profundidad del fondo marino}
+\noindent \textbf{Enunciado:} El sonar de un barco se activa para saber la profundidad a la cual está el fondo marino, la onda sonora es recibida 0.8 s después. ¿Cuál es la profundidad del fondo marino? Velocidad del sonido en el agua de mar: 1500 m/s.
+
+\respOperacional[2.5cm]{
+	\textbf{Análisis:} El sonido viaja hasta el fondo y regresa (eco). El tiempo de profundidad es la mitad del tiempo total registrado. \\
+	$t_{prof} = \dfrac{0.8 \text{ s}}{2} = 0.4 \text{ s}$. \\
+	$d = v \cdot t_{prof} = 1500 \text{ m/s} \times 0.4 \text{ s} = \mathbf{600 \text{ metros}}$.
+}
+
+
+\section*{ACTIVIDAD 2.2: Movimiento Uniformemente Acelerado (M.U.A.)}
+
+\subsection*{1. Aceleración y distancia de un vehículo}
+\noindent \textbf{Enunciado:} Un vehículo parte del reposo y al cabo de 4 s alcanza una velocidad de 72 km/h. a. ¿Qué distancia recorrió? b. ¿Cuál fue su aceleración?
+
+\respOperacional[3.5cm]{
+	\textbf{Datos:} $v_0 = 0$, $t = 4 \text{ s}$, $v_f = 72 \text{ km/h} = 20 \text{ m/s}$. \\
+	\\
+	\textbf{b. Aceleración:} $a = \dfrac{v_f - v_0}{t} = \dfrac{20 - 0}{4} = \mathbf{5 \text{ m/s}^2}$. \\
+	\\
+	\textbf{a. Distancia:} $x = v_0 \cdot t + \dfrac{1}{2} a t^2 = 0 + \dfrac{1}{2} (5 \text{ m/s}^2)(4 \text{ s})^2 = \mathbf{40 \text{ metros}}$.
+}
+
+\subsection*{2. Tiempo y velocidad de una motocicleta}
+\noindent \textbf{Enunciado:} Una motocicleta se mueve a razón de 2.3 m/s$^2$, a partir del momento que lleva 5 m/s, recorre 370 m. a. ¿Cuánto tiempo transcurrió? b. ¿Qué velocidad alcanzó al terminar este recorrido?
+
+\respOperacional[3.5cm]{
+	\textbf{Datos:} $a = 2.3 \text{ m/s}^2$, $v_0 = 5 \text{ m/s}$, $\Delta x = 370 \text{ m}$. \\
+	\\
+	\textbf{b. Velocidad final:} \\
+	$v_f^2 = v_0^2 + 2a\Delta x \implies v_f = \sqrt{5^2 + 2(2.3)(370)} = \sqrt{25 + 1702} = \sqrt{1727} = \mathbf{41.56 \text{ m/s}}$. \\
+	\\
+	\textbf{a. Tiempo:} \\
+	$t = \dfrac{v_f - v_0}{a} = \dfrac{41.56 - 5}{2.3} = \mathbf{15.89 \text{ segundos}}$.
+}
+
+\subsection*{3. Desaceleración de un atleta}
+\noindent \textbf{Enunciado:} Un atleta avanza en una pista a razón de 22 m/s, 6 s después, lo hace a 36 km/h. a. ¿El atleta acelera o desacelera? b. ¿Qué distancia recorre en este tiempo?
+
+\respOperacional[3.5cm]{
+	\textbf{Datos:} $v_0 = 22 \text{ m/s}$, $t = 6 \text{ s}$, $v_f = 36 \text{ km/h} = 10 \text{ m/s}$. \\
+	\\
+	\textbf{a. Análisis:} Como $v_f < v_0$, el atleta \textbf{desacelera}. \\
+	$a = \dfrac{v_f - v_0}{t} = \dfrac{10 - 22}{6} = \mathbf{-2 \text{ m/s}^2}$. \\
+	\\
+	\textbf{b. Distancia:} \\
+	$x = \left(\dfrac{v_0 + v_f}{2}\right) \cdot t = \left(\dfrac{22 + 10}{2}\right) \cdot 6 = 16 \cdot 6 = \mathbf{96 \text{ metros}}$.
+}
+
+\subsection*{4. Recorrido con tres momentos}
+\noindent \textbf{Enunciado:} Un vehículo parte del reposo y aumenta su velocidad hasta 20 Km/h recorriendo 250 m, después de este recorrido, se desplaza con movimiento uniforme durante 4 min, cuando ve un letrero de “pare” y aplica los frenos, deteniéndose 3 segundos después. a. ¿Cuánto tiempo emplea en todo el recorrido? b. ¿Cuánta distancia recorre en total?
+
+\respOperacional[7.5cm]{
+	\textbf{Conversiones iniciales:} $20 \text{ km/h} = 5.56 \text{ m/s}$. \quad $4 \text{ min} = 240 \text{ s}$. \\
+	\\
+	\textbf{Fase 1 (M.U.A.):} $v_0 = 0$, $v_f = 5.56 \text{ m/s}$, $x_1 = 250 \text{ m}$. \\
+	Tiempo: $x = \left(\dfrac{v_0 + v_f}{2}\right) \cdot t \implies 250 = 2.78 \cdot t_1 \implies t_1 = \mathbf{89.92 \text{ s}}$. \\
+	\\
+	\textbf{Fase 2 (M.U.):} $v = 5.56 \text{ m/s}$, $t_2 = 240 \text{ s}$. \\
+	Distancia: $x_2 = v \cdot t_2 = 5.56 \times 240 = \mathbf{1334.4 \text{ m}}$. \\
+	\\
+	\textbf{Fase 3 (Frenado):} $v_0 = 5.56 \text{ m/s}$, $v_f = 0$, $t_3 = 3 \text{ s}$. \\
+	Distancia: $x_3 = \left(\dfrac{v_0 + v_f}{2}\right) \cdot t = \left(\dfrac{5.56 + 0}{2}\right) \cdot 3 = \mathbf{8.34 \text{ m}}$. \\
+	\\
+	\textbf{Resultados Finales:} \\
+	\textbf{a. Tiempo total:} $t = 89.92 + 240 + 3 = \mathbf{332.92 \text{ s}}$. \\
+	\textbf{b. Distancia total:} $x = 250 + 1334.4 + 8.34 = \mathbf{1592.74 \text{ metros}}$.
+}
+
+\subsection*{5. Persecución del agente de tránsito}
+\noindent \textbf{Enunciado:} Un vehículo transita por una avenida en la que el límite de velocidad es de 50 Km/h, un agente de tránsito lo ve acercarse y se da cuenta (gracias a los instrumentos de medición) que lo hace a razón de 18 Km/h por encima de lo establecido. Justo cuando pasa por el lado, el agente inicia la persecución en su motocicleta a razón de 3 m/s$^2$. a. ¿En cuánto tiempo lo alcanza? b. ¿Qué distancia recorrieron los vehículos después de iniciada la persecución?
+
+\respOperacional[5cm]{
+	\textbf{Datos Vehículo (M.U.):} $v = 50 + 18 = 68 \text{ km/h} = 18.89 \text{ m/s}$. \\
+	\textbf{Datos Agente (M.U.A.):} $v_0 = 0$, $a = 3 \text{ m/s}^2$. \\
+	\\
+	\textbf{a. Tiempo de encuentro ($x_{auto} = x_{agente}$):} \\
+	$18.89 \cdot t = \dfrac{1}{2} (3) \cdot t^2 \implies 18.89 \cdot t = 1.5 \cdot t^2$. \\
+	Simplificando $t$: $18.89 = 1.5 \cdot t \implies t = \dfrac{18.89}{1.5} = \mathbf{12.59 \text{ s}}$. \\
+	\\
+	\textbf{b. Distancia recorrida:} \\
+	$x = v \cdot t = 18.89 \text{ m/s} \times 12.59 \text{ s} = \mathbf{237.82 \text{ metros}}$.
+}
+
+\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-02P}
+
+\respOperacional[7cm]{
+	\begin{enumerate}
+		\item \textbf{Diferenciación de Movimientos:} Se observó que la burbuja de aire en la manguera se desplaza recorriendo distancias iguales en tiempos iguales, lo que define un \textbf{Movimiento Uniforme (M.U.)}. Por el contrario, la esfera en el plano inclinado aumenta su velocidad conforme transcurre el tiempo debido a la componente de la gravedad, definiendo un \textbf{Movimiento Uniformemente Acelerado (M.U.A.)}.
+		\item \textbf{Relación Gráfica:} En el M.U., la gráfica de posición vs tiempo es una línea recta, donde la pendiente representa la velocidad constante. En el M.U.A., la gráfica de posición vs tiempo es una curva parabólica, mientras que la gráfica de velocidad vs tiempo es una línea recta cuya pendiente representa la aceleración constante.
+		\item \textbf{Análisis de Frenado:} Para un objeto que desacelera, la gráfica de velocidad vs tiempo muestra una pendiente negativa. Esto indica que el vector aceleración actúa en sentido opuesto al vector velocidad.
+	\end{enumerate}
+}
+% =================================================================
+% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 2)
+% =================================================================
+%%%\newpage
+\begin{center}
+	{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+	{\Large \textbf{Evaluación TAU 2: El Movimiento}}\\[0.1cm]
+	\hrule
+\end{center}
+
+\vspace{0.5cm}
+
+\subsection*{1. Movimiento Uniforme (M.U.) y Conversiones}
+\noindent \textbf{Enunciado:} Un proyectil viaja a una velocidad constante de 850 m/s. ¿Cuánto tiempo le toma impactar un blanco situado a 3.4 km de distancia? Exprese la velocidad del proyectil en km/h.
+
+\respOperacional[3cm]{
+	\textbf{Datos:} $v = 850 \text{ m/s}$, $d = 3.4 \text{ km} = 3400 \text{ m}$. \\
+	\\
+	\textbf{Paso 1: Cálculo del tiempo.} \\
+	$v = \dfrac{d}{t} \implies t = \dfrac{d}{v} = \dfrac{3400 \text{ m}}{850 \text{ m/s}} = \mathbf{4 \text{ segundos}}$. \\
+	\\
+	\textbf{Paso 2: Conversión de velocidad a km/h.} \\
+	$v = 850 \text{ m/s} \times 3.6 = \mathbf{3060 \text{ km/h}}$.
+}
+
+\subsection*{2. Aplicación del M.U. (El Eco)}
+\noindent \textbf{Enunciado:} Un excursionista grita frente a una montaña y escucha el eco de su voz 3.2 segundos después. Si la velocidad del sonido en el aire en ese momento es de 340 m/s, ¿a qué distancia se encuentra la montaña?
+
+\respOperacional[2.5cm]{
+	\textbf{Análisis:} El tiempo de 3.2 s es el recorrido de ida y vuelta de la onda sonora. El tiempo que tarda el sonido en llegar a la montaña (ida) es la mitad. \\
+	$t_{ida} = \dfrac{3.2 \text{ s}}{2} = 1.6 \text{ s}$. \\
+	\\
+	\textbf{Cálculo de la distancia:} \\
+	$d = v \cdot t_{ida} = 340 \text{ m/s} \times 1.6 \text{ s} = \mathbf{544 \text{ metros}}$.
+}
+
+\subsection*{3. Movimiento Uniformemente Acelerado (M.U.A.)}
+\noindent \textbf{Enunciado:} Un avión de pasajeros parte del reposo y acelera por la pista a razón de 4 m/s$^2$ durante 30 segundos hasta despegar. a. ¿Cuál es su velocidad de despegue en m/s y km/h? b. ¿Cuál es la longitud mínima que utilizó de la pista?
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $v_0 = 0$, $a = 4 \text{ m/s}^2$, $t = 30 \text{ s}$. \\
+	\\
+	\textbf{a. Velocidad de despegue:} \\
+	$v_f = v_0 + a \cdot t = 0 + (4 \text{ m/s}^2)(30 \text{ s}) = \mathbf{120 \text{ m/s}}$. \\
+	Conversión: $120 \text{ m/s} \times 3.6 = \mathbf{432 \text{ km/h}}$. \\
+	\\
+	\textbf{b. Longitud de la pista (Distancia):} \\
+	$x = v_0 \cdot t + \dfrac{1}{2} a \cdot t^2 = 0 + \dfrac{1}{2}(4 \text{ m/s}^2)(30 \text{ s})^2 = 2 \times 900 = \mathbf{1800 \text{ metros}}$.
+}
+
+\subsection*{4. Análisis de Frenado (Desaceleración)}
+\noindent \textbf{Enunciado:} Un conductor que viaja en la autopista a 90 km/h observa un obstáculo en la vía y pisa el freno a fondo, logrando detener el vehículo en exactamente 5 segundos. a. ¿Cuál fue su desaceleración? b. ¿Qué distancia de frenado necesitó?
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $v_0 = 90 \text{ km/h} = 25 \text{ m/s}$, $v_f = 0$ (se detiene), $t = 5 \text{ s}$. \\
+	\\
+	\textbf{a. Desaceleración:} \\
+	$a = \dfrac{v_f - v_0}{t} = \dfrac{0 - 25}{5} = \mathbf{-5 \text{ m/s}^2}$. \\
+	\\
+	\textbf{b. Distancia de frenado:} \\
+	$x = \left(\dfrac{v_0 + v_f}{2}\right) \cdot t = \left(\dfrac{25 + 0}{2}\right) \times 5 = 12.5 \times 5 = \mathbf{62.5 \text{ metros}}$.
+}
+
+\subsection*{5. Problema de Encuentro (Persecución)}
+\noindent \textbf{Enunciado:} Una gacela corre en línea recta a una velocidad constante de 15 m/s. Justo en el momento en que pasa junto a un arbusto, un guepardo que estaba oculto arranca en su persecución desde el reposo, acelerando constantemente a 2.5 m/s$^2$. a. ¿Cuánto tiempo le toma al guepardo alcanzar a la gacela? b. ¿Qué distancia han recorrido desde el arbusto?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos Gacela (M.U.):} $v = 15 \text{ m/s}$. \\
+	\textbf{Datos Guepardo (M.U.A.):} $v_0 = 0$, $a = 2.5 \text{ m/s}^2$. \\
+	\\
+	\textbf{a. Tiempo de alcance ($x_{gacela} = x_{guepardo}$):} \\
+	$15 \cdot t = \dfrac{1}{2} (2.5) \cdot t^2 \implies 15 \cdot t = 1.25 \cdot t^2$. \\
+	Simplificando $t$: $15 = 1.25 \cdot t \implies t = \dfrac{15}{1.25} = \mathbf{12 \text{ segundos}}$. \\
+	\\
+	\textbf{b. Distancia recorrida:} \\
+	Usando la ecuación de la gacela (más sencilla): \\
+	$x = 15 \text{ m/s} \times 12 \text{ s} = \mathbf{180 \text{ metros}}$.
+}
+	% =================================================================
+	% TAU 3 - CAÍDA LIBRE Y LANZAMIENTO VERTICAL
+	% =================================================================
+	%%%%\newpage
+	% =================================================================
+	% TAU 3: EFECTOS DE LA GRAVEDAD
+	% =================================================================
+	%%\newpage
+	\section*{TAU 3 - EFECTOS DE LA GRAVEDAD}
+	
+	\section*{ACTIVIDAD 3.1: Caída libre y lanzamiento vertical}
+	
+	\subsection*{1. Análisis de tiempo y velocidad en caída}
+	\noindent \textbf{Enunciado:} Tomando la altura obtenida del ejemplo b., $y=112,7~m$, y asumiendo que se deja caer libremente, determina el tiempo y la velocidad al llegar al suelo de la pelota. Después de esto, responde: a. ¿Qué puedes concluir acerca del tiempo de subida y el tiempo de bajada hasta el mismo sitio donde fue lanzado un objeto? b. ¿Qué puede decir acerca de la velocidad al llegar nuevamente al suelo? c. ¿Cómo se puede determinar el tiempo total que permanece en el aire un objeto?
+	
+	\respOperacional[6.5cm]{
+		\textbf{Datos de caída:} $y = 112.7 \text{ m}$, $v_i = 0$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{Cálculo del tiempo:} $y = \dfrac{1}{2} g t^2 \implies 112.7 = 4.9 t^2 \implies t = \sqrt{\dfrac{112.7}{4.9}} = \mathbf{4.8 \text{ s}}$. \\
+		\textbf{Velocidad al caer:} $v_f = g \cdot t = 9.8 \times 4.8 = \mathbf{47 \text{ m/s}}$. \\
+		\\
+		\textbf{Conclusiones:} \\
+		\textbf{a.} El tiempo de subida (del ejemplo b. que fue 4.8 s) es exactamente igual al tiempo de bajada (4.8 s). \\
+		\textbf{b.} La magnitud de la velocidad al llegar al suelo (47 m/s) es exactamente igual a la magnitud de la velocidad con la que fue lanzada hacia arriba, pero con dirección opuesta (hacia abajo). \\
+		\textbf{c.} El tiempo total de vuelo de un objeto que regresa a su punto de partida se determina multiplicando por dos el tiempo de subida ($t_{vuelo} = 2 \times t_{subida}$).
+	}
+	
+	\subsection*{2. Tiempo de caída y velocidad final}
+	\noindent \textbf{Enunciado:} Un objeto que está en el reposo se deja caer y tarda 7 s en llegar al suelo. a. ¿A qué altura se encontraba? b. ¿Cuál es la velocidad al llegar al suelo?
+	
+	\respOperacional[3cm]{
+		\textbf{Datos:} $t = 7 \text{ s}$, $v_i = 0$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{a. Altura ($y$):} $y = \dfrac{1}{2} g t^2 = 4.9 (7)^2 = 4.9 \times 49 = \mathbf{240.1 \text{ metros}}$. \\
+		\textbf{b. Velocidad ($v_f$):} $v_f = g \cdot t = 9.8 \times 7 = \mathbf{68.6 \text{ m/s}}$.
+	}
+	
+	\subsection*{3. Caída libre vs. Lanzamiento hacia abajo}
+	\noindent \textbf{Enunciado:} Un objeto se deja caer desde una altura de 98 m, determine: a. Tiempo de caída y velocidad al llegar al suelo si el objeto se encuentra en reposo. b. Tiempo de caída y velocidad al llegar al suelo si el objeto se lanza hacia abajo a razón de $10~m/s$. c. ¿Cómo afecta que se lance un objeto hacia abajo con una velocidad?
+	
+	\respOperacional[7cm]{
+		\textbf{a. En reposo ($v_i = 0$):} \\
+		$y = \dfrac{1}{2} g t^2 \implies 98 = 4.9 t^2 \implies t = \sqrt{20} = \mathbf{4.47 \text{ s}}$. \\
+		$v_f = g \cdot t = 9.8 \times 4.47 = \mathbf{43.8 \text{ m/s}}$. \\
+		\\
+		\textbf{b. Lanzado hacia abajo ($v_i = 10 \text{ m/s}$):} \\
+		$y = v_i t + \dfrac{1}{2} g t^2 \implies 98 = 10t + 4.9t^2 \implies 4.9t^2 + 10t - 98 = 0$. \\
+		Por fórmula cuadrática: $t = \dfrac{-10 \pm \sqrt{100 - 4(4.9)(-98)}}{2(4.9)} = \dfrac{-10 + 44.95}{9.8} = \mathbf{3.56 \text{ s}}$. \\
+		$v_f = v_i + g \cdot t = 10 + 9.8(3.56) = \mathbf{44.88 \text{ m/s}}$. \\
+		\\
+		\textbf{c. Análisis:} Lanzar el objeto con una velocidad inicial hacia abajo disminuye el tiempo de caída (de 4.47 s a 3.56 s) y aumenta la velocidad con la que impacta el suelo.
+	}
+	
+	\subsection*{4. Lanzamiento hacia la ventana}
+	\noindent \textbf{Enunciado:} Un estudiante lanza una pelota hacia arriba a razón de $39.2~m/s$, esperando que esta llegue a su amigo que está en una ventana a 50 m de altura. a. ¿La pelota alcanza a llegar a la ventana para ser atrapada? (muestre procedimientos) b. En caso afirmativo, ¿Cuál es la velocidad al llegar? ¿en cuánto tiempo lo hace? c. En caso negativo, ¿Qué velocidad necesita para llegar? ¿en cuánto tiempo lo hace?
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $v_i = 39.2 \text{ m/s}$, $y_{ventana} = 50 \text{ m}$. \\
+		\\
+		\textbf{a. Altura máxima que alcanza la pelota:} \\
+		$y_{max} = \dfrac{v_i^2}{2g} = \dfrac{(39.2)^2}{19.6} = \dfrac{1536.64}{19.6} = \mathbf{78.4 \text{ metros}}$. \\
+		Como $78.4 \text{ m} > 50 \text{ m}$, la pelota \textbf{SÍ alcanza} a llegar a la ventana. \\
+		\\
+		\textbf{b. Velocidad y tiempo al llegar a 50 m:} \\
+		Velocidad ($v_f$): $v_f^2 = v_i^2 - 2gy \implies v_f = \sqrt{1536.64 - 2(9.8)(50)} = \sqrt{556.64} = \mathbf{23.59 \text{ m/s}}$. \\
+		Tiempo ($t$): $v_f = v_i - gt \implies 23.59 = 39.2 - 9.8t \implies t = \dfrac{39.2 - 23.59}{9.8} = \mathbf{1.59 \text{ s}}$.
+	}
+	
+	\subsection*{5. Tiempo de vuelo total}
+	\noindent \textbf{Enunciado:} En el ejercicio anterior, suponiendo que la pelota no alcanza a ser atrapada, determine el tiempo que dura en el aire.
+	
+	\respOperacional[2.5cm]{
+		\textbf{Análisis:} El tiempo total en el aire es el doble del tiempo que tarda en alcanzar su altura máxima. \\
+		$t_{subida} = \dfrac{v_i}{g} = \dfrac{39.2}{9.8} = 4 \text{ segundos}$. \\
+		$t_{total} = 2 \times t_{subida} = 2 \times 4 = \mathbf{8 \text{ segundos}}$.
+	}
+	
+	%%\newpage
+	\section*{ACTIVIDAD 3.2: Gravitación Universal}
+	
+	\subsection*{1. Fuerza gravitacional de un satélite}
+	\noindent \textbf{Enunciado:} Determina la fuerza gravitacional que ejerce un satélite natural de 8.5x10$^{18}$ Kg y un perímetro de 200 Km sobre un objeto de 60 Kg si: a. Se ubica sobre la superficie de este. b. Se ubica a una altura de 10 km sobre la superficie de este.
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $M = 8.5 \times 10^{18} \text{ kg}$, $m = 60 \text{ kg}$. \\
+		Radio del satélite: Perímetro $= 2\pi R \implies 200 \text{ km} = 2\pi R \implies R = 31.83 \text{ km} = 31.830 \text{ m}$. \\
+		\\
+		\textbf{a. Sobre la superficie ($d = 31.830 \text{ m}$):} \\
+		$F = G \dfrac{M \cdot m}{d^2} = (6.67 \times 10^{-11}) \dfrac{(8.5 \times 10^{18})(60)}{(31830)^2} = \dfrac{34.017.000}{1.013.148.900} = \mathbf{0.033 \text{ N}}$. \\
+		\\
+		\textbf{b. A 10 km de altura ($d = 31.83 + 10 = 41.83 \text{ km} = 41.830 \text{ m}$):} \\
+		$F = G \dfrac{M \cdot m}{d^2} = (6.67 \times 10^{-11}) \dfrac{(8.5 \times 10^{18})(60)}{(41830)^2} = \dfrac{34.017.000}{1.749.748.900} = \mathbf{0.019 \text{ N}}$.
+	}
+	
+	\subsection*{2. Gravedad, volumen y densidad planetaria}
+	\noindent \textbf{Enunciado:} Un planeta de $9\times10^{20}$ Kg tiene una gravedad que es la tercera parte la de la tierra. ¿Qué volumen y densidad promedio tiene el planeta?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $M = 9 \times 10^{20} \text{ kg}$, $g_p = \dfrac{9.8}{3} = 3.26 \text{ m/s}^2$. \\
+		\\
+		\textbf{1. Hallar el Radio:} $g_p = G \dfrac{M}{R^2} \implies R = \sqrt{\dfrac{G \cdot M}{g_p}} = \sqrt{\dfrac{6.67 \times 10^{-11} \times 9 \times 10^{20}}{3.26}} = 135.646 \text{ m}$. \\
+		\textbf{2. Volumen:} $V = \dfrac{4}{3} \pi R^3 = \dfrac{4}{3} \pi (135646)^3 = \mathbf{1.04 \times 10^{16} \text{ m}^3}$. \\
+		\textbf{3. Densidad:} $D = \dfrac{M}{V} = \dfrac{9 \times 10^{20}}{1.04 \times 10^{16}} = \mathbf{86.538 \text{ kg/m}^3}$.
+	}
+	
+	\subsection*{3. Comparación de gravedades en el Sistema Solar}
+	\noindent \textbf{Enunciado:} Consulte la masa y el radio promedio para a. la tierra, b. la luna, c. marte, y determine la gravedad para cada uno. Compara los resultados con los que están establecidos.
+	
+	\respOperacional[4.5cm]{
+		Fórmula: $g = G \dfrac{M}{R^2}$ \\
+		\textbf{a. Tierra:} $M = 5.97 \times 10^{24} \text{ kg}$, $R = 6.37 \times 10^6 \text{ m}$. \\
+		$g = (6.67 \times 10^{-11}) \dfrac{5.97 \times 10^{24}}{(6.37 \times 10^6)^2} = \mathbf{9.81 \text{ m/s}^2}$. \\
+		\textbf{b. Luna:} $M = 7.34 \times 10^{22} \text{ kg}$, $R = 1.73 \times 10^6 \text{ m}$. \\
+		$g = (6.67 \times 10^{-11}) \dfrac{7.34 \times 10^{22}}{(1.73 \times 10^6)^2} = \mathbf{1.63 \text{ m/s}^2}$. \\
+		\textbf{c. Marte:} $M = 6.41 \times 10^{23} \text{ kg}$, $R = 3.38 \times 10^6 \text{ m}$. \\
+		$g = (6.67 \times 10^{-11}) \dfrac{6.41 \times 10^{23}}{(3.38 \times 10^6)^2} = \mathbf{3.74 \text{ m/s}^2}$. \\
+		*Los resultados matemáticos coinciden perfectamente con los valores estandarizados en física.*
+	}
+	
+	\subsection*{4. Conceptos fundamentales de la dinámica gravitatoria}
+	\noindent \textbf{Enunciado:} Determine semejanzas y diferencias entre: a. Fuerza de atracción gravitacional - gravedad. b. Masa - peso. c. Caída libre - Movimiento uniforme acelerado. d. Gravedad - constante G.
+	
+	\respOperacional[5cm]{
+		\textbf{a. F. Gravitacional vs Gravedad:} Ambas atraen cuerpos. Diferencia: La fuerza gravitacional es la interacción entre dos masas (se mide en Newtons), la gravedad es la aceleración que produce esa fuerza sobre un objeto (se mide en m/s$^2$). \\
+		\textbf{b. Masa vs Peso:} Ambas son propiedades de la materia. Diferencia: La masa es cantidad de materia y es constante en todo el universo (kg), el peso es la fuerza con la que un planeta atrae esa masa y varía según la gravedad local (N). \\
+		\textbf{c. Caída libre vs M.U.A:} Ambas describen movimientos con velocidad variante. Diferencia: La caída libre es un caso específico de M.U.A en el eje vertical donde la aceleración siempre es $9.8 \text{ m/s}^2$. \\
+		\textbf{d. Gravedad vs G:} Ambas son constantes en sus propios contextos. Diferencia: 'g' depende de la masa y radio del planeta local (cambia por planeta), mientras que 'G' ($6.67 \times 10^{-11}$) es la Constante de Gravitación Universal, igual en todo el cosmos.
+	}
+	
+	%%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-03P (Determinación de g)}
+	
+	\respOperacional[6.5cm]{
+		\textbf{1. Factores de error en el laboratorio:} Al realizar la práctica presencial, los principales factores que alteran la exactitud de la gravedad (9.8 m/s$^2$) son la resistencia o fricción del aire frente a la geometría del objeto, los errores en la sincronización humana al obturar el cronómetro, y posibles corrientes de viento en el recinto. \\
+		\\
+		\textbf{2. Aspectos a tener en cuenta:} Se deben utilizar objetos pesados y esféricos (aerodinámicos) para minimizar el impacto de la fricción del aire. Se deben tomar promedios de múltiples lanzamientos para reducir el error de reacción humana con el cronómetro y lanzar desde alturas considerables para que el tiempo sea medible. \\
+		\\
+		\textbf{3. Espacio alternativo más preciso:} Para medir la gravedad con precisión absoluta, el experimento debería realizarse en una cámara de vacío (donde se extrae todo el aire), eliminando la variable del rozamiento fluidodinámico, y usando sensores de movimiento fotoeléctricos (fotocompuertas) en lugar de cronómetros manuales.
+	}
+	
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 3)
+	% =================================================================
+	%%%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 3: Efectos de la Gravedad}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Caída Libre Simple}
+	\noindent \textbf{Enunciado:} Un turista deja caer accidentalmente una moneda desde la azotea de un rascacielos de 125 m de altura. Si se desprecia la resistencia del aire, a. ¿Cuánto tiempo tarda la moneda en llegar al piso? b. ¿Con qué velocidad impacta el suelo? (Use $g = 9.8 \text{ m/s}^2$).
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $v_i = 0$ (se deja caer), $y = 125 \text{ m}$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{a. Tiempo de caída:} \\
+		$y = \dfrac{1}{2} g t^2 \implies 125 = 4.9 t^2 \implies t = \sqrt{\dfrac{125}{4.9}} = \sqrt{25.51} = \mathbf{5.05 \text{ segundos}}$. \\
+		\\
+		\textbf{b. Velocidad de impacto:} \\
+		$v_f = g \cdot t = 9.8 \text{ m/s}^2 \times 5.05 \text{ s} = \mathbf{49.49 \text{ m/s}}$.
+	}
+	
+	\subsection*{2. Lanzamiento Vertical Hacia Arriba (Simetría)}
+	\noindent \textbf{Enunciado:} Un niño lanza un balón verticalmente hacia arriba con una velocidad inicial de 18 m/s. a. ¿Qué altura máxima alcanza el balón? b. ¿Cuánto tiempo permanece el balón en el aire antes de volver a las manos del niño?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $v_i = 18 \text{ m/s}$, $v_f = 0$ (en la altura máxima). \\
+		\\
+		\textbf{a. Altura máxima:} \\
+		$y_{max} = \dfrac{v_i^2}{2g} = \dfrac{(18)^2}{2(9.8)} = \dfrac{324}{19.6} = \mathbf{16.53 \text{ metros}}$. \\
+		\\
+		\textbf{b. Tiempo de vuelo total:} \\
+		Tiempo de subida: $t_s = \dfrac{v_i}{g} = \dfrac{18}{9.8} = 1.84 \text{ s}$. \\
+		Como el movimiento es simétrico: $t_{total} = 2 \times t_s = 2 \times 1.84 = \mathbf{3.68 \text{ segundos}}$.
+	}
+	
+	\subsection*{3. Lanzamiento Vertical Hacia Abajo}
+	\noindent \textbf{Enunciado:} Desde un puente de 80 m de altura sobre un río, se lanza una piedra directamente hacia abajo con una velocidad inicial de 12 m/s. ¿Cuánto tiempo tarda en llegar al agua y con qué velocidad choca?
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $v_i = 12 \text{ m/s}$, $y = 80 \text{ m}$. \\
+		\\
+		\textbf{a. Tiempo de caída (Ecuación cuadrática):} \\
+		$y = v_i t + \dfrac{1}{2} g t^2 \implies 80 = 12t + 4.9t^2 \implies 4.9t^2 + 12t - 80 = 0$. \\
+		Aplicando la fórmula general ($a=4.9, b=12, c=-80$): \\
+		$t = \dfrac{-12 \pm \sqrt{(12)^2 - 4(4.9)(-80)}}{2(4.9)} = \dfrac{-12 \pm \sqrt{144 + 1568}}{9.8} = \dfrac{-12 + \sqrt{1712}}{9.8} = \dfrac{-12 + 41.37}{9.8} = \mathbf{2.99 \text{ segundos}}$. \\
+		\\
+		\textbf{b. Velocidad de impacto:} \\
+		$v_f = v_i + g \cdot t = 12 + 9.8(2.99) = 12 + 29.3 = \mathbf{41.3 \text{ m/s}}$.
+	}
+	
+	\subsection*{4. Gravitación Universal (Gravedad y Peso)}
+	\noindent \textbf{Enunciado:} Un exoplaneta recientemente descubierto tiene una masa de $8.5 \times 10^{24} \text{ kg}$ y un radio de $7.2 \times 10^6 \text{ m}$. a. ¿Cuál es el valor de la aceleración de la gravedad en la superficie de este planeta? b. ¿Cuál sería el peso de un astronauta de 75 kg que aterrice allí? ($G = 6.67 \times 10^{-11} \text{ N}\cdot\text{m}^2/\text{kg}^2$).
+	
+	\respOperacional[4.5cm]{
+		\textbf{a. Gravedad del planeta:} \\
+		$g = G \dfrac{M}{R^2} = (6.67 \times 10^{-11}) \dfrac{8.5 \times 10^{24}}{(7.2 \times 10^6)^2} = \dfrac{5.669 \times 10^{14}}{5.184 \times 10^{13}} = \mathbf{10.93 \text{ m/s}^2}$. \\
+		\\
+		\textbf{b. Peso del astronauta:} \\
+		El peso es la fuerza con la que la gravedad del planeta atrae su masa. \\
+		$W = m \cdot g = 75 \text{ kg} \times 10.93 \text{ m/s}^2 = \mathbf{819.75 \text{ N}}$.
+	}
+	
+	\subsection*{5. Análisis Conceptual de Laboratorio}
+	\noindent \textbf{Enunciado:} En una instalación científica con una cámara de vacío gigante (donde se extrae todo el aire), se dejan caer simultáneamente una bola de boliche (7 kg) y una pluma de ave (0.01 kg) desde una altura de 20 m. a. ¿Cuál objeto llega primero al suelo? Justifique físicamente. b. Si el mismo experimento se realiza al aire libre en el patio del colegio, ¿qué ocurre y por qué?
+	
+	\respOperacional[4.5cm]{
+		\textbf{a. En la cámara de vacío:} \\
+		Ambos objetos llegan \textbf{exactamente al mismo tiempo}. Físicamente, la aceleración de la gravedad ($g$) es constante e independiente de la masa del objeto que cae. Al no haber aire, no hay fuerzas que se opongan al movimiento. \\
+		\\
+		\textbf{b. Al aire libre:} \\
+		La \textbf{bola de boliche llega primero}. Al aire libre existe la fuerza de fricción o resistencia aerodinámica. La pluma tiene una relación área/masa muy grande, por lo que la resistencia del aire es significativa y contrarresta su peso, haciéndola caer más lento. Para la bola de boliche, la fricción del aire es despreciable frente a su peso.
+	}
+	% =================================================================
+	% TAU 4: MOVIMIENTO EN EL PLANO
+	% =================================================================
+	%%\newpage
+	\section*{TAU 4 - MOVIMIENTO EN EL PLANO}
+	
+	\section*{ACTIVIDAD 4.1: Movimiento Parabólico}
+	
+	\subsection*{1. Objeto disparado a 30 m/s}
+	\noindent \textbf{Enunciado:} Un objeto es disparado a razón de $30~m/s$ y con una inclinación de $35^{\circ}$, determine: a. Componentes rectangulares iniciales. b. Velocidad a los 2.3 s. c. Posición a los 1.8 s. d. Tiempo de subida y tiempo de vuelo. e. Altura máxima. f. Alcance horizontal. g. Velocidad final.
+	
+	\respOperacional[14cm]{
+		\textbf{Datos:} $v_o = 30 \text{ m/s}$, $\theta = 35^{\circ}$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{a. Componentes rectangulares iniciales:} \\
+		$v_{ox} = v_o \cdot \cos(35^{\circ}) = 30 \times 0.819 = \mathbf{24.57 \text{ m/s}}$. \\
+		$v_{oy} = v_o \cdot \sin(35^{\circ}) = 30 \times 0.573 = \mathbf{17.21 \text{ m/s}}$. \\
+		\\
+		\textbf{b. Velocidad a los 2.3 segundos:} \\
+		$v_x$ (es constante) $= \mathbf{24.57 \text{ m/s}}$. \\
+		$v_y = v_{oy} - g \cdot t = 17.21 - 9.8(2.3) = 17.21 - 22.54 = \mathbf{-5.33 \text{ m/s}}$. \\
+		$v = \sqrt{v_x^2 + v_y^2} = \sqrt{(24.57)^2 + (-5.33)^2} = \sqrt{603.68 + 28.41} = \mathbf{25.14 \text{ m/s}}$. \\
+		\\
+		\textbf{c. Posición a los 1.8 segundos:} \\
+		$x = v_{ox} \cdot t = 24.57 \times 1.8 = \mathbf{44.23 \text{ metros}}$. \\
+		$y = v_{oy} \cdot t - \dfrac{1}{2}gt^2 = 17.21(1.8) - 4.9(1.8)^2 = 30.98 - 15.88 = \mathbf{15.10 \text{ metros}}$. \\
+		\\
+		\textbf{d. Tiempo de subida y vuelo:} \\
+		$t_s = \dfrac{v_{oy}}{g} = \dfrac{17.21}{9.8} = \mathbf{1.76 \text{ s}}$. \quad $t_v = 2 \times t_s = \mathbf{3.52 \text{ s}}$. \\
+		\\
+		\textbf{e. Altura máxima:} \\
+		$y_{max} = \dfrac{v_{oy}^2}{2g} = \dfrac{(17.21)^2}{19.6} = \dfrac{296.18}{19.6} = \mathbf{15.11 \text{ metros}}$. \\
+		\\
+		\textbf{f. Alcance horizontal:} \\
+		$X = v_{ox} \cdot t_v = 24.57 \times 3.52 = \mathbf{86.49 \text{ metros}}$. \\
+		\\
+		\textbf{g. Velocidad final:} \\
+		$v_x = 24.57 \text{ m/s}$. \quad $v_y = 17.21 - 9.8(3.52) = -17.29 \text{ m/s}$. \\
+		$v_f = \sqrt{(24.57)^2 + (-17.29)^2} = \mathbf{30 \text{ m/s}}$ (Igual a la inicial pero con ángulo hacia abajo).
+	}
+	
+	\subsection*{2. Pelota lanzada desde un vehículo}
+	\noindent \textbf{Enunciado:} Un estudiante se desplaza en un vehículo a razón de $65~km/h,$ en un instante lanza hacia arriba una pelota con velocidad de $20~m/s.$ a. ¿Qué inclinación verá un observador en reposo? b. ¿Con qué velocidad resultante empezará el desplazamiento de la pelota?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $v_x = 65 \text{ km/h} \div 3.6 = 18.06 \text{ m/s}$ (Velocidad horizontal aportada por el auto). \\
+		$v_y = 20 \text{ m/s}$ (Velocidad vertical de la pelota). \\
+		\\
+		\textbf{a. Inclinación ($\theta$):} \\
+		$\tan(\theta) = \dfrac{v_y}{v_x} = \dfrac{20}{18.06} = 1.107 \implies \theta = \tan^{-1}(1.107) = \mathbf{47.9^{\circ}}$. \\
+		\\
+		\textbf{b. Velocidad resultante ($v_o$):} \\
+		$v_o = \sqrt{v_x^2 + v_y^2} = \sqrt{(18.06)^2 + (20)^2} = \sqrt{326.16 + 400} = \mathbf{26.95 \text{ m/s}}$.
+	}
+	
+	\subsection*{3. El "Hombre Bala"}
+	\noindent \textbf{Enunciado:} En un parque de diversiones, el "hombre bala" será disparado por un cañón, se necesita que sea lanzado con una componente horizontal de $30~m/s$ y una vertical de $22~m/s$. Halle inclinación, velocidad inicial, tiempo de vuelo, altura, distancia y velocidad final.
+	
+	\respOperacional[6.5cm]{
+		\textbf{Datos:} $v_{ox} = 30 \text{ m/s}$, $v_{oy} = 22 \text{ m/s}$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{a. Inclinación del cañón:} $\theta = \tan^{-1}\left(\dfrac{22}{30}\right) = \tan^{-1}(0.733) = \mathbf{36.25^{\circ}}$. \\
+		\textbf{b. Velocidad al salir:} $v_o = \sqrt{30^2 + 22^2} = \sqrt{900 + 484} = \mathbf{37.20 \text{ m/s}}$. \\
+		\textbf{c. Tiempo de vuelo:} $t_v = \dfrac{2 v_{oy}}{g} = \dfrac{44}{9.8} = \mathbf{4.49 \text{ segundos}}$. \\
+		\textbf{d. Altura máxima:} $y_{max} = \dfrac{v_{oy}^2}{2g} = \dfrac{484}{19.6} = \mathbf{24.69 \text{ metros}}$. \\
+		\textbf{e. Alcance horizontal:} $X = v_{ox} \cdot t_v = 30 \times 4.49 = \mathbf{134.7 \text{ metros}}$. \\
+		\textbf{f. Velocidad al caer:} $v_x = 30 \text{ m/s}$, $v_y = -22 \text{ m/s} \implies v = \mathbf{37.20 \text{ m/s}}$.
+	}
+	
+	\section*{ACTIVIDAD 4.2: Ecuaciones Significativas}
+	\respOperacional[2.5cm]{
+		\textbf{Análisis:} Al aplicar las fórmulas simplificadas (4.X a 4.XIII) para los puntos notables del \textbf{Ejercicio 1} (altura máxima, alcance y tiempo de vuelo), los resultados obtenidos son idénticos a los del desarrollo paso a paso. Las ecuaciones significativas son una contracción directa de las leyes cinemáticas en el momento $v_y = 0$ y $y = 0$.
+	}
+	
+	%%\newpage
+	\section*{ACTIVIDAD 4.3: Lanzamiento horizontal y vectores}
+	
+	\subsection*{1. El Nadador en el Río}
+	\noindent \textbf{Enunciado:} Un nadador puede avanzar a $6~Km/h$ en aguas tranquilas. Desea atravesar un rio de $30~m$ de ancho, cuya corriente lleva $2~m/s$. Decide nadar perpendicularmente a la corriente.
+	
+	\respOperacional[6.5cm]{
+		Convertimos velocidad del nadador: $v_n = 6 \text{ km/h} \div 3.6 = 1.67 \text{ m/s}$. Corriente $v_r = 2 \text{ m/s}$. \\
+		\textbf{a. Velocidad relativa:} $v_{rel} = \sqrt{v_n^2 + v_r^2} = \sqrt{1.67^2 + 2^2} = \mathbf{2.61 \text{ m/s}}$. \\
+		\textbf{b. Distancia de arrastre:} El tiempo en cruzar el río depende solo de $v_n$. \\
+		$t = \dfrac{d}{v_n} = \dfrac{30 \text{ m}}{1.67 \text{ m/s}} = 17.96 \text{ s}$. \\
+		Distancia arrastrado por el río: $x = v_r \cdot t = 2 \times 17.96 = \mathbf{35.92 \text{ m}}$. \\
+		\textbf{c. Diferencia de tiempo:} En aguas tranquilas, cruzar 30 m a 1.67 m/s toma exactamente $17.96 \text{ s}$. La diferencia de tiempo es $\mathbf{0 \text{ segundos}}$ (la corriente no afecta el avance transversal). \\
+		\textbf{d. Dirección para llegar al frente:} El nadador debe nadar en diagonal contra la corriente de modo que su componente horizontal iguale a $v_r$. Sin embargo, ¡$1.67 \text{ m/s} < 2 \text{ m/s}$! Físicamente, el nadador es más lento que el río, por lo que \textbf{es imposible} que llegue justo al frente.
+	}
+	
+	\subsection*{2. Radar y Viento de Costado}
+	\noindent \textbf{Enunciado:} El radar muestra que una aeronave se desplaza a $120~Km/h$, pero el piloto sabe que la velocidad máxima del avión es $112~km/h$. a. Explique. b. ¿Qué velocidad tiene el viento de costado? c. ¿Cómo corregir el curso?
+	
+	\respOperacional[4cm]{
+		\textbf{a. Explicación:} El radar mide la "velocidad sobre tierra" (resultante), que es la suma vectorial de la velocidad propia del avión y la velocidad del viento lateral que lo empuja. \\
+		\textbf{b. Velocidad del viento:} Si es viento de costado (perpendicular): \\
+		$v_{radar}^2 = v_{avion}^2 + v_{viento}^2 \implies 120^2 = 112^2 + v_{viento}^2 \implies 14400 = 12544 + v_{viento}^2$. \\
+		$v_{viento} = \sqrt{1856} = \mathbf{43.08 \text{ km/h}}$. \\
+		\textbf{c. Corrección:} El piloto debe orientar la nariz del avión contra el viento un ángulo $\theta = \sin^{-1}\left(\dfrac{43.08}{112}\right) = \mathbf{22.6^{\circ}}$.
+	}
+	
+	\subsection*{3. Nadador contra la corriente}
+	\noindent \textbf{Enunciado:} ¿Qué velocidad debe tener un nadador en aguas tranquilas, para atravesar un rio que tiene una corriente de $1.8~m/s$ nadando a $70^{\circ}$ en contra de la corriente respecto a la orilla, y llegar justo al frente?
+	
+	\respOperacional[2.5cm]{
+		\textbf{Análisis:} Para llegar al frente, la componente paralela a la orilla de la velocidad del nadador debe ser igual a la corriente del río. \\
+		$v_n \cdot \cos(70^{\circ}) = 1.8 \text{ m/s} \implies v_n = \dfrac{1.8}{\cos(70^{\circ})} = \dfrac{1.8}{0.342} = \mathbf{5.26 \text{ m/s}}$.
+	}
+	
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-04P (Trayectoria Parabólica)}
+	
+	\respOperacional[6cm]{
+		\textbf{1. Clase de movimiento vertical:} Mientras el movimiento horizontal ($x$) es uniforme (M.U.), el movimiento vertical ($y$) es un \textbf{Movimiento Uniformemente Acelerado (Caída Libre)}. Esto se justifica porque, en la tabla de datos, a medida que $x$ crece a un ritmo constante, $y$ crece de manera cuadrática por el efecto de la gravedad ($y = \dfrac{1}{2}gt^2$). \\
+		\\
+		\textbf{2. Mayor velocidad de salida:} Si la esfera abandona el mesón a una mayor velocidad horizontal, el tiempo que demora en llegar al suelo \textbf{es exactamente el mismo}. La velocidad horizontal no afecta la caída vertical (Principio de Independencia de Galileo). \\
+		\\
+		\textbf{3. Misma velocidad de salida:} Si abandona la mesa con la misma velocidad, el tiempo de caída seguirá siendo el mismo, pues está determinado exclusivamente por la altura del mesón y la constante de gravedad terrestre.
+	}
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 4)
+	% =================================================================
+	%%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 4: Movimiento en el Plano}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Lanzamiento de Proyectiles (Cálculo Completo)}
+	\noindent \textbf{Enunciado:} Un balón de fútbol es pateado con una velocidad inicial de 25 m/s y un ángulo de 40$^{\circ}$ respecto al suelo. Determine: a. Las componentes iniciales de la velocidad. b. La altura máxima alcanzada. c. El tiempo total de vuelo. d. El alcance horizontal máximo.
+	
+	\respOperacional[6cm]{
+		\textbf{Datos:} $v_o = 25 \text{ m/s}$, $\theta = 40^{\circ}$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{a. Componentes:} \\
+		$v_{ox} = 25 \cdot \cos(40^{\circ}) = \mathbf{19.15 \text{ m/s}}$. \\
+		$v_{oy} = 25 \cdot \sin(40^{\circ}) = \mathbf{16.07 \text{ m/s}}$. \\
+		\\
+		\textbf{b. Altura máxima ($y_{max}$):} \\
+		$y_{max} = \dfrac{v_{oy}^2}{2g} = \dfrac{(16.07)^2}{19.6} = \mathbf{13.18 \text{ metros}}$. \\
+		\\
+		\textbf{c. Tiempo de vuelo ($t_v$):} \\
+		$t_v = \dfrac{2 \cdot v_{oy}}{g} = \dfrac{32.14}{9.8} = \mathbf{3.28 \text{ segundos}}$. \\
+		\\
+		\textbf{d. Alcance horizontal ($X$):} \\
+		$X = v_{ox} \cdot t_v = 19.15 \times 3.28 = \mathbf{62.81 \text{ metros}}$.
+	}
+	
+	\subsection*{2. Lanzamiento Horizontal (Desde una altura)}
+	\noindent \textbf{Enunciado:} Una esfera rueda sobre una mesa de 1.2 m de altura y sale disparada horizontalmente con una velocidad de 5 m/s. ¿A qué distancia de la base de la mesa caerá la esfera al suelo?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $y = 1.2 \text{ m}$, $v_x = 5 \text{ m/s}$, $v_{oy} = 0$. \\
+		\\
+		\textbf{Paso 1: Tiempo de caída.} \\
+		$y = \dfrac{1}{2} g t^2 \implies t = \sqrt{\dfrac{2y}{g}} = \sqrt{\dfrac{2.4}{9.8}} = \mathbf{0.49 \text{ s}}$. \\
+		\\
+		\textbf{Paso 2: Alcance horizontal.} \\
+		$x = v_x \cdot t = 5 \text{ m/s} \times 0.49 \text{ s} = \mathbf{2.45 \text{ metros}}$.
+	}
+	
+	\subsection*{3. Movimiento Relativo (El Nadador)}
+	\noindent \textbf{Enunciado:} Un nadador intenta cruzar un río de 50 m de ancho nadando a 4 km/h perpendicular a la orilla. Si la corriente del río fluye a 1.5 m/s, a. ¿Cuál es la velocidad resultante del nadador? b. ¿Qué distancia será arrastrado río abajo al llegar a la otra orilla?
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $v_n = 4 \text{ km/h} = 1.11 \text{ m/s}$, $v_r = 1.5 \text{ m/s}$, $d = 50 \text{ m}$. \\
+		\\
+		\textbf{a. Velocidad resultante:} \\
+		$v_{res} = \sqrt{(1.11)^2 + (1.5)^2} = \sqrt{1.23 + 2.25} = \mathbf{1.86 \text{ m/s}}$. \\
+		\\
+		\textbf{b. Distancia de arrastre:} \\
+		Tiempo en cruzar: $t = \dfrac{50 \text{ m}}{1.11 \text{ m/s}} = 45.04 \text{ s}$. \\
+		Arrastre ($x$): $x = v_r \cdot t = 1.5 \text{ m/s} \times 45.04 \text{ s} = \mathbf{67.56 \text{ metros}}$.
+	}
+	
+	\subsection*{4. Velocidad de Aeronaves con Viento}
+	\noindent \textbf{Enunciado:} Un avión vuela hacia el Norte con una velocidad propia de 250 km/h, pero sopla un viento desde el Oeste a 60 km/h. Determine la magnitud de la velocidad del avión respecto a la tierra y el ángulo de desviación de su curso.
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $v_y = 250 \text{ km/h}$ (Norte), $v_x = 60 \text{ km/h}$ (Este - empujado por viento del Oeste). \\
+		\\
+		\textbf{Magnitud de la velocidad:} \\
+		$v = \sqrt{250^2 + 60^2} = \sqrt{62500 + 3600} = \mathbf{257.1 \text{ km/h}}$. \\
+		\\
+		\textbf{Ángulo de desviación ($\theta$):} \\
+		$\tan(\theta) = \dfrac{60}{250} = 0.24 \implies \theta = \tan^{-1}(0.24) = \mathbf{13.5^{\circ}}$ al Este del Norte.
+	}
+	
+	\subsection*{5. Análisis Conceptual (Vectores)}
+	\noindent \textbf{Enunciado:} En un movimiento parabólico, ¿cuál es el valor de la componente vertical de la velocidad ($v_y$) y de la aceleración ($a$) en el punto más alto de la trayectoria? Justifique.
+	
+	\respOperacional[3cm]{
+		\textbf{Respuesta:} \\
+		En el punto más alto, la \textbf{velocidad vertical ($v_y$) es 0}, ya que es el instante de transición entre la subida y la bajada. \\
+		Sin embargo, la \textbf{aceleración sigue siendo $9.8 \text{ m/s}^2$ hacia abajo} (gravedad). Si la aceleración fuera cero, el objeto se quedaría flotando en el aire o seguiría moviéndose en línea recta horizontal infinitamente.
+	}
+	
+	% =================================================================
+	% TAU 5: DINÁMICA Y LEYES DE NEWTON (10°)
+	% =================================================================
+	%\newpage
+	\section*{TAU 5 - DINÁMICA Y LEYES DE NEWTON}
+	
+	\section*{ACTIVIDAD 5.1}
+	
+	\subsection*{1. Fuerza para acelerar un bloque}
+	\noindent \textbf{Enunciado:} ¿Qué fuerza hay que aplicar a un bloque de 5 lb para que adquiera una aceleración de $3.2~m/s^{2}$?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $m = 5 \text{ lb}$, $a = 3.2 \text{ m/s}^2$. \\
+		\\
+		\textbf{Paso 1: Conversión de masa al S.I. (kg)} \\
+		$m = 5 \text{ lb} \cdot \left(\dfrac{1 \text{ kg}}{2.202 \text{ lb}}\right) = \mathbf{2.27 \text{ kg}}$. \\
+		\\
+		\textbf{Paso 2: Cálculo de la fuerza neta (2da Ley de Newton)} \\
+		$F = m \cdot a \implies F = 2.27 \text{ kg} \cdot 3.2 \text{ m/s}^2 = \mathbf{7.26 \text{ Newtons (N)}}$.
+	}
+	
+\subsection*{2. Cálculo de Fuerza Neta y Aceleración}
+\noindent \textbf{Enunciado:} En cada uno de los siguientes ejemplos determine: I. Fuerza neta II. Aceleración resultante.
+
+\respOperacional[9cm]{
+	\textbf{Caso a. Masa $m = 4.5 \text{ kg}$ (Fuerzas opuestas paralelas)} \\
+	Datos: $F_1 = 35 \text{ N}$ (derecha), $F_2 = 80 \text{ N}$ (izquierda). \\
+	\textbf{I. Fuerza Neta ($F_n$):} $\sum F_x = 35 \text{ N} - 80 \text{ N} = \mathbf{-45 \text{ N}}$ (hacia la izquierda). \\
+	\textbf{II. Aceleración ($a$):} $a = \frac{F_n}{m} = \frac{-45 \text{ N}}{4.5 \text{ kg}} = \mathbf{-10 \text{ m/s}^2}$. \\
+	\\
+	\textbf{Caso b. Masa $m = 6 \text{ lb} = 2.72 \text{ kg}$ (Fuerza de compresión diagonal)} \\
+	Datos: $F_{h} = 45 \text{ N}$ (derecha), $F_{d} = 30 \text{ N}$ (diagonal hacia el origen en el 3er cuadrante relativo). \\
+	Componentes de $F_d$ (30 N a $28^{\circ}$): \\
+	$F_{dx} = -30 \cdot \cos(28^{\circ}) = -26.49 \text{ N}$ (hacia la izquierda). \\
+	$F_{dy} = -30 \cdot \sin(28^{\circ}) = -14.08 \text{ N}$ (hacia abajo, comprimiendo). \\
+	\\
+	\textbf{I. Fuerza Neta en X:} $\sum F_x = 45 \text{ N} - 26.49 \text{ N} = \mathbf{18.51 \text{ N}}$ (derecha). \\
+	\textbf{II. Aceleración ($a$):} $a = \frac{\sum F_x}{m} = \frac{18.51 \text{ N}}{2.72 \text{ kg}} = \mathbf{6.80 \text{ m/s}^2}$.
+}
+
+\subsection*{3. Inclusión del coeficiente de rozamiento (Caso a)}
+\noindent \textbf{Enunciado:} Realice nuevamente el ejercicio 2.a. asumiendo un coeficiente de rozamiento $\mu=0.2$.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $m = 4.5 \text{ kg}$, $F_{neta\_sin\_friccion} = 45 \text{ N}$ (izq), $\mu = 0.2$. \\
+	\\
+	\textbf{Paso 1: Fuerza de Rozamiento ($F_f$)} \\
+	$F_N = m \cdot g = 4.5 \times 9.8 = 44.1 \text{ N}$. \\
+	$F_f = \mu \cdot F_N = 0.2 \times 44.1 = \mathbf{8.82 \text{ N}}$. (Se opone al movimiento, va hacia la derecha). \\
+	\\
+	\textbf{Paso 2: Aceleración con fricción} \\
+	$\sum F_x = -45 \text{ N} + 8.82 \text{ N} = -36.18 \text{ N}$. \\
+	$a = \frac{-36.18 \text{ N}}{4.5 \text{ kg}} = \mathbf{-8.04 \text{ m/s}^2}$.
+}
+
+\subsection*{4. Inclusión del coeficiente de rozamiento (Caso b)}
+\noindent \textbf{Enunciado:} Realice nuevamente el ejercicio 2.b. asumiendo un coeficiente de rozamiento $\mu=0.18$.
+
+\respOperacional[6cm]{
+	\textbf{Datos:} $m = 2.72 \text{ kg}$, $\sum F_x = 18.51 \text{ N}$, $F_{dy} = -14.08 \text{ N}$, $\mu = 0.18$. \\
+	\\
+	\textbf{Paso 1: Fuerza Normal ($F_N$)} \\
+	Como la fuerza diagonal empuja hacia abajo, se suma al peso: \\
+	$F_N = (m \cdot g) + |F_{dy}| = (2.72 \times 9.8) + 14.08 = 26.65 + 14.08 = \mathbf{40.73 \text{ N}}$. \\
+	\\
+	\textbf{Paso 2: Fuerza de Rozamiento ($F_f$)} \\
+	$F_f = \mu \cdot F_N = 0.18 \times 40.73 = \mathbf{7.33 \text{ N}}$. \\
+	\\
+	\textbf{Paso 3: Aceleración final} \\
+	$\sum F_{total} = 18.51 \text{ N} - 7.33 \text{ N} = 11.18 \text{ N}$. \\
+	$a = \frac{11.18 \text{ N}}{2.72 \text{ kg}} = \mathbf{4.11 \text{ m/s}^2}$.
+}
+	
+	\subsection*{5. Equilibrio estático con rozamiento}
+	\noindent \textbf{Enunciado:} Sobre un bloque de 3800 g se aplica una fuerza de 10 N. ¿Cuál debe ser el coeficiente de rozamiento entre las superficies para que el bloque permanezca en equilibrio?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $m = 3800 \text{ g} = 3.8 \text{ kg}$, $F_{aplicada} = 10 \text{ N}$. Equilibrio $\implies \sum F = 0$. \\
+		\\
+		\textbf{Fuerza Normal ($F_N$):} $F_N = m \cdot g = 3.8 \text{ kg} \cdot 9.8 \text{ m/s}^2 = 37.24 \text{ N}$. \\
+		\\
+		\textbf{Coeficiente de rozamiento ($\mu$):} \\
+		Para el equilibrio, la fuerza de rozamiento debe igualar a la fuerza aplicada: $F_f = 10 \text{ N}$. \\
+		$F_f = \mu \cdot F_N \implies 10 = \mu \cdot 37.24 \implies \mu = \dfrac{10}{37.24} = \mathbf{0.268}$.
+	}
+	
+	\subsection*{6. Apreciaciones Teóricas Falsas o Verdaderas}
+	\noindent \textbf{Enunciado:} Determine si la apreciación es falsa (F) o verdadera (V) y justifique su respuesta.
+	
+	\respOperacional[9cm]{
+		\begin{itemize}
+			\item \textbf{a. Toda fuerza aplicada produce movimiento (F):} Falso. Si se empuja un muro o si la fuerza de rozamiento estático es mayor al empuje, no hay movimiento (equilibrio estático).
+			\item \textbf{b. La fuerza normal actúa siempre de manera perpendicular a la superficie de la tierra (F):} Falso. Actúa perpendicular a la \textit{superficie de contacto}, la cual puede estar inclinada.
+			\item \textbf{c. La fuerza de rozamiento causa que la fuerza neta disminuya su valor respecto a lo que sucede cuando no está presente (V):} Verdadero. Al ser un vector en contra del deslizamiento, resta magnitud a la fuerza impulsora.
+			\item \textbf{d. Cuando la fuerza neta sobre un objeto es nula, indica que este siempre está en reposo (F):} Falso. Según la 1ra Ley de Newton, también puede estar moviéndose con Velocidad Constante (M.U.).
+			\item \textbf{e. Sobre un objeto en el que la fuerza neta es nula, pueden existir fuerzas actuando sobre él (V):} Verdadero. Un libro en una mesa tiene fuerza neta nula, pero sobre él actúan la gravedad (peso) y la normal, anulándose entre sí.
+			\item \textbf{f. Un ejemplo de la primera Ley de Newton es chocar contra una pared y devolverse (F):} Falso. Chocar y devolverse es un ejemplo de la \textit{Tercera Ley} (Acción y Reacción).
+			\item \textbf{g. La primera Ley de Newton involucra tanto reposo, como movimiento (V):} Verdadero. Describe la conservación de la inercia, ya sea para seguir quieto o para seguir moviéndose en línea recta a velocidad constante.
+		\end{itemize}
+	}
+	
+	%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-05P (Rozamiento)}
+	
+	\respOperacional[7cm]{
+		\textbf{1. Dependencia del coeficiente de rozamiento:} \\
+		¿Depende del peso? \textbf{No.} El \textit{coeficiente de rozamiento} ($\mu$) es un valor adimensional constante para cada par de materiales. Lo que aumenta con el peso es la \textit{Fuerza de rozamiento} ($F_f = \mu \cdot N$), pero el factor $\mu$ se mantiene invariable porque es una propiedad de las superficies, no de la masa del objeto. \\
+		¿Depende de las superficies en contacto? \textbf{Sí, absolutamente.} El coeficiente está determinado por las rugosidades microscópicas entre los dos materiales (madera con madera, madera con lija, etc.). \\
+		\\
+		\textbf{2. Comparación de coeficientes (Superficie 1 vs otras):} \\
+		Los resultados muestran que, sin importar cuánto peso se agregue, el valor de $\mu$ para la Superficie 1 se mantuvo constante en sus respectivas pruebas. Sin embargo, al cambiar a otra textura, el valor de $\mu$ cambió drásticamente. \\
+		\textbf{Explicación:} Esto confirma que la fricción depende estrictamente del nivel de pulimiento o adherencia intermolecular entre los dos materiales específicos que se deslizan, validando experimentalmente que $\mu$ es exclusivo para cada par de superficies en contacto.
+	}
+	
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 5 - 10°)
+	% =================================================================
+	%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 5: Dinámica y Leyes de Newton}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Segunda Ley de Newton y Conversión}
+	\noindent \textbf{Enunciado:} Un carrito de supermercado tiene una masa de 12 lb. Si una persona lo empuja con una fuerza neta constante de 15 N, ¿qué aceleración adquiere el carrito? (Recuerde convertir la masa al Sistema Internacional).
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $m = 12 \text{ lb}$, $F = 15 \text{ N}$. \\
+		\\
+		\textbf{Paso 1: Conversión de masa (lb a kg)} \\
+		$m = 12 \text{ lb} \cdot \left(\dfrac{1 \text{ kg}}{2.202 \text{ lb}}\right) = \mathbf{5.45 \text{ kg}}$. \\
+		\\
+		\textbf{Paso 2: Cálculo de la aceleración ($a$)} \\
+		Según la 2da Ley de Newton: $F = m \cdot a \implies a = \dfrac{F}{m}$ \\
+		$a = \dfrac{15 \text{ N}}{5.45 \text{ kg}} = \mathbf{2.75 \text{ m/s}^2}$.
+	}
+	
+	\subsection*{2. Fuerza Horizontal con Rozamiento}
+	\noindent \textbf{Enunciado:} Un bloque de madera de 15 kg se encuentra sobre un piso de cemento. Se le aplica una fuerza horizontal de 60 N para intentar moverlo. Si el coeficiente de rozamiento cinético entre el bloque y el piso es de 0.25, determine: a. La fuerza de rozamiento. b. La aceleración resultante.
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $m = 15 \text{ kg}$, $F_{aplicada} = 60 \text{ N}$, $\mu_k = 0.25$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{a. Fuerza de Rozamiento ($F_f$):} \\
+		$F_N = W = m \cdot g = 15 \cdot 9.8 = 147 \text{ N}$. \\
+		$F_f = \mu_k \cdot F_N = 0.25 \cdot 147 = \mathbf{36.75 \text{ N}}$. \\
+		\\
+		\textbf{b. Aceleración Resultante ($a$):} \\
+		Fuerza Neta: $\sum F_x = F_{aplicada} - F_f = 60 - 36.75 = 23.25 \text{ N}$. \\
+		$a = \dfrac{\sum F_x}{m} = \dfrac{23.25}{15} = \mathbf{1.55 \text{ m/s}^2}$.
+	}
+	
+	\subsection*{3. Fuerza Aplicada con Ángulo de Elevación}
+	\noindent \textbf{Enunciado:} Un niño tira de un trineo de 8 kg con una cuerda que forma un ángulo de $30^{\circ}$ por encima de la horizontal, aplicando una fuerza de 50 N. El coeficiente de fricción con la nieve es de 0.12. Calcule la aceleración del trineo.
+	
+	\respOperacional[6.5cm]{
+		\textbf{Datos:} $m = 8 \text{ kg}$, $F = 50 \text{ N}$, $\theta = 30^{\circ}$, $\mu = 0.12$. \\
+		Componentes de la fuerza: $F_x = 50 \cos(30^{\circ}) = 43.3 \text{ N}$; $F_y = 50 \sin(30^{\circ}) = 25 \text{ N}$. \\
+		\\
+		\textbf{Paso 1: Fuerza Normal ($F_N$)} \\
+		El peso es $W = 8 \cdot 9.8 = 78.4 \text{ N}$. \\
+		$\sum F_y = 0 \implies F_N + F_y - W = 0 \implies F_N = 78.4 - 25 = \mathbf{53.4 \text{ N}}$. \\
+		\\
+		\textbf{Paso 2: Fuerza de Rozamiento ($F_f$) y Aceleración} \\
+		$F_f = \mu \cdot F_N = 0.12 \cdot 53.4 = 6.4 \text{ N}$. \\
+		Fuerza Neta en X $= 43.3 - 6.4 = 36.9 \text{ N}$. \\
+		$a = \dfrac{36.9 \text{ N}}{8 \text{ kg}} = \mathbf{4.61 \text{ m/s}^2}$.
+	}
+	
+	\subsection*{4. Equilibrio Estático}
+	\noindent \textbf{Enunciado:} Un sillón de 30 kg está en reposo sobre el piso de la sala. Una persona lo empuja horizontalmente con una fuerza de 120 N, pero el sillón no se mueve. ¿Cuál es el valor mínimo del coeficiente de rozamiento estático ($\mu_s$) entre el sillón y el piso?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $m = 30 \text{ kg}$, $F_{aplicada} = 120 \text{ N}$. Sistema en equilibrio ($a = 0$). \\
+		\\
+		\textbf{Fuerza Normal ($F_N$):} $F_N = m \cdot g = 30 \cdot 9.8 = 294 \text{ N}$. \\
+		\\
+		\textbf{Coeficiente de Rozamiento ($\mu_s$):} \\
+		Para que no se mueva, la fuerza de rozamiento estático debe equilibrar el empuje: $F_f = 120 \text{ N}$. \\
+		$F_f = \mu_s \cdot F_N \implies 120 = \mu_s \cdot 294 \implies \mu_s = \dfrac{120}{294} = \mathbf{0.408}$.
+	}
+	
+	\subsection*{5. Análisis Conceptual (Dinámica)}
+	\noindent \textbf{Enunciado:} Físicamente, ¿por qué cuesta mucho más trabajo empezar a deslizar un mueble pesado que mantenerlo en movimiento una vez que ya está resbalando por el piso? Argumente basándose en los coeficientes de rozamiento.
+	
+	\respOperacional[4cm]{
+		\textbf{Respuesta:} \\
+		Esto ocurre porque existen dos tipos de coeficientes de rozamiento: el estático ($\mu_s$) y el cinético ($\mu_k$). En la naturaleza, las irregularidades microscópicas de las superficies se "enclavan" cuando están en reposo, haciendo que el \textbf{coeficiente estático siempre sea mayor que el cinético} ($\mu_s > \mu_k$). \\
+		Por lo tanto, se necesita aplicar una fuerza mayor para "romper" ese enclavamiento inicial y vencer la inercia (1ra Ley de Newton), que la fuerza necesaria para mantener el deslizamiento.
+	}
+	
+	% =================================================================
+	% TAU 6: DINÁMICA DEL MOVIMIENTO CIRCULAR (10°)
+	% =================================================================
+	%\newpage
+	\section*{TAU 6 - DINÁMICA DEL MOVIMIENTO CIRCULAR}
+	
+	\section*{ACTIVIDAD 6.1: Movimiento Circular Uniforme (MCU)}
+	
+	\subsection*{1. Partícula en trayectoria circular}
+	\noindent \textbf{Enunciado:} Una partícula se mueve en trayectoria circular uniforme a razón de 3 rad cada 2 s. Determine: a. Frecuencia, b. Velocidad angular, c. Periodo.
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} Desplazamiento angular $\Delta \theta = 3 \text{ rad}$, tiempo $t = 2 \text{ s}$. \\
+		\\
+		\textbf{b. Velocidad angular ($\omega$):} \\
+		$\omega = \dfrac{\Delta \theta}{t} = \dfrac{3 \text{ rad}}{2 \text{ s}} = \mathbf{1.5 \text{ rad/s}}$. \\
+		\\
+		\textbf{a. Frecuencia ($f$):} \\
+		Como $\omega = 2\pi f \implies f = \dfrac{\omega}{2\pi} = \dfrac{1.5}{2\pi} = \mathbf{0.238 \text{ Hz (rev/s)}}$. \\
+		\\
+		\textbf{c. Periodo ($T$):} \\
+		$T = \dfrac{1}{f} = \dfrac{1}{0.238} = \mathbf{4.19 \text{ segundos}}$.
+	}
+	
+	\subsection*{2. Polea con correa}
+	\noindent \textbf{Enunciado:} Una polea de 50 cm de diámetro gira a razón de 150 rpm. Determine: a. Frecuencia y periodo en unidades SI. b. Velocidad a la que puede mover una correa que pasa por ella. c. Distancia que recorre la correa al cabo de 2 s. d. Aceleración centrípeta que experimenta cualquier punto de su borde.
+	
+	\respOperacional[8cm]{
+		\textbf{Datos:} Diámetro = 50 cm $\implies$ Radio $r = 25 \text{ cm} = 0.25 \text{ m}$. $\omega = 150 \text{ rpm}$. \\
+		\\
+		\textbf{a. Frecuencia y Periodo (SI):} \\
+		$f = 150 \dfrac{\text{rev}}{\text{min}} \times \dfrac{1 \text{ min}}{60 \text{ s}} = \mathbf{2.5 \text{ Hz}}$. \\
+		$T = \dfrac{1}{f} = \dfrac{1}{2.5} = \mathbf{0.4 \text{ segundos}}$. \\
+		\\
+		\textbf{b. Velocidad tangencial de la correa ($v$):} \\
+		Primero en rad/s: $\omega = 2\pi f = 2\pi(2.5) = 5\pi \approx 15.71 \text{ rad/s}$. \\
+		$v = \omega \cdot r = 15.71 \times 0.25 = \mathbf{3.93 \text{ m/s}}$. \\
+		\\
+		\textbf{c. Distancia al cabo de 2 s:} \\
+		$d = v \cdot t = 3.93 \text{ m/s} \times 2 \text{ s} = \mathbf{7.86 \text{ metros}}$. \\
+		\\
+		\textbf{d. Aceleración centrípeta ($a_c$):} \\
+		$a_c = \dfrac{v^2}{r} = \dfrac{(3.93)^2}{0.25} = \dfrac{15.44}{0.25} = \mathbf{61.76 \text{ m/s}^2}$.
+	}
+	
+	\subsection*{3. Estudiante lanzando un objeto con cuerda}
+	\noindent \textbf{Enunciado:} Un estudiante quiere lanzar un objeto de 120 g, para esto lo ata a una cuerda y empieza a darle vueltas a razón de 20 vueltas cada 10 s. Determine: a. Frecuencia y periodo en el SI. b. ¿Cuál debe ser la longitud de la cuerda para lanzar el objeto a razón de 3 m/s? c. ¿Qué fuerza centrípeta adquiere el objeto con las condiciones del numeral b?
+	
+	\respOperacional[6.5cm]{
+		\textbf{Datos:} $m = 120 \text{ g} = 0.12 \text{ kg}$, $n = 20 \text{ vueltas}$, $t = 10 \text{ s}$. \\
+		\\
+		\textbf{a. Frecuencia y Periodo:} \\
+		$f = \dfrac{n}{t} = \dfrac{20}{10} = \mathbf{2 \text{ Hz}}$. \\
+		$T = \dfrac{1}{f} = \dfrac{1}{2} = \mathbf{0.5 \text{ segundos}}$. \\
+		\\
+		\textbf{b. Longitud de la cuerda ($r$) para $v = 3 \text{ m/s}$:} \\
+		$\omega = 2\pi f = 2\pi(2) = 12.57 \text{ rad/s}$. \\
+		$v = \omega \cdot r \implies r = \dfrac{v}{\omega} = \dfrac{3 \text{ m/s}}{12.57 \text{ rad/s}} = \mathbf{0.239 \text{ m (23.9 cm)}}$. \\
+		\\
+		\textbf{c. Fuerza centrípeta ($F_c$):} \\
+		$F_c = m \cdot \dfrac{v^2}{r} = 0.12 \cdot \dfrac{(3)^2}{0.239} = 0.12 \cdot 37.65 = \mathbf{4.52 \text{ N}}$.
+	}
+	
+	\subsection*{4. Automóvil tomando una curva (Fricción y fuerza centrípeta)}
+	\noindent \textbf{Enunciado:} Un automóvil de 1.2 toneladas toma una curva de 30 m de radio. Combinando la ecuación de $F_c$ con la segunda Ley de Newton, determine: a. ¿Qué velocidad máxima en km/h debe tener para no derrapar si el coeficiente de fricción es de 2.8? Asuma superficie horizontal. b. Repita cambiando la masa. ¿Qué concluye? c. Por descuido toma la curva a 120 km/h. ¿Cuál debe ser el valor del $\mu$ para no derrapar? ¿Debe ser mínimo o máximo?
+	
+	\respOperacional[9cm]{
+		\textbf{a. Velocidad máxima ($v$):} \\
+		La fricción actúa como fuerza centrípeta: $F_c = F_{friccion} \implies m\dfrac{v^2}{r} = \mu \cdot m \cdot g$. \\
+		Despejando la masa se cancela: $v^2 = \mu \cdot r \cdot g \implies v = \sqrt{2.8 \times 30 \times 9.8} = \sqrt{823.2} = 28.69 \text{ m/s}$. \\
+		En km/h: $28.69 \times 3.6 = \mathbf{103.28 \text{ km/h}}$. \\
+		\\
+		\textbf{b. Cambio de masa:} \\
+		Al cambiar la masa (ej. 2 Toneladas), la velocidad máxima seguiría siendo **103.28 km/h**. Se concluye que el límite seguro para tomar una curva no depende del peso del vehículo, sino estrictamente del radio y la fricción del suelo. \\
+		\\
+		\textbf{c. Curva tomada a 120 km/h ($33.33 \text{ m/s}$):} \\
+		$\mu = \dfrac{v^2}{r \cdot g} = \dfrac{(33.33)^2}{30 \times 9.8} = \dfrac{1110.8}{294} = \mathbf{3.78}$. \\
+		Este valor debe ser el **mínimo** requerido de coeficiente de rozamiento estático entre las llantas y el pavimento. Si la carretera ofrece un $\mu$ menor, el auto inevitablemente derrapará; si ofrece más adherencia, estará a salvo.
+	}
+	
+\subsection*{5. Conceptos teóricos de Dinámica Circular}
+\noindent \textbf{Enunciado:} Determine semejanzas y diferencias entre los siguientes pares de conceptos: a. Periodo y Frecuencia, b. rev/s y rpm, c. Velocidad Angular y Velocidad Tangencial, d. Aceleración Centrípeta y Aceleración Centrífuga.
+
+\subsection*{5. Conceptos teóricos de Dinámica Circular}
+\noindent \textbf{Enunciado:} Determine semejanzas y diferencias entre los siguientes pares de conceptos: a. Periodo y Frecuencia, b. rev/s y rpm, c. Velocidad Angular y Velocidad Tangencial, d. Aceleración Centrípeta y Aceleración Centrífuga, e. Fuerza Centrípeta y Fuerza Centrífuga, f. Radianes y Grados.
+
+\subsection*{5. Conceptos teóricos de Dinámica Circular}
+\noindent \textbf{Enunciado:} Determine semejanzas y diferencias entre los siguientes pares de conceptos: a. Periodo - frecuencia. b. Rev/s - rpm. c. Velocidad angular - velocidad tangencial. d. Frecuencia - Velocidad angular. e. Aceleración centrípeta - Aceleración centrífuga. f. Longitud de arco - radio.
+
+\respOperacional[9cm]{
+	\begin{itemize}
+		\item \textbf{a. Periodo - Frecuencia:} 
+		\textit{Semejanzas:} Ambas magnitudes miden el ritmo de rotación del movimiento y relacionan el número de vueltas con el tiempo. 
+		\textit{Diferencias:} Son matemáticamente inversas ($T=1/f$). El periodo es el tiempo para completar una vuelta (se mide en segundos), mientras que la frecuencia es la cantidad de vueltas en la unidad de tiempo (se mide en Hz).
+		
+		\item \textbf{b. Rev/s - rpm:} 
+		\textit{Semejanzas:} Ambas son unidades de medida válidas para expresar la frecuencia. 
+		\textit{Diferencias:} Radican en la base de tiempo utilizada; "rev/s" equivale a los Hertz (ciclos en un solo segundo), mientras que "rpm" evalúa los ciclos en 60 segundos. (1 rev/s = 60 rpm).
+		
+		\item \textbf{c. Velocidad angular - Velocidad tangencial:} 
+		\textit{Semejanzas:} Ambas evalúan la rapidez del objeto en la trayectoria circular. 
+		\textit{Diferencias:} La angular ($\omega$) mide el ángulo barrido por unidad de tiempo (rad/s) y es constante para cualquier punto del disco. La tangencial ($v$) mide la distancia lineal (arco) recorrida (m/s) y depende de qué tan lejos esté el punto del eje de giro.
+		
+		\item \textbf{d. Frecuencia - Velocidad angular:} 
+		\textit{Semejanzas:} Ambas describen la rapidez del giro y son directamente proporcionales ($\omega = 2\pi f$). 
+		\textit{Diferencias:} La frecuencia cuenta "ciclos enteros" o revoluciones completas por unidad de tiempo, mientras que la velocidad angular fracciona ese giro midiendo en radianes (ángulos) recorridos por unidad de tiempo.
+		
+		\item \textbf{e. Aceleración centrípeta - Aceleración centrífuga:} 
+		\textit{Semejanzas:} Tienen la misma magnitud matemática ($v^2/r$) y unidades ($m/s^2$) al evaluarse en un sistema rotatorio. 
+		\textit{Diferencias:} La centrípeta es real y siempre apunta hacia el centro de la curva, obligando a que cambie la dirección de la velocidad. La centrífuga es un efecto "ficticio" o de inercia sentido por un observador (no inercial) en la curva, empujándolo hacia afuera.
+		
+		\item \textbf{f. Longitud de arco - Radio:} 
+		\textit{Semejanzas:} Ambas son magnitudes de longitud en el movimiento circular y se miden en las mismas unidades (m, cm, etc.). 
+		\textit{Diferencias:} El radio es una línea recta invariable desde el centro al borde de la curva. La longitud de arco ($s$) es una distancia curva medida sobre la misma trayectoria del objeto al desplazarse.
+	\end{itemize}
+}
+	
+	%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-06P (Segunda Ley de Newton en Movimiento Circular)}
+	
+	\respOperacional[7cm]{
+		\textbf{1. Relación entre el periodo (T) y la fuerza centrípeta ($F_c$):} \\
+		Para un radio de giro constante, a medida que la fuerza centrípeta aumenta (añadiendo masa colgante $M$), el periodo de rotación debe disminuir. Es decir, para soportar una tensión mayor en la cuerda, la masa superior ($m$) debe rotar más rápido. Matemáticamente, $F_c \propto 1/T^2$. \\
+		\\
+		\textbf{2. Relación entre periodo (T) y radio de giro (r) para $F_c$ constante:} \\
+		Si la fuerza centrípeta (el peso colgante $M \cdot g$) no se altera, y extendemos la cuerda (mayor $r$), el periodo de rotación ($T$) debe aumentar para compensarlo y mantener el equilibrio del sistema. El cuadrado del periodo es directamente proporcional al radio de giro ($T^2 \propto r$). \\
+		\\
+		\textbf{3. ¿Cambios en los valores de $F_c$ en la parte 2?:} \\
+		Si la masa colgante inferior ($M$) no cambia, su peso es el mismo. Dado que el sistema está en equilibrio (no sube ni baja), la tensión de la cuerda permanece constante, y por tanto, la magnitud de la fuerza centrípeta calculada ($F_c$) idealmente no debería tener ningún cambio significativo, sin importar cómo varíe el radio. \\
+		\\
+		\textbf{4. Relación práctica con la Segunda Ley de Newton:} \\
+		Esta práctica demuestra la ecuación $\sum F = m \cdot a$. La única fuerza neta horizontal que experimenta la masa rotatoria es la tensión del nylon generada por el contrapeso ($M \cdot g$). Esta tensión actúa como la "Fuerza Centrípeta" que obliga a la masa ($m$) a ganar "Aceleración Centrípeta", doblar su trayectoria e impedirle salir disparada en línea recta por inercia.
+	}
+	
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 6)
+	% =================================================================
+	%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 6: Dinámica del Movimiento Circular}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Cinemática Circular (El Ventilador)}
+	\noindent \textbf{Enunciado:} Un ventilador de techo tiene aspas de 60 cm de longitud medidas desde el centro. Si el motor lo hace girar a razón constante de 240 rpm, determine: a. La frecuencia en Hz y el periodo en segundos. b. La velocidad angular del aspa. c. La velocidad tangencial (lineal) que experimenta la punta del aspa.
+	
+	\respOperacional[5.5cm]{
+		\textbf{Datos:} $r = 60 \text{ cm} = 0.6 \text{ m}$, $\omega = 240 \text{ rpm}$. \\
+		\\
+		\textbf{a. Frecuencia y Periodo:} \\
+		$f = \dfrac{240 \text{ rev}}{60 \text{ s}} = \mathbf{4 \text{ Hz (rev/s)}}$. \\
+		$T = \dfrac{1}{f} = \dfrac{1}{4} = \mathbf{0.25 \text{ segundos}}$. \\
+		\\
+		\textbf{b. Velocidad Angular ($\omega$):} \\
+		$\omega = 2\pi f = 2\pi(4) = \mathbf{25.13 \text{ rad/s}}$. \\
+		\\
+		\textbf{c. Velocidad Tangencial ($v$):} \\
+		$v = \omega \cdot r = 25.13 \text{ rad/s} \times 0.6 \text{ m} = \mathbf{15.08 \text{ m/s}}$.
+	}
+	
+	\subsection*{2. Fuerza Centrípeta (Piedra atada a una cuerda)}
+	\noindent \textbf{Enunciado:} Un niño hace girar una piedra de 250 g atada a un hilo de nylon de 80 cm de largo en un círculo horizontal sobre su cabeza. Si la piedra completa exactamente 2 vueltas por cada segundo, ¿cuál es la tensión que debe soportar el hilo de nylon para no romperse?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $m = 250 \text{ g} = 0.25 \text{ kg}$, $r = 0.8 \text{ m}$, $f = 2 \text{ Hz}$. \\
+		\\
+		\textbf{Paso 1: Calcular la velocidad angular y tangencial.} \\
+		$\omega = 2\pi f = 2\pi(2) = 12.57 \text{ rad/s}$. \\
+		$v = \omega \cdot r = 12.57 \times 0.8 = 10.05 \text{ m/s}$. \\
+		\\
+		\textbf{Paso 2: Calcular la Fuerza Centrípeta (Tensión del hilo).} \\
+		$F_c = m \cdot \dfrac{v^2}{r} = 0.25 \cdot \dfrac{(10.05)^2}{0.8} = 0.25 \cdot 126.25 = \mathbf{31.56 \text{ Newtons}}$.
+	}
+	
+	\subsection*{3. Dinámica en Curvas (Derrape de Motocicleta)}
+	\noindent \textbf{Enunciado:} Un motociclista cuya masa total (incluyendo la moto) es de 200 kg, toma una curva horizontal plana de 50 metros de radio a una velocidad de 72 km/h. a. ¿Cuál es la fuerza centrípeta que la curva exige para mantener la trayectoria? b. ¿Cuál debe ser el coeficiente de fricción estático ($\mu$) mínimo entre las llantas y el asfalto para que no derrape?
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $m = 200 \text{ kg}$, $r = 50 \text{ m}$, $v = 72 \text{ km/h} \div 3.6 = 20 \text{ m/s}$. \\
+		\\
+		\textbf{a. Fuerza Centrípeta exigida:} \\
+		$F_c = m \cdot \dfrac{v^2}{r} = 200 \cdot \dfrac{(20)^2}{50} = 200 \cdot \dfrac{400}{50} = 200 \cdot 8 = \mathbf{1600 \text{ Newtons}}$. \\
+		\\
+		\textbf{b. Coeficiente de fricción mínimo ($\mu$):} \\
+		La fricción debe igualar a la $F_c$: $F_{friccion} = \mu \cdot m \cdot g \implies 1600 = \mu(200)(9.8)$. \\
+		$1600 = 1960\mu \implies \mu = \dfrac{1600}{1960} = \mathbf{0.816}$.
+	}
+	
+	\subsection*{4. Aceleración Centrípeta (Órbita Satelital)}
+	\noindent \textbf{Enunciado:} Un satélite meteorológico orbita la Tierra a una velocidad constante de 7600 m/s. Si el radio de su órbita (medido desde el centro de la Tierra) es de $6.7 \times 10^6$ metros, ¿cuál es la aceleración centrípeta que experimenta el satélite? ¿Qué fuerza de la naturaleza proporciona esta aceleración?
+	
+	\respOperacional[3.5cm]{
+		\textbf{Datos:} $v = 7600 \text{ m/s}$, $r = 6.7 \times 10^6 \text{ m}$. \\
+		\\
+		\textbf{Cálculo de Aceleración Centrípeta:} \\
+		$a_c = \dfrac{v^2}{r} = \dfrac{(7600)^2}{6.7 \times 10^6} = \dfrac{57.760.000}{6.700.000} = \mathbf{8.62 \text{ m/s}^2}$. \\
+		\\
+		\textbf{Análisis Teórico:} La fuerza de la naturaleza que proporciona esta aceleración hacia el centro y mantiene al satélite en órbita es la \textbf{Fuerza de Gravedad} terrestre.
+	}
+	
+	\subsection*{5. Análisis Teórico de Seguridad Vial}
+	\noindent \textbf{Enunciado:} Basándose en la Segunda Ley de Newton y el concepto de Fuerza Centrípeta, explique brevemente por qué es físicamente peligroso tomar una curva a alta velocidad en una carretera que está mojada o cubierta de hielo.
+	
+	\respOperacional[3.5cm]{
+		\textbf{Respuesta:} \\
+		Para que un vehículo tome una curva, requiere una Fuerza Centrípeta que apunte hacia el centro del giro; esta fuerza es proporcionada exclusivamente por la \textbf{fricción} entre las llantas y el pavimento. \\
+		El agua o el hielo reducen drásticamente el coeficiente de fricción ($\mu$). Si la fricción disponible se vuelve menor que la Fuerza Centrípeta requerida por la velocidad y la masa del auto ($F_c = m \cdot v^2/r$), el vehículo obedecerá la Primera Ley de Newton (Inercia) y seguirá en línea recta, saliéndose de la carretera (derrape).
+	}
+	
+	% =================================================================
+	% TAU 7: ENERGÍA QUE MUEVE EL MUNDO (10°)
+	% =================================================================
+	%\newpage
+	\section*{TAU 7 - ENERGÍA QUE MUEVE EL MUNDO}
+	
+	\section*{ACTIVIDAD 7.1}
+	
+	\subsection*{1. Energía y Trabajo por aumento de velocidad}
+	\noindent \textbf{Enunciado:} Un cuerpo de 15 kg lleva una velocidad de 18 km/h. a. ¿Qué energía cinética posee? b. Sí el objeto duplica su velocidad. ¿Qué trabajo se realizó sobre él?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $m = 15 \text{ kg}$, $v_i = 18 \text{ km/h} \div 3.6 = 5 \text{ m/s}$. \\
+		\\
+		\textbf{a. Energía Cinética Inicial ($E_{ci}$):} \\
+		$E_{ci} = \dfrac{1}{2} m \cdot v_i^2 = \dfrac{1}{2} (15 \text{ kg}) (5 \text{ m/s})^2 = 7.5 \times 25 = \mathbf{187.5 \text{ Julios (J)}}$. \\
+		\\
+		\textbf{b. Trabajo Realizado ($W$):} \\
+		Si duplica la velocidad $\implies v_f = 10 \text{ m/s}$. \\
+		$E_{cf} = \dfrac{1}{2} (15) (10)^2 = 7.5 \times 100 = 750 \text{ J}$. \\
+		El trabajo es el cambio en la energía cinética: $W = \Delta E_c = E_{cf} - E_{ci}$. \\
+		$W = 750 \text{ J} - 187.5 \text{ J} = \mathbf{562.5 \text{ Julios}}$.
+	}
+	
+	\subsection*{2. Altura a partir de Energía Potencial}
+	\noindent \textbf{Enunciado:} Un objeto de 7 kg presenta una energía potencial de 120 julios a qué altura se encuentra.
+	
+	\respOperacional[3cm]{
+		\textbf{Datos:} $m = 7 \text{ kg}$, $E_p = 120 \text{ J}$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{Cálculo de la altura ($h$):} \\
+		La fórmula es $E_p = m \cdot g \cdot h$. Despejando la altura: \\
+		$h = \dfrac{E_p}{m \cdot g} = \dfrac{120 \text{ J}}{7 \text{ kg} \times 9.8 \text{ m/s}^2} = \dfrac{120}{68.6} = \mathbf{1.75 \text{ metros}}$.
+	}
+	
+	\subsection*{3. Energía Potencial Elástica en resortes}
+	\noindent \textbf{Enunciado:} Los cuatro resortes de un vehículo soportan el peso de la carrocería y de cuatro personas que se suben a él. Sí la constante elástica de cada resorte es $9800 \text{ N/m}$. ¿Qué energía elástica tiene cada resorte si cada uno se comprime 3,5 cm?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $k = 9800 \text{ N/m}$, deformación $x = 3.5 \text{ cm} = 0.035 \text{ m}$. \\
+		\\
+		\textbf{Cálculo de la Energía Potencial Elástica ($E_{pe}$) para cada resorte:} \\
+		La fórmula es $E_{pe} = \dfrac{k \cdot x^2}{2}$. \\
+		$E_{pe} = \dfrac{9800 \text{ N/m} \cdot (0.035 \text{ m})^2}{2} = 4900 \cdot 0.001225 = \mathbf{6.0025 \text{ Julios}}$. \\
+		(Cada resorte almacena $\approx 6 \text{ J}$).
+	}
+	
+	\subsection*{4. Trabajo y Potencia en una grúa}
+	\noindent \textbf{Enunciado:} Una grúa levanta una carga de 45 kg desde una ventana terraza que está a 2.3 m hasta una ventana que se encuentra a 7.5 m, empleando un tiempo de 6 segundos. a. ¿Cuál es la energía potencial gravitacional al inicio y al final? b. ¿Qué trabajó efectuó la grúa? c. ¿Qué potencia tiene la grúa?
+	
+	\respOperacional[5.5cm]{
+		\textbf{Datos:} $m = 45 \text{ kg}$, $h_i = 2.3 \text{ m}$, $h_f = 7.5 \text{ m}$, $t = 6 \text{ s}$. \\
+		\\
+		\textbf{a. Energía Potencial Gravitacional ($E_p = m \cdot g \cdot h$):} \\
+		Inicial: $E_{pi} = 45 \cdot 9.8 \cdot 2.3 = \mathbf{1014.3 \text{ J}}$. \\
+		Final: $E_{pf} = 45 \cdot 9.8 \cdot 7.5 = \mathbf{3307.5 \text{ J}}$. \\
+		\\
+		\textbf{b. Trabajo efectuado ($W$):} \\
+		$W = \Delta E_p = E_{pf} - E_{pi} = 3307.5 - 1014.3 = \mathbf{2293.2 \text{ Julios}}$. \\
+		\\
+		\textbf{c. Potencia ($P$):} \\
+		$P = \dfrac{W}{t} = \dfrac{2293.2 \text{ J}}{6 \text{ s}} = \mathbf{382.2 \text{ Vatios (W)}}$.
+	}
+	
+	\subsection*{5. Trabajo y velocidad en un automóvil}
+	\noindent \textbf{Enunciado:} Un automóvil de 1.2 toneladas tiene un motor de 85 hp. a. ¿Qué trabajo puede realizar en 5 segundos? b. ¿Qué velocidad puede alcanzar en este tiempo? Asuma que el conductor tiene 65 kg.
+	
+	\respOperacional[6cm]{
+		\textbf{Datos:} Potencia $P = 85 \text{ hp} \times 746 \text{ W/hp} = 63410 \text{ W (Julios/s)}$. \\
+		Masa Total ($m$) = Auto ($1.2 \text{ ton} = 1200 \text{ kg}$) + Conductor ($65 \text{ kg}$) = $1265 \text{ kg}$. \\
+		Tiempo $t = 5 \text{ s}$. \\
+		\\
+		\textbf{a. Trabajo realizado ($W$):} \\
+		$P = \dfrac{W}{t} \implies W = P \cdot t = 63410 \text{ W} \times 5 \text{ s} = \mathbf{317050 \text{ Julios}}$. \\
+		\\
+		\textbf{b. Velocidad alcanzada ($v_f$):} \\
+		Asumiendo que parte del reposo y que todo el trabajo se transforma en energía cinética: \\
+		$W = E_k \implies 317050 = \dfrac{1}{2} m \cdot v_f^2 \implies 317050 = \dfrac{1}{2}(1265) \cdot v_f^2$. \\
+		$317050 = 632.5 \cdot v_f^2 \implies v_f^2 = \dfrac{317050}{632.5} = 501.26$. \\
+		$v_f = \sqrt{501.26} = \mathbf{22.38 \text{ m/s}}$. (Unos $80.5 \text{ km/h}$).
+	}
+	
+	%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-07P (Equilibrio en Sólidos)}
+	
+	\respOperacional[6.5cm]{
+		\textbf{1. Relación entre Torque y Fuerza Aplicada:} \\
+		El torque ($\tau$) es \textbf{directamente proporcional} a la fuerza aplicada ($F$). Si la distancia (brazo de palanca) se mantiene constante, al aumentar el peso (fuerza) en uno de los extremos de la regla, el torque de giro aumentará proporcionalmente en ese lado. \\
+		\\
+		\textbf{2. Relación entre la distancia y la Fuerza para obtener el mismo Torque:} \\
+		Son \textbf{inversamente proporcionales}. Para equilibrar el sistema (mismo torque en ambos lados), si se disminuye la fuerza (masa más pequeña), se debe compensar ubicando dicha masa a una distancia mayor del punto de rotación ($\tau = F \cdot d$). \\
+		\\
+		\textbf{3. Aplicaciones en la vida cotidiana:} \\
+		\begin{itemize}
+			\item Las llaves inglesas o llaves de tuercas: al tomarlas desde el extremo más alejado, la distancia aumenta, requiriendo menos fuerza para aflojar la tuerca (generar el mismo torque).
+			\item Las puertas: la perilla se coloca en el extremo opuesto a las bisagras (punto de rotación) para maximizar la distancia y minimizar la fuerza al abrirla.
+			\item Los balancines o sube y baja en los parques infantiles (donde el niño más pesado debe sentarse más cerca del centro).
+		\end{itemize}
+	}
+	
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 7)
+	% =================================================================
+	%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 7: La Energía que Mueve el Mundo}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Conservación de Energía (Caída)}
+	\noindent \textbf{Enunciado:} Un bloque de concreto de 8 kg es soltado desde el cuarto piso de una construcción a 12 metros de altura. a. Determine la energía potencial gravitacional justo antes de soltarlo. b. Usando el principio de conservación de energía ($E_p = E_c$), determine la velocidad exacta con la que el bloque impactará el suelo.
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $m = 8 \text{ kg}$, $h = 12 \text{ m}$, $g = 9.8 \text{ m/s}^2$. \\
+		\\
+		\textbf{a. Energía Potencial inicial:} \\
+		$E_p = m \cdot g \cdot h = 8 \cdot 9.8 \cdot 12 = \mathbf{940.8 \text{ Julios}}$. \\
+		\\
+		\textbf{b. Velocidad de impacto:} \\
+		Justo al tocar el suelo, toda la $E_p$ se transformó en $E_c$. \\
+		$E_c = 940.8 \text{ J} \implies \dfrac{1}{2} m \cdot v^2 = 940.8 \implies \dfrac{1}{2}(8) \cdot v^2 = 940.8$. \\
+		$4 \cdot v^2 = 940.8 \implies v^2 = \dfrac{940.8}{4} = 235.2 \implies v = \sqrt{235.2} = \mathbf{15.33 \text{ m/s}}$.
+	}
+	
+	\subsection*{2. Cálculo de Trabajo en Movimiento Uniforme Variado}
+	\noindent \textbf{Enunciado:} Un corredor de 70 kg, que se encontraba en reposo, acelera hasta alcanzar una velocidad de 8 m/s en su entrenamiento. Si durante ese aumento de velocidad recorrió una distancia de 15 metros, ¿Cuál fue el trabajo total neto que sus músculos realizaron sobre su cuerpo?
+	
+	\respOperacional[3cm]{
+		\textbf{Datos:} $m = 70 \text{ kg}$, $v_i = 0$, $v_f = 8 \text{ m/s}$. \\
+		\\
+		\textbf{Trabajo por Teorema de Energía Cinética:} \\
+		El trabajo neto ($W$) es igual al cambio en su energía cinética. \\
+		$W = \Delta E_c = E_{cf} - E_{ci} = \dfrac{1}{2}m \cdot v_f^2 - 0 = \dfrac{1}{2}(70)(8)^2$. \\
+		$W = 35 \times 64 = \mathbf{2240 \text{ Julios}}$. \\
+		\textit{Nota: La distancia de 15 m es información distractora en este método.}
+	}
+	
+	\subsection*{3. Trabajo en contra de la gravedad (Potencia de Motores)}
+	\noindent \textbf{Enunciado:} El motor de un ascensor debe elevar la cabina llena de pasajeros (masa total de 950 kg) hasta el piso 10 del edificio, que se encuentra a una altura de 30 metros. El viaje completo toma 15 segundos. a. Calcule el trabajo realizado en contra de la gravedad. b. Determine la potencia desarrollada por el motor del ascensor en Vatios y en Caballos de Fuerza (hp).
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $m = 950 \text{ kg}$, $h = 30 \text{ m}$, $t = 15 \text{ s}$. $1 \text{ hp} = 746 \text{ W}$. \\
+		\\
+		\textbf{a. Trabajo realizado ($W$):} \\
+		$W = m \cdot g \cdot h = 950 \cdot 9.8 \cdot 30 = \mathbf{279.300 \text{ Julios}}$. \\
+		\\
+		\textbf{b. Potencia ($P$):} \\
+		$P = \dfrac{W}{t} = \dfrac{279.300 \text{ J}}{15 \text{ s}} = \mathbf{18.620 \text{ Vatios (W)}}$. \\
+		En hp: $18620 \text{ W} \div 746 \text{ W/hp} = \mathbf{24.96 \text{ hp}}$ (Un motor de 25 hp).
+	}
+	
+	\subsection*{4. Energía en Amortiguadores (Potencial Elástica)}
+	\noindent \textbf{Enunciado:} Para absorber el impacto de un golpe, una máquina industrial está equipada con un resorte grande cuya constante elástica es $k = 45000 \text{ N/m}$. Si la máquina impacta y comprime el resorte 12 cm, ¿cuánta energía absorbió el resorte en ese impacto?
+	
+	\respOperacional[3cm]{
+		\textbf{Datos:} $k = 45000 \text{ N/m}$, deformación $x = 12 \text{ cm} = 0.12 \text{ m}$. \\
+		\\
+		\textbf{Cálculo de Energía Elástica:} \\
+		$E_{pe} = \dfrac{1}{2} k \cdot x^2 = \dfrac{1}{2} (45000) (0.12)^2$. \\
+		$E_{pe} = 22500 \cdot 0.0144 = \mathbf{324 \text{ Julios}}$.
+	}
+	
+	\subsection*{5. Rendimiento y Conversiones}
+	\noindent \textbf{Enunciado:} Una bomba de agua de uso agrícola tiene una potencia nominal de 5 hp. ¿Cuántos Julios de trabajo es capaz de realizar si se mantiene encendida de forma ininterrumpida durante 1 hora completa?
+	
+	\respOperacional[3.5cm]{
+		\textbf{Datos:} $P = 5 \text{ hp} \times 746 = 3730 \text{ W (J/s)}$. \\
+		Tiempo $t = 1 \text{ hora} = 3600 \text{ segundos}$. \\
+		\\
+		\textbf{Cálculo del Trabajo:} \\
+		$P = \dfrac{W}{t} \implies W = P \cdot t$. \\
+		$W = 3730 \text{ W} \times 3600 \text{ s} = \mathbf{13.428.000 \text{ Julios}}$ (o 13.4 Megajulios).
+	}
+	
+	% =================================================================
+	% TAU 8: LA CANTIDAD DE MOVIMIENTO SE CONSERVA (10°)
+	% =================================================================
+	%\newpage
+	\section*{TAU 8 - LA CANTIDAD DE MOVIMIENTO SE CONSERVA}
+	
+	\section*{ACTIVIDAD 8.1: Cantidad de movimiento e Impulso}
+	
+	\subsection*{1. Transformación de la ecuación de conservación (8.IV)}
+	\noindent \textbf{Enunciado:} Establezca como se transforma (si hay) la ecuación (8.IV) en las siguientes situaciones: a. Una colisión elástica. b. Una colisión inelástica. c. Una explosión en la que se desintegra el objeto en dos partes.
+	
+	\respOperacional[5cm]{
+		\textbf{Ecuación original (8.IV):} $m_A \cdot v_{Ai} + m_B \cdot v_{Bi} = m_A \cdot v_{Af} + m_B \cdot v_{Bf}$ \\
+		\\
+		\textbf{a. Colisión Elástica:} La ecuación de la cantidad de movimiento se conserva intacta (es la misma 8.IV). Sin embargo, se añade que también se conserva la Energía Cinética total del sistema. \\
+		\textbf{b. Colisión Inelástica:} Los cuerpos tienden a deformarse o quedar unidos moviéndose a la misma velocidad final ($v_f$). La ecuación se transforma a: $m_A \cdot v_{Ai} + m_B \cdot v_{Bi} = (m_A + m_B) \cdot v_f$. \\
+		\textbf{c. Explosión (2 partes):} El sistema inicialmente está en reposo ($v_i = 0$), y luego se fragmenta en direcciones opuestas. La ecuación se reduce a: $0 = m_A \cdot v_{Af} + m_B \cdot v_{Bf} \implies m_A \cdot v_{Af} = - m_B \cdot v_{Bf}$.
+	}
+	
+	\subsection*{2. Carrito de mercado (Impulso y Fuerza)}
+	\noindent \textbf{Enunciado:} Un carrito de mercado que está en reposo se empuja de tal manera que alcanza 2.3 m/s. La masa total del carrito y el mercado es de 25 kg. Determine: a. Impulso que se ejerce sobre el carrito. b. Fuerza aplicada sobre el carrito, si el tiempo de contacto fue de 1.8 s.
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $m = 25 \text{ kg}$, $v_i = 0 \text{ m/s}$, $v_f = 2.3 \text{ m/s}$, $\Delta t = 1.8 \text{ s}$. \\
+		\\
+		\textbf{a. Impulso ($i$):} \\
+		$i = \Delta p = m \cdot v_f - m \cdot v_i \implies i = 25 \text{ kg} \cdot 2.3 \text{ m/s} - 0 = \mathbf{57.5 \text{ N}\cdot\text{s}}$ (o $\text{kg}\cdot\text{m/s}$). \\
+		\\
+		\textbf{b. Fuerza Aplicada ($F$):} \\
+		Como $i = F \cdot \Delta t \implies F = \dfrac{i}{\Delta t} = \dfrac{57.5 \text{ N}\cdot\text{s}}{1.8 \text{ s}} = \mathbf{31.94 \text{ Newtons}}$.
+	}
+	
+	\subsection*{3. Estudiante en bicicleta (Empujón)}
+	\noindent \textbf{Enunciado:} Un estudiante va en su bicicleta a razón de 2 km/h cuando un compañero lo empuja con una fuerza de 50 N durante 2 s. La masa del estudiante y la bicicleta es de 70 kg. a. ¿Qué velocidad alcanza el estudiante en la bicicleta? b. ¿Cuál fue el impulso aplicado?
+	
+	\respOperacional[5.5cm]{
+		\textbf{Datos:} $m = 70 \text{ kg}$, $v_i = 2 \text{ km/h} \div 3.6 = 0.555 \text{ m/s}$, $F = 50 \text{ N}$, $t = 2 \text{ s}$. \\
+		\\
+		\textbf{b. Impulso Aplicado ($i$):} \textit{(Se resuelve primero por ser más directo)} \\
+		$i = F \cdot t = 50 \text{ N} \cdot 2 \text{ s} = \mathbf{100 \text{ N}\cdot\text{s}}$. \\
+		\\
+		\textbf{a. Velocidad Final ($v_f$):} \\
+		$i = m \cdot v_f - m \cdot v_i \implies 100 = 70 \cdot v_f - 70(0.555)$. \\
+		$100 = 70 \cdot v_f - 38.85 \implies 138.85 = 70 \cdot v_f \implies v_f = \dfrac{138.85}{70} = \mathbf{1.98 \text{ m/s}}$. \\
+		(En km/h equivale a $\approx 7.14 \text{ km/h}$).
+	}
+	
+	\subsection*{4. Pelota de tenis e impacto de la raqueta}
+	\noindent \textbf{Enunciado:} Una pelota de tenis de 57 g llega a la raqueta del tenista a razón de 54 km/h, quien la devuelve a razón de 20 m/s. a. ¿Cuál fue el impulso aplicado? b. Si la fuerza aplicada por la raqueta es de 100 N ¿Qué tiempo de contacto tuvo la raqueta con la pelota?
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $m = 57 \text{ g} = 0.057 \text{ kg}$. $v_i = 54 \text{ km/h} = 15 \text{ m/s}$. $v_f = -20 \text{ m/s}$ (El signo negativo indica que la devuelve en sentido contrario). $F = -100 \text{ N}$. \\
+		\\
+		\textbf{a. Impulso Aplicado ($i$):} \\
+		$i = m \cdot v_f - m \cdot v_i = 0.057(-20) - 0.057(15) = -1.14 - 0.855 = \mathbf{-1.995 \text{ N}\cdot\text{s}}$. \\
+		(La magnitud del impulso es $1.995 \text{ N}\cdot\text{s}$ en dirección opuesta). \\
+		\\
+		\textbf{b. Tiempo de Contacto ($t$):} \\
+		$t = \dfrac{i}{F} = \dfrac{-1.995 \text{ N}\cdot\text{s}}{-100 \text{ N}} = \mathbf{0.01995 \text{ segundos}}$ (Aprox. 0.02 s).
+	}
+	
+	\subsection*{5. Pelota lanzada sobre un carrito}
+	\noindent \textbf{Enunciado:} Un niño lanza una pelota de 120 g a razón de 5 m/s sobre un carrito de 90 g, el carrito adquiere una velocidad de 3 m/s. ¿Cuál será la velocidad que presentará la pelota después de la colisión?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} Pelota (A): $m_A = 0.12 \text{ kg}$, $v_{Ai} = 5 \text{ m/s}$. Carrito (B): $m_B = 0.09 \text{ kg}$, $v_{Bi} = 0 \text{ m/s}$ (reposo). $v_{Bf} = 3 \text{ m/s}$. \\
+		\\
+		\textbf{Conservación del Momento Lineal:} \\
+		$m_A \cdot v_{Ai} + m_B \cdot v_{Bi} = m_A \cdot v_{Af} + m_B \cdot v_{Bf}$ \\
+		$0.12(5) + 0.09(0) = 0.12 \cdot v_{Af} + 0.09(3)$ \\
+		$0.6 = 0.12 \cdot v_{Af} + 0.27 \implies 0.6 - 0.27 = 0.12 \cdot v_{Af} \implies 0.33 = 0.12 \cdot v_{Af}$ \\
+		$v_{Af} = \dfrac{0.33}{0.12} = \mathbf{2.75 \text{ m/s}}$.
+	}
+	
+	\subsection*{6. Salto sobre una bicicleta en movimiento}
+	\noindent \textbf{Enunciado:} Un estudiante va en su bicicleta (masa del estudiante y la bicicleta 72 kg) a razón de 1.5 m/s, un compañero de 60 kg se lanza sobre él en la dirección que lleva, quedando montado en los posapiés de la rueda trasera. ¿Qué velocidad adquieren los estudiantes en la bicicleta después de la colisión?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} Bici (A): $m_A = 72 \text{ kg}$, $v_{Ai} = 1.5 \text{ m/s}$. Compañero (B): $m_B = 60 \text{ kg}$. Asumimos que se deja caer/lanza desde el reposo horizontal ($v_{Bi} = 0$). \\
+		Es una \textbf{colisión inelástica} (quedan juntos con la misma $v_f$). \\
+		\\
+		\textbf{Cálculo de Velocidad Final ($v_f$):} \\
+		$m_A \cdot v_{Ai} + m_B \cdot v_{Bi} = (m_A + m_B) \cdot v_f$ \\
+		$72(1.5) + 60(0) = (72 + 60) \cdot v_f \implies 108 = 132 \cdot v_f$ \\
+		$v_f = \dfrac{108}{132} = \mathbf{0.818 \text{ m/s}}$. (La bicicleta pierde velocidad por la masa extra).
+	}
+	
+	\subsection*{7. Velocidad de retroceso de un cañón}
+	\noindent \textbf{Enunciado:} Un pequeño cañón de 6 kg dispara un proyectil de 120 g a razón de 36 km/h. ¿Cuál es la velocidad de retroceso del cañón?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} Sistema inicial en reposo ($P_i = 0$). Cañón ($m_1$): $6 \text{ kg}$. Proyectil ($m_2$): $120 \text{ g} = 0.12 \text{ kg}$. Velocidad del proyectil ($v_2$): $36 \text{ km/h} = 10 \text{ m/s}$. \\
+		\\
+		\textbf{Ley de Conservación (Explosión):} \\
+		$0 = m_1 \cdot v_1 + m_2 \cdot v_2 \implies 0 = 6 \cdot v_1 + (0.12 \cdot 10)$ \\
+		$0 = 6 \cdot v_1 + 1.2 \implies 6 \cdot v_1 = -1.2 \implies v_1 = -\dfrac{1.2}{6} = \mathbf{-0.2 \text{ m/s}}$. \\
+		La velocidad de retroceso del cañón es de $0.2 \text{ m/s}$ en dirección contraria al disparo.
+	}
+	
+	%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-08P}
+	
+	\respOperacional[6cm]{
+		\textbf{1. Posibles fuentes de error:} Las variaciones entre los valores teóricos y experimentales se deben fundamentalmente a la fuerza de fricción entre las ruedas de los carritos y el riel, así como posibles desniveles en la mesa de trabajo que introduzcan componentes gravitacionales al movimiento. También influyen errores humanos en la medición de las marcas $x_1$ y $x_2$. \\
+		\\
+		\textbf{2. Relación masa - velocidad en explosiones:} \\
+		En un fenómeno de explosión o separación donde el momento total se conserva en 0 ($m_1 v_1 = -m_2 v_2$), la velocidad adquirida es \textbf{inversamente proporcional} a la masa del fragmento. Esto significa que el trozo más ligero saldrá disparado a mucha mayor velocidad, mientras que el trozo más pesado adquirirá una velocidad mucho más pequeña (retroceso). \\
+		\\
+		\textbf{3. Consideraciones para explosiones en varios fragmentos:} \\
+		Cuando el objeto se desintegra en múltiples fragmentos, la cantidad de movimiento total (que era cero si el objeto estaba en reposo) sigue conservándose. Esto obliga a realizar una sumatoria vectorial ($\sum p_{nx} = 0$ y $\sum p_{ny} = 0$). La consideración principal es que la suma vectorial de todos los momentos lineales de cada fragmento ($p_1 + p_2 + p_3 + \dots + p_n$) en cualquier eje debe anularse entre sí para mantener el equilibrio dinámico inicial del sistema.
+	}
+	
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 8)
+	% =================================================================
+	%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 8: Conservación de la Cantidad de Movimiento}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Cálculo de Impulso y Fuerza Promedio}
+	\noindent \textbf{Enunciado:} Un bateador golpea una bola de béisbol de 145 gramos que se aproximaba hacia él horizontalmente a una velocidad de 35 m/s. El golpe invierte la dirección de la bola, haciéndola salir a una velocidad de 45 m/s. a. ¿Cuál es el impulso neto entregado a la bola? b. Si el impacto entre el bate y la bola duró apenas 0.005 segundos, ¿cuál fue la fuerza promedio ejercida por el bateador?
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $m = 0.145 \text{ kg}$, $v_i = -35 \text{ m/s}$ (hacia el bateador), $v_f = 45 \text{ m/s}$ (saliendo del bateador), $\Delta t = 0.005 \text{ s}$. \\
+		\\
+		\textbf{a. Impulso ($i$):} \\
+		$i = m \cdot v_f - m \cdot v_i = 0.145(45) - 0.145(-35) = 6.525 + 5.075 = \mathbf{11.6 \text{ N}\cdot\text{s}}$. \\
+		\\
+		\textbf{b. Fuerza promedio ($F$):} \\
+		$F = \dfrac{i}{\Delta t} = \dfrac{11.6}{0.005} = \mathbf{2320 \text{ Newtons}}$.
+	}
+	
+	\subsection*{2. Colisión Completamente Inelástica}
+	\noindent \textbf{Enunciado:} Un patinador de 65 kg avanza en el hielo a una velocidad de 4 m/s. De frente hacia él y en la misma línea, viene otro patinador de 55 kg a una velocidad de 3 m/s. No logran esquivarse, chocan y quedan abrazados moviéndose juntos. ¿A qué velocidad y en qué dirección se deslizarán los dos patinadores tras el impacto?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} Patinador A: $m_A = 65 \text{ kg}$, $v_A = 4 \text{ m/s}$. Patinador B: $m_B = 55 \text{ kg}$, $v_B = -3 \text{ m/s}$ (viene en contra). Movimiento Inelástico. \\
+		\\
+		\textbf{Cálculo de la Velocidad Final Conjunta ($v_f$):} \\
+		$m_A \cdot v_A + m_B \cdot v_B = (m_A + m_B) \cdot v_f$ \\
+		$65(4) + 55(-3) = (65 + 55) \cdot v_f \implies 260 - 165 = 120 \cdot v_f$ \\
+		$95 = 120 \cdot v_f \implies v_f = \dfrac{95}{120} = \mathbf{0.79 \text{ m/s}}$. \\
+		\textbf{Dirección:} Positiva, lo que indica que se mueven en la dirección original del patinador A (el más pesado y rápido).
+	}
+	
+	\subsection*{3. Fenómeno de Retroceso (El Fusil)}
+	\noindent \textbf{Enunciado:} Un francotirador dispara su fusil de 5 kg apoyándolo sobre su hombro. La bala, que tiene una masa de 20 gramos, sale disparada por el cañón a una velocidad de 800 m/s. ¿Con qué velocidad de retroceso golpeará el fusil el hombro del tirador? 
+	
+	\respOperacional[3.5cm]{
+		\textbf{Datos:} $P_i = 0$ (reposo inicial). Arma ($m_1$) = 5 kg. Bala ($m_2$) = $20 \text{ g} = 0.02 \text{ kg}$. Velocidad de bala ($v_2$) = 800 m/s. \\
+		\\
+		\textbf{Cálculo de la Velocidad de Retroceso ($v_1$):} \\
+		$0 = m_1 \cdot v_1 + m_2 \cdot v_2 \implies 0 = 5 \cdot v_1 + (0.02 \cdot 800) \implies 0 = 5 \cdot v_1 + 16$ \\
+		$5 \cdot v_1 = -16 \implies v_1 = -\dfrac{16}{5} = \mathbf{-3.2 \text{ m/s}}$. \\
+		El fusil retrocede a $3.2 \text{ m/s}$.
+	}
+	
+	\subsection*{4. Colisión Elástica Frontal}
+	\noindent \textbf{Enunciado:} Una bola de billar A de 160 g se mueve a 2.5 m/s y choca elásticamente contra una bola B estacionaria de 160 g. Asumiendo que la transferencia de momento es perfecta y la bola A queda totalmente quieta después del choque, determine la velocidad adquirida por la bola B y compruebe que se cumplió la ley.
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $m_A = 0.16 \text{ kg}$, $v_{Ai} = 2.5 \text{ m/s}$, $v_{Af} = 0 \text{ m/s}$. $m_B = 0.16 \text{ kg}$, $v_{Bi} = 0 \text{ m/s}$, $v_{Bf} = ?$. \\
+		\\
+		\textbf{Comprobación de la Ley:} \\
+		$m_A \cdot v_{Ai} + m_B \cdot v_{Bi} = m_A \cdot v_{Af} + m_B \cdot v_{Bf}$ \\
+		$0.16(2.5) + 0 = 0 + 0.16(v_{Bf}) \implies 0.4 = 0.16 \cdot v_{Bf} \implies v_{Bf} = \dfrac{0.4}{0.16} = \mathbf{2.5 \text{ m/s}}$. \\
+		Se demuestra que en colisiones elásticas puras entre masas idénticas, las velocidades simplemente se intercambian.
+	}
+	
+	\subsection*{5. Concepto de Impulso y Seguridad}
+	\noindent \textbf{Enunciado:} Teniendo en cuenta la relación matemática del impulso ($F \cdot \Delta t = m \cdot \Delta v$), explique por qué es vital que los automóviles modernos posean "zonas de deformación programada" en la parte delantera y trasera para proteger a los ocupantes durante un choque.
+	
+	\respOperacional[3.5cm]{
+		\textbf{Respuesta:} \\
+		Durante un choque, el vehículo debe detenerse (cambiar su cantidad de movimiento hasta cero), lo que requiere un Impulso fijo. \\
+		Como el impulso es el producto de Fuerza por Tiempo ($i = F \cdot \Delta t$), al diseñar la carrocería para que se arrugue lentamente (deformación programada), se \textbf{aumenta el tiempo ($\Delta t$) de duración del impacto}. Matemáticamente, al ser el Impulso constante, si el tiempo aumenta, la \textbf{Fuerza ($F$) letal que recibe el pasajero disminuye drásticamente}, salvándole la vida.
+	}
+	
+	% =================================================================
+	% TAU 9: PRINCIPIOS DE HIDROSTÁTICA E HIDRODINÁMICA (10°)
+	% =================================================================
+	%\newpage
+	\section*{TAU 9 - PRINCIPIOS DE HIDROSTÁTICA E HIDRODINÁMICA}
+	
+	\section*{ACTIVIDAD 9.1: Presión, Flotabilidad y Caudal}
+	\textit{Nota: En el módulo original esta actividad aparece titulada como "Actividad 8.1" por error tipográfico.}
+	
+	\subsection*{1. Presión Hidrostática en un Submarino}
+	\noindent \textbf{Enunciado:} Los submarinos pueden sumergirse hasta unos 200 metros de profundidad. Dato: $\rho$ del agua de mar = $1025 \text{ Kg/m}^3$. a. Calcula la presión que soportan las paredes de un submarino debido al agua. b. Determina la fuerza que actúa sobre una escotilla de $1 \text{ m}^2$ de área.
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $h = 200 \text{ m}$, $\rho = 1025 \text{ kg/m}^3$, $g = 9.8 \text{ m/s}^2$, $A = 1 \text{ m}^2$. \\
+		\\
+		\textbf{a. Presión Hidrostática ($P$):} \\
+		$P = \rho \cdot g \cdot h = 1025 \text{ kg/m}^3 \times 9.8 \text{ m/s}^2 \times 200 \text{ m} = \mathbf{2.009.000 \text{ Pascales (Pa)}}$. \\
+		\\
+		\textbf{b. Fuerza sobre la escotilla ($F$):} \\
+		$P = \dfrac{F}{A} \implies F = P \cdot A = 2.009.000 \text{ Pa} \times 1 \text{ m}^2 = \mathbf{2.009.000 \text{ Newtons}}$.
+	}
+	
+	\subsection*{2. Presión de un Esquiador sobre la Nieve}
+	\noindent \textbf{Enunciado:} Determina la presión que ejerce un esquiador de 70 kg de masa sobre la nieve, cuando calza en cada pie una tabla de esquí cuyas dimensiones son 160 x 12 cm (asuma que son rectangulares).
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $m = 70 \text{ kg} \implies \text{Peso } (F) = 70 \times 9.8 = 686 \text{ N}$. \\
+		Dimensiones de UN esquí: $1.6 \text{ m} \times 0.12 \text{ m}$. \\
+		\\
+		\textbf{Cálculo del Área Total ($A$):} \\
+		Como son dos esquíes: $A = 2 \times (1.6 \text{ m} \times 0.12 \text{ m}) = 2 \times 0.192 \text{ m}^2 = \mathbf{0.384 \text{ m}^2}$. \\
+		\\
+		\textbf{Cálculo de la Presión ($P$):} \\
+		$P = \dfrac{F}{A} = \dfrac{686 \text{ N}}{0.384 \text{ m}^2} = \mathbf{1786.46 \text{ Pascales}}$.
+	}
+	
+	\subsection*{3. Cambio de Área de Contacto}
+	\noindent \textbf{Enunciado:} ¿Cuál será la presión que presenta el esquiador del ejercicio anterior, si se quita los esquíes y se ubica en una tabla cuadrada de 20 cm de lado?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $F = 686 \text{ N}$. Tabla cuadrada de $l = 20 \text{ cm} = 0.2 \text{ m}$. \\
+		\\
+		\textbf{Cálculo de la nueva Área ($A$):} \\
+		$A = l \times l = 0.2 \text{ m} \times 0.2 \text{ m} = \mathbf{0.04 \text{ m}^2}$. \\
+		\\
+		\textbf{Cálculo de la Presión ($P$):} \\
+		$P = \dfrac{F}{A} = \dfrac{686 \text{ N}}{0.04 \text{ m}^2} = \mathbf{17.150 \text{ Pascales}}$. \\
+		(Al disminuir el área de contacto, la presión aumentó drásticamente).
+	}
+	
+	\subsection*{4. Profundidad del Titanic}
+	\noindent \textbf{Enunciado:} Los restos del Titanic soportan una presión de 374 atm. Si la densidad del agua en donde está es de $1.02 \text{ g/cm}^3$, determine la profundidad a la que se encuentran.
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $P = 374 \text{ atm}$, $\rho = 1.02 \text{ g/cm}^3 = 1020 \text{ kg/m}^3$. $1 \text{ atm} = 101325 \text{ Pa}$. \\
+		\\
+		\textbf{Conversión de Presión a Pascales:} \\
+		$P = 374 \times 101325 = 37.895.550 \text{ Pa}$. \\
+		\\
+		\textbf{Cálculo de la profundidad ($h$):} \\
+		$P = \rho \cdot g \cdot h \implies h = \dfrac{P}{\rho \cdot g} = \dfrac{37.895.550}{1020 \times 9.8} = \dfrac{37.895.550}{9996} = \mathbf{3791 \text{ metros}}$.
+	}
+	
+	\subsection*{5. Presión y Fuerza en una Bañera}
+	\noindent \textbf{Enunciado:} Una bañera contiene agua hasta 50 cm de altura. a. Calcula la presión hidrostática en el fondo de la bañera. b. Calcula la fuerza que hay que realizar para quitar el tapón circular de 5 cm de diámetro, situado en el fondo de la bañera.
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $h = 50 \text{ cm} = 0.5 \text{ m}$, $\rho_{agua} = 1000 \text{ kg/m}^3$. Diámetro tapón = $5 \text{ cm} \implies r = 0.025 \text{ m}$. \\
+		\\
+		\textbf{a. Presión Hidrostática ($P$):} \\
+		$P = 1000 \times 9.8 \times 0.5 = \mathbf{4900 \text{ Pascales}}$. \\
+		\\
+		\textbf{b. Fuerza sobre el tapón ($F$):} \\
+		Área del tapón ($A$) = $\pi \cdot r^2 = \pi \cdot (0.025)^2 = 0.00196 \text{ m}^2$. \\
+		$F = P \cdot A = 4900 \text{ Pa} \times 0.00196 \text{ m}^2 = \mathbf{9.62 \text{ Newtons}}$.
+	}
+	
+	\subsection*{6. Elevador Hidráulico (Principio de Pascal)}
+	\noindent \textbf{Enunciado:} Un elevador hidráulico consta de dos émbolos de sección circular de 3 y 60 cm de radio, respectivamente. ¿Qué fuerza hay que aplicar sobre el émbolo menor para elevar un objeto de 2000 kg de masa colocado en el émbolo mayor?
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $r_1 = 3 \text{ cm} = 0.03 \text{ m}$, $r_2 = 60 \text{ cm} = 0.6 \text{ m}$. Masa a elevar = $2000 \text{ kg}$. \\
+		Fuerza a vencer ($F_2$) = $2000 \times 9.8 = 19.600 \text{ N}$. \\
+		\\
+		\textbf{Relación de Pascal ($F_1/A_1 = F_2/A_2$):} \\
+		Como $A = \pi \cdot r^2$, podemos simplificar $\pi$: $\dfrac{F_1}{r_1^2} = \dfrac{F_2}{r_2^2}$. \\
+		$F_1 = F_2 \times \dfrac{r_1^2}{r_2^2} = 19.600 \times \left(\dfrac{0.03}{0.6}\right)^2 = 19.600 \times (0.05)^2 = 19.600 \times 0.0025$. \\
+		$F_1 = \mathbf{49 \text{ Newtons}}$. (Una fuerza minúscula gracias a la hidráulica).
+	}
+	
+	\subsection*{7. Condición de Flotabilidad}
+	\noindent \textbf{Enunciado:} ¿Flotará en el agua un objeto que tiene una masa de 50 kg y ocupa un volumen de $0.06 \text{ m}^3$?
+	
+	\respOperacional[3cm]{
+		\textbf{Cálculo de la Densidad del Objeto:} \\
+		$\rho = \dfrac{m}{V} = \dfrac{50 \text{ kg}}{0.06 \text{ m}^3} = \mathbf{833.33 \text{ kg/m}^3}$. \\
+		\\
+		\textbf{Conclusión:} Como la densidad del objeto ($833.33 \text{ kg/m}^3$) es \textbf{menor} que la densidad del agua ($1000 \text{ kg/m}^3$), el objeto \textbf{SÍ flotará}.
+	}
+	
+	\subsection*{8. Principio de Arquímedes (Volumen y Densidad de la piedra)}
+	\noindent \textbf{Enunciado:} Una piedra de 0.5 kg de masa tiene un peso aparente de 3 N cuando se introduce en el agua. Halla el volumen y la densidad de la piedra.
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $m = 0.5 \text{ kg}$, $W_{aparente} = 3 \text{ N}$, $\rho_{agua} = 1000 \text{ kg/m}^3$. \\
+		Peso real en el aire ($W$) = $0.5 \times 9.8 = 4.9 \text{ N}$. \\
+		\\
+		\textbf{Paso 1: Fuerza de Empuje ($E$)} \\
+		$E = W - W_{aparente} = 4.9 \text{ N} - 3 \text{ N} = \mathbf{1.9 \text{ N}}$. \\
+		\\
+		\textbf{Paso 2: Volumen de la piedra ($V$)} \\
+		$E = \rho_{agua} \cdot V \cdot g \implies V = \dfrac{E}{\rho_{agua} \cdot g} = \dfrac{1.9}{1000 \times 9.8} = \dfrac{1.9}{9800} = \mathbf{1.938 \times 10^{-4} \text{ m}^3}$. \\
+		\\
+		\textbf{Paso 3: Densidad de la piedra ($\rho_{piedra}$)} \\
+		$\rho_{piedra} = \dfrac{m}{V} = \dfrac{0.5 \text{ kg}}{1.938 \times 10^{-4} \text{ m}^3} = \mathbf{2579 \text{ kg/m}^3}$.
+	}
+	
+	\subsection*{9. Identificación de un líquido}
+	\noindent \textbf{Enunciado:} Un cilindro de aluminio tiene una densidad de $2700 \text{ Kg/m}^3$ y ocupa un volumen de $2 \text{ dm}^3$, tiene un peso aparente de 12 N dentro de un líquido. Calcula la densidad de ese líquido.
+	
+	\respOperacional[5.5cm]{
+		\textbf{Datos:} $\rho_{Al} = 2700 \text{ kg/m}^3$, $V = 2 \text{ dm}^3 = 0.002 \text{ m}^3$, $W_{aparente} = 12 \text{ N}$. \\
+		\\
+		\textbf{Paso 1: Masa y Peso Real del Cilindro} \\
+		$m = \rho \cdot V = 2700 \times 0.002 = 5.4 \text{ kg}$. \\
+		$W = m \cdot g = 5.4 \times 9.8 = 52.92 \text{ N}$. \\
+		\\
+		\textbf{Paso 2: Fuerza de Empuje ($E$)} \\
+		$E = W - W_{aparente} = 52.92 - 12 = \mathbf{40.92 \text{ N}}$. \\
+		\\
+		\textbf{Paso 3: Densidad del líquido ($\rho_{liq}$)} \\
+		$E = \rho_{liq} \cdot V \cdot g \implies \rho_{liq} = \dfrac{E}{V \cdot g} = \dfrac{40.92}{0.002 \times 9.8} = \dfrac{40.92}{0.0196} = \mathbf{2087.7 \text{ kg/m}^3}$.
+	}
+	
+	\subsection*{10. Porcentaje Sumergido de un Cilindro de Madera}
+	\noindent \textbf{Enunciado:} Un cilindro de madera tiene una altura de 30 cm y se deja caer en una piscina de forma que una de sus bases quede dentro del agua. Si la densidad de la madera es de $800 \text{ Kg/m}^3$, calcula la altura del cilindro que sobresale del agua.
+	
+	\respOperacional[5.5cm]{
+		\textbf{Datos:} $h = 30 \text{ cm} = 0.3 \text{ m}$, $\rho_{madera} = 800 \text{ kg/m}^3$, $\rho_{agua} = 1000 \text{ kg/m}^3$. \\
+		\\
+		\textbf{Planteamiento (Equilibrio de fuerzas: Peso = Empuje):} \\
+		$W = E \implies m \cdot g = \rho_{agua} \cdot V_{sumergido} \cdot g$. \\
+		Sustituyendo $m = \rho_{madera} \cdot V_{total}$, se cancela la $g$: \\
+		$\rho_{madera} \cdot V_{total} = \rho_{agua} \cdot V_{sumergido}$. \\
+		Como el cilindro es recto, $V = A \cdot h$: \\
+		$800 \cdot (A \cdot 30) = 1000 \cdot (A \cdot h_{sumergido})$. (Se cancela el Área A). \\
+		$h_{sumergido} = \dfrac{800 \times 30}{1000} = \mathbf{24 \text{ cm}}$. \\
+		\\
+		\textbf{Altura que sobresale:} $30 \text{ cm} - 24 \text{ cm} = \mathbf{6 \text{ centímetros}}$.
+	}
+	
+	\subsection*{11. Análisis Conceptual de Empuje}
+	\noindent \textbf{Enunciado:} Se tiene tres objetos que ocupan el mismo volumen: un cilindro de cobre, una esfera de hierro y un cubo de hierro, y dos recipientes, uno que contiene agua y otro aceite. ¿Cuál de los tres objetos experimenta mayor empuje al introducirlos en agua y en aceite?
+	
+	\respOperacional[4cm]{
+		\textbf{Respuesta:} \\
+		Según el Principio de Arquímedes ($E = \rho_{fluido} \cdot V_{sumergido} \cdot g$), el empuje \textbf{no depende del material ni del peso} del objeto, sino exclusivamente de su volumen sumergido y la densidad del líquido. \\
+		Por lo tanto, \textbf{los tres objetos experimentarán exactamente el mismo empuje} dentro de un mismo líquido, ya que ocupan el mismo volumen. Sin embargo, al comparar los fluidos, los tres objetos experimentarán \textbf{mayor empuje en el agua} que en el aceite, puesto que el agua es más densa.
+	}
+	
+	\subsection*{12. Caudal y Ecuación de Continuidad}
+	\noindent \textbf{Enunciado:} Considérese una manguera de sección circular de diámetro interior de 2.0 cm, por la que fluye agua a una tasa de 0.25 litros por cada segundo. ¿Cuál es la velocidad del agua en la manguera? Ahora si el orificio de la boquilla de la manguera se reduce a 1.0 cm de diámetro interior. ¿Cuál es la velocidad de salida del agua?
+	
+	\respOperacional[6.5cm]{
+		\textbf{Datos iniciales:} $D_1 = 2 \text{ cm} \implies r_1 = 0.01 \text{ m}$. Caudal ($Q$) = $0.25 \text{ L/s} = 0.00025 \text{ m}^3\text{/s}$. \\
+		\\
+		\textbf{Paso 1: Velocidad inicial en la manguera ($v_1$)} \\
+		$A_1 = \pi \cdot (0.01)^2 = 0.000314 \text{ m}^2$. \\
+		$Q = A_1 \cdot v_1 \implies v_1 = \dfrac{Q}{A_1} = \dfrac{0.00025}{0.000314} = \mathbf{0.796 \text{ m/s}}$. \\
+		\\
+		\textbf{Paso 2: Velocidad de salida por la boquilla ($v_2$)} \\
+		$D_2 = 1 \text{ cm} \implies r_2 = 0.005 \text{ m}$. \\
+		$A_2 = \pi \cdot (0.005)^2 = 0.0000785 \text{ m}^2$. \\
+		Como el caudal se conserva ($Q_1 = Q_2$): \\
+		$v_2 = \dfrac{Q}{A_2} = \dfrac{0.00025}{0.0000785} = \mathbf{3.18 \text{ m/s}}$. \\
+		(Al reducir el diámetro a la mitad, la velocidad se cuadruplica).
+	}
+	
+	%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-09P}
+	
+	\respOperacional[7cm]{
+		\textbf{1. Alcance horizontal en los orificios (Teorema de Torricelli):} \\
+		El agua del orificio inferior sale con un mayor alcance horizontal porque está soportando el peso (y por tanto la presión) de toda la columna de agua por encima de él. Matemáticamente, $v = \sqrt{2gh}$, a mayor profundidad $h$, mayor será la velocidad de salida y por ende el chorro llegará más lejos. \\
+		\\
+		\textbf{2 y 3. Comportamiento de la parafina en agua y alcohol:} \\
+		Al colocar parafina en agua, esta flota, pero en el alcohol se hunde. Esto es perfectamente coherente con sus densidades: la parafina ($\approx 900 \text{ kg/m}^3$) es menos densa que el agua ($1000 \text{ kg/m}^3$), por lo que el empuje supera su peso; sin embargo, el alcohol es menos denso que la parafina ($\approx 790 \text{ kg/m}^3$), lo que significa que el alcohol no puede generar suficiente fuerza de empuje para sostenerla, causando que se hunda. \\
+		\\
+		\textbf{4. Fuerza de empuje en objetos no sumergidos (Icopor en agua):} \\
+		El icopor tiene una densidad bajísima (casi todo es aire atrapado), por lo que con sumergir apenas una pequeñísima porción de su volumen, el peso del agua desplazada ya iguala el peso total del objeto. Como $E = W_{real}$, el objeto deja de hundirse y permanece flotando "sobre" el agua. \\
+		\\
+		\textbf{5. Aplicaciones en la vida cotidiana:} \\
+		Comprender estas densidades permite diseñar barcos y submarinos mediante el uso de tanques de lastre (llenándolos de agua para hundirse o de aire para flotar), así como globos aerostáticos, salvavidas, o entender por qué el hielo flota en las bebidas (anomalía del agua).
+	}
+	
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 9)
+	% =================================================================
+	%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 9: Hidrostática e Hidrodinámica}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Elevador de Autos (Principio de Pascal)}
+	\noindent \textbf{Enunciado:} En un taller mecánico, el pistón pequeño de una prensa hidráulica tiene un área de $0.05 \text{ m}^2$, mientras que el pistón grande tiene un área de $2.5 \text{ m}^2$. Si un mecánico aplica una fuerza de 350 N sobre el pistón pequeño, a. ¿Qué presión en Pascales se transmite a través del fluido? b. ¿Cuál es el peso máximo del vehículo que podrá levantar el pistón grande?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $A_1 = 0.05 \text{ m}^2$, $A_2 = 2.5 \text{ m}^2$, $F_1 = 350 \text{ N}$. \\
+		\\
+		\textbf{a. Presión en el fluido ($P$):} \\
+		Según Pascal, la presión es la misma en todo el fluido: \\
+		$P = \dfrac{F_1}{A_1} = \dfrac{350 \text{ N}}{0.05 \text{ m}^2} = \mathbf{7000 \text{ Pascales (Pa)}}$. \\
+		\\
+		\textbf{b. Fuerza en el pistón grande ($F_2$):} \\
+		$P = \dfrac{F_2}{A_2} \implies F_2 = P \cdot A_2 = 7000 \text{ Pa} \times 2.5 \text{ m}^2 = \mathbf{17.500 \text{ Newtons}}$. \\
+		(Podrá levantar un vehículo de aproximadamente $1785 \text{ kg}$).
+	}
+	
+	\subsection*{2. Presión Absoluta bajo el Agua}
+	\noindent \textbf{Enunciado:} Un buzo desciende a una profundidad de 40 metros en un lago de agua dulce ($\rho = 1000 \text{ kg/m}^3$). a. Calcule la presión hidrostática que ejerce el agua a esa profundidad. b. Si la presión atmosférica en la superficie es de $101.325 \text{ Pa}$, ¿cuál es la presión absoluta total que soportan los tímpanos del buzo?
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $h = 40 \text{ m}$, $\rho = 1000 \text{ kg/m}^3$, $P_{atm} = 101.325 \text{ Pa}$. \\
+		\\
+		\textbf{a. Presión Hidrostática ($P_h$):} \\
+		$P_h = \rho \cdot g \cdot h = 1000 \times 9.8 \times 40 = \mathbf{392.000 \text{ Pascales}}$. \\
+		\\
+		\textbf{b. Presión Absoluta Total ($P_{abs}$):} \\
+		$P_{abs} = P_{atm} + P_h = 101.325 + 392.000 = \mathbf{493.325 \text{ Pascales}}$ (Casi 5 atmósferas).
+	}
+	
+	\subsection*{3. Determinación de Densidad (Empuje)}
+	\noindent \textbf{Enunciado:} Una corona metálica pesa 25 N en el aire. Al suspenderla de un dinamómetro y sumergirla por completo en un recipiente con agua ($\rho = 1000 \text{ kg/m}^3$), el dinamómetro marca un peso aparente de 22 N. Determine: a. La fuerza de empuje que ejerce el agua. b. El volumen de la corona. c. La densidad del material de la corona.
+	
+	\respOperacional[5cm]{
+		\textbf{Datos:} $W = 25 \text{ N}$, $W_{ap} = 22 \text{ N}$, $\rho_{agua} = 1000 \text{ kg/m}^3$. \\
+		\\
+		\textbf{a. Fuerza de Empuje ($E$):} \\
+		$E = W - W_{ap} = 25 - 22 = \mathbf{3 \text{ Newtons}}$. \\
+		\\
+		\textbf{b. Volumen de la corona ($V$):} \\
+		$E = \rho_{agua} \cdot V \cdot g \implies V = \dfrac{E}{\rho_{agua} \cdot g} = \dfrac{3}{1000 \times 9.8} = \mathbf{3.06 \times 10^{-4} \text{ m}^3}$. \\
+		\\
+		\textbf{c. Densidad ($\rho$):} \\
+		Masa $m = \dfrac{W}{g} = \dfrac{25}{9.8} = 2.55 \text{ kg}$. \\
+		$\rho = \dfrac{m}{V} = \dfrac{2.55}{3.06 \times 10^{-4}} = \mathbf{8333.3 \text{ kg/m}^3}$. (No es oro puro).
+	}
+	
+	\subsection*{4. Ecuación de Continuidad y Caudal}
+	\noindent \textbf{Enunciado:} El acueducto suministra agua a una vivienda a través de una tubería principal que tiene un área de sección transversal de $0.03 \text{ m}^2$, con una velocidad de $1.5 \text{ m/s}$. Al entrar a la casa, la tubería se estrecha a un área de $0.005 \text{ m}^2$. a. ¿Cuál es el caudal de agua en $\text{m}^3\text{/s}$? b. ¿A qué velocidad entra el agua a la casa por la tubería estrecha?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $A_1 = 0.03 \text{ m}^2$, $v_1 = 1.5 \text{ m/s}$, $A_2 = 0.005 \text{ m}^2$. \\
+		\\
+		\textbf{a. Caudal ($Q$):} \\
+		$Q = A_1 \cdot v_1 = 0.03 \text{ m}^2 \times 1.5 \text{ m/s} = \mathbf{0.045 \text{ m}^3\text{/s}}$ (O 45 Litros por segundo). \\
+		\\
+		\textbf{b. Velocidad en la casa ($v_2$):} \\
+		Como el caudal es constante: $Q = A_2 \cdot v_2$. \\
+		$v_2 = \dfrac{Q}{A_2} = \dfrac{0.045}{0.005} = \mathbf{9 \text{ m/s}}$.
+	}
+	
+	\subsection*{5. Análisis Conceptual (Principio de Arquímedes)}
+	\noindent \textbf{Enunciado:} Un barco petrolero gigante construido con miles de toneladas de acero y metal logra flotar sobre el océano. Sin embargo, si lanzas una pequeña tuerca de ese mismo acero al mar, se hunde instantáneamente. Explique físicamente este fenómeno basándose en el Principio de Arquímedes.
+	
+	\respOperacional[4cm]{
+		\textbf{Respuesta:} \\
+		El secreto radica en la \textbf{densidad promedio} y el \textbf{volumen de líquido desplazado}. Aunque el acero es más denso que el agua, el casco del barco está diseñado de tal forma que encierra una enorme cantidad de aire en su interior. \\
+		Esto hace que el volumen total del barco sea gigante. Al sumergirse, el inmenso volumen de agua que desplaza genera una \textbf{fuerza de empuje hacia arriba ($E$)} que logra contrarrestar e igualar el inmenso peso del acero, permitiéndole flotar. La pequeña tuerca, por ser maciza, desplaza muy poca agua y su peso vence al empuje.
+	}
+	
+	% =================================================================
+	% TAU 10: FENÓMENOS ASOCIADOS AL CALOR (10°)
+	% =================================================================
+	%\newpage
+	\section*{TAU 10 - FENÓMENOS ASOCIADOS AL CALOR}
+	
+	\section*{ACTIVIDAD 10.1: Dilatación y Calorimetría}
+	
+	\subsection*{1. Dilatación lineal del cuarzo}
+	\noindent \textbf{Enunciado:} Una barra de cuarzo de 4.3 m varia su temperatura de 25 $^{\circ}$C hasta 96 $^{\circ}$C, ¿cuál es su longitud final? consulte el coeficiente de dilatación lineal.
+	
+	\respOperacional[4cm]{
+		\textbf{Datos:} $L_o = 4.3 \text{ m}$, $T_o = 25^{\circ}\text{C}$, $T_f = 96^{\circ}\text{C} \implies \Delta T = 71^{\circ}\text{C}$. \\
+		Coeficiente de dilatación lineal del cuarzo ($\alpha$) $\approx 0.5 \times 10^{-6} \ ^{\circ}\text{C}^{-1}$. \\
+		\\
+		\textbf{Cálculo de la dilatación ($\Delta L$):} \\
+		$\Delta L = \alpha \cdot L_o \cdot \Delta T = (0.5 \times 10^{-6}) \times 4.3 \times 71 = \mathbf{0.000152 \text{ metros}}$. \\
+		\\
+		\textbf{Longitud Final ($L_f$):} \\
+		$L_f = L_o + \Delta L = 4.3 \text{ m} + 0.000152 \text{ m} = \mathbf{4.300152 \text{ metros}}$.
+	}
+	
+	\subsection*{2. Cálculo del coeficiente de dilatación}
+	\noindent \textbf{Enunciado:} ¿Cuál será el coeficiente de dilatación lineal de un metal sabiendo que la temperatura varía de 85 $^{\circ}$C a 20 $^{\circ}$C, y un alambre de ese metal pasa de 160 m a 159.82 m? (tenga en cuenta que la barra se está enfriando y debe despejar $\alpha$).
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $T_o = 85^{\circ}\text{C}$, $T_f = 20^{\circ}\text{C} \implies \Delta T = -65^{\circ}\text{C}$. \\
+		$L_o = 160 \text{ m}$, $L_f = 159.82 \text{ m} \implies \Delta L = -0.18 \text{ m}$. \\
+		\\
+		\textbf{Cálculo del coeficiente ($\alpha$):} \\
+		$\Delta L = \alpha \cdot L_o \cdot \Delta T \implies \alpha = \dfrac{\Delta L}{L_o \cdot \Delta T}$. \\
+		$\alpha = \dfrac{-0.18}{160 \times (-65)} = \dfrac{-0.18}{-10400} = \mathbf{1.73 \times 10^{-5} \ ^{\circ}\text{C}^{-1}}$. \\
+		(Este coeficiente corresponde aproximadamente al Cobre o al Latón).
+	}
+	
+	\subsection*{3. Temperatura requerida para dilatar Aluminio}
+	\noindent \textbf{Enunciado:} A qué temperatura hay que llevar una barra de aluminio de 3.5 m que inicialmente se encuentra a 14 $^{\circ}$C, para que esta se dilate hasta una longitud de 3.8 m. Consulte el coeficiente de dilatación lineal.
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $L_o = 3.5 \text{ m}$, $L_f = 3.8 \text{ m} \implies \Delta L = 0.3 \text{ m}$. $T_o = 14^{\circ}\text{C}$. \\
+		Coeficiente del Aluminio ($\alpha$) $\approx 2.4 \times 10^{-5} \ ^{\circ}\text{C}^{-1}$. \\
+		\\
+		\textbf{Cálculo de la variación de temperatura ($\Delta T$):} \\
+		$\Delta T = \dfrac{\Delta L}{\alpha \cdot L_o} = \dfrac{0.3}{(2.4 \times 10^{-5}) \times 3.5} = \dfrac{0.3}{0.000084} \approx \mathbf{3571.4 ^{\circ}\text{C}}$. \\
+		$T_f = T_o + \Delta T = 14 + 3571.4 = \mathbf{3585.4 ^{\circ}\text{C}}$. \\
+		\textit{*Nota física:* Matemáticamente el resultado es correcto, pero conceptualmente es imposible en la vida real, ya que el aluminio se funde (derrite) a los $660^{\circ}\text{C}$.}
+	}
+	
+	\subsection*{4. Dilatación Superficial del Acero}
+	\noindent \textbf{Enunciado:} Una lámina de acero a 28 $^{\circ}$C tiene un área de 0.4 m$^2$. a) ¿Qué área final tendrá a -6 $^{\circ}$C en m$^2$ y en cm$^2$? b) ¿En cuánto disminuyó su área?
+	
+	\respOperacional[5.5cm]{
+		\textbf{Datos:} $A_o = 0.4 \text{ m}^2$, $T_o = 28^{\circ}\text{C}$, $T_f = -6^{\circ}\text{C} \implies \Delta T = -34^{\circ}\text{C}$. \\
+		$\alpha_{\text{acero}} \approx 1.1 \times 10^{-5} \implies$ Coeficiente superficial ($\gamma = 2\alpha$) $= 2.2 \times 10^{-5} \ ^{\circ}\text{C}^{-1}$. \\
+		\\
+		\textbf{b. Disminución de área ($\Delta A$):} (Es más fácil calcular esto primero) \\
+		$\Delta A = \gamma \cdot A_o \cdot \Delta T = (2.2 \times 10^{-5}) \times 0.4 \times (-34) = \mathbf{-0.000299 \text{ m}^2}$. \\
+		\\
+		\textbf{a. Área final ($A_f$):} \\
+		$A_f = A_o + \Delta A = 0.4 - 0.000299 = \mathbf{0.399701 \text{ m}^2}$. \\
+		En cm$^2$: $0.399701 \times 10000 = \mathbf{3997.01 \text{ cm}^2}$.
+	}
+	
+	\subsection*{5. Dilatación Volumétrica (Cristal vs Alcohol)}
+	\noindent \textbf{Enunciado:} Un recipiente de cristal de 3 litros de capacidad a 15 $^{\circ}$C, se llena totalmente de alcohol. Si se incrementa la temperatura de ambos hasta 70 $^{\circ}$C, calcular: a) Volumen final del recipiente, b) Volumen final del alcohol, c) ¿Se derrama?, d) Cantidad derramada en L y cm$^3$.
+	
+	\respOperacional[7.5cm]{
+		\textbf{Datos:} $V_o = 3 \text{ L}$, $\Delta T = 70 - 15 = 55^{\circ}\text{C}$. \\
+		$\beta_{\text{cristal}} \approx 2.7 \times 10^{-5} \ ^{\circ}\text{C}^{-1}$. \quad $\beta_{\text{alcohol}} \approx 1.1 \times 10^{-3} \ ^{\circ}\text{C}^{-1}$. \\
+		\\
+		\textbf{a. Volumen final del recipiente (Cristal):} \\
+		$V_{f(\text{cristal})} = V_o \cdot (1 + \beta_c \cdot \Delta T) = 3 \cdot (1 + 2.7\times 10^{-5} \cdot 55) = \mathbf{3.004455 \text{ Litros}}$. \\
+		\\
+		\textbf{b. Volumen final del Alcohol:} \\
+		$V_{f(\text{alcohol})} = V_o \cdot (1 + \beta_a \cdot \Delta T) = 3 \cdot (1 + 1.1\times 10^{-3} \cdot 55) = \mathbf{3.181500 \text{ Litros}}$. \\
+		\\
+		\textbf{c. ¿Se derrama?} \\
+		\textbf{Sí.} El alcohol se dilata mucho más que el cristal, por lo que su nuevo volumen supera la nueva capacidad del recipiente. \\
+		\\
+		\textbf{d. Cantidad derramada:} \\
+		$V_{\text{derramado}} = 3.181500 \text{ L} - 3.004455 \text{ L} = \mathbf{0.177045 \text{ Litros}}$. \\
+		En cm$^3$: $0.177045 \times 1000 = \mathbf{177.045 \text{ cm}^3}$.
+	}
+	
+	\subsection*{6. Calor Sensible del Mercurio}
+	\noindent \textbf{Enunciado:} ¿Qué cantidad de calor es necesaria para llevar 85 g de mercurio desde 18 $^{\circ}$C hasta 36 $^{\circ}$C? Consulte el calor específico del mercurio.
+	
+	\respOperacional[3.5cm]{
+		\textbf{Datos:} $m = 85 \text{ g} = 0.085 \text{ kg}$, $\Delta T = 36 - 18 = 18^{\circ}\text{C}$. \\
+		Calor específico del Mercurio ($c$) $\approx 139 \text{ J/kg}^{\circ}\text{C}$ (o $0.033 \text{ cal/g}^{\circ}\text{C}$). \\
+		\\
+		\textbf{Cálculo del calor ($Q$):} \\
+		$Q = m \cdot c \cdot \Delta T = 0.085 \text{ kg} \times 139 \text{ J/kg}^{\circ}\text{C} \times 18^{\circ}\text{C} = \mathbf{212.67 \text{ Julios}}$. \\
+		*(En calorías: $Q = 85 \times 0.033 \times 18 = 50.49 \text{ cal}$).*
+	}
+	
+	\subsection*{7. Despeje de masa a partir del Calor}
+	\noindent \textbf{Enunciado:} ¿Cuál es la masa de una barra de plomo si absorbe 7800 J en forma de calor y su temperatura inicial y final respectivamente es de 23 $^{\circ}$C y 78 $^{\circ}$C? Consulte el calor específico del plomo.
+	
+	\respOperacional[3.5cm]{
+		\textbf{Datos:} $Q = 7800 \text{ J}$, $\Delta T = 78 - 23 = 55^{\circ}\text{C}$. \\
+		Calor específico del Plomo ($c$) $\approx 130 \text{ J/kg}^{\circ}\text{C}$. \\
+		\\
+		\textbf{Cálculo de la masa ($m$):} \\
+		$Q = m \cdot c \cdot \Delta T \implies m = \dfrac{Q}{c \cdot \Delta T}$. \\
+		$m = \dfrac{7800}{130 \times 55} = \dfrac{7800}{7150} = \mathbf{1.09 \text{ kilogramos}}$.
+	}
+	
+	\subsection*{8. Capacidad Calorífica}
+	\noindent \textbf{Enunciado:} ¿Cuál es la capacidad calorífica de un metal que absorbe 4500 J en forma de calor a una variación de temperatura de 65 $^{\circ}$C?
+	
+	\respOperacional[2.5cm]{
+		\textbf{Datos:} $Q = 4500 \text{ J}$, $\Delta T = 65^{\circ}\text{C}$. \\
+		\\
+		\textbf{Cálculo de la Capacidad Calorífica ($C$):} \\
+		$C = \dfrac{Q}{\Delta T} = \dfrac{4500 \text{ J}}{65^{\circ}\text{C}} = \mathbf{69.23 \text{ J/}^{\circ}\text{C}}$.
+	}
+	
+\subsection*{9. Procesos Termodinámicos de un Gas (Ciclo P-V)}
+\noindent \textbf{Enunciado:} Un gas de 4 moles se somete a un proceso de cuatro fases. a. Determine el tipo de proceso en cada fase (1-2, 2-3, 3-4, 4-1). b. Calcular el volumen en el punto 1 y 3. c. La presión en el punto 2. d. Trabajo en cada fase en Julios.
+
+\respOperacional[13cm]{
+	\textbf{Datos proporcionados:} $n = 4 \text{ mol}$. Constante $R = 0.082 \dfrac{\text{atm}\cdot\text{L}}{\text{mol}\cdot\text{K}}$. \\
+	Estado 1: $P_1 = 3 \text{ atm}$, $T_1 = 80 \text{ K}$. \\
+	Estado 2: $P_2 = 7 \text{ atm}$, $T_2 = 300 \text{ K}$ \textit{(Dato del libro, matemáticamente inconsistente con $V_1$, pero la presión rige el gráfico, la inconsistencia está en la temperatura del punto 2 ya que al realizar los calculos de volumen no coincide con el del punto 1, por lo que no habría un proceso icocórico, se recomienda hallar los volumenes con los datos en el punto 1 y el punto 3)}. \\
+	Estado 3: $P_3 = 7 \text{ atm}$, $T_3 = 500 \text{ K}$. \\
+	\\
+	\textbf{a. Tipo de procesos:} \\
+	\textbf{1-2:} \textbf{Isocórico} (Volumen constante, línea vertical hacia arriba). \\
+	\textbf{2-3:} \textbf{Isobárico} (Presión constante a 7 atm, expansión horizontal). \\
+	\textbf{3-4:} \textbf{Isocórico} (Volumen constante, línea vertical hacia abajo). \\
+	\textbf{4-1:} \textbf{Isobárico} (Presión constante a 3 atm, compresión horizontal). \\
+	\\
+	\textbf{b. Cálculo de los volúmenes ($V = \dfrac{nRT}{P}$):} \\
+	\textbf{Punto 1:} $V_1 = \dfrac{4 \text{ mol} \times 0.082 \times 80 \text{ K}}{3 \text{ atm}} = \dfrac{26.24}{3} = \mathbf{8.75 \text{ Litros}}$. \\
+	\textbf{Punto 3:} $V_3 = \dfrac{4 \text{ mol} \times 0.082 \times 500 \text{ K}}{7 \text{ atm}} = \dfrac{164}{7} = \mathbf{23.43 \text{ Litros}}$. \\
+	\textit{(Dado que el ciclo es un rectángulo, $V_2 = V_1 = 8.75 \text{ L}$ y $V_4 = V_3 = 23.43 \text{ L}$).} \\
+	\\
+	\textbf{c. Presión en el punto 2 ($P_2$):} \\
+	Según los datos del gráfico y el proceso isocórico desde 1, $P_2 = \mathbf{7 \text{ atm}}$. \\
+	\\
+	\textbf{d. Trabajo en cada fase ($1 \text{ atm}\cdot\text{L} = 101.325 \text{ J}$):} \\
+	\textbf{$W_{12}$:} Isocórico ($\Delta V = 0$) $\implies W_{12} = \mathbf{0 \text{ J}}$. \\
+	\\
+	\textbf{$W_{23}$:} Expansión isobárica ($W = P \cdot \Delta V$): \\
+	$W = 7 \text{ atm} \cdot (23.43 \text{ L} - 8.75 \text{ L}) = 7 \cdot 14.68 = 102.76 \text{ atm}\cdot\text{L}$. \\
+	$W_{23} = 102.76 \times 101.325 = \mathbf{10.412,1 \text{ Julios}}$. \\
+	\\
+	\textbf{$W_{34}$:} Isocórico ($\Delta V = 0$) $\implies W_{34} = \mathbf{0 \text{ J}}$. \\
+	\\
+	\textbf{$W_{41}$:} Compresión isobárica ($W = P \cdot \Delta V$): \\
+	$W = 3 \text{ atm} \cdot (8.75 \text{ L} - 23.43 \text{ L}) = 3 \cdot (-14.68) = -44.04 \text{ atm}\cdot\text{L}$. \\
+	$W_{41} = -44.04 \times 101.325 = \mathbf{-4.462,3 \text{ Julios}}$.
+}
+	
+	%\newpage
+	\section*{ANÁLISIS DE RESULTADOS: Laboratorio 10F-10P (Calor Específico)}
+	
+	\respOperacional[7cm]{
+		\textbf{1. Cálculo de Error:} \\
+		Si se utilizó un metal como Cobre ($c \approx 0.093 \text{ cal/g}^{\circ}\text{C}$), Hierro ($c \approx 0.113 \text{ cal/g}^{\circ}\text{C}$) o Aluminio ($c \approx 0.215 \text{ cal/g}^{\circ}\text{C}$), el porcentaje de error suele derivarse de la fórmula: $\% \text{error} = \dfrac{|\text{Valor Teórico} - \text{Valor Experimental}|}{\text{Valor Teórico}} \times 100$. \\
+		\\
+		\textbf{2. Fuentes de Error Experimental:} \\
+		Las principales fuentes de error en este experimento calorimétrico son: 
+		a) \textbf{Pérdida de calor al ambiente:} Al trasladar el metal del agua hirviendo al calorímetro, cede energía al aire. 
+		b) \textbf{Falta de aislamiento ideal:} El calorímetro no es un sistema 100\% adiabático, parte del calor se disipa por las paredes o la tapa. 
+		c) \textbf{Lectura de instrumentos:} Tiempo de respuesta lento del termómetro, o errores visuales al tomar la temperatura. \\
+		\\
+		\textbf{3 y 4. Análisis del Dilatómetro (Parte 2):} \\
+		Se concluye experimentalmente que los metales sufren una dilatación directamente proporcional al aumento de calor. Al someter diferentes barras al fuego durante 30 segundos, el indicador del dilatómetro se desplaza en diferentes proporciones, demostrando que \textbf{cada material posee un coeficiente de dilatación distinto}. Usualmente, el orden de dilatación creciente (del que menos se estira al que más) es: Acero/Hierro < Cobre < Latón < Aluminio.
+	}
+	
+	% =================================================================
+	% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 10)
+	% =================================================================
+	%\newpage
+	\begin{center}
+		{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+		{\Large \textbf{Evaluación TAU 10: Fenómenos Asociados al Calor}}\\[0.1cm]
+		\hrule
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\subsection*{1. Conversión de Escalas de Temperatura}
+	\noindent \textbf{Enunciado:} El Wolframio es un material que se funde a una temperatura extremadamente alta de $3422 ^{\circ}\text{C}$. Determine esta temperatura de fusión en la escala absoluta (Kelvin) y en la escala Fahrenheit.
+	
+	\respOperacional[4.5cm]{
+		\textbf{a. En Kelvin ($K$):} \\
+		$K = ^{\circ}\text{C} + 273.15 = 3422 + 273.15 = \mathbf{3695.15 \text{ K}}$. \\
+		\\
+		\textbf{b. En Fahrenheit ($^{\circ}\text{F}$):} \\
+		$^{\circ}\text{F} = (1.8 \times ^{\circ}\text{C}) + 32 = (1.8 \times 3422) + 32 = 6159.6 + 32 = \mathbf{6191.6 ^{\circ}\text{F}}$.
+	}
+	
+	\subsection*{2. Dilatación Lineal en Estructuras}
+	\noindent \textbf{Enunciado:} Una vía de tren está construida con rieles de acero ($\alpha = 1.2 \times 10^{-5} \ ^{\circ}\text{C}^{-1}$) de 25 metros de largo, instalados durante el invierno cuando la temperatura es de $5 ^{\circ}\text{C}$. ¿Qué espacio mínimo de separación (en centímetros) debe dejarse entre un riel y otro para evitar que se choquen en verano, cuando la temperatura alcanza los $40 ^{\circ}\text{C}$?
+	
+	\respOperacional[4.5cm]{
+		\textbf{Datos:} $L_o = 25 \text{ m}$, $T_o = 5 ^{\circ}\text{C}$, $T_f = 40 ^{\circ}\text{C} \implies \Delta T = 35 ^{\circ}\text{C}$. \\
+		\\
+		\textbf{Cálculo de la Dilatación ($\Delta L$):} \\
+		La separación mínima debe ser igual o mayor a lo que se va a expandir el riel. \\
+		$\Delta L = \alpha \cdot L_o \cdot \Delta T = (1.2 \times 10^{-5}) \times 25 \times 35$. \\
+		$\Delta L = 0.0105 \text{ metros}$. \\
+		\\
+		\textbf{Conversión a cm:} $0.0105 \text{ m} \times 100 = \mathbf{1.05 \text{ centímetros}}$.
+	}
+	
+	\subsection*{3. Calorimetría (Calor absorbido por el agua)}
+	\noindent \textbf{Enunciado:} Un calentador eléctrico suministra calor a una piscina inflable que contiene $120 \text{ kg}$ de agua. Si se desea elevar la temperatura del agua desde $18 ^{\circ}\text{C}$ hasta $25 ^{\circ}\text{C}$, ¿cuántos Julios de calor debe proporcionar el calentador? (Calor específico del agua $c = 4184 \text{ J/kg}^{\circ}\text{C}$).
+	
+	\respOperacional[3.5cm]{
+		\textbf{Datos:} $m = 120 \text{ kg}$, $\Delta T = 25 - 18 = 7 ^{\circ}\text{C}$, $c = 4184 \text{ J/kg}^{\circ}\text{C}$. \\
+		\\
+		\textbf{Cálculo de Calor ($Q$):} \\
+		$Q = m \cdot c \cdot \Delta T = 120 \times 4184 \times 7$. \\
+		$Q = 502080 \times 7 = \mathbf{3.514.560 \text{ Julios}}$ (o $\approx 3.51 \text{ MJ}$).
+	}
+	
+	\subsection*{4. Equilibrio Térmico (Conceptual y Ecuación)}
+	\noindent \textbf{Enunciado:} Se introduce un bloque de hierro al rojo vivo ($200 ^{\circ}\text{C}$) dentro de un balde que contiene 5 litros de agua fría ($10 ^{\circ}\text{C}$). Aíslando el balde del exterior, plantee la ecuación fundamental de la calorimetría que usaría para hallar la temperatura de equilibrio final ($T_f$) y explique qué principio físico se está cumpliendo.
+	
+	\respOperacional[4.5cm]{
+		\textbf{Ecuación Fundamental:} \\
+		El principio a aplicar es que el calor cedido por el objeto caliente debe ser exactamente igual al calor ganado por la sustancia fría: \quad $\mathbf{-Q_{\text{cedido}} = Q_{\text{ganado}}}$. \\
+		$- [m_{\text{hierro}} \cdot c_{\text{hierro}} \cdot (T_f - 200^{\circ}\text{C})] = m_{\text{agua}} \cdot c_{\text{agua}} \cdot (T_f - 10^{\circ}\text{C})$. \\
+		\\
+		\textbf{Principio Físico:} \\
+		Se está cumpliendo la \textbf{Primera Ley de la Termodinámica} (Conservación de la Energía). En un sistema adiabático (aislado), la energía no se crea ni se destruye, solo se transfiere del cuerpo de mayor temperatura al de menor temperatura hasta alcanzar la Ley Cero (Equilibrio Térmico).
+	}
+	
+	\subsection*{5. Trabajo Termodinámico (Proceso Isobárico)}
+	\noindent \textbf{Enunciado:} Un gas ideal encerrado en un cilindro con un émbolo móvil se somete a un proceso isobárico a una presión constante de $150.000 \text{ Pascales}$. Si al ser calentado, el volumen del gas se expande desde $0.02 \text{ m}^3$ hasta $0.05 \text{ m}^3$, ¿qué cantidad de trabajo en Julios realizó el gas al empujar el émbolo?
+	
+	\respOperacional[3cm]{
+		\textbf{Datos:} Proceso Isobárico ($P = \text{constante}$). $P = 150.000 \text{ Pa}$. \\
+		$V_i = 0.02 \text{ m}^3$, $V_f = 0.05 \text{ m}^3 \implies \Delta V = 0.03 \text{ m}^3$. \\
+		\\
+		\textbf{Cálculo del Trabajo ($W$):} \\
+		$W = P \cdot \Delta V = 150.000 \text{ Pa} \times 0.03 \text{ m}^3 = \mathbf{4500 \text{ Julios}}$.
+	}
+\end{document}

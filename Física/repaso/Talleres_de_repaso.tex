@@ -1,0 +1,214 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO --- 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish]{babel} 
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+\usepackage{xcolor} 
+\usepackage{graphicx} 
+\usepackage[most]{tcolorbox} 
+\usepackage{enumitem} 
+\usepackage{multicol}
+\usepackage{amsmath} % Para mejor renderizado de fórmulas
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifshowanswers
+
+% ---> MODO PROFESOR (Muestra respuestas en azul): Deja la línea sin comentar.
+% ---> MODO ESTUDIANTE (Deja el espacio en blanco para imprimir): Pon un % al inicio.
+\showanswerstrue 
+% \showanswersfalse 
+
+% --- COMANDOS PARA RESPUESTAS ---
+% Corregido: Argumento 1 es opcional (altura), Argumento 2 es obligatorio (texto)
+\newcommand{\respAbierta}[2][3cm]{
+	\ifshowanswers
+	\par\vspace{0.2cm}
+	\textbf{\textcolor{blue}{Respuesta Esperada:}} \textcolor{blue}{#2}
+	\par\vspace{0.2cm}
+	\else
+	\par\vspace{#1} % Espacio en blanco dinámico
+	\fi
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm] 
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm] 
+		\textbf{Taller de Repaso y Análisis} \\[0.1cm] 
+		Física 10° - TEMA 1 (10F01): Iniciando en la física 
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.5cm}
+	\begin{tcolorbox}[colback=gray!10!white, colframe=black, arc=1mm]
+		\textit{Instrucciones: Este taller evaluará si realmente comprendiste cómo los físicos interpretan y miden el universo. Responde justificando tu razonamiento científico basándote en la lectura y los conceptos del TEMA 1.}
+	\end{tcolorbox}
+	
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 1 ---
+	\noindent \textbf{1. Magnitudes y su significado físico:} Un compañero de clase afirma que "un vehículo viajó a una velocidad de 60" y que "el tanque tiene una capacidad de 15". Basándote en el concepto de \textit{unidad de medida}, explica por qué estas afirmaciones carecen de sentido en la física e identifica si se trata de magnitudes básicas o derivadas.
+	\respAbierta[3.5cm]{Las afirmaciones no tienen sentido porque un número por sí solo no describe una propiedad física real; la unidad de medida es el patrón indispensable para darle lógica a la magnitud. La velocidad es una magnitud derivada (combina longitud y tiempo), mientras que la capacidad (volumen) también es derivada (combina longitudes al cubo).}
+	
+	\vspace{0.3cm}
+	
+	% --- PREGUNTA 2 ---
+	\noindent \textbf{2. Análisis Dimensional:} El análisis dimensional es la prueba de fuego para saber si un modelo matemático es correcto (homogéneo). Demuestra paso a paso si la siguiente ecuación inventada para calcular la velocidad ($v$) es físicamente posible o si es un error: 
+	\[ v = a \cdot t + \frac{x}{t} \]
+	\textit{(Recuerda: $x$ = posición, $v$ = velocidad, $a$ = aceleración, $t$ = tiempo).}
+	\respAbierta[4.5cm]{Al reemplazar las dimensiones tenemos: $[v] = L/T$. 
+		El primer término $a \cdot t = (L/T^2) \cdot T = L/T$. 
+		El segundo término $x / t = L/T$. 
+		Al sumar: $L/T = L/T + L/T$. Como todos los términos tienen exactamente la misma dimensión (longitud sobre tiempo), la ecuación SÍ es homogénea y es físicamente correcta.}
+	
+	\vspace{0.3cm}
+	
+	% --- PREGUNTA 3 ---
+	\noindent \textbf{3. Conversión y coherencia:} Tienes un recipiente cuya densidad máxima soportada es de $1.5 \text{ g/cm}^3$. Si lo llenas con un líquido que tiene una densidad de $1200 \text{ kg/m}^3$, ¿el recipiente soportará el líquido? Utiliza los factores de conversión para justificar tu respuesta.
+	\respAbierta[4cm]{Se debe convertir $1200 \text{ kg/m}^3$ a $\text{g/cm}^3$:
+		$1200 \frac{\text{kg}}{\text{m}^3} \cdot \left( \frac{1000 \text{ g}}{1 \text{ kg}} \right) \cdot \left( \frac{1 \text{ m}^3}{1.000.000 \text{ cm}^3} \right) = 1.2 \text{ g/cm}^3$.
+		\textbf{Conclusión:} Como $1.2 \text{ g/cm}^3$ es menor que el límite de $1.5 \text{ g/cm}^3$, el recipiente SÍ soportará el líquido.}
+	
+	\vspace{0.3cm}
+	
+	% --- PREGUNTA 4 ---
+	\noindent \textbf{4. Laboratorio - El origen del error:} Durante la práctica de laboratorio comparaste una regla con un calibrador (pie de rey). ¿A qué se debe la existencia del margen de error y cuál de los dos instrumentos genera mediciones de mayor calidad?
+	\respAbierta[3.5cm]{El margen de error siempre existe debido a limitaciones visuales y a la resolución del instrumento. El calibrador es de mayor calidad porque cuenta con un nonio que permite fraccionar el milímetro, ofreciendo mayor precisión y exactitud que una regla común.}
+	
+	\vspace{0.3cm}
+	
+	% --- PREGUNTA 5 ---
+	\noindent \textbf{5. Pensamiento Físico:} Según la lectura, en el "Reloj de Arena" el tiempo no depende de la masa de arena superior. ¿Cómo ayuda el método científico a desmentir creencias que parecen "obvias"?
+	\respAbierta[3.5cm]{El método científico requiere experimentación y cuantificación estricta. Al aislar variables y medir con precisión, la física descubre que la intuición puede ser engañosa (como creer que más peso acelera la caída en el reloj), revelando las leyes reales que operan en la naturaleza.}
+	\newpage
+	% =================================================================
+	% TALLER TEMA 2: EL MOVIMIENTO
+	% =================================================================
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm] 
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm] 
+		\textbf{Taller de Repaso y Análisis} \\[0.1cm] 
+		Física 10° - TEMA 2 (10F02): El Movimiento
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.3cm}
+	\begin{tcolorbox}[colback=gray!10!white, colframe=black, arc=1mm]
+		\textit{Instrucciones: Evalúa tu comprensión de la cinemática. Responde justificando tu razonamiento científico basándote en la lectura y los conceptos del TEMA 2.}
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{1. La relatividad del reposo:} Imagina que vas viajando en un bus escolar a 60 km/h constantes y tu maleta está en el asiento de al lado. Si alguien te pregunta si la maleta se está moviendo, ¿por qué la respuesta depende del "sistema de referencia"?
+	\respAbierta[3.5cm]{La afirmación de movimiento es relativa. Respecto al estudiante (sistema de referencia interno), la maleta está en reposo porque no cambia su posición frente a él. Sin embargo, para un observador en la calle (externo), tanto el bus como la maleta se mueven a 60 km/h.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{2. Análisis gráfico (M.U.):} Si analizas una gráfica de "Posición vs. Tiempo" ($x$ vs $t$) y observas una línea recta diagonal, ¿qué significado físico tiene la pendiente de esa línea?
+	\respAbierta[3cm]{La pendiente en una gráfica de posición vs. tiempo representa la \textbf{velocidad} del objeto. Al ser una línea recta, la pendiente es constante, lo que indica un Movimiento Uniforme (M.U.).}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{3. La lógica de la aceleración:} Un vehículo se acerca a un semáforo en rojo y aplica los frenos. Matemáticamente, el cálculo arroja un valor negativo. ¿Qué significa físicamente ese signo?
+	\respAbierta[3cm]{El signo negativo indica una desaceleración; es decir, la velocidad final es menor que la inicial. Físicamente significa que el vehículo está perdiendo velocidad en una proporción constante hasta detenerse.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{4. Diferencia entre M.U. y M.U.A.:} Si lanzas una canica por un suelo áspero y otra por una pista de hielo sin fricción, ¿qué tipo de movimiento experimentará cada una?
+	\respAbierta[3.5cm]{En el suelo áspero, la fricción genera una desaceleración constante (M.U.A. negativo). En la pista de hielo perfectamente lisa, al no haber fuerzas que frenen el objeto, este mantendrá su velocidad constante (M.U.).}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{5. Pensamiento Físico (Movimiento Browniano):} ¿Cómo este movimiento de partículas de polen sirvió para demostrar un hecho fundamental sobre la composición del Universo?
+	\respAbierta[3.5cm]{El movimiento azaroso se explicó como el resultado de choques de moléculas invisibles contra el polen. Esto obligó a la ciencia a aceptar la existencia real de los átomos y moléculas, confirmando que la materia es discreta y no continua.}
+	
+	\newpage
+	% =================================================================
+	% TALLER TEMA 3: EFECTOS DE LA GRAVEDAD
+	% =================================================================
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm] 
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm] 
+		\textbf{Taller de Repaso y Análisis} \\[0.1cm] 
+		Física 10° - TEMA 3 (10F03): Efectos de la Gravedad
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.3cm}
+	\begin{tcolorbox}[colback=gray!10!white, colframe=black, arc=1mm]
+		\textit{Instrucciones: Evalúa tu comprensión sobre la gravedad. Responde justificando tu razonamiento científico basándote en la lectura y los conceptos del TEMA 3.}
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{1. La paradoja de la caída libre:} Si dejas caer una bola de boliche y una de tenis (sin fricción del aire), ¿cuál llega primero? Explica por qué.
+	\respAbierta[3cm]{Ambas llegarán al mismo tiempo. En ausencia de aire, todos los objetos cercanos a la Tierra experimentan la misma aceleración gravitacional ($g \approx 9.8 \text{ m/s}^2$), independientemente de su masa.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{2. Simetría en el lanzamiento vertical:} ¿Qué valor tiene la velocidad en la altura máxima y qué ocurre con la aceleración en ese mismo instante?
+	\respAbierta[3cm]{En la altura máxima, la velocidad es \textbf{cero (0 m/s)}. Sin embargo, la aceleración \textbf{no es cero}; sigue siendo de $9.8 \text{ m/s}^2$ hacia abajo, ya que la gravedad nunca deja de actuar.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{3. $G$ vs $g$:} ¿De qué depende que la gravedad ($g$) sea diferente en la Tierra y en la Luna?
+	\respAbierta[4cm]{$G$ es una constante universal. En cambio, $g$ es la aceleración local y depende de la masa y el radio del planeta. Como la Luna tiene menor masa y radio que la Tierra, su gravedad es menor.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{4. Masa y Peso:} Un astronauta viaja a Marte. ¿Por qué su masa no cambia pero su peso sí?
+	\respAbierta[3cm]{La masa es la cantidad de materia intrínseca y no cambia. El peso ($w = m \cdot g$) es la fuerza de atracción del planeta; al cambiar la gravedad del planeta, el peso cambia forzosamente.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{5. Velocidad de Escape:} ¿Qué significado físico tiene este concepto y qué variables lo determinan?
+	\respAbierta[3.5cm]{Es la velocidad mínima para superar la atracción gravitacional de un cuerpo celeste y no volver a caer. Depende exclusivamente de la Masa ($M$) y el Radio ($R$) del planeta.}
+	
+	\newpage
+	% =================================================================
+	% TALLER TEMA 4: MOVIMIENTO EN EL PLANO
+	% =================================================================
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm] 
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm] 
+		\textbf{Taller de Repaso y Análisis} \\[0.1cm] 
+		Física 10° - TEMA 4 (10F04): Movimiento en el plano
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.3cm}
+	\begin{tcolorbox}[colback=gray!10!white, colframe=black, arc=1mm]
+		\textit{Instrucciones: Evalúa tu comprensión del movimiento en dos dimensiones. Justifica científicamente basándote en la lectura y los conceptos del TEMA 4.}
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{1. El Principio de Independencia de Galileo:} ¿Por qué se afirma que un proyectil tiene dos movimientos distintos al mismo tiempo?
+	\respAbierta[3.5cm]{Es la superposición de dos movimientos independientes: 1) Un M.U. horizontal (velocidad constante) y 2) Un movimiento de caída libre/lanzamiento vertical (acelerado por la gravedad).}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{2. Lanzamiento horizontal:} Una bala se dispara horizontalmente y otra se deja caer desde la misma altura. ¿Cuál toca el suelo primero?
+	\respAbierta[4cm]{Ambas tocan el suelo \textbf{al mismo tiempo}. La velocidad horizontal no afecta la caída vertical. Ambas inician con $v_{0y} = 0$ y caen la misma altura bajo la misma gravedad.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{3. Componentes rectangulares:} ¿Qué le sucede a la componente vertical ($v_y$) a medida que el proyectil se acerca a su altura máxima?
+	\respAbierta[3cm]{La componente $v_y$ disminuye progresivamente debido a la gravedad hasta que en el punto más alto se vuelve cero.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{4. Movimiento relativo:} Un avión viaja al Norte y es golpeado por un viento lateral del Este. ¿Qué sucede con su trayectoria real?
+	\respAbierta[3.5cm]{La trayectoria real será una diagonal (suma vectorial de las velocidades). Para un observador en tierra, el avión se desvía de su curso original y su velocidad total aumenta según el teorema de Pitágoras.}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{5. Tartaglia y Galileo:} ¿Qué figura geométrica demostró Galileo que siguen siempre los proyectiles?
+	\respAbierta[3cm]{Galileo desmintió que los proyectiles se movieran en líneas rectas seguidas de caídas bruscas, demostrando matemáticamente que siguen una trayectoria en forma de \textbf{parábola}.}
+	
+	
+\end{document}

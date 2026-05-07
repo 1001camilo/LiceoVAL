@@ -1,0 +1,2272 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{multicol}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifshowanswers
+\showanswerstrue
+
+% --- COMANDO DE RESPUESTAS SOBRIO ---
+\long\def\respOperacional[#1]#2{
+	\ifshowanswers
+	\par\vspace{0.3cm}
+	\noindent\textbf{\color{blue}Solución Detallada:} 
+	{\color{blue}#2}
+	\par\vspace{0.4cm}
+	\else
+	\par\vspace{#1}
+	\fi
+}
+
+\begin{document}
+
+% =================================================================
+% TAU 1: GENERALIDADES DEL MOVIMIENTO ARMÓNICO SIMPLE (11°)
+% =================================================================
+\newpage
+\section*{TAU 1 - GENERALIDADES DEL MOVIMIENTO ARMÓNICO SIMPLE (M.A.S.)}
+
+\section*{ACTIVIDAD 1.1: Cinemática y Dinámica del M.A.S.}
+
+\subsection*{1. Evaluación de las ecuaciones en $t=0$}
+\noindent \textbf{Enunciado:} Una partícula oscila con un movimiento armónico simple de tal forma que su desplazamiento varía de acuerdo con la expresión $x=3 \cos(2t)$. Donde $x$ está en cm y $t$ en s. En $t=0$ encuentre: a. el desplazamiento, b. su velocidad, c. su aceleración. d. Determinar el periodo y la amplitud del movimiento.
+
+\respOperacional[6.5cm]{
+	\textbf{Ecuaciones de movimiento derivadas de $x(t) = 3 \cos(2t)$:} \\
+	$v(t) = \dfrac{dx}{dt} = -6 \operatorname{sen}(2t)$ \\
+	$a(t) = \dfrac{dv}{dt} = -12 \cos(2t)$ \\
+	\\
+	\textbf{Evaluando en $t = 0$:} \\
+	\textbf{a. Desplazamiento:} $x(0) = 3 \cos(0) = \mathbf{3 \text{ cm}}$. \\
+	\textbf{b. Velocidad:} $v(0) = -6 \operatorname{sen}(0) = \mathbf{0 \text{ cm/s}}$. \\
+	\textbf{c. Aceleración:} $a(0) = -12 \cos(0) = \mathbf{-12 \text{ cm/s}^2}$. \\
+	\\
+	\textbf{d. Periodo y Amplitud:} \\
+	Amplitud ($A$) = $\mathbf{3 \text{ cm}}$. \\
+	Velocidad angular ($\omega$) = $2 \text{ rad/s} \implies T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{2} = \mathbf{\pi \text{ segundos}} \approx 3.14 \text{ s}$.
+}
+
+\subsection*{2. Construcción de ecuaciones con desfase}
+\noindent \textbf{Enunciado:} Un objeto de 200 g de masa está unida a un resorte de constante $k=43.2 \text{ N/m}$ y describe un movimiento armónico simple de 10 cm de amplitud. Sabiendo que en el instante $t=0.2$ s se encuentra a 6 cm del origen, determinar: a. Las ecuaciones de la posición, velocidad y aceleración en función del tiempo. b. Valores de $t$ en los que la partícula pasa por el origen.
+
+\respOperacional[7.5cm]{
+	\textbf{Datos:} $m = 0.2 \text{ kg}$, $k = 43.2 \text{ N/m}$, $A = 10 \text{ cm} = 0.1 \text{ m}$. \\
+	$\omega = \sqrt{\dfrac{k}{m}} = \sqrt{\dfrac{43.2}{0.2}} = \sqrt{216} \approx \mathbf{14.7 \text{ rad/s}}$. \\
+	\\
+	\textbf{a. Ecuaciones en función del tiempo (Cálculo del desfase $\phi$):} \\
+	$x(t) = A \cos(\omega t + \phi) \implies 0.06 = 0.1 \cos(14.7(0.2) + \phi)$ \\
+	$\cos(2.94 + \phi) = 0.6 \implies 2.94 + \phi = 0.927 \text{ rad} \implies \phi = -2.013 \text{ rad}$. \\
+	\\
+	\textbf{Ecuaciones:} \\
+	Posición: $\mathbf{x(t) = 0.1 \cos(14.7 t - 2.01)}$ \textit{(en metros)} \\
+	Velocidad: $\mathbf{v(t) = -1.47 \operatorname{sen}(14.7 t - 2.01)}$ \textit{(en m/s)} \\
+	Aceleración: $\mathbf{a(t) = -21.6 \cos(14.7 t - 2.01)}$ \textit{(en m/s$^2$)} \\
+	\\
+	\textbf{b. Valores de $t$ por el origen ($x = 0$):} \\
+	$\cos(14.7 t - 2.01) = 0 \implies 14.7 t - 2.01 = \dfrac{\pi}{2} \approx 1.57$ \\
+	$14.7 t = 3.58 \implies t = \dfrac{3.58}{14.7} \approx \mathbf{0.24 \text{ s}}$. (Y cada múltiplo de $T/2$).
+}
+
+\subsection*{3. Relación de variables en cualquier posición}
+\noindent \textbf{Enunciado:} Un cuerpo está vibrando con movimiento armónico simple de 12 cm de amplitud y 3 Hz de frecuencia, calcúlense: a. Los valores máximos de la posición, aceleración y de la velocidad. b. La aceleración y la velocidad cuando el desplazamiento es 7 cm. c. El tiempo necesario para desplazarse desde la posición de equilibrio a un punto situado a 9 cm de la misma.
+
+\respOperacional[7.5cm]{
+	\textbf{Datos:} $A = 12 \text{ cm} = 0.12 \text{ m}$, $f = 3 \text{ Hz} \implies \omega = 2\pi(3) = 6\pi \text{ rad/s} \approx 18.85 \text{ rad/s}$. \\
+	\\
+	\textbf{a. Valores Máximos:} \\
+	$x_{max} = A = \mathbf{12 \text{ cm}}$. \\
+	$v_{max} = A\omega = 12 \times 6\pi = 72\pi \approx \mathbf{226.2 \text{ cm/s}}$. \\
+	$a_{max} = A\omega^2 = 12 \times (6\pi)^2 = 432\pi^2 \approx \mathbf{4263.9 \text{ cm/s}^2}$. \\
+	\\
+	\textbf{b. Valores en $x = 7 \text{ cm}$:} \\
+	$a = -\omega^2 x = -(18.85)^2 (7) = \mathbf{-2487.3 \text{ cm/s}^2}$. \\
+	$v = \pm \omega \sqrt{A^2 - x^2} = \pm 18.85 \sqrt{12^2 - 7^2} = \pm 18.85 \sqrt{95} \approx \mathbf{\pm 183.7 \text{ cm/s}}$. \\
+	\\
+	\textbf{c. Tiempo desde el equilibrio ($x=0$) hasta $x=9 \text{ cm}$:} \\
+	Se usa la función seno (inicia en cero): $x(t) = A \operatorname{sen}(\omega t)$ \\
+	$9 = 12 \operatorname{sen}(18.85 t) \implies \operatorname{sen}(18.85 t) = 0.75$ \\
+	$18.85 t = \operatorname{arcsen}(0.75) \approx 0.848 \text{ rad} \implies t = \dfrac{0.848}{18.85} = \mathbf{0.045 \text{ segundos}}$.
+}
+
+\subsection*{4. El M.A.S. en el resorte}
+\noindent \textbf{Enunciado:} Un cuerpo de 1.3 kg de masa está suspendido de un resorte de masa despreciable, y se produce un alargamiento de 18 cm. a. ¿Cuál es la constante de recuperación del resorte? b. ¿Cuál es el período de oscilación del cuerpo si se tira hacia abajo y se abandona así mismo? c. ¿Cuál sería el período de un cuerpo de 4 kg de masa pendiente del mismo resorte?
+
+\respOperacional[5cm]{
+	\textbf{Datos iniciales:} $m_1 = 1.3 \text{ kg}$, $\Delta x = 18 \text{ cm} = 0.18 \text{ m}$. \\
+	\\
+	\textbf{a. Constante del resorte ($k$):} (Equilibrio de fuerzas $mg = k\Delta x$) \\
+	$k = \dfrac{m_1 \cdot g}{\Delta x} = \dfrac{1.3 \times 9.8}{0.18} = \dfrac{12.74}{0.18} = \mathbf{70.78 \text{ N/m}}$. \\
+	\\
+	\textbf{b. Período con $m_1 = 1.3 \text{ kg}$:} \\
+	$T_1 = 2\pi \sqrt{\dfrac{m_1}{k}} = 2\pi \sqrt{\dfrac{1.3}{70.78}} \approx 2\pi(0.135) \approx \mathbf{0.85 \text{ segundos}}$. \\
+	\\
+	\textbf{c. Período con $m_2 = 4 \text{ kg}$:} \\
+	$T_2 = 2\pi \sqrt{\dfrac{m_2}{k}} = 2\pi \sqrt{\dfrac{4}{70.78}} \approx 2\pi(0.237) \approx \mathbf{1.49 \text{ segundos}}$.
+}
+
+\subsection*{5. Reconstrucción a partir de la velocidad}
+\noindent \textbf{Enunciado:} Un objeto oscila con un M.A.S. de tal forma que su velocidad varía de acuerdo con la expresión $v = -5 \operatorname{sen}(\pi t)$. Donde $x$ está en cm y $t$ en s. Encuentre: a. Ecuaciones de desplazamiento y aceleración. b. Periodo y amplitud. c. Aceleración a los 0.8 s. d. Posición a los 2/3 del periodo e. Posición, velocidad y aceleración máximas.
+\textit{*(Nota: Se asume "$\pi t$" corrigiendo el error tipográfico "$nt$" del original).* }
+
+\respOperacional[8cm]{
+	\textbf{Comparación con modelo estándar:} $v(t) = -A\omega \operatorname{sen}(\omega t)$ \\
+	Deducimos que: $\omega = \pi \text{ rad/s}$ y $A\omega = 5 \implies A\pi = 5 \implies A = \dfrac{5}{\pi} \approx \mathbf{1.59 \text{ cm}}$. \\
+	\\
+	\textbf{a. Ecuaciones:} \\
+	Desplazamiento: $x(t) = \mathbf{1.59 \cos(\pi t)}$ \\
+	Aceleración: $a(t) = \dfrac{dv}{dt} = \mathbf{-5\pi \cos(\pi t)}$ \\
+	\\
+	\textbf{b. Periodo y Amplitud:} \\
+	$T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{\pi} = \mathbf{2 \text{ segundos}}$. \quad Amplitud = $\mathbf{1.59 \text{ cm}}$. \\
+	\\
+	\textbf{c. Aceleración a los 0.8 s:} \\
+	$a(0.8) = -5\pi \cos(\pi \cdot 0.8) = -15.7 \cos(2.51 \text{ rad}) = -15.7(-0.809) \approx \mathbf{12.71 \text{ cm/s}^2}$. \\
+	\\
+	\textbf{d. Posición a los 2/3 del periodo ($t = \dfrac{4}{3} \text{ s}$):} \\
+	$x(4/3) = 1.59 \cos(\pi \cdot \dfrac{4}{3}) = 1.59 \cos(240^{\circ}) = 1.59(-0.5) = \mathbf{-0.795 \text{ cm}}$. \\
+	\\
+	\textbf{e. Valores máximos:} \\
+	$x_{max} = A = \mathbf{1.59 \text{ cm}}$. \quad $v_{max} = \mathbf{5 \text{ cm/s}}$. \quad $a_{max} = 5\pi \approx \mathbf{15.7 \text{ cm/s}^2}$.
+}
+
+\newpage
+\section*{ANÁLISIS DE RESULTADOS: Laboratorio 11F-01P (El Péndulo Simple)}
+
+\respOperacional[7cm]{
+	\textbf{1. Masa y periodo de oscilación:} \\
+	La masa del péndulo \textbf{no afecta} el periodo de oscilación. Matemáticamente, en la deducción a partir de las Leyes de Newton, la masa del objeto se cancela de la ecuación ($T = 2\pi\sqrt{l/g}$). Experimentalmente, se comprueba que un péndulo liviano y uno pesado, con la misma longitud de cuerda, oscilan al unísono. \\
+	\\
+	\textbf{2. Amplitud angular y periodo:} \\
+	Para amplitudes pequeñas (generalmente menores a $15^{\circ}$), la amplitud \textbf{no afecta} significativamente el periodo. A esto se le conoce como el \textit{isocronismo} del péndulo. Sin embargo, para ángulos grandes, el movimiento deja de ser un M.A.S. ideal y el periodo comienza a aumentar ligeramente. \\
+	\\
+	\textbf{3. Longitud del péndulo y periodo:} \\
+	La longitud de la cuerda \textbf{sí afecta} directamente el periodo de oscilación. Cuanto mayor es la longitud de la cuerda, el péndulo debe recorrer un arco de circunferencia mayor, por lo que tarda más tiempo en completar una oscilación completa ($T$ aumenta). \\
+	\\
+	\textbf{4. Relación matemática entre variables:} \\
+	La relación que se establece entre el periodo ($T$) y la longitud ($l$) es \textbf{directamente proporcional a la raíz cuadrada de la longitud}. Esto significa que para que el periodo de un péndulo se duplique, es necesario que la longitud de su cuerda se multiplique por cuatro ($T \propto \sqrt{l}$).
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN PARA EXAMEN - TAU 1 (11°)
+% =================================================================
+\newpage
+\begin{center}
+	{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+	{\Large \textbf{Evaluación TAU 1: Generalidades del Movimiento Armónico Simple (M.A.S.)}}\\[0.1cm]
+	\hrule
+\end{center}
+
+\vspace{0.5cm}
+
+\subsection*{1. Péndulo Simple y Gravedad}
+\noindent \textbf{Enunciado:} Un péndulo simple en la Tierra tiene una longitud de 0.99 m y un periodo de oscilación de aproximadamente 2 segundos. a. Si este mismo péndulo se lleva a un planeta donde la gravedad es la cuarta parte de la gravedad terrestre ($g_{T} \approx 9.8 \text{ m/s}^2$), ¿cuál será su nuevo periodo?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $L = 0.99 \text{ m}$, $g_{planeta} = \dfrac{9.8}{4} = 2.45 \text{ m/s}^2$. \\
+	La ecuación del periodo de un péndulo es inversamente proporcional a la raíz cuadrada de la aceleración gravitacional: $T = 2\pi\sqrt{\dfrac{l}{g}}$. \\
+	\\
+	\textbf{Cálculo del nuevo periodo ($T$):} \\
+	$T = 2\pi \sqrt{\dfrac{0.99}{2.45}} \approx 2\pi \sqrt{0.404} \approx 2\pi(0.635) \approx \mathbf{3.99 \text{ segundos}}$. \\
+	\textit{Nota:} Al reducirse la gravedad a la cuarta parte, el periodo se duplica.
+}
+
+\subsection*{2. Dinámica del M.A.S. en Resortes}
+\noindent \textbf{Enunciado:} Un bloque de 0.5 kg se cuelga de un resorte ideal, generando un alargamiento de 10 cm ($0.1$ m) al llegar a su punto de equilibrio. Posteriormente, se separa de esa posición y se pone a oscilar. a. Determine la constante elástica del resorte. b. Calcule el periodo de oscilación del sistema.
+
+\respOperacional[5.5cm]{
+	\textbf{a. Constante del resorte ($k$):} \\
+	En la posición de equilibrio sin oscilar, la fuerza que se necesita para estirar el resorte es proporcional al alargamiento ($mg = k\Delta x$). \\
+	$k = \dfrac{m \cdot g}{\Delta x} = \dfrac{0.5 \times 9.8}{0.1} = \dfrac{4.9}{0.1} = \mathbf{49 \text{ N/m}}$. \\
+	\\
+	\textbf{b. Periodo de oscilación ($T$):} \\
+	El periodo es proporcional a la raíz cuadrada de la masa e inversamente proporcional a la raíz cuadrada de la constante elástica: $T = 2\pi\sqrt{\dfrac{m}{k}}$. \\
+	$T = 2\pi \sqrt{\dfrac{0.5}{49}} = 2\pi \sqrt{0.0102} \approx 2\pi(0.101) \approx \mathbf{0.63 \text{ segundos}}$.
+}
+
+\subsection*{3. Cinemática del Movimiento Armónico Simple}
+\noindent \textbf{Enunciado:} Una partícula oscila según la ecuación de posición $x(t) = 0.25 \cos(4\pi t)$ donde $x$ está en metros y $t$ en segundos. Determine: a. La amplitud, frecuencia angular y periodo. b. La ecuación de la velocidad en función del tiempo. c. La aceleración máxima.
+
+\respOperacional[6cm]{
+	\textbf{a. Parámetros del movimiento:} \\
+	Comparando con la ecuación estándar $x(t) = A \cos(\omega t)$: \\
+	Amplitud ($A$) = $\mathbf{0.25 \text{ m}}$. \\
+	Velocidad angular ($\omega$) = $\mathbf{4\pi \text{ rad/s}}$. \\
+	Periodo ($T$) = $\dfrac{2\pi}{\omega} = \dfrac{2\pi}{4\pi} = \mathbf{0.5 \text{ segundos}}$. \\
+	\\
+	\textbf{b. Ecuación de Velocidad ($v(t)$):} \\
+	Derivando la posición con respecto al tiempo: $v(t) = \dfrac{dx}{dt} = -A\omega \operatorname{sen}(\omega t) = -0.25(4\pi) \operatorname{sen}(4\pi t) = \mathbf{-\pi \operatorname{sen}(4\pi t) \text{ m/s}}$. \\
+	\\
+	\textbf{c. Aceleración máxima ($a_{max}$):} \\
+	La aceleración máxima está dada por la expresión $a_{max} = A\omega^2$. \\
+	$a_{max} = 0.25 \times (4\pi)^2 = 0.25 \times 16\pi^2 = \mathbf{4\pi^2 \approx 39.47 \text{ m/s}^2}$.
+}
+
+\subsection*{4. Relación de variables en posición de equilibrio y extremos}
+\noindent \textbf{Enunciado:} Un cuerpo experimenta un M.A.S. con una amplitud de 15 cm. Si su velocidad al pasar por la posición de equilibrio es de $60 \text{ cm/s}$, calcule: a. Su frecuencia angular ($\omega$). b. Su aceleración en los extremos de la trayectoria.
+
+\respOperacional[5cm]{
+	\textbf{a. Frecuencia angular ($\omega$):} \\
+	En el instante en que la masa pasa por la posición de equilibrio, la velocidad es máxima. \\
+	$v_{max} = A\omega \implies 60 = 15 \cdot \omega \implies \omega = \dfrac{60}{15} = \mathbf{4 \text{ rad/s}}$. \\
+	\\
+	\textbf{b. Aceleración en los extremos:} \\
+	En los puntos de retorno o extremos de la trayectoria ($x = \pm A$), la aceleración alcanza su valor máximo. \\
+	$a_{max} = A\omega^2 = 15 \times (4)^2 = 15 \times 16 = \mathbf{240 \text{ cm/s}^2}$. \\
+	*(Tendrá un valor de $-240 \text{ cm/s}^2$ en el extremo positivo y $+240 \text{ cm/s}^2$ en el extremo negativo, ya que la fuerza restauradora tiene dirección contraria al desplazamiento)*.
+}
+
+\subsection*{5. Conceptos Dinámicos del M.A.S.}
+\noindent \textbf{Enunciado:} Responda y justifique brevemente: a. ¿Qué ocurre con la aceleración cuando la masa pasa por el punto de equilibrio? b. ¿El periodo de oscilación de un péndulo simple depende de la masa que se ponga a oscilar?
+
+\respOperacional[4cm]{
+	\textbf{a. Aceleración en el equilibrio:} \\
+	En el instante en que la masa pasa por la posición de equilibrio, la fuerza recuperadora es nula y, por lo tanto, la aceleración vale cero ($a=0$). \\
+	\\
+	\textbf{b. Masa y periodo en el péndulo:} \\
+	\textbf{No depende.} La segunda ley formulada empíricamente establece que el periodo de oscilación es igual para cualquier masa. Teóricamente, la masa del objeto se cancela de la ecuación ($T = 2\pi\sqrt{l/g}$).
+}
+% =================================================================
+% TAU 2: EL M.A.S. TIENE ENERGÍA (11°)
+% =================================================================
+\newpage
+\section*{TAU 2 - EL M.A.S. TIENE ENERGÍA}
+
+\section*{ACTIVIDAD 2.1: Energía en el M.A.S.}
+
+\subsection*{1. Energía y estiramiento de un resorte}
+\noindent \textbf{Enunciado:} A un resorte de constante $25 \text{ N/m}$, se cuelga una masa de $180 \text{ g}$ y oscila con una amplitud de $8 \text{ cm}$. a. ¿Cuál es la energía asociada al resorte? b. ¿Cuál es su velocidad cuando pasa por el punto de equilibrio? c. Según la ley de Hooke al colgar la masa y dejar libremente el resorte hasta que quede en reposo ¿Cuál es su estiramiento?
+
+\respOperacional[7.5cm]{
+	\textbf{Datos:} $k = 25 \text{ N/m}$, $m = 180 \text{ g} = 0.18 \text{ kg}$, $A = 8 \text{ cm} = 0.08 \text{ m}$. \\
+	\\
+	\textbf{a. Energía asociada ($E$):} \\
+	La energía mecánica total en los extremos es puramente potencial elástica: \\
+	$E = \dfrac{1}{2} k A^2 = 0.5 \times 25 \times (0.08)^2 = 12.5 \times 0.0064 = \mathbf{0.08 \text{ Joules}}$. \\
+	\\
+	\textbf{b. Velocidad en el punto de equilibrio ($v_{max}$):} \\
+	Toda la energía es cinética en este punto: $E = E_{c,max} = \dfrac{1}{2} m v_{max}^2$. \\
+	$0.08 = 0.5 \times 0.18 \times v_{max}^2 \implies 0.08 = 0.09 \times v_{max}^2 \implies v_{max} = \sqrt{\dfrac{0.08}{0.09}} \approx \mathbf{0.943 \text{ m/s}}$. \\
+	\\
+	\textbf{c. Estiramiento en reposo ($\Delta x$):} \\
+	En reposo, la fuerza del peso se equilibra con la fuerza restauradora ($mg = k\Delta x$). \\
+	$\Delta x = \dfrac{mg}{k} = \dfrac{0.18 \times 9.8}{25} = \dfrac{1.764}{25} = \mathbf{0.07056 \text{ m} \approx 7.06 \text{ cm}}$.
+}
+
+\subsection*{2. Masa oscilando horizontalmente}
+\noindent \textbf{Enunciado:} Una masa se mueve sin fricción horizontalmente entre dos puntos separados a 12 cm y tiene una energía asociada de 0.6 J, su velocidad al pasar por el punto de equilibrio es de 18 cm/s. a. ¿Cuál es la constante elástica del resorte? b. ¿Qué masa tiene unida? c. ¿Cuál es su estiramiento con la masa suspendida en reposo?
+
+\respOperacional[7.5cm]{
+	\textbf{Datos:} Distancia total = $12 \text{ cm} \implies A = 6 \text{ cm} = 0.06 \text{ m}$. $E = 0.6 \text{ J}$. $v_{max} = 18 \text{ cm/s} = 0.18 \text{ m/s}$. \\
+	\\
+	\textbf{a. Constante elástica ($k$):} \\
+	$E = \dfrac{1}{2} k A^2 \implies 0.6 = 0.5 \times k \times (0.06)^2 \implies 0.6 = 0.0018 k$ \\
+	$k = \dfrac{0.6}{0.0018} = \mathbf{333.33 \text{ N/m}}$. \\
+	\\
+	\textbf{b. Masa unida ($m$):} \\
+	$E = \dfrac{1}{2} m v_{max}^2 \implies 0.6 = 0.5 \times m \times (0.18)^2 \implies 0.6 = 0.0162 m$ \\
+	$m = \dfrac{0.6}{0.0162} \approx \mathbf{37.04 \text{ kg}}$. \\
+	\\
+	\textbf{c. Estiramiento con masa suspendida en reposo ($\Delta x$):} \\
+	Asumiendo que el sistema se colgara verticalmente, el equilibrio sería $mg = k\Delta x$. \\
+	$\Delta x = \dfrac{mg}{k} = \dfrac{37.04 \times 9.8}{333.33} \approx \dfrac{362.99}{333.33} \approx \mathbf{1.089 \text{ metros}}$.
+}
+
+\subsection*{3. Péndulo: Energía y Amplitud}
+\noindent \textbf{Enunciado:} A un péndulo de 120 cm se le cuelga una masa de 80 g y empieza a oscilar libremente pasando por el punto equilibrio a razón de $0.5 \text{ m/s}$. a. ¿Cuál es la energía asociada al sistema? b. Cuál es la amplitud.
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $L = 120 \text{ cm} = 1.2 \text{ m}$, $m = 80 \text{ g} = 0.08 \text{ kg}$, $v_{max} = 0.5 \text{ m/s}$. \\
+	\\
+	\textbf{a. Energía asociada ($E$):} \\
+	En el punto de equilibrio, toda la energía es cinética. \\
+	$E = \dfrac{1}{2} m v_{max}^2 = 0.5 \times 0.08 \times (0.5)^2 = 0.04 \times 0.25 = \mathbf{0.01 \text{ Joules}}$. \\
+	\\
+	\textbf{b. Amplitud ($A$):} \\
+	Para un péndulo, $\omega = \sqrt{\dfrac{g}{L}} = \sqrt{\dfrac{9.8}{1.2}} \approx \sqrt{8.167} \approx 2.858 \text{ rad/s}$. \\
+	Como $v_{max} = A\omega \implies 0.5 = A(2.858) \implies A = \dfrac{0.5}{2.858} \approx \mathbf{0.175 \text{ m} = 17.5 \text{ cm}}$.
+}
+
+\subsection*{4. Análisis completo de un péndulo}
+\noindent \textbf{Enunciado:} Un péndulo de 0.9 m de longitud oscila con una masa de 30 g unida a él, en un momento determinado presenta 0.08 J de energía cinética y 0.03 J de energía potencial elástica. a. ¿Cuál es su amplitud? b. ¿Cuál es su velocidad al pasar por el punto de equilibrio? c. ¿Cuál es su velocidad cuando la elongación es 6 cm? d. ¿Cuál es su posición cuando la velocidad es de 0.5 m/s?
+
+\respOperacional[9cm]{
+	\textbf{Datos iniciales:} $L = 0.9 \text{ m}$, $m = 0.03 \text{ kg}$, $E_{Total} = E_c + E_p = 0.08 + 0.03 = \mathbf{0.11 \text{ J}}$. \\
+	Constante equivalente del péndulo ($k_{eq}$) = $m\omega^2 = m(\dfrac{g}{L}) = 0.03(\dfrac{9.8}{0.9}) \approx \mathbf{0.3267 \text{ N/m}}$. \\
+	\\
+	\textbf{a. Amplitud ($A$):} \\
+	$E = \dfrac{1}{2} k_{eq} A^2 \implies 0.11 = 0.5 \times 0.3267 \times A^2 \implies A = \sqrt{\dfrac{0.11}{0.16335}} \approx \mathbf{0.82 \text{ metros}}$. \\
+	\\
+	\textbf{b. Velocidad en el equilibrio ($v_{max}$):} \\
+	$E = \dfrac{1}{2} m v_{max}^2 \implies 0.11 = 0.5 \times 0.03 \times v_{max}^2 \implies v_{max} = \sqrt{\dfrac{0.11}{0.015}} \approx \mathbf{2.71 \text{ m/s}}$. \\
+	\\
+	\textbf{c. Velocidad cuando $x = 6 \text{ cm} = 0.06 \text{ m}$:} \\
+	$E = E_c + E_p \implies 0.11 = \dfrac{1}{2}(0.03)v^2 + \dfrac{1}{2}(0.3267)(0.06)^2$ \\
+	$0.11 = 0.015v^2 + 0.000588 \implies 0.1094 = 0.015v^2 \implies v = \sqrt{7.293} \approx \mathbf{2.70 \text{ m/s}}$. \\
+	\\
+	\textbf{d. Posición cuando $v = 0.5 \text{ m/s}$:} \\
+	$E = E_c + E_p \implies 0.11 = \dfrac{1}{2}(0.03)(0.5)^2 + \dfrac{1}{2}(0.3267)x^2$ \\
+	$0.11 = 0.00375 + 0.16335x^2 \implies 0.10625 = 0.16335x^2 \implies x = \sqrt{0.650} \approx \mathbf{0.806 \text{ m}}$.
+}
+
+\newpage
+\section*{ACTIVIDAD 2.2: Introducción al movimiento ondulatorio}
+
+\subsection*{1. Análisis de ondas generadas por pulsos}
+\noindent \textbf{Enunciado:} Una fuente genera 12 pulsos en 4 segundos, generando ondas de 5 cm de longitud. a. ¿Cuál es la frecuencia y el periodo? b. ¿Cuál es la velocidad? c. ¿Cuánto recorre una onda en 7 segundos?
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $n = 12 \text{ pulsos}$, $t = 4 \text{ s}$, $\lambda = 5 \text{ cm} = 0.05 \text{ m}$. \\
+	\\
+	\textbf{a. Frecuencia ($f$) y Periodo ($T$):} \\
+	$f = \dfrac{n}{t} = \dfrac{12}{4} = \mathbf{3 \text{ Hz}}$. \\
+	$T = \dfrac{1}{f} = \dfrac{1}{3} \approx \mathbf{0.33 \text{ segundos}}$. \\
+	\\
+	\textbf{b. Velocidad ($v$):} \\
+	$v = \lambda \cdot f = 0.05 \text{ m} \times 3 \text{ Hz} = \mathbf{0.15 \text{ m/s}}$ ($15 \text{ cm/s}$). \\
+	\\
+	\textbf{c. Distancia recorrida en $t=7 \text{ s}$:} \\
+	Usando cinemática de onda constante: $d = v \cdot t = 0.15 \text{ m/s} \times 7 \text{ s} = \mathbf{1.05 \text{ metros}}$.
+}
+
+\subsection*{2. Ondas en un medio}
+\noindent \textbf{Enunciado:} Cierta onda se propaga en un medio a razón de $20 \text{ m/s}$. a. ¿Cuál es la longitud de onda, si lo hace a razón de 5 Hz? b. ¿Cuánto tiempo le toma completar 8 oscilaciones?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $v = 20 \text{ m/s}$. \\
+	\\
+	\textbf{a. Longitud de onda ($\lambda$) para $f = 5 \text{ Hz}$:} \\
+	$v = \lambda \cdot f \implies \lambda = \dfrac{v}{f} = \dfrac{20 \text{ m/s}}{5 \text{ Hz}} = \mathbf{4 \text{ metros}}$. \\
+	\\
+	\textbf{b. Tiempo para 8 oscilaciones:} \\
+	Primero hallamos el periodo: $T = \dfrac{1}{f} = \dfrac{1}{5} = 0.2 \text{ s}$. \\
+	El tiempo total será el número de oscilaciones por el periodo: \\
+	$t_{total} = n \cdot T = 8 \times 0.2 \text{ s} = \mathbf{1.6 \text{ segundos}}$.
+}
+
+\subsection*{3. Desplazamiento y longitud}
+\noindent \textbf{Enunciado:} Una fuente genera ondas que se desplazan 3m en 2 segundos, cuya longitud es de 20 cm. a. ¿Cuál es su frecuencia? b. ¿Cuál es la velocidad de onda?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $d = 3 \text{ m}$, $t = 2 \text{ s}$, $\lambda = 20 \text{ cm} = 0.2 \text{ m}$. \\
+	\\
+	\textbf{b. Velocidad de onda ($v$):} \textit{(Se halla primero por ser dato directo)} \\
+	$v = \dfrac{d}{t} = \dfrac{3 \text{ m}}{2 \text{ s}} = \mathbf{1.5 \text{ m/s}}$. \\
+	\\
+	\textbf{a. Frecuencia ($f$):} \\
+	De la ecuación de velocidad $v = \lambda \cdot f$: \\
+	$f = \dfrac{v}{\lambda} = \dfrac{1.5 \text{ m/s}}{0.2 \text{ m}} = \mathbf{7.5 \text{ Hz}}$.
+}
+
+\newpage
+\section*{ANÁLISIS DE RESULTADOS: Laboratorio 11F-02P (Análisis del resorte)}
+
+\respOperacional[8cm]{
+	\textbf{1. Cálculo de la constante de elasticidad con la pendiente:} \\
+	Sí, es totalmente posible. Según la ley de Hooke en magnitud ($F = k\Delta x$), la fuerza aplicada es directamente proporcional al estiramiento. Si se grafica la Fuerza ($F$) en el eje coordenado vertical contra el estiramiento ($\Delta x$) en el eje horizontal, se obtiene una función lineal. La ecuación algebraica de la pendiente de esta recta ($m = \dfrac{\Delta y}{\Delta x} = \dfrac{F}{\Delta x}$) corresponde exactamente al valor experimental de la constante de elasticidad ($k$). \\
+	\\
+	\textbf{2. Significado físico de la constante de elasticidad:} \\
+	La constante de elasticidad ($k$) representa el grado de rigidez del resorte. Físicamente, nos indica la cantidad de fuerza específica (en Newtons) que se requiere aplicar al resorte para lograr deformarlo (estirarlo o comprimirlo) una unidad de longitud (un metro). Un valor alto de $k$ significa que el resorte es muy rígido o "duro", mientras que un valor bajo indica un resorte muy flexible. \\
+	\\
+	\textbf{3. Efecto de la masa en el periodo de oscilación:} \\
+	La masa unida al resorte afecta directamente el tiempo de oscilación, incrementando su valor. De acuerdo con el modelo dinámico del resorte ($T = 2\pi\sqrt{\dfrac{m}{k}}$), el periodo es directamente proporcional a la raíz cuadrada de la masa. En consecuencia, si se aumenta la masa suspendida, la inercia del sistema aumenta y el resorte tardará más tiempo en completar cada oscilación. \\
+	\\
+	\textbf{4. Factores que afectan el porcentaje de error:} \\
+	Las variaciones entre el periodo teórico y el experimental pueden atribuirse a las siguientes condiciones reales del montaje:
+	\begin{itemize}
+		\item \textbf{Masa del resorte:} La fórmula teórica asume un resorte ideal cuya masa es cero. En la práctica, la masa propia del resorte interactúa con el sistema y suma inercia.
+		\item \textbf{Errores humanos de medición:} El tiempo de reacción al iniciar y detener el cronómetro, o el error de paralaje visual al medir la longitud con el flexómetro.
+		\item \textbf{Fuerzas disipativas:} La resistencia que ejerce el aire sobre las masas al subir y bajar, así como la fricción interna en el material del resorte, disipan energía y alteran el movimiento armónico simple ideal.
+	\end{itemize}
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN PARA EXAMEN - TAU 2 (11°)
+% =================================================================
+\newpage
+\begin{center}
+	{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+	{\Large \textbf{Evaluación TAU 2: Energía del M.A.S. e Introducción a las Ondas}}\\[0.1cm]
+	\hrule
+\end{center}
+
+\vspace{0.5cm}
+
+\subsection*{1. Sistema Masa-Resorte: Conservación de la Energía}
+\noindent \textbf{Enunciado:} Un bloque de 250 g oscila atado a un resorte horizontal en una superficie sin fricción. El sistema tiene una energía mecánica total de 1.2 J y la amplitud de su movimiento es de 10 cm. Determine: a. La constante elástica del resorte. b. La velocidad máxima que alcanza el bloque.
+
+\respOperacional[6.5cm]{
+	\textbf{Datos:} $m = 250 \text{ g} = 0.25 \text{ kg}$, $E_{Total} = 1.2 \text{ J}$, $A = 10 \text{ cm} = 0.1 \text{ m}$. \\
+	\\
+	\textbf{a. Constante elástica del resorte ($k$):} \\
+	En los extremos de la trayectoria, la velocidad es cero y toda la energía es potencial elástica: \\
+	$E_{Total} = \dfrac{1}{2} k A^2 \implies 1.2 = 0.5 \cdot k \cdot (0.1)^2 \implies 1.2 = 0.005 k$ \\
+	$k = \dfrac{1.2}{0.005} = \mathbf{240 \text{ N/m}}$. \\
+	\\
+	\textbf{b. Velocidad máxima ($v_{max}$):} \\
+	Al pasar por el punto de equilibrio ($x=0$), toda la energía es cinética: \\
+	$E_{Total} = \dfrac{1}{2} m v_{max}^2 \implies 1.2 = 0.5 \cdot 0.25 \cdot v_{max}^2 \implies 1.2 = 0.125 v_{max}^2$ \\
+	$v_{max}^2 = \dfrac{1.2}{0.125} = 9.6 \implies v_{max} = \sqrt{9.6} \approx \mathbf{3.10 \text{ m/s}}$.
+}
+
+\subsection*{2. Energía en un Péndulo Simple}
+\noindent \textbf{Enunciado:} Un péndulo simple de 80 cm de longitud tiene una masa oscilante de 50 g. Al oscilar, se registra que pasa por su punto de equilibrio con una velocidad de 0.8 m/s. a. Calcule la energía mecánica del sistema. b. Determine la amplitud lineal de su movimiento.
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $L = 80 \text{ cm} = 0.8 \text{ m}$, $m = 50 \text{ g} = 0.05 \text{ kg}$, $v_{max} = 0.8 \text{ m/s}$. \\
+	\\
+	\textbf{a. Energía mecánica del sistema ($E$):} \\
+	Evaluando en el punto de equilibrio donde $E = E_c$: \\
+	$E = \dfrac{1}{2} m v_{max}^2 = 0.5 \cdot 0.05 \cdot (0.8)^2 = 0.025 \cdot 0.64 = \mathbf{0.016 \text{ Joules}}$. \\
+	\\
+	\textbf{b. Amplitud lineal ($A$):} \\
+	Para un péndulo, la velocidad angular es $\omega = \sqrt{\dfrac{g}{L}} = \sqrt{\dfrac{9.8}{0.8}} = \sqrt{12.25} = 3.5 \text{ rad/s}$. \\
+	Sabemos que $v_{max} = A\omega \implies 0.8 = A(3.5) \implies A = \dfrac{0.8}{3.5} \approx \mathbf{0.228 \text{ m} \text{ (o } 22.8 \text{ cm)}}$.
+}
+
+\subsection*{3. Cinemática Básica de Ondas}
+\noindent \textbf{Enunciado:} Una cuerda tensa es agitada en uno de sus extremos generando 24 oscilaciones completas en 6 segundos. Si un estudiante mide que la distancia entre dos crestas consecutivas es de 15 cm, calcule: a. La frecuencia y el periodo de la onda producida. b. La velocidad de propagación de la onda en la cuerda.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $n_{osc} = 24$, $t = 6 \text{ s}$, $\lambda = 15 \text{ cm} = 0.15 \text{ m}$ (distancia entre crestas). \\
+	\\
+	\textbf{a. Frecuencia ($f$) y Periodo ($T$):} \\
+	$f = \dfrac{n_{osc}}{t} = \dfrac{24}{6} = \mathbf{4 \text{ Hz}}$. \\
+	$T = \dfrac{1}{f} = \dfrac{1}{4} = \mathbf{0.25 \text{ segundos}}$. \\
+	\\
+	\textbf{b. Velocidad de propagación ($v$):} \\
+	$v = \lambda \cdot f = 0.15 \text{ m} \cdot 4 \text{ Hz} = \mathbf{0.6 \text{ m/s}}$.
+}
+
+\subsection*{4. Propagación y Tiempos de Recorrido}
+\noindent \textbf{Enunciado:} Una onda sonora se propaga en el agua del mar a una velocidad aproximada de $1500 \text{ m/s}$. Si un dispositivo emite un tono con una frecuencia de 500 Hz, determine: a. Su longitud de onda en este medio. b. El tiempo que tarda la onda en recorrer una distancia de 3 km hasta llegar a un submarino.
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $v = 1500 \text{ m/s}$, $f = 500 \text{ Hz}$, $d = 3 \text{ km} = 3000 \text{ m}$. \\
+	\\
+	\textbf{a. Longitud de onda ($\lambda$):} \\
+	Despejando de $v = \lambda \cdot f \implies \lambda = \dfrac{v}{f}$ \\
+	$\lambda = \dfrac{1500}{500} = \mathbf{3 \text{ metros}}$. \\
+	\\
+	\textbf{b. Tiempo de recorrido ($t$):} \\
+	Utilizando cinemática de velocidad constante para la onda ($v = \dfrac{d}{t}$): \\
+	$t = \dfrac{d}{v} = \dfrac{3000 \text{ m}}{1500 \text{ m/s}} = \mathbf{2 \text{ segundos}}$.
+}
+
+\subsection*{5. Conceptos Físicos de Energía en M.A.S.}
+\noindent \textbf{Enunciado:} Considere un sistema masa-resorte horizontal sin fricción que describe un Movimiento Armónico Simple. Explique detalladamente cómo se transforman la energía cinética y la energía potencial elástica cuando la masa se desplaza desde uno de sus puntos de retorno (amplitud máxima) hacia el punto de equilibrio.
+
+\respOperacional[4.5cm]{
+	\textbf{Respuesta Teórica:} \\
+	En el \textbf{punto de retorno (extremo)}, la masa se detiene momentáneamente ($v=0$), por lo tanto, la \textbf{energía cinética es nula}. En este instante, la deformación del resorte es máxima (amplitud total), lo que significa que \textbf{toda la energía mecánica del sistema es energía potencial elástica}. \\
+	A medida que la masa se desplaza hacia el \textbf{punto de equilibrio}, el resorte comienza a relajarse, lo que causa una \textbf{disminución en la energía potencial elástica}. Simultáneamente, la fuerza restauradora acelera la masa, provocando un \textbf{aumento en la energía cinética}. Al llegar exactamente al punto de equilibrio, el resorte no está deformado (energía potencial es cero) y la velocidad alcanza su valor máximo, por lo que \textbf{toda la energía se ha transformado en energía cinética}.
+}
+
+
+% TAU 3: LAS ONDAS Y SUS FENÓMENOS (11°)
+% =================================================================
+\newpage
+\section*{TAU 3 - LAS ONDAS Y SUS FENÓMENOS}
+
+\section*{ACTIVIDAD 3.1: Refracción y Reflexión}
+
+\subsection*{1. Ángulo de refracción en el agua}
+\noindent \textbf{Enunciado:} Un rayo de luz que se propaga en el aire entra en el agua con un ángulo de incidencia de $45^{\circ}$. Si el índice de refracción del agua es de 1.33, ¿cuál es el ángulo de refracción?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $n_1 = 1$ (aire), $\theta_i = 45^{\circ}$, $n_2 = 1.33$ (agua). \\
+	\\
+	\textbf{Ley de Snell:} $n_1 \cdot \operatorname{sen} \theta_i = n_2 \cdot \operatorname{sen} \theta_r$ \\
+	$1 \cdot \operatorname{sen}(45^{\circ}) = 1.33 \cdot \operatorname{sen} \theta_r$ \\
+	$0.707 = 1.33 \cdot \operatorname{sen} \theta_r \implies \operatorname{sen} \theta_r = \dfrac{0.707}{1.33} = 0.531$ \\
+	$\theta_r = \operatorname{arcsen}(0.531) = \mathbf{32.11^{\circ}}$.
+}
+
+\subsection*{2. Índice de refracción de un líquido}
+\noindent \textbf{Enunciado:} Un rayo de luz que se propaga en el aire entra en un líquido incidencia de $40^{\circ}$ y se refracta con un ángulo de $25^{\circ}$ ¿cuál es el índice de refracción del líquido?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $n_1 = 1$, $\theta_i = 40^{\circ}$, $\theta_r = 25^{\circ}$. \\
+	\\
+	\textbf{Ley de Snell:} $n_1 \cdot \operatorname{sen} \theta_i = n_2 \cdot \operatorname{sen} \theta_r$ \\
+	$1 \cdot \operatorname{sen}(40^{\circ}) = n_2 \cdot \operatorname{sen}(25^{\circ})$ \\
+	$0.642 = n_2 \cdot 0.422$ \\
+	$n_2 = \dfrac{0.642}{0.422} = \mathbf{1.52}$.
+}
+
+\subsection*{3. Velocidad de la luz en el medio}
+\noindent \textbf{Enunciado:} En el ejercicio anterior, sí la velocidad de la luz en el aire es $3 \times 10^{8} \text{ m/s}$ ¿Cuál la velocidad en el medio?
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $c = 3 \times 10^8 \text{ m/s}$, $n = 1.52$. \\
+	\\
+	\textbf{Fórmula de índice de refracción:} $n = \dfrac{c}{v}$ \\
+	$1.52 = \dfrac{3 \times 10^8}{v} \implies v = \dfrac{3 \times 10^8}{1.52}$ \\
+	$v = \mathbf{1.97 \times 10^8 \text{ m/s}}$.
+}
+
+\subsection*{4. Ángulo de incidencia con cambio de velocidad}
+\noindent \textbf{Enunciado:} Una onda incide sobre un medio disminuyendo su velocidad en un 10\%, si el ángulo de refracción es $30^{\circ}$, determine el ángulo de incidencia.
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $v_r = 0.9 \cdot v_i$ (disminución del 10\%), $\theta_r = 30^{\circ}$. \\
+	\\
+	\textbf{Ley de Snell (velocidades):} $\dfrac{\operatorname{sen} \theta_i}{\operatorname{sen} \theta_r} = \dfrac{v_i}{v_r}$ \\
+	$\dfrac{\operatorname{sen} \theta_i}{\operatorname{sen} 30^{\circ}} = \dfrac{v_i}{0.9 \cdot v_i} \implies \dfrac{\operatorname{sen} \theta_i}{0.5} = \dfrac{1}{0.9}$ \\
+	$\operatorname{sen} \theta_i = \dfrac{0.5}{0.9} = 0.555$ \\
+	$\theta_i = \operatorname{arcsen}(0.555) = \mathbf{33.74^{\circ}}$.
+}
+
+\subsection*{5. Longitudes de onda incidentes y refractadas}
+\noindent \textbf{Enunciado:} Un oscilador de 80 Hz genera ondas en el aire que viajan a razón de $300 \text{ m/s}$, estas ingresan a un medio con índice de 1.6. a. ¿Cuál es la longitud de las ondas incidentes? b. ¿Cuál es la longitud de las ondas refractadas?
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $f = 80 \text{ Hz}$, $v_1 = 300 \text{ m/s}$, $n = 1.6$. \\
+	\\
+	\textbf{a. Longitud incidente ($\lambda_1$):} \\
+	$v_1 = \lambda_1 \cdot f \implies \lambda_1 = \dfrac{v_1}{f} = \dfrac{300}{80} = \mathbf{3.75 \text{ metros}}$. \\
+	\\
+	\textbf{b. Longitud refractada ($\lambda_2$):} \\
+	Primero hallamos $v_2$: $n = \dfrac{v_1}{v_2} \implies 1.6 = \dfrac{300}{v_2} \implies v_2 = 187.5 \text{ m/s}$. \\
+	Como la frecuencia no cambia: $\lambda_2 = \dfrac{v_2}{f} = \dfrac{187.5}{80} = \mathbf{2.34 \text{ metros}}$.
+}
+
+\newpage
+\section*{ACTIVIDAD 3.2: Ecuación de Onda}
+
+\subsection*{1. Parámetros y Ecuación de Onda}
+\noindent \textbf{Enunciado:} Una onda de 5 cm de longitud oscila a razón de $3.2 \text{ rad/s}$ entre dos puntos separados 30 cm. Determine: d. Frecuencia y periodo. e. Velocidad f. Ecuación de onda si se desplaza hacia la derecha.
+
+\respOperacional[6cm]{
+	\textbf{Datos:} $\lambda = 5 \text{ cm} = 0.05 \text{ m}$, $\omega = 3.2 \text{ rad/s}$, $A = 0.15 \text{ m}$ (mitad de 30 cm). \\
+	\\
+	\textbf{d. Frecuencia y periodo:} \\
+	$T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{3.2} = \mathbf{1.96 \text{ s}}$. \quad $f = \dfrac{1}{T} = \mathbf{0.51 \text{ Hz}}$. \\
+	\\
+	\textbf{e. Velocidad:} $v = \lambda \cdot f = 0.05 \cdot 0.51 = \mathbf{0.0255 \text{ m/s}}$. \\
+	\\
+	\textbf{f. Ecuación ($y = A \cdot \operatorname{sen}(kx - \omega t)$):} \\
+	$k = \dfrac{2\pi}{\lambda} = \dfrac{2\pi}{0.05} = 40\pi \approx 125.66 \text{ rad/m}$. \\
+	$y(x,t) = \mathbf{0.15 \cdot \operatorname{sen}(125.66x - 3.2t)}$.
+}
+
+\subsection*{2. Onda hacia la izquierda}
+\noindent \textbf{Enunciado:} Una onda de 1.2 m de amplitud, avanza recorriendo 18 m en 6s, el periodo de oscilación es de 2 s. Determine: a. Velocidad angular b. Longitud de onda c. Ecuación de onda si se desplaza hacia la izquierda.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $A = 1.2 \text{ m}$, $v = \dfrac{18 \text{ m}}{6 \text{ s}} = 3 \text{ m/s}$, $T = 2 \text{ s}$. \\
+	\\
+	\textbf{a. Velocidad angular ($\omega$):} $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{2} = \mathbf{\pi \approx 3.14 \text{ rad/s}}$. \\
+	\textbf{b. Longitud de onda ($\lambda$):} $\lambda = v \cdot T = 3 \cdot 2 = \mathbf{6 \text{ metros}}$. \\
+	\textbf{c. Ecuación ($y = A \cdot \operatorname{sen}(kx + \omega t)$):} \\
+	$k = \dfrac{2\pi}{6} = \dfrac{\pi}{3} \approx 1.047 \text{ rad/m}$. \\
+	$y(x,t) = \mathbf{1.2 \cdot \operatorname{sen}(1.047x + 3.14t)}$.
+}
+
+\subsection*{3. Análisis de la función $y(x,t) = 2 \cdot \operatorname{sen}(4\pi x + 3t)$}
+\noindent \textbf{Enunciado:} Una onda se mueve siguiendo la función: $y(x,t)=2 \cdot \operatorname{sen}(4\pi x+3t),$ determine: a. Frecuencia y periodo b. Amplitud c. Velocidad.
+
+\respOperacional[5cm]{
+	\textbf{Comparación con patrón:} $A = 2$, $k = 4\pi$, $\omega = 3$. \\
+	\\
+	\textbf{b. Amplitud:} $\mathbf{2}$. \\
+	\textbf{a. Frecuencia y periodo:} \\
+	$\omega = 2\pi f \implies f = \dfrac{3}{2\pi} = \mathbf{0.477 \text{ Hz}}$. \quad $T = \dfrac{1}{0.477} = \mathbf{2.09 \text{ s}}$. \\
+	\textbf{c. Velocidad:} $v = \dfrac{\omega}{k} = \dfrac{3}{4\pi} = \mathbf{0.238 \text{ m/s}}$.
+}
+
+\newpage
+\section*{ANÁLISIS DE RESULTADOS: Laboratorio 11F-03P}
+
+\respOperacional[7cm]{
+	\textbf{1. Parte 1 (Reflexión):} Se observó que cuando las ondas planas chocan con la barrera, cambian de dirección regresando al medio. El fenómeno es la \textbf{Reflexión}. Se comprobó que el ángulo de incidencia es igual al ángulo de reflexión respecto a la normal. \\
+	\\
+	\textbf{2. Parte 2 (Refracción):} Al colocar el vidrio, el agua es menos profunda, lo que reduce la velocidad de la onda. Se observó un cambio en la longitud de onda y la dirección. El fenómeno es la \textbf{Refracción}. \\
+	\\
+	\textbf{3. Parte 3 (Difracción):} Al pasar por la abertura, los frentes de onda planos se curvan convirtiéndose en circulares. El fenómeno es la \textbf{Difracción}. Aberturas más pequeñas producen una curvatura más pronunciada. \\
+	\\
+	\textbf{4. Generalización de orificios:} Según el principio de Huygens, cada punto de un frente de onda que pasa por un pequeño orificio se comporta como una \textbf{fuente puntual}, generando ondas \textbf{circulares} (en la cubeta) que se propagan en todas las direcciones.
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN PARA EXAMEN - TAU 3 (11°)
+% =================================================================
+\newpage
+\begin{center}
+	{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+	{\Large \textbf{Evaluación TAU 3: Las Ondas y sus Fenómenos}}\\[0.1cm]
+	\hrule
+\end{center}
+
+\vspace{0.5cm}
+
+\subsection*{1. Ley de Snell y Refracción}
+\noindent \textbf{Enunciado:} Un rayo de luz viaja desde el aire ($n=1$) e incide sobre la superficie de un cristal de zafiro ($n=1.77$) con un ángulo de $35^{\circ}$. a. Calcule el ángulo de refracción. b. Si la velocidad de la luz en el aire es $3 \times 10^{8}$ m/s, determine la velocidad de la luz en el zafiro.
+
+\respOperacional[5.5cm]{
+	\textbf{a. Ángulo de refracción ($\theta_r$):} \\
+	$n_1 \cdot \operatorname{sen} \theta_i = n_2 \cdot \operatorname{sen} \theta_r$ \\
+	$1 \cdot \operatorname{sen}(35^{\circ}) = 1.77 \cdot \operatorname{sen} \theta_r \implies 0.573 = 1.77 \cdot \operatorname{sen} \theta_r$ \\
+	$\operatorname{sen} \theta_r = \dfrac{0.573}{1.77} = 0.324 \implies \theta_r = \operatorname{arcsen}(0.324) = \mathbf{18.91^{\circ}}$. \\
+	\\
+	\textbf{b. Velocidad en el medio ($v$):} \\
+	$n = \dfrac{c}{v} \implies 1.77 = \dfrac{3 \times 10^8 \text{ m/s}}{v}$ \\
+	$v = \dfrac{3 \times 10^8}{1.77} = \mathbf{1.69 \times 10^8 \text{ m/s}}$.
+}
+
+\subsection*{2. Análisis de Ecuación de Onda Progresiva}
+\noindent \textbf{Enunciado:} Una onda transversal se desplaza hacia la derecha con una amplitud de $0.5$ m, una longitud de onda de $2$ m y una frecuencia de $5$ Hz. Escriba la ecuación de la onda en la forma $y(x,t) = A \cdot \operatorname{sen}(kx - \omega t)$ y determine su velocidad de propagación.
+
+\respOperacional[5.5cm]{
+	\textbf{Paso 1: Cálculo de parámetros:} \\
+	$A = \mathbf{0.5 \text{ m}}$. \\
+	$k = \dfrac{2\pi}{\lambda} = \dfrac{2\pi}{2} = \mathbf{\pi \text{ rad/m}}$. \\
+	$\omega = 2\pi f = 2\pi(5) = \mathbf{10\pi \text{ rad/s}}$. \\
+	\\
+	\textbf{Paso 2: Ecuación y Velocidad:} \\
+	$y(x,t) = \mathbf{0.5 \cdot \operatorname{sen}(\pi x - 10\pi t)}$. \\
+	$v = \lambda \cdot f = 2 \cdot 5 = \mathbf{10 \text{ m/s}}$.
+}
+
+\subsection*{3. Cambio de medio y frecuencia}
+\noindent \textbf{Enunciado:} Una onda de frecuencia 120 Hz pasa de un medio donde viaja a 400 m/s a otro donde su velocidad disminuye a 320 m/s. Determine: a. La longitud de onda incidente. b. La longitud de onda refractada.
+
+\respOperacional[4.5cm]{
+	\textbf{Dato:} La frecuencia ($f$) se mantiene constante en ambos medios. \\
+	\\
+	\textbf{a. Longitud incidente ($\lambda_1$):} \\
+	$\lambda_1 = \dfrac{v_1}{f} = \dfrac{400 \text{ m/s}}{120 \text{ Hz}} = \mathbf{3.33 \text{ m}}$. \\
+	\\
+	\textbf{b. Longitud refractada ($\lambda_2$):} \\
+	$\lambda_2 = \dfrac{v_2}{f} = \dfrac{320 \text{ m/s}}{120 \text{ Hz}} = \mathbf{2.66 \text{ m}}$.
+}
+
+\subsection*{4. Interpretación de Funciones de Onda}
+\noindent \textbf{Enunciado:} Dada la función de onda $y(x,t) = 4 \cdot \operatorname{sen}(2x + 8t)$, determine: a. Amplitud. b. Velocidad angular ($\omega$). c. Número de onda ($k$). d. Dirección de propagación.
+
+\respOperacional[4.5cm]{
+	\textbf{a. Amplitud:} $\mathbf{4}$. \\
+	\textbf{b. Velocidad angular:} $\mathbf{8 \text{ rad/s}}$. \\
+	\textbf{c. Número de onda:} $\mathbf{2 \text{ rad/m}}$. \\
+	\textbf{d. Dirección:} Debido al signo positivo ($+$) entre los términos de posición y tiempo, la onda se desplaza hacia la \textbf{izquierda} (sentido negativo del eje x).
+}
+
+\subsection*{5. Conceptos de Difracción y Polarización}
+\noindent \textbf{Enunciado:} Defina brevemente: a. ¿En qué consiste el fenómeno de la difracción? b. ¿Qué tipo de ondas pueden ser polarizadas (transversales o longitudinales)?
+
+\respOperacional[3.5cm]{
+	\textbf{a. Difracción:} Es la propiedad que tienen las ondas de bordear obstáculos o curvarse al pasar por aberturas cuyo tamaño es comparable a su longitud de onda. \\
+	\textbf{b. Polarización:} Solo las ondas \textbf{transversales} pueden ser polarizadas, ya que la vibración ocurre en un plano perpendicular a la propagación. Las longitudinales (como el sonido) no se pueden polarizar.
+}	
+% =================================================================
+% TAU 4: PRINCIPIOS DE ACÚSTICA (11°)
+% =================================================================
+\newpage
+\section*{TAU 4 - PRINCIPIOS DE ACÚSTICA}
+
+\section*{ACTIVIDAD 4.1: Velocidad, características y fenómenos del sonido}
+
+\subsection*{1. Rango de audición humana}
+\noindent \textbf{Enunciado:} El oído humano percibe sonidos cuyas frecuencias están comprendidas entre 20 y 20000 Hz. Calcular la longitud de onda de los sonidos extremos.
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $f_1 = 20 \text{ Hz}$, $f_2 = 20000 \text{ Hz}$. Velocidad estándar del sonido en el aire $v \approx 340 \text{ m/s}$. \\
+	\\
+	\textbf{Para el extremo grave (20 Hz):} \\
+	$\lambda_1 = \dfrac{v}{f_1} = \dfrac{340}{20} = \mathbf{17 \text{ metros}}$. \\
+	\\
+	\textbf{Para el extremo agudo (20000 Hz):} \\
+	$\lambda_2 = \dfrac{v}{f_2} = \dfrac{340}{20000} = \mathbf{0.017 \text{ metros}} = 1.7 \text{ cm}$.
+}
+
+\subsection*{2. Ecolocalización en el mar}
+\noindent \textbf{Enunciado:} En la detección de bancos de peces se utilizan ultrasonidos. ¿A qué distancia del barco se encuentra el banco de peces, si el eco sonoro tarda 7 s en llegar?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $t_{eco} = 7 \text{ s}$. El tiempo de ida hasta los peces es la mitad: $t = 3.5 \text{ s}$. Velocidad del sonido en agua de mar $v = 1533 \text{ m/s}$ (según tabla teórica). \\
+	\\
+	\textbf{Cálculo de la distancia ($d$):} \\
+	$d = v \cdot t = 1533 \text{ m/s} \times 3.5 \text{ s} = \mathbf{5365.5 \text{ metros}}$. \\
+	\textit{(El banco de peces se encuentra a aproximadamente 5.37 km del barco).}
+}
+
+\subsection*{3. Nivel de intensidad en decibelios}
+\noindent \textbf{Enunciado:} ¿Cuál es el nivel de intensidad en decibelios correspondiente a a. $I=10^{-10}\text{W/m}^2$ b. $I=10^{-2}\text{W/m}^2$ c. $I=10^{-12}\text{W/m}^2$
+
+\respOperacional[5cm]{
+	\textbf{Fórmula:} $B = 10 \cdot \log\left(\dfrac{I}{I_0}\right)$, con $I_0 = 10^{-12} \text{ W/m}^2$. \\
+	\\
+	\textbf{a.} $B = 10 \log\left(\dfrac{10^{-10}}{10^{-12}}\right) = 10 \log(10^2) = 10 \times 2 = \mathbf{20 \text{ dB}}$. \\
+	\\
+	\textbf{b.} $B = 10 \log\left(\dfrac{10^{-2}}{10^{-12}}\right) = 10 \log(10^{10}) = 10 \times 10 = \mathbf{100 \text{ dB}}$. \\
+	\\
+	\textbf{c.} $B = 10 \log\left(\dfrac{10^{-12}}{10^{-12}}\right) = 10 \log(1) = 10 \times 0 = \mathbf{0 \text{ dB}}$ \textit{(Umbral de audición)}.
+}
+
+\subsection*{4. Potencia, intensidad y decibelios}
+\noindent \textbf{Enunciado:} Una fuente sonora produce una potencia acústica de $2\pi \times 10^{-3} \text{ W}$. a. ¿Cuál es la intensidad de este sonido a una distancia de 6 m? b. ¿Cuál es el nivel de intensidad?
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $P = 2\pi \times 10^{-3} \text{ W}$, $r = 6 \text{ m}$, $I_0 = 10^{-12} \text{ W/m}^2$. \\
+	\\
+	\textbf{a. Intensidad ($I$):} \\
+	$I = \dfrac{P}{4\pi r^2} = \dfrac{2\pi \times 10^{-3}}{4\pi (6)^2} = \dfrac{2\pi \times 10^{-3}}{144\pi} = \dfrac{2}{144} \times 10^{-3} = \dfrac{1}{72} \times 10^{-3}$ \\
+	$I \approx \mathbf{1.39 \times 10^{-5} \text{ W/m}^2}$. \\
+	\\
+	\textbf{b. Nivel de intensidad ($B$):} \\
+	$B = 10 \log\left(\dfrac{I}{I_0}\right) = 10 \log\left(\dfrac{\dfrac{1}{72} \times 10^{-3}}{10^{-12}}\right) = 10 \log\left(\dfrac{1}{72} \times 10^9\right)$ \\
+	$B = 10 \left( \log(10^9) - \log(72) \right) \approx 10 (9 - 1.857)$ \\
+	$B = 10 (7.143) \approx \mathbf{71.43 \text{ dB}}$.
+}
+\subsection*{5. Cálculo inverso: de dB a intensidad física}
+\noindent \textbf{Enunciado:} El nivel de intensidad de un sonido es 19.32 db, ¿cuál es su intensidad física?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $B = 19.32 \text{ dB}$. $I_0 = 10^{-12} \text{ W/m}^2$. \\
+	\\
+	\textbf{Despejando $I$:} \\
+	$19.32 = 10 \log\left(\dfrac{I}{10^{-12}}\right) \implies 1.932 = \log\left(\dfrac{I}{10^{-12}}\right)$ \\
+	$10^{1.932} = \dfrac{I}{10^{-12}} \implies 85.5 = \dfrac{I}{10^{-12}}$ \\
+	$I = 85.5 \times 10^{-12} \implies I \approx \mathbf{8.55 \times 10^{-11} \text{ W/m}^2}$.
+}
+
+\subsection*{6. Variación del nivel sonoro}
+\noindent \textbf{Enunciado:} Una persona aumenta el nivel sonoro de su voz de 30 db a 60 db. ¿Cuántas veces aumentó la intensidad del sonido emitido?
+
+\respOperacional[4.5cm]{
+	\textbf{Análisis logarítmico:} \\
+	Un nivel de $30 \text{ dB}$ significa que la intensidad es $10^3$ veces $I_0$ ($1000 \cdot I_0$). \\
+	Un nivel de $60 \text{ dB}$ significa que la intensidad es $10^6$ veces $I_0$ ($1,000,000 \cdot I_0$). \\
+	\\
+	\textbf{Razón de aumento:} \\
+	$\dfrac{I_{final}}{I_{inicial}} = \dfrac{10^6 I_0}{10^3 I_0} = 10^3 = \mathbf{1000}$. \\
+	La intensidad física del sonido aumentó \textbf{1000 veces}. Cada $10 \text{ dB}$ adicionales implican multiplicar la intensidad física por 10.
+}
+
+\subsection*{7. Intensidad y Potencia Acústica}
+\noindent \textbf{Enunciado:} A una distancia de 10 m de una fuente sonora puntual, el nivel acústico es 80 dB. a. ¿Cuál es la intensidad sonora en ese punto? b. ¿Cuál es la potencia del sonido emitido por la fuente si $I_o=10^{-12}\text{W/m}^2$?
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $r = 10 \text{ m}$, $B = 80 \text{ dB}$. \\
+	\\
+	\textbf{a. Intensidad sonora ($I$):} \\
+	$80 = 10 \log\left(\dfrac{I}{10^{-12}}\right) \implies 8 = \log\left(\dfrac{I}{10^{-12}}\right) \implies 10^8 = \dfrac{I}{10^{-12}}$ \\
+	$I = 10^8 \cdot 10^{-12} = \mathbf{10^{-4} \text{ W/m}^2}$. \\
+	\\
+	\textbf{b. Potencia ($P$):} \\
+	$I = \dfrac{P}{4\pi r^2} \implies P = I \cdot 4\pi r^2 = 10^{-4} \cdot 4\pi (10)^2$ \\
+	$P = 10^{-4} \cdot 400\pi = 0.04\pi \approx \mathbf{0.125 \text{ Watts}}$.
+}
+
+\subsection*{8. Tubos Sonoros}
+\noindent \textbf{Enunciado:} Calcular la frecuencia de los sonidos emitidos por un tubo abierto y otro cerrado de 1 m de longitud produciendo el sonido fundamental.
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $L = 1 \text{ m}$, $n = 1$ (sonido fundamental), $v \approx 340 \text{ m/s}$. \\
+	\\
+	\textbf{Tubo Abierto:} \\
+	$f_1 = \dfrac{n \cdot v}{2L} = \dfrac{1 \cdot 340}{2(1)} = \dfrac{340}{2} = \mathbf{170 \text{ Hz}}$. \\
+	\\
+	\textbf{Tubo Cerrado:} \\
+	$f_1 = \dfrac{v \cdot (2n-1)}{4L} = \dfrac{340 \cdot (2(1)-1)}{4(1)} = \dfrac{340}{4} = \mathbf{85 \text{ Hz}}$.
+}
+
+\subsection*{9. Efecto Doppler (Observador en Movimiento)}
+\noindent \textbf{Enunciado:} La frecuencia con que emite la bocina de un coche estacionado es 400 Hz. Calcula la frecuencia que percibe un receptor que se mueve hacia el coche con una velocidad de $100 \text{ km/h}$.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $f = 400 \text{ Hz}$, $v_f = 0$ (fuente en reposo), $v \approx 340 \text{ m/s}$. \\
+	Velocidad del observador ($v_0$) = $100 \text{ km/h} = \dfrac{100}{3.6} \approx 27.78 \text{ m/s}$. Como se acerca a la fuente, el signo de $v_0$ en la fórmula es positivo ($+$). \\
+	\\
+	\textbf{Cálculo de la frecuencia percibida ($f'$):} \\
+	$f' = f \left(\dfrac{v + v_0}{v \pm v_f}\right) = 400 \left(\dfrac{340 + 27.78}{340}\right)$ \\
+	$f' = 400 \left(\dfrac{367.78}{340}\right) = 400 (1.0817) \approx \mathbf{432.68 \text{ Hz}}$. \\
+	Percibe un sonido más agudo por acercarse a la fuente.
+}
+
+\subsection*{10. Efecto Doppler (Fuente en Movimiento)}
+\noindent \textbf{Enunciado:} Un tren que se mueve a una velocidad de $90 \text{ km/h}$ se acerca a una estación y hace sonar su silbato, que tiene una frecuencia de 650 Hz. Calcula la longitud de onda de las ondas sonoras que se propagan delante del tren.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $v \approx 340 \text{ m/s}$, $f = 650 \text{ Hz}$. \\
+	Velocidad de la fuente ($v_f$) = $90 \text{ km/h} = \dfrac{90}{3.6} = 25 \text{ m/s}$. \\
+	\\
+	\textbf{Cálculo de la longitud de onda delante del tren ($\lambda'$):} \\
+	Cuando la fuente se acerca al observador, las ondas se comprimen delante de ella. La velocidad aparente de la onda relativa a la fuente disminuye, acortando la longitud de onda: \\
+	$\lambda' = \dfrac{v - v_f}{f} = \dfrac{340 - 25}{650} = \dfrac{315}{650}$ \\
+	$\lambda' \approx \mathbf{0.484 \text{ metros} = 48.4 \text{ cm}}$.
+}
+
+\subsection*{11. Análisis de Afirmaciones Acústicas}
+\noindent \textbf{Enunciado:} Explica si son verdaderas o falsas las siguientes afirmaciones.
+
+\respOperacional[9cm]{
+	\textbf{a. La velocidad del sonido en el aire, a $20^{\circ}C$ es doble que a $10^{\circ}C$.} \\
+	\textbf{Falsa.} La velocidad depende de la temperatura según $v \approx 331 + 0.61 \cdot T$. A $10^{\circ}C$, $v \approx 337.1 \text{ m/s}$. A $20^{\circ}C$, $v \approx 343.2 \text{ m/s}$. El aumento es leve, no el doble. \\
+	\\
+	\textbf{b. Dos sonidos de la misma intensidad y la misma frecuencia son indistinguibles sea cual sea la fuente sonora.} \\
+	\textbf{Falsa.} Se pueden distinguir gracias al \textbf{timbre}. El timbre depende de los armónicos superpuestos que genera cada instrumento, dando formas de onda distintas aunque tengan igual tono e intensidad. \\
+	\\
+	\textbf{c. Si la intensidad de una onda sonora se duplica, también se duplica la sensación sonora que produce dicho sonido.} \\
+	\textbf{Falsa.} La sensación sonora (Nivel de intensidad en dB) obedece a una escala logarítmica. Si la intensidad ($I$) se duplica, el nivel en dB solo aumenta en unos $3 \text{ dB}$ ($10 \log 2$), no se duplica. \\
+	\\
+	\textbf{d. Una onda de choque se produce cuando un foco sonoro se desplaza a mayor velocidad que el sonido.} \\
+	\textbf{Verdadera.} Esto es lo que se conoce como estampido sónico o ruptura de la barrera del sonido (Mach 1). Los frentes de onda se apilan formando un cono de presión extrema tras el emisor. \\
+	\\
+	\textbf{e. En el espacio nadie puede oír tus gritos.} \\
+	\textbf{Verdadera.} El sonido es una onda mecánica (longitudinal) que necesita un medio material (gas, líquido o sólido) para que sus partículas vibren y propaguen la perturbación. En el vacío del espacio no hay medio material.
+}
+
+\newpage
+\section*{ANÁLISIS DE RESULTADOS: Laboratorio 11F-04P (Sonido)}
+
+\respOperacional[8cm]{
+	\textbf{1. Comportamiento del sonido en la Parte 1 (Copas de cristal):} \\
+	El fenómeno observado se atribuye a la \textbf{resonancia y vibración forzada}. Al frotar el dedo húmedo sobre el borde, la fricción produce una vibración en la estructura de cristal de la copa, que resuena a su frecuencia natural emitiendo un sonido intenso. Al cambiar la cantidad de agua, se modifica la masa total del sistema vibrante, lo que altera su frecuencia natural (cambiando el tono). El movimiento de la arena en la otra copa se debe a que la vibración viaja por el aire o por la mesa, induciendo a la segunda copa a vibrar por resonancia simpática. \\
+	\\
+	\textbf{2. Comportamiento del agua en la Parte 2 (Diapasón y probeta):} \\
+	El sonido es una \textbf{onda mecánica} que consiste en variaciones de presión que transportan energía. Al acercar o introducir el diapasón vibrando, este transfiere su energía cinética al aire cercano y posteriormente a la superficie del agua, forzando a las moléculas de agua a oscilar. Esto se visualiza en forma de ondas circulares y perturbaciones superficiales en el líquido. \\
+	\\
+	\textbf{3. Fenómeno de la Parte 3 (Cajas de resonancia):} \\
+	Se observó el fenómeno de \textbf{resonancia acústica}. Las ondas sonoras generadas por el primer diapasón viajaron por el aire e incidieron en el segundo diapasón. Como ambos instrumentos tienen exactamente la misma frecuencia natural de vibración, el segundo absorbió la energía acústica y comenzó a oscilar espontáneamente (vibración simpática). Un fenómeno semejante se percibe cuando el paso de un avión pesado hace que los vidrios de una ventana vibren. \\
+	\\
+	\textbf{4. Aplicaciones al interior de un tubo labial:} \\
+	El principio del tubo labial es la base de todos los \textbf{instrumentos musicales de viento} (como flautas, clarinetes, órganos de iglesia y quenas). El soplo genera una turbulencia en el bisel que hace vibrar la columna de aire en el interior. Al desplazar el émbolo (modificando la longitud $L$ del tubo), se alteran las condiciones de frontera para las ondas estacionarias, lo que cambia la longitud de onda permitida y, en consecuencia, altera la frecuencia (tono) del sonido emitido.
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN PARA EXAMEN - TAU 4 (11°)
+% =================================================================
+\newpage
+\begin{center}
+	{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+	{\Large \textbf{Evaluación TAU 4: Principios de Acústica}}\\[0.1cm]
+	\hrule
+\end{center}
+
+\vspace{0.5cm}
+
+\subsection*{1. Velocidad del sonido y Eco}
+\noindent \textbf{Enunciado:} Un explorador emite un fuerte grito frente a un acantilado en un día donde la temperatura ambiente es de $25^{\circ}\text{C}$. Si el explorador escucha el eco de su voz exactamente 2.5 segundos después de haber gritado, determine: a. La velocidad del sonido en ese momento. b. La distancia a la que se encuentra el acantilado.
+
+\respOperacional[5cm]{
+	\textbf{a. Velocidad del sonido ($v$):} \\
+	Depende de la temperatura según la expresión $v \approx 331 + 0.61 \cdot T$. \\
+	$v = 331 + 0.61(25) = 331 + 15.25 = \mathbf{346.25 \text{ m/s}}$. \\
+	\\
+	\textbf{b. Distancia al acantilado ($d$):} \\
+	El tiempo de 2.5 s incluye el viaje de ida y de vuelta. El tiempo que tarda en llegar al acantilado es $t = \dfrac{2.5}{2} = 1.25 \text{ s}$. \\
+	$d = v \cdot t = 346.25 \text{ m/s} \times 1.25 \text{ s} \approx \mathbf{432.81 \text{ metros}}$.
+}
+
+\subsection*{2. Potencia e Intensidad Sonora}
+\noindent \textbf{Enunciado:} Un altavoz omnidireccional emite sonido con una potencia acústica de $5\pi \times 10^{-2} \text{ W}$. a. Calcule la intensidad física del sonido a una distancia de 5 metros. b. Determine el nivel de intensidad en decibelios (dB) en ese mismo punto ($I_0 = 10^{-12} \text{ W/m}^2$).
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $P = 5\pi \times 10^{-2} \text{ W}$, $r = 5 \text{ m}$. \\
+	\\
+	\textbf{a. Intensidad física ($I$):} \\
+	$I = \dfrac{P}{4\pi r^2} = \dfrac{5\pi \times 10^{-2}}{4\pi (5)^2} = \dfrac{5\pi \times 10^{-2}}{100\pi} = \dfrac{5}{100} \times 10^{-2} = 0.05 \times 10^{-2} = \mathbf{5 \times 10^{-4} \text{ W/m}^2}$. \\
+	\\
+	\textbf{b. Nivel de intensidad ($B$):} \\
+	$B = 10 \log\left(\dfrac{I}{I_0}\right) = 10 \log\left(\dfrac{5 \times 10^{-4}}{10^{-12}}\right) = 10 \log(5 \times 10^8)$ \\
+	$B = 10 (\log(5) + \log(10^8)) \approx 10 (0.699 + 8) = 10(8.699) = \mathbf{86.99 \text{ dB}}$.
+}
+
+\subsection*{3. Cuerdas Sonoras}
+\noindent \textbf{Enunciado:} Una cuerda de guitarra de 0.65 m de longitud y una densidad lineal de masa de $0.005 \text{ kg/m}$ está sometida a una tensión de 200 N. a. Calcule la velocidad de propagación de la onda en la cuerda. b. Determine la frecuencia de su primer armónico (sonido fundamental) y la de su tercer armónico.
+
+\respOperacional[6.5cm]{
+	\textbf{Datos:} $L = 0.65 \text{ m}$, $\mu_0 = 0.005 \text{ kg/m}$, $F = 200 \text{ N}$. \\
+	\\
+	\textbf{a. Velocidad en la cuerda ($v_{cuerda}$):} \\
+	$v_{cuerda} = \sqrt{\dfrac{F}{\mu_0}} = \sqrt{\dfrac{200}{0.005}} = \sqrt{40000} = \mathbf{200 \text{ m/s}}$. \\
+	\\
+	\textbf{b. Frecuencias armónicas ($f_n$):} \\
+	Primer armónico ($n=1$): \\
+	$f_1 = \dfrac{1 \cdot v_{cuerda}}{2L} = \dfrac{200}{2(0.65)} = \dfrac{200}{1.3} \approx \mathbf{153.85 \text{ Hz}}$. \\
+	Tercer armónico ($n=3$): \\
+	$f_3 = 3 \cdot f_1 = 3 \times 153.85 = \mathbf{461.55 \text{ Hz}}$.
+}
+
+\subsection*{4. Tubos Sonoros: Abiertos y Cerrados}
+\noindent \textbf{Enunciado:} Se tiene un tubo sonoro cilíndrico de 0.85 m de longitud. Asumiendo que la velocidad del sonido en el aire en ese momento es de $340 \text{ m/s}$, calcule la frecuencia del sonido fundamental si: a. El tubo está abierto por ambos extremos. b. El tubo está cerrado por uno de sus extremos.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $L = 0.85 \text{ m}$, $v = 340 \text{ m/s}$, $n = 1$ (sonido fundamental). \\
+	\\
+	\textbf{a. Tubo Abierto:} \\
+	$f_n = \dfrac{n \cdot v}{2L} \implies f_1 = \dfrac{1 \cdot 340}{2(0.85)} = \dfrac{340}{1.7} = \mathbf{200 \text{ Hz}}$. \\
+	\\
+	\textbf{b. Tubo Cerrado:} \\
+	$f_n = \dfrac{v \cdot (2n-1)}{4L} \implies f_1 = \dfrac{340 \cdot (2(1)-1)}{4(0.85)} = \dfrac{340}{3.4} = \mathbf{100 \text{ Hz}}$. \\
+	\textit{(El tubo cerrado produce un sonido fundamental exactamente una octava más grave que el mismo tubo abierto).}
+}
+
+\subsection*{5. Efecto Doppler en Tráfico}
+\noindent \textbf{Enunciado:} Una ambulancia viaja hacia el este por una avenida a $108 \text{ km/h}$ emitiendo un sonido de sirena con una frecuencia constante de $800 \text{ Hz}$. Un automóvil viaja en la misma dirección (hacia el este), delante de la ambulancia, a una velocidad de $72 \text{ km/h}$. Si la velocidad del sonido es $340 \text{ m/s}$, ¿qué frecuencia percibe el conductor del automóvil?
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $f = 800 \text{ Hz}$, $v = 340 \text{ m/s}$. \\
+	Velocidad de la fuente (ambulancia): $v_f = 108 \text{ km/h} = \dfrac{108}{3.6} = 30 \text{ m/s}$. \\
+	Velocidad del observador (automóvil): $v_0 = 72 \text{ km/h} = \dfrac{72}{3.6} = 20 \text{ m/s}$. \\
+	\\
+	\textbf{Análisis de signos:} \\
+	El observador huye de la fuente (signo negativo arriba: $-v_0$). \\
+	La fuente persigue al observador (signo negativo abajo: $-v_f$). \\
+	\\
+	\textbf{Cálculo de la frecuencia percibida ($f'$):} \\
+	$f' = f \left(\dfrac{v - v_0}{v - v_f}\right) = 800 \left(\dfrac{340 - 20}{340 - 30}\right) = 800 \left(\dfrac{320}{310}\right) = 800 \left(\dfrac{32}{31}\right) \approx \mathbf{825.81 \text{ Hz}}$.
+}
+
+% =================================================================
+% TAU 5: NATURALEZA DE LA LUZ. REFLEXIÓN (11°)
+% =================================================================
+\newpage
+\section*{TAU 5 - NATURALEZA DE LA LUZ. REFLEXIÓN}
+
+\section*{ACTIVIDAD 5.1: Ecuaciones de ondas electromagnéticas y espejos}
+
+\subsection*{1. Frecuencia de los rayos de luz}
+\noindent \textbf{Enunciado:} Determine la frecuencia para los rayos de luz con las siguientes longitudes de onda: a. 480 nm, b. 550 nm, c. 700 nm.
+
+\respOperacional[4.5cm]{
+	\textbf{Fórmula:} $c = \lambda \cdot f \implies f = \dfrac{c}{\lambda}$. ($c = 3 \times 10^8 \text{ m/s}$). \\
+	\\
+	\textbf{a. 480 nm:} $\lambda = 480 \times 10^{-9} \text{ m} \implies f = \dfrac{3 \times 10^8}{480 \times 10^{-9}} = \mathbf{6.25 \times 10^{14} \text{ Hz}}$. \\
+	\textbf{b. 550 nm:} $\lambda = 550 \times 10^{-9} \text{ m} \implies f = \dfrac{3 \times 10^8}{550 \times 10^{-9}} = \mathbf{5.45 \times 10^{14} \text{ Hz}}$. \\
+	\textbf{c. 700 nm:} $\lambda = 700 \times 10^{-9} \text{ m} \implies f = \dfrac{3 \times 10^8}{700 \times 10^{-9}} = \mathbf{4.28 \times 10^{14} \text{ Hz}}$.
+}
+
+\subsection*{2. Longitud de onda de ondas electromagnéticas}
+\noindent \textbf{Enunciado:} Determine la longitud de onda para las ondas electromagnéticas con las siguientes frecuencias: a. 900 Hz, b. 2.7 KHz, c. 47 MHz.
+
+\respOperacional[4.5cm]{
+	\textbf{Fórmula:} $\lambda = \dfrac{c}{f}$. \\
+	\\
+	\textbf{a. 900 Hz:} $\lambda = \dfrac{3 \times 10^8}{900} = \mathbf{3.33 \times 10^5 \text{ m}}$. \\
+	\textbf{b. 2.7 KHz:} $\lambda = \dfrac{3 \times 10^8}{2700} = \mathbf{1.11 \times 10^5 \text{ m}}$. \\
+	\textbf{c. 47 MHz:} $\lambda = \dfrac{3 \times 10^8}{47 \times 10^6} = \mathbf{6.38 \text{ metros}}$.
+}
+
+\subsection*{3. Espejo de afeitar (Aumento)}
+\noindent \textbf{Enunciado:} Una persona se encuentra a 30 cm de un espejo de afeitar y desea que el aumento sea de 2.5. ¿Cuál debe ser el radio del espejo?
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $d_o = 30 \text{ cm}$, $A = 2.5$ (la imagen debe ser derecha y virtual). \\
+	\textbf{Paso 1: Posición de la imagen.} $A = -\dfrac{d_i}{d_o} \implies 2.5 = -\dfrac{d_i}{30} \implies d_i = -75 \text{ cm}$. \\
+	\textbf{Paso 2: Distancia focal.} $\dfrac{1}{f} = \dfrac{1}{d_o} + \dfrac{1}{d_i} = \dfrac{1}{30} - \dfrac{1}{75} = \dfrac{5 - 2}{150} = \dfrac{3}{150} = \dfrac{1}{50}$. \\
+	$f = 50 \text{ cm}$. \\
+	\textbf{Paso 3: Radio del espejo.} $R = 2f = 2(50) = \mathbf{100 \text{ cm}}$.
+}
+
+\subsection*{4. Objeto frente a un espejo cóncavo}
+\noindent \textbf{Enunciado:} A 15 cm de un espejo cóncavo de R = 20 cm, se coloca un objeto de 2 cm de altura. a. ¿En dónde estará su imagen? b. ¿Cuál será su tamaño?
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $d_o = 15 \text{ cm}$, $R = 20 \text{ cm} \implies f = 10 \text{ cm}$, $h_o = 2 \text{ cm}$. \\
+	\\
+	\textbf{a. Posición de la imagen ($d_i$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{f} - \dfrac{1}{d_o} = \dfrac{1}{10} - \dfrac{1}{15} = \dfrac{3-2}{30} = \dfrac{1}{30} \implies d_i = \mathbf{30 \text{ cm}}$ (Real). \\
+	\\
+	\textbf{b. Tamaño ($h_i$):} \\
+	$A = -\dfrac{d_i}{d_o} = -\dfrac{30}{15} = -2$. \\
+	$h_i = A \cdot h_o = -2 \times 2 = \mathbf{-4 \text{ cm}}$ (El signo indica que la imagen está invertida).
+}
+
+\subsection*{5. Repetición a diferentes distancias}
+\noindent \textbf{Enunciado:} Repita el ejercicio anterior si el objeto se coloca a: a. 10 cm, b. 5 cm.
+
+\respOperacional[4.5cm]{
+	\textbf{Datos fijos:} $f = 10 \text{ cm}$, $h_o = 2 \text{ cm}$. \\
+	\\
+	\textbf{a. A 10 cm ($d_o = 10 \text{ cm}$, en el foco):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{10} - \dfrac{1}{10} = 0$. \textbf{No se forma imagen} (los rayos se reflejan paralelos al infinito). \\
+	\\
+	\textbf{b. A 5 cm ($d_o = 5 \text{ cm}$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{10} - \dfrac{1}{5} = \dfrac{1-2}{10} = -\dfrac{1}{10} \implies d_i = \mathbf{-10 \text{ cm}}$ (Virtual). \\
+	$A = -\dfrac{-10}{5} = 2 \implies h_i = 2 \times 2 = \mathbf{4 \text{ cm}}$ (Derecha y ampliada).
+}
+
+\subsection*{6. Espejo convexo}
+\noindent \textbf{Enunciado:} Frente a un espejo convexo de 10 cm de distancia focal, se coloca un objeto de 4 cm. Determine la posición de la imagen y su altura, si el objeto se coloca a: a. 25 cm, b. 10 cm, c. 3 cm.
+
+\respOperacional[6.5cm]{
+	\textbf{Datos:} $f = -10 \text{ cm}$ (espejo convexo), $h_o = 4 \text{ cm}$. \\
+	\textbf{a. $d_o = 25 \text{ cm}$:} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{-10} - \dfrac{1}{25} = \dfrac{-5 - 2}{50} = -\dfrac{7}{50} \implies d_i = \mathbf{-7.14 \text{ cm}}$. \\
+	$h_i = -(\dfrac{-7.14}{25}) \cdot 4 = \mathbf{1.14 \text{ cm}}$. \\
+	\\
+	\textbf{b. $d_o = 10 \text{ cm}$:} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{-10} - \dfrac{1}{10} = -\dfrac{2}{10} = -\dfrac{1}{5} \implies d_i = \mathbf{-5 \text{ cm}}$. \\
+	$h_i = -(\dfrac{-5}{10}) \cdot 4 = \mathbf{2 \text{ cm}}$. \\
+	\\
+	\textbf{c. $d_o = 3 \text{ cm}$:} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{-10} - \dfrac{1}{3} = \dfrac{-3 - 10}{30} = -\dfrac{13}{30} \implies d_i = \mathbf{-2.31 \text{ cm}}$. \\
+	$h_i = -(\dfrac{-2.31}{3}) \cdot 4 = \mathbf{3.08 \text{ cm}}$. 
+}
+
+\subsection*{7. Análisis de la imagen en un espejo convexo}
+\noindent \textbf{Enunciado:} En el ejercicio anterior ¿será posible obtener alguna imagen en posición mayor a 10 cm? Explique desde el punto de vista geométrico y matemático.
+
+\respOperacional[4.5cm]{
+	\textbf{No es posible.} \\
+	\textbf{Geométricamente:} En un espejo convexo, los rayos reflejados siempre divergen. La imagen virtual se forma por la intersección de las prolongaciones de los rayos, las cuales nunca pueden cruzar el punto focal principal ubicado a 10 cm detrás del espejo. \\
+	\textbf{Matemáticamente:} Despejando $d_i$ se tiene $d_i = \dfrac{f \cdot d_o}{f + d_o}$. Al ser $f$ negativo, se puede reescribir como magnitud: $|d_i| = |f| \cdot \left(\dfrac{d_o}{|f| + d_o}\right)$. Como la fracción $\dfrac{d_o}{|f| + d_o}$ siempre es menor a 1 (para cualquier distancia $d_o > 0$), la magnitud de la distancia de la imagen $|d_i|$ siempre será menor a la magnitud del foco $|f|$ (10 cm).
+}
+
+\newpage
+\section*{ANÁLISIS DE RESULTADOS: Laboratorio 11F-05P}
+
+\respOperacional[6cm]{
+	\textbf{1. Ley teórica de reflexión:} En un entorno experimental ideal, el ángulo de incidencia es exactamente igual al ángulo de reflexión ($\theta_i = \theta_r$). Si existió diferencia en la práctica, se debe a errores de paralaje al usar el transportador, grosor/dispersión del haz del láser, o irregularidades microscópicas en la superficie del espejo utilizado. \\
+	\\
+	\textbf{2. Distancias y espejos cóncavos:} La distancia medida cuando la imagen deja de observarse (o cambia drásticamente de derecha a invertida) corresponde al \textbf{foco} del espejo. Entre más cerrado sea el espejo (mayor curvatura), menor será esta distancia focal. \\
+	\\
+	\textbf{3. Diferencia con espejos convexos y planos:} Los espejos convexos y planos siempre forman imágenes virtuales y derechas, sin importar la distancia del objeto. No poseen un punto focal real donde los rayos converjan en el frente del espejo, por lo que la imagen nunca desaparece ni se invierte al alejar el espejo. \\
+	\\
+	\textbf{4. Aplicaciones cotidianas:} 
+	\begin{itemize}
+		\item \textbf{Cóncavos:} Espejos de maquillaje o dentistas (para ampliar la cara) y reflectores de faros de vehículos.
+		\item \textbf{Convexos:} Retrovisores laterales de automóviles y espejos de seguridad en tiendas o curvas (amplían el campo de visión, aunque reduzcan el tamaño).
+		\item \textbf{Planos:} Espejos de baño, retrovisores interiores y diseño de interiores.
+	\end{itemize}
+}
+
+% =================================================================
+% EJERCICIOS DE PREPARACIÓN PARA EL EXAMEN (TAU 5) - FORMA B
+% =================================================================
+\newpage
+\begin{center}
+	{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+	{\Large \textbf{Evaluación TAU 5: Naturaleza de la Luz y Espejos}}\\[0.1cm]
+	\hrule
+\end{center}
+
+\vspace{0.5cm}
+
+\subsection*{1. Ondas Electromagnéticas (Rayos X)}
+\noindent \textbf{Enunciado:} En un hospital, un equipo de rayos X emite ondas con una longitud de onda de $2.5 \times 10^{-9} \text{ m}$. Calcule la frecuencia de esta radiación electromagnética. ($c = 3 \times 10^8 \text{ m/s}$).
+
+\respOperacional[3.5cm]{
+	\textbf{Datos:} $\lambda = 2.5 \times 10^{-9} \text{ m}$, $c = 3 \times 10^8 \text{ m/s}$. \\
+	\\
+	\textbf{Cálculo de Frecuencia:} \\
+	$f = \dfrac{c}{\lambda} = \dfrac{3 \times 10^8}{2.5 \times 10^{-9}} = \mathbf{1.2 \times 10^{17} \text{ Hz}}$.
+}
+
+\subsection*{2. Espejo Cóncavo (Uso Odontológico)}
+\noindent \textbf{Enunciado:} Un dentista utiliza un espejo cóncavo de 4 cm de distancia focal para examinar un diente. Si el espejo se coloca a 2 cm del diente, a. ¿A qué distancia se forma la imagen? b. ¿Cuál es el aumento de la imagen? c. ¿La imagen es real o virtual?
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $f = 4 \text{ cm}$, $d_o = 2 \text{ cm}$. \\
+	\\
+	\textbf{a. Posición de la imagen ($d_i$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{f} - \dfrac{1}{d_o} = \dfrac{1}{4} - \dfrac{1}{2} = \dfrac{1 - 2}{4} = -\dfrac{1}{4} \implies d_i = \mathbf{-4 \text{ cm}}$. \\
+	\\
+	\textbf{b. Aumento ($A$):} \\
+	$A = -\dfrac{d_i}{d_o} = -\dfrac{-4}{2} = \mathbf{2}$. (La imagen se ve al doble de su tamaño). \\
+	\\
+	\textbf{c. Naturaleza de la imagen:} \\
+	Como $d_i$ es negativa y el aumento es positivo, la imagen es \textbf{virtual y derecha} (típico cuando el objeto está entre el foco y el vértice).
+}
+
+\subsection*{3. Espejo Convexo (Retrovisor de Automóvil)}
+\noindent \textbf{Enunciado:} El espejo retrovisor lateral de un automóvil es convexo y tiene un radio de curvatura de 2 metros. Si un camión de 3 metros de altura se encuentra a 10 metros detrás del espejo, a. ¿A qué distancia se forma la imagen del camión? b. ¿Qué altura tiene la imagen observada en el espejo?
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $R = -2 \text{ m}$ (convexo) $\implies f = -1 \text{ m}$. $d_o = 10 \text{ m}$, $h_o = 3 \text{ m}$. \\
+	\\
+	\textbf{a. Posición de la imagen ($d_i$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{f} - \dfrac{1}{d_o} = \dfrac{1}{-1} - \dfrac{1}{10} = -\dfrac{10}{10} - \dfrac{1}{10} = -\dfrac{11}{10} \implies d_i = \mathbf{-0.91 \text{ metros}}$. \\
+	\\
+	\textbf{b. Altura de la imagen ($h_i$):} \\
+	$A = -\dfrac{d_i}{d_o} = -\dfrac{-0.91}{10} = 0.091$. \\
+	$h_i = A \cdot h_o = 0.091 \times 3 \text{ m} = \mathbf{0.27 \text{ metros}}$ (27 cm).
+}
+
+\subsection*{4. Análisis Gráfico de Espejos Cóncavos}
+\noindent \textbf{Enunciado:} Un objeto se coloca exactamente en el centro de curvatura ($C$) de un espejo cóncavo. Sin realizar cálculos numéricos, describa matemática y físicamente las características de la imagen resultante (posición, tamaño y orientación).
+
+\respOperacional[3.5cm]{
+	\textbf{Respuesta:} \\
+	Físicamente, cuando el objeto está en $d_o = R = 2f$, los rayos reflejados convergen exactamente en ese mismo punto. \\
+	- \textbf{Posición:} La imagen se forma en el mismo centro de curvatura ($d_i = 2f$). \\
+	- \textbf{Tamaño:} La imagen tiene el mismo tamaño que el objeto ($|A| = 1$). \\
+	- \textbf{Orientación:} La imagen es \textbf{real e invertida} ($A = -1$).
+}
+
+\subsection*{5. Relación entre Frecuencia, Longitud y Velocidad}
+\noindent \textbf{Enunciado:} Se tienen dos rayos de luz: uno rojo ($\lambda = 700 \text{ nm}$) y uno violeta ($\lambda = 400 \text{ nm}$). a. ¿Cuál de los dos viaja más rápido en el vacío? b. ¿Cuál tiene mayor frecuencia? Justifique sus respuestas con las ecuaciones de ondas.
+
+\respOperacional[3.5cm]{
+	\textbf{a. Velocidad:} Ambos viajan exactamente a la misma velocidad en el vacío ($c = 3 \times 10^8 \text{ m/s}$). La velocidad de la luz es una constante universal independiente del color. \\
+	\textbf{b. Frecuencia:} El rayo \textbf{violeta} tiene mayor frecuencia. Según la ecuación $f = \dfrac{c}{\lambda}$, la frecuencia es inversamente proporcional a la longitud de onda. Al tener una $\lambda$ menor (400 nm vs 700 nm), su frecuencia aumenta.
+}
+
+% =================================================================
+% TAU 6: REFRACCIÓN Y OTROS FENÓMENOS DE LA LUZ (11°)
+% =================================================================
+\newpage
+\section*{TAU 6 - REFRACCIÓN Y OTROS FENÓMENOS DE LA LUZ}
+
+\section*{ACTIVIDAD 6.1 (En el texto original aparece nombrada como 5.1)}
+\textit{Nota: En algunos apartados del texto original se menciona la palabra "espejos", pero por el contexto de la unidad (Refracción) y los datos proporcionados, el desarrollo geométrico y matemático corresponde a \textbf{lentes}.}
+
+\subsection*{1. Construcciones de imágenes en lentes (convergentes y divergentes)}
+\noindent \textbf{Enunciado:} Construya imágenes producidas por espejos (lentes) tanto convergentes como divergentes de objetos ubicados en: a. Más lejos del foco. b. En el foco. c. Entre la lente y el foco.
+
+\respOperacional[8cm]{
+	\textbf{Para Lentes Convergentes:} \\
+	\textbf{a. Más lejos del foco ($d_o > f$):} Los rayos refractados convergen al otro lado de la lente. Se forma una imagen \textbf{real e invertida}. Su tamaño dependerá de si está más allá de $2f$ (menor tamaño), en $2f$ (igual tamaño) o entre $2f$ y $f$ (mayor tamaño). \\
+	\textbf{b. En el foco ($d_o = f$):} Los rayos refractados emergen paralelos entre sí. \textbf{No se forma imagen} (se dice que se forma en el infinito). \\
+	\textbf{c. Entre la lente y el foco ($d_o < f$):} Los rayos refractados divergen al otro lado, por lo que se deben prolongar hacia atrás (lado del objeto). Se forma una imagen \textbf{virtual, derecha y de mayor tamaño}. \\
+	\\
+	\textbf{Para Lentes Divergentes:} \\
+	En una lente divergente, los rayos siempre divergen al atravesarla, sin importar dónde se coloque el objeto (lejos del foco, en el foco o cerca de la lente). Las prolongaciones de los rayos refractados siempre se cruzan del mismo lado del objeto, formando invariablemente una imagen \textbf{virtual, derecha y de menor tamaño} (reducida).
+}
+
+\subsection*{2. Lente Convergente (Objeto más lejos del foco)}
+\noindent \textbf{Enunciado:} Un objeto de 2 cm, se coloca a 15 cm de una lente convergente de distancia focal de 10 cm. Determine las características, posición y tamaño de la imagen formada.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $h_o = 2 \text{ cm}$, $d_o = 15 \text{ cm}$, $f = 10 \text{ cm}$ (positiva por ser convergente). \\
+	\\
+	\textbf{Posición de la imagen ($d_i$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{f} - \dfrac{1}{d_o} = \dfrac{1}{10} - \dfrac{1}{15} = \dfrac{3 - 2}{30} = \dfrac{1}{30} \implies d_i = \mathbf{30 \text{ cm}}$. \\
+	\\
+	\textbf{Tamaño ($h_i$) y Aumento ($A$):} \\
+	$A = -\dfrac{d_i}{d_o} = -\dfrac{30}{15} = -2$. \\
+	$h_i = A \cdot h_o = -2 \times 2 = \mathbf{-4 \text{ cm}}$. \\
+	\\
+	\textbf{Características:} Como $d_i$ es positiva y el aumento es negativo, la imagen es \textbf{real, invertida y ampliada} (al doble de su tamaño).
+}
+
+\subsection*{3. Lente Convergente (Objeto entre la lente y el foco)}
+\noindent \textbf{Enunciado:} Repita el ejercicio anterior, si el objeto se coloca a 5 cm del espejo (lente).
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $h_o = 2 \text{ cm}$, $d_o = 5 \text{ cm}$, $f = 10 \text{ cm}$. \\
+	\\
+	\textbf{Posición de la imagen ($d_i$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{f} - \dfrac{1}{d_o} = \dfrac{1}{10} - \dfrac{1}{5} = \dfrac{1 - 2}{10} = -\dfrac{1}{10} \implies d_i = \mathbf{-10 \text{ cm}}$. \\
+	\\
+	\textbf{Tamaño ($h_i$) y Aumento ($A$):} \\
+	$A = -\dfrac{d_i}{d_o} = -\dfrac{-10}{5} = \mathbf{2}$. \\
+	$h_i = A \cdot h_o = 2 \times 2 = \mathbf{4 \text{ cm}}$. \\
+	\\
+	\textbf{Características:} Como $d_i$ es negativa y el aumento es positivo, la imagen es \textbf{virtual, derecha y ampliada} (funciona como lupa).
+}
+
+\subsection*{4. Lente Divergente}
+\noindent \textbf{Enunciado:} Un objeto de 3 cm se coloca al frente de una lente divergente de 15 cm de distancia focal. Determine las características, posición y tamaño de la imagen formada si la imagen (objeto) se coloca a: a. 20 cm, b. 10 cm.
+
+\respOperacional[6.5cm]{
+	\textbf{Datos:} $h_o = 3 \text{ cm}$, $f = -15 \text{ cm}$ (negativa por ser divergente). \\
+	\\
+	\textbf{a. Objeto a 20 cm ($d_o = 20 \text{ cm}$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{-15} - \dfrac{1}{20} = \dfrac{-4 - 3}{60} = -\dfrac{7}{60} \implies d_i \approx \mathbf{-8.57 \text{ cm}}$. \\
+	$A = -\dfrac{-8.57}{20} = 0.428 \implies h_i = 0.428 \times 3 \approx \mathbf{1.28 \text{ cm}}$. \\
+	Características: \textbf{Virtual, derecha y reducida}. \\
+	\\
+	\textbf{b. Objeto a 10 cm ($d_o = 10 \text{ cm}$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{-15} - \dfrac{1}{10} = \dfrac{-2 - 3}{30} = -\dfrac{5}{30} = -\dfrac{1}{6} \implies d_i = \mathbf{-6 \text{ cm}}$. \\
+	$A = -\dfrac{-6}{10} = 0.6 \implies h_i = 0.6 \times 3 = \mathbf{1.8 \text{ cm}}$. \\
+	Características: \textbf{Virtual, derecha y reducida}.
+}
+
+\subsection*{5. Construcciones Geométricas}
+\noindent \textbf{Enunciado:} Realice las construcciones geométricas utilizando dibujos de los puntos 2, 3, 4. Si considera pertinente, utilice escala.
+
+\respOperacional[4cm]{
+	\textit{(El estudiante debe realizar los gráficos en su cuaderno respetando las proporciones calculadas)}: \\
+	- \textbf{Punto 2:} Los rayos pasan por la lente convergente y se cruzan \textbf{debajo del eje óptico en el lado opuesto}, confirmando la imagen real e invertida. \\
+	- \textbf{Punto 3:} Los rayos divergen al pasar la lente convergente; al prolongarlos hacia atrás se cruzan \textbf{arriba del eje en el mismo lado del objeto}, confirmando la imagen virtual y derecha. \\
+	- \textbf{Punto 4:} Al trazar los rayos por la lente divergente, estos se separan. Sus prolongaciones hacia atrás siempre se cruzan \textbf{entre el foco y el vértice}, dando una imagen virtual, derecha y pequeña.
+}
+
+\subsection*{6. Ecuación del Fabricante de Lentes}
+\noindent \textbf{Enunciado:} ¿Qué características presenta una imagen de 5 cm que se coloca a 18 cm de una lente no simétrica de cuarzo de radios 10 cm y 8 cm?
+
+\respOperacional[6.5cm]{
+	\textbf{Datos:} $h_o = 5 \text{ cm}$, $d_o = 18 \text{ cm}$, Cuarzo $n = 1.544$ (Según tabla teórica), $R_1 = 10 \text{ cm}$, $R_2 = 8 \text{ cm}$. \\
+	Utilizando la ecuación del fabricante $\dfrac{1}{f} = (n-1)\left(\dfrac{1}{R_1} + \dfrac{1}{R_2}\right)$ (asumiendo lente biconvexa con los valores absolutos dados en el texto): \\
+	\\
+	\textbf{Paso 1: Calcular la distancia focal ($f$)} \\
+	$\dfrac{1}{f} = (1.544 - 1)\left(\dfrac{1}{10} + \dfrac{1}{8}\right) = 0.544 (0.1 + 0.125) = 0.544 (0.225) = 0.1224$ \\
+	$f = \dfrac{1}{0.1224} \approx \mathbf{8.17 \text{ cm}}$. (Lente convergente) \\
+	\\
+	\textbf{Paso 2: Calcular posición ($d_i$) y tamaño ($h_i$)} \\
+	$\dfrac{1}{d_i} = 0.1224 - \dfrac{1}{18} = 0.1224 - 0.0555 = 0.0669 \implies d_i = \dfrac{1}{0.0669} \approx \mathbf{14.95 \text{ cm}}$. \\
+	$A = -\dfrac{14.95}{18} \approx -0.83 \implies h_i = -0.83 \times 5 = \mathbf{-4.15 \text{ cm}}$. \\
+	\\
+	\textbf{Características:} La imagen es \textbf{real, invertida y de menor tamaño} (reducida).
+}
+
+\newpage
+\section*{ANÁLISIS DE RESULTADOS: Laboratorio 11F-06P (Refracción de la luz)}
+
+\respOperacional[7cm]{
+	\textbf{1. Ausencia de imagen en la distancia focal (Parte 2):} \\
+	Al ubicar el objeto exactamente sobre la distancia focal de la lente convergente ($d_o = f$), los rayos de luz que provienen del objeto y atraviesan la lente se refractan de manera que \textbf{emergen perfectamente paralelos entre sí}. Geométricamente, líneas paralelas nunca se intersecan, por lo que no se forma ninguna imagen real que pueda ser proyectada en la pantalla. Matemáticamente, esto corresponde a que la posición de la imagen tienda al infinito. \\
+	\\
+	\textbf{2. Diferencia entre lente convergente en el foco y lente divergente (Parte 3):} \\
+	En el último paso de la parte 2 (lente convergente en el foco), no se forma imagen porque los rayos salen \textbf{paralelos}. Por el contrario, en el último paso de la parte 3 (usando una lente divergente), los rayos siempre se \textbf{separan (divergen)} al atravesarla, sin importar la posición del objeto. En una lente divergente \textbf{nunca} se podrá proyectar una imagen en la pantalla porque siempre formará una imagen \textbf{virtual} del mismo lado del objeto, generada por la prolongación de los rayos refractados. \\
+	\\
+	\textbf{3. Explicación de la lupa quemando papel:} \\
+	Una lupa es una \textbf{lente convergente}. Los rayos de luz y radiación térmica del Sol viajan desde tan lejos que llegan a la Tierra prácticamente paralelos. Al atravesar la lente convexa, las leyes de la refracción obligan a todos esos rayos paralelos a \textbf{converger exactamente en el punto focal (foco)} de la lente. Si se coloca el papel justo a esa distancia focal, toda la energía solar captada por el área de la lente se concentra en un punto minúsculo, elevando drásticamente la temperatura térmica hasta superar el punto de ignición del papel.
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN PARA EXAMEN - TAU 6 (11°)
+% =================================================================
+\newpage
+\begin{center}
+	{\LARGE \textbf{TALLER DE PREPARACIÓN Y REPASO}}\\[0.2cm]
+	{\Large \textbf{Evaluación TAU 6: Refracción y Lentes}}\\[0.1cm]
+	\hrule
+\end{center}
+
+\vspace{0.5cm}
+
+\subsection*{1. Ley de Snell y Velocidad de Propagación}
+\noindent \textbf{Enunciado:} Un haz de luz viaja por el aire ($n \approx 1$) e incide sobre la superficie plana de un bloque de vidrio crown ($n = 1.52$) con un ángulo de $50^{\circ}$ respecto a la normal. Calcule: a. El ángulo de refracción del rayo dentro del vidrio. b. La velocidad a la que se propaga la luz en el interior de dicho cristal.
+
+\respOperacional[5.5cm]{
+	\textbf{Datos:} $n_i = 1$, $\theta_i = 50^{\circ}$, $n_r = 1.52$, $c = 3 \times 10^8 \text{ m/s}$. \\
+	\\
+	\textbf{a. Ángulo de refracción ($\theta_r$):} \\
+	Aplicando la Ley de Snell: $n_i \cdot \operatorname{sen} \theta_i = n_r \cdot \operatorname{sen} \theta_r$ \\
+	$1 \cdot \operatorname{sen}(50^{\circ}) = 1.52 \cdot \operatorname{sen} \theta_r \implies 0.766 = 1.52 \cdot \operatorname{sen} \theta_r$ \\
+	$\operatorname{sen} \theta_r = \dfrac{0.766}{1.52} \approx 0.504 \implies \theta_r = \operatorname{arcsen}(0.504) \approx \mathbf{30.26^{\circ}}$. \\
+	\\
+	\textbf{b. Velocidad en el medio ($v$):} \\
+	$n = \dfrac{c}{v} \implies v = \dfrac{c}{n} = \dfrac{3 \times 10^8 \text{ m/s}}{1.52} \approx \mathbf{1.97 \times 10^8 \text{ m/s}}$.
+}
+
+\subsection*{2. Ángulo Crítico y Reflexión Interna Total}
+\noindent \textbf{Enunciado:} Un rayo de luz intenta pasar desde el interior de una joya de diamante ($n = 2.42$) hacia el aire exterior ($n = 1$). Determine el ángulo crítico a partir del cual se produce el fenómeno de reflexión interna total y explique brevemente el significado físico de este valor para la gema.
+
+\respOperacional[5cm]{
+	\textbf{Datos:} $n_1 = 2.42$ (medio incidente), $n_2 = 1$ (medio refractado). \\
+	\\
+	\textbf{Ángulo crítico ($\theta_c$):} \\
+	La reflexión interna total ocurre cuando el ángulo refractado es de $90^{\circ}$ ($\operatorname{sen} 90^{\circ} = 1$). \\
+	$\operatorname{sen} \theta_c = \dfrac{n_2}{n_1} = \dfrac{1}{2.42} \approx 0.413$ \\
+	$\theta_c = \operatorname{arcsen}(0.413) \approx \mathbf{24.4^{\circ}}$. \\
+	\\
+	\textbf{Significado Físico:} \\
+	Cualquier rayo de luz que incida desde el interior del diamante hacia la superficie con un ángulo mayor a $24.4^{\circ}$ no logrará salir al aire. En su lugar, se comportará como si la frontera fuera un espejo perfecto, reflejándose completamente en el interior. Esto explica por qué los diamantes tallados "atrapan" la luz y brillan tanto.
+}
+
+\subsection*{3. Formación de Imágenes: Lente Convergente}
+\noindent \textbf{Enunciado:} Se ubica una vela luminosa de 4 cm de altura a una distancia de 30 cm de una lente biconvexa (convergente) cuya distancia focal es de 20 cm. Determine analíticamente: a. La posición donde se formará la imagen de la vela. b. El tamaño de la imagen y una descripción de sus características (real o virtual, derecha o invertida).
+
+\respOperacional[6cm]{
+	\textbf{Datos:} $h_o = 4 \text{ cm}$, $d_o = 30 \text{ cm}$, $f = 20 \text{ cm}$ (positiva). \\
+	\\
+	\textbf{a. Posición de la imagen ($d_i$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{f} - \dfrac{1}{d_o} = \dfrac{1}{20} - \dfrac{1}{30}$ \\
+	Sacando factor común 60: $\dfrac{1}{d_i} = \dfrac{3 - 2}{60} = \dfrac{1}{60} \implies d_i = \mathbf{60 \text{ cm}}$. \\
+	\\
+	\textbf{b. Tamaño ($h_i$) y Características:} \\
+	$A = -\dfrac{d_i}{d_o} = -\dfrac{60}{30} = -2$. \\
+	$h_i = A \cdot h_o = -2 \times 4 \text{ cm} = \mathbf{-8 \text{ cm}}$. \\
+	\\
+	\textbf{Características:} Como $d_i$ es positiva (se forma al otro lado de la lente) y el aumento es negativo, la imagen es \textbf{real, invertida y de mayor tamaño} (el doble).
+}
+
+\subsection*{4. Formación de Imágenes: Lente Divergente}
+\noindent \textbf{Enunciado:} Un estudiante coloca un pequeño objeto de 5 cm de altura a 15 cm de una lente divergente que posee una distancia focal de -10 cm. Calcule la posición de la imagen formada, su tamaño, y describa detalladamente sus características ópticas.
+
+\respOperacional[6cm]{
+	\textbf{Datos:} $h_o = 5 \text{ cm}$, $d_o = 15 \text{ cm}$, $f = -10 \text{ cm}$ (negativa). \\
+	\\
+	\textbf{Posición de la imagen ($d_i$):} \\
+	$\dfrac{1}{d_i} = \dfrac{1}{f} - \dfrac{1}{d_o} = \dfrac{1}{-10} - \dfrac{1}{15} = \dfrac{-3 - 2}{30} = -\dfrac{5}{30} = -\dfrac{1}{6}$ \\
+	$d_i = \mathbf{-6 \text{ cm}}$. \\
+	\\
+	\textbf{Tamaño de la imagen ($h_i$):} \\
+	$A = -\dfrac{d_i}{d_o} = -\dfrac{-6}{15} = \dfrac{6}{15} = 0.4$. \\
+	$h_i = A \cdot h_o = 0.4 \times 5 \text{ cm} = \mathbf{2 \text{ cm}}$. \\
+	\\
+	\textbf{Características:} Como $d_i$ es negativa (se forma en el mismo lado del objeto) y $h_i$ es positiva, la imagen es \textbf{virtual, derecha y de menor tamaño} (reducida).
+}
+
+\subsection*{5. Conceptos Físicos: Descomposición de la luz}
+\noindent \textbf{Enunciado:} Explique desde el punto de vista de la refracción por qué al hacer pasar un rayo estrecho de luz blanca a través de un prisma de cristal, la luz se descompone formando un espectro de colores (arcoíris). Especifique en su respuesta qué color sufre la mayor desviación y cuál la menor.
+
+\respOperacional[4.5cm]{
+	\textbf{Respuesta Teórica:} \\
+	La luz blanca es en realidad la superposición de ondas electromagnéticas de diferentes frecuencias (y longitudes de onda) que corresponden a los distintos colores. El fenómeno ocurre porque el \textbf{índice de refracción del cristal no es constante}, sino que depende de la frecuencia de la luz incidente. \\
+	Al ingresar al prisma, cada color se refracta (desvía) con un ángulo ligeramente distinto. La luz \textbf{violeta} (de mayor frecuencia) experimenta el mayor índice de refracción y, por ende, es la que \textbf{más se desvía}. Por el contrario, la luz \textbf{roja} (de menor frecuencia) experimenta el menor índice de refracción y es la que \textbf{menos se desvía}. Esto separa las trayectorias de los rayos, abriendo el haz blanco en un espectro visible continuo.
+}
+
+% =================================================================
+% TAU 7: FENÓMENOS ELECTROSTÁTICOS (11°)
+% =================================================================
+\newpage
+\section*{TAU 7 - FENÓMENOS ELECTROSTÁTICOS}
+
+\subsection*{ACTIVIDAD 7.1}
+
+\subsection*{1. Completar enunciados}
+\noindent \textbf{Enunciado:} Completar los siguientes enunciados: %[cite: 2]
+\begin{itemize}
+	\item[a.] Aparte del globo existen otros materiales capaces de levantar cuerpos ligeros, como el tubo de \textbf{\color{blue}PVC} y el \textbf{\color{blue}ámbar}. %[cite: 2]
+	\item[b.] No siempre los cuerpos frotados atraen o acercan a otros cuerpos, también pueden \textbf{\color{blue}repelerse}. %[cite: 2]
+	\item[c.] Cuando acercabas el tubo de PVC electrificado al péndulo electrostático, después de estar en contacto un tiempo, estos se \textbf{\color{blue}repelen}. %[cite: 2]
+	\item[d.] Cuando se acerca un globo electrificado a las dos tiras de aluminio, la que estaba más cerca al globo se \textbf{\color{blue}atrae} y la que estaba más lejos \textbf{\color{blue}se aleja}. %[cite: 2]
+	\item[e.] A medida que se acerca poco a poco un cuerpo electrificado al electroscopio, las láminas de aluminio dentro de él más se \textbf{\color{blue}separan} y a medida que se alejara el cuerpo, las láminas se \textbf{\color{blue}cierran (o unen)}. %[cite: 2]
+\end{itemize}
+
+\subsection*{2. Interacción lana y caucho}
+\noindent \textbf{Enunciado:} Un pedazo de lana se frota con caucho. %[cite: 2]
+\begin{itemize}
+	\item[a.] ¿Cuál material perdió o cedió electrones? %[cite: 2]
+	\item[b.] ¿Qué carga adquiere cada uno de los cuerpos? %[cite: 2]
+	\item[c.] ¿Por qué el caucho tiene la misma carga que la lana, pero con signo contrario? %[cite: 2]
+\end{itemize}
+
+\respOperacional[4.5cm]{
+	\textbf{a.} La \textbf{\color{blue}lana} perdió electrones, cediéndolos al caucho. %[cite: 2] \\
+	\textbf{b.} La lana adquiere carga \textbf{\color{blue}positiva (+)} y el caucho adquiere carga \textbf{\color{blue}negativa (-)}. %[cite: 2] \\
+	\textbf{c.} Por el \textbf{\color{blue}principio de conservación de la carga}: la cantidad de electrones exactos que pierde la lana son los mismos que gana el caucho, haciendo que sus magnitudes sean iguales pero de signos opuestos. %[cite: 2]
+}
+
+\subsection*{3. Interacciones entre materiales}
+\noindent \textbf{Enunciado:} Se frota vidrio con seda y resina con piel animal, y se acercan un material de cada frotamiento, comente cuales de las siguientes combinaciones se atraen o se repelen, justificar las respuestas: a. Vidrio-resina, b. Vidrio-piel, c. Seda-resina, d. Piel-seda %[cite: 2]
+
+\respOperacional[5cm]{
+	\textit{Análisis de cargas (según la serie triboeléctrica): Vidrio (+), Seda (-). Piel animal (+), Resina (-).} %[cite: 2] \\
+	\textbf{a. Vidrio (+) - resina (-):} Se \textbf{\color{blue}atraen} por tener distinta naturaleza eléctrica. %[cite: 2] \\
+	\textbf{b. Vidrio (+) - piel (+):} Se \textbf{\color{blue}repelen} por tener igual naturaleza eléctrica. %[cite: 2] \\
+	\textbf{c. Seda (-) - resina (-):} Se \textbf{\color{blue}repelen} por tener igual naturaleza eléctrica. %[cite: 2] \\
+	\textbf{d. Piel (+) - seda (-):} Se \textbf{\color{blue}atraen} por tener distinta naturaleza eléctrica. %[cite: 2]
+}
+
+\subsection*{4. Semejanzas y diferencias}
+\noindent \textbf{Enunciado:} Comenta semejanzas y diferencias entre: a. Electrificación por frotamiento y por inducción, b. Electrificación por inducción y por contacto, c. Aislantes y conductores, d. Conductores y semiconductores, e. Ley de Gravitación Universal de Newton y Ley de Coulomb %[cite: 2]
+
+\respOperacional[8cm]{\\
+	
+	\textbf{a. Frotamiento vs. Inducción:} Semejanza: Ambos métodos logran que un cuerpo neutro manifieste propiedades eléctricas. Diferencia: El frotamiento requiere fricción física para transferir electrones; la inducción no requiere contacto, solo reordena cargas internas. %[cite: 2] \\
+	\\
+	\textbf{b. Inducción vs. Contacto:} Semejanza: En ambos un cuerpo cargado interactúa con uno neutro. Diferencia: En contacto hay transferencia real de electrones y quedan con igual signo; en inducción no hay transferencia, solo polarización (reordenamiento). %[cite: 2] \\
+	\\
+	\textbf{c. Aislantes vs. Conductores:} Semejanza: Ambos están formados por átomos con electrones y protones. Diferencia: Los conductores tienen electrones libres que permiten el flujo de carga; los aislantes tienen sus electrones fuertemente ligados al núcleo. %[cite: 2] \\
+	\\
+	\textbf{d. Conductores vs. Semiconductores:} Semejanza: Ambos pueden conducir electricidad. Diferencia: El conductor lo hace naturalmente; el semiconductor se comporta como aislante en ciertas condiciones y como conductor bajo cambios (ej. de temperatura). %[cite: 2] \\
+	\\
+	\textbf{e. Ley de Gravitación vs. Ley de Coulomb:} Semejanza: Ambas fuerzas son inversamente proporcionales al cuadrado de la distancia ($1/d^2$). Diferencia: La gravitación solo es de atracción y depende de las masas; Coulomb puede ser atracción o repulsión y depende de las cargas. %[cite: 2]
+}
+
+\subsection*{5. El rayo como inducción}
+\noindent \textbf{Enunciado:} ¿Por qué se considera la formación del rayo como un método de electrificación por inducción? %[cite: 2]
+
+\respOperacional[3cm]{
+	Las nubes de tormenta altamente cargadas en su base generan un fuerte campo eléctrico que repele las cargas de igual signo en la superficie de la tierra y atrae a las de signo opuesto. Esto provoca una \textbf{\color{blue}polarización (inducción)} en el suelo sin necesidad de contacto físico previo, acumulando carga superficial hasta que se rompe la resistencia del aire y se produce la descarga (rayo). %[cite: 2]
+}
+
+\subsection*{6. Variación de la fuerza con la distancia}
+\noindent \textbf{Enunciado:} Dos cuerpos cargados con 1C y separados por 1 cm ejercen una fuerza de repulsión, si aumenta 3 veces la distancia ¿cuánto aumenta o disminuye la fuerza? Mostrar el cálculo %[cite: 2]
+
+\respOperacional[4.5cm]{
+	Según la Ley de Coulomb, la fuerza es inversamente proporcional al cuadrado de la distancia ($F \propto \dfrac{1}{d^2}$). %[cite: 2] \\
+	Si la distancia inicial $d_1 = 1 \text{ cm}$ aumenta 3 veces ($d_2 = 3d_1$), la nueva fuerza será: \\
+	$F_2 \propto \dfrac{1}{(3d_1)^2} = \dfrac{1}{9d_1^2}$ \\
+	\textbf{\color{blue}Cálculo:} \\
+	$F_1 = 9 \times 10^9 \dfrac{(1)(1)}{(0.01)^2} = 9 \times 10^{13} \text{ N}$ \\
+	$F_2 = 9 \times 10^9 \dfrac{(1)(1)}{(0.03)^2} = 1 \times 10^{13} \text{ N}$ \\
+	La fuerza \textbf{\color{blue}disminuye 9 veces}. %[cite: 2]
+}
+
+\subsection*{7. Sistema lineal de tres partículas}
+\noindent \textbf{Enunciado:} Tres partículas cargadas (de izquierda a derecha) $q_1=-4\mu C$, $q_2=2\mu C$ y $q_3=-5\mu C$, ubicadas sobre un eje horizontal como muestra la imagen. %[cite: 2]
+a. Dibuja el diagrama de fuerzas sobre la partícula 2. %[cite: 2]
+b. ¿Cuál es la fuerza neta sobre la partícula 2? %[cite: 2]
+c. ¿Qué dirección tendrá la fuerza neta sobre esta partícula? %[cite: 2]
+
+\respOperacional[8cm]{
+	\textbf{a. Diagrama de fuerzas:} La partícula $q_2$ (positiva) experimenta una fuerza de atracción hacia la izquierda debida a $q_1$ ($\vec{F}_{12}$) y una fuerza de atracción hacia la derecha debida a $q_3$ ($\vec{F}_{32}$). %[cite: 2] \\
+	\\
+	\textbf{b. Cálculo de la fuerza neta:} \\
+	A partir de la imagen, la distancia $d_{12} = 5 \text{ cm} = 0.05 \text{ m}$. La distancia total es $9 \text{ cm}$, por lo tanto, la distancia $d_{23} = 9 \text{ cm} - 5 \text{ cm} = 4 \text{ cm} = 0.04 \text{ m}$. %[cite: 2] \\
+	\\
+	\textit{Fuerza que ejerce $q_1$ sobre $q_2$:} \\
+	$F_{12} = 9 \times 10^9 \frac{(4 \times 10^{-6})(2 \times 10^{-6})}{(0.05)^2} = 9 \times 10^9 \frac{8 \times 10^{-12}}{0.0025} = \mathbf{28.8 \text{ N}}$ (hacia la izquierda). %[cite: 2] \\
+	\\
+	\textit{Fuerza que ejerce $q_3$ sobre $q_2$:} \\
+	$F_{32} = 9 \times 10^9 \frac{(5 \times 10^{-6})(2 \times 10^{-6})}{(0.04)^2} = 9 \times 10^9 \frac{10 \times 10^{-12}}{0.0016} = \mathbf{56.25 \text{ N}}$ (hacia la derecha). %[cite: 2] \\
+	\\
+	\textbf{Fuerza Neta ($F_R$):} Al tener sentidos opuestos, se restan: \\
+	$F_R = 56.25 \text{ N} \text{ (der)} - 28.8 \text{ N} \text{ (izq)} = \mathbf{27.45 \text{ N}}$. %[cite: 2] \\
+	\\
+	\textbf{c. Dirección:} La fuerza neta tiene dirección \textbf{\color{blue}hacia la derecha} (hacia $q_3$), dado que la atracción de $q_3$ es mayor al estar más cerca y tener más carga. %[cite: 2]
+}
+
+\subsection*{8. Sistema bidimensional en triángulo rectángulo}
+\noindent \textbf{Enunciado:} Tres partículas se encuentran ubicadas en la esquina de un triángulo rectángulo, como muestra la imagen. a. Realiza el diagrama vectorial de las fuerzas que actúan en la partícula 3. b. Determina la magnitud de la fuerza que ejercen las partículas 1 y 2 sobre la partícula 3, si $q_1=3\mu C$, $q_2=3\mu C$ y $q_3=-2\mu C$. %[cite: 2]
+
+\respOperacional[9.5cm]{
+	\textbf{a. Diagrama vectorial:} Sobre $q_3$ (carga negativa) actúan dos fuerzas de atracción. La fuerza $\vec{F}_{13}$ va dirigida directamente hacia abajo sobre el eje y (hacia $q_1$). La fuerza $\vec{F}_{23}$ va en diagonal hacia abajo y a la derecha (hacia $q_2$). %[cite: 2] \\
+	\\
+	\textbf{b. Cálculo de magnitudes:} \\
+	Según la imagen, $q_1$ está a $50 \text{ cm} = 0.5 \text{ m}$ directamente debajo de $q_3$. $q_2$ está a $50 \text{ cm} = 0.5 \text{ m}$ a la derecha de $q_1$. %[cite: 2] \\
+	\\
+	\textit{Magnitud de $\vec{F}_{13}$:} \\
+	$F_{13} = 9 \times 10^9 \frac{(3 \times 10^{-6})(2 \times 10^{-6})}{(0.5)^2} = \frac{0.054}{0.25} = \mathbf{0.216 \text{ N}}$ (dirección $-y$). %[cite: 2] \\
+	\\
+	\textit{Magnitud de $\vec{F}_{23}$:} \\
+	Distancia $d_{23}^2$ por Pitágoras = $0.5^2 + 0.5^2 = 0.50 \text{ m}^2$. %[cite: 2] \\
+	$F_{23} = 9 \times 10^9 \frac{(3 \times 10^{-6})(2 \times 10^{-6})}{0.50} = \frac{0.054}{0.50} = \mathbf{0.108 \text{ N}}$. %[cite: 2] \\
+	\\
+	\textbf{Descomposición y Suma de Vectores:} \\
+	El ángulo formado es de $45^{\circ}$ respecto a la vertical. Descomponemos $\vec{F}_{23}$: \\
+	$F_{23x} = 0.108 \cdot \cos(45^{\circ}) \approx 0.0764 \text{ N}$ \\
+	$F_{23y} = -0.108 \cdot \operatorname{sen}(45^{\circ}) \approx -0.0764 \text{ N}$ %[cite: 2] \\
+	\\
+	Sumamos los componentes en X y en Y: \\
+	$F_{Rx} = 0.0764 \text{ N}$ \\
+	$F_{Ry} = F_{13} + F_{23y} = -0.216 - 0.0764 = -0.2924 \text{ N}$ %[cite: 2] \\
+	\\
+	\textbf{Magnitud Resultante ($F_R$):} \\
+	$F_R = \sqrt{(0.0764)^2 + (-0.2924)^2} = \sqrt{0.005837 + 0.085498} = \sqrt{0.091335} \approx \mathbf{0.302 \text{ N}}$. %[cite: 2]
+}
+
+% =================================================================
+% ANÁLISIS DE RESULTADOS - LABORATORIO 11F-07P
+% =================================================================
+\newpage
+\section*{11F-07P. CARGA ELÉCTRICA Y LEY DE OHM}
+\subsection*{ANÁLISIS DE RESULTADOS}
+
+\subsection*{1. Funcionamiento del electroscopio}
+\noindent \textbf{Pregunta:} De una explicación al funcionamiento del electroscopio. %[cite: 2]
+
+\respOperacional[4cm]{
+	El electroscopio funciona basándose en los principios de \textbf{\color{blue}conducción, inducción electrostática y la repulsión de cargas de igual signo}. Al acercar (inducción) o tocar (contacto) la esfera metálica superior con un cuerpo cargado, los electrones libres del material conductor se redistribuyen a lo largo de la varilla hasta llegar a las láminas de la parte inferior. Como ambas láminas de aluminio adquieren el mismo tipo de carga (ya sea positiva o negativa), la fuerza electrostática hace que \textbf{\color{blue}se repelan y se separen}. Al retirar la carga o conectar el electroscopio a tierra, las láminas vuelven a su posición original.
+}
+
+\subsection*{2. Análisis de la Ley de Ohm}
+\noindent \textbf{Pregunta:} En las partes 2 y 3 se evidenció la Ley de Ohm a través de los datos y de manera gráfica. Enuncie con sus propias palabras en que consiste, tenga en cuenta el tipo de función y el significado de la pendiente. %[cite: 2]
+
+\respOperacional[5cm]{
+	\textbf{Enunciado de la Ley de Ohm:} Establece que el voltaje ($V$) aplicado a un conductor es directamente proporcional a la intensidad de corriente ($I$) que circula por él, siempre y cuando la temperatura se mantenga constante. %[cite: 2] \\
+	\\
+	\textbf{Tipo de función:} Al graficar el Voltaje (eje vertical) frente a la Intensidad (eje horizontal), se obtiene una \textbf{\color{blue}función lineal} (una línea recta que pasa por el origen). %[cite: 2] \\
+	\\
+	\textbf{Significado de la pendiente:} La constante de proporcionalidad que define la inclinación o pendiente de esta recta gráfica representa físicamente la \textbf{\color{blue}resistencia eléctrica ($R$)} del material del circuito. Matemáticamente se expresa como $R = V / I$. %[cite: 2]
+}
+% =================================================================
+% TALLER DE PREPARACIÓN Y REPASO - TAU 7
+% =================================================================
+\newpage
+\section*{TALLER DE PREPARACIÓN PARA EL EXAMEN - TAU 7}
+
+\subsection*{1. Definición de métodos de electrización}
+\noindent \textbf{Enunciado:} Defina con sus propias palabras los tres métodos de electrización estudiados en clase (frotamiento, contacto e inducción). Para uno de ellos, proporcione un ejemplo de la vida cotidiana.
+
+\respOperacional[5cm]{
+	\textbf{Frotamiento:} Proceso en el cual dos cuerpos neutros de distinto material se frotan entre sí, causando que uno arranque electrones del otro, quedando con cargas de signos opuestos. \\
+	\textbf{Contacto:} Ocurre cuando un cuerpo previamente cargado toca a un cuerpo neutro, transfiriéndole parte de su carga. Ambos cuerpos terminan con carga del mismo signo. \\
+	\textbf{Inducción:} Es la polarización o reordenamiento de cargas en un cuerpo neutro cuando se le acerca (sin tocarlo) un cuerpo cargado. \\
+	\textbf{Ejemplo cotidiano:} Electrización por frotamiento al peinarnos con un peine de plástico en un día seco, el cual luego atrae pedacitos de papel (inducción).
+}
+
+\subsection*{2. Frotamiento y conservación de la carga}
+\noindent \textbf{Enunciado:} Un estudiante realiza un experimento en el laboratorio frotando vigorosamente una barra de vidrio con un paño de seda. Después del proceso, un electrómetro indica que la barra de vidrio adquirió una carga neta de $+3 \mu C$. 
+\begin{itemize}
+	\item[a.] ¿Qué le ocurrió a los electrones de la barra de vidrio durante el frotamiento?
+	\item[b.] De acuerdo con el principio de conservación de la carga eléctrica, ¿cuál es la carga exacta (magnitud y signo) que adquirió el paño de seda? Justifique.
+\end{itemize}
+
+\respOperacional[4.5cm]{
+	\textbf{a.} Los electrones de la capa externa de los átomos del vidrio fueron \textbf{\color{blue}arrancados y transferidos} hacia el paño de seda debido a la fricción. \\
+	\textbf{b.} Según el principio de conservación de la carga, la carga no se crea ni se destruye, solo se transfiere. Como el sistema inicial era neutro (carga neta cero), el paño de seda debió ganar exactamente la misma cantidad de electrones que perdió el vidrio. Por lo tanto, el paño de seda adquirió una carga de \textbf{\color{blue}$-3 \mu C$}.
+}
+
+\subsection*{3. Fuerza sobre cargas (Conceptual)}
+\noindent \textbf{Enunciado:} Dos cargas puntuales $q_1$ y $q_2$ se encuentran separadas por una distancia $d$ y experimentan una fuerza eléctrica de magnitud $F$. Si la distancia entre las cargas se triplica ($3d$) y al mismo tiempo la magnitud de la carga $q_1$ se duplica ($2q_1$), ¿cuál será la nueva magnitud de la fuerza eléctrica expresada en términos de $F$?
+
+\respOperacional[4cm]{
+	\textbf{Análisis a partir de la Ley de Coulomb:} \\
+	Fuerza original: $F = k \frac{q_1 \cdot q_2}{d^2}$ \\
+	Nuevas condiciones: $q_1' = 2q_1$, $d' = 3d$. \\
+	Sustituyendo en la fórmula: \\
+	$F' = k \frac{(2q_1) \cdot q_2}{(3d)^2} = k \frac{2 (q_1 \cdot q_2)}{9 d^2}$ \\
+	Agrupando los factores numéricos: \\
+	$F' = \frac{2}{9} \left( k \frac{q_1 \cdot q_2}{d^2} \right) = \mathbf{\frac{2}{9} F}$. \\
+	\textbf{Respuesta:} La nueva fuerza será \textbf{\color{blue}dos novenos (2/9)} de la fuerza original.
+}
+
+\subsection*{4. Fuerza resultante en línea recta (1D)}
+\noindent \textbf{Enunciado:} Tres cargas puntuales se disponen a lo largo del eje $x$. La carga $q_1 = 8 \mu C$ está en el origen ($x = 0 \text{ cm}$), la carga $q_2 = -2 \mu C$ está en $x = 10 \text{ cm}$, y la carga $q_3 = 4 \mu C$ está en $x = 30 \text{ cm}$. Determine la magnitud y la dirección de la fuerza eléctrica neta que actúa sobre la carga central $q_2$.
+
+\respOperacional[6.5cm]{
+	\textbf{1. Fuerza de $q_1$ sobre $q_2$ ($F_{12}$):} $q_1(+)$ atrae a $q_2(-)$ hacia la izquierda. \\
+	$d_{12} = 0.1 \text{ m}$. \\
+	$F_{12} = 9 \times 10^9 \frac{(8 \times 10^{-6})(2 \times 10^{-6})}{(0.1)^2} = \frac{0.144}{0.01} = \mathbf{14.4 \text{ N}}$ (hacia la izquierda). \\
+	\\
+	\textbf{2. Fuerza de $q_3$ sobre $q_2$ ($F_{32}$):} $q_3(+)$ atrae a $q_2(-)$ hacia la derecha. \\
+	$d_{32} = 30 \text{ cm} - 10 \text{ cm} = 20 \text{ cm} = 0.2 \text{ m}$. \\
+	$F_{32} = 9 \times 10^9 \frac{(4 \times 10^{-6})(2 \times 10^{-6})}{(0.2)^2} = \frac{0.072}{0.04} = \mathbf{1.8 \text{ N}}$ (hacia la derecha). \\
+	\\
+	\textbf{3. Fuerza Neta ($F_R$):} Como las fuerzas tienen sentidos opuestos, se restan: \\
+	$F_R = 14.4 \text{ N} - 1.8 \text{ N} = \mathbf{12.6 \text{ N}}$. \\
+	\textbf{Dirección:} Hacia la \textbf{\color{blue}izquierda} (hacia $q_1$, al tener mayor magnitud de fuerza).
+}
+
+\subsection*{5. Fuerza resultante en el plano (2D)}
+\noindent \textbf{Enunciado:} Tres cargas se ubican formando un triángulo rectángulo. La carga $q_1 = 6 \mu C$ está en el origen $(0,0)$. La carga $q_2 = -4 \mu C$ está sobre el eje $y$ a $30 \text{ cm}$ de distancia $(0, 30 \text{ cm})$. La carga $q_3 = 5 \mu C$ está sobre el eje $x$ a $40 \text{ cm}$ de distancia $(40 \text{ cm}, 0)$. Calcule la magnitud de la fuerza neta que ejercen $q_2$ y $q_3$ sobre la carga $q_1$.
+
+\respOperacional[7cm]{
+	\textbf{1. Fuerza de $q_2$ sobre $q_1$ ($F_{21}$):} $q_2(-)$ atrae a $q_1(+)$ hacia arriba (eje $+y$). \\
+	$d_{21} = 0.3 \text{ m}$. \\
+	$F_{21} = 9 \times 10^9 \frac{(6 \times 10^{-6})(4 \times 10^{-6})}{(0.3)^2} = \frac{0.216}{0.09} = \mathbf{2.4 \text{ N}}$ (en $+y$). \\
+	\\
+	\textbf{2. Fuerza de $q_3$ sobre $q_1$ ($F_{31}$):} $q_3(+)$ repele a $q_1(+)$ hacia la izquierda (eje $-x$). \\
+	$d_{31} = 0.4 \text{ m}$. \\
+	$F_{31} = 9 \times 10^9 \frac{(6 \times 10^{-6})(5 \times 10^{-6})}{(0.4)^2} = \frac{0.270}{0.16} = \mathbf{1.6875 \text{ N}}$ (en $-x$). \\
+	\\
+	\textbf{3. Magnitud de la Fuerza Resultante ($F_R$):} \\
+	Como forman un ángulo de $90^{\circ}$, usamos el Teorema de Pitágoras: \\
+	$F_R = \sqrt{(F_{31})^2 + (F_{21})^2} = \sqrt{(1.6875)^2 + (2.4)^2}$ \\
+	$F_R = \sqrt{2.8476 + 5.76} = \sqrt{8.6076} \approx \mathbf{2.93 \text{ N}}$.
+}
+
+% =================================================================
+% TAU 8: ELECTRICIDAD Y CIRCUITOS (11°)
+% =================================================================
+\newpage
+\section*{TAU 8 - ELECTRICIDAD Y CIRCUITOS}
+
+\subsection*{ACTIVIDAD 8.1}
+
+\subsection*{1. Relación entre magnitudes}
+\noindent \textbf{Enunciado:} Comentar como se relacionan las siguientes magnitudes: %[cite: 1]
+\begin{itemize}
+	\item[a.] Resistencia y longitud de un conductor.
+	\item[b.] Resistencia y área de un conductor.
+	\item[c.] Resistencia y voltaje aplicado a un conductor para mantener la intensidad constante.
+	\item[d.] Intensidad obtenida y resistencia de un conductor al aplicar un voltaje constante.
+\end{itemize}
+
+\respOperacional[5cm]{
+	\\
+	\textbf{a.} Son \textbf{\color{blue}directamente proporcionales}. A mayor longitud del conductor, mayor será su resistencia ($R = \rho \cdot l/A$). %[cite: 1] \\
+	\\
+	\textbf{b.} Son \textbf{\color{blue}inversamente proporcionales}. A mayor área transversal (grosor), menor será la resistencia al flujo de electrones. %[cite: 1] \\
+	\\
+	\textbf{c.} Son \textbf{\color{blue}directamente proporcionales}. Según la Ley de Ohm ($V = I \cdot R$), si se quiere mantener $I$ constante y la resistencia aumenta, se debe aumentar proporcionalmente el voltaje. %[cite: 1] \\
+	\\
+	\textbf{d.} Son \textbf{\color{blue}inversamente proporcionales}. Según la Ley de Ohm ($I = V/R$), si el voltaje es constante, al aumentar la resistencia, la intensidad de corriente disminuirá. %[cite: 1]
+}
+
+\subsection*{2. Semejanzas y diferencias}
+\noindent \textbf{Enunciado:} Comenta semejanzas y diferencias entre: a. Corriente alterna y corriente continua. b. Circuito en serie y circuito en paralelo. c. Resistencia y resistividad. d. Intensidad y voltaje. %[cite: 1]
+
+\respOperacional[8.5cm]{
+	\\
+	\textbf{a. Corriente Alterna (AC) vs. Continua (DC):} Semejanza: Ambas implican un flujo de electrones a través de un conductor. Diferencia: La DC fluye en una sola dirección de manera ininterrumpida; la AC cambia su dirección de flujo periódicamente (ej. a 50 Hz o 60 Hz). %[cite: 1] \\
+	\\
+	\textbf{b. Circuito Serie vs. Paralelo:} Semejanza: Ambos son arreglos para conectar elementos resistivos a una fuente. Diferencia: En serie, la corriente es la misma para todos y el voltaje se reparte; en paralelo, el voltaje es el mismo para todos y la corriente se reparte. %[cite: 1] \\
+	\\
+	\textbf{c. Resistencia vs. Resistividad:} Semejanza: Ambas miden la oposición al flujo de carga. Diferencia: La resistividad ($\rho$) es una propiedad intrínseca del tipo de material; la resistencia ($R$) depende tanto del material como de sus dimensiones geométricas (largo y área). %[cite: 1] \\
+	\\
+	\textbf{d. Intensidad vs. Voltaje:} Semejanza: Ambas son magnitudes fundamentales en el estudio de circuitos eléctricos. Diferencia: La intensidad ($I$) es la cantidad de carga que fluye por unidad de tiempo; el voltaje ($V$) es la energía o trabajo necesario para mover esa carga. %[cite: 1]
+}
+
+\subsection*{3. Consumo de una bombilla}
+\noindent \textbf{Enunciado:} Una bombilla de 60 watt se mantiene prendida la tercera parte del día. a. ¿Cuánto trabajo realiza? En julios y en KW-h. b. ¿Cuál es el costo mensual de esta bombilla, si el KW-h cuesta \$40? %[cite: 1]
+
+\respOperacional[6.5cm]{
+	\textbf{Datos:} $P = 60 \text{ W} = 0.06 \text{ kW}$. Tiempo diario = $1/3$ del día = $8 \text{ horas} = 28,800 \text{ segundos}$. %[cite: 1] \\
+	\\
+	\textbf{a. Trabajo (Energía) realizado:} \\
+	En Julios ($W = P \cdot t$): $W = 60 \text{ J/s} \cdot 28,800 \text{ s} = \mathbf{1,728,000 \text{ J}}$. %[cite: 1] \\
+	En kW-h: $W = 0.06 \text{ kW} \cdot 8 \text{ h} = \mathbf{0.48 \text{ kW-h}}$ (consumo diario). %[cite: 1] \\
+	\\
+	\textbf{b. Costo mensual (30 días):} \\
+	Energía mensual = $0.48 \text{ kW-h/día} \cdot 30 \text{ días} = 14.4 \text{ kW-h}$. %[cite: 1] \\
+	Costo = $14.4 \text{ kW-h} \cdot \$40/\text{kW-h} = \mathbf{\$576}$. %[cite: 1]
+}
+
+\subsection*{4. Análisis de un alambre de cobre}
+\noindent \textbf{Enunciado:} Se conecta un alambre cobre de 3 m de largo y 1 mm de diámetro a una fuente de voltaje que suministra 12 V. a. ¿Qué resistencia presenta el alambre? b. ¿Qué intensidad tiene? c. ¿Cuántos electrones fluyen al cabo de 3 segundos? d. ¿Cuál es la potencia eléctrica? %[cite: 1]
+
+\respOperacional[9.5cm]{
+	\textbf{Datos:} $L = 3 \text{ m}$, $\rho_{Cu} = 1.7 \times 10^{-8} \Omega\cdot\text{m}$, $r = 0.5 \text{ mm} = 0.5 \times 10^{-3} \text{ m}$, $V = 12 \text{ V}$. %[cite: 1] \\
+	\\
+	\textbf{a. Resistencia ($R$):} \\
+	Área ($A$) = $\pi r^2 = \pi (0.5 \times 10^{-3} \text{ m})^2 = 7.854 \times 10^{-7} \text{ m}^2$. \\
+	$R = \rho \frac{L}{A} = 1.7 \times 10^{-8} \frac{3}{7.854 \times 10^{-7}} = \frac{5.1 \times 10^{-8}}{7.854 \times 10^{-7}} = \mathbf{0.065 \Omega}$. %[cite: 1] \\
+	\\
+	\textbf{b. Intensidad ($I$):} \\
+	$I = \frac{V}{R} = \frac{12 \text{ V}}{0.065 \Omega} = \mathbf{184.6 \text{ A}}$. %[cite: 1] \\
+	\\
+	\textbf{c. Flujo de electrones en 3 s:} \\
+	Carga total ($q$) = $I \cdot t = 184.6 \text{ A} \cdot 3 \text{ s} = 553.8 \text{ C}$. \\
+	Nº de electrones = $553.8 \text{ C} \cdot (6.25 \times 10^{18} \text{ electrones/C}) = \mathbf{3.46 \times 10^{21} \text{ electrones}}$. %[cite: 1] \\
+	\\
+	\textbf{d. Potencia eléctrica ($P$):} \\
+	$P = V \cdot I = 12 \text{ V} \cdot 184.6 \text{ A} = \mathbf{2215.2 \text{ W}}$. %[cite: 1]
+}
+
+\subsection*{5. Circuito en serie}
+\noindent \textbf{Enunciado:} Se conectan tres resistencias de $1 \Omega$, $3 \Omega$ y $5 \Omega$, en serie a una batería de 20 V, determine: a. ¿Cuál es la resistencia total? b. ¿Cuál es el voltaje e intensidad en cada una? %[cite: 1]
+
+\respOperacional[6.5cm]{
+	\textbf{a. Resistencia total ($R_T$):} En serie se suman aritméticamente. \\
+	$R_T = R_1 + R_2 + R_3 = 1 \Omega + 3 \Omega + 5 \Omega = \mathbf{9 \Omega}$. %[cite: 1] \\
+	\\
+	\textbf{b. Intensidad y Voltaje por resistencia:} \\
+	En serie, la intensidad es la misma para todas: $I_T = \frac{V_T}{R_T} = \frac{20 \text{ V}}{9 \Omega} = \mathbf{2.22 \text{ A}}$. Por lo tanto: $I_1 = I_2 = I_3 = \mathbf{2.22 \text{ A}}$. %[cite: 1] \\
+	Voltajes ($V_i = I_i \cdot R_i$): \\
+	$V_1 = 2.22 \text{ A} \cdot 1 \Omega = \mathbf{2.22 \text{ V}}$ \\
+	$V_2 = 2.22 \text{ A} \cdot 3 \Omega = \mathbf{6.66 \text{ V}}$ \\
+	$V_3 = 2.22 \text{ A} \cdot 5 \Omega = \mathbf{11.10 \text{ V}}$ %[cite: 1]
+}
+
+\subsection*{6. Circuito en paralelo}
+\noindent \textbf{Enunciado:} Repita el ejercicio anterior, si las resistencias se conectan en paralelo. %[cite: 1]
+
+\respOperacional[7cm]{
+	\textbf{a. Resistencia total ($R_T$):} En paralelo se suman sus inversos. \\
+	$\frac{1}{R_T} = \frac{1}{1} + \frac{1}{3} + \frac{1}{5} = \frac{15}{15} + \frac{5}{15} + \frac{3}{15} = \frac{23}{15} \Omega^{-1}$. \\
+	$R_T = \frac{15}{23} \Omega \approx \mathbf{0.65 \Omega}$. %[cite: 1] \\
+	\\
+	\textbf{b. Intensidad y Voltaje por resistencia:} \\
+	En paralelo, el voltaje es el mismo para todas e igual al de la fuente: \\
+	$V_1 = V_2 = V_3 = \mathbf{20 \text{ V}}$. %[cite: 1] \\
+	Intensidades ($I_i = V_i / R_i$): \\
+	$I_1 = \frac{20 \text{ V}}{1 \Omega} = \mathbf{20 \text{ A}}$ \\
+	$I_2 = \frac{20 \text{ V}}{3 \Omega} = \mathbf{6.67 \text{ A}}$ \\
+	$I_3 = \frac{20 \text{ V}}{5 \Omega} = \mathbf{4 \text{ A}}$ %[cite: 1]
+}
+
+\subsection*{7 y 8. Tipos de circuitos en el hogar}
+\noindent \textbf{Enunciado:} Los circuitos en serie tienen la particularidad, que, si se funde o se daña una resistencia, el flujo de electrones se interrumpe y el circuito no funciona más... De acuerdo con lo anterior, comenta y justifica, que tipo de circuito es utilizado para conectar los bombillos y las tomacorrientes en los hogares. %[cite: 1]
+
+\respOperacional[3.5cm]{
+	En los hogares se utilizan \textbf{\color{blue}circuitos en paralelo}. \\
+	\textbf{Justificación:} En un circuito en paralelo, la corriente tiene múltiples caminos independientes. Esto garantiza que todos los electrodomésticos reciban el mismo voltaje (ej. 110V o 220V) y, lo más importante, si un bombillo se funde o se desconecta un aparato, el resto de los dispositivos del hogar \textbf{\color{blue}siguen funcionando} normalmente sin interrumpir el flujo eléctrico global. %[cite: 1]
+}
+
+% =================================================================
+% ANÁLISIS DE RESULTADOS - LABORATORIO 11F-08P
+% =================================================================
+\newpage
+\section*{11F-08P. CIRCUITOS ELÉCTRICOS}
+\subsection*{ANÁLISIS DE RESULTADOS}
+
+\subsection*{1. Circuito en serie}
+\noindent \textbf{Enunciado:} Al circuito de la parte 1, se le conoce como circuito eléctrico en serie. Defina con sus palabras en qué consiste un circuito eléctrico en serie. %[cite: 1]
+
+\respOperacional[2.5cm]{
+	Un circuito en serie es un arreglo donde los componentes eléctricos (como bombillos o resistencias) se conectan \textbf{\color{blue}uno a continuación del otro}, formando una única ruta ininterrumpida. En este sistema, la corriente que fluye es la misma para todos los elementos, y si uno falla o se retira, el circuito se abre y nada más funciona. %[cite: 1]
+}
+
+\subsection*{2. Circuito en paralelo}
+\noindent \textbf{Enunciado:} Al circuito de la parte 2, se le conoce como circuito en eléctrico en paralelo. Defina con sus palabras en qué consiste un circuito en eléctrico en paralelo. %[cite: 1]
+
+\respOperacional[2.5cm]{
+	Un circuito en paralelo es un arreglo donde los terminales de entrada de todos los componentes se conectan a un mismo punto, y sus terminales de salida a otro, creando \textbf{\color{blue}múltiples caminos independientes} para el flujo de electrones. Aquí, el voltaje es igual para todos los componentes, y si uno falla, la corriente sigue fluyendo por las otras ramas. %[cite: 1]
+}
+
+\subsection*{3. Circuito mixto}
+\noindent \textbf{Enunciado:} Al circuito de la parte 3, se le conoce como circuito eléctrico mixto. Defina con sus palabras en qué consiste un circuito eléctrico mixto. %[cite: 1]
+
+\respOperacional[2.5cm]{
+	Un circuito mixto es una \textbf{\color{blue}combinación} de conexiones en serie y en paralelo dentro del mismo arreglo eléctrico. Tiene partes donde la corriente debe fluir a través de un solo camino, y otras secciones donde la corriente se divide en múltiples ramas, combinando las propiedades de voltaje y corriente de ambos sistemas. %[cite: 1]
+}
+
+\subsection*{4. Circuitos en las casas}
+\noindent \textbf{Enunciado:} ¿Qué tipo de circuito eléctrico se utilizará en las casas? Justifique detalladamente su respuesta. %[cite: 1]
+
+\respOperacional[3cm]{
+	En las casas se utiliza el \textbf{\color{blue}circuito en paralelo} (aunque el tablero general tenga llaves principales en serie por seguridad). Esto es vital por dos razones: permite que todos los enchufes y bombillos operen al mismo voltaje estándar necesario, e independiza el funcionamiento de cada artefacto; permitiendo apagar un televisor o fundir una lámpara sin que se apague toda la casa. %[cite: 1]
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN Y REPASO - TAU 8
+% =================================================================
+\newpage
+\section*{TALLER DE PREPARACIÓN PARA EL EXAMEN - TAU 8}
+
+\subsection*{1. Resistividad y Ley de Ohm}
+\noindent \textbf{Enunciado:} Se desea instalar un cable de aluminio ($\rho = 2.8 \times 10^{-8} \Omega \cdot \text{m}$) para conectar un motor eléctrico. El cable tiene una longitud de 50 m y un área transversal de $2.0 \times 10^{-6} \text{ m}^2$. Si el sistema se conecta a una fuente de 110 V, determine:
+\begin{itemize}
+	\item[a.] La resistencia eléctrica del cable.
+	\item[b.] La intensidad de la corriente que fluye por él (asumiendo que el motor se comporta como un cortocircuito para este cálculo ideal).
+\end{itemize}
+
+\respOperacional[5cm]{
+	\textbf{a. Cálculo de la Resistencia ($R$):} \\
+	Usamos la ecuación de resistividad: $R = \rho \frac{L}{A}$ \\
+	$R = (2.8 \times 10^{-8} \Omega \cdot \text{m}) \frac{50 \text{ m}}{2.0 \times 10^{-6} \text{ m}^2}$ \\
+	$R = \frac{1.4 \times 10^{-6}}{2.0 \times 10^{-6}} = \mathbf{0.7 \Omega}$. \\
+	\\
+	\textbf{b. Cálculo de la Intensidad ($I$):} \\
+	Usamos la Ley de Ohm: $I = \frac{V}{R}$ \\
+	$I = \frac{110 \text{ V}}{0.7 \Omega} \approx \mathbf{157.14 \text{ A}}$.
+}
+
+\subsection*{2. Potencia eléctrica y costo de energía}
+\noindent \textbf{Enunciado:} En una casa de Bogotá se utiliza un calentador eléctrico de 1500 W durante 4 horas diarias. Si el costo del kilovatio-hora (kW-h) cobrado por la empresa de energía es de \$600 COP, responda:
+\begin{itemize}
+	\item[a.] ¿Cuánta energía en kW-h consume el calentador en un mes (30 días)?
+	\item[b.] ¿Cuál es el costo mensual asociado únicamente al uso de este calentador?
+\end{itemize}
+
+\respOperacional[4.5cm]{
+	\textbf{a. Energía consumida en kW-h:} \\
+	Potencia en kW: $P = 1500 \text{ W} = 1.5 \text{ kW}$. \\
+	Tiempo total mensual: $t = 4 \text{ horas/día} \times 30 \text{ días} = 120 \text{ horas}$. \\
+	Trabajo o Energía ($W$): $W = P \cdot t = 1.5 \text{ kW} \times 120 \text{ h} = \mathbf{180 \text{ kW-h}}$. \\
+	\\
+	\textbf{b. Costo mensual:} \\
+	Costo = Energía total $\times$ Tarifa \\
+	Costo = $180 \text{ kW-h} \times \$600/\text{kW-h} = \mathbf{\$108,000 \text{ COP}}$.
+}
+
+\subsection*{3. Análisis de un circuito mixto}
+\noindent \textbf{Enunciado:} En un circuito mixto, dos resistencias $R_1 = 4 \Omega$ y $R_2 = 6 \Omega$ están conectadas en paralelo entre sí. A su vez, este bloque en paralelo está conectado en serie con una tercera resistencia $R_3 = 2.6 \Omega$ y una batería de 20 V.
+\begin{itemize}
+	\item[a.] Dibuje el esquema del circuito y calcule la resistencia total equivalente.
+	\item[b.] Determine la intensidad de corriente total que entrega la batería.
+	\item[c.] Calcule el voltaje específico que cae sobre la resistencia $R_3$.
+\end{itemize}
+
+\respOperacional[7cm]{
+	\textbf{a. Resistencia Total Equivalente ($R_T$):} \\
+	Primero resolvemos el bloque en paralelo ($R_p$): \\
+	$\frac{1}{R_p} = \frac{1}{4} + \frac{1}{6} = \frac{3}{12} + \frac{2}{12} = \frac{5}{12} \Omega^{-1} \rightarrow R_p = \frac{12}{5} = 2.4 \Omega$. \\
+	Sumamos la resistencia en serie ($R_3$): \\
+	$R_T = R_p + R_3 = 2.4 \Omega + 2.6 \Omega = \mathbf{5 \Omega}$. \\
+	\\
+	\textbf{b. Intensidad de corriente total ($I_T$):} \\
+	$I_T = \frac{V_T}{R_T} = \frac{20 \text{ V}}{5 \Omega} = \mathbf{4 \text{ A}}$. \\
+	\\
+	\textbf{c. Voltaje en $R_3$ ($V_3$):} \\
+	Como $R_3$ está en serie con la fuente, toda la corriente total pasa por ella. \\
+	$V_3 = I_T \cdot R_3 = 4 \text{ A} \cdot 2.6 \Omega = \mathbf{10.4 \text{ V}}$.
+}
+
+\subsection*{4. Conceptos: Serie vs. Paralelo}
+\noindent \textbf{Enunciado:} Dos bombillas idénticas se pueden conectar a una misma batería de dos formas distintas: en serie o en paralelo. Explique físicamente en cuál de las dos configuraciones las bombillas brillarán con mayor intensidad y justifique qué pasaría en cada caso si una de las bombillas se funde.
+
+\respOperacional[4.5cm]{
+	\textbf{Brillo:} Brillarán con mayor intensidad en la \textbf{\color{blue}conexión en paralelo}. En paralelo, ambas bombillas reciben el voltaje total de la batería y la resistencia equivalente disminuye, permitiendo mayor paso de corriente total y mayor potencia disipada por bombilla. En serie, el voltaje se divide a la mitad para cada una y la resistencia aumenta. \\
+	\\
+	\textbf{Fallo de una bombilla:} \\
+	\textit{En serie:} Si una se funde, el circuito se abre y la corriente se interrumpe; la otra bombilla \textbf{\color{blue}se apaga}. \\
+	\textit{En paralelo:} Si una se funde, la otra rama sigue siendo un circuito cerrado conectado a la batería; la otra bombilla \textbf{\color{blue}sigue encendida} con el mismo brillo.
+}
+% =================================================================
+% TAU 9: EL ELECTROMAGNETISMO PRESENTE (11°)
+% =================================================================
+\newpage
+\section*{TAU 9 - EL ELECTROMAGNETISMO PRESENTE}
+
+\subsection*{ACTIVIDAD 9.1}
+
+\subsection*{1. Falso o Verdadero y Justificación}
+\noindent \textbf{Enunciado:} Determinar si la apreciación es falsa (F) o verdadera (V) y justificar la respuesta. %[cite: 1]
+
+\respOperacional[8cm]{
+	\\
+	\textbf{a. Todos los metales se pueden atraer por un imán. (F)} \\
+	\textit{Justificación:} Solo los materiales ferromagnéticos (como hierro, cobalto, níquel y algunas aleaciones) interactúan fuertemente y son atraídos por imanes. Metales como aluminio o cobre no lo son. %[cite: 1] \\
+	\\
+	\textbf{b. El campo magnético no se genera solamente por la presencia de cargas. (V)} \\
+	\textit{Justificación:} Un campo magnético no surge solo por la "presencia" estática de cargas, requiere que estas cargas estén en \textbf{\color{blue}movimiento} (corriente eléctrica) o por las propiedades intrínsecas (espín) en imanes permanentes. %[cite: 1] \\
+	\\
+	\textbf{c. La interacción entre un campo magnético con otros materiales o dispositivos, determina el uso y aplicación del electromagnetismo. (V)} \\
+	\textit{Justificación:} Correcto. La aplicación de fuerzas magnéticas sobre espiras y conductores permite la creación de motores, transformadores y dispositivos de almacenamiento. %[cite: 1] \\
+	\\
+	\textbf{d. En la inducción magnética no se aplica el principio de la conservación de la energía. (F)} \\
+	\textit{Justificación:} Sí se aplica. Específicamente, la \textbf{\color{blue}Ley de Lenz} obedece a la conservación de la energía, indicando que el campo inducido se opone al cambio que lo produce, evitando la creación de energía infinita. %[cite: 1] \\
+	\\
+	\textbf{e. Al dividir un imán en dos partes iguales, se consigue separar el polo Norte y el polo Sur. (F)} \\
+	\textit{Justificación:} Los monopolos magnéticos no existen en la naturaleza. Si se corta un imán por la mitad, cada nuevo trozo tendrá nuevamente su propio polo norte y polo sur. %[cite: 1] \\
+	\\
+	\textbf{f. Al acercar dos imanes, en algunos casos se repelerán, en algunos otros se atraerán. (V)} \\
+	\textit{Justificación:} Depende de la orientación. Polos iguales (N-N o S-S) se repelen, y polos opuestos (N-S) se atraen. %[cite: 1]
+}
+
+\subsection*{2. Motor eléctrico vs. Dínamo}
+\noindent \textbf{Enunciado:} Consulta acerca del motor eléctrico y el dínamo o generador de corriente, luego plantea semejanzas y diferencias entre estos. %[cite: 1]
+
+\respOperacional[4.5cm]{
+\\
+	\textbf{Semejanzas:} Ambos basan su funcionamiento en el electromagnetismo, constan de imanes (para generar un campo magnético) y bobinas o espiras conductoras montadas sobre un eje rotatorio. %[cite: 1] \\
+\\
+	\textbf{Diferencias:} Tienen funciones inversas. El \textbf{\color{blue}motor eléctrico} recibe energía eléctrica (corriente) y la transforma en energía mecánica (movimiento de rotación por la fuerza magnética sobre la espira). El \textbf{\color{blue}dínamo o generador} recibe energía mecánica (se hace rotar la espira mecánicamente) y mediante inducción electromagnética la transforma en energía eléctrica (fuerza electromotriz). %[cite: 1]
+}
+
+\subsection*{3. Campo magnético de un electrón}
+\noindent \textbf{Enunciado:} Un electrón se mueve a razón de $5 \times 10^7 \text{ m/s}$. ¿Cuál es el campo magnético generado perpendicularmente en el espacio a 5 mm? %[cite: 1]
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $q = 1.6 \times 10^{-19} \text{ C}$, $v = 5 \times 10^7 \text{ m/s}$, $r = 5 \text{ mm} = 0.005 \text{ m}$, $\theta = 90^\circ$ ($\sin 90^\circ = 1$). %[cite: 1] \\
+	Fórmula del texto (Eq I): $B = \frac{\mu_0 \cdot q \cdot v \cdot \sin\theta}{4\pi \cdot r^2}$ \\
+	Sustituyendo $\mu_0 = 4\pi \times 10^{-7} \text{ T}\cdot\text{m/A}$: \\
+	$B = \frac{(4\pi \times 10^{-7})(1.6 \times 10^{-19})(5 \times 10^7)(1)}{4\pi (0.005)^2}$ \\
+	$B = \frac{10^{-7} (8 \times 10^{-12})}{25 \times 10^{-6}} = \frac{8 \times 10^{-19}}{25 \times 10^{-6}} = \mathbf{3.2 \times 10^{-14} \text{ T}}$. %[cite: 1]
+}
+
+\subsection*{4. Parámetros de un solenoide}
+\noindent \textbf{Enunciado:} Se construye un solenoide de 1.5 cm de radio, con 2.4 m de alambre que tiene una resistencia de $0.1 \Omega$. Luego se conecta a una fuente de 60 V, determine: a. Número de vueltas del solenoide. b. Intensidad de corriente que tiene. c. Campo magnético generado en su interior. %[cite: 1]
+
+\respOperacional[6.5cm]{
+	\textbf{a. Número de vueltas ($N$):} \\
+	Perímetro de una espira $= 2\pi \cdot r = 2\pi (0.015 \text{ m}) = 0.03\pi \text{ m}$. \\
+	$N = \frac{\text{Longitud alambre}}{\text{Perímetro}} = \frac{2.4 \text{ m}}{0.03\pi \text{ m}} = \frac{80}{\pi} \approx \mathbf{25.46 \text{ vueltas}}$. %[cite: 1] \\
+	\\
+	\textbf{b. Intensidad de corriente ($I$):} \\
+	Ley de Ohm: $I = \frac{V}{R} = \frac{60 \text{ V}}{0.1 \Omega} = \mathbf{600 \text{ A}}$. %[cite: 1] \\
+	\\
+	\textbf{c. Campo magnético ($B$):} \\
+	Usando la fórmula del módulo (Eq III): $B = \frac{\mu_0 \cdot i \cdot N}{2\pi \cdot r}$ \\
+	$B = \frac{(4\pi \times 10^{-7}) (600) (80/\pi)}{2\pi (0.015)} = \frac{(4\pi \times 10^{-7})(48000/\pi)}{0.03\pi}$ \\
+	$B = \frac{192000 \times 10^{-7}}{0.03\pi} = \frac{0.0192}{0.03\pi} = \frac{0.64}{\pi} \approx \mathbf{0.2037 \text{ T}}$. %[cite: 1]
+}
+
+\subsection*{5. Fuerza sobre carga en un solenoide}
+\noindent \textbf{Enunciado:} ¿Qué fuerza actúa sobre una carga de $40 \mu C$ al ingresar perpendicularmente en el solenoide del punto anterior, con una velocidad 20 veces menor la velocidad de la luz? %[cite: 1]
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $q = 40 \times 10^{-6} \text{ C}$, $\theta = 90^\circ$. \\
+	Velocidad: $v = \frac{c}{20} = \frac{3 \times 10^8 \text{ m/s}}{20} = 1.5 \times 10^7 \text{ m/s}$. \\
+	Campo magnético anterior: $B = \frac{0.64}{\pi} \text{ T}$. %[cite: 1] \\
+	\\
+	\textbf{Fuerza ($F$):} (Eq IV) $F = q \cdot v \cdot B \cdot \sin\theta$ \\
+	$F = (40 \times 10^{-6}) (1.5 \times 10^7) \left(\frac{0.64}{\pi}\right) (1)$ \\
+	$F = 600 \left(\frac{0.64}{\pi}\right) = \frac{384}{\pi} \approx \mathbf{122.23 \text{ N}}$. %[cite: 1]
+}
+
+\subsection*{6. Orientación de un hilo conductor}
+\noindent \textbf{Enunciado:} Se hacen fluir 800 mC cada 5 s a través de un hilo conductor de 40 cm, el cual se encuentra en un campo magnético de 1.5 T. a. ¿Qué orientación debe tener el hilo conductor con el campo magnético para conseguir una fuerza de $4.8 \times 10^{-2} \text{ N}$? b. ¿Qué fuerza se obtiene al orientarse perpendicularmente? c. ¿Qué fuerza se obtiene al orientarse paralelamente? %[cite: 1]
+
+\respOperacional[6.5cm]{
+	\textbf{Intensidad:} $I = \frac{q}{t} = \frac{0.8 \text{ C}}{5 \text{ s}} = 0.16 \text{ A}$. \\
+	\textbf{Fórmula base:} $F = I \cdot L \cdot B \cdot \sin\theta$. (Con $L = 0.4 \text{ m}$, $B = 1.5 \text{ T}$) \\
+	Producto constante: $I \cdot L \cdot B = (0.16)(0.4)(1.5) = 0.096 \text{ N}$. %[cite: 1] \\
+	\\
+	\textbf{a. Orientación para $F = 0.048 \text{ N}$:} \\
+	$0.048 = 0.096 \cdot \sin\theta \implies \sin\theta = 0.5 \implies \mathbf{\theta = 30^\circ}$. %[cite: 1] \\
+	\\
+	\textbf{b. Fuerza perpendicular ($\theta = 90^\circ$):} \\
+	$F = 0.096 \cdot \sin(90^\circ) = 0.096 \cdot 1 = \mathbf{0.096 \text{ N}}$. %[cite: 1] \\
+	\\
+	\textbf{c. Fuerza paralela ($\theta = 0^\circ$):} \\
+	$F = 0.096 \cdot \sin(0^\circ) = 0.096 \cdot 0 = \mathbf{0 \text{ N}}$. %[cite: 1]
+}
+
+\subsection*{7. Fuerza entre hilos conductores paralelos}
+\noindent \textbf{Enunciado:} Dos hilos conductores de $5 \Omega$ y $8 \Omega$ se conectan en paralelo a una fuente de 40 V, la distancia de separación entre ellos es 2 cm y su longitud es 25 cm. a. ¿Cuál es la fuerza existente entre ellos? b. ¿La fuerza es de atracción o repulsión? Justifica la respuesta. %[cite: 1]
+
+\respOperacional[6.5cm]{
+	\textbf{1. Cálculo de corrientes (están en paralelo a 40 V):} \\
+	$I_1 = \frac{40 \text{ V}}{5 \Omega} = 8 \text{ A}$. \quad $I_2 = \frac{40 \text{ V}}{8 \Omega} = 5 \text{ A}$. %[cite: 1] \\
+	\\
+	\textbf{a. Magnitud de la fuerza ($F$):} (Eq VI) \\
+	$F = \frac{\mu_0 \cdot i_1 \cdot i_2 \cdot L}{2\pi \cdot r}$ \quad ($r = 0.02 \text{ m}$, $L = 0.25 \text{ m}$) \\
+	$F = \frac{(4\pi \times 10^{-7}) (8) (5) (0.25)}{2\pi (0.02)} = \frac{10^{-7} \cdot 2 \cdot 40 \cdot 0.25}{0.02}$ \\
+	$F = \frac{20 \times 10^{-7}}{0.02} = 1000 \times 10^{-7} = \mathbf{1 \times 10^{-4} \text{ N}}$. %[cite: 1] \\
+	\\
+	\textbf{b. Atracción o repulsión:} \\
+	Es de \textbf{\color{blue}atracción}. \\
+	\textit{Justificación:} Al estar conectados en paralelo a la misma fuente, la corriente fluye en el \textbf{mismo sentido} en ambos hilos. Los campos magnéticos interactúan atrayendo los conductores entre sí. %[cite: 1]
+}
+
+\subsection*{8. Transformador eléctrico}
+\noindent \textbf{Enunciado:} Se conecta una fuente de voltaje de 45 w a un transformador con una bobina primaria de 500 espiras, por la cual fluye una corriente de 3 A. a. ¿Cuál es el voltaje de salida si la bobina secundaria tiene 200 espiras? b. ¿Cuántas espiras debe tener la bobina secundaria para aumentar el voltaje a 30 V? %[cite: 1]
+
+\respOperacional[6.5cm]{
+	\textbf{Cálculo del Voltaje Primario ($V_p$):} \\
+	Sabemos que la potencia es $P = V \cdot I$. Despejando el voltaje: \\
+	$V_p = \frac{P}{I_p} = \frac{45 \text{ W}}{3 \text{ A}} = \mathbf{15 \text{ V}}$. %[cite: 1] \\
+	\\
+	\textbf{Fórmula del transformador:} $V_s = V_p \cdot \frac{N_s}{N_p}$ \quad ($V_p = 15 \text{ V}$, $N_p = 500$) %[cite: 1] \\
+	\\
+	\textbf{a. Voltaje de salida con 200 espiras:} \\
+	$V_s = 15 \text{ V} \cdot \left(\frac{200}{500}\right) = 15 \cdot 0.4 = \mathbf{6 \text{ V}}$. %[cite: 1] \\
+	\\
+	\textbf{b. Espiras necesarias para 30 V:} \\
+	$30 = 15 \cdot \left(\frac{N_s}{500}\right) \implies \frac{30}{15} = \frac{N_s}{500} \implies 2 = \frac{N_s}{500}$ \\
+	$N_s = 2 \cdot 500 = \mathbf{1000 \text{ espiras}}$. %[cite: 1]
+}
+
+
+
+% =================================================================
+% ANÁLISIS DE RESULTADOS - LABORATORIO 11F-09P
+% =================================================================
+\newpage
+\section*{11F-09P. FENÓMENOS ELECTROMAGNÉTICOS}
+\subsection*{ANÁLISIS DE RESULTADOS}
+
+\subsection*{1. Transformaciones de energía}
+\noindent \textbf{Enunciado:} ¿Qué transformaciones de energía se observaron en cada una de las partes de la práctica? %[cite: 1]
+
+\respOperacional[4cm]{
+	\textbf{Parte 1:} Se transformó \textbf{\color{blue}energía mecánica} (el movimiento manual del imán o bobina) en \textbf{\color{blue}energía eléctrica} (corriente inducida detectada en el galvanómetro), demostrando la Ley de Faraday. %[cite: 1] \\
+	\textbf{Partes 2 y 3:} Se transformó \textbf{\color{blue}energía eléctrica} (proporcionada por la fuente al cable) en \textbf{\color{blue}energía magnética} (campo magnético evidenciado por el alineamiento de la limadura de hierro), disipando también energía térmica (calentamiento del cable). %[cite: 1] \\
+	\textbf{Parte 4:} Se transformó \textbf{\color{blue}energía eléctrica} (batería) en \textbf{\color{blue}energía magnética} en la espira, la cual al interactuar con el imán generó \textbf{\color{blue}energía mecánica} de rotación (principio básico del motor eléctrico). %[cite: 1]
+}
+
+\subsection*{2. Aplicación de los fenómenos}
+\noindent \textbf{Enunciado:} ¿Qué aplicación tienen los fenómenos electromagnéticos? %[cite: 1]
+
+\respOperacional[3cm]{
+	Tienen aplicaciones estructurales en nuestra tecnología actual. Permiten la generación de energía a gran escala (hidroeléctricas, eólicas), el funcionamiento de cualquier motor eléctrico (electrodomésticos, vehículos), la elevación y reducción de voltajes seguros para los hogares (transformadores), y son la base de los sistemas de telecomunicaciones, la radiodifusión, los escáneres médicos y la electrónica en general. %[cite: 1]
+}
+
+\subsection*{3. Dispositivos electromagnéticos cotidianos}
+\noindent \textbf{Enunciado:} ¿Mencione brevemente qué dispositivos electromagnéticos conoce y dónde se utilizan? %[cite: 1]
+
+\respOperacional[3cm]{
+	\textbf{1. Transformadores:} En los postes de luz y en los cargadores de celulares para adecuar el voltaje. \\
+	\textbf{2. Motores eléctricos:} En lavadoras, ventiladores, licuadoras y herramientas. \\
+	\textbf{3. Parlantes y audífonos:} Utilizan bobinas e imanes para transformar impulsos eléctricos en ondas sonoras (mecánicas). \\
+	\textbf{4. Discos duros (HDD):} Para almacenar información digital en computadoras mediante magnetización de platos. %[cite: 1]
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN Y REPASO - TAU 9
+% =================================================================
+\newpage
+\section*{TALLER DE PREPARACIÓN PARA EL EXAMEN - TAU 9}
+
+\subsection*{1. Campo magnético de un arreglo circular (solenoide)}
+\noindent \textbf{Enunciado:} Un solenoide circular tiene un radio de 10 cm ($0.1$ m) y está compuesto por 500 espiras. Si se conecta a un circuito que le suministra una corriente eléctrica de 4 A, calcule la magnitud del campo magnético que se genera en su interior.
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $r = 0.1 \text{ m}$, $N = 500$, $i = 4 \text{ A}$, $\mu_0 = 4\pi \times 10^{-7} \text{ T}\cdot\text{m/A}$. \\
+	\textbf{Fórmula del módulo (Eq III):} $B = \frac{\mu_0 \cdot i \cdot N}{2\pi \cdot r}$ \\
+	\textbf{Cálculo:} \\
+	$B = \frac{(4\pi \times 10^{-7} \text{ T}\cdot\text{m/A}) (4 \text{ A}) (500)}{2\pi (0.1 \text{ m})}$ \\
+	Simplificando $4\pi$ con $2\pi$ nos queda un factor de 2 en el numerador: \\
+	$B = \frac{2 \times 10^{-7} \cdot 2000}{0.1} = \frac{4000 \times 10^{-7}}{0.1} = 40000 \times 10^{-7} \text{ T}$ \\
+	\textbf{Respuesta:} $B = \mathbf{4 \times 10^{-3} \text{ T}}$.
+}
+
+\subsection*{2. Fuerza magnética sobre una carga en movimiento}
+\noindent \textbf{Enunciado:} Un protón ($q = 1.6 \times 10^{-19} \text{ C}$) ingresa a un campo magnético uniforme de $0.5 \text{ T}$ a una velocidad de $2 \times 10^6 \text{ m/s}$. Si la trayectoria del protón forma un ángulo de $30^\circ$ respecto a las líneas del campo magnético, determine la magnitud de la fuerza magnética que experimenta.
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $q = 1.6 \times 10^{-19} \text{ C}$, $v = 2 \times 10^6 \text{ m/s}$, $B = 0.5 \text{ T}$, $\theta = 30^\circ$. \\
+	Sabemos que $\sin(30^\circ) = 0.5$. \\
+	\textbf{Fórmula (Eq IV):} $F = q \cdot v \cdot B \cdot \sin\theta$ \\
+	\textbf{Cálculo:} \\
+	$F = (1.6 \times 10^{-19} \text{ C}) (2 \times 10^6 \text{ m/s}) (0.5 \text{ T}) (0.5)$ \\
+	$F = (3.2 \times 10^{-13}) (0.25) = \mathbf{8.0 \times 10^{-14} \text{ N}}$.
+}
+
+\subsection*{3. Interacción entre hilos conductores paralelos}
+\noindent \textbf{Enunciado:} Dos cables rectilíneos y paralelos de 3 m de longitud están separados por una distancia de 5 cm ($0.05$ m). Por uno de ellos fluye una corriente de 10 A y por el otro fluye una corriente de 15 A \textbf{en sentidos opuestos}. 
+\begin{itemize}
+	\item[a.] Determine la magnitud de la fuerza magnética que se ejerce entre ellos.
+	\item[b.] Indique si esta fuerza es de atracción o de repulsión y justifique basándose en la teoría.
+\end{itemize}
+
+\respOperacional[6.5cm]{
+	\textbf{a. Magnitud de la fuerza ($F$):} \\
+	\textbf{Datos:} $L = 3 \text{ m}$, $r = 0.05 \text{ m}$, $i_1 = 10 \text{ A}$, $i_2 = 15 \text{ A}$. \\
+	\textbf{Fórmula (Eq VI):} $F = \frac{\mu_0 \cdot i_1 \cdot i_2 \cdot L}{2\pi \cdot r}$ \\
+	$F = \frac{(4\pi \times 10^{-7}) (10) (15) (3)}{2\pi (0.05)} = \frac{2 \times 10^{-7} \cdot 450}{0.05} = \frac{900 \times 10^{-7}}{0.05}$ \\
+	$F = 18000 \times 10^{-7} = \mathbf{1.8 \times 10^{-3} \text{ N}}$. \\
+	\\
+	\textbf{b. Naturaleza de la fuerza:} \\
+	Es una fuerza de \textbf{\color{blue}repulsión}. \\
+	\textit{Justificación:} Cuando las corrientes fluyen en sentidos opuestos, la regla de la mano derecha indica que los campos magnéticos generados en el espacio entre los cables tienen la misma dirección, sumándose y creando una presión magnética que empuja los cables separándolos.
+}
+
+\subsection*{4. El Transformador Eléctrico}
+\noindent \textbf{Enunciado:} Un estudiante necesita conectar un pequeño motor de 12 V, pero el tomacorriente de la pared suministra 120 V. Para solucionar el problema, utiliza un transformador reductor. Si la bobina primaria (conectada a la pared) tiene 600 espiras:
+\begin{itemize}
+	\item[a.] ¿Cuántas espiras debe tener la bobina secundaria para entregar los 12 V exactos al motor?
+	\item[b.] Si el motor extrae una corriente de 2 A en la bobina secundaria, ¿cuál es la potencia eléctrica consumida?
+\end{itemize}
+
+\respOperacional[5cm]{
+	\textbf{a. Cálculo de espiras de la bobina secundaria ($N_s$):} \\
+	\textbf{Fórmula (Eq XI):} $V_s = V_p \cdot \frac{N_s}{N_p}$ \\
+	$12 \text{ V} = 120 \text{ V} \cdot \left(\frac{N_s}{600}\right)$ \\
+	Despejando $N_s$: \\
+	$N_s = \frac{12 \cdot 600}{120} = 12 \cdot 5 = \mathbf{60 \text{ espiras}}$. \\
+	\\
+	\textbf{b. Cálculo de la Potencia ($P$):} \\
+	$P = V_s \cdot I_s$ \\
+	$P = 12 \text{ V} \cdot 2 \text{ A} = \mathbf{24 \text{ W}}$.
+}
+
+\subsection*{5. Concepto: Ley de Faraday y Lenz}
+\noindent \textbf{Enunciado:} En el laboratorio se observó que al introducir un imán en una bobina, la aguja del galvanómetro se desviaba, pero al dejar el imán quieto dentro de la bobina, la aguja volvía a cero. Explique físicamente, haciendo uso de la Ley de Faraday, por qué ocurre esto.
+
+\respOperacional[4cm]{
+	Según la \textbf{\color{blue}Ley de Faraday ($\epsilon = -N \frac{d\Phi}{dt}$)}, la fuerza electromotriz inducida (corriente) no depende de la simple presencia de un campo magnético, sino de la \textbf{\color{blue}razón de cambio} del flujo magnético en el tiempo. Al mover el imán, el flujo magnético que atraviesa la bobina está variando, lo que induce la corriente. Cuando el imán se queda quieto, el flujo es constante (no hay variación, $d\Phi/dt = 0$), por lo que la corriente inducida desaparece y el galvanómetro marca cero.
+}
+
+% =================================================================
+% TAU 10: FÍSICA MODERNA (11°)
+% =================================================================
+\newpage
+\section*{TAU 10 - FÍSICA MODERNA}
+
+\subsection*{ACTIVIDAD 10.1}
+
+\subsection*{1. M.A.S. y cuantización de la energía}
+\noindent \textbf{Enunciado:} Una masa de 1500 g se encuentra oscilando unida a un resorte de constante $20 \text{ N/m}$ la oscilación tiene una amplitud de 20 cm. a. Determine la energía asociada al sistema utilizando los modelos del M.A.S. b. Determine el numero cuántico n. Suponiendo que la energía del punto anterior está cuantizada. Pista. Debe determinar f usando también la cinemática del M.A.S. c. ¿Cuánta energía se transmite, en un cambio de un cuanto? $n=1$ %[cite: 1]
+
+\respOperacional[7.5cm]{
+	\textbf{Datos:} $m = 1.5 \text{ kg}$, $k = 20 \text{ N/m}$, $A = 0.2 \text{ m}$, $h = 6.626 \times 10^{-34} \text{ J}\cdot\text{s}$. %[cite: 1] \\
+	\\
+	\textbf{a. Energía clásica del M.A.S.:} \\
+	$E = \frac{1}{2} k A^2 = 0.5 \cdot (20 \text{ N/m}) \cdot (0.2 \text{ m})^2 = 10 \cdot 0.04 = \mathbf{0.4 \text{ J}}$. %[cite: 1] \\
+	\\
+	\textbf{b. Número cuántico ($n$):} \\
+	Frecuencia del M.A.S.: $f = \frac{1}{2\pi} \sqrt{\frac{k}{m}} = \frac{1}{2\pi} \sqrt{\frac{20}{1.5}} \approx \frac{1}{2\pi} \sqrt{13.33} \approx \frac{3.651}{2\pi} \approx \mathbf{0.581 \text{ Hz}}$. %[cite: 1] \\
+	Cuantización (Eq I): $E = n \cdot h \cdot f \implies n = \frac{E}{h \cdot f}$ %[cite: 1] \\
+	$n = \frac{0.4 \text{ J}}{(6.626 \times 10^{-34} \text{ J}\cdot\text{s}) \cdot (0.581 \text{ Hz})} = \frac{0.4}{3.85 \times 10^{-34}} \approx \mathbf{1.04 \times 10^{33}}$. (Es un número inmensamente grande, típico de objetos macroscópicos). \\
+	\\
+	\textbf{c. Energía de un solo cuanto ($n=1$):} \\
+	$\Delta E = h \cdot f = (6.626 \times 10^{-34}) \cdot (0.581) = \mathbf{3.85 \times 10^{-34} \text{ J}}$. %[cite: 1]
+}
+
+\subsection*{2. Fotón vs. Electrón}
+\noindent \textbf{Enunciado:} Establezca semejanzas y diferencias entre fotón y electrón. %[cite: 1]
+
+\respOperacional[4.5cm]{
+	\\
+	\textbf{Semejanzas:} Ambos presentan el comportamiento de la dualidad onda-partícula según la física moderna. A escalas subatómicas, ambos pueden transferir energía en cantidades discretas (cuantos) al interactuar con la materia (ej. efecto fotoeléctrico). %[cite: 1] \\
+	\\
+	\textbf{Diferencias:} El electrón es una partícula masiva (fermión, tiene masa en reposo de $9.11 \times 10^{-31} \text{ kg}$) y tiene carga eléctrica negativa. El fotón es una partícula portadora de fuerza (bosón, asociado a la luz), \textbf{\color{blue}no tiene masa en reposo} y \textbf{\color{blue}no tiene carga eléctrica}. Además, el fotón siempre viaja a la velocidad de la luz ($c$), el electrón no puede alcanzar $c$. %[cite: 1]
+}
+
+\subsection*{ACTIVIDAD 10.2}
+
+\subsection*{1. Relatividad en una nave espacial}
+\noindent \textbf{Enunciado:} Una nave que en el reposo tiene una masa de 1.8 Ton y 9 m de largo, viaja en el espacio a razón de 0.85c. Determine: a. Masa relativa de la nave en movimiento. b. Longitud de la nave en movimiento respecto a un observador en reposo. c. ¿A qué velocidad se debe desplazar para que la longitud disminuya a la mitad respecto a un observador en reposo? d. ¿Cuál es la masa relativa con la velocidad calculada en c.? %[cite: 1]
+
+\respOperacional[9cm]{
+	\textbf{Factor de Lorentz:} $\gamma = \frac{1}{\sqrt{1 - (v/c)^2}} = \frac{1}{\sqrt{1 - (0.85)^2}} = \frac{1}{\sqrt{1 - 0.7225}} = \frac{1}{\sqrt{0.2775}} \approx \mathbf{1.898}$. %[cite: 1] \\
+	\textbf{a. Masa relativa:} \\
+	$m = m_0 \cdot \gamma = 1.8 \text{ Ton} \cdot 1.898 \approx \mathbf{3.416 \text{ Ton}}$. %[cite: 1] \\
+	\\
+	\textbf{b. Longitud contraída:} \\
+	$l = l_0 \cdot \sqrt{1 - (v/c)^2} = \frac{l_0}{\gamma} = \frac{9 \text{ m}}{1.898} \approx \mathbf{4.74 \text{ m}}$. %[cite: 1] \\
+	\\
+	\textbf{c. Velocidad para reducir la longitud a la mitad:} \\
+	$l = \frac{l_0}{2} \implies \sqrt{1 - (v/c)^2} = 0.5 \implies 1 - \frac{v^2}{c^2} = 0.25 \implies \frac{v^2}{c^2} = 0.75$. \\
+	$v = \sqrt{0.75}c \approx \mathbf{0.866c}$. %[cite: 1] \\
+	\\
+	\textbf{d. Masa relativa a $v = 0.866c$:} \\
+	Si $\sqrt{1 - (v/c)^2} = 0.5$, entonces $\gamma = 1/0.5 = 2$. \\
+	$m = m_0 \cdot \gamma = 1.8 \text{ Ton} \cdot 2 = \mathbf{3.6 \text{ Ton}}$. %[cite: 1]
+}
+
+\subsection*{2. Dilatación del tiempo}
+\noindent \textbf{Enunciado:} Un astronauta de 30 años emprende un vuelo espacial a razón de 0.7c, su hermano de 20 años se queda en tierra. Determine las edades para el astronauta y su hermano si: a. Transcurren 5 años medidos en la tierra. b. Transcurren 5 años medidos en la nave. %[cite: 1]
+
+\respOperacional[6.5cm]{
+	\textbf{Factor de tiempo:} $\sqrt{1 - (0.7)^2} = \sqrt{1 - 0.49} = \sqrt{0.51} \approx \mathbf{0.714}$. %[cite: 1] \\
+	\\
+	\textbf{a. Si transcurren 5 años medidos en la Tierra ($\Delta t_T = 5$):} \\
+	El hermano (Tierra) envejece 5 años: Edad Hermano = $20 + 5 = \mathbf{25 \text{ años}}$. \\
+	Tiempo para el astronauta: $\Delta t_{nave} = 5 \cdot 0.714 = 3.57 \text{ años}$. \\
+	Edad Astronauta = $30 + 3.57 = \mathbf{33.57 \text{ años}}$. %[cite: 1] \\
+	\\
+	\textbf{b. Si transcurren 5 años medidos en la nave ($\Delta t_{nave} = 5$):} \\
+	El astronauta envejece 5 años: Edad Astronauta = $30 + 5 = \mathbf{35 \text{ años}}$. \\
+	Tiempo para la Tierra: $\Delta t_T = \frac{5}{0.714} = 7 \text{ años}$. \\
+	Edad Hermano = $20 + 7 = \mathbf{27 \text{ años}}$. %[cite: 1]
+}
+
+\subsection*{3. Límite de la velocidad de la luz}
+\noindent \textbf{Enunciado:} Comente que sucede con la longitud, la masa y la dilatación del tiempo cuando el desplazamiento se hace a la velocidad de la luz c. De acuerdo con esto comente si es posible que un cuerpo pueda desplazarse a esa velocidad. %[cite: 1]
+
+\respOperacional[4cm]{
+	Si $v = c$, el término $\sqrt{1 - (v/c)^2}$ se vuelve $\sqrt{1-1} = 0$. %[cite: 1] \\
+	- \textbf{Longitud:} $l = l_0 \cdot 0 = \mathbf{0}$. (La dimensión se reduce a un punto). \\
+	- \textbf{Tiempo:} $\Delta t \cdot 0 = 0$. (El tiempo se detiene para el objeto). \\
+	- \textbf{Masa:} $m = \frac{m_0}{0} = \mathbf{\infty}$. (La masa se volvería infinita). %[cite: 1] \\
+	\textbf{Conclusión:} Según la Teoría de la Relatividad Especial, un cuerpo con masa en reposo \textbf{\color{blue}jamás puede alcanzar la velocidad de la luz}, ya que requeriría una energía infinita para acelerar una masa infinita. Solo partículas sin masa, como los fotones, viajan a $c$. %[cite: 1]
+}
+
+\subsection*{ACTIVIDAD 10.3}
+
+\subsection*{1. Fusión nuclear vs. Fisión nuclear}
+\noindent \textbf{Enunciado:} Consulte en que consiste la fusión nuclear y la fisión nuclear, y establezca diferencias y semejanzas. %[cite: 1]
+
+\respOperacional[4.5cm]{
+	\textbf{Semejanzas:} Ambos son procesos a nivel del núcleo atómico que implican la conversión de una pequeña cantidad de masa en cantidades enormes de energía según la ecuación $E = mc^2$. %[cite: 1] \\
+	\textbf{Diferencias:} La \textbf{\color{blue}Fisión nuclear} consiste en la ruptura o división de un núcleo pesado (como el Uranio) en núcleos más ligeros, liberando energía (usada en centrales nucleares y bombas atómicas). La \textbf{\color{blue}Fusión nuclear} es el proceso inverso: núcleos muy ligeros (como el Hidrógeno) se unen para formar un núcleo más pesado (como el Helio), es el proceso que hace brillar al Sol y libera aún más energía que la fisión. %[cite: 1]
+}
+
+\subsection*{2 y 3. Energía de fusión del Helio}
+\noindent \textbf{Enunciado:} 2. Al fusionarse 4 átomos de hidrogeno ($masa = 1.674 \times 10^{-24} \text{ g}$) para formar un átomo de helio ($masa = 6.674 \times 10^{-24} \text{ g}$), determine: a. Masa perdida. b. Energía en Joules. 3. ¿Cuánta energía se desprende al formar una mol de Helio? ($6.022 \times 10^{23} \text{ átomos/mol}$). %[cite: 1]
+
+\respOperacional[7cm]{
+	\textbf{2a. Masa perdida ($\Delta m$):} \\
+	Masa reactivos (4 H): $4 \cdot 1.674 \times 10^{-24} \text{ g} = 6.696 \times 10^{-24} \text{ g}$. \\
+	Masa producto (1 He): $6.674 \times 10^{-24} \text{ g}$. \\
+	$\Delta m = 6.696 \times 10^{-24} \text{ g} - 6.674 \times 10^{-24} \text{ g} = 0.022 \times 10^{-24} \text{ g}$. \\
+	En kg (dividiendo por 1000): $\mathbf{\Delta m = 2.2 \times 10^{-29} \text{ kg}}$. %[cite: 1] \\
+	\\
+	\textbf{2b. Energía liberada por 1 átomo de He ($E$):} \\
+	$E = \Delta m \cdot c^2 = (2.2 \times 10^{-29} \text{ kg}) \cdot (3 \times 10^8 \text{ m/s})^2 = (2.2 \times 10^{-29}) \cdot (9 \times 10^{16})$ \\
+	$E = \mathbf{1.98 \times 10^{-12} \text{ J}}$. %[cite: 1] \\
+	\\
+	\textbf{3. Energía para 1 mol de Helio:} \\
+	Multiplicamos la energía de 1 átomo por el número de Avogadro. \\
+	$E_{mol} = (1.98 \times 10^{-12} \text{ J}) \cdot (6.022 \times 10^{23}) \approx \mathbf{1.192 \times 10^{12} \text{ J}}$. %[cite: 1]
+}
+
+\subsection*{4. Energía en reposo de un electrón}
+\noindent \textbf{Enunciado:} Determine la energía en reposo de un electrón ($masa = 9.11 \times 10^{-31} \text{ kg}$) en J y en eV. %[cite: 1]
+
+\respOperacional[4cm]{
+	\textbf{Energía en Joules:} \\
+	$E = m_0 c^2 = (9.11 \times 10^{-31} \text{ kg}) \cdot (3 \times 10^8 \text{ m/s})^2$ \\
+	$E = (9.11 \times 10^{-31}) \cdot (9 \times 10^{16}) = \mathbf{8.199 \times 10^{-14} \text{ J}}$. %[cite: 1] \\
+	\\
+	\textbf{Energía en electrón voltios (eV):} (Con $1 \text{ eV} = 1.6 \times 10^{-19} \text{ J}$) \\
+	$E_{eV} = \frac{8.199 \times 10^{-14} \text{ J}}{1.6 \times 10^{-19} \text{ J/eV}} \approx 512,437 \text{ eV} = \mathbf{0.511 \text{ MeV}}$. %[cite: 1]
+}
+
+\subsection*{5. Energía de la luz}
+\noindent \textbf{Enunciado:} Consulte la frecuencia de la luz azul y la de la luz roja, y determine la energía que cada fotón perteneciente a cada una de estas frecuencias tiene. %[cite: 1]
+
+\respOperacional[5cm]{
+	Frecuencias típicas promedio: Luz roja $\approx 4.3 \times 10^{14} \text{ Hz}$. Luz azul $\approx 6.6 \times 10^{14} \text{ Hz}$. \\
+	Constante de Planck $h = 6.626 \times 10^{-34} \text{ J}\cdot\text{s}$. %[cite: 1] \\
+	\\
+	\textbf{Fotón Rojo:} \\
+	$E_R = h \cdot f_R = (6.626 \times 10^{-34}) \cdot (4.3 \times 10^{14}) = \mathbf{2.85 \times 10^{-19} \text{ J}}$ ($\sim 1.78 \text{ eV}$). %[cite: 1] \\
+	\\
+	\textbf{Fotón Azul:} \\
+	$E_A = h \cdot f_A = (6.626 \times 10^{-34}) \cdot (6.6 \times 10^{14}) = \mathbf{4.37 \times 10^{-19} \text{ J}}$ ($\sim 2.73 \text{ eV}$). \\
+	Esto comprueba la base del \textbf{\color{blue}efecto fotoeléctrico}: la luz azul, al tener mayor frecuencia, entrega fotones con mayor energía que la luz roja. %[cite: 1]
+}
+
+\subsection*{ACTIVIDAD 10.4}
+
+\subsection*{1. Conceptos de Física Cuántica y Partículas}
+\noindent \textbf{Enunciado:} Determinar si la apreciación es falsa (F) o verdadera (V) y justificar la respuesta. %[cite: 1]
+
+\respOperacional[8.5cm]{
+	\textbf{a. La ecuación de Schrödinger permite determinar la posición exacta de una partícula. (F)} \\
+	\textit{Justific:} En mecánica cuántica, la función de onda $\psi$ determina la \textbf{probabilidad} de encontrar la partícula, no su posición exacta (Principio de Incertidumbre). %[cite: 1] \\
+	\textbf{b. La ecuación de Schrödinger se puede aplicar al movimiento de ondas de agua. (F)} \\
+	\textit{Justific:} Es exclusiva para describir el comportamiento probabilístico en el \textbf{mundo subatómico} (cuántico), no para fluidos macroscópicos. %[cite: 1] \\
+	\textbf{c. La ecuación de Schrödinger y la del M.A.S. permiten describir comportamientos análogos. (F)} \\
+	\textit{Justific:} El M.A.S. es determinista (física clásica), Schrödinger es probabilística. %[cite: 1] \\
+	\textbf{d. A parte de la luz, los electrones, protones y otros, también presentan dualidad onda partícula. (V)} \\
+	\textit{Justific:} Según De Broglie y la mecánica cuántica, toda la materia presenta comportamiento ondulatorio. %[cite: 1] \\
+	\textbf{e. Al dividir un imán en dos, se consigue separar el polo Norte y el polo Sur. (F)} \\
+	\textit{Justific:} Los polos magnéticos son inseparables. %[cite: 1] \\
+	\textbf{f. Las partículas fundamentales no son solamente protones, neutrones y electrones. (V)} \\
+	\textit{Justific:} Existen quarks, muones, neutrinos, bosones, etc., según el Modelo Estándar. %[cite: 1] \\
+	\textbf{g. Según la lectura, el modelo estándar ya está completo. (F)} \\
+	\textit{Justific:} El texto dice explícitamente que es incompleto porque "no incluye la fuerza de la gravedad". %[cite: 1]
+}
+
+\subsection*{2 y 3. Modelo Estándar y el LHC}
+\noindent \textbf{Enunciado:} 2. Clasificación del Modelo Estándar. 3. Consulta el gran colisionador de hadrones, LHC. %[cite: 1]
+
+\respOperacional[5cm]{
+	\textbf{2. Clasificación (Modelo Estándar):} \\
+	- \textbf{Fermiones (Materia):} Quarks (forman protones y neutrones) y Leptones (ej. electrones y neutrinos). \\
+	- \textbf{Bosones (Fuerzas):} Fotones (electromagnetismo), Gluones (fuerza fuerte), W y Z (fuerza débil) y el Bosón de Higgs (aporta masa a las demás). %[cite: 1] \\
+	\\
+	\textbf{3. El LHC (Gran Colisionador de Hadrones):} \\
+	Es el acelerador de partículas más grande del mundo. Para que los datos sean confiables se requieren \textbf{\color{blue}condiciones extremas}: supervacío (para que las partículas no choquen con gases), temperaturas cercanas al cero absoluto (para usar electroimanes superconductores sin resistencia) y velocidades de colisión extremadamente cercanas a $c$. %[cite: 1]
+}
+
+% =================================================================
+% ANÁLISIS DE RESULTADOS - LABORATORIO 11F-10P
+% =================================================================
+\newpage
+\section*{11F-10P. RADIACIÓN}
+\subsection*{ANÁLISIS DE RESULTADOS}
+
+\subsection*{1 y 2. Dualidad onda-partícula en la fotocelda}
+\noindent \textbf{Enunciado:} 1. ¿Qué relación observa entre el voltaje generado en la fotocelda por cada color y su correspondiente energía? 2. Justifique por qué en esta práctica se analizó un comportamiento dual de la luz. %[cite: 1]
+
+\respOperacional[5cm]{
+	\textbf{1. Relación Voltaje/Energía:} Se observa una relación \textbf{\color{blue}directa}. La luz de colores fríos (azul, violeta) tiene menor longitud de onda, mayor frecuencia y, por tanto, fotones con mayor energía ($E=hf$), lo que genera un mayor efecto fotoeléctrico y un mayor voltaje/corriente en la celda en comparación con colores cálidos (rojo, amarillo) de menor frecuencia. %[cite: 1] \\
+	\\
+	\textbf{2. Comportamiento dual:} Se usó papel celofán para separar los colores, lo que se basa en la luz como \textbf{\color{blue}onda} (cada color es una longitud de onda distinta). Pero la capacidad de esa luz para excitar la celda fotovoltaica y generar electricidad se explica porque la luz actúa como una \textbf{\color{blue}partícula} (fotones golpeando y liberando electrones, efecto fotoeléctrico). %[cite: 1]
+}
+
+\subsection*{3. Aplicaciones de la luz}
+\noindent \textbf{Enunciado:} Comente diferentes aplicaciones que los rayos y haces de luz en la vida cotidiana. %[cite: 1]
+
+\respOperacional[3.5cm]{
+	Además de la iluminación y la visión, la manipulación de fotones ha revolucionado la \textbf{\color{blue}telecomunicación} a través de la fibra óptica (internet de alta velocidad). En medicina e industria, los \textbf{\color{blue}láseres} (haces de luz coherente) se usan para cirugías de precisión, lectura de códigos de barras y cortes de materiales. Finalmente, la radiación solar capturada en \textbf{\color{blue}paneles solares} está transformando el sistema de generación de energía sostenible global. %[cite: 1]
+}
+
+% =================================================================
+% TALLER DE PREPARACIÓN Y REPASO - TAU 10
+% =================================================================
+\newpage
+\section*{TALLER DE PREPARACIÓN PARA EL EXAMEN - TAU 10}
+
+\subsection*{1. Efecto Fotoeléctrico}
+\noindent \textbf{Enunciado:} Un haz de luz incide sobre una superficie de Potasio, liberando fotoelectrones. Si se cambia la fuente de luz por una de color rojo intenso (baja frecuencia), se observa que no se desprenden electrones de la placa, sin embargo, si se usa una luz ultravioleta muy tenue, sí se emiten electrones de inmediato. Explique utilizando el modelo de los cuantos de Einstein por qué la intensidad (brillo) de la luz roja no logra arrancar electrones, pero una luz UV tenue sí.
+
+\respOperacional[4.5cm]{
+	En el modelo cuántico de Einstein, la energía no se transfiere de forma continua, sino en \textbf{paquetes individuales (fotones)}. Cada electrón absorbe la energía de un solo fotón. La luz roja tiene baja frecuencia, por lo que sus fotones no alcanzan la \textbf{\color{blue}energía mínima (función de trabajo)} necesaria para arrancar un electrón del Potasio. No importa qué tan intensa sea la luz roja (cuántos millones de fotones haya), ningún fotón individual tiene la fuerza suficiente. La luz UV tiene fotones de alta energía (alta frecuencia); aunque sea tenue (pocos fotones), cada fotón individual que golpea tiene energía de sobra para arrancar un electrón.
+}
+
+\subsection*{2. Dilatación del Tiempo (Relatividad)}
+\noindent \textbf{Enunciado:} Un núcleo atómico inestable en un laboratorio tiene una vida media de $2.0 \times 10^{-6} \text{ s}$ cuando está en reposo. Si este mismo núcleo es acelerado en un colisionador de partículas hasta alcanzar una velocidad de $v = 0.98c$, ¿cuál será su vida media medida por los científicos en el laboratorio?
+
+\respOperacional[4.5cm]{
+	\textbf{Datos:} $\Delta t_0 = 2.0 \times 10^{-6} \text{ s}$ (tiempo propio), $v = 0.98c$. \\
+	Usamos la ecuación de dilatación temporal (Eq IV): \\
+	$\Delta t = \frac{\Delta t_0}{\sqrt{1 - (v/c)^2}}$ \\
+	$\Delta t = \frac{2.0 \times 10^{-6}}{\sqrt{1 - (0.98)^2}} = \frac{2.0 \times 10^{-6}}{\sqrt{1 - 0.9604}} = \frac{2.0 \times 10^{-6}}{\sqrt{0.0396}}$ \\
+	$\Delta t \approx \frac{2.0 \times 10^{-6}}{0.199} \approx \mathbf{10.05 \times 10^{-6} \text{ s}}$. \\
+	\textbf{Análisis:} Debido a la alta velocidad, para los observadores en el laboratorio, el "reloj" interno del núcleo parece correr mucho más lento, alargando su vida útil casi 5 veces.
+}
+
+\subsection*{3. Equivalencia Masa-Energía}
+\noindent \textbf{Enunciado:} En una central nuclear, una pastilla de combustible de Uranio pierde exactamente $0.5 \text{ gramos}$ de masa debido al proceso de fisión durante cierto periodo. Calcule la cantidad de energía en Joules que esta masa ha convertido y liberado al sistema.
+
+\respOperacional[4cm]{
+	\textbf{Datos:} $m = 0.5 \text{ gramos} = 0.5 \times 10^{-3} \text{ kg} = 5 \times 10^{-4} \text{ kg}$, $c = 3 \times 10^8 \text{ m/s}$. \\
+	Ecuación de Einstein: $E = m c^2$ \\
+	$E = (5 \times 10^{-4} \text{ kg}) \cdot (3 \times 10^8 \text{ m/s})^2$ \\
+	$E = (5 \times 10^{-4}) \cdot (9 \times 10^{16})$ \\
+	$E = \mathbf{45 \times 10^{12} \text{ Joules}}$ (ó 45 TeraJoules). \\
+	Esta enorme cantidad de energía evidencia el inmenso poder contenido en la masa nuclear, capaz de abastecer a miles de hogares.
+}
+
+\subsection*{4. Modelo Estándar y Fuerzas Fundamentales}
+\noindent \textbf{Enunciado:} La física moderna describe cómo las partículas interactúan mediante el intercambio de "bosones" o partículas portadoras de fuerza. Relacione cada uno de los siguientes fenómenos físicos de la columna izquierda con el bosón responsable de mediar esa interacción en la columna derecha.
+
+\respOperacional[4.5cm]{
+	\textbf{Relaciones:} \\
+	1. \textit{La repulsión entre dos electrones} $\rightarrow$ \textbf{\color{blue}Fotón} (Fuerza Electromagnética). \\
+	2. \textit{Unión de los quarks para mantener estable el núcleo} $\rightarrow$ \textbf{\color{blue}Gluón} (Fuerza Nuclear Fuerte). \\
+	3. \textit{El decaimiento radiactivo beta} $\rightarrow$ \textbf{\color{blue}Bosones W y Z} (Fuerza Nuclear Débil). \\
+	4. \textit{El origen de la masa del electrón} $\rightarrow$ \textbf{\color{blue}Bosón de Higgs}.
+}
+\end{document}
