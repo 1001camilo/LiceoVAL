@@ -1,0 +1,123 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{xcolor}
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% ==========================================
+%  CONFIGURACIÓN DE RESPUESTAS (ACTIVAR/DESACTIVAR)
+% ==========================================
+% Cambia 'true' por 'false' para ocultar las respuestas e imprimir la versión del estudiante.
+\newboolean{mostrarRespuestas}
+\setboolean{mostrarRespuestas}{true}
+
+% Comando interno para generar las cajas de solución
+\newcommand{\solucion}[1]{
+	\ifthenelse{\boolean{mostrarRespuestas}}{
+		\vspace{0.2cm}
+		\begin{tcolorbox}[colframe=red!70!black, colback=red!5, boxrule=1pt, arc=3pt, left=5pt, right=5pt, top=5pt, bottom=5pt]
+			\textcolor{red!70!black}{\textbf{Solución de calificación:} #1}
+		\end{tcolorbox}
+	}{}
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		\textbf{Taller de Repaso - CIENCIAS 2}\\[0.1cm] 
+		\textit{TAU 2: ¡Oh, hermosa Luna!} 
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	\vspace{0.6cm}
+	
+	% --- INSTRUCCIONES ---
+	\noindent \textit{Instrucciones: Resuelve este taller utilizando lo que aprendiste en el TAU 2. Si no recuerdas alguna respuesta, vuelve a revisar tu libro de autoaprendizaje antes de contestar.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 1 --- 
+	\noindent \textbf{1. Las fases de la Luna y nuestro calendario:} Completa los espacios en blanco con los datos correctos que aprendiste en el libro sobre cómo los antiguos judíos inventaron una medida de tiempo que usamos todos los días.
+	
+	\vspace{0.2cm}
+	\begin{itemize}[itemsep=0.4cm, label={$\bullet$}]
+		\item El ciclo completo de todas las fases de la Luna dura aproximadamente \underline{\hspace{2cm}} días.
+		\item Los antiguos dividieron ese ciclo en \underline{\hspace{2cm}} etapas (fases).
+		\item Cada una de esas etapas dura exactamente \underline{\hspace{2cm}} días.
+		\item Gracias a esta división, se inventó la medida de tiempo que hoy llamamos la \underline{\hspace{3cm}}.
+	\end{itemize}
+	
+	\solucion{28 días / cuatro (4) etapas / 7 días / la semana (de la palabra latina \textit{septimana}).}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 2 --- 
+	\noindent \textbf{2. La materia de las estrellas:} En la antigüedad, la gente pensaba que la Tierra era de materia impura y que el cielo era divino. Sin embargo, el sabio griego \textbf{Anaxágoras} creía que los cuerpos celestes estaban hechos de materia igual a la de la Tierra. 
+	
+	\vspace{0.2cm}
+	\noindent ¿Qué asombroso evento ocurrió en el año 468 a.C. que le dio toda la razón a Anaxágoras y demostró que del cielo caían piedras iguales a las de la Tierra?
+	\vspace{0.1cm}
+	
+	\ifthenelse{\boolean{mostrarRespuestas}}{
+		\solucion{La caída de un gran meteorito (en la costa del Mar Egeo).}
+	}{
+		\vspace{0.2cm}
+		\noindent \rule{\textwidth}{0.4pt}
+		\vspace{0.8cm}
+	}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 3 --- 
+	\noindent \textbf{3. Mirando al espacio:} Lee cada afirmación y marca con una \textbf{X} si es Verdadera (V) o Falsa (F):
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.6cm, label={}] 
+		\item \textbf{A.} Si estuviéramos en el espacio exterior, lejos de nuestro planeta, a la Luna NO se le verían fases; siempre se vería exactamente igual (medio iluminada por el Sol). \hfill  ( \hspace{0.3cm} ) V \quad  ( \hspace{0.3cm} ) F 
+		
+		\item \textbf{B.} Hace 400 años, Galileo Galilei inventó el telescopio y descubrió que la Luna es el único cuerpo del Universo que tiene fases, ya que los planetas nunca las presentan. \hfill  ( \hspace{0.3cm} ) V \quad  ( \hspace{0.3cm} ) F 
+	\end{itemize}
+	
+	\solucion{\textbf{A es Verdadera.} Desde el espacio siempre se ve la mitad iluminada y la mitad a oscuras. \\ \textbf{B es Falsa.} Galileo descubrió que el planeta \textbf{Venus} también presenta fases.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 4 --- 
+	\noindent \textbf{4. Vocabulario astronómico:} Los antiguos astrónomos griegos y árabes inventaron palabras técnicas para poder ubicarnos al observar el cielo. Relaciona con una línea cada palabra con el lugar del cielo al que se refiere:
+	
+	\vspace{0.4cm}
+	\begin{itemize}[itemsep=0.8cm, label={}]
+		\item \textbf{Cenit} \hfill $\circ$ El límite visual a lo lejos, donde parece que el cielo toca la tierra.
+		\item \textbf{Nadir} \hfill $\circ$ El punto del cielo que está exactamente arriba, encima de tu cabeza.
+		\item \textbf{Horizonte} \hfill $\circ$ El punto opuesto al cielo, que está imaginariamente debajo de tus pies.
+	\end{itemize}
+	
+	\solucion{\textbf{Cenit} $\rightarrow$ Exactamente encima de tu cabeza. \\ \textbf{Nadir} $\rightarrow$ Debajo de tus pies. \\ \textbf{Horizonte} $\rightarrow$ El límite visual a lo lejos.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 5 --- 
+	\noindent \textbf{5. La rotación de la Tierra:} Imagina que te has convertido en un gigante enorme y estás parado exactamente sobre el \textbf{Polo Norte}. Miras hacia abajo para observar cómo giran la Tierra y la Luna. ¿En qué sentido verías que rotan?
+	\vspace{0.2cm}
+	\begin{itemize}[itemsep=0.4cm, label={$\square$}]
+		\item En el mismo sentido en que se mueven las agujas de un reloj.
+		\item En el sentido contrario al que se mueven las agujas de un reloj ($\circlearrowleft$).
+	\end{itemize}
+	
+	\solucion{Deben marcar: \textbf{En el sentido contrario al que se mueven las agujas de un reloj}.}
+	
+	\vspace{1cm}
+	\begin{center}
+		\textit{¡Buen trabajo! Revisa muy bien tus respuestas. Si lograste contestar todo correctamente, estás totalmente preparado para el examen.}
+	\end{center}
+	
+\end{document}

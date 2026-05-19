@@ -1,0 +1,135 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{xcolor}
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% ==========================================
+%  CONFIGURACIÓN DE RESPUESTAS (ACTIVAR/DESACTIVAR)
+% ==========================================
+% Cambia 'true' por 'false' para ocultar las respuestas e imprimir la versión del estudiante.
+\newboolean{mostrarRespuestas}
+\setboolean{mostrarRespuestas}{true}
+
+% Comando interno para generar las cajas de solución
+\newcommand{\solucion}[1]{
+	\ifthenelse{\boolean{mostrarRespuestas}}{
+		\vspace{0.2cm}
+		\begin{tcolorbox}[colframe=red!70!black, colback=red!5, boxrule=1pt, arc=3pt, left=5pt, right=5pt, top=5pt, bottom=5pt]
+			\textcolor{red!70!black}{\textbf{Solución de calificación:} #1}
+		\end{tcolorbox}
+	}{}
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.2cm] 
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.2cm] 
+		\textbf{Taller de Repaso - CIENCIAS 2}\\[0.1cm] 
+		\textit{TAU 3: Entre la Luna y la Tierra} 
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	\vspace{0.6cm}
+	
+	% --- INSTRUCCIONES ---
+	\noindent \textit{Instrucciones: Resuelve este taller utilizando lo que aprendiste en el TAU 3. Analiza cada pregunta con cuidado antes de responder.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 1 --- 
+	\noindent \textbf{1. Los grandes sabios de la antigüedad:} En este TAU conocimos a dos antiguos astrónomos griegos que usaron métodos muy sencillos para calcular tamaños astronómicos. Relaciona cada sabio con su gran descubrimiento uniendo con una línea:
+	
+	\vspace{0.4cm}
+	\begin{itemize}[itemsep=0.8cm, label={}]
+		\item \textbf{Aristarco de Samos} \hfill $\circ$ Usó la sombra de unos palos clavados en el suelo al mediodía para calcular el tamaño exacto de la \textbf{Tierra}.
+		\item \textbf{Eratóstenes de Cirene} \hfill $\circ$ Usó la sombra que la Tierra proyecta durante un eclipse para calcular el tamaño de la \textbf{Luna}.
+	\end{itemize}
+	
+	\solucion{\textbf{Aristarco de Samos} $\rightarrow$ Usó la sombra de la Tierra durante un eclipse para medir la Luna.\\ \textbf{Eratóstenes de Cirene} $\rightarrow$ Usó la sombra de los palos al mediodía para medir la Tierra.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 2 --- 
+	\noindent \textbf{2. El método de Aristarco:} ¿Cómo se dio cuenta Aristarco de Samos de que la Luna era más pequeña que la Tierra?
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm, label={}] 
+		\item[ $\square$ ] Porque viajó hasta la Luna y la midió con una regla gigante.
+		\item[ $\square$ ] Porque observó un eclipse de Luna y notó que la curva o ``barriga'' de la sombra de la Tierra era mucho más ancha que la propia Luna.
+		\item[ $\square$ ] Porque el Sol iluminó la Luna por la mitad y se vio que era pequeña.
+	\end{itemize}
+	
+	\solucion{La respuesta correcta es la segunda opción: Observó la ``barriga'' de la sombra de la Tierra.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 3 --- 
+	\noindent \textbf{3. Tamaños reales vs. Tamaños aparentes:} Lee cada afirmación y marca con una \textbf{X} si es Verdadera (V) o Falsa (F):
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.6cm, label={}] 
+		\item \textbf{A.} El ``tamaño real'' de un objeto cambia constantemente si te acercas o te alejas de él. \hfill  $\square$  V \quad  $\square$  F 
+		
+		\item \textbf{B.} Según la Regla de los Tamaños Aparentes, si te alejas de un objeto a una distancia 10 veces mayor, el objeto se verá 10 veces más pequeño. \hfill  $\square$  V \quad  $\square$  F 
+	\end{itemize}
+	
+	\solucion{\textbf{A es Falsa} (el tamaño real jamás cambia, lo que cambia es el tamaño aparente).\\ \textbf{B es Verdadera} (Esa es la definición exacta de la regla vista en el libro).}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 4 --- 
+	\noindent \textbf{4. El cálculo de Eratóstenes:} Eratóstenes descubrió que la distancia entre las antiguas ciudades de Siena y Alejandría era de \textbf{800 kilómetros}, y que ese pedazo correspondía exactamente a \textbf{1/50} (una cincuentava parte) del perímetro o circunferencia total de la Tierra. 
+	
+	\vspace{0.2cm}
+	\noindent Con base en este dato, calcula cuál fue el resultado final que obtuvo Eratóstenes para la circunferencia de la Tierra. 
+	\vspace{0.1cm}
+	
+	\noindent \textit{(Muestra tu operación matemática en el recuadro):}
+	\vspace{0.2cm}
+	
+	\begin{tcolorbox}[colframe=black, colback=white, height=3.5cm, width=0.8\textwidth]
+		\ifthenelse{\boolean{mostrarRespuestas}}{
+			\textcolor{red!70!black}{
+				\textbf{Operación esperada:}\\
+				$800 \text{ kilómetros} \times 50 = 40.000 \text{ kilómetros}$\\
+				\vspace{0.2cm}\\
+				\textbf{Resultado:} Eratóstenes calculó que la circunferencia de la Tierra medía 40.000 km.}
+		}{}
+	\end{tcolorbox}
+	\vspace{0.4cm}
+	
+	% --- PREGUNTA 5 --- 
+	\noindent \textbf{5. ¿A qué distancia está la Luna?:} Al final del TAU se nos explica que la distancia entre la Tierra y la Luna es de aproximadamente \textbf{384.000 kilómetros}. Para hacer el cálculo mental más fácil, el Autor propone redondear esa cifra a \textbf{400.000 kilómetros}. 
+	
+	\vspace{0.2cm}
+	\noindent Sabiendo que darle una vuelta completa a la Tierra (su circunferencia) son \textbf{40.000 kilómetros}, ¿a cuántas vueltas a la Tierra equivale un viaje a la Luna?
+	\vspace{0.1cm}
+	
+	\noindent \textit{(Muestra tu operación matemática y escribe la respuesta final):}
+	\vspace{0.2cm}
+	
+	\begin{tcolorbox}[colframe=black, colback=white, height=3.5cm, width=0.8\textwidth]
+		\ifthenelse{\boolean{mostrarRespuestas}}{
+			\textcolor{red!70!black}{
+				\textbf{Operación esperada:}\\
+				$400.000 \text{ km} \div 40.000 \text{ km} = 10 \text{ vueltas}$\\
+				\vspace{0.4cm}\\
+				\textbf{Respuesta final:} El viaje a la Luna equivale a \textbf{10} vueltas a la Tierra.}
+		}{
+			\vspace*{1.5cm}
+			\textbf{Respuesta:} El viaje a la Luna equivale a \underline{\hspace{3cm}} vueltas a la Tierra.
+		}
+	\end{tcolorbox}
+	
+\end{document}

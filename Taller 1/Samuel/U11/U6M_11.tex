@@ -1,0 +1,495 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete Ruta Local) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\IfFileExists{FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+		}%
+	}{}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+\definecolor{boxbg}{RGB}{245, 245, 245}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{#1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo}}, arc=2mm, boxrule=1pt}
+
+% --- SECCIÓN DE PRÁCTICA LIBRE (Sin caja para aprovechar el espacio) ---
+\newenvironment{practica}[1]{%
+	\vspace{0.6cm}
+	\noindent{\Large \textbf{\textcolor{valdark}{\ding{46} ¡Tu Turno! (#1)}}}
+	\vspace{0.1cm}\hrule\vspace{0.4cm}
+}{%
+	\vspace{0.4cm}
+}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA GUIADAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!60, colback=boxbg, boxrule=0.8pt, arc=1mm, boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\setlength{\columnseprule}{0.4pt}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+			\centering \Huge \textbf{UNIDAD 11}\\[0.2cm]
+			\Large \textbf{Números Enteros: Introducción, Suma y Resta}
+		\end{tcolorbox}
+		
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-11 FL} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+		
+		
+	\end{center}
+	
+	%\newpage
+	
+	% =======================================================
+	% MISIÓN 1: ¿QUÉ SON LOS NÚMEROS ENTEROS?
+	% =======================================================
+	\section*{Misión 1: Más allá del cero}
+	
+	\begin{concepto}{El Mundo de los Positivos y Negativos}
+		Hasta ahora has trabajado con números naturales ($1, 2, 350, 1000...$) para contar cosas que tienes. Pero, ¿qué pasa si debes dinero? ¿O si un buzo baja al fondo del mar? ¡Ahí nacen los \textbf{Números Enteros ($\mathbb{Z}$)}!
+		\begin{itemize}
+			\item \textbf{Números Positivos ($+$):} Representan ganancias, temperaturas sobre cero, subir pisos o ir a la derecha. (Ej: $+50$ o simplemente $50$).
+			\item \textbf{Números Negativos ($-$):} Representan deudas, temperaturas bajo cero, bajar al sótano o profundidades marinas. \textbf{Siempre} llevan el signo menos. (Ej: $-120$).
+			\item \textbf{El Cero ($0$):} Es la frontera. El nivel del mar, la planta baja o cuando no debes ni tienes dinero.
+		\end{itemize}
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{minipage}[t]{0.48\textwidth}
+			\begin{center}
+				\textbf{El Termómetro}\\[0.2cm]
+				\begin{tikzpicture}[scale=0.75]
+					% Bulbo
+					\fill[valred] (0,-1.5) circle (0.6);
+					% Tubo
+					\draw[ultra thick, fill=white] (-0.3,-1.2) rectangle (0.3, 3.5);
+					% Líquido
+					\fill[valred] (-0.2,-1.2) rectangle (0.2, 1.5);
+					% Marcas
+					\foreach \y/\t in {3/30, 2/20, 1/10, 0/0, -1/-10} {
+						\draw[thick] (-0.3,\y) -- (0.3,\y);
+						\node[right, font=\bfseries] at (0.4,\y) {\t$^\circ$};
+					}
+					\node[left, text=valblue, font=\small\bfseries] at (-0.4, 2) {Hace Calor ($+$)};
+					\node[left, text=valblue, font=\small\bfseries] at (-0.4, 0) {Frontera ($0$)};
+					\node[left, text=valblue, font=\small\bfseries] at (-0.4, -1) {Bajo Cero ($-$)};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}\hfill
+		\begin{minipage}[t]{0.48\textwidth}
+			\begin{center}
+				\textbf{El Edificio}\\[0.2cm]
+				\begin{tikzpicture}[scale=0.75]
+					\draw[ultra thick] (0,-2) rectangle (4,4);
+					\draw[thick, fill=cyan!10] (0,3) rectangle (4,4) node[midway] {$+3$ Piso};
+					\draw[thick, fill=cyan!10] (0,2) rectangle (4,3) node[midway] {$+2$ Piso};
+					\draw[thick, fill=cyan!10] (0,1) rectangle (4,2) node[midway] {$+1$ Piso};
+					\draw[thick, fill=valgreen!20] (0,0) rectangle (4,1) node[midway] {$0$ (Recepción)};
+					\draw[thick, fill=gray!30] (0,-1) rectangle (4,0) node[midway] {$-1$ (Sótano 1)};
+					\draw[thick, fill=gray!30] (0,-2) rectangle (4,-1) node[midway] {$-2$ (Sótano 2)};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+	\end{ejemplo}
+	
+	\begin{practica}{¿Positivo o negativo?}
+		\textit{Usa tu lógica: Lee cada situación de la vida real y tradúcela a un número entero (escribe el número y pon el signo $+$ o $-$ dentro de la caja gris según corresponda).}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.5cm,font=\bfseries]
+				\item Gané \$ 15.000 en mi negocio: \boxfill[2cm]
+				\item Le debo \$ 3.500 a mi papá: \boxfill[2cm]
+				\item El termómetro marca 12 grados bajo cero: \boxfill[2cm]
+				\item El avión vuela a 8.500 metros de altura: \boxfill[2cm]
+				\item El ascensor bajó al sótano 4: \boxfill[2cm]
+				\item Nací 10 años después del año 2000: \boxfill[2cm]
+				\item El submarino explora a 1.250 m de profundidad: \boxfill[2cm]
+				\item Pitágoras nació en el año 287 Antes de Cristo: \boxfill[2cm]
+				\item La temperatura ambiente subió 15 grados: \boxfill[2cm]
+				\item Mi cuenta de ahorros tiene \$ 145.000: \boxfill[2cm]
+				\item Retiré del cajero automático \$ 20.000: \boxfill[2cm]
+				\item Un dron vuela a 450 metros del suelo: \boxfill[2cm]
+				\item Un buzo nada a 25 metros bajo el agua: \boxfill[2cm]
+				\item Subí al octavo piso de la torre: \boxfill[2cm]
+				\item No gané ni perdí puntos en el examen: \boxfill[2cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	% =======================================================
+	% MISIÓN 2: LA RECTA NUMÉRICA
+	% =======================================================
+	\section*{Misión 2: El Mapa de los Números}
+	
+	\begin{concepto}{Ubicación y Duelos en la Recta}
+		La recta numérica es como una regla infinita donde organizamos todos los números.
+		\begin{itemize}
+			\item A la \textbf{derecha} del cero viven los \textcolor{valblue}{\textbf{Positivos}}. Mientras más a la derecha, ¡más grandes son!
+			\item A la \textbf{izquierda} del cero viven los \textcolor{valred}{\textbf{Negativos}}. Mientras más a la izquierda, ¡más pequeños son!
+		\end{itemize}
+		\textbf{La Regla del Tamaño:} En un duelo de números, \textbf{el que esté más a la derecha SIEMPRE es mayor.} Por ejemplo, tener una deuda de 10.000 ($-10.000$) es mucho peor (menor) que tener una deuda de solo 100 ($-100$).
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.9]
+			\draw[<->, ultra thick, valdark] (-7,0) -- (7,0);
+			% Cero
+			\draw[ultra thick, valdark] (0, 0.3) -- (0, -0.3) node[below, font=\Large\bfseries] {0};
+			% Positivos
+			\foreach \x in {100, 200, 300, 400, 500} {
+				\draw[thick, valblue] (\x/100, 0.2) -- (\x/100, -0.2) node[below, font=\small\bfseries, valblue, rotate=-45, anchor=north west] {+\x};
+			}
+			% Negativos
+			\foreach \x in {-100, -200, -300, -400, -500, -600} {
+				\draw[thick, valred] (\x/100, 0.2) -- (\x/100, -0.2) node[below, font=\small\bfseries, valred, rotate=45, anchor=north east] {\x};
+			}
+			\node[valblue, font=\large\bfseries] at (4, 1.5) {Más grandes $\rightarrow$};
+			\node[valred, font=\large\bfseries] at (-4, 1.5) {$\leftarrow$ Más pequeños};
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{practica}{Ubicación y Duelos }
+		\textit{\textbf{Parte A.} Deduce la secuencia y escribe los números enteros (con su signo) que faltan en los recuadros vacíos de esta recta que salta de 50 en 50.}
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[x=1.5cm, y=1cm] % Ampliamos el espacio horizontal para que no choquen
+				\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+				
+				\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+					\draw[thick, valdark] (\x, 0.2) -- (\x, -0.2);
+				}
+				
+				% Números de referencia arriba
+				\node[above, font=\large\bfseries] at (0, 0.2) {0};
+				\node[above, font=\large\bfseries] at (3, 0.2) {+150};
+				\node[above, font=\large\bfseries] at (-4, 0.2) {-200};
+				
+				% Cajas para llenar abajo
+				\node[below] at (-6, -0.2) {\boxfill[0.8cm]};
+				\node[below] at (-2, -0.2) {\boxfill[0.8cm]};
+				\node[below] at (-1, -0.2) {\boxfill[0.8cm]};
+				\node[below] at (1, -0.2) {\boxfill[0.8cm]};
+				\node[below] at (5, -0.2) {\boxfill[0.8cm]};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{1cm}
+		\textit{\textbf{Parte B.} Escribe el símbolo Mayor que \textbf{($>$)}, Menor que \textbf{($<$)} o Igual \textbf{($=$)}. Imagina en qué lugar de la recta están para saber cuál es mayor.}
+		
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=6]
+				\item $-450$ \boxfill[0.8cm] $-200$
+				\item $150$ \boxfill[0.8cm] $-800$
+				\item $-1.200$ \boxfill[0.8cm] $-1.500$
+				\item $-35$ \boxfill[0.8cm] $0$
+				\item $-850$ \boxfill[0.8cm] $-850$
+				\item $-25$ \boxfill[0.8cm] $-5$
+				\item $+400$ \boxfill[0.8cm] $+399$
+				\item $-10.000$ \boxfill[0.8cm] $-1$
+				\item $0$ \boxfill[0.8cm] $-50$
+				\item $-300$ \boxfill[0.8cm] $+300$
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	% =======================================================
+	% MISIÓN 3: SUMAS Y RESTAS
+	% =======================================================
+	\section*{Misión 3: Saltos en la Recta (Suma y Resta)}
+	
+	\begin{truco}{El Viaje del Sapito}
+		Sumar y restar números enteros es exactamente igual a hacer que un sapito salte por la recta numérica:
+		\begin{itemize}
+			\item El \textbf{primer número} te dice en qué lugar exacto de la recta \textbf{inicias} tu viaje.
+			\item El \textbf{segundo número} (con su signo) te indica hacia dónde debes saltar:
+			\begin{itemize}
+				\item \textbf{Sumar (+):} Saltas hacia la \textcolor{valblue}{\textbf{DERECHA}}.
+				\item \textbf{Restar (-):} Saltas hacia la \textcolor{valred}{\textbf{IZQUIERDA}}.
+			\end{itemize}
+		\end{itemize}
+	\end{truco}
+	
+	\begin{ejemplo}
+		\textbf{Ejemplo 1: $\mathbf{-2 + 5 = ?}$} \\
+		Empiezas en el $\mathbf{-2}$. Como dice $\mathbf{+5}$, saltas 5 espacios a la \textcolor{valblue}{\textbf{DERECHA}}.
+		\begin{center}
+			\begin{tikzpicture}[x=0.9cm,y=0.9cm]
+				\draw[<->, ultra thick, valdark] (-5,0) -- (5,0);
+				\foreach \x in {-4,-3,-2,-1,0,1,2,3,4} {
+					\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+				}
+				\fill[valdark] (-2,0) circle (0.15) node[above=5pt] {\textbf{Inicio}};
+				\draw[->, ultra thick, valblue] (-2,0.6) to[bend left=30] node[above] {\textbf{+5 saltos (Derecha)}} (3,0.6);
+				\fill[valblue] (3,0) circle (0.15) node[below=15pt] {\textbf{Llegas al 3}};
+			\end{tikzpicture}
+		\end{center}
+		
+		\textbf{Ejemplo 2: $\mathbf{1 - 4 = ?}$} \\
+		Empiezas en el $\mathbf{1}$. Como dice $\mathbf{-4}$, saltas 4 espacios a la \textcolor{valred}{\textbf{IZQUIERDA}}.
+		\begin{center}
+			\begin{tikzpicture}[x=0.9cm,y=0.9cm]
+				\draw[<->, ultra thick, valdark] (-5,0) -- (5,0);
+				\foreach \x in {-4,-3,-2,-1,0,1,2,3,4} {
+					\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+				}
+				\fill[valdark] (1,0) circle (0.15) node[above=5pt] {\textbf{Inicio}};
+				\draw[->, ultra thick, valred] (1,0.6) to[bend right=30] node[above] {\textbf{-4 saltos (Izquierda)}} (-3,0.6);
+				\fill[valred] (-3,0) circle (0.15) node[below=15pt] {\textbf{Llegas al -3}};
+			\end{tikzpicture}
+		\end{center}
+	\end{ejemplo}
+	
+	\begin{practica}{dando Saltos}
+		\textit{\textbf{Parte A:} Traza los saltos con tu lápiz en las siguientes rectas, y escribe el número al que llegas en la caja gris.}
+		
+		\vspace{0.4cm}
+		\noindent
+			\textbf{1.} $-4 + 7 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{0.3cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.3cm}
+			% 2
+			\textbf{2.} $2 - 6 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{0.3cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.3cm}
+			% 3
+			\textbf{3.} $-1 - 3 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{-0.2cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.3cm}
+			% 4
+			\textbf{4.} $5 - 8 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{-0.2cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.3cm}
+			% 5
+			\textbf{5.} $-3 + 5 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{-0.2cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.3cm}
+			% 6
+			\textbf{6.} $4 - 3 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{-0.2cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.3cm}
+			% 7
+			\textbf{7.} $-5 + 6 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{-0.2cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\newpage
+			\noindent
+			% 8
+			\textbf{8.} $-2 - 2 =$ \boxfill[0.8cm]
+			\begin{center}
+				\vspace{-0.2cm}
+				\begin{tikzpicture}[x=1.4cm,y=1cm]
+					\draw[<->, ultra thick, valdark] (-6.5,0) -- (6.5,0);
+					\foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+						\draw[thick, valdark] (\x, 0.15) -- (\x, -0.15) node[below] {\x};
+					}
+				\end{tikzpicture}
+			\end{center}
+		
+		\vspace{0.8cm}
+		\textit{\textbf{Parte B:} Haz los saltos en tu mente imaginando dónde empiezas en la recta y hacia dónde das los saltos y anota el resultado}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=0.8cm, start=9]
+				\item $- 150 + 400 =$ \boxfill[1.5cm]
+				\item $- 320 - 180 =$ \boxfill[1.5cm]
+				\item $500 - 850 =$ \boxfill[1.5cm]
+				\item $- 450 + 250 =$ \boxfill[1.5cm]
+				\item $0 - 750 =$ \boxfill[1.5cm]
+				\item $- 800 + 200 =$ \boxfill[1.5cm]
+				\item $1.200 - 1.500 =$ \boxfill[1.5cm]
+				\item $350 - 450 =$ \boxfill[1.5cm]
+				\item $- 250 + 600 =$ \boxfill[1.5cm]
+				
+				% Retos de 3 términos
+				\item $- 120 + 350 - 50 =$ \boxfill[1.5cm]
+				\item $600 - 800 - 200 =$ \boxfill[1.5cm]
+				\item $- 250 - 250 + 1.000 =$ \boxfill[1.5cm]
+				\item $400 - 500 + 100 =$ \boxfill[1.5cm]
+				\item $- 300 + 1.000 - 200 =$ \boxfill[1.5cm]
+				\item $- 1.500 + 500 + 1.000 =$ \boxfill[1.5cm]
+			\end{enumerate}
+		\end{multicols}
+		\end{practica}
+	
+	% =======================================================
+	% MISIÓN 4: PROBLEMAS DE LA VIDA REAL
+	% =======================================================
+	\section*{Misión 4: Detectives en la Vida Real}
+	
+	\begin{concepto}{Traducir a lenguaje matemático}
+		Los problemas de la vida real son fáciles si extraes la información y le pones el signo correcto:
+		\begin{itemize}
+			\item \textbf{Bajar, gastar, deber, profundidad, bajo cero} $\rightarrow$ Signo Menos ($-$).
+			\item \textbf{Subir, ganar, abonar, altura, sobre cero} $\rightarrow$ Signo Más ($+$).
+		\end{itemize}
+		Arma la operación con estos signos guiándote con las cajitas y resuélvela.
+	\end{concepto}
+	
+	\begin{practica}{Problemas}
+		\textit{Escribe la operación completa en los primeros recuadros (ej: $-150+300$) y el resultado final a la derecha.}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=0.9cm]
+			\item El submarino está explorando a \textbf{450 m de profundidad} (bajo el nivel del mar). Luego, \textbf{asciende 300 m}. ¿A qué profundidad quedó? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Quedó a \boxfill[1.5cm] m.
+			
+			\item Tienes una deuda de \textbf{\$ 4.500}. Al día siguiente abonas \textbf{\$ 2.000}. ¿Cuál es tu saldo? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Saldo de \$\boxfill[1.5cm]
+			
+			\item Un halcón vuela a \textbf{850 m} de altura. Localiza una presa y \textbf{desciende 900 m} picando hacia el valle. ¿A qué altura llegó? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Llegó a \boxfill[1.5cm] m.
+			
+			\item La temperatura en el polo es de \textbf{$-15^\circ$C}. Sale el sol y la temperatura \textbf{sube $25^\circ$C}. ¿A qué temperatura quedaron? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Quedaron a \boxfill[1.5cm] $^\circ$C.
+			
+			\item El ascensor está en el \textbf{sótano 3}. Sube \textbf{12 pisos} de corrido. ¿A qué piso llegó? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Al piso \boxfill[1.5cm]
+			
+			\item Debes \textbf{\$ 3.200} en la papelería. Al otro día vas y fías unos marcadores de \textbf{\$ 1.800}. ¿A cuánto subió tu deuda? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Debo \$\boxfill[1.5cm]
+			
+			\item Un minero está a \textbf{$-250$ m} bajo tierra. Baja otros \textbf{150 m} buscando oro. ¿Dónde está? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Está a \boxfill[1.5cm] m.
+			
+			\item Tenías \textbf{\$ 15.000} en efectivo. Gastas \textbf{\$ 18.000} pagando con tarjeta de crédito. ¿Cómo queda tu cuenta? \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} Cuenta en \$\boxfill[1.5cm]
+			
+			% Problemas de 3 operaciones
+			\item El submarino está a \textbf{$-500$ m}. Baja \textbf{200 m} y luego sube \textbf{800 m}. \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} \boxfill[1.5cm] m.
+			
+			\item Debes \textbf{\$ 4.500}. Abonas \textbf{\$ 2.000}. Luego fías \textbf{\$ 1.500} más. \\
+			\textbf{Operación:} \boxfill[6cm] $=$ \boxfill[1cm] \hspace{0.2cm} \textbf{Rta:} \$\boxfill[1.5cm]
+		\end{enumerate}
+		
+		\vspace{0.2cm}
+		\textbf{\textit{Escribe la operación y el resultado en la caja final:}}
+		\vspace{0.2cm}
+		\begin{enumerate}[itemsep=0.8cm, start=11]
+			\item De una cuenta de \$ 1.000, sacan \$ 1.500 y luego depositan \$ 2.000 ¿Cuánto queda en la cuenta?. \\
+			$\rightarrow$ \boxfill[8cm]
+			\item En el día se tenía una temperatura de $10^\circ$C baja $15^\circ$C en la noche y vuelve a bajar $5^\circ$C en la madrugada ¿Cual es la temperatura en la madrugada? \\
+			$\rightarrow$ \boxfill[8cm]
+			\item UN pájaro vuela a $300$m, baja $450$m a pescar (entra al agua) y vuelve a subir $200$m.¿A qué altura queda el pájaro? \\
+			$\rightarrow$ \boxfill[8cm]
+			\item Te regalan \$ 5.000, te gastas \$ 8.000 y te gastas otros \$ 2.000 ¿Cuánto quedas debiendo? \\
+			$\rightarrow$ \boxfill[8cm]
+			\item El ascensor sale del piso 5, baja 8 pisos, y sube 2 pisos. ¿Dónde quedó? \\
+			$\rightarrow$ \boxfill[8cm]
+		\end{enumerate}
+	\end{practica}
+	
+	
+\end{document}

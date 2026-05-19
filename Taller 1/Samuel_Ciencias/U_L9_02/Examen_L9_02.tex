@@ -1,0 +1,134 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{xcolor}
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{boxbg}{RGB}{245, 245, 245}
+% ==========================================
+%  CONFIGURACIÓN DE RESPUESTAS (ACTIVAR/DESACTIVAR)
+% ==========================================
+% Cambia 'true' por 'false' para ocultar las respuestas e imprimir la versión del estudiante.
+\newboolean{mostrarRespuestas}
+\setboolean{mostrarRespuestas}{true}
+
+% Comando interno para generar las cajas de solución
+\newcommand{\solucion}[1]{
+	\ifthenelse{\boolean{mostrarRespuestas}}{
+		\vspace{0.2cm}
+		\begin{tcolorbox}[colframe=red!70!black, colback=red!5, boxrule=1pt, arc=3pt, left=5pt, right=5pt, top=5pt, bottom=5pt]
+			\textcolor{red!70!black}{\textbf{Solución de calificación:} #1}
+		\end{tcolorbox}
+	}{}
+}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS --- 
+\newcommand{\boxfill}[1]{\tcbox[on line, size=minimal, colframe=black, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.2cm] 
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.2cm] 
+		\textbf{Examen de CIENCIAS 2}\\[0.1cm] 
+		\textit{TAU 2: ¡Oh, hermosa Luna!} 
+	\end{center}
+	
+	\vspace{0.3cm}
+	\hfill \textbf{Código:} \textbf{L9-02 FL}\\[0.1cm]
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	\vspace{0.8cm}
+	
+	% --- INSTRUCCIONES ---
+
+	
+	% --- PUNTO 1 --- 
+	\noindent \textbf{1.} Según el libro, el ciclo completo de las fases de la Luna dura aproximadamente 28 días. Los antiguos judíos dividieron este ciclo en cuatro etapas o fases de 7 días cada una. ¿Qué medida de tiempo de nuestra vida cotidiana inventaron gracias a esto? \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm, label={}] 
+		\item[ $\square$ ] El año bisiesto. 
+		\item[ $\square$ ] La semana. 
+		\item[ $\square$ ] La década. 
+	\end{itemize}
+	
+	\solucion{La respuesta correcta es \textbf{La semana} (que viene de \textit{septimana}, inventada al dividir los 28 días en fases de 7 días).}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 2 --- 
+	\noindent \textbf{2.} En la antigüedad, la gente creía que el cielo era divino y perfecto, y que la Tierra era de una materia impura. Sin embargo, el sabio griego \textbf{Anaxágoras} dedujo que los cuerpos celestes estaban hechos de materia igual a la de la Tierra (piedras, rocas). ¿Qué evento ocurrido en el año 468 a.C. le dio la razón y confirmó sus sospechas? \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm, label={}] 
+		\item[ $\square$ ] La caída de un gran meteorito desde el espacio.
+		\item[ $\square$ ] Un eclipse total de Sol que oscureció a Grecia.
+		\item[ $\square$ ] La invención del primer telescopio por parte de los griegos.
+	\end{itemize}
+	
+	\solucion{La respuesta correcta es \textbf{La caída de un gran meteorito}. Esto demostró que del cielo caían piedras iguales a las de la Tierra.}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 3 --- 
+	\noindent \textbf{3.} Lee cada afirmación sobre las formas de ver la Luna y marca con una \textbf{X} si es Verdadera (V) o Falsa (F): \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.6cm, label={}] 
+		\item \textbf{A.} Si nos situamos en el Espacio exterior, lejos de la Tierra, a la Luna NO se le ven fases; siempre la veremos exactamente igual: medio iluminada por el Sol. \hfill  $\square$  V \quad  $\square$  F 
+		
+		\item \textbf{B.} Hace 400 años, Galileo Galilei descubrió con su telescopio que la Luna es el único cuerpo celeste con fases y que los demás planetas no las tienen. \hfill  $\square$  V \quad  $\square$  F 
+	\end{itemize}
+	
+	\solucion{\textbf{A es Verdadera} (Desde el espacio la Luna no tiene fases, siempre está iluminada por la mitad). \\ \textbf{B es Falsa} (Galileo descubrió que el planeta \textbf{Venus} también presenta fases).}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 4 --- 
+	\noindent \textbf{4.} Para ubicarnos y observar el cielo desde la Tierra, los astrónomos árabes y griegos inventaron unas palabras técnicas. Relaciona con una línea cada palabra con su significado correcto: \hfill\textbf{(20\%)}
+	
+	\vspace{0.4cm}
+	\begin{itemize}[itemsep=0.8cm, label={}]
+		\item \textbf{Cenit} \hfill $\circ$ El punto opuesto, que está imaginariamente debajo de tus pies.
+		\item \textbf{Nadir} \hfill $\circ$ El límite visual a lo lejos, donde parece que el cielo toca la tierra.
+		\item \textbf{Horizonte} \hfill $\circ$ El punto del cielo que está exactamente encima de tu cabeza.
+	\end{itemize}
+	
+	\solucion{\textbf{Cenit} $\rightarrow$ Exactamente encima de tu cabeza. \\ \textbf{Nadir} $\rightarrow$ Debajo de tus pies. \\ \textbf{Horizonte} $\rightarrow$ El límite visual a lo lejos.}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 5 --- 
+	\noindent \textbf{5.} Imagina que eres un gigante y estás parado exactamente sobre el \textbf{Polo Norte}. Miras hacia abajo y observas la Tierra y la Luna girando. Según lo aprendido en el libro, ¿en qué sentido verías que rotan la Tierra y la Luna? \hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm, label={}] 
+		\item[ $\square$ ] Rotan en el mismo sentido en el que se mueven las agujas de un reloj.
+		\item[ $\square$ ] Rotan en sentido contrario al de las agujas de un reloj ($\circlearrowleft$).
+		\item[ $\square$ ] La Tierra rota hacia un lado y la Luna rota hacia el lado contrario.
+	\end{itemize}
+	
+	\solucion{La respuesta correcta es \textbf{En sentido contrario al de las agujas de un reloj}. Vistos desde el Polo Norte, ambos giran en el mismo sentido (contrario al reloj).}
+	
+\end{document}
