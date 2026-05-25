@@ -1,0 +1,2846 @@
+% ============================================================
+%  LICEO V.A.L.  |  UNIDAD DE AUTO-APRENDIZAJE (TAU)
+%  Tema   : Multiplicación y División de Números Enteros
+%  Ruta   : FL — Flexibilizada
+%  Grado  : Séptimo   |   Área: Matemáticas
+%  Versión: 1.0
+% ============================================================
+\documentclass[12pt,letterpaper]{article}
+
+% ── CODIFICACIÓN Y LENGUA ───────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-noshorthands,es-nodecimaldot]{babel}
+
+% ── GEOMETRÍA ───────────────────────────────────────────────
+\usepackage[top=2.4cm, bottom=2.4cm, left=2cm, right=2cm,
+headheight=24pt]{geometry}
+
+% ── GRÁFICOS Y FONDO ────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{eso-pic}
+
+% ── CAJAS ───────────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems, hooks}
+
+% ── TIKZ ────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows.meta, shapes.geometric, decorations.pathmorphing,
+	backgrounds, patterns, calc, positioning, matrix,
+	shapes.multipart, fit, shadows.blur, decorations.markings
+}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% ── MATEMÁTICAS ─────────────────────────────────────────────
+\usepackage{amsmath, amssymb, mathtools, cancel}
+
+% ── TABLAS ──────────────────────────────────────────────────
+\usepackage{array, tabularx, booktabs, multirow, colortbl, makecell}
+
+% ── LISTAS Y COLUMNAS ───────────────────────────────────────
+\usepackage{multicol, enumitem}
+
+% ── COLOR Y FUENTES ─────────────────────────────────────────
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+% ── CABECERA ────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{1.2pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{valblue}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\small\color{valblue}\bfseries Liceo V.A.L. \textbar\ TAU — Ruta FL}
+\fancyhead[R]{\small\color{valblue}\bfseries Multiplicación y División de Enteros}
+\fancyfoot[C]{\small\color{valdark}\thepage}
+
+% ── HIPERVÍNCULOS ───────────────────────────────────────────
+\usepackage[hidelinks]{hyperref}
+
+% =============================================================
+%  PALETA DE COLORES VAL
+% =============================================================
+\definecolor{valblue}    {RGB}{0,   74,  153}
+\definecolor{valgreen}   {RGB}{0,   153,  76}
+\definecolor{valred}     {RGB}{204,   0,   0}
+\definecolor{valdark}    {RGB}{ 30,  30,  30}
+\definecolor{valorange}  {RGB}{230, 115,   0}
+% Versiones claras
+\definecolor{vallightblue}  {RGB}{220, 235, 255}
+\definecolor{vallightgreen} {RGB}{220, 255, 235}
+\definecolor{vallightred}   {RGB}{255, 220, 220}
+\definecolor{vallightorange}{RGB}{255, 240, 215}
+\definecolor{valgray}       {RGB}{248, 248, 248}
+\definecolor{valmid}        {RGB}{190, 190, 190}
+\definecolor{valbluemid}    {RGB}{110, 160, 220}
+
+% =============================================================
+%  FONDO INSTITUCIONAL
+% =============================================================
+\AddToShipoutPictureBG{%
+	\includegraphics[width=\paperwidth,height=\paperheight,
+	keepaspectratio=false]{../../FondoVAL.pdf}%
+}
+
+% =============================================================
+%  COMANDO \boxfill  (caja de respuesta inline)
+% =============================================================
+\newcommand{\boxfill}[1][3cm]{%
+	\tikz[baseline=-0.6ex]{%
+		\draw[valblue, line width=1.2pt, rounded corners=2pt]
+		(0,0) rectangle (#1, 0.75cm);
+	}%
+}
+% Caja de respuesta alta (para cálculos)
+\newcommand{\boxfilltall}[2][5cm]{%
+	\begin{center}
+		\tikz{%
+			\draw[valblue, line width=1.2pt, rounded corners=3pt, dashed]
+			(0,0) rectangle (#1, #2);
+			\node[valblue, font=\tiny\itshape, above right] at (0.1,0.1)
+			{Espacio de cálculo};
+		}
+	\end{center}%
+}
+
+% =============================================================
+%  ENTORNOS TCOLORBOX VAL
+% =============================================================
+
+%% ── Concepto (azul) ────────────────────────────────────────
+\newtcolorbox{conceptbox}[1]{
+	enhanced, breakable,
+	colback=vallightblue, colframe=valblue,
+	coltitle=white, fonttitle=\bfseries\small,
+	title={\faBook\quad #1},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valblue, sharp corners, colframe=valblue},
+	sharp corners=south,
+	left=6pt, right=6pt, top=10pt, bottom=6pt,
+	before skip=8pt, after skip=8pt
+}
+
+%% ── Truco / Estrategia (naranja) ───────────────────────────
+\newtcolorbox{trickbox}[1]{
+	enhanced, breakable,
+	colback=vallightorange, colframe=valorange,
+	coltitle=white, fonttitle=\bfseries\small,
+	title={\faBolt\quad #1},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valorange, sharp corners, colframe=valorange},
+	sharp corners=south,
+	left=6pt, right=6pt, top=10pt, bottom=6pt,
+	before skip=8pt, after skip=8pt
+}
+
+%% ── Ejemplo resuelto (verde) ───────────────────────────────
+\newtcolorbox{examplebox}[1]{
+	enhanced, breakable,
+	colback=vallightgreen, colframe=valgreen,
+	coltitle=white, fonttitle=\bfseries\small,
+	title={\faStar\quad #1},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valgreen, sharp corners, colframe=valgreen},
+	sharp corners=south,
+	left=6pt, right=6pt, top=10pt, bottom=6pt,
+	before skip=8pt, after skip=8pt
+}
+
+%% ── Alerta (rojo) ──────────────────────────────────────────
+\newtcolorbox{alertbox}[1]{
+	enhanced, breakable,
+	colback=vallightred, colframe=valred,
+	coltitle=white, fonttitle=\bfseries\small,
+	title={\faExclamationTriangle\quad #1},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valred, sharp corners, colframe=valred},
+	sharp corners=south,
+	left=6pt, right=6pt, top=10pt, bottom=6pt,
+	before skip=8pt, after skip=8pt
+}
+
+%% ── Ejercicio (gris oscuro) ────────────────────────────────
+\newtcolorbox{exercisebox}[1]{
+	enhanced, breakable,
+	colback=valgray, colframe=valdark,
+	coltitle=white, fonttitle=\bfseries\small,
+	title={\faPen\quad #1},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valdark, sharp corners, colframe=valdark},
+	sharp corners=south,
+	left=6pt, right=6pt, top=10pt, bottom=6pt,
+	before skip=8pt, after skip=8pt
+}
+
+%% ── Descubrimiento (borde naranja, fondo blanco) ───────────
+\newtcolorbox{discoverybox}[1]{
+	enhanced, breakable,
+	colback=white, colframe=valorange,
+	coltitle=valorange, fonttitle=\bfseries\small,
+	title={\faSearch\quad #1},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=white, colframe=valorange, sharp corners},
+	borderline west={3.5pt}{0pt}{valorange},
+	sharp corners=south,
+	left=6pt, right=6pt, top=10pt, bottom=6pt,
+	before skip=8pt, after skip=8pt
+}
+
+%% ── Reto FL (borde azul grueso) ────────────────────────────
+\newtcolorbox{retobox}[1]{
+	enhanced, breakable,
+	colback=vallightblue!60, colframe=valblue,
+	coltitle=white, fonttitle=\bfseries\small,
+	title={\faTrophy\quad #1},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valblue!80!black, sharp corners, colframe=valblue},
+	sharp corners=south,
+	borderline={1.5pt}{2pt}{valblue!40},
+	left=6pt, right=6pt, top=10pt, bottom=6pt,
+	before skip=8pt, after skip=8pt
+}
+
+%% ── Encabezado de Misión ───────────────────────────────────
+\newcommand{\misionheader}[3][valblue]{%
+	\begin{tcolorbox}[
+		enhanced, colback=#1, colframe=#1, arc=5pt,
+		left=8pt, right=8pt, top=4pt, bottom=4pt,
+		before skip=14pt, after skip=10pt
+		]
+		\color{white}\bfseries\large
+		\faFlag\quad MISIÓN #2 \hfill #3
+	\end{tcolorbox}%
+}
+
+% =============================================================
+%  INICIO DEL DOCUMENTO
+% =============================================================
+\begin{document}
+	
+	% =============================================================
+	%  PORTADA
+	% =============================================================
+	\thispagestyle{empty}
+	\begin{center}
+		
+		% ── Logo / Institución ──────────────────────────────────────
+		\begin{tcolorbox}[
+			enhanced, colback=valblue, colframe=valblue,
+			width=\textwidth, arc=6pt, left=8pt, right=8pt,
+			top=5pt, bottom=5pt
+			]
+			\centering\color{white}
+			{\footnotesize\bfseries LICEO V.A.L.\quad|\quad
+				RUTA FL — FLEXIBILIZADA\quad|\quad
+				UNIDAD DE AUTO-APRENDIZAJE (TAU)}\\[3pt]
+			{\small Área: Matemáticas\quad|\quad Grado Séptimo\quad|\quad Período: \underline{\hspace{1.5cm}}}
+		\end{tcolorbox}
+		
+		\vspace{0.6cm}
+		
+		% ── Diagrama de portada: recta numérica animada ─────────────
+		\begin{tikzpicture}[scale=0.95]
+			% Fondo decorativo
+			\fill[valblue!8, rounded corners=10pt] (-9.5,-1.6) rectangle (9.5,2.2);
+			% Zona negativa
+			\fill[valred!15, rounded corners=4pt] (-9.2,-0.25) rectangle (-0.2,0.25);
+			% Zona positiva
+			\fill[valgreen!20, rounded corners=4pt] (0.2,-0.25) rectangle (9.2,0.25);
+			% Eje principal
+			\draw[line width=2.5pt, valdark, -{Stealth[scale=1.6]}]
+			(-9.5,0) -- (9.5,0) node[right, font=\small\bfseries] {$\mathbb{Z}$};
+			\draw[line width=2.5pt, valdark, {Stealth[scale=1.6]}-]
+			(-9.5,0) -- (9.5,0);
+			% Marcas y etiquetas
+			\foreach \x in {-9,-8,...,9} {
+				\draw[valdark, line width=1.2pt] (\x,-0.18) -- (\x,0.18);
+				\node[below, font=\tiny\bfseries, valdark] at (\x,-0.28) {$\x$};
+			}
+			% Cero destacado
+			\filldraw[fill=valorange!80, draw=valorange, line width=2pt] (0,0) circle (0.22);
+			\node[above, valorange, font=\bfseries\small] at (0,0.35) {$0$};
+			% Etiquetas de zona
+			\node[valred, font=\bfseries\small] at (-5, 0.9)
+			{\faArrowLeft\; Enteros Negativos $\mathbb{Z}^-$};
+			\node[valgreen, font=\bfseries\small] at (5, 0.9)
+			{Enteros Positivos $\mathbb{Z}^+$ \;\faArrowRight};
+			% Decoración: flechas de operaciones
+			\draw[valblue, -{Stealth}, line width=1.5pt, bend left=30]
+			(3, 0.45) to node[above, font=\tiny\bfseries, valblue]
+			{$\times (+) \Rightarrow$ misma dirección} (6, 0.45);
+			\draw[valred, -{Stealth}, line width=1.5pt, bend right=30]
+			(-3, -0.55) to node[below, font=\tiny\bfseries, valred]
+			{$\times (-) \Rightarrow$ dirección opuesta} (-6, -0.55);
+		\end{tikzpicture}
+		
+		\vspace{0.5cm}
+		
+		{\fontsize{26}{30}\selectfont\bfseries\color{valblue}
+			MULTIPLICACIÓN Y DIVISIÓN}\\[4pt]
+		{\fontsize{22}{26}\selectfont\bfseries\color{valred}
+			DE NÚMEROS ENTEROS}
+		
+		\vspace{0.4cm}
+		
+		{\large\itshape\color{valdark}
+			``Hacia un aprendizaje significativo, autónomo y en libertad''}
+		
+		\vspace{0.5cm}
+		
+		\begin{tcolorbox}[
+			enhanced, colback=vallightblue, colframe=valblue,
+			width=0.88\textwidth, arc=5pt
+			]
+			\centering\small\color{valdark}
+			\textbf{Nombre:}\;\underline{\hspace{5.5cm}}\quad
+			\textbf{Curso:}\;\underline{\hspace{2cm}}\\[7pt]
+			\textbf{Fecha de inicio:}\;\underline{\hspace{3cm}}\quad
+			\textbf{Fecha de entrega:}\;\underline{\hspace{3cm}}\\[7pt]
+			\textbf{Docente:}\;\underline{\hspace{4.5cm}}\quad
+			\textbf{Valoración:}\;\underline{\hspace{2cm}}
+		\end{tcolorbox}
+		
+		\vspace{0.4cm}
+		
+		\begin{tcolorbox}[
+			enhanced, colback=vallightorange, colframe=valorange,
+			width=0.88\textwidth, arc=5pt
+			]
+			\centering\small\bfseries\color{valdark}
+			\faBolt\quad RUTA FL (Flexibilizada) — Esta TAU exige razonamiento,
+			deducción y autonomía.\quad\faBolt\\[3pt]
+			\small\normalfont Trabaja cada misión antes de revisar con el docente.
+			Sé honesto contigo mismo en la autoevaluación.
+		\end{tcolorbox}
+		
+		\vspace{0.4cm}
+		
+		\begin{tcolorbox}[
+			enhanced, colback=valgray, colframe=valmid,
+			width=\textwidth, arc=4pt
+			]
+			\small\color{valdark}
+			\textbf{\faGraduationCap\; DBA Relacionados:}\;
+			Reconoce y aplica las propiedades de los números enteros en operaciones
+			de multiplicación y división.
+			Utiliza estas operaciones para modelar y resolver situaciones problema
+			del contexto real con números enteros negativos, nulos y positivos.
+		\end{tcolorbox}
+		
+	\end{center}
+	
+	% =============================================================
+	%  PÁGINA 2 — MAPA DE RUTA
+	% =============================================================
+	\newpage
+	\begin{tcolorbox}[enhanced, colback=valblue, colframe=valblue, arc=5pt,
+		left=8pt, right=8pt, top=4pt, bottom=4pt]
+		\color{white}\bfseries\large
+		\faMap\quad Mapa de Ruta — ¿Cómo está organizada esta TAU?
+	\end{tcolorbox}
+	
+	\vspace{0.2cm}
+	
+	\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=4pt]
+		Esta TAU está organizada en \textbf{6 misiones progresivas} más una \textbf{autoevaluación final}.
+		Trabájalas en orden. Al completar cada misión, marca $\checkmark$ en el mapa.
+	\end{tcolorbox}
+	
+	\vspace{0.4cm}
+	
+	\begin{center}
+		\begin{tikzpicture}[
+			mission/.style={
+				draw=#1, fill=#1!12, rounded corners=8pt,
+				minimum width=3.8cm, minimum height=1.5cm,
+				align=center, font=\small\bfseries, line width=2pt,
+				text width=3.4cm
+			},
+			arrow/.style={-{Stealth[scale=1.3]}, line width=2pt, #1},
+			checknode/.style={draw=valgreen, fill=vallightgreen, circle,
+				minimum size=0.65cm, font=\bfseries\footnotesize,
+				line width=1pt}
+			]
+			% Nodos
+			\node[mission=valblue, fill=valblue, text=white]
+			(M1) at (0,0)   {\small MISIÓN 1\\[2pt]Repaso:\\Enteros y Recta\\Numérica};
+			\node[mission=valorange]
+			(M2) at (4.5,0)  {\small MISIÓN 2\\[2pt]Descubrimiento:\\Signos en $\times$};
+			\node[mission=valblue]
+			(M3) at (9,0)    {\small MISIÓN 3\\[2pt]Multiplicación\\Formal +\\Propiedades};
+			\node[mission=valorange]
+			(M4) at (9,-3.5) {\small MISIÓN 4\\[2pt]Descubrimiento:\\Signos en $\div$};
+			\node[mission=valgreen]
+			(M5) at (4.5,-3.5){\small MISIÓN 5\\[2pt]División\\Formal +\\Propiedades};
+			\node[mission=valblue!60!valgreen]
+			(M6) at (0,-3.5) {\small MISIÓN 6\\[2pt]Operaciones\\Combinadas y\\Jerarquía};
+			\node[mission=valorange, fill=valorange, text=white]
+			(AE) at (4.5,-7) {\small AUTOEVALUACIÓN\\[2pt]¿Cuánto\\aprendí?};
+			
+			% Flechas
+			\draw[arrow=valblue]    (M1.east) -- (M2.west);
+			\draw[arrow=valblue]    (M2.east) -- (M3.west);
+			\draw[arrow=valblue]    (M3.south) -- (M4.north);
+			\draw[arrow=valblue]    (M4.west) -- (M5.east);
+			\draw[arrow=valblue]    (M5.west) -- (M6.east);
+			\draw[arrow=valorange]  (M6.south) -- ++(0,-1.2) -| (AE.west);
+			\draw[arrow=valorange, dashed] (M5.south) -- (AE.north);
+			
+			% Cajas de verificación
+			\node[checknode] at ($(M1)+(2.1, 0.9)$) {\scriptsize\faCheck};
+			\node[checknode] at ($(M2)+(2.1, 0.9)$) {\scriptsize\faCheck};
+			\node[checknode] at ($(M3)+(2.1, 0.9)$) {\scriptsize\faCheck};
+			\node[checknode] at ($(M4)+(2.1, 0.9)$) {\scriptsize\faCheck};
+			\node[checknode] at ($(M5)+(2.1, 0.9)$) {\scriptsize\faCheck};
+			\node[checknode] at ($(M6)+(2.1, 0.9)$) {\scriptsize\faCheck};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.4cm}
+	
+	\begin{trickbox}{¿Cómo aprovechar al máximo esta TAU?}
+		\begin{enumerate}[leftmargin=*, label=\textcolor{valorange}{\bfseries\arabic*.}]
+			\item Lee \textbf{toda} la misión antes de intentar los ejercicios.
+			\item En las actividades de \textbf{descubrimiento}, piensa antes de consultar
+			la sección de formalización.
+			\item Usa las \textbf{cajas azules} \boxfill[1.2cm] únicamente para registrar
+			el resultado; el proceso va en el espacio de cálculo o en tu cuaderno.
+			\item Los ejercicios marcados con \faTrophy\ son \textbf{retos FL}: exigen análisis
+			y argumentación, no solo cálculo.
+			\item La autoevaluación es \textbf{individual y sin consulta}: sé riguroso contigo mismo.
+		\end{enumerate}
+	\end{trickbox}
+	
+	% =============================================================
+	%  MISIÓN 1 — REPASO: ENTEROS Y RECTA NUMÉRICA
+	% =============================================================
+	\newpage
+	\misionheader{1}{Repaso — Los Números Enteros y la Recta Numérica}
+	
+	\begin{conceptbox}{¿Qué son los Números Enteros?}
+		El conjunto de los \textbf{números enteros} se denota $\mathbb{Z}$ y está formado por:
+		\[
+		\mathbb{Z} = \{\ldots,\; -5,\; -4,\; -3,\; -2,\; -1,\;
+		\underbrace{0}_{\text{neutro}},\;
+		1,\; 2,\; 3,\; 4,\; 5,\; \ldots\}
+		\]
+		Se organiza en tres subconjuntos:
+		\vspace{4pt}
+		\begin{center}
+			\begin{tikzpicture}
+				\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+				minimum width=3.8cm, minimum height=1.1cm, align=center,
+				font=\small\bfseries, line width=1.5pt] at (0,0)
+				{Enteros Positivos\\$\mathbb{Z}^+ = \{1,2,3,4,\ldots\}$};
+				\node[draw=valorange, fill=vallightorange, rounded corners=6pt,
+				minimum width=3.2cm, minimum height=1.1cm, align=center,
+				font=\small\bfseries, line width=1.5pt] at (5,0)
+				{El Cero\\$\{0\}$ — neutro};
+				\node[draw=valred, fill=vallightred, rounded corners=6pt,
+				minimum width=3.8cm, minimum height=1.1cm, align=center,
+				font=\small\bfseries, line width=1.5pt] at (10,0)
+				{Enteros Negativos\\$\mathbb{Z}^- = \{\ldots,-3,-2,-1\}$};
+				\draw[-{Stealth}, valdark, line width=1pt] (1.95,0) -- (3.3,0);
+				\draw[-{Stealth}, valdark, line width=1pt] (6.65,0) -- (8.05,0);
+			\end{tikzpicture}
+		\end{center}
+		\vspace{4pt}
+		La letra $\mathbb{Z}$ proviene del alemán \textit{Zahlen} (``números'').
+	\end{conceptbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Recta numérica grande ───────────────────────────────────
+	\subsubsection*{\color{valblue}\faRulerHorizontal\quad La Recta Numérica}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.05]
+			% Grilla de fondo
+			\draw[gray!25, xstep=0.8cm, ystep=0.5cm]
+			(-8.8cm,-1.2cm) grid (8.8cm,1.6cm);
+			% Zona negativa
+			\fill[valred!12] (-8.8,-0.22) rectangle (0,0.22);
+			% Zona positiva
+			\fill[valgreen!15] (0,-0.22) rectangle (8.8,0.22);
+			% Eje
+			\draw[line width=2.5pt, valdark,
+			{Stealth[scale=1.5]}-{Stealth[scale=1.5]}]
+			(-9,0) -- (9,0);
+			% Marcas y números
+			\foreach \x in {-10,...,10} {
+				\draw[valdark, line width=1.2pt] (\x*0.8,-0.2) -- (\x*0.8,0.2);
+				\node[below, font=\footnotesize\bfseries, valdark]
+				at (\x*0.8,-0.32) {$\x$};
+			}
+			% Cero
+			\filldraw[fill=valorange, draw=valorange!70!black, line width=1.5pt]
+			(0,0) circle (0.2);
+			% Etiquetas
+			\node[valred, font=\small\bfseries] at (-5.5, 0.95)
+			{\faChevronLeft\;\;Decrecen (más negativos)};
+			\node[valgreen, font=\small\bfseries] at (5.5, 0.95)
+			{Crecen (más positivos)\;\;\faChevronRight};
+			% Corchete de distancias
+			\draw[valblue, line width=1.5pt, {|[scale=1.2]}-{|[scale=1.2]}]
+			(-4*0.8,-0.75) -- (0,-0.75)
+			node[midway, below, font=\bfseries, valblue] {$|-4|=4$ unidades};
+			\draw[valgreen, line width=1.5pt, {|[scale=1.2]}-{|[scale=1.2]}]
+			(0,-0.75) -- (6*0.8,-0.75)
+			node[midway, below, font=\bfseries, valgreen] {$|+6|=6$ unidades};
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.2cm}
+	
+	\begin{conceptbox}{Valor Absoluto — Clave para multiplicar y dividir}
+		El \textbf{valor absoluto} de un entero $n$, notado $|n|$, es su
+		\textbf{distancia al cero} en la recta numérica. Siempre es no negativo:
+		\[
+		|-7| = 7 \qquad |{+5}| = 5 \qquad |0| = 0 \qquad
+		|-a| = |a| \text{ para todo } a
+		\]
+		\textbf{¿Por qué importa aquí?}\; Al multiplicar o dividir enteros,
+		el \textit{módulo} (tamaño) del resultado se calcula con los valores
+		absolutos, y el \textit{signo} se determina por una regla aparte.
+		Son dos problemas independientes.
+	\end{conceptbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{exercisebox}{Ejercicios de Calentamiento — Misión 1}
+		
+		\textbf{1.} Ubica y marca los siguientes enteros en la recta numérica.
+		Escribe sobre la marca el número correspondiente.
+		
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[line width=2pt, valdark,
+				{Stealth[scale=1.4]}-{Stealth[scale=1.4]}]
+				(-6,0) -- (6,0);
+				\foreach \x in {-10,...,10} {
+					\draw[valdark, line width=1pt] (\x*0.55,-0.15) -- (\x*0.55,0.15);
+					\node[below, font=\tiny, valdark] at (\x*0.55,-0.25) {$\x$};
+				}
+				\draw[valblue, line width=0.6pt, dashed] (-6,-0.5) -- (6,-0.5);
+				\node[valblue, font=\scriptsize\itshape, right] at (6,-0.5)
+				{Marca aquí los puntos};
+			\end{tikzpicture}
+		\end{center}
+		
+		Números a ubicar: $-8,\quad +5,\quad -3,\quad 0,\quad +9,\quad -6,\quad +1,\quad -10$
+		
+		\vspace{0.4cm}
+		
+		\textbf{2.} Calcula el valor absoluto:
+		\begin{multicols}{4}
+			\begin{itemize}[label={\color{valblue}\faChevronRight}]
+				\item $|-17| =$ \boxfill[1.5cm]
+				\item $|+31| =$ \boxfill[1.5cm]
+				\item $|-200| =$ \boxfill[1.5cm]
+				\item $|0| =$ \boxfill[1.5cm]
+				\item $|-1| =$ \boxfill[1.5cm]
+				\item $|+99| =$ \boxfill[1.5cm]
+				\item $|-45| =$ \boxfill[1.5cm]
+				\item $|+12| =$ \boxfill[1.5cm]
+			\end{itemize}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		
+		\textbf{3.} Ordena de \textbf{menor a mayor}:
+		$\quad -3,\quad 8,\quad -11,\quad 0,\quad 5,\quad -1,\quad 2,\quad -7$
+		
+		\vspace{0.15cm}
+		\underline{\hspace{13cm}}
+		
+		\vspace{0.3cm}
+		
+		\textbf{4.} Determina si cada afirmación es \textbf{V}erdadera o \textbf{F}alsa y justifica:
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textcolor{valblue}{\bfseries\alph*.}]
+				\item $|-8| > |6|$ \quad\boxfill[0.9cm]\quad
+				Justificación: \underline{\hspace{2.5cm}}
+				\item $|-3| = |3|$ \quad\boxfill[0.9cm]\quad
+				Justificación: \underline{\hspace{2.5cm}}
+				\item $-5 > -2$ \quad\boxfill[0.9cm]\quad
+				Justificación: \underline{\hspace{2.5cm}}
+				\item $|{-7}| = -7$ \quad\boxfill[0.9cm]\quad
+				Justificación: \underline{\hspace{2.5cm}}
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		
+		\begin{retobox}{Reflexión Previa — Reto FL}
+			Antes de continuar, responde: ¿Qué crees que significa multiplicar un número positivo
+			por un número negativo? ¿Y dos negativos entre sí?
+			Escribe tu hipótesis; la verificarás en la Misión 2.
+			
+			\vspace{0.15cm}
+			Mi hipótesis: \underline{\hspace{11cm}}
+		\end{retobox}
+		
+	\end{exercisebox}
+	
+	% =============================================================
+	%  MISIÓN 2 — DESCUBRIMIENTO: SIGNOS EN LA MULTIPLICACIÓN
+	% =============================================================
+	\newpage
+	\misionheader[valorange]{2}{Descubrimiento — Regla de Signos en la Multiplicación}
+	
+	\begin{tcolorbox}[enhanced, colback=white, colframe=valorange, arc=4pt,
+		borderline west={3pt}{0pt}{valorange}]
+		\textbf{Filosofía FL:} Antes de memorizar reglas, vas a \textit{descubrirlas} mediante
+		patrones. Lee con atención, calcula y llega a tus propias conclusiones. Este es el
+		método que usan los matemáticos.
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{discoverybox}{Actividad 1 — El patrón de multiplicar positivo $\times$ negativo}
+		
+		Observa la secuencia de la columna izquierda. Cada fila, el segundo factor
+		\textbf{disminuye en 1}. Calcula los resultados que faltan siguiendo el patrón:
+		
+		\vspace{0.3cm}
+		
+		\begin{minipage}{0.48\textwidth}
+			\begin{center}
+				\renewcommand{\arraystretch}{1.4}
+				\begin{tabular}{|>{\columncolor{vallightblue}\bfseries\color{valblue}}c|
+						>{\centering\arraybackslash}m{2.4cm}|
+						>{\centering\arraybackslash\small\color{valmid}}c|}
+					\hline
+					\rowcolor{valblue}
+					\color{white}\textbf{Operación} &
+					\color{white}\textbf{Resultado} &
+					\color{white}\textbf{Patrón} \\
+					\hline
+					$5 \times 4$    & $20$              & \\
+					\hline
+					$5 \times 3$    & $15$              & $\downarrow -5$ \\
+					\hline
+					$5 \times 2$    & $10$              & $\downarrow -5$ \\
+					\hline
+					$5 \times 1$    & $5$               & $\downarrow -5$ \\
+					\hline
+					$5 \times 0$    & $0$               & $\downarrow -5$ \\
+					\hline
+					\rowcolor{vallightorange}
+					$5 \times (-1)$ & \boxfill[1.6cm]   & $\downarrow -5$ \\
+					\hline
+					\rowcolor{vallightorange}
+					$5 \times (-2)$ & \boxfill[1.6cm]   & $\downarrow -5$ \\
+					\hline
+					\rowcolor{vallightorange}
+					$5 \times (-3)$ & \boxfill[1.6cm]   & $\downarrow -5$ \\
+					\hline
+					\rowcolor{vallightorange}
+					$5 \times (-4)$ & \boxfill[1.6cm]   & $\downarrow -5$ \\
+					\hline
+				\end{tabular}
+			\end{center}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.48\textwidth}
+			\begin{center}
+				% Gráfica del patrón
+				\begin{tikzpicture}[scale=0.55]
+					% Grilla
+					\draw[gray!30, step=1] (-0.5,-22.5) grid (4.5,22.5);
+					% Eje y
+					\draw[line width=1.5pt, valdark, -{Stealth}] (0,-23) -- (0,23)
+					node[above, font=\tiny] {Resultado};
+					% Eje x
+					\draw[line width=1.5pt, valdark, -{Stealth}] (-0.5,0) -- (5,0)
+					node[right, font=\tiny] {Factor};
+					% Puntos conocidos
+					\foreach \x/\y in {0/0, 1/5, 2/10, 3/15, 4/20} {
+						\filldraw[fill=valblue, draw=valblue!70!black] (\x,\y) circle (0.2);
+						\node[right, font=\tiny, valblue] at (\x+0.1, \y) {$\y$};
+					}
+					% Puntos a descubrir (marcados con ?)
+					\foreach \x/\y in {-1/-5, -2/-10, -3/-15, -4/-20} {
+						\draw[valorange, line width=1.5pt] (\x,\y) circle (0.25);
+						\node[left, font=\tiny\bfseries, valorange] at (\x-0.15, \y) {?};
+					}
+					% Línea de tendencia
+					\draw[valblue!50, line width=1pt, dashed] (-4.2,-21) -- (4.2,21);
+					% Etiquetas eje x
+					\foreach \x in {-4,...,4} {
+						\node[below, font=\tiny, valdark] at (\x,-0.4) {$\x$};
+					}
+				\end{tikzpicture}
+			\end{center}
+			\small\itshape\color{valdark}
+			Ubica los resultados que encontraste en la gráfica (puntos vacíos).
+		\end{minipage}
+		
+		\vspace{0.3cm}
+		\textbf{Conclusión 1 — escríbela con tus palabras:}\;
+		positivo $\times$ negativo $=$
+		\underline{\hspace{7cm}}
+		
+	\end{discoverybox}
+	
+	\vspace{0.3cm}
+	
+	\begin{discoverybox}{Actividad 2 — El patrón de multiplicar negativo $\times$ negativo}
+		
+		Ahora el \textbf{primer} factor es negativo. Al multiplicar por factores
+		negativos decrecientes, ¿qué ocurre con el resultado?
+		
+		\vspace{0.3cm}
+		
+		\begin{center}
+			\renewcommand{\arraystretch}{1.4}
+			\begin{tabular}{|>{\columncolor{vallightred}\bfseries\color{valred}}c|
+					>{\centering\arraybackslash}m{2.4cm}|
+					>{\centering\arraybackslash\small\color{valmid}}c|
+					>{\centering\arraybackslash\small}p{4.5cm}|}
+				\hline
+				\rowcolor{valred!80}
+				\color{white}\textbf{Operación} &
+				\color{white}\textbf{Resultado} &
+				\color{white}\textbf{Patrón} &
+				\color{white}\textbf{¿Por qué?} \\
+				\hline
+				$(-4) \times 4$    & $-16$             & & \\
+				\hline
+				$(-4) \times 3$    & $-12$             & $\uparrow +4$ & \\
+				\hline
+				$(-4) \times 2$    & $-8$              & $\uparrow +4$ & \\
+				\hline
+				$(-4) \times 1$    & $-4$              & $\uparrow +4$ & \\
+				\hline
+				$(-4) \times 0$    & $0$               & $\uparrow +4$ & \\
+				\hline
+				\rowcolor{vallightgreen}
+				$(-4) \times (-1)$ & \boxfill[1.6cm]   & $\uparrow +4$ &
+				Deduce: si el patrón continúa... \\
+				\hline
+				\rowcolor{vallightgreen}
+				$(-4) \times (-2)$ & \boxfill[1.6cm]   & $\uparrow +4$ & \\
+				\hline
+				\rowcolor{vallightgreen}
+				$(-4) \times (-3)$ & \boxfill[1.6cm]   & $\uparrow +4$ & \\
+				\hline
+				\rowcolor{vallightgreen}
+				$(-4) \times (-4)$ & \boxfill[1.6cm]   & $\uparrow +4$ & \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\vspace{0.3cm}
+		\textbf{Conclusión 2 — escríbela con tus palabras:}\;
+		negativo $\times$ negativo $=$
+		\underline{\hspace{7cm}}
+		
+	\end{discoverybox}
+	
+	\vspace{0.3cm}
+	
+	\begin{discoverybox}{Actividad 3 — Síntesis: construye tu propia tabla de signos}
+		
+		Con base en los patrones que encontraste, completa la tabla:
+		
+		\vspace{0.3cm}
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.1]
+				% Marco general
+				\draw[valdark, line width=2pt] (0,0) rectangle (10,4.5);
+				% Líneas internas
+				\draw[valdark, line width=1.5pt] (5,0) -- (5,4.5);
+				\draw[valdark, line width=1.5pt] (0,2.25) -- (10,2.25);
+				\draw[valdark, line width=0.8pt, dashed] (0,4.5) -- (10,4.5);
+				% Encabezado central
+				\node[font=\bfseries\large, valblue] at (5, 5.1)
+				{Tabla de Signos — Multiplicación};
+				% Cuadrante 1: (+)(+)
+				\fill[valgreen!15] (0.05,2.3) rectangle (4.95,4.45);
+				\node[font=\bfseries\Large, valgreen] at (2.5,3.8)
+				{$(+) \times (+)$};
+				\node[font=\bfseries\Large] at (2.5,3.1)
+				{$=$\;\boxfill[1.8cm]};
+				% Cuadrante 2: (+)(-)
+				\fill[valred!10] (5.05,2.3) rectangle (9.95,4.45);
+				\node[font=\bfseries\Large, valred] at (7.5,3.8)
+				{$(+) \times (-)$};
+				\node[font=\bfseries\Large] at (7.5,3.1)
+				{$=$\;\boxfill[1.8cm]};
+				% Cuadrante 3: (-)(+)
+				\fill[valred!10] (0.05,0.05) rectangle (4.95,2.2);
+				\node[font=\bfseries\Large, valred] at (2.5,1.65)
+				{$(-) \times (+)$};
+				\node[font=\bfseries\Large] at (2.5,0.9)
+				{$=$\;\boxfill[1.8cm]};
+				% Cuadrante 4: (-)(-)
+				\fill[valgreen!15] (5.05,0.05) rectangle (9.95,2.2);
+				\node[font=\bfseries\Large, valgreen] at (7.5,1.65)
+				{$(-) \times (-)$};
+				\node[font=\bfseries\Large] at (7.5,0.9)
+				{$=$\;\boxfill[1.8cm]};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.3cm}
+		
+		\textbf{Escribe la regla general con tus propias palabras:}
+		
+		\vspace{0.15cm}
+		\underline{\hspace{15cm}}
+		
+		\vspace{0.15cm}
+		\underline{\hspace{15cm}}
+		
+		\vspace{0.2cm}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt,
+			left=6pt, right=6pt]
+			\textbf{\faLightbulb\; Verificación:} Compara tu regla con la de un compañero.
+			¿Llegaron a la misma conclusión? Si hay diferencias, discútanlas y corrijan.
+		\end{tcolorbox}
+		
+	\end{discoverybox}
+	
+	% =============================================================
+	%  MISIÓN 3 — MULTIPLICACIÓN FORMAL Y PROPIEDADES
+	% =============================================================
+	\newpage
+	\misionheader{3}{Multiplicación de Enteros — Formalización y Propiedades}
+	
+	\begin{conceptbox}{Regla de los Signos — Multiplicación}
+		Para multiplicar dos números enteros se aplican \textbf{exactamente dos pasos},
+		en cualquier orden:
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries Paso \arabic*.}, leftmargin=2cm]
+			\item \textbf{Módulo:} multiplica $|a| \times |b|$ (valores absolutos).
+			\item \textbf{Signo:} aplica la regla:
+		\end{enumerate}
+		
+		\vspace{0.3cm}
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=0.95]
+				% Fondo decorativo
+				\fill[valgray, rounded corners=10pt] (-0.3,-1.5) rectangle (11.8,1.5);
+				% Caja (+)(+)
+				\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.3cm,
+				align=center, font=\bfseries, line width=2pt] at (1.2,0)
+				{$(+)\times(+)$\\[4pt]{\LARGE\color{valgreen}$+$}\\{\small\itshape\color{valdark}iguales}};
+				% Caja (+)(-)
+				\node[draw=valred, fill=vallightred, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.3cm,
+				align=center, font=\bfseries, line width=2pt] at (4.5,0)
+				{$(+)\times(-)$\\[4pt]{\LARGE\color{valred}$-$}\\{\small\itshape\color{valdark}distintos}};
+				% Caja (-)(+)
+				\node[draw=valred, fill=vallightred, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.3cm,
+				align=center, font=\bfseries, line width=2pt] at (7.3,0)
+				{$(-)\times(+)$\\[4pt]{\LARGE\color{valred}$-$}\\{\small\itshape\color{valdark}distintos}};
+				% Caja (-)(-)
+				\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.3cm,
+				align=center, font=\bfseries, line width=2pt] at (10.6,0)
+				{$(-)\times(-)$\\[4pt]{\LARGE\color{valgreen}$+$}\\{\small\itshape\color{valdark}iguales}};
+				% Etiqueta superior
+				\node[valblue, font=\bfseries] at (2.85, 1.7)
+				{Signos \textbf{iguales} $\Rightarrow$ resultado $\boldsymbol{+}$};
+				\node[valred, font=\bfseries] at (8.95, 1.7)
+				{Signos \textbf{distintos} $\Rightarrow$ resultado $\boldsymbol{-}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt]
+			\centering\bfseries\large
+			$\boldsymbol{(+)(+)=+\quad (+)(-)=-\quad (-)(+)=-\quad (-)(-)=+}$\\[3pt]
+			\normalsize\normalfont\color{valdark}
+			Signos \textbf{iguales} $\rightarrow$ positivo\qquad
+			Signos \textbf{distintos} $\rightarrow$ negativo
+		\end{tcolorbox}
+	\end{conceptbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Ejemplos resueltos ─────────────────────────────────────
+	\begin{examplebox}{Ejemplos Resueltos Paso a Paso}
+		
+		\begin{multicols}{2}
+			
+			\textbf{Ejemplo 1:}\; $(+8) \times (+6)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $8 \times 6 = 48$
+				\item Signo: $(+)(+) = +$
+			\end{enumerate}
+			\[\boxed{(+8)\times(+6) = \boldsymbol{+48}}\]
+			
+			\vspace{0.2cm}
+			
+			\textbf{Ejemplo 3:}\; $(-9) \times (+4)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $9 \times 4 = 36$
+				\item Signo: $(-)(+) = -$
+			\end{enumerate}
+			\[\boxed{(-9)\times(+4) = \boldsymbol{-36}}\]
+			
+			\columnbreak
+			
+			\textbf{Ejemplo 2:}\; $(+7) \times (-5)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $7 \times 5 = 35$
+				\item Signo: $(+)(-) = -$
+			\end{enumerate}
+			\[\boxed{(+7)\times(-5) = \boldsymbol{-35}}\]
+			
+			\vspace{0.2cm}
+			
+			\textbf{Ejemplo 4:}\; $(-6) \times (-8)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $6 \times 8 = 48$
+				\item Signo: $(-)(-)= +$
+			\end{enumerate}
+			\[\boxed{(-6)\times(-8) = \boldsymbol{+48}}\]
+			
+		\end{multicols}
+	\end{examplebox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Propiedades ────────────────────────────────────────────
+	\subsubsection*{\color{valblue}\faCogs\quad
+		Propiedades de la Multiplicación en $\mathbb{Z}$}
+	
+	\begin{center}
+		\begin{tikzpicture}[
+			prop/.style={draw=#1, fill=#1!10, rounded corners=7pt,
+				minimum width=3.5cm, minimum height=3.6cm,
+				align=center, font=\small, line width=1.5pt, text width=3.2cm},
+			node distance=0.35cm
+			]
+			\node[prop=valblue] (CP) at (0,0) {
+				\textbf{\color{valblue}Conmutativa}\\[5pt]
+				$a \cdot b = b \cdot a$\\[6pt]
+				\small\itshape Ejemplo:\\
+				$(-3)(5) = (5)(-3)$\\
+				$-15 = -15$\;\checkmark
+			};
+			\node[prop=valgreen] (AS) at (3.9,0) {
+				\textbf{\color{valgreen}Asociativa}\\[5pt]
+				$(a\cdot b)\cdot c = a\cdot(b\cdot c)$\\[4pt]
+				\small\itshape Ejemplo:\\
+				$[(-2)(3)](-4)$\\$= (-2)[3(-4)]$\\
+				$6 = 6$\;\checkmark
+			};
+			\node[prop=valorange] (DT) at (7.8,0) {
+				\textbf{\color{valorange}Distributiva}\\[5pt]
+				$a(b+c)$\\$= ab + ac$\\[4pt]
+				\small\itshape Ejemplo:\\
+				$(-2)(3+5)$\\$= (-2)(3)+(-2)(5)$\\
+				$-16 = -16$\;\checkmark
+			};
+			\node[prop=valred] (EN) at (11.7,0) {
+				\textbf{\color{valred}Elem. Neutro}\\[5pt]
+				$a \cdot 1 = a$\\[6pt]
+				\small\itshape Ejemplo:\\
+				$(-7)\times 1 = -7$\\
+				$8 \times 1 = 8$
+			};
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.2cm}
+	
+	\begin{alertbox}{Propiedad del Cero en la Multiplicación}
+		Para todo $a \in \mathbb{Z}$:\quad $a \times 0 = 0 \times a = 0$.
+		\quad\textit{Cualquier entero multiplicado por cero da cero.}
+		
+		\vspace{4pt}
+		\textbf{Consecuencia importante:}\; Si $a \cdot b = 0$, entonces
+		$a = 0$ \textbf{o} $b = 0$ (o ambos). Esta propiedad se llama
+		\textit{ley de cancelación del cero}.
+	\end{alertbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Tres o más factores ─────────────────────────────────────
+	\begin{trickbox}{Multiplicación de más de dos factores — Cuenta los negativos}
+		Cuando multiplicas \textbf{tres o más enteros}, no necesitas ir de a pares.
+		Usa este truco de \textbf{conteo de signos negativos}:
+		
+		\vspace{0.2cm}
+		
+		\begin{center}
+			\begin{tikzpicture}
+				\node[draw=valred, fill=vallightred, rounded corners=6pt,
+				minimum width=6cm, minimum height=1cm,
+				align=center, font=\bfseries, line width=2pt] at (0,0)
+				{Cantidad \textbf{IMPAR} de negativos $\Rightarrow$ resultado $\boldsymbol{-}$};
+				\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+				minimum width=6cm, minimum height=1cm,
+				align=center, font=\bfseries, line width=2pt] at (8.2,0)
+				{Cantidad \textbf{PAR} de negativos $\Rightarrow$ resultado $\boldsymbol{+}$};
+				\draw[-{Stealth}, valdark, line width=1.5pt] (3.1,0) -- (5.1,0);
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\textbf{Ejemplo:}\;
+		$\underbrace{(-2)}_{\text{neg}}\times
+		\underbrace{(-3)}_{\text{neg}}\times
+		\underbrace{(-1)}_{\text{neg}}\times
+		(+4)\times
+		\underbrace{(-2)}_{\text{neg}}$
+		\quad $\Rightarrow$ \textbf{4 negativos (par)} $\Rightarrow$ signo $+$
+		
+		Módulo:\; $2\times3\times1\times4\times2 = 48$ \quad
+		Resultado:\; $\boldsymbol{+48}$
+	\end{trickbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Ejercicios Misión 3 ────────────────────────────────────
+	\begin{exercisebox}{Ejercicios — Multiplicación de Enteros}
+		
+		\textbf{Parte A — Regla de signos (dos factores):}
+		
+		\begin{multicols}{4}
+			\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}]
+				\item $(-3)(+7)$\\\boxfill[2.3cm]
+				\item $(+9)(-5)$\\\boxfill[2.3cm]
+				\item $(-4)(-6)$\\\boxfill[2.3cm]
+				\item $(+11)(+8)$\\\boxfill[2.3cm]
+				\item $(-12)(+3)$\\\boxfill[2.3cm]
+				\item $(-7)(-7)$\\\boxfill[2.3cm]
+				\item $(0)(-15)$\\\boxfill[2.3cm]
+				\item $(-1)(+100)$\\\boxfill[2.3cm]
+				\item $(-13)(+6)$\\\boxfill[2.3cm]
+				\item $(-8)(-9)$\\\boxfill[2.3cm]
+				\item $(+15)(-4)$\\\boxfill[2.3cm]
+				\item $(-11)(-11)$\\\boxfill[2.3cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		
+		\textbf{Parte B — Tres o más factores:}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}, start=13]
+			\item $(-2)(-3)(-4)$:\quad
+			Negativos: \boxfill[0.9cm]\; Paridad: \boxfill[1.2cm]\;
+			Módulo: \boxfill[1.5cm]\; \textbf{Resultado:} \boxfill[1.8cm]
+			
+			\item $(-1)(-1)(-1)(-1)(-1)$:\quad
+			Negativos: \boxfill[0.9cm]\; Paridad: \boxfill[1.2cm]\;
+			Módulo: \boxfill[1.5cm]\; \textbf{Resultado:} \boxfill[1.8cm]
+			
+			\item $(+2)(-3)(+4)(-1)$:\quad
+			Negativos: \boxfill[0.9cm]\; Paridad: \boxfill[1.2cm]\;
+			Módulo: \boxfill[1.5cm]\; \textbf{Resultado:} \boxfill[1.8cm]
+			
+			\item $(-5)(-2)(-3)(+2)(-1)$:\quad
+			Negativos: \boxfill[0.9cm]\; Paridad: \boxfill[1.2cm]\;
+			Módulo: \boxfill[1.5cm]\; \textbf{Resultado:} \boxfill[1.8cm]
+		\end{enumerate}
+		
+		\vspace{0.3cm}
+		
+		\textbf{Parte C — Verifica las propiedades:}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}, start=17]
+			\item \textbf{Conmutativa:}\; calcula ambos lados de
+			$(-8)(+5) = (+5)(-8)$
+			
+			Izq.: \boxfill[2cm]\quad Der.: \boxfill[2cm]\quad
+			¿Iguales? \boxfill[1cm]
+			
+			\item \textbf{Asociativa:}\; verifica $[(-3)(2)](-4) = (-3)[(2)(-4)]$
+			
+			Izq.: $[\;\underline{\hspace{1cm}}\;](-4) = $ \boxfill[1.8cm]\quad
+			Der.: $(-3)[\;\underline{\hspace{1cm}}\;] = $ \boxfill[1.8cm]\quad
+			¿Iguales? \boxfill[1cm]
+			
+			\item \textbf{Distributiva:}\; resuelve $(-3)(4+(-7))$ de dos formas:
+			
+			Forma 1 (primero suma): $(-3)(\underline{\quad}) = $ \boxfill[1.8cm]
+			
+			Forma 2 (distribuye): $(-3)(4)+(-3)(-7) =
+			\underline{\quad}+\underline{\quad} = $ \boxfill[1.8cm]
+			
+			¿Coinciden? \boxfill[1cm]
+		\end{enumerate}
+		
+		\vspace{0.3cm}
+		
+		\textbf{Parte D — Problemas de contexto:}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}, start=20]
+			\item La temperatura de una cámara frigorífica baja $3{^\circ}C$ por hora.
+			¿Cuál es el cambio de temperatura en 6 horas?
+			
+			\vspace{0.15cm}
+			Operación: \underline{\hspace{4cm}} $=$ \boxfill[2cm]\quad
+			R/: \underline{\hspace{4cm}}
+			
+			\item Un submarino desciende 8 m por minuto. Expresa su cambio de
+			profundidad en 5 minutos como producto de enteros.
+			
+			\vspace{0.15cm}
+			Operación: \underline{\hspace{4cm}} $=$ \boxfill[2cm]\quad
+			R/: \underline{\hspace{4cm}}
+		\end{enumerate}
+		
+		\vspace{0.2cm}
+		
+		\begin{retobox}{Reto FL — Razonamiento Algebraico}
+			\begin{enumerate}[label=\textcolor{valblue}{\bfseries\alph*.}]
+				\item Si $(-3)\times n = +21$, ¿cuál es el valor de $n$?
+				\quad $n =$ \boxfill[1.8cm]\quad
+				Justificación: \underline{\hspace{5cm}}
+				
+				\item ¿Existe algún entero $n$ tal que $n \times n$ sea negativo?
+				Justifica rigurosamente tu respuesta.
+				
+				\vspace{0.15cm}
+				\underline{\hspace{13cm}}
+				
+				\item Si $a$ es negativo y $b$ es positivo, ¿qué signo tiene
+				$a \times a \times b \times a$? Razona sin calcular.
+				
+				\vspace{0.15cm}
+				\underline{\hspace{13cm}}
+			\end{enumerate}
+		\end{retobox}
+		
+	\end{exercisebox}
+	
+	% =============================================================
+	%  MISIÓN 4 — DESCUBRIMIENTO: SIGNOS EN LA DIVISIÓN
+	% =============================================================
+	\newpage
+	\misionheader[valorange]{4}{Descubrimiento — Regla de Signos en la División}
+	
+	\begin{conceptbox}{La División como Operación Inversa}
+		La \textbf{división} es la operación inversa de la multiplicación.
+		Esta relación fundamental permite deducir la regla de signos
+		de la división \textit{directamente} de la que ya conoces:
+		\[
+		a \div b = c \quad \Longleftrightarrow \quad b \times c = a
+		\qquad (b \neq 0)
+		\]
+		\textbf{Ejemplo:}\; $12 \div 4 = 3$ porque $4 \times 3 = 12$.
+		\quad No necesitas memorizar nada nuevo: la misma lógica aplica.
+	\end{conceptbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{discoverybox}{Actividad — Deduce los signos de la división}
+		Usa la equivalencia $a \div b = c \;\Leftrightarrow\; b\times c = a$
+		para encontrar cada cociente. Completa la tabla:
+		
+		\vspace{0.3cm}
+		
+		\begin{center}
+			\renewcommand{\arraystretch}{1.6}
+			\begin{tabular}{|>{\bfseries}m{3.2cm}|m{4cm}|m{3.5cm}|
+					>{\centering\arraybackslash}m{1.5cm}|
+					>{\centering\arraybackslash}m{1.5cm}|}
+				\hline
+				\rowcolor{valblue!80}
+				\color{white}\textbf{División} &
+				\color{white}\textbf{Equivale a} &
+				\color{white}\textbf{¿Qué $c$ cumple?} &
+				\color{white}\textbf{Resultado} &
+				\color{white}\textbf{Signo} \\
+				\hline
+				\rowcolor{vallightgreen}
+				$(+12)\div(+3)$ &
+				$(+3)\times c = +12$ &
+				$c = +4$ &
+				$+4$ & $+$ \\
+				\hline
+				$(+12)\div(-3)$ &
+				$(-3)\times c = +12$ &
+				$c = $ \boxfill[1.5cm] &
+				\boxfill[1.2cm] & \boxfill[0.8cm] \\
+				\hline
+				$(-12)\div(+3)$ &
+				$(+3)\times c = -12$ &
+				$c = $ \boxfill[1.5cm] &
+				\boxfill[1.2cm] & \boxfill[0.8cm] \\
+				\hline
+				\rowcolor{vallightorange}
+				$(-12)\div(-3)$ &
+				$(-3)\times c = -12$ &
+				$c = $ \boxfill[1.5cm] &
+				\boxfill[1.2cm] & \boxfill[0.8cm] \\
+				\hline
+				$(+30)\div(-5)$ &
+				$(-5)\times c = +30$ &
+				$c = $ \boxfill[1.5cm] &
+				\boxfill[1.2cm] & \boxfill[0.8cm] \\
+				\hline
+				$(-30)\div(-5)$ &
+				$(-5)\times c = -30$ &
+				$c = $ \boxfill[1.5cm] &
+				\boxfill[1.2cm] & \boxfill[0.8cm] \\
+				\hline
+				$(-45)\div(+9)$ &
+				$(+9)\times c = -45$ &
+				$c = $ \boxfill[1.5cm] &
+				\boxfill[1.2cm] & \boxfill[0.8cm] \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\vspace{0.3cm}
+		
+		\textbf{Conclusión (escríbela tú):}
+		
+		\vspace{0.15cm}
+		\underline{\hspace{15cm}}
+		
+		\vspace{0.15cm}
+		\underline{\hspace{15cm}}
+		
+		\vspace{0.3cm}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\textbf{\faLightbulb\; ¿Lo notaste?}\; La tabla de signos de la división es
+			\textbf{exactamente igual} a la de la multiplicación. Esto tiene sentido perfecto:
+			son operaciones inversas. No hay nada nuevo que memorizar.
+		\end{tcolorbox}
+		
+	\end{discoverybox}
+	
+	% =============================================================
+	%  MISIÓN 5 — DIVISIÓN FORMAL Y PROPIEDADES
+	% =============================================================
+	\newpage
+	\misionheader[valgreen]{5}{División de Enteros — Formalización y Propiedades}
+	
+	\begin{conceptbox}{Regla de los Signos — División}
+		Para dividir dos números enteros ($b \neq 0$):
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries Paso \arabic*.}, leftmargin=2cm]
+			\item \textbf{Módulo:} divide $|a| \div |b|$.
+			\item \textbf{Signo:} misma tabla que la multiplicación.
+		\end{enumerate}
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.95]
+				\fill[valgray, rounded corners=8pt] (-0.3,-1.5) rectangle (11.8,1.5);
+				\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.2cm,
+				align=center, font=\bfseries, line width=2pt] at (1.2,0)
+				{$\dfrac{+}{+}$\\[6pt]{\Large\color{valgreen}$= +$}};
+				\node[draw=valred, fill=vallightred, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.2cm,
+				align=center, font=\bfseries, line width=2pt] at (4.5,0)
+				{$\dfrac{+}{-}$\\[6pt]{\Large\color{valred}$= -$}};
+				\node[draw=valred, fill=vallightred, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.2cm,
+				align=center, font=\bfseries, line width=2pt] at (7.3,0)
+				{$\dfrac{-}{+}$\\[6pt]{\Large\color{valred}$= -$}};
+				\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+				minimum width=2.7cm, minimum height=2.2cm,
+				align=center, font=\bfseries, line width=2pt] at (10.6,0)
+				{$\dfrac{-}{-}$\\[6pt]{\Large\color{valgreen}$= +$}};
+			\end{tikzpicture}
+		\end{center}
+	\end{conceptbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{alertbox}{División por cero — La operación prohibida}
+		\textbf{La división por cero no está definida.}\;
+		$\dfrac{a}{0}$ \textbf{NO EXISTE} para ningún valor de $a$.
+		
+		\vspace{4pt}
+		\textbf{¿Por qué?}\; Porque no existe ningún $c \in \mathbb{Z}$ tal que
+		$0 \times c = a$ cuando $a \neq 0$. Y si $a = 0$, cualquier $c$
+		serviría, lo que da un resultado \textit{indeterminado}.
+		
+		\vspace{4pt}
+		\textbf{Sin embargo:}\; $\dfrac{0}{a} = 0$ siempre que $a \neq 0$.
+		El cero \textit{sí puede} ser dividendo.
+	\end{alertbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{examplebox}{Ejemplos Resueltos — División}
+		\begin{multicols}{2}
+			
+			\textbf{Ejemplo 1:}\; $(+36)\div(+9)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $36\div9 = 4$
+				\item Signo: $(+)\div(+) = +$
+			\end{enumerate}
+			\[\boxed{(+36)\div(+9) = \boldsymbol{+4}}\]
+			
+			\textbf{Ejemplo 3:}\; $(-48)\div(+6)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $48\div6 = 8$
+				\item Signo: $(-)\div(+) = -$
+			\end{enumerate}
+			\[\boxed{(-48)\div(+6) = \boldsymbol{-8}}\]
+			
+			\columnbreak
+			
+			\textbf{Ejemplo 2:}\; $(+35)\div(-7)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $35\div7 = 5$
+				\item Signo: $(+)\div(-) = -$
+			\end{enumerate}
+			\[\boxed{(+35)\div(-7) = \boldsymbol{-5}}\]
+			
+			\textbf{Ejemplo 4:}\; $(-63)\div(-9)$
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries P\arabic*:}]
+				\item Módulo: $63\div9 = 7$
+				\item Signo: $(-)\div(-) = +$
+			\end{enumerate}
+			\[\boxed{(-63)\div(-9) = \boldsymbol{+7}}\]
+			
+		\end{multicols}
+	\end{examplebox}
+	
+	\vspace{0.3cm}
+	
+	\subsubsection*{\color{valgreen}\faCogs\quad
+		Propiedades de la División en $\mathbb{Z}$ — Comparación Crítica}
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|>{\bfseries}m{4.5cm}|
+				>{\centering\arraybackslash}m{3.5cm}|
+				>{\centering\arraybackslash}m{3.5cm}|
+				>{\raggedright\arraybackslash}m{4cm}|}
+			\hline
+			\rowcolor{valdark!85}
+			\color{white}\textbf{Propiedad} &
+			\color{white}\textbf{Multiplicación} &
+			\color{white}\textbf{División} &
+			\color{white}\textbf{Contraejemplo (si no)} \\
+			\hline
+			\rowcolor{vallightgreen}
+			Conmutativa & \color{valgreen}\faCheck\; Sí & \color{valred}\faTimes\; No &
+			$(-8)\div 4 = -2$\\$4\div(-8) = -\tfrac{1}{2}$\; ¿Iguales? \\
+			\hline
+			Asociativa & \color{valgreen}\faCheck\; Sí & \color{valred}\faTimes\; No &
+			$(24\div 6)\div 2 = 2$\\$24\div(6\div 2) = 8$\; ¿Iguales? \\
+			\hline
+			\rowcolor{vallightgreen}
+			Distributiva resp. a $+$ &
+			\color{valgreen}\faCheck\; Sí &
+			\color{valred}\faTimes\; No (divisor) &
+			No distribuye el divisor\\entre la suma \\
+			\hline
+			Elemento neutro (1) &
+			\color{valgreen}\faCheck\; $a\times 1 = a$ &
+			\color{valgreen}\faCheck\; $a\div 1 = a$ & --- \\
+			\hline
+			\rowcolor{vallightgreen}
+			Propiedad del cero &
+			\color{valgreen}\faCheck\; $a\times 0 = 0$ &
+			\color{valgreen}\faCheck\; $0\div a = 0$\\ \color{valred}$a\div 0$ inex. &
+			Dividir por 0 no existe \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\begin{exercisebox}{Ejercicios — División de Enteros}
+		
+		\textbf{Parte A — Aplica la regla de signos:}
+		
+		\begin{multicols}{4}
+			\begin{enumerate}[label=\textcolor{valgreen}{\bfseries\arabic*.}]
+				\item $\dfrac{-45}{+9}$\\\boxfill[2.3cm]
+				\item $\dfrac{+56}{-8}$\\\boxfill[2.3cm]
+				\item $\dfrac{-72}{-9}$\\\boxfill[2.3cm]
+				\item $\dfrac{+100}{+5}$\\\boxfill[2.3cm]
+				\item $(-84)\div(+7)$\\\boxfill[2.3cm]
+				\item $(+0)\div(-13)$\\\boxfill[2.3cm]
+				\item $\dfrac{-121}{+11}$\\\boxfill[2.3cm]
+				\item $\dfrac{-144}{-12}$\\\boxfill[2.3cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		
+		\textbf{Parte B — Relación multiplicación$\leftrightarrow$división:}
+		
+		\begin{enumerate}[label=\textcolor{valgreen}{\bfseries\arabic*.}, start=9]
+			\item De $(-8)\times(+6) = -48$, escribe \textbf{dos} divisiones derivadas:
+			
+			Div 1: \underline{\hspace{4cm}} $=$ \boxfill[1.5cm]\quad
+			Div 2: \underline{\hspace{4cm}} $=$ \boxfill[1.5cm]
+			
+			\item De $(-9)\times(-7) = +63$, escribe dos divisiones derivadas:
+			
+			Div 1: \underline{\hspace{4cm}} $=$ \boxfill[1.5cm]\quad
+			Div 2: \underline{\hspace{4cm}} $=$ \boxfill[1.5cm]
+		\end{enumerate}
+		
+		\vspace{0.3cm}
+		
+		\textbf{Parte C — Problemas de contexto:}
+		
+		\begin{enumerate}[label=\textcolor{valgreen}{\bfseries\arabic*.}, start=11]
+			\item Una empresa acumuló una deuda de \$240.000 en 12 meses.
+			¿Cuál fue la variación mensual promedio?
+			(Usa negativos para deudas.)
+			
+			\vspace{0.15cm}
+			Operación: \underline{\hspace{4cm}} $=$ \boxfill[2cm]\quad
+			R/: \underline{\hspace{4cm}}
+			
+			\item Un ascensor baja $-60$ pisos en $12$ minutos.
+			¿Cuántos pisos por minuto recorre?
+			
+			\vspace{0.15cm}
+			Operación: \underline{\hspace{4cm}} $=$ \boxfill[2cm]\quad
+			R/: \underline{\hspace{4cm}}
+		\end{enumerate}
+		
+		\vspace{0.2cm}
+		
+		\begin{retobox}{Reto FL — Ecuaciones con División}
+			\begin{enumerate}[label=\textcolor{valblue}{\bfseries\alph*.}]
+				\item Un número $n$ dividido por $(-6)$ da $+8$. Encuentra $n$ y justifica.
+				
+				$n =$ \boxfill[2cm]\quad
+				Justificación: \underline{\hspace{7cm}}
+				
+				\item Explica: ¿por qué la división \textbf{no} es conmutativa,
+				usando un argumento basado en signos, no solo un ejemplo numérico?
+				
+				\vspace{0.15cm}
+				\underline{\hspace{13cm}}
+				\vspace{0.15cm}
+				\underline{\hspace{13cm}}
+			\end{enumerate}
+		\end{retobox}
+		
+	\end{exercisebox}
+	
+	% =============================================================
+	%  MISIÓN 6 — OPERACIONES COMBINADAS Y JERARQUÍA
+	% =============================================================
+	\newpage
+	\misionheader[valblue!60!valgreen]{6}{Operaciones Combinadas y Jerarquía de Operaciones}
+	
+	\begin{conceptbox}{Jerarquía de Operaciones}
+		Cuando en una expresión aparecen varias operaciones, se resuelven
+		en el siguiente \textbf{orden estricto e invariable}:
+		
+		\vspace{0.3cm}
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=0.92]
+				% Niveles
+				\node[draw=valblue, fill=valblue, rounded corners=8pt,
+				minimum width=13cm, minimum height=1cm,
+				align=center, font=\bfseries\color{white}, line width=2pt] (N1) at (0,0)
+				{NIVEL 1 — Paréntesis $(\;)$, Corchetes $[\;]$, Llaves $\{\;\}$
+					\hfill\small(resuelve primero los más internos)};
+				
+				\node[draw=valorange, fill=vallightorange, rounded corners=8pt,
+				minimum width=11cm, minimum height=1cm,
+				align=center, font=\bfseries, line width=2pt,
+				below=0.4cm of N1] (N2)
+				{\color{valorange}NIVEL 2 — Potencias y Raíces};
+				
+				\node[draw=valgreen, fill=vallightgreen, rounded corners=8pt,
+				minimum width=9cm, minimum height=1cm,
+				align=center, font=\bfseries, line width=2pt,
+				below=0.4cm of N2] (N3)
+				{\color{valgreen}NIVEL 3 — Multiplicación $(\times)$ y División $(\div)$};
+				
+				\node[draw=valred, fill=vallightred, rounded corners=8pt,
+				minimum width=7cm, minimum height=1cm,
+				align=center, font=\bfseries, line width=2pt,
+				below=0.4cm of N3] (N4)
+				{\color{valred}NIVEL 4 — Suma $(+)$ y Resta $(-)$};
+				
+				\draw[-{Stealth[scale=1.3]}, valdark, line width=2pt]
+				(N1.south) -- (N2.north);
+				\draw[-{Stealth[scale=1.3]}, valdark, line width=2pt]
+				(N2.south) -- (N3.north);
+				\draw[-{Stealth[scale=1.3]}, valdark, line width=2pt]
+				(N3.south) -- (N4.north);
+				
+				\node[font=\bfseries\large, valblue] at (7.5, 0)
+				{\faArrowLeft\;Primero};
+				\node[font=\bfseries\large, valred] at (6, -3.6)
+				{\faArrowLeft\;Último};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt]
+			\textbf{Regla de desempate:}\; dentro del mismo nivel, se opera de
+			\textbf{izquierda a derecha}.
+			\quad\textbf{Paréntesis anidados:}\; se resuelven de adentro hacia afuera.
+		\end{tcolorbox}
+	\end{conceptbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{examplebox}{Ejemplo Desarrollado Paso a Paso}
+		\textbf{Resolver:}\;
+		$\{[(-3)\times(+4) + 18]\div(-2)\} - (-5)\times(-1)$
+		
+		\vspace{0.3cm}
+		
+		\begin{tikzpicture}[
+			stepstyle/.style={draw=valblue, fill=vallightblue, rounded corners=4pt,
+				minimum width=15cm, align=left,
+				inner sep=8pt, line width=1pt, font=\small},
+			steplabel/.style={fill=valblue, text=white, font=\bfseries\scriptsize,
+				rounded corners=3pt, inner sep=3pt}
+			]
+			\node[stepstyle] (S1) at (0,0)
+			{\textbf{[Nivel 3 dentro del corchete — primero} $\times$\textbf{]:}\\[2pt]
+				$\{[\underline{(-3)\times(+4)} + 18]\div(-2)\} - (-5)\times(-1)$\\[2pt]
+				$= \{[\mathbf{-12} + 18]\div(-2)\} - (-5)\times(-1)$};
+			
+			\node[stepstyle, below=0.2cm of S1] (S2)
+			{\textbf{[Nivel 4 dentro del corchete — suma]:}\\[2pt]
+				$= \{[\mathbf{+6}]\div(-2)\} - (-5)\times(-1)$};
+			
+			\node[stepstyle, below=0.2cm of S2] (S3)
+			{\textbf{[Nivel 3 — divisiones y multiplicaciones, izq.} $\to$ \textbf{der.]:}\\[2pt]
+				$= \{\underline{(+6)\div(-2)}\} - \underline{(-5)\times(-1)}$\\[2pt]
+				$= \mathbf{(-3)} - \mathbf{(+5)}$};
+			
+			\node[stepstyle, below=0.2cm of S3] (S4)
+			{\textbf{[Nivel 4 — resta]:}\\[2pt]
+				$= -3 - 5 = \mathbf{-8}$};
+			
+			\draw[-{Stealth}, valblue, line width=1.2pt] (S1.south) -- (S2.north);
+			\draw[-{Stealth}, valblue, line width=1.2pt] (S2.south) -- (S3.north);
+			\draw[-{Stealth}, valblue, line width=1.2pt] (S3.south) -- (S4.north);
+			
+			\node[draw=valgreen, fill=valgreen, rounded corners=5pt,
+			minimum width=3cm, minimum height=0.8cm, align=center,
+			font=\bfseries\color{white}, right=0.3cm of S4] at ($(S4.east)+(0.5,0)$)
+			{Resultado: $\boldsymbol{-8}$};
+		\end{tikzpicture}
+	\end{examplebox}
+	
+	\vspace{0.3cm}
+	
+	\begin{exercisebox}{Ejercicios — Operaciones Combinadas}
+		
+		\textit{Muestra explícitamente cada paso de la jerarquía.}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}]
+			
+			\item $(-5)\times(+3) + 20\div(-4)$
+			
+			\vspace{0.1cm}
+			Paso 1 ($\times$,$\div$): \underline{\hspace{7cm}}
+			\quad Paso 2 ($+$,$-$): \underline{\hspace{4cm}}
+			$=$ \boxfill[2cm]
+			
+			\vspace{0.3cm}
+			
+			\item $[(-8)+(+3)]\times(-2) - 6\div(+3)$
+			
+			\vspace{0.1cm}
+			Paso 1 (paréntesis): \underline{\hspace{5cm}}
+			\;Paso 2 ($\times$,$\div$): \underline{\hspace{4.5cm}}
+			\;Paso 3 ($+$,$-$): \underline{\hspace{3cm}}
+			$=$ \boxfill[2cm]
+			
+			\vspace{0.3cm}
+			
+			\item $\{[(-2)\times(+5) - 10]\div(-4)\} + (-3)\times(-3)$
+			
+			\boxfilltall[14cm]{3cm}
+			
+			Resultado $=$ \boxfill[2.5cm]
+			
+			\vspace{0.3cm}
+			
+			\item $(-4)\times\{[(-6)+10]\div(-2)\} - (-3)^2$
+			
+			\textit{Nota: $(-3)^2 = (-3)\times(-3)$. Calcula primero esta potencia.}
+			
+			\boxfilltall[14cm]{3.5cm}
+			
+			Resultado $=$ \boxfill[2.5cm]
+			
+		\end{enumerate}
+		
+		\vspace{0.2cm}
+		
+		\begin{retobox}{Retos FL — Operaciones Combinadas}
+			
+			\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}]
+				
+				\item \textbf{Ecuación combinada:}\; Determina $x$:
+				\[(-4)\times x + 18 = (-2)\times(+5)\]
+				
+				\boxfilltall[12cm]{2.5cm}
+				
+				$x =$ \boxfill[2cm]
+				
+				\item \textbf{Problema de modelación:}\;
+				Una empresa ganó \$180.000 en enero; en febrero, acumuló pérdidas
+				que divididas igualmente en 5 semanas correspondieron a $-50.000$
+				semanales; en marzo, recuperó el triple de la pérdida semanal de
+				febrero. Modela con enteros y calcula el resultado neto al final
+				de marzo.
+				
+				\vspace{0.15cm}
+				Pérdida total de febrero: \underline{\hspace{3cm}}\quad
+				Recuperación de marzo: \underline{\hspace{3cm}}
+				
+				Modelo completo: \underline{\hspace{8cm}}
+				
+				\boxfilltall[13cm]{2.5cm}
+				
+				Resultado neto $=$ \boxfill[3cm]
+				
+			\end{enumerate}
+		\end{retobox}
+		
+	\end{exercisebox}
+	
+	% =============================================================
+	%  TABLA MAESTRA DE RESUMEN
+	% =============================================================
+	\newpage
+	\begin{tcolorbox}[enhanced, colback=valblue, colframe=valblue, arc=5pt,
+		left=8pt, right=8pt, top=5pt, bottom=5pt]
+		\color{white}\bfseries\large
+		\faTable\quad Tabla Maestra de Resumen — Multiplicación y División de $\mathbb{Z}$
+	\end{tcolorbox}
+	
+	\vspace{0.4cm}
+	
+	%% ── Tabla de signos ────────────────────────────────────────
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\begin{tabular}{|>{\bfseries\centering\arraybackslash}m{3.5cm}|
+				>{\centering\arraybackslash}m{3cm}|
+				>{\centering\arraybackslash}m{3cm}|
+				>{\centering\arraybackslash}m{3cm}|
+				>{\centering\arraybackslash}m{3cm}|}
+			\hline
+			\rowcolor{valdark!85}
+			\color{white}\textbf{Operación} &
+			\color{white}\textbf{$(+)\star(+)$} &
+			\color{white}\textbf{$(+)\star(-)$} &
+			\color{white}\textbf{$(-)\star(+)$} &
+			\color{white}\textbf{$(-)\star(-)$} \\
+			\hline
+			\rowcolor{vallightblue}
+			MULTIPLICACIÓN &
+			\Large\color{valgreen}\textbf{+} &
+			\Large\color{valred}\textbf{--} &
+			\Large\color{valred}\textbf{--} &
+			\Large\color{valgreen}\textbf{+} \\
+			\hline
+			DIVISIÓN &
+			\Large\color{valgreen}\textbf{+} &
+			\Large\color{valred}\textbf{--} &
+			\Large\color{valred}\textbf{--} &
+			\Large\color{valgreen}\textbf{+} \\
+			\hline
+			\rowcolor{vallightorange}
+			\multicolumn{5}{|c|}{\bfseries División por cero: NO EXISTE \quad|\quad
+				$0\div a = 0$ (con $a\neq 0$)} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.4cm}
+	
+	%% ── Tabla comparativa de propiedades ───────────────────────
+	\begin{center}
+		\renewcommand{\arraystretch}{1.6}
+		\begin{tabular}{|>{\bfseries}m{5.5cm}|
+				>{\centering\arraybackslash}m{4cm}|
+				>{\centering\arraybackslash}m{4cm}|
+				>{\raggedright\arraybackslash}m{3.5cm}|}
+			\hline
+			\rowcolor{valblue!80}
+			\color{white}\textbf{Propiedad} &
+			\color{white}\textbf{Multiplicación} &
+			\color{white}\textbf{División} &
+			\color{white}\textbf{Nota} \\
+			\hline
+			\rowcolor{vallightgreen}
+			Conmutativa &
+			\color{valgreen}\faCheck\; $ab = ba$ &
+			\color{valred}\faTimes\; No &
+			$a\div b \neq b\div a$ en gral. \\
+			\hline
+			Asociativa &
+			\color{valgreen}\faCheck\; $(ab)c = a(bc)$ &
+			\color{valred}\faTimes\; No &
+			$(a\div b)\div c \neq a\div(b\div c)$ \\
+			\hline
+			\rowcolor{vallightgreen}
+			Distributiva resp. $+$ &
+			\color{valgreen}\faCheck\; $a(b+c)=ab+ac$ &
+			\color{valred}\faTimes\; No (divisor) &
+			Solo el dividendo \\
+			\hline
+			Elemento neutro &
+			\color{valgreen}\faCheck\; $a\cdot 1 = a$ &
+			\color{valgreen}\faCheck\; $a\div 1 = a$ &
+			El $1$ es neutro en ambas \\
+			\hline
+			\rowcolor{vallightgreen}
+			Propiedad del cero &
+			\color{valgreen}\faCheck\; $a\cdot 0 = 0$ &
+			\color{valgreen}\faCheck\; $0\div a = 0$ &
+			$a\div 0$ no existe \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.4cm}
+	
+	%% ── Diagrama visual: Las cuatro reglas de signo ────────────
+	\begin{center}
+		\begin{tikzpicture}[scale=0.95]
+			\fill[valgray, rounded corners=10pt] (-0.5,-2) rectangle (13.5,2.5);
+			\node[font=\bfseries, valblue] at (6.5,2.1)
+			{Regla Unificada de Signos ($\times$ y $\div$)};
+			% Nodo central
+			\node[draw=valdark, fill=white, rounded corners=6pt,
+			minimum width=2cm, minimum height=1cm,
+			font=\bfseries] at (6.5,0) {Operación};
+			% Cuatro casos
+			\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+			minimum width=2.8cm, minimum height=1.5cm,
+			align=center, font=\bfseries, line width=2pt] at (0.5,0.8)
+			{$+$ y $+$\\\color{valgreen}\Large$+$};
+			\node[draw=valred, fill=vallightred, rounded corners=6pt,
+			minimum width=2.8cm, minimum height=1.5cm,
+			align=center, font=\bfseries, line width=2pt] at (0.5,-0.8)
+			{$+$ y $-$\\\color{valred}\Large$-$};
+			\node[draw=valred, fill=vallightred, rounded corners=6pt,
+			minimum width=2.8cm, minimum height=1.5cm,
+			align=center, font=\bfseries, line width=2pt] at (12.5,0.8)
+			{$-$ y $+$\\\color{valred}\Large$-$};
+			\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+			minimum width=2.8cm, minimum height=1.5cm,
+			align=center, font=\bfseries, line width=2pt] at (12.5,-0.8)
+			{$-$ y $-$\\\color{valgreen}\Large$+$};
+			% Flechas
+			\draw[-{Stealth}, valgreen, line width=1.5pt] (1.95,0.8) -- (5.4,0.15);
+			\draw[-{Stealth}, valred, line width=1.5pt] (1.95,-0.8) -- (5.4,-0.15);
+			\draw[-{Stealth}, valred, line width=1.5pt] (11.05,0.8) -- (7.6,0.15);
+			\draw[-{Stealth}, valgreen, line width=1.5pt] (11.05,-0.8) -- (7.6,-0.15);
+			% Etiqueta central inferior
+			\node[font=\bfseries\small, valdark] at (6.5,-1.6)
+			{Iguales $\Rightarrow$ \textcolor{valgreen}{$+$}\quad|\quad
+				Distintos $\Rightarrow$ \textcolor{valred}{$-$}};
+		\end{tikzpicture}
+	\end{center}
+	
+	% =============================================================
+	%  AUTOEVALUACIÓN
+	% =============================================================
+	\newpage
+	\begin{tcolorbox}[enhanced, colback=valorange, colframe=valorange, arc=5pt,
+		left=8pt, right=8pt, top=5pt, bottom=5pt]
+		\color{white}\bfseries\large
+		\faStar\quad AUTOEVALUACIÓN FINAL — ¿Cuánto aprendí?
+	\end{tcolorbox}
+	
+	\vspace{0.2cm}
+	
+	\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=4pt]
+		\small\textbf{Instrucciones:} Esta autoevaluación tiene \textbf{tres partes}.
+		Trabaja \textbf{individualmente, sin consultar la TAU ni notas}.
+		Muestra todos los procedimientos. Tiempo estimado: \textbf{45 minutos}.
+		Puntaje total: \textbf{100 puntos}.
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	\subsubsection*{\color{valorange}\textbf{Parte 1 — Selección Múltiple}
+		\hfill\small(4 preguntas $\times$ 5 pts $= 20$ pts)}
+	
+	\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}]
+		
+		\item El resultado de $(-7)\times(-9)$ es:
+		\begin{multicols}{4}
+			\begin{enumerate}[label=\textcolor{valdark}{\bfseries\alph*)}]
+				\item $-63$
+				\item $+63$
+				\item $-16$
+				\item $+16$
+			\end{enumerate}
+		\end{multicols}
+		Respuesta: \boxfill[1.5cm]
+		
+		\vspace{0.2cm}
+		
+		\item ¿Cuál de estas expresiones \textbf{no está definida}?
+		\begin{multicols}{4}
+			\begin{enumerate}[label=\textcolor{valdark}{\bfseries\alph*)}]
+				\item $0\div(-5)$
+				\item $(-8)\div 0$
+				\item $0\times 0$
+				\item $(-1)\div 1$
+			\end{enumerate}
+		\end{multicols}
+		Respuesta: \boxfill[1.5cm]
+		
+		\vspace{0.2cm}
+		
+		\item $(-2)(-3)(-1)(-4)(-1)$ es igual a:
+		\begin{multicols}{4}
+			\begin{enumerate}[label=\textcolor{valdark}{\bfseries\alph*)}]
+				\item $+24$
+				\item $-24$
+				\item $+48$
+				\item $-48$
+			\end{enumerate}
+		\end{multicols}
+		Respuesta: \boxfill[1.5cm]
+		
+		\vspace{0.2cm}
+		
+		\item Si $a\times(-6) = +30$, entonces $a$ es:
+		\begin{multicols}{4}
+			\begin{enumerate}[label=\textcolor{valdark}{\bfseries\alph*)}]
+				\item $+5$
+				\item $-5$
+				\item $+180$
+				\item $-180$
+			\end{enumerate}
+		\end{multicols}
+		Respuesta: \boxfill[1.5cm]
+		
+	\end{enumerate}
+	
+	\vspace{0.3cm}
+	
+	\subsubsection*{\color{valblue}\textbf{Parte 2 — Ejercicios de Aplicación}
+		\hfill\small(40 pts)}
+	
+	\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.}]
+		
+		\item (10 pts) Calcula:
+		\begin{multicols}{3}
+			\textbf{a)} $(-15)\times(+8) =$ \boxfill[2.3cm]
+			
+			\textbf{b)} $\dfrac{-132}{+12} =$ \boxfill[2.3cm]
+			
+			\textbf{c)} $(-9)\times(-9) =$ \boxfill[2.3cm]
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		
+		\item (15 pts) Resuelve la operación combinada, mostrando \textbf{cada paso}:
+		\[
+		\bigl\{[(-4)\times(+7) + 50]\div(-2)\bigr\}\times(-3) + 15
+		\]
+		
+		\boxfilltall[14cm]{4.5cm}
+		
+		Resultado $=$ \boxfill[3cm]
+		
+		\vspace{0.3cm}
+		
+		\item (15 pts) \textbf{Problema de contexto:} El nivel del agua de un embalse
+		baja $4\,\text{m}$ por día durante 6 días (sequía). Luego, en los
+		siguientes 3 días, sube $7\,\text{m}$ por día (lluvias).
+		¿Cuál es el \textbf{cambio neto} del nivel respecto al inicio?
+		
+		\vspace{0.15cm}
+		Modelo: \underline{\hspace{9cm}}
+		
+		\boxfilltall[13cm]{3cm}
+		
+		Cambio neto $=$ \boxfill[3cm]
+		
+	\end{enumerate}
+	
+	\vspace{0.3cm}
+	
+	\subsubsection*{\color{valgreen}\textbf{Parte 3 — Pensamiento Matemático}
+		\hfill\small(40 pts)}
+	
+	\begin{enumerate}[label=\textcolor{valgreen}{\bfseries\arabic*.}]
+		
+		\item (10 pts) Explica con tus propias palabras, usando el
+		\textbf{argumento de patrones} que trabajaste en la Misión 2,
+		por qué el producto de dos negativos es positivo.
+		\textit{No uses la tabla de signos como justificación.}
+		
+		\vspace{0.2cm}
+		\boxfilltall[14cm]{3cm}
+		
+		\item (15 pts) Inventa una situación real (diferente a las de la TAU)
+		que se modele con la división de enteros.
+		Plantea la operación, resuélvela e interpreta el resultado.
+		
+		\vspace{0.15cm}
+		Situación: \underline{\hspace{12cm}}
+		
+		Operación: \underline{\hspace{6cm}} $=$ \boxfill[3cm]
+		
+		Interpretación: \underline{\hspace{9.5cm}}
+		
+		\item (15 pts) \textbf{Demostración:}
+		La propiedad distributiva enuncia $a(b+c) = ab + ac$.
+		\textit{¿Funciona cuando} $a, b, c \in \mathbb{Z}^-$?
+		Elige tres valores negativos, verifica ambos lados
+		y redacta una conclusión matemática rigurosa.
+		
+		\vspace{0.15cm}
+		Valores: $a = $ \boxfill[1.5cm]\quad
+		$b = $ \boxfill[1.5cm]\quad
+		$c = $ \boxfill[1.5cm]
+		
+		\begin{multicols}{2}
+			\textbf{Lado izquierdo} $a(b+c)$:
+			
+			\boxfilltall[7cm]{2.5cm}
+			
+			$= $ \boxfill[2cm]
+			
+			\columnbreak
+			
+			\textbf{Lado derecho} $ab + ac$:
+			
+			\boxfilltall[7cm]{2.5cm}
+			
+			$= $ \boxfill[2cm]
+		\end{multicols}
+		
+		Conclusión: \underline{\hspace{13cm}}
+		
+	\end{enumerate}
+	
+	% =============================================================
+	%  REJILLA DE AUTOCALIFICACIÓN Y REFLEXIÓN
+	% =============================================================
+	\newpage
+	\begin{tcolorbox}[enhanced, colback=valblue, colframe=valblue, arc=5pt,
+		left=8pt, right=8pt, top=5pt, bottom=5pt]
+		\color{white}\bfseries\large
+		\faClipboardCheck\quad Rejilla de Autocalificación y Reflexión Final
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{tcolorbox}[enhanced, colback=valgray, colframe=valmid, arc=4pt]
+		\small\textbf{Instrucción:} Marca con $\boldsymbol{\checkmark}$ en la columna
+		que mejor describe tu desempeño en cada indicador.
+		Sé honesto: esta rejilla es para ti, no para el docente.
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{1.8}
+		\begin{tabular}{|>{\raggedright\arraybackslash}m{8.5cm}|
+				>{\centering\arraybackslash}m{2.8cm}|
+				>{\centering\arraybackslash}m{2.8cm}|
+				>{\centering\arraybackslash}m{2.8cm}|}
+			\hline
+			\rowcolor{valdark!85}
+			\color{white}\textbf{Indicador de Desempeño} &
+			\color{white}\textbf{\faCheckCircle\;Lo logré} &
+			\color{white}\textbf{\faExclamationCircle\;En proceso} &
+			\color{white}\textbf{\faTimesCircle\;Debo repasar} \\
+			\hline
+			\rowcolor{vallightblue!50}
+			Identifico y ubico enteros en la recta numérica. & & & \\
+			\hline
+			Calculo el valor absoluto de un entero. & & & \\
+			\hline
+			\rowcolor{vallightblue!50}
+			Aplico la regla de signos en la multiplicación
+			(dos factores). & & & \\
+			\hline
+			Multiplico tres o más enteros usando conteo
+			de signos negativos. & & & \\
+			\hline
+			\rowcolor{vallightblue!50}
+			Aplico la regla de signos en la división. & & & \\
+			\hline
+			Relaciono la multiplicación y la división como
+			operaciones inversas. & & & \\
+			\hline
+			\rowcolor{vallightblue!50}
+			Identifico las propiedades de la multiplicación
+			y sé cuáles NO tiene la división. & & & \\
+			\hline
+			Resuelvo operaciones combinadas respetando
+			la jerarquía. & & & \\
+			\hline
+			\rowcolor{vallightblue!50}
+			Modelo situaciones reales con estas operaciones. & & & \\
+			\hline
+			Explico y justifico mis procedimientos con
+			lenguaje matemático. & & & \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.4cm}
+	
+	\begin{tcolorbox}[enhanced, colback=vallightgreen, colframe=valgreen, arc=4pt,
+		title={\bfseries\color{white}\faComments\;Reflexión Final},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valgreen, sharp corners}]
+		
+		\textbf{¿Cuál fue el concepto más difícil de esta unidad?}
+		
+		\vspace{0.1cm}
+		\underline{\hspace{14.5cm}}
+		
+		\vspace{0.4cm}
+		
+		\textbf{¿Qué estrategia usaste para superar esa dificultad?}
+		
+		\vspace{0.1cm}
+		\underline{\hspace{14.5cm}}
+		
+		\vspace{0.4cm}
+		
+		\textbf{¿En qué situación real podrías aplicar lo que aprendiste hoy?}
+		
+		\vspace{0.1cm}
+		\underline{\hspace{14.5cm}}
+		
+		\vspace{0.1cm}
+		\underline{\hspace{14.5cm}}
+		
+		\vspace{0.4cm}
+		
+		\textbf{¿Cómo calificarías tu nivel de autonomía durante esta TAU?}
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=0.88]
+				% Nodo 1 — Necesite ayuda constante
+				\node[draw=valred, fill=valred!15, rounded corners=5pt,
+				minimum width=3.2cm, minimum height=1.8cm,
+				align=center, font=\small\bfseries,
+				line width=1.5pt] at (3.3,0)
+				{Necesit\'{e}\\ ayuda\\ constante};
+				\node[valred, font=\Large\bfseries] at (3.3,1.35) {1};
+				\draw[valred, line width=1pt]
+				(1.8,-1.15) rectangle (4.8,-0.85);
+				\node[valred, font=\tiny\itshape] at (3.3,-1.0) {Marca aqu\'{i}};
+				% Nodo 2 — Necesite ayuda ocasional
+				\node[draw=valorange, fill=valorange!15, rounded corners=5pt,
+				minimum width=3.2cm, minimum height=1.8cm,
+				align=center, font=\small\bfseries,
+				line width=1.5pt] at (7.0,0)
+				{Necesit\'{e}\\ ayuda\\ ocasional};
+				\node[valorange, font=\Large\bfseries] at (7.0,1.35) {2};
+				\draw[valorange, line width=1pt]
+				(5.5,-1.15) rectangle (8.5,-0.85);
+				\node[valorange, font=\tiny\itshape] at (7.0,-1.0) {Marca aqu\'{i}};
+				% Nodo 3 — Trabaje con pocas dudas
+				\node[draw=valblue, fill=valblue!15, rounded corners=5pt,
+				minimum width=3.2cm, minimum height=1.8cm,
+				align=center, font=\small\bfseries,
+				line width=1.5pt] at (10.7,0)
+				{Trabaj\'{e}\\ con pocas\\ dudas};
+				\node[valblue, font=\Large\bfseries] at (10.7,1.35) {3};
+				\draw[valblue, line width=1pt]
+				(9.2,-1.15) rectangle (12.2,-0.85);
+				\node[valblue, font=\tiny\itshape] at (10.7,-1.0) {Marca aqu\'{i}};
+				% Nodo 4 — Trabaje autonomamente
+				\node[draw=valgreen, fill=valgreen!15, rounded corners=5pt,
+				minimum width=3.2cm, minimum height=1.8cm,
+				align=center, font=\small\bfseries,
+				line width=1.5pt] at (14.4,0)
+				{Trabaj\'{e} de\\ forma muy\\ aut\'{o}noma};
+				\node[valgreen, font=\Large\bfseries] at (14.4,1.35) {4};
+				\draw[valgreen, line width=1pt]
+				(12.9,-1.15) rectangle (15.9,-0.85);
+				\node[valgreen, font=\tiny\itshape] at (14.4,-1.0) {Marca aqu\'{i}};
+			\end{tikzpicture}
+		\end{center}
+	\end{tcolorbox}
+	
+	\vspace{0.4cm}
+	
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=valblue, colframe=valblue, arc=6pt,
+			width=0.72\textwidth, left=8pt, right=8pt, top=5pt, bottom=5pt]
+			\centering\color{white}\bfseries
+			{\large\faStar\quad
+				¡Felicitaciones por completar esta TAU!\quad\faStar}\\[5pt]
+			{\small Liceo V.A.L. — ``Hacia un aprendizaje significativo,
+				autónomo y en libertad''}
+		\end{tcolorbox}
+	\end{center}
+	
+	% =============================================================
+	%  GLOSARIO MATEMÁTICO
+	% =============================================================
+	\newpage
+	\begin{tcolorbox}[enhanced, colback=valblue, colframe=valblue, arc=5pt,
+		left=8pt, right=8pt, top=5pt, bottom=5pt]
+		\color{white}\bfseries\large
+		\faBook\quad Glosario Matemático — Términos Clave de la Unidad
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{tcolorbox}[enhanced, colback=valgray, colframe=valmid, arc=4pt]
+		\small\itshape
+		El lenguaje matemático preciso es una herramienta de pensamiento.
+		Dominar los términos te permite comunicar ideas con exactitud y leer
+		textos matemáticos avanzados sin confusión.
+	\end{tcolorbox}
+	
+	\vspace{0.4cm}
+	
+	\begin{multicols}{2}
+		
+		\begin{conceptbox}{Número Entero}
+			Elemento del conjunto
+			$\mathbb{Z} = \{\ldots,-2,-1,0,1,2,\ldots\}$.
+			Se extiende infinitamente en ambas direcciones.
+			\vspace{2pt}\\
+			\textbf{Notación:} $n \in \mathbb{Z}$\\
+			\textbf{Ej.:} $-7 \in \mathbb{Z}$,\; $+3 \in \mathbb{Z}$,\; $0 \in \mathbb{Z}$
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Valor Absoluto}
+			Distancia de un entero al cero en la recta
+			numérica. Siempre es $\geq 0$.
+			\vspace{2pt}\\
+			\textbf{Notación:} $|n|$\\
+			\textbf{Ej.:} $|-5|=5$,\; $|+3|=3$,\; $|0|=0$\\
+			\textbf{Propiedad:} $|n| = |-n|$
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Factor}
+			Cada uno de los números que se multiplican
+			en un producto.
+			\vspace{2pt}\\
+			\textbf{Ej.:} En $(-3)\times(+7)$,\;
+			los factores son $-3$ y $+7$.
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Producto}
+			Resultado de una multiplicación.
+			\vspace{2pt}\\
+			\textbf{Ej.:} En $(-3)\times(+7) = -21$,\;
+			el producto es $-21$.
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Dividendo}
+			El número que se divide (el que se reparte).
+			\vspace{2pt}\\
+			\textbf{Ej.:} En $\dfrac{-48}{6}$,\;
+			el dividendo es $-48$.
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Divisor}
+			El número por el cual se divide.
+			\vspace{2pt}\\
+			\textbf{Ej.:} En $\dfrac{-48}{6}$,\;
+			el divisor es $6$.\\
+			\textbf{Restricción:} Divisor $\neq 0$.
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Cociente}
+			Resultado de una división exacta.
+			\vspace{2pt}\\
+			\textbf{Ej.:} En $(-48)\div 6 = -8$,\;
+			el cociente es $-8$.\\
+			\textbf{Verificación:} $6\times(-8)=-48$\;\checkmark
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Operaciones Inversas}
+			Dos operaciones que se ``deshacen''
+			mutuamente. Multiplicación y división
+			son inversas:
+			\vspace{2pt}\\
+			$a\times b = c \;\Leftrightarrow\; c\div b = a$
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Propiedad Conmutativa}
+			El orden de los factores no altera
+			el producto:
+			\vspace{2pt}\\
+			$a \times b = b \times a$\\
+			\textbf{Ojo:} La división \textbf{NO} es conmutativa.
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Propiedad Asociativa}
+			Al agrupar tres factores de distinta
+			manera, el producto no cambia:
+			\vspace{2pt}\\
+			$(a \times b)\times c = a\times(b\times c)$\\
+			\textbf{Ojo:} La división \textbf{NO} es asociativa.
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Propiedad Distributiva}
+			La multiplicación se distribuye sobre
+			la suma (y la resta):
+			\vspace{2pt}\\
+			$a(b+c) = ab + ac$\\
+			\textbf{Ojo:} No aplica para el divisor.
+		\end{conceptbox}
+		
+		\begin{conceptbox}{Jerarquía de Operaciones}
+			Orden obligatorio para evaluar expresiones:
+			\vspace{2pt}\\
+			1.	extsuperscript{o} Paréntesis (más internos primero)\\
+			2.	extsuperscript{o} Potencias y raíces\\
+			3.	extsuperscript{o} $\times$ y $\div$ (izq. a der.)\\
+			4.	extsuperscript{o} $+$ y $-$ (izq. a der.)
+		\end{conceptbox}
+		
+	\end{multicols}
+	
+	\vspace{0.3cm}
+	
+	%% ── Diagrama semántico ─────────────────────────────────────
+	\begin{center}
+		\begin{tikzpicture}[
+			termnode/.style={draw=#1, fill=#1!12, rounded corners=6pt,
+				minimum width=3.2cm, minimum height=0.9cm,
+				align=center, font=\small\bfseries,
+				line width=1.5pt, text width=3cm},
+			rel/.style={-{Stealth[scale=1.2]}, line width=1.4pt, #1}
+			]
+			% Nodo central
+			\node[termnode=valblue, fill=valblue!80, text=white,
+			minimum width=3.8cm] (INT) at (0,0)
+			{$\mathbb{Z}$\\Números Enteros};
+			
+			% Operaciones
+			\node[termnode=valgreen]  (MUL) at (-5, 0)  {Multiplicación\\$a \times b$};
+			\node[termnode=valorange] (DIV) at ( 5, 0)  {División\\$a \div b$};
+			
+			% Partes
+			\node[termnode=valblue]   (FAC) at (-7.5,-2.3) {Factores};
+			\node[termnode=valblue]   (PRO) at (-2.5,-2.3) {Producto};
+			\node[termnode=valorange] (DVD) at ( 2.5,-2.3) {Dividendo};
+			\node[termnode=valorange] (DVS) at ( 7.5,-2.3) {Divisor};
+			\node[termnode=valgreen]  (COC) at ( 5,-4.0)   {Cociente};
+			
+			% Propiedades
+			\node[termnode=valdark] (COM) at (-5, 2.5)
+			{Conmutativa\\Asociativa\\Distributiva};
+			\node[termnode=valred] (NOC) at (5, 2.5)
+			{NO Conmutativa\\NO Asociativa};
+			
+			% Conexiones
+			\draw[rel=valblue]  (INT.west) -- (MUL.east);
+			\draw[rel=valblue]  (INT.east) -- (DIV.west);
+			\draw[rel=valgreen] (MUL.south west) -- (FAC.north);
+			\draw[rel=valgreen] (MUL.south east) -- (PRO.north);
+			\draw[rel=valorange](DIV.south west) -- (DVD.north);
+			\draw[rel=valorange](DIV.south east) -- (DVS.north);
+			\draw[rel=valgreen, dashed] (DVS.south) -- (COC.north west);
+			\draw[rel=valgreen, dashed] (DVD.south) -- (COC.north);
+			\draw[rel=valdark]  (MUL.north) -- (COM.south);
+			\draw[rel=valred]   (DIV.north) -- (NOC.south);
+			
+			% Etiqueta de relación inversa
+			\draw[{Stealth[scale=1.2]}-{Stealth[scale=1.2]}, valblue, line width=2pt,
+			bend left=25] (-4.5,-0.15) to
+			node[below, font=\tiny\bfseries, valblue]
+			{operaciones inversas} (4.5,-0.15);
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	% =============================================================
+	%  TALLER DE PROFUNDIZACIÓN FL
+	% =============================================================
+	\newpage
+	\begin{tcolorbox}[enhanced, colback=valblue, colframe=valblue, arc=5pt,
+		left=8pt, right=8pt, top=5pt, bottom=5pt]
+		\color{white}\bfseries\large
+		\faTrophy\quad Taller de Profundización — Ruta FL
+		\quad{\small (Ejercicios de nivel superior)}
+	\end{tcolorbox}
+	
+	\vspace{0.2cm}
+	
+	\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=4pt]
+		\small Este taller es \textbf{optativo} pero altamente recomendado para la ruta FL.
+		Los ejercicios exigen razonamiento algebraico, generalización y modelación.
+		No se dan pistas: el proceso de exploración \textit{es} el aprendizaje.
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	% ── Bloque 1: Patrones y generalización ─────────────────────
+	\begin{retobox}{Bloque 1 — Patrones, Potencias y Generalización}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.},
+			leftmargin=*, itemsep=8pt]
+			
+			\item \textbf{Potencias de enteros negativos.}\;
+			Completa la tabla y formula una regla general:
+			
+			\vspace{0.3cm}
+			\begin{center}
+				\renewcommand{\arraystretch}{1.5}
+				\begin{tabular}{|>{\bfseries\centering\arraybackslash}m{3.5cm}|
+						>{\centering\arraybackslash}m{2.5cm}|
+						>{\centering\arraybackslash}m{2.5cm}|
+						>{\raggedright\arraybackslash}m{5.5cm}|}
+					\hline
+					\rowcolor{valblue!80}\color{white}\textbf{Expresión} &
+					\color{white}\textbf{Escritura larga} &
+					\color{white}\textbf{Resultado} &
+					\color{white}\textbf{Observación} \\
+					\hline
+					$(-2)^1$ & $-2$ & $-2$ & exponente impar $\to$ signo \boxfill[1.2cm]\\
+					\hline
+					$(-2)^2$ & $(-2)(-2)$ & \boxfill[1.5cm] & exponente par $\to$ signo \boxfill[1.2cm]\\
+					\hline
+					$(-2)^3$ & $(-2)(-2)(-2)$ & \boxfill[1.5cm] & \\
+					\hline
+					$(-2)^4$ & & \boxfill[1.5cm] & \\
+					\hline
+					$(-2)^5$ & & \boxfill[1.5cm] & \\
+					\hline
+					$(-2)^6$ & & \boxfill[1.5cm] & \\
+					\hline
+					\rowcolor{vallightorange}
+					$(-2)^{n}$, $n$ par & --- & \boxfill[1.5cm] & Regla general \\
+					\hline
+					\rowcolor{vallightorange}
+					$(-2)^{n}$, $n$ impar & --- & \boxfill[1.5cm] & Regla general \\
+					\hline
+				\end{tabular}
+			\end{center}
+			
+			\vspace{0.3cm}
+			\textbf{Fórmula general:}\quad
+			$(-a)^n = $ \boxfill[3.5cm]\quad si $n$ es \underline{\hspace{2cm}}, y\quad
+			$(-a)^n = $ \boxfill[3.5cm]\quad si $n$ es \underline{\hspace{2cm}}.
+			
+			\vspace{0.3cm}
+			
+			\item \textbf{Diferencia importante — analiza y concluye:}
+			
+			\vspace{0.15cm}
+			Calcula $(-3)^2$ y $-(3^2)$. ¿Son iguales? Justifica algebraicamente.
+			
+			\vspace{0.15cm}
+			$(-3)^2 = $ \boxfill[2cm]\qquad $-(3^2) = $ \boxfill[2cm]\qquad
+			¿Iguales?: \boxfill[1.2cm]
+			
+			\vspace{0.15cm}
+			Justificación: \underline{\hspace{11cm}}
+			
+			\vspace{0.3cm}
+			
+			\item \textbf{Generalización:}\; Determina el signo (sin calcular el módulo) de:
+			
+			\begin{multicols}{3}
+				\begin{itemize}[label={\color{valblue}\faChevronRight}]
+					\item $(-1)^{100}$\quad\boxfill[1.3cm]
+					\item $(-1)^{201}$\quad\boxfill[1.3cm]
+					\item $(-2)^{50}$\quad\boxfill[1.3cm]
+					\item $(-3)^{15}$\quad\boxfill[1.3cm]
+					\item $(-7)^{0}$\quad\boxfill[1.3cm]
+					\item $(-5)^{1000}$\quad\boxfill[1.3cm]
+				\end{itemize}
+			\end{multicols}
+			
+		\end{enumerate}
+	\end{retobox}
+	
+	\vspace{0.3cm}
+	
+	% ── Bloque 2: Álgebra con enteros ───────────────────────────
+	\begin{retobox}{Bloque 2 — Razonamiento Algebraico}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.},
+			leftmargin=*, itemsep=10pt]
+			
+			\item \textbf{Ecuaciones con enteros.}\;
+			Encuentra el valor de $n$ en cada caso. Muestra el procedimiento:
+			
+			\begin{multicols}{2}
+				\begin{enumerate}[label=\textcolor{valdark}{\bfseries\alph*.}]
+					\item $(-8)\times n = +64$
+					
+					\boxfilltall[7cm]{2cm}
+					$n = $ \boxfill[2cm]
+					
+					\item $n \div (-7) = -9$
+					
+					\boxfilltall[7cm]{2cm}
+					$n = $ \boxfill[2cm]
+					
+					\item $(-5)\times n \times (-3) = -60$
+					
+					\boxfilltall[7cm]{2.2cm}
+					$n = $ \boxfill[2cm]
+					
+					\item $\dfrac{+180}{n} = -12$
+					
+					\boxfilltall[7cm]{2.2cm}
+					$n = $ \boxfill[2cm]
+				\end{enumerate}
+			\end{multicols}
+			
+			\vspace{0.3cm}
+			
+			\item \textbf{Argumento de paridad.}\;
+			Sea $n$ cualquier número entero. Responde \textbf{con justificación rigurosa}:
+			
+			\begin{enumerate}[label=\textcolor{valdark}{\bfseries\alph*.}]
+				\item ¿Puede $n \times (-n)$ ser positivo? ¿Cuándo?
+				
+				\vspace{0.1cm}
+				\underline{\hspace{14.5cm}}
+				
+				\item ¿Qué condición debe tener $n$ para que
+				$n \times n \times n$ sea positivo?
+				
+				\vspace{0.1cm}
+				\underline{\hspace{14.5cm}}
+				
+				\item Si $a \times b > 0$ (positivo), ¿qué puedes concluir sobre
+				los signos de $a$ y $b$? ¿Hay una única posibilidad?
+				
+				\vspace{0.1cm}
+				\underline{\hspace{14.5cm}}
+				\underline{\hspace{14.5cm}}
+			\end{enumerate}
+			
+		\end{enumerate}
+	\end{retobox}
+	
+	\vspace{0.3cm}
+	
+	% ── Bloque 3: Modelación avanzada ───────────────────────────
+	\begin{retobox}{Bloque 3 — Modelación e Interpretación}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.},
+			leftmargin=*, itemsep=10pt]
+			
+			\item \textbf{El termómetro y las variaciones.}
+			
+			\begin{minipage}{0.30\textwidth}
+				\begin{center}
+					\begin{tikzpicture}[scale=0.6]
+						% Cuerpo del termómetro
+						\fill[gray!20, rounded corners=4pt] (-0.5,-6.5) rectangle (0.5,5.5);
+						\draw[gray!60, line width=1.5pt, rounded corners=4pt]
+						(-0.5,-6.5) rectangle (0.5,5.5);
+						% Bulbo
+						\fill[valred!80] (0,-6.5) circle (0.8);
+						\draw[valred!60, line width=1.5pt] (0,-6.5) circle (0.8);
+						% Columna de mercurio (hasta -10{^\circ}C)
+						\fill[valred!70] (-0.28,-6.5) rectangle (0.28, -4.5);
+						% Marcas de temperatura
+						\foreach \y/\t in {
+							5/30, 4/20, 3/10, 2/0, 1/-10, 0/-20, -1/-30, -2/-40,
+							-3/-50, -4/-60} {
+							\draw[valdark, line width=0.8pt] (0.3,\y) -- (0.5,\y);
+							\draw[valdark, line width=0.5pt] (0.3,\y+0.5) -- (0.42,\y+0.5);
+							\node[right, font=\tiny, valdark] at (0.55,\y) {$\t{^\circ}$};
+						}
+						% Etiqueta actual
+						\draw[valblue, line width=1.5pt, dashed] (-0.7,-4.5) -- (0.7,-4.5);
+						\node[left, font=\tiny\bfseries, valblue] at (-0.8,-4.5) {?};
+						% Eje
+						\draw[valblue, line width=1.5pt] (0,-5.7) -- (0,5.5);
+					\end{tikzpicture}
+				\end{center}
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.66\textwidth}
+				Una ciudad registra una temperatura inicial de $-10{^\circ}C$.
+				Durante 4 horas consecutivas, la temperatura baja $3{^\circ}C$
+				por hora. Luego, en las siguientes 6 horas, sube $5{^\circ}C$ por hora.
+				
+				\vspace{0.3cm}
+				\textbf{a)} Modela el descenso total de las 4 horas con un producto:
+				
+				\vspace{0.1cm}
+				Operación: \underline{\hspace{4cm}} $=$ \boxfill[2cm]
+				
+				\vspace{0.2cm}
+				\textbf{b)} Temperatura al cabo de las primeras 4 horas:
+				
+				\vspace{0.1cm}
+				$-10 + (\underline{\quad}) = $ \boxfill[2cm]
+				
+				\vspace{0.2cm}
+				\textbf{c)} Modela el ascenso total de las 6 horas:
+				
+				\vspace{0.1cm}
+				Operación: \underline{\hspace{4cm}} $=$ \boxfill[2cm]
+				
+				\vspace{0.2cm}
+				\textbf{d)} Temperatura final:
+				
+				\vspace{0.1cm}
+				$(\underline{\quad}) + (\underline{\quad}) = $ \boxfill[2cm]
+				
+				\vspace{0.2cm}
+				\textbf{e)} ¿Cuántos grados y en qué sentido cambió la
+				temperatura respecto al inicio?
+				
+				\vspace{0.1cm}
+				\underline{\hspace{6.5cm}}
+			\end{minipage}
+			
+			\vspace{0.4cm}
+			
+			\item \textbf{Análisis de deuda y ganancia.}
+			
+			Una pequeña empresa registra los siguientes resultados:
+			\begin{itemize}[label={\color{valblue}\faCircle}, leftmargin=1.5cm]
+				\item Semanas 1 a 4: pierde \$35.000 por semana.
+				\item Semanas 5 a 8: gana \$28.000 por semana.
+				\item Semana 9: recupera exactamente la mitad de las
+				pérdidas totales de las primeras 4 semanas.
+			\end{itemize}
+			
+			\vspace{0.3cm}
+			\textbf{a)} Pérdida total semanas 1–4:
+			\underline{\hspace{4cm}} $=$ \boxfill[2.5cm]
+			
+			\vspace{0.15cm}
+			\textbf{b)} Ganancia total semanas 5–8:
+			\underline{\hspace{4cm}} $=$ \boxfill[2.5cm]
+			
+			\vspace{0.15cm}
+			\textbf{c)} Resultado semana 9:
+			\underline{\hspace{4cm}} $=$ \boxfill[2.5cm]
+			
+			\vspace{0.15cm}
+			\textbf{d)} Resultado neto al cabo de las 9 semanas:
+			
+			\vspace{0.1cm}
+			Modelo completo: \underline{\hspace{9cm}}
+			
+			\boxfilltall[14cm]{2.5cm}
+			
+			Resultado neto $=$ \boxfill[3cm]
+			
+			\vspace{0.15cm}
+			\textbf{e)} Interpreta el signo del resultado neto en contexto:
+			
+			\underline{\hspace{14.5cm}}
+			
+		\end{enumerate}
+	\end{retobox}
+	
+	\vspace{0.3cm}
+	
+	% ── Bloque 4: Construcción de conocimiento ──────────────────
+	\begin{retobox}{Bloque 4 — Construcción de Conocimiento Nuevo}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries\arabic*.},
+			leftmargin=*, itemsep=10pt]
+			
+			\item \textbf{Descubre la ley de anulación por ti mismo.}
+			
+			La \textit{ley de anulación del producto} dice:
+			si $a \cdot b = 0$, entonces $a=0$ \textbf{o} $b=0$.
+			
+			\vspace{0.15cm}
+			\textbf{Pruébala:} Supón que $a \cdot b = 0$ y que $a \neq 0$.
+			Divide ambos lados entre $a$. ¿Qué obtienes?
+			
+			\vspace{0.15cm}
+			\underline{\hspace{14.5cm}}
+			\underline{\hspace{14.5cm}}
+			
+			\vspace{0.2cm}
+			Ahora responde: si $(-5)\times n = 0$, ¿qué vale $n$?
+			\quad\boxfill[2cm]\quad ¿Hay otra posibilidad? \boxfill[1.5cm]
+			
+			\vspace{0.3cm}
+			
+			\item \textbf{El signo en expresiones con variables.}
+			
+			Determina el signo del resultado de cada expresión
+			\textbf{solo con la información dada}, sin valores numéricos.
+			Si no es posible determinarlo, escribe ``\textit{indeterminado}''
+			y explica por qué.
+			
+			\begin{enumerate}[label=\textcolor{valdark}{\bfseries\alph*.}]
+				\item $a < 0$,\; $b > 0$:\qquad
+				$a \times b =$ \boxfill[1.8cm]\qquad
+				$a \div b =$ \boxfill[1.8cm]\qquad
+				$b \div a =$ \boxfill[1.8cm]
+				
+				\item $a < 0$,\; $b < 0$:\qquad
+				$a \times b =$ \boxfill[1.8cm]\qquad
+				$a \div b =$ \boxfill[1.8cm]\qquad
+				$(a\times b)\div a =$ \boxfill[1.8cm]
+				
+				\item $a < 0$,\; $b$ desconocido:\qquad
+				$a \times b =$ \boxfill[1.8cm]\qquad
+				¿Por qué?: \underline{\hspace{5cm}}
+				
+				\item $a \cdot b < 0$:\; ¿Qué combinaciones de signos son posibles?
+				
+				\underline{\hspace{14.5cm}}
+			\end{enumerate}
+			
+		\end{enumerate}
+	\end{retobox}
+	
+	% =============================================================
+	%  CLAVE DE RESPUESTAS (PARA EL DOCENTE)
+	% =============================================================
+	\newpage
+	\begin{tcolorbox}[enhanced, colback=valdark, colframe=valdark, arc=5pt,
+		left=8pt, right=8pt, top=5pt, bottom=5pt]
+		\color{white}\bfseries\large
+		\faKey\quad Clave de Respuestas — Uso Exclusivo del Docente
+	\end{tcolorbox}
+	
+	\vspace{0.2cm}
+	
+	\begin{tcolorbox}[enhanced, colback=vallightred, colframe=valred, arc=4pt]
+		\small\bfseries
+		Este material es orientativo para la revisión y retroalimentación.
+		Las justificaciones del estudiante pueden variar siempre que sean
+		matemáticamente correctas.
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Misión 1 ───────────────────────────────────────────────
+	\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue,
+		title={\color{white}\bfseries Misión 1 — Calentamiento},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valblue, sharp corners}]
+		
+		\textbf{Ej. 2 — Valor absoluto:}
+		$17;\; 31;\; 200;\; 0;\; 1;\; 99;\; 45;\; 12$
+		
+		\vspace{4pt}
+		\textbf{Ej. 3 — Orden:}
+		$-11,\; -7,\; -3,\; -1,\; 0,\; 2,\; 5,\; 8$
+		
+		\vspace{4pt}
+		\textbf{Ej. 4:}
+		a) V ($8>6$)\quad b) V\quad c) F ($-5 < -2$)\quad d) F (el v.a. es $+7$)
+		
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Misión 2 ───────────────────────────────────────────────
+	\begin{tcolorbox}[enhanced, colback=vallightgreen, colframe=valgreen,
+		title={\color{white}\bfseries Misión 2 — Descubrimiento de Signos},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valgreen, sharp corners}]
+		
+		\textbf{Actividad 1 — patrón $5\times n$:}\;
+		$-5;\; -10;\; -15;\; -20$\quad
+		Conclusión: positivo $\times$ negativo $= \boldsymbol{negativo}$
+		
+		\vspace{4pt}
+		\textbf{Actividad 2 — patrón $(-4)\times n$:}\;
+		$+4;\; +8;\; +12;\; +16$\quad
+		Conclusión: negativo $\times$ negativo $= \boldsymbol{positivo}$
+		
+		\vspace{4pt}
+		\textbf{Actividad 3 — tabla de signos:}\;
+		$(+)(+)=+$;\; $(+)(-)=-$;\; $(-)(+)=-$;\; $(-)(-)=+$
+		
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Misión 3 ───────────────────────────────────────────────
+	\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue,
+		title={\color{white}\bfseries Misión 3 — Multiplicación},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valblue, sharp corners}]
+		
+		\begin{multicols}{4}
+			\textbf{Parte A:}
+			\begin{enumerate}[label=\small\arabic*., leftmargin=*]
+				\item $-21$
+				\item $-45$
+				\item $+24$
+				\item $+88$
+				\item $-36$
+				\item $+49$
+				\item $0$
+				\item $-100$
+				\item $-78$
+				\item $+72$
+				\item $-60$
+				\item $+121$
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{4pt}
+		\textbf{Parte B:}
+		13. $3$ imp. $\Rightarrow -$;\; mód $24$;\; \textbf{$-24$}\quad
+		14. $5$ imp. $\Rightarrow -$;\; mód $1$;\; \textbf{$-1$}\quad
+		15. $2$ par $\Rightarrow +$;\; mód $24$;\; \textbf{$+24$}\quad
+		16. $4$ par $\Rightarrow +$;\; mód $60$;\; \textbf{$+60$}
+		
+		\vspace{4pt}
+		\textbf{Parte D:}
+		20. $(-3)\times 6 = -18{^\circ}C$\quad
+		21. $(-8)\times 5 = -40\,\text{m}$
+		
+		\vspace{4pt}
+		\textbf{Reto FL:}
+		a) $n = -7$\quad
+		b) No: $n\times n = n^2 \geq 0$ siempre\quad
+		c) $a$ neg. $\times$ $a$ neg. $\times$ $b$ pos. $\times$ $a$ neg. $= (+)\times(\text{neg}) = \text{neg}$
+		
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Misión 4 ───────────────────────────────────────────────
+	\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange,
+		title={\color{white}\bfseries Misión 4 — Descubrimiento División},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valorange, sharp corners}]
+		
+		$(+12)\div(-3) = -4$;\quad
+		$(-12)\div(+3) = -4$;\quad
+		$(-12)\div(-3) = +4$;\quad
+		$(+30)\div(-5) = -6$;\quad
+		$(-30)\div(-5) = +6$;\quad
+		$(-45)\div(+9) = -5$
+		
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Misión 5 ───────────────────────────────────────────────
+	\begin{tcolorbox}[enhanced, colback=vallightgreen, colframe=valgreen,
+		title={\color{white}\bfseries Misión 5 — División},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valgreen, sharp corners}]
+		
+		\begin{multicols}{4}
+			\textbf{Parte A:}
+			\begin{enumerate}[label=\small\arabic*., leftmargin=*]
+				\item $-5$
+				\item $-7$
+				\item $+8$
+				\item $+20$
+				\item $-12$
+				\item $0$
+				\item $-11$
+				\item $+12$
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{4pt}
+		\textbf{Parte C:}
+		11. $(-240.000)\div 12 = -20.000$\, (pérdida de \$20.000/mes)\quad
+		12. $(-60)\div 12 = -5$\, (5 pisos por minuto hacia abajo)
+		
+		\vspace{4pt}
+		\textbf{Reto:}
+		a) $n = (-8)\times(-6) = +48$\quad
+		b) En $(+)\div(-)$, el resultado es negativo; en $(+)\div(+)$, positivo.
+		El cambio de signo del divisor invierte el signo del cociente,
+		independientemente del orden.
+		
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Misión 6 ───────────────────────────────────────────────
+	\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue,
+		title={\color{white}\bfseries Misión 6 — Operaciones Combinadas},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valblue, sharp corners}]
+		
+		\textbf{1.} $(-15)+(-5) = -20$\quad
+		\textbf{2.} $(-5)(-2) - 2 = 10-2 = +8$\quad
+		\textbf{3.} $\{(-10-10)\div(-4)\}+9 = \{(-20)\div(-4)\}+9 = 5+9 = +14$\quad
+		\textbf{4.} $(-4)\{(-4)\div(-2)\} - 9 = (-4)(2)-9 = -8-9 = -17$
+		
+		\vspace{4pt}
+		\textbf{Reto 1:} $x = +7$\quad ($-4x = -10-18 = -28 \Rightarrow x = 7$)
+		
+		\textbf{Reto 2:}
+		Pérdida feb.: $5\times(-50.000) = -250.000$;\;
+		Recuperación mar.: $3\times(+50.000) = +150.000$;\;
+		Neto: $180.000 + (-250.000) + 150.000 = +80.000$
+		
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	%% ── Autoevaluación ─────────────────────────────────────────
+	\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange,
+		title={\color{white}\bfseries Autoevaluación Final},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valorange, sharp corners}]
+		
+		\textbf{Parte 1:}\; 1-b)\; 2-b)\; 3-b) ($-24$)\; 4-b)
+		
+		\vspace{4pt}
+		\textbf{Parte 2, ej.1:}\;
+		a) $-120$\quad b) $-11$\quad c) $+81$
+		
+		\vspace{4pt}
+		\textbf{Parte 2, ej.2:}\;
+		$\{[(-28)+50]\div(-2)\}\times(-3)+15 =
+		\{22\div(-2)\}\times(-3)+15 =
+		(-11)(-3)+15 = 33+15 = \mathbf{+48}$
+		
+		\vspace{4pt}
+		\textbf{Parte 2, ej.3:}\;
+		Bajada: $(-4)\times 6 = -24$\,m;\;
+		Subida: $(+7)\times 3 = +21$\,m;\;
+		Cambio neto: $-24+21 = \mathbf{-3}$\,m (el nivel bajó 3 m).
+		
+		\vspace{4pt}
+		\textbf{Taller — Bloque 1:}\;
+		$(-2)^2=4;\; (-2)^3=-8;\; (-2)^4=16;\; (-2)^5=-32;\; (-2)^6=64$\;|\;
+		$(-3)^2=9$;\; $-(3^2)=-9$;\; \textbf{no son iguales}
+		
+		$(-1)^{100}=+1;\; (-1)^{201}=-1;\; (-2)^{50}=+$;\; $(-3)^{15}=-$;\;
+		$(-7)^0=+1;\; (-5)^{1000}=+$
+		
+	\end{tcolorbox}
+	
+	\vspace{0.5cm}
+	
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=valdark, colframe=valdark, arc=5pt,
+			width=0.8\textwidth]
+			\centering\color{white}\bfseries
+			\faGraduationCap\quad
+			LICEO V.A.L. \textbar\ Área de Matemáticas \textbar\
+			Ruta FL — Versión 1.0\\[4pt]
+			{\small\normalfont\itshape
+				``El docente diseña el camino; el estudiante recorre la distancia.''}
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}
