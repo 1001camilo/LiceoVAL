@@ -1,0 +1,980 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{array}
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usetikzlibrary{
+	tikzmark, arrows.meta, shapes.geometric, decorations.pathmorphing,
+	backgrounds, patterns, calc, positioning, matrix,
+	shapes.multipart, fit, shadows.blur, decorations.markings
+}
+\definecolor{valblue}       {RGB}{0,   74,  153}
+\definecolor{valgreen}      {RGB}{0,  153,   76}
+\definecolor{valred}        {RGB}{204,   0,    0}
+\definecolor{valdark}       {RGB}{ 30,  30,   30}
+\definecolor{valorange}     {RGB}{230, 115,    0}
+\definecolor{vallightblue}  {RGB}{220, 235,  255}
+\definecolor{vallightgreen} {RGB}{220, 255,  235}
+\definecolor{vallightred}   {RGB}{255, 220,  220}
+\definecolor{vallightorange}{RGB}{255, 240,  215}
+\definecolor{valgray}       {RGB}{248, 248,  248}
+\definecolor{valmid}        {RGB}{190, 190,  190}
+\definecolor{boxbg}         {RGB}{245, 245,  245}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[most]{tcolorbox}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,
+		keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+\newtcolorbox{Recuerda}[1]{breakable, colback=valgray!5, colframe=valgray!70!black,
+	title={\ding{111}\;\textbf{Para recordar: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{concepto}[1]{breakable, colback=valblue!5, colframe=valblue,
+	title={\ding{111}\;\textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{breakable, colback=valorange!5, colframe=valorange,
+	title={\ding{51}\;\textbf{El Truco: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{breakable, colback=valgreen!5, colframe=valgreen,
+	title={\ding{45}\;\textbf{Ejemplo}}, arc=2mm, boxrule=1pt}
+\newenvironment{practica}[1]{%
+	\vspace{0.5cm}
+	\noindent{\Large\textbf{\textcolor{valblue}{\ding{46}\;¡Tu Turno! (#1)}}}
+	\vspace{0.1cm}\hrule\vspace{0.3cm}}{\vspace{0.3cm}}
+\newtcolorbox{espaciotrabajo}[1]{breakable, colback=white, colframe=valdark!40,
+	title={\small\textbf{Espacio de Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90, top=2mm, bottom=2mm}
+\newtcolorbox{espaciotrabajonb}[1]{colback=white, colframe=valdark!40,
+	title={\small\textbf{Espacio de Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90, top=2mm, bottom=2mm}
+
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!60,
+	colback=boxbg, boxrule=0.8pt, arc=1mm, boxsep=3pt,
+	left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxstep}[1][2cm]{\tcbox[on line, size=minimal, colframe=valdark!40,
+	colback=white, boxrule=0.8pt, arc=1mm, boxsep=3pt,
+	left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+\setlength{\columnseprule}{0.4pt}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% ----- PORTADA -----
+\begin{center}
+	{\Huge\textbf{LICEO V.A.L.}}\\[0.5cm]
+	{\LARGE\textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+	{\Large\textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+	\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+		\centering\Huge\textbf{UNIDAD 13}\\[0.2cm]
+		\Large\textbf{Introducción al Álgebra}\\[0.2cm]
+		\large Variables, Expresiones y Simplificación
+	\end{tcolorbox}
+	\vspace{0.6cm}
+	\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+		\centering\vspace{0.3cm}
+		\textbf{Nombre del Estudiante:}\\[0.3cm]
+		\underline{\hspace{9cm}}\\[0.5cm]
+		\textbf{Código:}\;\underline{06M-13 FL}\hspace{1cm}\textbf{Año:}\;\underline{2026}
+		\vspace{0.3cm}
+	\end{tcolorbox}
+	\vspace{0.8cm}
+	\textit{``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+\end{center}
+
+%\newpage
+
+% =========================================================
+%  MISIÓN 1 — VARIABLES, CONSTANTES Y PROPIEDADES
+% =========================================================
+\section*{Misión 1: Variables, Constantes y Propiedades}
+
+\begin{concepto}{Variables y Constantes}
+	El \textbf{Álgebra} usa \textbf{letras} para representar cantidades desconocidas
+	o que cambian. Esas letras se llaman \textbf{variables}. Los números fijos se llaman
+	\textbf{constantes}. El número que multiplica a una variable se llama \textbf{coeficiente}.
+
+	\vspace{0.3cm}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw=valblue, fill=vallightblue, rounded corners=8pt,
+				minimum width=5.5cm, minimum height=2.4cm, align=center,
+				font=\bfseries, line width=2pt, text width=5.2cm] at (0,0)
+			{\color{valblue}VARIABLE\\[5pt]
+				\normalfont\small Letra que representa un número desconocido o cambiante.\\[3pt]
+				Ej: $x$,\; $y$,\; $n$,\; $a$,\; $t$};
+			\node[draw=valorange, fill=vallightorange, rounded corners=8pt,
+				minimum width=5.5cm, minimum height=2.4cm, align=center,
+				font=\bfseries, line width=2pt, text width=5.2cm] at (7,0)
+			{\color{valorange}CONSTANTE\\[5pt]
+				\normalfont\small Número fijo que no cambia.\\[3pt]
+				Ej: $5$,\; $-3$,\; $100$,\; $\frac{1}{2}$};
+			\draw[-{Stealth[scale=1.3]}, valdark, line width=2pt](2.85,0)--(4.15,0)
+			node[midway, above, font=\small\bfseries]{vs.};
+		\end{tikzpicture}
+	\end{center}
+
+	\vspace{0.3cm}
+	En $\mathbf{2b + 5}$:\; $b$ es la variable, $2$ es el coeficiente, $5$ es la constante.
+\end{concepto}
+
+\begin{concepto}{Propiedades con Variables}
+	\vspace{0.2cm}
+	\renewcommand{\arraystretch}{1.5}
+	%\begin{center}
+	\begin{longtable}{|m{3.5cm}|m{5cm}|m{5cm}|}
+		\hline
+		\rowcolor{valblue!20}
+		\textbf{Propiedad} & \textbf{Suma}                                                                    & \textbf{Multiplicación} \\
+		\hline
+		Conmutativa        & $a+b = b+a$                                                                      & $ab = ba$               \\
+		\hline
+		Asociativa         & $(a+b)+c = a+(b+c)$                                                              & $(ab)c = a(bc)$         \\
+		\hline
+		Identidad          & $a+0 = a$                                                                        & $1\cdot a = a$          \\
+		\hline
+		Elemento cero      & ---                                                                              & $0\cdot a = 0$          \\
+		\hline
+		División           & \multicolumn{2}{m{10.3cm}|}{$\dfrac{a}{1}=a$ \qquad $\dfrac{a}{a}=1\;(a\neq 0)$}                           \\
+		\hline
+	\end{longtable}
+\end{concepto}
+
+\begin{practica}{Variables, Constantes y Propiedades}
+
+	\textbf{A) Clasifica cada elemento de las siguientes expresiones:}
+
+	\vspace{0.3cm}
+	\renewcommand{\arraystretch}{1.65}
+	\begin{longtable}{|m{3.2cm}|m{2.6cm}|m{2.6cm}|m{2.8cm}|}
+		\hline
+		\rowcolor{valblue!15} \textbf{Expresión}  & \textbf{Variable(s)}            & \textbf{Coeficiente(s)}           & \textbf{Constante(s)}           \\
+		\hline
+		\endfirsthead
+		\hline
+		\multicolumn{4}{l}{\small\itshape \ldots\,continuación}                                                                                           \\
+		\hline
+		\rowcolor{valblue!15} \textbf{Expresión}  & \textbf{Variable(s)}            & \textbf{Coeficiente(s)}           & \textbf{Constante(s)}           \\
+		\hline
+		\endhead
+		\hline
+		\multicolumn{4}{r}{\small\itshape Continúa en la página siguiente\ldots}                                                                          \\
+		\endfoot
+		\hline
+		\endlastfoot
+		\rowcolor{valgray} \textit{Ej: } $3x - 5$ & \textcolor{valblue}{\textbf{x}} & \textcolor{valorange}{\textbf{3}} & \textcolor{valred}{\textbf{-5}} \\
+		\hline
+		$7m + 4$                                  & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$-2p + 9q$                                & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$3a - b + 12$                             & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$x - 15$                                  & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$-n$                                      & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$100$                                     & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$\frac{1}{2}r + 3$                        & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$-8k$                                     & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$5x - 3y + z$                             & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$0.5w + 7$                                & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$ab - 4$                                  & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$-6t^2 + t - 9$                           & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$4mn + 2m - n$                            & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+		\hline
+		$\pi r^2$                                 & \boxfill[2.1cm]                 & \boxfill[2.1cm]                   & \boxfill[2.3cm]                 \\
+	\end{longtable}
+
+	\vspace{0.4cm}
+	\textbf{B) Escribe la propiedad que justifica cada igualdad
+		(C = Conmutativa, A = Asociativa, I = Identidad, Z = Cero, D = División):}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: $x + 0 = x$ \tcbox[on line, size=minimal, colframe=valgreen, colback=vallightgreen!50, boxrule=0.8pt, arc=1mm, boxsep=3pt]{\textbf{I}}}
+
+	\vspace{0.3cm}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.55cm]
+			\item $5 + n = n + 5$ \hfill \boxfill[1.2cm]
+			\item $(ab)\cdot 3 = a\cdot(b\cdot 3)$ \hfill \boxfill[1.2cm]
+			\item $k \cdot 0 = 0$ \hfill \boxfill[1.2cm]
+			\item $(x+2)+y = x+(2+y)$ \hfill \boxfill[1.2cm]
+			\item $\dfrac{m}{1} = m$ \hfill \boxfill[1.2cm]
+			\item $1\cdot t = t$ \hfill \boxfill[1.2cm]
+			\item $ab = ba$ \hfill \boxfill[1.2cm]
+			\item $a + 0 = a$ \hfill \boxfill[1.2cm]
+			\item $\dfrac{x}{x} = 1\;(x\neq 0)$ \hfill \boxfill[1.2cm]
+			\item $3\cdot(4\cdot n) = (3\cdot 4)\cdot n$ \hfill \boxfill[1.2cm]
+			\item $(-7)+0 = -7$ \hfill \boxfill[1.2cm]
+			\item $0\cdot 999 = 0$ \hfill \boxfill[1.2cm]
+		\end{enumerate}
+	\end{multicols}
+\end{practica}
+
+% =========================================================
+%  MISIÓN 2 — PARTES DE UN TÉRMINO
+% =========================================================
+%\newpage
+\section*{Misión 2: Partes de un Término Algebraico}
+
+\begin{concepto}{Términos, Factores y Coeficientes}
+	Una \textbf{expresión algebraica} combina variables y números con operaciones.
+	Sus partes separadas por $+$ o $-$ son los \textbf{términos}.
+	El factor numérico de un término es su \textbf{coeficiente numérico}.
+	Un número solo, es un \textbf{término constante}.
+
+	\begin{center}
+		\begin{tikzpicture}[scale=0.93]
+			\node[font=\fontsize{36}{40}\selectfont\bfseries] at (5,0){$-5x^2$};
+			\draw[-{Stealth}, valred, line width=2pt](2.5,1.2)--(4,0)
+			node[pos=0, above left, align=center, font=\bfseries\small, valred]
+				{SIGNO\\$-$};
+			\draw[-{Stealth}, valblue, line width=2pt](5,-1.5)--(4.85,-0.5)
+			node[pos=0, below, align=center, font=\bfseries\small, valblue]
+				{COEFICIENTE\\$5$};
+			\draw[-{Stealth}, valgreen, line width=2pt](7.5,1.2)--(6.4,0.3)
+			node[pos=0, above right, align=center, font=\bfseries\small, valgreen]
+				{PARTE LITERAL\\$x^2$};
+			\draw[valdark, line width=1.5pt, rounded corners=6pt, dashed]
+			(2.0,-0.9) rectangle (8.0, 0.9);
+		\end{tikzpicture}
+	\end{center}
+
+	\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt]
+		Si no hay número delante de la letra, el coeficiente es $\mathbf{+1}$.
+		\quad Si hay solo $-$, el coeficiente es $\mathbf{-1}$.
+		\quad Un número solo es término constante.
+	\end{tcolorbox}
+\end{concepto}
+
+\begin{practica}{Partes de un término}
+
+	\textbf{A) Dada la expresión $3x^3 + 11x^2 - x + 9$, completa:}
+
+	\vspace{0.2cm}
+	Número de términos: \tcbox[on line, size=minimal, colframe=valgreen, colback=vallightgreen!50, boxrule=0.8pt, arc=1mm, boxsep=3pt]{\textbf{4}} \textbf{(Ejemplo)}
+
+	\vspace{0.3cm}
+	\renewcommand{\arraystretch}{1.6}
+	\begin{center}
+		\begin{longtable}{|m{3cm}|m{3cm}|m{4cm}|m{2.5cm}|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Término}                             & \textbf{Coeficiente}            & \textbf{Parte literal}               & \textbf{Tipo}                            \\
+			\hline
+			\rowcolor{valgray} $3x^3$ \textbf{(Ejemplo)} & \textcolor{valblue}{\textbf{3}} & \textcolor{valgreen}{\textbf{$x^3$}} & \textcolor{valorange}{\textbf{Variable}} \\
+			\hline
+			$11x^2$                                      & \boxfill[2.5cm]                 & \boxfill[3.5cm]                      & \boxfill[2cm]                            \\
+			\hline
+			$-x$                                         & \boxfill[2.5cm]                 & \boxfill[3.5cm]                      & \boxfill[2cm]                            \\
+			\hline
+			$9$                                          & \boxfill[2.5cm]                 & \boxfill[3.5cm]                      & \boxfill[2cm]                            \\
+			\hline
+		\end{longtable}
+
+		\vspace{0.4cm}
+		\textbf{B) Completa la tabla para cada término :}
+
+		\vspace{0.2cm}
+		\renewcommand{\arraystretch}{1.7}
+		\begin{longtable}{|m{3.2cm}|m{4cm}|m{3.8cm}|}
+			\hline
+			\rowcolor{valblue!15} \textbf{Término}  & \textbf{Coeficiente}              & \textbf{Parte literal}               \\
+			\hline
+			\endfirsthead
+			\hline
+			\multicolumn{3}{l}{\small\itshape \ldots\,continuación}                                                            \\
+			\hline
+			\rowcolor{valblue!15} \textbf{Término}  & \textbf{Coeficiente}              & \textbf{Parte literal}               \\
+			\hline
+			\endhead
+			\hline
+			\multicolumn{3}{r}{\small\itshape Continúa en la página siguiente\ldots}                                           \\
+			\endfoot
+			\hline
+			\endlastfoot
+			\rowcolor{valgray} \textit{Ej: }$-5x^2$ & \textcolor{valblue}{\textbf{--5}} & \textcolor{valgreen}{\textbf{$x^2$}} \\
+			\hline
+			$12n$                                   & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$-8m^3$                                 & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$y$                                     & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$-p$                                    & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$\frac{1}{2}bh$                         & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$-75t$                                  & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$27$                                    & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$6r$                                    & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$-x^2y$                                 & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$5a^2b$                                 & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$-1$                                    & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$n^4$                                   & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			\hline
+			$-9xy$                                  & \boxfill[2.5cm]                   & \boxfill[3.5cm]                      \\
+			
+		\end{longtable}
+	\end{center}
+	\newpage
+	\textbf{C) Factor, Coeficiente o Término}
+	\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt]
+		\textbf{Clave:} En general, un \textbf{término} es un producto o un cociente de números y/o \textbf{variables}. Un número o una variable sola también es un \textbf{término}. (\textbf{Los términos se separan por sumas o restas})\\[4pt]
+		Son ejemplos de términos:\\
+		$4, y, 6r, -w^3, 3.7x^5, \frac{3}{n}, -15ab^2$\\
+		Al \textbf{factor númerico} de un \textbf{término} se le llama \textbf{coeficiente} del término. Por ejemplo, el término $6r$ tiene coeficiente $6$ debido a que $6r=6\cdot r$. El coeficiente de $-15ab^2$ es $-15$ debido a que $-15ab^2 = -15 \cdot a \cdot b^2$.\\
+		Al \textbf{factor literal} de un \textbf{término} (es decir la letra o letras, que están multiplicando) se le llama \textbf{factor}. Por ejemplo, en el término $6r$, $r$ es un factor de $6r$.\\
+		
+		Pero si fuera $6+r$, $r$ sería un \textbf{término} ya que está sumando y no multiplicando.
+
+	\end{tcolorbox}
+
+	\vspace{0.3cm}
+	\textit{Escribe \textbf{T} si actúa como Término, \textbf{F} si actúa como Factor o \textbf{C} si actúa cómo coeficiente:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: En $x - 2$, la $x$ actúa como: \tcbox[on line, size=minimal, colframe=valgreen, colback=vallightgreen!50, boxrule=0.8pt, arc=1mm, boxsep=3pt]{\textbf{T}}}
+
+	\vspace{0.3cm}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+			\item En $m + 6$, la $m$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $8m$, la $m$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $n - 4$, la $n$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $5n$, el $5$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $7 + x$, la $x$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $2xy$, el $2$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $a - b + c$, la $b$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $3 \cdot k$, la $k$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $p + q \cdot r$, la $p$ actúa como: \hfill \boxfill[1.2cm]
+			\item En $p + q \cdot r$, la $r$ actúa como: \hfill \boxfill[1.2cm]
+		\end{enumerate}
+	\end{multicols}
+
+\end{practica}
+
+% =========================================================
+%  MISIÓN 3 — TRADUCCIÓN FRASES ↔ EXPRESIONES
+% =========================================================
+\newpage
+\section*{Misión 3: El Diccionario del Álgebra}
+
+\begin{concepto}{Palabras Clave para Traducir}
+	\vspace{0.2cm}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{longtable}{|m{3cm}|m{10cm}|}
+			\hline
+			\rowcolor{valblue!80}
+			\color{white}\textbf{Operación}    & \color{white}\textbf{Palabras clave} \\
+			\hline
+			\rowcolor{vallightgreen}
+			\textbf{Suma ($+$)}                &
+			la \textit{suma} de,\; \textit{más},\; sumado a,\;
+			incrementado en,\; excede,\; mayor que                                    \\
+			\hline
+			\rowcolor{vallightred}
+			\textbf{Resta ($-$)}               &
+			la \textit{diferencia} de,\; \textit{menos},\;
+			disminuido en,\; reducido en,\; restado de,\; menor que                   \\
+			\hline
+			\rowcolor{vallightblue}
+			\textbf{Multiplicación ($\times$)} &
+			el \textit{producto} de,\; \textit{veces},\;
+			el \textit{doble} ($2\times$),\; el \textit{triple} ($3\times$),\;
+			el \textit{cuádruple} ($4\times$)                                         \\
+			\hline
+			\rowcolor{vallightorange}
+			\textbf{División ($\div$)}         &
+			el \textit{cociente} de,\; dividido \textit{entre},\;
+			partes iguales,\; la \textit{razón} de                                    \\
+			\hline
+		\end{longtable}
+	\end{center}
+\end{concepto}
+
+
+\begin{tcolorbox}[enhanced, colback=vallightred, colframe=valred, arc=3pt,
+		title={\textbf{\color{white}¡CUIDADO! ``Menos que'' vs ``es menor que''}},
+		attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+		boxed title style={colback=valred, sharp corners}]
+	\vspace{4pt}
+
+	\begin{center}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|m{5.5cm}|m{5.5cm}|}
+			\hline
+			\rowcolor{vallightred}
+			\textbf{Frase}                                        & \textbf{Traducción correcta} \\
+			\hline
+			\textit{``5 \textbf{menos que} la capacidad $c$''}    &
+			$c - 5$ \quad {\small(el número grande va primero)}                                  \\
+			\hline
+			\textit{``5 \textbf{es menor que} la capacidad $c$''} &
+			$5 < c$ \quad {\small(es una desigualdad, no una resta)}                             \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\vspace{4pt}
+	\textbf{Regla:} ``$A$ menos que $B$'' $= B - A$.
+	La frase invierte el orden. Compara: ``3 menos que 10'' $= 10 - 3 = 7$. \\[3pt]
+	\textbf{No confundir} con ``$A$ es menor que $B$'' que se escribe $A < B$.
+\end{tcolorbox}
+
+\begin{practica}{Traducción bidireccional}
+
+	\textbf{A) De frase a expresión algebraica:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: ``El triple de un número $x$ aumentado en 5''$\rightarrow$ \tcbox[on line, size=minimal, colframe=valgreen, colback=vallightgreen!50, boxrule=0.8pt, arc=1mm, boxsep=3pt]{\textbf{$3x + 5$}}}
+
+	\vspace{0.3cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+		\item ``La suma de 8 y un número $n$''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		\item ``El producto de $-3$ y $x$''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		\item ``La diferencia de $m$ y 25''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		\item ``El cociente de $k$ entre 4''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		\item ``El doble de la suma de $y$ y 6''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		\item ``Un número $p$ reducido en el triple de $q$''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		\item ``La suma de la longitud $l$ y 15''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		\item ``El doble de la diferencia de $x$ y 18''
+		      \hfill $\rightarrow$ \boxfill[4.5cm]
+
+		
+	\end{enumerate}
+
+	\vspace{0.5cm}
+	\textbf{B) De expresión a frase en palabras:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: $3x - 4$ \hfill $\rightarrow$ \underline{\hspace{0.5cm}\textbf{El triple de un número $x$ disminuido en 4}\hspace{0.5cm}}}
+
+	\vspace{0.3cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm, start=9]
+		\item $x + 15$ \hfill $\rightarrow$ \underline{\hspace{7.5cm}}
+		\item $4n$     \hfill $\rightarrow$ \underline{\hspace{7.5cm}}
+		\item $\dfrac{a}{3}$ \hfill $\rightarrow$ \underline{\hspace{7.5cm}}
+		\item $2(r-10)$ \hfill $\rightarrow$ \underline{\hspace{7.5cm}}
+		\item $\dfrac{3}{4}r$ \hfill $\rightarrow$ \underline{\hspace{7.5cm}}
+		\item $t - 50$ \hfill $\rightarrow$ \underline{\hspace{7.5cm}}
+	\end{enumerate}
+
+	\vspace{0.5cm}
+	\textbf{C) Contextos reales:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: Un carro recorre $d$ km en la mañana y 50 km en la tarde. ¿Cuánto recorrió en total? \hfill \tcbox[on line, size=minimal, colframe=valgreen, colback=vallightgreen!50, boxrule=0.8pt, arc=1mm, boxsep=3pt]{\textbf{$d + 50$}}}
+
+	\vspace{0.3cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm, start=15]
+		\item Una persona heredó \$5.000 y luego depositó $d$ dólares más. ¿Cuánto tiene?
+		      \hfill \boxfill[4cm]
+
+		\item IBM fue fundada hace $a$ años. Apple fue fundada 36 años \textit{después}. Escribe la edad de Apple.
+		      \hfill \boxfill[4cm]
+
+		\item Una camioneta Hummer pesa $p$ libras y una Honda pesa 3.177 libras \textit{menos}. Escribe el peso de la Honda.
+		      \hfill \boxfill[4cm]
+
+		\item Un nadador recorre el largo de una piscina en $t$ segundos. El ancho lo hace en la mitad del tiempo. Escribe el tiempo en el ancho.
+		      \hfill \boxfill[4cm]
+	\end{enumerate}
+\end{practica}
+
+% =========================================================
+%  MISIÓN 4 — CLASIFICACIÓN POR NÚMERO DE TÉRMINOS
+% =========================================================
+%\newpage
+\section*{Misión 4: Número de Términos de una Expresión}
+
+\begin{practica}{Número de términos}
+
+	\textbf{A) Escribe el número de términos y el tipo de expresión :}
+
+	\vspace{0.3cm}
+	\renewcommand{\arraystretch}{1.75}
+	\begin{longtable}{|m{8cm}|m{3.5cm}|}
+		\hline
+		\rowcolor{valblue!15} \textbf{Expresión}    & \textbf{N.° de términos}        \\
+		\hline
+		\endfirsthead
+		\hline
+		\multicolumn{2}{l}{\small\itshape \ldots\,continuación}                       \\
+		\hline
+		\rowcolor{valblue!15} \textbf{Expresión}    & \textbf{N.° de términos}        \\
+		\hline
+		\endhead
+		\hline
+		\multicolumn{2}{r}{\small\itshape Continúa en la página siguiente\ldots}      \\
+		\endfoot
+		\hline
+		\endlastfoot
+		\rowcolor{valgray} \textit{Ej: }$2x^2-5x+3$ & \textcolor{valblue}{\textbf{3}} \\
+		\hline
+		$8p$                                        & \boxfill[2cm]                   \\
+		\hline
+		$5x - 2y$                                   & \boxfill[2cm]                   \\
+		\hline
+		$a^2 - 4a + 4$                              & \boxfill[2cm]                   \\
+		\hline
+		$-3n^3 + 2n^2 - n + 1$                      & \boxfill[2cm]                   \\
+		\hline
+		$\frac{1}{2}x + 7$                          & \boxfill[2cm]                   \\
+		\hline
+		$100$                                       & \boxfill[2cm]                   \\
+		\hline
+		$-xy$                                       & \boxfill[2cm]                   \\
+		\hline
+		$3m + 2n - 5$                               & \boxfill[2cm]                   \\
+		\hline
+		$7k^4 - k^3 + 3k^2 - k + 9$                 & \boxfill[2cm]                   \\
+		\hline
+		$-6$                                        & \boxfill[2cm]                   \\
+		\hline
+		$t^2 - 9$                                   & \boxfill[2cm]                   \\
+		\hline
+		$x^2 + 2xy + y^2$                           & \boxfill[2cm]                   \\
+		\hline
+		$4a - 4b + 4c - 4d$                         & \boxfill[2cm]                   \\
+		\hline
+		$2\pi r$                                    & \boxfill[2cm]                   \\
+		
+	\end{longtable}
+
+
+\end{practica}
+
+% =========================================================
+%  MISIÓN 6 — SIMPLIFICACIÓN DE PRODUCTOS
+% =========================================================
+%\newpage
+\section*{Misión 5: Simplificación de Productos de Monomios}
+
+\begin{concepto}{Multiplicar constante por expresión}
+	Usando las propiedades conmutativa y asociativa, agrupamos primero
+	los factores \textbf{numéricos} y dejamos la parte literal al final:
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt, width=0.85\textwidth]
+			\centering\large\bfseries
+			$8(4x) = (8\cdot4)\cdot x = \mathbf{32x}$
+			\quad\normalsize\normalfont
+			Los factores numéricos se agrupan y multiplican primero.
+		\end{tcolorbox}
+	\end{center}
+	Dos expresiones que dan el mismo resultado para \textbf{cualquier} valor de la
+	variable se llaman \textbf{expresiones equivalentes}.
+\end{concepto}
+
+\vspace{0.3cm}
+\begin{ejemplo}
+	\textbf{¿Por qué $8(4x)$ y $32x$ son expresiones equivalentes?}\\
+	Sustituye $x = 10$ en ambas y comprueba que el resultado es el mismo:
+
+	\vspace{0.2cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|m{4cm}|m{4cm}|m{4cm}|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Expresión} & \textbf{Con $x = 10$} & \textbf{Resultado} \\
+			\hline
+			$8(4x)$            & $8(4\cdot10) = 8(40)$ & $\mathbf{320}$     \\
+			\hline
+			$32x$              & $32 \cdot 10$         & $\mathbf{320}$     \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\vspace{0.2cm}
+	Ambas dan $320$ para $x=10$ --- y darán el mismo resultado
+	para \textbf{cualquier} valor de $x$.\\
+	Por eso decimos que $8(4x) = 32x$ son \textbf{expresiones equivalentes}.
+\end{ejemplo}
+
+\begin{practica}{Simplificación de productos}
+
+	\textbf{Agrupa los factores numéricos y simplifica. Muestra el paso intermedio:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: $4(8x) = (4\cdot8)x = 32x$}
+
+	\vspace{0.3cm}
+	\begin{multicols}{3}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm]
+			\item $6(5x)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)x$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $3(9a)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)a$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $(-5)(4m)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)m$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $7(-2n)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)n$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $(-3)(-8t)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)t$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $2(3)(4y)$\\
+			      $=($\boxstep[1.2cm]$)y$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $\frac{1}{2}(6k)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)k$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $(-1)(9w)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)w$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $(-4)(-4z)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)z$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $5(2x)\cdot(-1)$\\
+			      $=($\boxstep[1.2cm]$)x$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $(-2)(3s)(-3)$\\
+			      $=($\boxstep[1.2cm]$)s$\\
+			      $=$\boxfill[1.8cm]
+
+			\item $10(-5p)$\\
+			      $=($\boxstep[0.8cm]$\cdot$\boxstep[0.8cm]$)p$\\
+			      $=$\boxfill[1.8cm]
+		\end{enumerate}
+	\end{multicols}
+\end{practica}
+
+% =========================================================
+%  MISIÓN 7 — PROPIEDAD DISTRIBUTIVA
+% =========================================================
+%\newpage
+\section*{Misión 6: La Propiedad Distributiva}
+
+\begin{concepto}{Definición y uso}
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt, width=0.9\textwidth]
+			\centering\Large\bfseries
+			$a(b+c)=ab+ac$ \qquad $a(b-c)=ab-ac$
+		\end{tcolorbox}
+	\end{center}
+
+	\vspace{0.2cm}
+	\textbf{Cuidado con el signo negativo:}\quad
+	$-a(b+c)=-ab-ac$\qquad $-(b+c)=-b-c$
+
+	\vspace{0.3cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.9]
+			\node[font=\Large\bfseries] at (5,0)
+			{$5\times(3+7) = 5\cdot3+5\cdot7 = 15+35=50$};
+			\draw[-{Stealth}, valblue, line width=2pt, bend left=20]
+			(-0.5,0.4) to node[above, font=\small\bfseries, valblue]{distribuye}(1,0.4);
+			\draw[-{Stealth}, valorange, line width=2pt, bend right=30]
+			(-0.5,-0.4) to node[below, font=\small\bfseries, valorange]{distribuye}(2,-0.4);
+		\end{tikzpicture}
+	\end{center}
+\end{concepto}
+
+\begin{practica}{Propiedad Distributiva}
+
+	\textbf{Aplica la propiedad distributiva. Muestra cada producto por separado:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: $3(x+4) = 3\cdot x + 3\cdot 4 = 3x + 12$}
+
+	\vspace{0.3cm}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm]
+			\item $5(x+3)$\\
+			      $=5\cdot$\boxstep[0.8cm]$+5\cdot$\boxstep[0.8cm]\\
+			      $=$\boxfill[3cm]
+
+			\item $4(2n-7)$\\
+			      $=4\cdot$\boxstep[0.8cm]$-4\cdot$\boxstep[0.8cm]\\
+			      $=$\boxfill[3cm]
+
+			\item $-3(4x+9)$\\
+			      $=$\boxstep[1.3cm]$\cdot4x+$\boxstep[1.3cm]$\cdot9$\\
+			      $=$\boxfill[3cm]
+
+			\item $6(5m-2n)$\\
+			      $=6\cdot$\boxstep[0.8cm]$-6\cdot$\boxstep[0.8cm]\\
+			      $=$\boxfill[3cm]
+
+			\item $-2(3a-8b+1)$\\
+			      $=$\boxstep[0.8cm]$a+$\boxstep[0.8cm]$b+$\boxstep[0.8cm]\\
+			      $=$\boxfill[3cm]
+
+			\item $-(-4s-8)$\\
+			      $=(-1)($\boxstep[0.8cm]$)+(-1)($\boxstep[0.8cm]$)$\\
+			      $=$\boxfill[3cm]
+
+			
+
+			
+		\end{enumerate}
+	\end{multicols}
+\end{practica}
+
+% =========================================================
+%  MISIÓN 8 — TÉRMINOS SEMEJANTES
+% =========================================================
+%\newpage
+\section*{Misión 7: Identificación de Términos Semejantes}
+
+\begin{concepto}{¿Cuándo son semejantes?}
+	Dos términos son \textbf{semejantes} cuando tienen \textbf{exactamente la misma
+		parte literal}: misma(s) letra(s) \textit{y} mismo(s) exponente(s).
+	Solo pueden diferir en el coeficiente.
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw=valgreen, fill=vallightgreen, rounded corners=6pt,
+				minimum width=5.5cm, minimum height=2.6cm,
+				align=center, font=\bfseries\small, line width=2pt, text width=5.2cm] at (0,0)
+			{\color{valgreen}SON SEMEJANTES\\[7pt]\normalfont
+				$4x$ y $7x$\quad (ambos: $x$)\\[3pt]
+				$-10p^2$ y $25p^2$\quad (ambos: $p^2$)\\[3pt]
+				$4ab$ y $-ab$\quad (ambos: $ab$)};
+			\node[draw=valred, fill=vallightred, rounded corners=6pt,
+				minimum width=5.5cm, minimum height=2.6cm,
+				align=center, font=\bfseries\small, line width=2pt, text width=5.2cm] at (7,0)
+			{\color{valred}NO SON SEMEJANTES\\[7pt]\normalfont
+				$3x$ y $3x^2$\quad (distinto exponente)\\[3pt]
+				$5y$ y $5z$\quad (distinta letra)\\[3pt]
+				$4x$ y $7$\quad (uno sin letra)};
+		\end{tikzpicture}
+	\end{center}
+\end{concepto}
+
+\begin{practica}{Términos semejantes}
+
+	\textbf{A) Indica si cada par de términos son semejantes (S) o no (N):}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: $2a$ y $-5a$ \hfill $\rightarrow$ \tcbox[on line, size=minimal, colframe=valgreen, colback=vallightgreen!50, boxrule=0.8pt, arc=1mm, boxsep=3pt]{\textbf{S}}}
+
+	\vspace{0.3cm}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.55cm]
+			\item $3y$ \;y\; $-7y$ \hfill \boxfill[0.9cm]
+			\item $5x^2$ \;y\; $5x$ \hfill \boxfill[0.9cm]
+			\item $-10p^2$ \;y\; $25p^2$ \hfill \boxfill[0.9cm]
+			\item $4ab$ \;y\; $-ab$ \hfill \boxfill[0.9cm]
+			\item $3k$ \;y\; $3$ \hfill \boxfill[0.9cm]
+			\item $7mn$ \;y\; $-2mn$ \hfill \boxfill[0.9cm]
+			\item $x^3$ \;y\; $x^2$ \hfill \boxfill[0.9cm]
+			\item $6$ \;y\; $-11$ \hfill \boxfill[0.9cm]
+			\item $4a^2b$ \;y\; $-a^2b$ \hfill \boxfill[0.9cm]
+			\item $2xy$ \;y\; $2yx$ \hfill \boxfill[0.9cm]
+		\end{enumerate}
+	\end{multicols}
+
+	\vspace{0.4cm}
+	\textbf{B) Agrupa los términos semejantes en cada expresión:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: $2x + 5 - 3x + 1$ $\rightarrow$ Con $x$: \underline{\textbf{$2x, -3x$}}\quad Constantes: \underline{\textbf{$5, 1$}}}
+
+	\vspace{0.3cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.75cm, start=11]
+		\item $3y+4-11y+6$\\
+		      Con $y$:\;\underline{\hspace{4cm}}\quad Constantes:\;\underline{\hspace{3.5cm}}
+
+		\item $-12m^4-3m^3+2m^2-m^3$\\
+		      Con $m^4$:\;\underline{\hspace{3cm}}\; Con $m^3$:\;\underline{\hspace{3cm}}\; Con $m^2$:\;\underline{\hspace{2.5cm}}
+
+		\item $4a+3b-2a+7b-5a+1$\\
+		      Con $a$:\;\underline{\hspace{3.5cm}}\quad Con $b$:\;\underline{\hspace{3.5cm}}\quad Ctes:\;\underline{\hspace{2cm}}
+
+		\item $x^2+3x-5+2x^2-x+9-4x^2$\\
+		      Con $x^2$:\;\underline{\hspace{3cm}}\; Con $x$:\;\underline{\hspace{3cm}}\; Ctes:\;\underline{\hspace{2.5cm}}
+
+		\item $6mn-3m+2mn+5n-mn-8n$\\
+		      Con $mn$:\;\underline{\hspace{3cm}}\; Con $m$:\;\underline{\hspace{3cm}}\; Con $n$:\;\underline{\hspace{2.5cm}}
+
+		
+	\end{enumerate}
+\end{practica}
+
+% =========================================================
+%  MISIÓN 9 — SIMPLIFICACIÓN COMPLETA
+% =========================================================
+%\newpage
+\section*{Misión 8: Simplificación Completa de Expresiones}
+
+\begin{concepto}{Proceso unificado en 3 pasos}
+	\begin{enumerate}[label=\textcolor{valblue}{\bfseries Paso \arabic*.}]
+		\item \textbf{Aplica la distributiva} para eliminar paréntesis.
+		\item \textbf{Identifica y agrupa} los términos semejantes.
+		\item \textbf{Suma los coeficientes} dentro de cada grupo.
+	\end{enumerate}
+\end{concepto}
+
+\begin{practica}{Simplificación completa}
+
+	\textbf{Parte A. Agrupa y suma coeficientes:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: $5x + 2y - x + 3y = (5x - x) + (2y + 3y) = 4x + 5y$}
+
+	\vspace{0.3cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.75cm]
+		\item $8x-3x+5x$
+		      \begin{espaciotrabajo}{}
+			      Coeficientes de $x$:\; \boxstep[0.7cm]$-$\boxstep[0.7cm]$+$\boxstep[0.7cm]$=$\boxstep[0.7cm]
+			      \hfill Resultado:\;\boxfill[2.5cm]
+		      \end{espaciotrabajo}
+
+		\item $6a+4b-2a+b$
+		      \begin{espaciotrabajo}{}
+			      Con $a$:\;\boxstep[2.5cm]$\rightarrow$\boxstep[1.3cm]\quad
+			      Con $b$:\;\boxstep[2.5cm]$\rightarrow$\boxstep[1.3cm]
+			      \hfill Resultado:\;\boxfill[3.5cm]
+		      \end{espaciotrabajo}
+
+		\item $3n^2+5n-7-n^2+2n+3$
+		      \begin{espaciotrabajo}{}
+			      $n^2$:\;\boxstep[2.5cm]$\rightarrow$\boxstep[1.3cm]\quad
+			      $n$:\;\boxstep[2.5cm]$\rightarrow$\boxstep[1.3cm]\quad
+			      Cte:\;\boxstep[1.8cm]$\rightarrow$\boxstep[1.3cm]\\[0.3cm]
+			      Resultado:\;\boxfill[6cm]
+		      \end{espaciotrabajo}
+
+		\item $9m-3n+2m^2-4m+5n-m^2+1$
+		      \begin{espaciotrabajo}{}
+			      \vspace{0.2cm}\underline{\hspace{14cm}}\\[0.35cm]
+			      Resultado:\;\boxfill[6cm]
+		      \end{espaciotrabajo}
+
+		\item $4a+3b-2a+7b-5a+1$
+		      \begin{espaciotrabajo}{}
+			      \vspace{0.2cm}\underline{\hspace{14cm}}\\[0.35cm]
+			      Resultado:\;\boxfill[6cm]
+		      \end{espaciotrabajo}
+
+		
+	\end{enumerate}
+
+\end{practica}
+
+% =========================================================
+%  MISIÓN 10 — GEOMETRÍA Y RETOS FL
+% =========================================================
+%\newpage
+\section*{Misión 9: Expresiones en Geometría y Retos de Abstracción}
+
+\begin{practica}{Geometría y Modelación }
+
+	\textbf{A) Escribe y simplifica la expresión del \textit{perímetro}:}
+
+	\vspace{0.15cm}
+	\textit{Ejemplo: Para un triángulo con lados $x$, $x+2$ y $x+4$, el perímetro es $P = (x) + (x+2) + (x+4) = 3x+6$.}
+
+	\vspace{0.3cm}
+	\begin{multicols}{2}
+		\noindent\textbf{1. Triángulo:}
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[valblue, line width=2pt](0,0)--(3.5,0)--(1.75,2.3)--cycle;
+				\node[below, font=\bfseries\small, valblue] at (1.75,-0.15){$5n-2$};
+				\node[left,  font=\bfseries\small, valblue] at (0.8,1.2){$3n+1$};
+				\node[right, font=\bfseries\small, valblue] at (2.7,1.2){$4n$};
+			\end{tikzpicture}
+		\end{center}
+		\begin{espaciotrabajonb}{}
+			$P=$\boxstep[1.5cm]$+$\boxstep[1.5cm]$+$\boxstep[1.5cm]\\[0.2cm]
+			$P=$\boxfill[3.5cm]
+		\end{espaciotrabajonb}
+\newpage
+		\noindent\textbf{2. Rectángulo:}
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[valorange, line width=2pt](0,0) rectangle (3.8,2.2);
+				\node[above, font=\bfseries\small, valorange] at (1.9,2.2){$2w+3$};
+				\node[right, font=\bfseries\small, valorange] at (3.8,1.1){$w$};
+			\end{tikzpicture}
+		\end{center}
+		\begin{espaciotrabajonb}{}
+			$P=2($\boxstep[1.5cm]$)+2($\boxstep[1.2cm]$)$\\[0.2cm]
+			$P=$\boxfill[3.5cm]
+		\end{espaciotrabajonb}
+
+		\noindent\textbf{3. Cuadrado:}
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[valgreen, line width=2pt](0,0) rectangle (2.8,2.8);
+				\node[above, font=\bfseries\small, valgreen] at (1.4,2.8){$3k-1$};
+			\end{tikzpicture}
+		\end{center}
+		\begin{espaciotrabajonb}{}
+			$P=4($\boxstep[1.5cm]$)=$\boxfill[3.5cm]
+		\end{espaciotrabajonb}
+		
+		\noindent\textbf{4. Triángulo isósceles:}
+		\begin{center}
+			\begin{tikzpicture}
+				\draw[valred, line width=2pt](0,0)--(3.8,0)--(1.9,2.8)--cycle;
+				\node[below, font=\bfseries\small, valred] at (1.9,-0.15){$2x+5$};
+				\node[left,  font=\bfseries\small, valred] at (0.8,1.4){$4x-1$};
+				\node[right, font=\bfseries\small, valred] at (3.0,1.4){$4x-1$};
+			\end{tikzpicture}
+		\end{center}
+		\begin{espaciotrabajonb}{}
+			\vspace{0.2cm}\underline{\hspace{6.5cm}}\\[0.2cm]
+			$P=$\boxfill[3.5cm]
+		\end{espaciotrabajonb}
+	\end{multicols}
+\end{practica}
+
+\end{document}

@@ -1,0 +1,128 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{xcolor}
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% ==========================================
+%  CONFIGURACIÓN DE RESPUESTAS (ACTIVAR/DESACTIVAR)
+% ==========================================
+% Cambia 'true' por 'false' para ocultar las respuestas e imprimir la versión del estudiante.
+\newboolean{mostrarRespuestas}
+\setboolean{mostrarRespuestas}{false}
+
+% Comando interno para generar las cajas de solución (Corregido con [1])
+\newcommand{\solucion}[1]{
+	\ifthenelse{\boolean{mostrarRespuestas}}{
+		\vspace{0.2cm}
+		\begin{tcolorbox}[colframe=red!70!black, colback=red!5, boxrule=1pt, arc=3pt, left=5pt, right=5pt, top=5pt, bottom=5pt]
+			\textcolor{red!70!black}{\textbf{Solución de calificación:} #1}
+		\end{tcolorbox}
+	}{}
+}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.2cm] 
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.2cm] 
+		\textbf{Examen de CIENCIAS 2}\\[0.1cm] 
+		\textit{TAU 3: Entre la Luna y la Tierra} 
+	\end{center}
+	
+	\vspace{0.3cm}
+	\hfill \textbf{Código:} \textbf{L9-03 FL}\\[0.1cm]
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	\vspace{0.8cm}
+	
+
+	
+	% --- PREGUNTA 1 --- 
+	\noindent \textbf{1.} En el siglo III a.C., dos antiguos griegos lograron grandes descubrimientos astronómicos. Relaciona con una línea a cada sabio con su gran hazaña:
+	
+	\vspace{0.4cm}
+	\noindent
+	\begin{tabular}{p{0.35\textwidth} c p{0.55\textwidth}}
+		\textbf{Aristarco de Samos} & $\circ$ & Calculó la circunferencia de la Tierra al medir las sombras que daban los palos en dos ciudades distintas (Siena y Alejandría). \\[0.8cm]
+		\textbf{Eratóstenes de Cirene} & $\circ$ & Calculó el tamaño de la Luna fijándose en el tamaño de la sombra terrestre durante un eclipse lunar. \\
+	\end{tabular}
+	
+	\solucion{\textbf{Aristarco} $\rightarrow$ Calculó el tamaño de la Luna en un eclipse. \\ \textbf{Eratóstenes} $\rightarrow$ Calculó la circunferencia de la Tierra con las sombras.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 2 --- 
+	\noindent \textbf{2.} Cuando el sabio griego observó un eclipse de Luna, notó que la sombra que la Tierra proyectaba tenía una forma curva o "barrigona". ¿Qué nos demuestra esa sombra curva?
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.4cm, label={}] 
+		\item[ $\square$ ] Que el Sol es redondo y chiquito.
+		\item[ $\square$ ] Que la Tierra no es plana, sino que es redonda como una pelota.
+		\item[ $\square$ ] Que la luz del Sol viaja haciendo curvas en el espacio.
+	\end{itemize}
+	
+	\solucion{La respuesta correcta es la segunda: \textbf{Que la Tierra no es plana, sino redonda como una pelota}.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 3 --- 
+	\noindent \textbf{3.} En astronomía percibimos los tamaños de dos maneras diferentes (Real y Aparente). Marca con una \textbf{X} si la afirmación es Verdadera (V) o Falsa (F):
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.6cm, label={}] 
+		\item \textbf{A.} El tamaño \textit{real} de un objeto cambia y se hace más chiquito\\
+		 si te alejas de él. \hfill  ( \hspace{0.3cm} ) V \quad  ( \hspace{0.3cm} ) F 
+		
+		\item \textbf{B.} Según la regla del tamaño \textit{aparente}, si un objeto se aleja al triple de \\ la distancia, nosotros lo veremos tres veces más chiquito. \hfill  ( \hspace{0.3cm} ) V \quad  ( \hspace{0.3cm} ) F 
+	\end{itemize}
+	
+	\solucion{\textbf{A es Falsa} (El tamaño real de algo nunca cambia, lo que cambia es el tamaño aparente). \\ \textbf{B es Verdadera} (Al triple de distancia, se ve tres veces más chiquito).}
+	\vspace{0.5cm}
+	\newpage
+	\vspace*{1cm}
+	% --- PREGUNTA 4 --- 
+	\noindent \textbf{4.} Completa los espacios en blanco recordando el famoso cálculo de la ``cintura'' de nuestro planeta.
+	
+	\vspace{0.2cm}
+	\noindent Al comparar las sombras en las ciudades de Siena y Alejandría, los sabios descubrieron que la circunferencia total de la Tierra (darle toda la vuelta a nuestro planeta) mide \underline{\hspace{3cm}} kilómetros.
+	
+	\solucion{\textbf{40.000} kilómetros.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 5 --- 
+	\noindent \textbf{5.} En astronomía redondeamos las cifras para comprenderlas mejor. Para hacer los cálculos matemáticos más sencillos, en este TAU redondeamos la distancia de la Tierra a la Luna a \textbf{400.000 kilómetros}.\\[0.2cm]
+	Sabiendo que una sola vuelta a la Tierra mide \textbf{40.000 kilómetros}, ¿A cuántas vueltas a la Tierra equivale ese viaje en línea recta a la Luna?\\[0.2cm]
+	
+	
+	\begin{tcolorbox}[colframe=black, colback=white, height=3.5cm, width=0.9\textwidth]
+		\ifthenelse{\boolean{mostrarRespuestas}}{
+			\textcolor{red!70!black}{
+				\textbf{Operación esperada:}\\
+				$400.000 \text{ km} \div 40.000 \text{ km} = 10$\\
+				\vspace{0.2cm}\\
+				\textbf{Resultado:} El viaje a la Luna equivale a darle \textbf{10 vueltas} completas a la Tierra.}
+		}{}
+	\end{tcolorbox}
+	\vspace{0.5cm}
+	
+\end{document}
