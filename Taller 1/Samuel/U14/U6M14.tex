@@ -1,0 +1,2454 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont}
+\usepackage{fontawesome5}
+\usepackage{array}
+\usepackage{cancel}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage{comment}
+\usetikzlibrary{
+	arrows.meta, shapes.geometric, positioning, calc,
+	decorations.pathmorphing, backgrounds, fit, shadows.blur
+}
+
+% --- COLORES ---
+\definecolor{valblue}       {RGB}{0,   74,  153}
+\definecolor{valgreen}      {RGB}{0,  153,   76}
+\definecolor{valred}        {RGB}{204,   0,    0}
+\definecolor{valdark}       {RGB}{ 30,  30,   30}
+\definecolor{valorange}     {RGB}{230, 115,    0}
+\definecolor{vallightblue}  {RGB}{220, 235,  255}
+\definecolor{vallightgreen} {RGB}{220, 255,  235}
+\definecolor{vallightred}   {RGB}{255, 220,  220}
+\definecolor{vallightorange}{RGB}{255, 240,  215}
+\definecolor{valgray}       {RGB}{248, 248,  248}
+\definecolor{valmid}        {RGB}{190, 190,  190}
+\definecolor{boxbg}         {RGB}{245, 245,  245}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[most]{tcolorbox}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,
+		keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+% --- ENTORNOS INSTITUCIONALES ---
+\newtcolorbox{concepto}[1]{breakable, colback=valblue!5,
+	colframe=valblue,
+	title={\ding{111}\ Presionar aquí;\ \textbf{Aprende el Concepto: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{breakable, colback=valorange!5,
+	colframe=valorange,
+	title={\ding{51}\;\textbf{El Truco: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{breakable, colback=valgreen!5,
+	colframe=valgreen,
+	title={\ding{45}\;\textbf{Ejemplo}},
+	arc=2mm, boxrule=1pt}
+\newtcolorbox{atencion}[1]{breakable, colback=vallightred,
+	colframe=valred,
+	title={\textbf{\color{white}#1}},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valred, sharp corners},
+	arc=2mm, boxrule=1pt}
+\newenvironment{practica}[1]{%
+	\vspace{0.4cm}
+	\noindent{\Large\textbf{\textcolor{valblue}{\ding{46}\;¡Tu Turno! (#1)}}}
+	\vspace{0.1cm}\hrule\vspace{0.3cm}}{\vspace{0.3cm}}
+\newtcolorbox{espaciotrabajo}[1]{colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90,
+	top=2mm, bottom=2mm}
+\newtcolorbox{espaciotrabajonb}[1]{colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90,
+	top=2mm, bottom=2mm}
+
+% --- CASILLAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!60, colback=boxbg, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxstep}[1][2cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!40, colback=white, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+
+\setlength{\columnseprule}{0.4pt}
+
+% --- CAJAS EXTRA PARA EJEMPLOS ---
+\newtcolorbox{pasocaja}[3]{
+	enhanced, colback=#1!8, colframe=#1,
+	title={\textbf{Paso #2:} #3},
+	arc=2mm, boxrule=1.2pt, fonttitle=\normalsize,
+	left=4pt, right=4pt, top=3pt, bottom=3pt,
+	attach boxed title to top left={yshift=-2mm, xshift=4mm},
+	boxed title style={colback=#1, arc=1.5mm, sharp corners=south}}
+
+\newtcolorbox{ejemploresuelto}[1]{
+	breakable, enhanced,
+	colback=valgreen!4, colframe=valgreen,
+	title={\faCalculator\;\textbf{Ejemplo: #1}},
+	arc=3mm, boxrule=1.5pt, fonttitle=\large,
+	attach boxed title to top left={yshift=-3mm, xshift=6mm},
+	boxed title style={colback=valgreen, arc=2mm}}
+
+\newtcolorbox{minicheck}{
+	breakable,
+	colback=valorange!8, colframe=valorange,
+	title={\ding{51}\;\textbf{Comprueba tú mismo antes de continuar}},
+	arc=2mm, boxrule=1pt, fonttitle=\normalsize}
+
+\newtcolorbox{errorcomun}[1]{
+	colback=vallightred, colframe=valred,
+	title={\faExclamationTriangle\;\textbf{Error Frecuente: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\normalsize}
+
+
+% ============================================================
+\begin{document}
+	% ============================================================
+	
+	% ─────────────────────────────────────────────────────────────
+	% PORTADA
+	% ─────────────────────────────────────────────────────────────
+	\begin{center}
+		{\Huge\textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE\textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large\textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
+			arc=3mm, boxrule=1.5pt]
+			\centering
+			\Huge\textbf{UNIDAD 14}\\[0.2cm]
+			\Large\textbf{Solución de ecuaciones}\\[0.2cm]
+			\large Propiedades de igualdad, determinación de soluciones.
+		\end{tcolorbox}
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue,
+			width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering\vspace{0.3cm}
+			\textbf{Nombre:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:}\;\underline{06M-14 FL}
+			\hspace{1cm}\textbf{Año:}\;\underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		\vspace{0.8cm}
+		\textit{``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+	\end{center}
+	
+%	\newpage
+	
+	% =========================================================
+	%  MISIÓN 1 — ¿QUÉ ES UNA ECUACIÓN?
+	% =========================================================
+	\section*{Misión 1: ¿Qué es una Ecuación?}
+	
+	\begin{concepto}{Ecuación, Solución y Verificación}
+		Una \textbf{ecuación} es un enunciado matemático que indica que dos
+		expresiones son \textbf{iguales}. \textbf{Todas} las ecuaciones contienen un símbolo ``$=$'' que separa dos lados, el lado izquierdo \textbf{(LI)} y el lado derecho \textbf{(LD)}.\\
+		La letra $x$ es la \textbf{variable} (o \textbf{incógnita}):
+		\textbf{NOTA:} Los lados de la ecuación pueden \textbf{invertirse}, por lo que puede escribirse cómo:
+		$$x+3=8$$
+		\begin{center}
+			ó
+		\end{center}
+		$$8=x+3$$
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node[font=\LARGE\bfseries] (eq) at (5,0) {$x + 3 \;=\; 8$};
+				\draw[-{Stealth}, valblue, line width=2pt]
+				(1.8, 0.7) -- (3.2, 0.3)
+				node[pos=0, above, align=center, font=\small\bfseries, valblue]
+				{LADO\\IZQUIERDO};\draw[thick,draw=valblue] (4.2,0) ellipse (1cm and 0.5cm);
+				\draw[thick,draw=valorange] (6.5,0) ellipse (0.5cm and 0.5cm);
+				\draw[-{Stealth}, valorange, line width=2pt]
+				(8.2, 0.7) -- (7.2, 0.3)
+				node[pos=0, above, align=center, font=\small\bfseries, valorange]
+				{LADO\\DERECHO};
+				\draw[-{Stealth}, valred, line width=2pt]
+				(3.5, -1.3) -- (3.5, -0.3)
+				node[pos=0, below, align=center, font=\small\bfseries, valred]
+				{VARIABLE\\(incógnita)};
+			\end{tikzpicture}
+		\end{center}
+		\vspace{0.3cm}
+		
+		\begin{itemize}
+			\item Una ecuación puede ser \textbf{verdadera}: $6+3=9$
+			\item Una ecuación puede ser \textbf{falsa}: $2+4=7$
+			\item Una ecuación puede no ser \textbf{verdadera} ni \textbf{falsa}. Por ejemplo, $x+5=15$ no es verdadera ni falsa debido a que no se sabe qué número representa \textbf{$x$}
+		\end{itemize}
+		
+		\vspace{0.3cm}
+		Una ecuación se hace verdadera o falsa sustituyendo la variable por un número. Si se sustituye $x$ por $5$ en $x+3=8$ la ecuación es \textbf{verdadera}. Si se sustituye $x$ por $4$, la ecuación resultante es \textbf{falsa}.\\
+		
+		
+		\textbf{Solución:}\\
+		
+		El número que al \textbf{sustituir} la variable hace que la
+		ecuación sea \textbf{verdadera}. Se dice que ese número \textit{satisface} la ecuación y se le llama \textbf{solución}.\\
+		
+		A continuación se muestra en la tabla la sustitución de $x$ por 5 y después por 4, para saber si son soluciones o no.
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{3cm}|m{4.5cm}|m{2.5cm}|}
+				\hline
+				\rowcolor{valblue!20}
+				\textbf{Ecuación} & \textbf{Verificación} & \textbf{¿Solución?} \\
+				\hline
+				$x + 3 = 8$ \newline con $x = 5$ &
+				$5 + 3 = 8$ \newline $8 = 8$ \checkmark &
+				\textcolor{valgreen}{\textbf{SÍ}} \\
+				\hline
+				$x + 3 = 8$ \newline con $x = 4$ &
+				$4 + 3 = 8$ \newline $7 \neq 8$ \texttimes &
+				\textcolor{valred}{\textbf{NO}} \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	\newpage
+	
+	\begin{ejemploresuelto}{Identificar partes y verificar soluciones}
+		
+		\textbf{Situación:} Tenemos la ecuación $x + 3 = 8$. ¿Es $x=5$ una solución? ¿Es $x=4$ una solución?
+		
+		\vspace{0.4cm}
+		% ─── PASO 1: Anatomía visual ───────────────────────────────────
+		\begin{pasocaja}{valblue}{1}{Identificar las partes de la ecuación}
+			\begin{center}
+				\begin{tikzpicture}[scale=1]
+					% Ecuación grande
+					\node[font=\fontsize{26}{30}\selectfont\bfseries] (eq) at (5.5,0)
+					{$x \;+\; 3 \;=\; 8$};
+					% Flecha: variable
+					\draw[-{Stealth[scale=1.2]}, valred, line width=2pt]
+					(3.5,-1.0) -- (3.5,-0.25)
+					node[pos=0, below, align=center, font=\small\bfseries, valred]
+					{\faQuestionCircle\;VARIABLE\\(incógnita)};
+					% Flecha: lado izquierdo
+					\draw[-{Stealth[scale=1.2]}, valblue, line width=2pt]
+					(1.8, 1.0) -- (3.2, 0.35)
+					node[pos=0, above, align=center, font=\bfseries, valblue]
+					{LADO\\IZQUIERDO\\$x+3$};
+					%Elipse lado izq:
+					\draw[thick,draw=valblue] (4.5,0) ellipse (1.5 cm and 0.5cm);
+					% Flecha: signo igual
+					\draw[-{Stealth[scale=1.2]}, valdark, line width=2pt]
+					(6.5,-1.0) -- (6.5,-0.35)
+					node[pos=0, below, align=center, font=\small\bfseries, valdark]
+					{``son\\iguales''};
+					% Flecha: lado derecho
+					\draw[-{Stealth[scale=1.2]}, valorange, line width=2pt]
+					(9.0, 1.0) -- (8, 0.35)
+					node[pos=0, above, align=center, font=\bfseries, valorange]
+					{LADO\\DERECHO\\$8$};
+					%Elipse lado de:
+					\draw[thick,draw=valorange] (7.5,0) ellipse (0.5cm and 0.5cm);
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		% ─── CASO A: x=5 ───────────────────────────────────────────────
+		\begin{pasocaja}{valgreen}{2 para $x=5$}{Verificar $x=5$ — Sustitución}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.95,
+					paso/.style={draw=#1, fill=#1!10, rounded corners=5pt,
+						minimum width=3.6cm, minimum height=0.85cm,
+						align=center, font=\bfseries\small, line width=1.5pt}]
+					\node[paso=valdark] (orig) at (0,0)   {Ecuación original\\$x + 3 = 8$};
+					\node[paso=valblue] (sust) at (5.5,0) {Sustituyo $x = 5$\\$5 + 3 = 8$};
+					\node[paso=valgreen](calc) at (10.5,0)   {Calculo el LI\\$8 = 8$};
+					\node[draw=valgreen, fill=valgreen!20, rounded corners=5pt,
+					minimum width=3.6cm, minimum height=0.85cm,
+					align=center, font=\bfseries\small, line width=2pt] (res) at (10.5,-2.5)
+					{\textcolor{valgreen}{\large\checkmark} VERDADERO\\$\mathbf{x=5}$ \textbf{SÍ es solución}};
+					\draw[-{Stealth}, valdark, line width=2pt](orig)--(sust)
+					node[midway,above,font=\scriptsize]{reemplazar};
+					\draw[-{Stealth}, valdark, line width=2pt](sust)--(calc)
+					node[midway,above,font=\scriptsize]{operar};
+					\draw[-{Stealth}, valgreen, line width=2pt](calc)--(res)
+					node[midway,right,font=\scriptsize]{¿LI=LD?};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		% ─── CASO B: x=4 ───────────────────────────────────────────────
+		\begin{pasocaja}{valred}{2 para $x=4$}{Verificar $x=4$ — Sustitución}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.95,
+					paso/.style={draw=#1, fill=#1!10, rounded corners=5pt,
+						minimum width=3.6cm, minimum height=0.85cm,
+						align=center, font=\bfseries\small, line width=1.5pt}]
+					\node[paso=valdark] (orig) at (0,0)   {Ecuación original\\$x + 3 = 8$};
+					\node[paso=valblue] (sust) at (5.5,0) {Sustituyo $x = 4$\\$4 + 3 = 8$};
+					\node[paso=valorange](calc) at (10.5,0)  {Calculo el LI\\$7 \neq 8$};
+					\node[draw=valred, fill=valred!10, rounded corners=5pt,
+					minimum width=3.6cm, minimum height=0.85cm,
+					align=center, font=\bfseries\small, line width=2pt] (res) at (10.5,-2.5)
+					{\textcolor{valred}{\large\texttimes} FALSO\\$\mathbf{x=4}$ \textbf{NO es solución}};
+					\draw[-{Stealth}, valdark, line width=2pt](orig)--(sust)
+					node[midway,above,font=\scriptsize]{reemplazar};
+					\draw[-{Stealth}, valdark, line width=2pt](sust)--(calc)
+					node[midway,above,font=\scriptsize]{operar};
+					\draw[-{Stealth}, valred, line width=2pt](calc)--(res)
+					node[midway,right,font=\scriptsize]{LI$\neq$LD};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valdark}{3}{Conclusión}
+			\begin{center}
+				\renewcommand{\arraystretch}{1.5}
+				\begin{tabular}{|m{2cm}|m{4cm}|m{3cm}|m{2.5cm}|}
+					\hline
+					\rowcolor{valdark!15}
+					\textbf{Valor} & \textbf{Sustitución} & \textbf{Resultado} & \textbf{¿Solución?} \\
+					\hline
+					$x = 5$ & $5+3=8 \;\rightarrow\; 8=8$ & \textcolor{valgreen}{\textbf{V}} & \textcolor{valgreen}{\checkmark SÍ} \\
+					\hline
+					$x = 4$ & $4+3=8 \;\rightarrow\; 7\neq 8$ & \textcolor{valred}{\textbf{F}} & \textcolor{valred}{\texttimes NO} \\
+					\hline
+				\end{tabular}
+			\end{center}
+		\end{pasocaja}
+	\end{ejemploresuelto}
+	
+	\vspace{0.3cm}
+	\begin{minicheck}
+		Sin ver los ejercicios, responde: ¿Es $x=10$ solución de $x - 3 = 7$?
+		\quad\textit{Sustitución:}\;\underline{\hspace{10cm}}\quad
+		\textit{¿Verdadero?:}\;\boxfill[1.2cm]
+	\end{minicheck}
+	
+	\vspace{0.3cm}
+	\begin{practica}{Ecuaciones y verificación}
+		
+		\textbf{A) Identifica: escribe el lado izquierdo (LI) y el lado derecho (LD)
+			de cada ecuación — 8 ecuaciones:}
+		
+		\vspace{0.3cm}
+		\renewcommand{\arraystretch}{1.8}
+		\begin{center}
+			\begin{tabular}{|m{4.5cm}|m{3.5cm}|m{3.5cm}|}
+				\hline
+				\rowcolor{valblue!15}
+				\textbf{Ecuación} & \textbf{Lado Izquierdo} & \textbf{Lado Derecho} \\
+				\hline
+				$x + 5 = 12$         & \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+				$3n - 1 = 14$        & \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+				$\frac{t}{4} = 9$    & \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+				$20 = 4k$            & \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+				$2a + 7 = a + 10$    & \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+				$-6 = m - 2$         & \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+				$\frac{x}{3} + 1 = 5$& \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+				$5p = 2p + 9$        & \boxfill[3cm] & \boxfill[3cm] \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		%\newpage
+		\textbf{B) Verifica si el número dado es solución. Muestra la sustitución
+			y escribe V (Verdadero) o F (Falso):}
+		
+		\vspace{0.3cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+			\item $x + 12 = 28$, con $x = 6$
+			\begin{espaciotrabajo}{}
+				\boxstep[0.8cm]$ + 12 = 28 \;\rightarrow\;$
+				\boxstep[1.5cm]$\stackrel{?}{=} 28$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			
+			\item $x - 5 = 13$, con $x = 18$
+			\begin{espaciotrabajo}{}
+				\boxstep[0.8cm]$ - 5 = 13 \;\rightarrow\;$
+				\boxstep[1.5cm]$\stackrel{?}{=} 13$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			\newpage
+			\item $-8$, en $\dfrac{x}{2} + 98 = 100$
+			\begin{espaciotrabajo}{}
+				$\dfrac{(\boxstep[0.8cm])}{2} + 98 \;\rightarrow\;$
+				\boxstep[0.8cm]$+ 98 =$\boxstep[1.5cm]$\stackrel{?}{=} 100$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			
+			\item $3n = 15$, con $n = 5$
+			\begin{espaciotrabajo}{}
+				$3 \cdot$\boxstep[0.8cm]$= 15 \;\rightarrow\;$
+				\boxstep[1.5cm]$\stackrel{?}{=} 15$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			
+			\item $\dfrac{t}{4} = 9$, con $t = 36$
+			\begin{espaciotrabajo}{}
+				$\dfrac{\boxstep[0.8cm]}{4} = 9 \;\rightarrow\;$
+				\boxstep[1.5cm]$\stackrel{?}{=} 9$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			
+			\item $2m - 3 = 7$, con $m = 4$
+			\begin{espaciotrabajo}{}
+				$2($\boxstep[0.8cm]$) - 3 =$\boxstep[1cm]$- 3 =$
+				\boxstep[1cm]$\stackrel{?}{=} 7$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			%\newpage
+			\item $k + 20 = 15$, con $k = -5$
+			\begin{espaciotrabajo}{}
+				$($\boxstep[0.8cm]$) + 20 =$\boxstep[1.5cm]$\stackrel{?}{=} 15$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}	
+			\item $4p = -20$, con $p = -4$
+			\begin{espaciotrabajo}{}
+				$4 \cdot ($\boxstep[0.8cm]$) =$\boxstep[1.5cm]$\stackrel{?}{=}-20$
+				\hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			\newpage
+			\item $y - 8 = -2$, con $y = 6$
+			\begin{espaciotrabajo}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}} \hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			
+			\item $\frac{3}{4}x = 12$, con $x = 16$
+			\begin{espaciotrabajo}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}} \hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			
+			\item $5 + a = -3$, con $a = -8$
+			\begin{espaciotrabajo}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}} \hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+			
+			\item $2n + 1 = n + 6$, con $n = 5$
+			\begin{espaciotrabajo}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}} \hfill Resultado: \boxfill[1cm]
+			\end{espaciotrabajo}
+		\end{enumerate}
+		
+		%\newpage
+		\textbf{C) Completar el concepto:}
+		
+		\vspace{0.2cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm, start=13]
+			\item Cualquier número que haga una ecuación verdadera al sustituir la variable se llama \underline{\hspace{4cm}}.
+			\item El símbolo $=$ separa el \underline{\hspace{3cm}} izquierdo del \underline{\hspace{3cm}} derecho.
+			\item Si sustituyo $x = 3$ en $x + 2 = 5$ obtengo $5 = 5$, lo cual es \underline{\hspace{2cm}}, por lo tanto $x = 3$ \underline{\hspace{3cm}} (es/no es) una solución.
+			\item Una ecuación puede ser verdadera o \underline{\hspace{3cm}} según el valor que se asigne a la variable.
+			\item La variable en una ecuación también se llama \underline{\hspace{3cm}}.
+		\end{enumerate}
+		
+		\newpage
+		\textbf{D) ¿Cuál es la solución? — Prueba los dos valores y marca la correcta con \checkmark y en la columna de Solución escribe $x=$(número que soluciona la ecuación):}
+		
+		\vspace{0.3cm}
+		\renewcommand{\arraystretch}{1.75}
+		\begin{longtable}{|m{3cm}|m{3.5cm}|m{3.5cm}|m{2.2cm}|}
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Ecuación} & \textbf{¿Es $x=a$?} & \textbf{¿Es $x=b$?} & \textbf{Solución} \\
+			\hline
+			\endfirsthead
+			\hline \rowcolor{valblue!20}
+			\textbf{Ecuación} & \textbf{¿Es $x=a$?} & \textbf{¿Es $x=b$?} & \textbf{Solución} \\
+			\hline \endhead
+			\hline \endfoot \hline \endlastfoot
+			$x + 4 = 11$    & $x=7$:\;\boxfill[1.5cm] & $x=8$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+			$2n = 14$        & $n=6$:\;\boxfill[1.5cm] & $n=7$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+			$m - 5 = -3$    & $m=2$:\;\boxfill[1.5cm] & $m=8$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+			$\frac{t}{3}=4$  & $t=12$:\;\boxfill[1.5cm] & $t=7$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+			$k + 9 = 4$     & $k=-5$:\;\boxfill[1.5cm] & $k=5$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+			$4p = -20$       & $p=-4$:\;\boxfill[1.5cm] & $p=-5$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+			$a-6 = 0$       & $a=0$:\;\boxfill[1.5cm] & $a=6$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+			$3y+1=10$       & $y=3$:\;\boxfill[1.5cm] & $y=4$:\;\boxfill[1.5cm] & \boxfill[1.8cm] \\
+			\hline
+		\end{longtable}
+		
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 2 — PROP. UNIFORME DE LA SUMA
+	% =========================================================
+	\section*{Misión 2: Propiedad Uniforme de la Suma}
+	
+	\begin{concepto}{Deshacer una Resta — Suma igual a ambos lados}
+		Para resolver ecuaciones del tipo $x - a = b$, se \textbf{suma} el mismo
+		número a \textbf{ambos lados} para mantener el equilibrio:
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.92]
+				% Balance beam
+				\draw[valdark, line width=3pt] (0,2.4) -- (10,2.4);
+				\fill[valdark] (5,2.2) -- (4.4,0.8) -- (5.6,0.8) -- cycle;
+				\draw[valdark, line width=2pt] (4,0.8) -- (6,0.8) -- (6,0.5) -- (4,0.5) -- cycle;
+				% Left pan
+				\draw[valblue, line width=2pt] (1.5,2.4) -- (1.5,1.4);
+				\draw[valblue, line width=2pt] (0.3,1.4) -- (2.7,1.4);
+				\draw[valblue, line width=2pt] (0.3,1.4) -- (0.3,0.6) -- (2.7,0.6) -- (2.7,1.4);
+				\node[font=\large\bfseries, valblue] at (1.5,1.0) {$x - 2$};
+				% Right pan
+				\draw[valorange, line width=2pt] (8.5,2.4) -- (8.5,1.4);
+				\draw[valorange, line width=2pt] (7.3,1.4) -- (9.7,1.4);
+				\draw[valorange, line width=2pt] (7.3,1.4) -- (7.3,0.6) -- (9.7,0.6) -- (9.7,1.4);
+				\node[font=\large\bfseries, valorange] at (8.5,1.0) {$3$};
+				% Label
+				\node[font=\large\bfseries] at (5,3.2) {$x - 2 = 3$\quad en equilibrio};
+				% Arrow and action
+				\node[font=\normalsize, valgreen] at (5,-0.2)
+				{$+2$ a ambos lados: \quad $x - 2 + 2 = 3 + 2$ \quad $\Rightarrow$ \quad $x = 5$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.4cm}
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\centering\large\bfseries
+			Si $a = b$, entonces $a + c = b + c$\\[4pt]
+			\normalsize\normalfont
+			Para despejar $x$ en $x - a = b$:\; suma $a$ a \textbf{ambos} lados $\rightarrow$ $x = b + a$
+		\end{tcolorbox}
+	\end{concepto}
+	
+	\begin{ejemploresuelto}{Resolver usando la Propiedad de la Suma}
+		
+		\textbf{¿Por qué sumamos a ambos lados?} Piensa en una balanza: si añades el
+		mismo peso a los dos platillos, el equilibrio \textbf{no cambia}. Con ecuaciones es igual: 
+		\begin{center}
+			\textbf{lo que hacemos en un lado, lo hacemos en el otro.}
+		\end{center}
+		\vspace{0.4cm}
+		% ─── EJEMPLO 1: a - 9 = 14 ──────────────────────────────
+		\begin{pasocaja}{valblue}{1}{Identificar qué operación ``molesta'' a la variable}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[font=\Large\bfseries] at (5,0) {$x \;-\; 9 \;=\; 14$};
+					\draw[-{Stealth}, valred, line width=2pt, bend left=25]
+					(3.6,0.4) to node[above, font=\small\bfseries, valred]
+					{le \textit{están restando} 9} (4.8,0.4);
+					\node[draw=valred, fill=vallightred, rounded corners=4pt,
+					align=center, font=\small\bfseries, text width=3.8cm] at (-1,0)
+					{La variable $x$ tiene\\un $-9$ que hay\\que \textbf{eliminar}};
+				\end{tikzpicture}
+			\end{center}
+			\textbf{Estrategia:} La resta ``deshace'' una suma.
+			Para deshacer el $-9$, hago la \textbf{operación inversa}: sumar $+9$.
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valgreen}{2}{Aplicar la operación inversa a AMBOS lados}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.95]
+					% Ecuación original
+					\node[font=\large\bfseries] (e1) at (0,2.5)   {$x - 9 = 14$};
+					% Operación
+					\node[font=\normalsize, valgreen, text width=6cm, align=center]
+					at (0,1.7) {\textbf{$+9$} a cada lado para mantener el equilibrio:};
+					% Suma visible
+					\node[font=\large\bfseries] (e2) at (0,0.8)
+					{$x - 9 \;\textcolor{valgreen}{\boldsymbol{+9}}\; = \;14\; \textcolor{valgreen}{\boldsymbol{+9}}$};
+					% Anotaciones laterales
+					\node[draw=valgreen, fill=vallightgreen, rounded corners=3pt,
+					font=\small\bfseries, align=center, text width=3cm] at (-5, 0.8)
+					{LADO IZQUIERDO\\$-9+9=0$\\la resta desaparece};
+					\node[draw=valgreen, fill=vallightgreen, rounded corners=3pt,
+					font=\small\bfseries, align=center, text width=3cm] at (5.5, 0.8)
+					{LADO DERECHO\\$14+9=23$\\simplemente sumo};
+					\draw[-{Stealth}, valgreen, line width=1.5pt](-2.5,0.8)--(-3.5,0.8);
+					\draw[-{Stealth}, valgreen, line width=1.5pt](2.5,0.8)--(4,0.8);
+					% Resultado
+					\node[draw=valgreen!80, fill=valgreen!15, rounded corners=4pt,
+					font=\Large\bfseries, minimum width=4cm, minimum height=0.9cm,
+					align=center] (e3) at (0,-0.6) {$x = \mathbf{23}$};
+					\draw[-{Stealth}, valdark, line width=2pt](e2.south)--(e3.north)
+					node[midway,right,font=\small]{simplificar};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valorange}{3}{Verificar con la ecuación original}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.9]
+					\node[font=\large\bfseries] at (0,1.2)
+					{Sustituyo $x=23$ en la ecuación original: \;$23 - 9 \stackrel{?}{=} 14$};
+					\draw[-{Stealth}, valdark, line width=1.5pt](0,0.7)--(0,0.2);
+					\node[font=\large\bfseries, valgreen] at (0,-0.2)
+					{$14 = 14 \quad$ \textcolor{valgreen}{\Large\checkmark}\;\; \textbf{¡Correcto!}};
+					\node[draw=valorange, fill=vallightorange, rounded corners=4pt,
+					font=\normalsize\bfseries, text width=4cm, align=center] at (7,-0.2)
+					{Si LI $=$ LD, la\\solución es correcta};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.4cm}
+		% ─── EJEMPLO 2: con negativos ────────────────────────────
+		\begin{pasocaja}{valred}{Ejemplo 2}{Con número negativo: $n - 7 = -2$}
+			\begin{center}
+				\begin{tikzpicture}[
+					nodo/.style={draw=#1, fill=#1!12, rounded corners=5pt,
+						font=\normalsize\bfseries, align=center,
+						minimum width=3.8cm, minimum height=0.95cm,
+						line width=1.5pt, text width=3.6cm}]
+					\node[nodo=valdark]  (a) at (0,0)   {Ecuación original\\$n-7=-2$};
+					\node[nodo=valblue]  (b) at (4.5,0) {Sumo $+7$ a ambos lados\\$n-7+7=-2+7$};
+					\node[nodo=valgreen] (c) at (9,0)   {Simplifico\\$n=5$};
+					\node[nodo=valorange](d) at (13.5,0){Verifico: $5-7=-2$\\$-2=-2$\;\checkmark};
+					\foreach \s/\t in {a/b, b/c, c/d}{
+						\draw[-{Stealth}, valdark, line width=2pt](\s)--(\t);}
+					% Nota negativos
+					\node[font=\small, valred, text width=4cm, align=center] at (4.5,-1.3)
+					{\textbf{Ojo:} $-2 + 7 = +5$\\(número mayor positivo)};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+	\end{ejemploresuelto}
+	
+	\vspace{0.2cm}
+	\begin{errorcomun}{Olvidar sumar a AMBOS lados}
+		\textbf{Incorrecto:}\quad $x - 9 = 14 \;\rightarrow\; x - 9 + 9 = 14$\quad (solo sumé al LI)
+		\hspace{0.5cm} $\rightarrow x = 14$\quad \textcolor{valred}{\texttimes}\\[4pt]
+		\textbf{Correcto:}\quad $x - 9 = 14 \;\rightarrow\; x - 9 + 9 = 14 + 9$\quad (sumé a ambos)
+		\hspace{0.5cm} $\rightarrow x = 23$\quad \textcolor{valgreen}{\checkmark}\\[4pt]
+		\textit{Regla de oro: lo que hago en un platillo, lo hago en el otro.}
+	\end{errorcomun}
+	
+	\begin{minicheck}
+		Resuelve mentalmente antes de ir a los ejercicios:\\
+		\textbf{1)} $x - 4 = 10$ \;\;$\rightarrow$\;\; $x=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $m - 6 = -1$ \;\;$\rightarrow$\;\; $m=$\boxfill[1.5cm]\qquad
+		\textbf{3)} $k - 0 = 9$ \;\;$\rightarrow$\;\; $k=$\boxfill[1.5cm]
+	\end{minicheck}
+	
+	
+	
+	\begin{practica}{Propiedad Uniforme de la Suma — 22 ejercicios}
+		
+		\textbf{A) Con andamiaje: completa cada paso — 10 ejercicios:}
+		
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.9cm]
+				\item $a - 5 = 66$
+				\begin{espaciotrabajonb}{}
+					$a - 5 + $\boxstep[0.8cm]$= 66 +$\boxstep[0.8cm]\\[0.2cm]
+					$a =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $x - 3 = 10$
+				\begin{espaciotrabajonb}{}
+					$x - 3 +$\boxstep[0.8cm]$= 10 +$\boxstep[0.8cm]\\[0.2cm]
+					$x =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $n - 7 = -2$
+				\begin{espaciotrabajonb}{}
+					$n - 7 +$\boxstep[0.8cm]$= -2 +$\boxstep[0.8cm]\\[0.2cm]
+					$n =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $y - 4 = 0$
+				\begin{espaciotrabajonb}{}
+					$y - 4 +$\boxstep[0.8cm]$= 0 +$\boxstep[0.8cm]\\[0.2cm]
+					$y =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $m - 12 = -5$
+				\begin{espaciotrabajonb}{}
+					$m -12 +$\boxstep[0.8cm]$= -5 +$\boxstep[0.8cm]\\[0.2cm]
+					$m =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $t - 1 = -9$
+				\begin{espaciotrabajonb}{}
+					$t - 1 +$\boxstep[0.8cm]$= -9 +$\boxstep[0.8cm]\\[0.2cm]
+					$t =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $k - 20 = 50$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$k =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $r - 15 = -15$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$r =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $p - 0.5 = 3.5$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$p =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $z - \dfrac{1}{2} = \dfrac{3}{2}$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.3cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$z =$\boxfill[2cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textbf{B) Resuelve directamente (escribe los pasos y verifica) — 12 ejercicios:}
+		
+		\begin{multicols}{3}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.9cm, start=11]
+				\item $b - 8 = 25$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$b=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $x - 11 = 0$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$x=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $w - 6 = -14$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$w=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $n - 100 = 50$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$n=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $c - 3.4 = 1.6$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$c=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $s - 1 = -20$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$s=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $h - 45 = 45$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$h=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $f - 9 = -9$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$f=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $j - 0.8 = 0.2$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$j=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $q - \frac{1}{4} = \frac{3}{4}$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$q=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $v - 7 = 7$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$v=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $d - 200 = -50$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}
+					$d=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 3 — PROP. UNIFORME DE LA RESTA
+	% =========================================================
+	\section*{Misión 3: Propiedad Uniforme de la Resta}
+	
+	\begin{concepto}{Deshacer una Suma — Resta igual a ambos lados}
+		Para resolver ecuaciones del tipo $x + a = b$, se \textbf{resta} el mismo
+		número a \textbf{ambos lados}:
+		
+		\vspace{0.3cm}
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\centering\large\bfseries
+			Si $a = b$, entonces $a - c = b - c$\\[4pt]
+			\normalsize\normalfont
+			Para despejar $x$ en $x + a = b$:\; resta $a$ de \textbf{ambos} lados $\rightarrow$ $x = b - a$
+		\end{tcolorbox}
+		
+		\vspace{0.3cm}
+		\textbf{Ejemplo:} $x + 3 = 5$ \hfill
+		$x + 3 - 3 = 5 - 3$ \hfill $x = 2$
+	\end{concepto}
+	
+	\begin{atencion}{¡Atención! La variable puede quedar en cualquier lado}
+		Si al resolver obtienes $-12 = y$ , esa respuesta es \textbf{válida}
+		y equivalente a $y = -12$. La variable no tiene que estar siempre a la izquierda del igual.\\
+		Ejemplo: $8 + n = 3 \;\rightarrow\; n = 3 - 8 \;\rightarrow\; n = -5$.
+	\end{atencion}
+	
+	\begin{ejemploresuelto}{Resolver usando la Propiedad de la Resta}
+		
+		Cuando la ecuación es $x + a = b$, el $+a$ ``estorba'' la variable. Para eliminarlo usamos la \textbf{operación inversa}: restar.
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valblue}{1}{Reconocer el problema: ¿qué le están \textit{sumando} a $x$?}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[font=\Large\bfseries] at (5,0) {$x \;+\; 3 \;=\; 5$};
+					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
+					font=\small\bfseries, text width=4cm, align=center] at (1.5,1.5)
+					{A $x$ le están\\sumando \textbf{3}};
+					\draw[-{Stealth}, valblue, line width=2pt](1.5,1.1)--(3.8,0.3);
+					\node[draw=valorange, fill=vallightorange, rounded corners=4pt,
+					font=\small\bfseries, text width=4cm, align=center] at (8.5,1.5)
+					{Solución: restar \textbf{3}\\a ambos lados};
+					\draw[-{Stealth}, valorange, line width=2pt, dashed](5.8,1.1)--(5.0,0.3);
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valgreen}{2}{Restar el mismo número a ambos lados}
+			\vspace{0.2cm}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.95]
+					\node[font=\large\bfseries] at (0, 2.2) {$x + 3 = 5$};
+					\node[font=\normalsize, valgreen, text width=7cm, align=center] at (0,1.5)
+					{Resto $\mathbf{3}$ a cada lado:};
+					\node[font=\large\bfseries] at (0, 0.7)
+					{$x + 3 \;\textcolor{valred}{\boldsymbol{-3}}\; = \;5\; \textcolor{valred}{\boldsymbol{-3}}$};
+					% anotaciones
+					\node[draw=valred, fill=vallightred, rounded corners=3pt,
+					font=\small\bfseries, text width=3.2cm, align=center] at (-5,0.7)
+					{LI: $+3-3 = 0$\\el \textbf{3 desaparece}};
+					\node[draw=valred, fill=vallightred, rounded corners=3pt,
+					font=\small\bfseries, text width=3.2cm, align=center] at (5.5,0.7)
+					{LD: $5-3 = 2$\\simplemente resto};
+					\draw[-{Stealth}, valred, line width=1.5pt](-2.0,0.7)--(-3.5,0.7);
+					\draw[-{Stealth}, valred, line width=1.5pt](1.5,0.7)--(2.9,0.7);
+					\node[draw=valgreen!80, fill=valgreen!15, rounded corners=4pt,
+					font=\Large\bfseries, minimum width=3.5cm, minimum height=0.9cm] at (0,-0.5)
+					{$x = \mathbf{2}$};
+					\draw[-{Stealth}, valdark, line width=2pt](0,0.3)--(0,-0.1);
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valorange}{3}{Verificar en la ecuación original}
+			\centering
+			$x=2$ en $x+3=5$:\quad $2 + 3 \stackrel{?}{=} 5$\quad
+			$5 = 5$ \;\textcolor{valgreen}{\Large\checkmark}
+		\end{pasocaja}
+		
+		\vspace{0.4cm}
+		% ─── EJEMPLO 2: resultado negativo ───────────────────────
+		\begin{pasocaja}{valred}{Ejemplo 2}{Resultado negativo: $t + 14 = 9$}
+			\vspace{0.2cm}
+			\begin{center}
+				\begin{tikzpicture}[
+					paso/.style={draw=#1, fill=#1!10, rounded corners=5pt,
+						font=\small\bfseries, align=center, minimum width=3.5cm,
+						minimum height=0.85cm, line width=1.5pt, text width=3.3cm}]
+					\node[paso=valdark]  (a) at (0,0)    {$t+14=9$\\Observo: sumar 14};
+					\node[paso=valblue]  (b) at (4.2,0)  {Resto $-14$\\a ambos lados};
+					\node[paso=valred]   (c) at (8.4,0)  {$t+14-14=9-14$\\$t=-5$};
+					\node[paso=valgreen] (d) at (12.6,0) {Verifico:\\$-5+14=9$\;\checkmark};
+					\foreach \s/\t in {a/b, b/c, c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
+					\node[draw=valred, fill=vallightred, rounded corners=3pt,
+					font=\small\bfseries, text width=4cm, align=center] at (8.4,-1.5)
+					{$9 - 14 = -5$ \\\small(número pequeño menos grande = negativo)};
+					\draw[-{Stealth},valred,line width=1.2pt,dashed](8.4,-0.45)--(8.4,-0.9);
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valdark}{Dato clave}{La variable puede quedar en cualquier lado}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
+					font=\normalsize\bfseries, minimum width=4cm, minimum height=0.9cm,
+					align=center] (a) at (0,0) {$-12 = y$};
+					\draw[-{Stealth[scale=1.3]}, valgreen, line width=2.5pt](1.8,0)--(2.8,0)
+					node[midway,above,font=\small\bfseries]{equivale a};
+					\node[draw=valgreen, fill=vallightgreen, rounded corners=4pt,
+					font=\normalsize\bfseries, minimum width=4cm, minimum height=0.9cm,
+					align=center] (b) at (4.6,0) {$y = -12$};
+					\node[font=\small, valdark, text width=5cm, align=center] at (9,0)
+					{Ambas formas son \textbf{correctas}. La solución es el \textbf{mismo número}: $-12$.};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+	\end{ejemploresuelto}
+	
+	\vspace{0.2cm}
+	\begin{errorcomun}{Restar en solo un lado}
+		\textbf{Incorrecto:} $x + 3 = 5 \;\rightarrow\; x + 3 - 3 = 5 \;\rightarrow\; x = 5$
+		\hspace{0.5cm}\textcolor{valred}{\texttimes}\\[3pt]
+		\textbf{Correcto:} $x + 3 = 5 \;\rightarrow\; x + 3 - 3 = 5 - 3 \;\rightarrow\; x = 2$
+		\hspace{0.5cm}\textcolor{valgreen}{\checkmark}
+	\end{errorcomun}
+	
+	\begin{minicheck}
+		\textbf{1)} $x + 8 = 12$ \;$\rightarrow$\; $x=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $n + 5 = 2$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]\qquad
+		\textbf{3)} $p + 20 = 0$ \;$\rightarrow$\; $p=$\boxfill[1.5cm]
+	\end{minicheck}
+	
+	\begin{practica}{Propiedad Uniforme de la Resta — 22 ejercicios}
+		
+		\textbf{A) Con andamiaje — 10 ejercicios:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm]
+				\item $x + 9 = 20$
+				\begin{espaciotrabajonb}{}
+					$x+9-$\boxstep[0.8cm]$=20-$\boxstep[0.8cm]\\[0.2cm]
+					$x=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $n + 5 = 3$
+				\begin{espaciotrabajonb}{}
+					$n+5-$\boxstep[0.8cm]$=3-$\boxstep[0.8cm]\\[0.2cm]
+					$n=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $m + 7 = 7$
+				\begin{espaciotrabajonb}{}
+					$m+7-$\boxstep[0.8cm]$=7-$\boxstep[0.8cm]\\[0.2cm]
+					$m=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $t + 14 = 9$
+				\begin{espaciotrabajonb}{}
+					$t+14-$\boxstep[0.8cm]$=9-$\boxstep[0.8cm]\\[0.2cm]
+					$t=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $k + 4 = -6$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$k=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $p + 25 = 0$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$p=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $a + 3 = -3$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$a=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $y + 0.6 = 1.4$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$y=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $r + \frac{1}{3} = 1$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.3cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$r=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $10 + c = 4$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$c=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.3cm}
+		\textbf{B) Resuelve directamente — 12 ejercicios:}
+		
+		\begin{multicols}{3}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm, start=11]
+				\item $b + 8 = 30$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$b=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $x + 15 = 8$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$x=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $s + 4 = -11$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$s=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $n + 50 = 30$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$n=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $w + 2.3 = 5$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$w=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $g + 9 = 0$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$g=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $j + 100 = 75$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$j=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $v + 6 = 6$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$v=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $f + 7 = -7$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$f=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $q + \frac{1}{2} = 2$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$q=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $h + 1.9 = 0$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$h=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $5 + z = -3$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.5cm}$z=$\boxfill[1.8cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 4 — PROP. UNIFORME DE LA MULTIPLICACIÓN
+	% =========================================================
+	\section*{Misión 4: Propiedad Uniforme de la Multiplicación}
+	
+	\begin{concepto}{Deshacer una Division — Multiplica ambos lados}
+		Para resolver $\dfrac{x}{a} = b$, se \textbf{multiplica} por $a$ a ambos lados:
+		
+		\vspace{0.3cm}
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\centering\large\bfseries
+			Si $a = b$, entonces $c \cdot a = c \cdot b \quad (c \neq 0)$
+		\end{tcolorbox}
+		
+		\vspace{0.4cm}
+		\textbf{Caso especial — Coeficiente fraccionario y recíprocos:}
+		
+		Si la ecuación es $\dfrac{2}{3}x = 6$, el coeficiente de $x$ es $\dfrac{2}{3}$. Para que ese coeficiente se convierta en $1$, se multiplica por su
+		\textbf{recíproco}: $\dfrac{3}{2}$.
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node[draw=valblue, fill=vallightblue, rounded corners=5pt,
+				minimum width=2.8cm, minimum height=0.9cm,
+				align=center, font=\bfseries, line width=1.5pt] at (0,0)
+				{$\dfrac{2}{3}$};
+				\draw[-{Stealth}, valdark, line width=1.5pt](1.6,0)--(2.8,0)
+				node[midway, above, font=\small\bfseries]{recíproco};
+				\node[draw=valorange, fill=vallightorange, rounded corners=5pt,
+				minimum width=2.8cm, minimum height=0.9cm,
+				align=center, font=\bfseries, line width=1.5pt] at (4.4,0)
+				{$\dfrac{3}{2}$};
+				\node[font=\small, valdark] at (2.2,-0.7)
+				{$\dfrac{2}{3} \times \dfrac{3}{2} = \dfrac{6}{6} = 1$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.3cm}
+		\textbf{Ejemplo completo:}\quad
+		$\dfrac{2}{3}x = 6$\;\;
+		$\xrightarrow{\times\,\frac{3}{2}}$\;\;
+		$\dfrac{3}{2}\cdot\dfrac{2}{3}x = 6\cdot\dfrac{3}{2}$\;\;
+		$\rightarrow$\;\;$x = \mathbf{9}$
+	\end{concepto}
+	
+	\begin{ejemploresuelto}{Resolver con la Propiedad de la Multiplicación}
+		
+		\textbf{Dos situaciones distintas requieren este método:}
+		
+		\begin{itemize}
+			\item Cuando la variable está \textbf{dividida}: $\dfrac{x}{a} = b$
+			\item Cuando el coeficiente es una \textbf{fracción}: $\dfrac{p}{q}x = b$
+		\end{itemize}
+		
+		
+		\vspace{0.3cm}
+		% ─── Caso 1: x/a = b ─────────────────────────────────────────────
+		\begin{pasocaja}{valblue}{Caso 1}{Resolver $\dfrac{x}{15} = 3$}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.95]
+					\node[font=\Large\bfseries] at (0,0) {$\dfrac{x}{15} = 3$};
+					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
+					font=\small\bfseries, text width=5.5cm, align=center] at (0,-1.6)
+					{La variable $x$ está dividida entre 15.\\
+						Operación inversa de dividir: \textbf{multiplicar}.\\
+						Multiplico por \textbf{15} a ambos lados.};
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.2cm}
+			\begin{center}
+				\begin{tikzpicture}[
+					paso/.style={draw=#1, fill=#1!10, rounded corners=5pt, font=\normalsize\bfseries,
+						align=center, minimum width=4cm, minimum height=1.1cm, line width=1.5pt,
+						text width=3.8cm}]
+					\node[paso=valdark]  at (0,0)   (a) {Ecuación\\$\dfrac{x}{15}=3$};
+					\node[paso=valblue]  at (5,0)   (b) {Multiplico $\times 15$\\ ambos lados};
+					\node[paso=valorange]at (10,0)  (c) {$\dfrac{x}{\cancel{15}}\cdot\cancel{15}=3\cdot 15$\\ el 15 se cancela};
+					\node[paso=valgreen] at (15,0)  (d) {$x = \mathbf{45}$\\ \checkmark};
+					\foreach \s/\t in {a/b,b/c,c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
+				\end{tikzpicture}
+			\end{center}
+			\vspace{0.1cm}
+			\textbf{Verificación:} $\dfrac{45}{15} = 3$ \;\textcolor{valgreen}{\checkmark}
+		\end{pasocaja}
+		
+		\vspace{0.4cm}
+		% ─── Caso 2: fracción × x = b ─────────────────────────────────────
+		\begin{pasocaja}{valred}{Caso 2}{Resolver $\dfrac{2}{3}x = 6$ con recíprocos}
+			\vspace{0.2cm}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.9]
+					% Ecuación
+					\node[font=\Large\bfseries] (eq) at (0,2.8) {$\dfrac{2}{3}x = 6$};
+					% Concepto recíproco
+					\node[draw=valdark, fill=valdark!8, rounded corners=5pt,
+					font=\small, text width=12cm, align=center] at (0,1.6)
+					{El coeficiente de $x$ es $\dfrac{2}{3}$. Para que quede solo $x$, necesito que el coeficiente sea $\mathbf{1}$.\\
+						Multiplico por el \textbf{recíproco}: voltear la fracción
+						$\dfrac{2}{3} \;\xrightarrow{\text{voltear}}\; \dfrac{3}{2}$,
+						porque $\dfrac{2}{3}\times\dfrac{3}{2}=\dfrac{6}{6}=\mathbf{1}$};
+					% Cadena de pasos
+					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
+					font=\normalsize\bfseries, align=center, text width=4cm] at (-4.5,0)
+					{Multiplico por $\dfrac{3}{2}$\\a ambos lados:\\
+						$\dfrac{3}{2}\cdot\dfrac{2}{3}x=\dfrac{3}{2}\cdot 6$};
+					\draw[-{Stealth},valblue,line width=2pt](-0.8,1.1)--(-3.5,0.6);
+					\node[draw=valorange, fill=vallightorange, rounded corners=4pt,
+					font=\normalsize\bfseries, align=center, text width=3.5cm] at (0,-0.3)
+					{Las fracciones\\se cancelan:\\$\cancel{\dfrac{3}{2}}\cdot\cancel{\dfrac{2}{3}}\,x$
+						$=\dfrac{3}{\cancel{2}}\cdot\cancel{6}^{\,3}$};
+					\draw[-{Stealth},valdark,line width=2pt](-2.6,0)--(-1.0,-0.3);
+					\node[draw=valgreen, fill=vallightgreen, rounded corners=4pt,
+					font=\Large\bfseries, minimum width=3cm, minimum height=1cm] at (4.5,-0.3)
+					{$x = \mathbf{9}$};
+					\draw[-{Stealth},valgreen,line width=2pt](1.0,-0.3)--(3.0,-0.3);
+				\end{tikzpicture}
+			\end{center}
+			\textbf{Verificación:} $\dfrac{2}{3}(9) = \dfrac{18}{3} = 6$ \;\textcolor{valgreen}{\checkmark}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valorange}{Regla rápida}{Cómo hallar el recíproco de cualquier fracción}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (0,0) {$\dfrac{2}{3}$};
+					\draw[-{Stealth},valdark,line width=1.2pt](1.1,0)--(1.6,0)
+					node[midway,above,font=\scriptsize]{voltear};
+					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (2.8,0) {$\dfrac{3}{2}$};
+					%
+					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (5,0) {$\dfrac{3}{4}$};
+					\draw[-{Stealth},valdark,line width=1.2pt](6.1,0)--(6.6,0)
+					node[midway,above,font=\scriptsize]{voltear};
+					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (7.8,0) {$\dfrac{4}{3}$};
+					%
+					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (10,0) {$-\dfrac{5}{4}$};
+					\draw[-{Stealth},valdark,line width=1.2pt](11.2,0)--(11.7,0)
+					node[midway,above,font=\scriptsize]{voltear};
+					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (12.9,0) {$-\dfrac{4}{5}$};
+					%
+					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (15,0) {$\dfrac{1}{2}$};
+					\draw[-{Stealth},valdark,line width=1.2pt](16.1,0)--(16.6,0)
+					node[midway,above,font=\scriptsize]{voltear};
+					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
+					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
+					at (17.8,0) {$2$};
+				\end{tikzpicture}
+			\end{center}
+			\textit{Multiplica numerador y denominador entre sí: $\dfrac{a}{b}\times\dfrac{b}{a}=1$ siempre.}
+		\end{pasocaja}
+	\end{ejemploresuelto}
+	
+	\begin{minicheck}
+		\textbf{1)} $\dfrac{x}{4}=9$ \;$\rightarrow$\; $x=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $\dfrac{1}{2}n=10$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]\qquad
+		\textbf{3)} El recíproco de $\dfrac{5}{3}$ es \boxfill[1.5cm]
+	\end{minicheck}
+	
+	\begin{practica}{Propiedad Uniforme de la Multiplicación — 22 ejercicios}
+		
+		\textbf{A) Ecuaciones del tipo $\frac{x}{a}=b$ — con andamiaje, 10 ejercicios:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.9cm]
+				\item $\dfrac{x}{15} = 3$
+				\begin{espaciotrabajonb}{}
+					\boxstep[0.8cm]$\cdot\dfrac{x}{15}=$\boxstep[0.8cm]$\cdot 3$\\[0.2cm]
+					$x=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{n}{4} = 9$
+				\begin{espaciotrabajonb}{}
+					$4\cdot\dfrac{n}{4}= 4\cdot$\boxstep[0.8cm]\\[0.2cm]
+					$n=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{t}{6} = -5$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$t=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{m}{8} = 0$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$m=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{y}{3} = -7$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$y=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{k}{10} = 12$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$k=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{p}{2} = -14$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$p=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{a}{5} = 0.4$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$a=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{r}{7} = 7$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$r=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{q}{20} = -3$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$q=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textbf{B) Coeficientes fraccionarios (usa el recíproco) — 12 ejercicios:}
+		
+		\vspace{0.2cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.95cm, start=11]
+				\item $\dfrac{2}{3}x = 6$
+				\begin{espaciotrabajonb}{}
+					Recíproco de $\frac{2}{3}$: \boxstep[1.2cm]\\[0.1cm]
+					$\dfrac{3}{2}\cdot\dfrac{2}{3}x=6\cdot\dfrac{3}{2}$\\[0.1cm]
+					$x=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{3}{4}n = 12$
+				\begin{espaciotrabajonb}{}
+					Recíproco: \boxstep[1.2cm]\\[0.1cm]
+					\vspace{0.1cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$n=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-\dfrac{5}{4}h = -5$
+				\begin{espaciotrabajonb}{}
+					Recíproco: \boxstep[1.2cm]\\[0.1cm]
+					\vspace{0.1cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$h=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{1}{2}x = 8$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$x=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{4}{5}t = 20$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$t=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{2}{7}m = 4$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$m=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-\dfrac{3}{5}a = 9$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$a=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{5}{6}k = 10$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$k=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{1}{3}y = -6$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$y=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-\dfrac{2}{3}p = -8$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$p=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $\dfrac{7}{2}s = 14$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$s=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-\dfrac{1}{4}w = 3$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
+					$w=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 5 — PROP. UNIFORME DE LA DIVISIÓN
+	% =========================================================
+	\section*{Misión 5: Propiedad Uniforme de la División}
+	
+	\begin{concepto}{Deshacer una Multiplicación — Divide ambos lados}
+		Para resolver $a \cdot x = b$, se \textbf{divide} ambos lados entre $a$:
+		
+		\vspace{0.3cm}
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\centering\large\bfseries
+			Si $a = b$, entonces $\dfrac{a}{c} = \dfrac{b}{c} \quad (c \neq 0)$
+		\end{tcolorbox}
+		
+		\vspace{0.3cm}
+		\textbf{Ejemplo:}\quad$2t = 80$\;\;
+		$\xrightarrow{\div\,2}$\;\;
+		$\dfrac{2t}{2} = \dfrac{80}{2}$\;\;$\rightarrow$\;\;$t = \mathbf{40}$
+		
+		\vspace{0.3cm}
+		\textbf{Relación importante:}
+		Dividir entre $c$ es lo mismo que multiplicar por su recíproco $\dfrac{1}{c}$.\\
+		$\dfrac{2t}{2} = \dfrac{80}{2}$ \quad es equivalente a \quad
+		$\dfrac{1}{2}\cdot 2t = \dfrac{1}{2}\cdot 80$
+	\end{concepto}
+	
+	\begin{ejemploresuelto}{Resolver con la Propiedad de la División}
+		
+		Cuando la variable tiene un coeficiente numérico entero ($2t$, $-5x$, $9m$…),
+		la operación que ``puso'' ese coeficiente fue una \textbf{multiplicación}. Para deshacerla, \textbf{dividimos} ambos lados entre ese mismo número.
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valblue}{1}{Identificar el coeficiente que hay que eliminar}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[font=\LARGE\bfseries] at (4,0) {$2t = 80$};
+					\node[draw=valred, fill=vallightred, rounded corners=4pt,
+					font=\small\bfseries, text width=4.5cm, align=center] at (0.5,1.4)
+					{Coeficiente: \textbf{2}\\$t$ está siendo\\multiplicado por 2};
+					\draw[-{Stealth}, valred, line width=2pt](0.5,0.9)--(2.6,0.25);
+					\node[draw=valgreen, fill=vallightgreen, rounded corners=4pt,
+					font=\small\bfseries, text width=4.5cm, align=center] at (7.5,1.4)
+					{Operación inversa:\\dividir entre \textbf{2}\\a ambos lados};
+					\draw[-{Stealth}, valgreen, line width=2pt, dashed](6.5,0.9)--(5.2,0.25);
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valgreen}{2}{Dividir entre el coeficiente a ambos lados}
+			\begin{center}
+				\begin{tikzpicture}[scale=0.95]
+					\node[font=\large\bfseries] at (0,2.0) {$2t = 80$};
+					\node[font=\normalsize] at (0,1.3) {Divido entre $\mathbf{2}$:};
+					\node[font=\large\bfseries] at (0,0.5)
+					{$\dfrac{2t}{\textcolor{valred}{\mathbf{2}}} = \dfrac{80}{\textcolor{valred}{\mathbf{2}}}$};
+					\node[draw=valblue, fill=vallightblue, rounded corners=3pt,
+					font=\small\bfseries, text width=3.5cm, align=center] at (-5,0.5)
+					{LI: $\dfrac{2t}{2}=\dfrac{\cancel{2}\,t}{\cancel{2}}=t$\\el 2 se cancela};
+					\node[draw=valorange, fill=vallightorange, rounded corners=3pt,
+					font=\small\bfseries, text width=3.5cm, align=center] at (5,0.5)
+					{LD: $\dfrac{80}{2}=40$\\simplemente divido};
+					\draw[-{Stealth},valblue,line width=1.5pt](-2.5,0.5)--(-1.0,0.5);
+					\draw[-{Stealth},valorange,line width=1.5pt](1.2,0.5)--(2.4,0.5);
+					\node[draw=valgreen!80, fill=valgreen!15, rounded corners=4pt,
+					font=\Large\bfseries, minimum width=3cm, minimum height=0.9cm] at (0,-0.7)
+					{$t = \mathbf{40}$};
+					\draw[-{Stealth},valdark,line width=2pt](0,0.05)--(0,-0.35);
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valorange}{3}{Verificar en la ecuación original}
+			\centering
+			$t=40$ en $2t=80$:\quad $2(40)\stackrel{?}{=}80$\quad
+			$80=80$\;\textcolor{valgreen}{\Large\checkmark}
+		\end{pasocaja}
+		
+		\vspace{0.4cm}
+		% ─── Ejemplo 2: coeficiente negativo ────────────────
+		\begin{pasocaja}{valred}{Ejemplo 2}{Coeficiente negativo: $-3.4y = -1.7$}
+			\vspace{0.2cm}
+			\begin{center}
+				\begin{tikzpicture}[
+					n/.style={draw=#1,fill=#1!10,rounded corners=4pt,font=\small\bfseries,
+						align=center,minimum width=3.8cm,minimum height=0.95cm,
+						line width=1.5pt,text width=3.6cm}]
+					\node[n=valdark]  (a) at (0,0)    {$-3.4y=-1.7$\\coeficiente: $-3.4$};
+					\node[n=valblue]  (b) at (4.5,0)  {Divido entre $-3.4$\\(conservo el signo)};
+					\node[n=valorange](c) at (9,0)    {$y=\dfrac{-1.7}{-3.4}$\\neg$\div$neg $=$ pos};
+					\node[n=valgreen] (d) at (13.5,0) {$y=0.5$\\\checkmark};
+					\foreach \s/\t in {a/b,b/c,c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
+					\node[draw=valred,fill=vallightred,rounded corners=3pt,
+					font=\small\bfseries,text width=5cm,align=center] at (9,-1.6)
+					{\textbf{Regla de signos:}\\negativo $\div$ negativo $=$ \textbf{positivo}\\$\frac{-1.7}{-3.4}=+0.5$};
+					\draw[-{Stealth},valred,line width=1.2pt,dashed](9,-0.5)--(9,-0.9);
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.3cm}
+		\begin{pasocaja}{valdark}{Equivalencia}{Dividir es lo mismo que multiplicar por el recíproco}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[draw=valblue,fill=vallightblue,rounded corners=4pt,
+					font=\normalsize\bfseries,minimum width=5cm,minimum height=1cm,
+					align=center] (a) at (0,0)  {Dividir entre $c$:\\$\dfrac{2t}{2}=\dfrac{80}{2}$};
+					\draw[-{Stealth[scale=1.3]},valgreen,line width=2.5pt](2.7,0)--(3.6,0)
+					node[midway,above,font=\small\bfseries]{$\equiv$};
+					\node[draw=valgreen,fill=vallightgreen,rounded corners=4pt,
+					font=\normalsize\bfseries,minimum width=5.5cm,minimum height=1cm,
+					align=center] (b) at (6.6,0){Multiplicar por $\tfrac{1}{c}$:\\
+						$\tfrac{1}{2}\cdot 2t=\tfrac{1}{2}\cdot 80$};
+					\node[font=\small,valdark,text width=5cm,align=center] at (11.5,0)
+					{Ambos métodos dan\\$t=40$.\\Elige el que prefieras.};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+	\end{ejemploresuelto}
+	
+	\begin{errorcomun}{Dividir solo en un lado}
+		\textbf{Incorrecto:} $2t=80\;\rightarrow\;\dfrac{2t}{2}=80\;\rightarrow\;t=80$
+		\hspace{0.5cm}\textcolor{valred}{\texttimes}\\[3pt]
+		\textbf{Correcto:} $2t=80\;\rightarrow\;\dfrac{2t}{2}=\dfrac{80}{2}\;\rightarrow\;t=40$
+		\hspace{0.5cm}\textcolor{valgreen}{\checkmark}
+	\end{errorcomun}
+	
+	\begin{minicheck}
+		\textbf{1)} $5x=35$ \;$\rightarrow$\; $x=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $-4m=20$ \;$\rightarrow$\; $m=$\boxfill[1.5cm]\qquad
+		\textbf{3)} $0.5n=3$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]
+	\end{minicheck}
+	
+	\begin{practica}{Propiedad Uniforme de la División — 24 ejercicios}
+		
+		\textbf{A) Con andamiaje — 12 ejercicios:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.95cm]
+				\item $2t = 80$
+				\begin{espaciotrabajonb}{}
+					$\dfrac{2t}{\boxstep[0.7cm]}=\dfrac{80}{\boxstep[0.7cm]}$\\[0.2cm]
+					$t=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $5x = 35$
+				\begin{espaciotrabajonb}{}
+					$\dfrac{5x}{\boxstep[0.7cm]}=\dfrac{35}{\boxstep[0.7cm]}$\\[0.2cm]
+					$x=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $3n = -24$
+				\begin{espaciotrabajonb}{}
+					$\dfrac{3n}{\boxstep[0.7cm]}=\dfrac{-24}{\boxstep[0.7cm]}$\\[0.2cm]
+					$n=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-4m = 28$
+				\begin{espaciotrabajonb}{}
+					$\dfrac{-4m}{\boxstep[0.7cm]}=\dfrac{28}{\boxstep[0.7cm]}$\\[0.2cm]
+					$m=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $6k = 0$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$k=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-7y = -49$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$y=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $9p = 72$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$p=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-3.4y = -1.7$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$y=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $12r = -60$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$r=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-8a = -8$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$a=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $0.5x = 3$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$x=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $-15c = 45$
+				\begin{espaciotrabajonb}{}
+					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.2cm]
+					$c=$\boxfill[2cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\textbf{B) Directo — identificar la propiedad utilizada (S=Suma, R=Resta, M=Mult., D=Div.)
+			y resolver — 12 ejercicios:}
+		
+		\vspace{0.2cm}
+		\renewcommand{\arraystretch}{1.8}
+		\begin{longtable}{|m{3.8cm}|m{1.6cm}|m{2.8cm}|m{2.5cm}|}
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Ecuación} & \textbf{Propiedad} & \textbf{Operación} & \textbf{Solución} \\
+			\hline
+			\endfirsthead
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Ecuación} & \textbf{Propiedad} & \textbf{Operación} & \textbf{Solución} \\
+			\hline
+			\endhead
+			\hline
+			\multicolumn{4}{r}{\small\itshape Continúa\ldots}\\
+			\endfoot
+			\hline
+			\endlastfoot
+			$7w = 56$              & \boxfill[1.2cm] & $\div$ \boxfill[1.5cm] & $w=$ \boxfill[1.8cm] \\
+			\hline
+			$x - 4 = 10$            & \boxfill[1.2cm] & $+$ \boxfill[1.5cm]    & $x=$ \boxfill[1.8cm] \\
+			\hline
+			$\frac{n}{9} = 4$       & \boxfill[1.2cm] & $\times$ \boxfill[1.5cm] & $n=$ \boxfill[1.8cm] \\
+			\hline
+			$m + 13 = 6$            & \boxfill[1.2cm] & $-$ \boxfill[1.5cm]    & $m=$ \boxfill[1.8cm] \\
+			\hline
+			$-5t = 30$              & \boxfill[1.2cm] & $\div$ \boxfill[1.5cm] & $t=$ \boxfill[1.8cm] \\
+			\hline
+			$y - 20 = -8$           & \boxfill[1.2cm] & $+$ \boxfill[1.5cm]    & $y=$ \boxfill[1.8cm] \\
+			\hline
+			$\frac{1}{2}k = 9$      & \boxfill[1.2cm] & $\times$ \boxfill[1.5cm] & $k=$ \boxfill[1.8cm] \\
+			\hline
+			$b + 30 = 18$           & \boxfill[1.2cm] & $-$ \boxfill[1.5cm]    & $b=$ \boxfill[1.8cm] \\
+			\hline
+			$4p = -16$              & \boxfill[1.2cm] & $\div$ \boxfill[1.5cm] & $p=$ \boxfill[1.8cm] \\
+			\hline
+			$s - 9 = -9$            & \boxfill[1.2cm] & $+$ \boxfill[1.5cm]    & $s=$ \boxfill[1.8cm] \\
+			\hline
+			$\frac{3}{4}h = 15$     & \boxfill[1.2cm] & $\times$ \boxfill[1.5cm] & $h=$ \boxfill[1.8cm] \\
+			\hline
+			$-6f = 0$               & \boxfill[1.2cm] & $\div$ \boxfill[1.5cm] & $f=$ \boxfill[1.8cm] \\
+			\hline
+		\end{longtable}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 6 — ESTRATEGIA DE 6 PASOS
+	% =========================================================
+	\section*{Misión 6: Estrategia de 6 Pasos para Resolver Problemas}
+	
+	\begin{concepto}{Los 6 Pasos — Del Problema al Resultado}
+		\begin{center}
+			\begin{tikzpicture}[
+				paso/.style={draw=#1, fill=#1!12, rounded corners=6pt,
+					minimum width=3.2cm, minimum height=1cm,
+					align=center, font=\small\bfseries, line width=1.5pt,
+					text width=3cm},
+				arr/.style={-{Stealth}, #1, line width=2pt}
+				]
+				\node[paso=valblue]   (p1) at (0,0)    {\color{valblue}PASO 1\\\normalfont Analizar\\\small Lee e identifica datos};
+				\node[paso=valgreen]  (p2) at (3.8,0)  {\color{valgreen}PASO 2\\\normalfont Asignar\\\small Elige la variable $x$};
+				\node[paso=valorange] (p3) at (7.6,0)  {\color{valorange}PASO 3\\\normalfont Formar\\\small Escribe la ecuación};
+				\node[paso=valred]    (p4) at (11.4,0) {\color{valred}PASO 4\\\normalfont Resolver\\\small Aplica propiedades};
+				\node[paso=valblue]   (p5) at (0,-2.5) {\color{valblue}PASO 5\\\normalfont Enunciar\\\small Respuesta con unidades};
+				\node[paso=valgreen]  (p6) at (3.8,-2.5){\color{valgreen}PASO 6\\\normalfont Comprobar\\\small Usa el enunciado original};
+				\draw[arr=valblue](p1)--(p2); \draw[arr=valgreen](p2)--(p3);
+				\draw[arr=valorange](p3)--(p4);
+				\draw[arr=valred](p4.south) -- ++(0,-0.5) -| (p5.north);
+				\draw[arr=valblue](p5)--(p6);
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\begin{atencion}{¡CUIDADO en el Paso 6 — Comprobación!}
+			La verificación final debe hacerse usando el \textbf{enunciado original del
+				problema}, \textbf{no} la ecuación que formaste. Esto asegura que no hubo
+			errores al traducir las palabras a álgebra.
+		\end{atencion}
+	\end{concepto}
+	
+	\begin{ejemploresuelto}{Estrategia de 6 Pasos — Dos problemas completos}
+		
+		\textbf{Problema A — Contexto:} La multa de tránsito en zona de construcción
+		es el \textit{doble} de la multa normal. En zona de construcción cuesta \$160.
+		¿Cuánto es la multa normal?
+		\vspace{0.3cm}
+		\begin{pasocaja}{valblue}{1}{Analizar — Leo e identifico lo que me dan y lo que busco}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[draw=valblue,fill=vallightblue,rounded corners=5pt,
+					font=\small\bfseries,text width=5cm,align=center,
+					minimum height=1.2cm,line width=1.5pt] (dato) at (0,0)
+					{\faInfoCircle\ \textbf{Dato conocido}\\Multa zona construcción\\$= \$160$};
+					\draw[-{Stealth},valdark,line width=2pt](2.7,0)--(3.6,0);
+					\node[draw=valorange,fill=vallightorange,rounded corners=5pt,
+					font=\small\bfseries,text width=5cm,align=center,
+					minimum height=1.2cm,line width=1.5pt] at (6.4,0)
+					{\faQuestionCircle\ \textbf{Incógnita}\\¿Cuánto es la multa\\normal?};
+					\node[draw=valdark,fill=valdark!8,rounded corners=5pt,
+					font=\small\bfseries,text width=5cm,align=center,
+					minimum height=1.2cm,line width=1.5pt] at (12.8,0)
+					{\faCogs\ \textbf{Relación}\\La multa construcción\\= \textbf{2} $\times$ multa normal};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.2cm}
+		\begin{pasocaja}{valgreen}{2}{Asignar — Elijo la variable}
+			\centering
+			Sea \textbf{$m$} = multa normal (en dólares). \hspace{1.5cm}
+			Escoge una letra que recuerde lo que representa: $m$ de \textit{multa}.
+		\end{pasocaja}
+		
+		\vspace{0.2cm}
+		\begin{pasocaja}{valorange}{3}{Formar — Traduzco las palabras a una ecuación}
+			\begin{center}
+				\begin{tikzpicture}
+					\node[font=\normalsize] at (0,0)
+					{``La multa de construcción\;\textbf{es el doble de}\;la multa normal''};
+					\draw[-{Stealth},valdark,line width=1.5pt](0,-0.3)--(0,-0.8);
+					\node[font=\Large\bfseries] at (0,-1.2)
+					{$\underbrace{160}_{\text{construcción}}
+						\;=\;
+						\underbrace{2}_{\text{doble}}
+						\cdot
+						\underbrace{m}_{\text{normal}}$};
+					\node[font=\normalsize,valdark] at (5,-1.2)
+					{o sea:\; $2m = 160$};
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.2cm}
+		\begin{pasocaja}{valred}{4}{Resolver — Aplico la propiedad uniforme de la División}
+			\begin{center}
+				\begin{tikzpicture}[
+					n/.style={draw=#1,fill=#1!10,rounded corners=4pt,font=\normalsize\bfseries,
+						align=center,minimum width=3.8cm,minimum height=0.9cm,
+						line width=1.5pt,text width=3.6cm}]
+					\node[n=valdark]  (a) at (0,0)    {Ecuación\\$2m=160$};
+					\node[n=valblue]  (b) at (4.5,0)  {Divido $\div 2$\\a ambos lados};
+					\node[n=valorange](c) at (9,0)    {$\dfrac{2m}{2}=\dfrac{160}{2}$};
+					\node[n=valgreen] (d) at (13.5,0) {$m = \mathbf{80}$\\\textcolor{valgreen}{\checkmark}};
+					\foreach \s/\t in {a/b,b/c,c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
+				\end{tikzpicture}
+			\end{center}
+		\end{pasocaja}
+		
+		\vspace{0.2cm}
+		\begin{pasocaja}{valblue}{5}{Enunciar — Respondo en lenguaje natural CON unidades}
+			\centering
+			\textcolor{valblue}{\faCheckCircle}\; \textbf{La multa normal de tránsito es de \$80.}\\[3pt]
+			\textit{(Nunca olvides incluir las unidades: dólares, metros, años, minutos...)}
+		\end{pasocaja}
+		
+		\vspace{0.2cm}
+		\begin{pasocaja}{valgreen}{6}{Comprobar — Uso el ENUNCIADO ORIGINAL, no la ecuación}
+			\begin{tcolorbox}[enhanced,colback=valgreen!5,colframe=valgreen,arc=2pt,boxrule=0.8pt]
+				\textbf{Enunciado original dice:} ``la multa en zona de construcción es el doble de la normal''\\
+				\textbf{Verifico:} El doble de \$80 es $2 \times 80 = \$160$ \textcolor{valgreen}{\checkmark}\\[4pt]
+				\textcolor{valred}{\textbf{¡IMPORTANTE!}} No verifico en la ecuación $2m=160$
+				que yo mismo formé. Si traduje mal, verificar en la ecuación no detecta el error.
+			\end{tcolorbox}
+		\end{pasocaja}
+		
+		\vspace{0.5cm}
+		% ─── Problema B ────────────────────────────────────────────────
+		\textbf{Problema B — Contexto:} De 120 invitaciones de graduación enviadas,
+		algunas regresaron por correo. Quedaron 107 entregadas. ¿Cuántas regresaron?
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.8}
+			\begin{tabular}{|m{5.5cm}|m{7.8cm}|}
+				\hline
+				\rowcolor{valblue!15}
+				\textbf{Paso} & \textbf{Desarrollo detallado} \\
+				\hline
+				\textcolor{valblue}{\textbf{Paso 1: Analizar (Subraya los datos y escribe la PALABRA CLAVE de la operación)}} &
+				\textbf{Dato:} Empecé con 120 invitaciones. Quedaron 107 entregadas. \textbf{Palabra clave:} Quedaron (Resta). \textbf{Busco:} cuántas regresaron. \\
+				\hline
+				\textcolor{valgreen}{\textbf{2 Asignar}} &
+				Sea $r$ = número de invitaciones que regresaron. \\
+				\hline
+				\textcolor{valorange}{\textbf{3 Formar}} &
+				Si empecé con 120 y regresaron $r$, quedaron $120 - r = 107$. \\
+				\hline
+				\textcolor{valred}{\textbf{4 Resolver}} &
+				$120 - r = 107$\;\;
+				$\xrightarrow{-120}$\;\;$-r = -13$\;\;
+				$\xrightarrow{\div(-1)}$\;\;$r = 13$ \\
+				\hline
+				\textcolor{valblue}{\textbf{5 Enunciar}} &
+				\textbf{Regresaron 13 invitaciones por correo.} \\
+				\hline
+				\rowcolor{valgreen!8}
+				\textcolor{valgreen}{\textbf{6 Comprobar}} &
+				$120 - 13 = 107$ \;\textcolor{valgreen}{\checkmark}
+				(usé el enunciado, no la ecuación) \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{ejemploresuelto}
+	
+	\vspace{0.3cm}
+	\begin{minicheck}
+		\textbf{Practica el Paso 3:} Traduce a ecuación (solo la ecuación, no resuelvas):
+		\begin{enumerate}[label=\textbf{\alph*)}]
+			\item ``Una tienda bajó el precio en \$15 y ahora cuesta \$85.''
+			\hfill Ecuación: \boxfill[4.5cm]
+			\item ``El triple de un número es 45.''
+			\hfill Ecuación: \boxfill[4.5cm]
+		\end{enumerate}
+	\end{minicheck}
+	
+	\vspace{0.4cm}
+	\begin{minicheck}
+		\textbf{Diccionario de Operaciones (Mejora Pedagógica):} Clasifica los siguientes términos cotidianos en su respectivo símbolo matemático ($+$, $-$, $\times$, $\div$):
+		\begin{center}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{4cm}|m{2.5cm}|m{4cm}|m{2.5cm}|}
+				\hline
+				\rowcolor{valorange!15}
+				\textbf{Término Cotidiano} & \textbf{Símbolo} & \textbf{Término Cotidiano} & \textbf{Símbolo} \\ \hline
+				Reducido & \boxfill[1.5cm] & Heredado & \boxfill[1.5cm] \\ \hline
+				Depositado & \boxfill[1.5cm] & Repartido & \boxfill[1.5cm] \\ \hline
+				Excede & \boxfill[1.5cm] & Diferencia & \boxfill[1.5cm] \\ \hline
+			\end{tabular}
+		\end{center}
+	\end{minicheck}
+	
+	\begin{practica}{Estrategia de 6 Pasos}
+		
+		\textit{Usa la tabla de 6 pasos en cada problema. Muestra todo.}
+		
+		\vspace{0.3cm}
+		% ─── Plantilla de 6 pasos reutilizable ───
+		\newcommand{\seispasos}{%
+			\vspace{0.2cm}
+			\renewcommand{\arraystretch}{1.7}
+			\begin{center}
+				\begin{tabular}{|m{5.5cm}|m{7.8cm}|}
+					\hline
+					\rowcolor{valblue!10}
+					\textbf{Paso 1: Analizar (Subraya los datos y escribe la PALABRA CLAVE de la operación)}  & \vspace{0.4cm}\hspace{1cm} \\
+					\hline
+					\textbf{2. Asignar}   & \vspace{0.3cm} \\
+					\hline
+					\textbf{3. Formar}    & \vspace{0.3cm} \\
+					\hline
+					\textbf{4. Resolver}  & \vspace{0.6cm} \\
+					\hline
+					\textbf{5. Enunciar}  & \vspace{0.3cm} \\
+					\hline
+					\rowcolor{valgreen!8}
+					\textbf{6. Comprobar} & \vspace{0.3cm} \\
+					\hline
+				\end{tabular}
+		\end{center}}
+		
+		\begin{enumerate}[label=\textbf{Problema \arabic*.}, itemsep=1.2cm,
+			leftmargin=3cm, labelwidth=3.5cm, align=left]
+			
+			\item Para abrir un restaurante de comida rápida se necesitan \$30.000. Un
+			emprendedor ya ahorró \$12.500. ¿Cuánto dinero le falta?
+			\seispasos
+			
+			\item De 120 invitaciones de graduación enviadas, algunas regresaron por
+			correo. Quedaron 107 invitaciones entregadas. ¿Cuántas regresaron?
+			\seispasos
+			
+			\item Un sistema telefónico antiguo soporta la mitad de llamadas que uno
+			moderno. Si el antiguo soporta 45 llamadas, ¿cuántas soporta el moderno?
+			\seispasos
+			
+			\item Una multa de tránsito en zona escolar es el triple de la multa normal. Si en zona escolar cuesta \$90, ¿cuánto es la multa normal?
+			\seispasos
+			
+			\item Un artefacto histórico fue fabricado 2.300 años antes que otro. Si el
+			más antiguo data del año 500 a.C., ¿en qué año fue fabricado el
+			más reciente? \textit{(Pista: usa año$_2$ = año$_1$ + 2300).}
+			\seispasos
+			
+			\item Un ciclista recorrió $d$ km el lunes. El martes recorrió 15 km más que
+			el lunes. En total recorrió 83 km en los dos días. ¿Cuántos km recorrió el lunes?
+			\seispasos
+			
+			\item Una tienda de ropa aumentó el precio de una chaqueta en \$25. Ahora cuesta \$98. ¿Cuál era el precio original?
+			\seispasos
+			
+			\item Una piscina tiene $\frac{3}{4}$ de su capacidad llena. Si contiene
+			4.500 litros, ¿cuál es la capacidad total de la piscina?
+			\seispasos
+			
+			\item Andrea trota $t$ minutos diarios. Quema $7t$ kilocalorías en total.
+			Si quemó 245 kcal, ¿cuántos minutos trotó?
+			\seispasos
+			
+			\item Un rectángulo tiene largo $x + 3$ y ancho $x$. Si el perímetro
+			es 34 cm, \textit{¿cuánto mide el ancho?}
+			\textit{(Pista: $P = 2l + 2w$; plantea primero la ecuación.)}
+			\seispasos
+			
+			\item La edad de un árbol es 4 veces la edad de un arbusto. El árbol
+			tiene 36 años. ¿Cuántos años tiene el arbusto?
+			\seispasos
+			
+			\item En un concurso escolar, el ganador obtuvo el doble de puntos que el
+			segundo lugar. El segundo obtuvo 18 puntos menos que el ganador.
+			Si el ganador obtuvo 48 puntos, ¿cuántos obtuvo el segundo lugar?
+			\seispasos
+			
+			\item Una cuerda se cortó en dos partes. Una parte mide 35 cm.
+			La otra mide $n$ cm. La cuerda total medía 80 cm. ¿Cuánto mide $n$?
+			\seispasos
+			
+			\item Un auto recorre $v$ km/h. En 3 horas recorre 180 km.
+			¿A qué velocidad viajó?
+			\seispasos
+			
+			\item El 40\% de los estudiantes de un curso son niñas. Si hay 12 niñas,
+			¿cuántos estudiantes tiene el curso en total? \textit{(Pista: $0.4 \cdot n = 12$)}
+			\seispasos
+			
+			\item Dos hermanos suman 31 años en total. El mayor tiene 7 años más que el
+			menor. ¿Cuántos años tiene cada uno?
+			\seispasos
+			
+			\item El precio de un libro disminuyó \$8 en una rebaja. Ahora cuesta \$22. ¿Cuál era su precio antes de la rebaja?
+			\seispasos
+			
+			\item Una capacidad de tanque es 1.200 litros. Está llenándose a 60 litros
+			por minuto. ¿Cuántos minutos tardará en llenarse completamente?
+			\seispasos
+			
+			\item Un electricista cobra una tarifa fija de \$15 más \$20 por hora. Si cobró \$75 en total, ¿cuántas horas trabajó?
+			\seispasos
+			
+			\item El triple de un número, aumentado en 5, es igual a 29.
+			¿Cuál es ese número?
+			\seispasos
+		\end{enumerate}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 7 — RETOS FL + TIPOLOGÍA ICFES/SABER
+	% =========================================================
+	\begin{comment}
+		
+		\section*{Misión 7: Retos FL y Tipología ICFES/Prueba Saber}
+		
+		\begin{ejemploresuelto}{Cómo leer balanzas y fórmulas científicas}
+			
+			\textbf{A) Cómo interpretar una balanza en equilibrio:}
+			
+			\begin{pasocaja}{valblue}{Lectura}{Balanza $\rightarrow$ ecuación}
+				\begin{center}
+					\begin{tikzpicture}[scale=0.9]
+						% Balanza
+						\draw[valdark, line width=2.5pt](0,2.2)--(8,2.2);
+						\fill[valdark](4,2.0)--(3.5,0.8)--(4.5,0.8)--cycle;
+						\draw[valdark,line width=1.5pt](3.2,0.8)--(4.8,0.8)--(4.8,0.5)--(3.2,0.5)--cycle;
+						% Platillo izquierdo
+						\draw[valblue,line width=1.5pt](1.5,2.2)--(1.5,1.4);
+						\draw[valblue,line width=1.5pt](0.4,1.4)--(2.6,1.4)--(2.6,0.7)--(0.4,0.7)--cycle;
+						\node[font=\bfseries,valblue] at (1.5,1.05){$x$};
+						% Platillo derecho
+						\draw[valorange,line width=1.5pt](6.5,2.2)--(6.5,1.4);
+						\draw[valorange,line width=1.5pt](5.4,1.4)--(7.6,1.4)--(7.6,0.7)--(5.4,0.7)--cycle;
+						\node[font=\bfseries,valorange] at (6.5,1.05){$500$};
+						% Etiquetas
+						\node[font=\small,valblue,text width=2.5cm,align=center] at (1.5,3.1)
+						{Platillo izquierdo:\\contiene $x$};
+						\node[font=\small,valorange,text width=2.5cm,align=center] at (6.5,3.1)
+						{Platillo derecho:\\contiene 500};
+						% Ecuación derivada
+						\node[font=\Large\bfseries] at (12,1.5){$x = 500$};
+						\draw[-{Stealth},valdark,line width=2pt](8.3,1.5)--(10.5,1.5)
+						node[midway,above,font=\small\bfseries]{en equilibrio:};
+						% Solución
+						\node[draw=valgreen,fill=vallightgreen,rounded corners=4pt,
+						font=\normalsize\bfseries,text width=4cm,align=center] at (12,0.3)
+						{Respuesta: $x=500$\\el platillo izquierdo\\pesa 500 unidades};
+					\end{tikzpicture}
+				\end{center}
+				\textbf{Clave:} Si la balanza está en equilibrio, los dos lados \textbf{pesan lo mismo}. Eso es exactamente una ecuación: LI $=$ LD.
+			\end{pasocaja}
+			
+			\vspace{0.3cm}
+			\textbf{B) Cómo aplicar una fórmula científica:}
+			
+			\begin{pasocaja}{valorange}{Fórmula}{Celsius a Fahrenheit: $F = \frac{9}{5}C + 32$}
+				\begin{center}
+					\begin{tikzpicture}[
+						c/.style={draw=#1,fill=#1!10,rounded corners=4pt,font=\small\bfseries,
+							align=center,minimum width=3.8cm,minimum height=0.95cm,
+							line width=1.5pt,text width=3.6cm}]
+						\node[font=\normalsize,text width=8cm,align=center] at (0,1.5)
+						{\textbf{Situación:} Tengo $C=100^{\circ}$ (agua en ebullición). ¿Cuántos $F$?};
+						\node[c=valdark]  (a) at (0,0)    {Identifico datos\\$C=100$};
+						\node[c=valblue]  (b) at (4.5,0)  {Sustituyo en\\$F=\frac{9}{5}(100)+32$};
+						\node[c=valorange](c) at (9,0)    {Calculo:\\$F=\frac{900}{5}+32=180+32$};
+						\node[c=valgreen] (d) at (13.5,0) {$F=212^{\circ}$\\ \checkmark};
+						\foreach \s/\t in {a/b,b/c,c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
+					\end{tikzpicture}
+				\end{center}
+			\end{pasocaja}
+			
+			\vspace{0.3cm}
+			\textbf{C) Cómo resolver un sistema con símbolos:}
+			
+			\begin{pasocaja}{valred}{Sistema visual}{$\bigstar + \bigstar = 10$ \;y\; $\bigstar - \clubsuit = 4$}
+				\begin{center}
+					\begin{tikzpicture}[scale=0.72]
+						\node[draw=valblue,fill=vallightblue,rounded corners=4pt,
+						font=\normalsize\bfseries,text width=5.5cm,align=center,
+						minimum height=1cm,line width=1.5pt] at (0,0)
+						{De la pista 1:\\$\bigstar+\bigstar=10 \;\rightarrow\; 2\bigstar=10$\\
+							$\bigstar=5$};
+						\draw[-{Stealth},valgreen,line width=2pt](3.2,0)--(4.2,0);
+						\node[draw=valorange,fill=vallightorange,rounded corners=4pt,
+						font=\normalsize\bfseries,text width=5.5cm,align=center,
+						minimum height=1cm,line width=1.5pt] at (7.4,0)
+						{De la pista 2:\\$5-\clubsuit=4$\\
+							$\clubsuit=5-4=1$};
+						\draw[-{Stealth},valgreen,line width=2pt](10.6,0)--(11.6,0);
+						\node[draw=valgreen,fill=vallightgreen,rounded corners=4pt,
+						font=\normalsize\bfseries,text width=3.8cm,align=center,
+						minimum height=1cm,line width=1.5pt] at (13.8,0)
+						{$\bigstar=5$\\$\clubsuit=1$\\\checkmark};
+					\end{tikzpicture}
+				\end{center}
+				\textbf{Estrategia:} Resuelve siempre la pista que tiene \textbf{un solo símbolo}
+				desconocido primero. Luego usa ese valor para encontrar el siguiente.
+			\end{pasocaja}
+		\end{ejemploresuelto}
+		
+		\begin{tcolorbox}[breakable, colback=valblue!5, colframe=valblue,
+			title={\ding{111}\;\textbf{Retos de Razonamiento — Tipología ICFES}},
+			arc=2mm, boxrule=1pt, fonttitle=\large]
+			
+			\textbf{A) Lectura de Balanzas — Elige la ecuación correcta:}
+			
+			\vspace{0.3cm}
+			\textit{Para cada balanza en equilibrio, marca la ecuación que la describe:}
+			
+			\vspace{0.3cm}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=1cm]
+				
+				\item
+				\begin{minipage}{0.38\textwidth}
+					\begin{tikzpicture}[scale=0.85]
+						\draw[valdark, line width=2pt] (0,1.8)--(6,1.8);
+						\fill[valdark] (3,1.6)--(2.6,0.6)--(3.4,0.6)--cycle;
+						\draw[valblue, line width=1.5pt](1,1.8)--(1,1.1)--(0.1,1.1)--(0.1,0.5)--(1.9,0.5)--(1.9,1.1);
+						\node[font=\bfseries\small] at (1,0.78){$x$};
+						\node[font=\bfseries\small] at (1,0.38){\tiny peso desconocido};
+						\draw[valorange, line width=1.5pt](5,1.8)--(5,1.1)--(4.1,1.1)--(4.1,0.5)--(5.9,0.5)--(5.9,1.1);
+						\node[font=\bfseries\small] at (5,0.78){$1.000\,g$};
+					\end{tikzpicture}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.55\textwidth}
+					\textbf{a)} $x + 1.000 = 0$\quad
+					\textbf{b)} $x = 1.000$\quad
+					\textbf{c)} $\dfrac{x}{1.000} = 1$\quad
+					\textbf{d)} $x - 1.000 = 0$\\[3pt]
+					Respuesta: \boxfill[1.5cm]
+				\end{minipage}
+				
+				\item
+				\begin{minipage}{0.38\textwidth}
+					\begin{tikzpicture}[scale=0.85]
+						\draw[valdark, line width=2pt] (0,1.8)--(6,1.8);
+						\fill[valdark] (3,1.6)--(2.6,0.6)--(3.4,0.6)--cycle;
+						\draw[valblue, line width=1.5pt](1,1.8)--(1,1.1)--(0.1,1.1)--(0.1,0.5)--(1.9,0.5)--(1.9,1.1);
+						\node[font=\bfseries\small] at (1,0.78){$x$};
+						\draw[valorange, line width=1.5pt](5,1.8)--(5,1.1)--(4.1,1.1)--(4.1,0.5)--(5.9,0.5)--(5.9,1.1);
+						\node[font=\bfseries\small] at (4.65,0.78){$3.500$};
+						\node[font=\small] at (5.5,0.3){\tiny$g$};
+					\end{tikzpicture}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.55\textwidth}
+					\textbf{a)} $x = 3.500$\quad
+					\textbf{b)} $3.500 - x = 0$\quad
+					\textbf{c)} $x + 3.500 = 0$\quad
+					\textbf{d)} $2x = 3.500$\\[3pt]
+					Respuesta: \boxfill[1.5cm]
+				\end{minipage}
+				
+				\item
+				\begin{minipage}{0.38\textwidth}
+					\begin{tikzpicture}[scale=0.85]
+						\draw[valdark, line width=2pt] (0,1.8)--(6,1.8);
+						\fill[valdark] (3,1.6)--(2.6,0.6)--(3.4,0.6)--cycle;
+						\draw[valblue, line width=1.5pt](1,1.8)--(1,1.1)--(0.1,1.1)--(0.1,0.5)--(1.9,0.5)--(1.9,1.1);
+						\node[font=\bfseries\small] at (0.75,0.78){$x$};
+						\node[font=\bfseries\small] at (1.45,0.55){\small$200$};
+						\draw[valorange, line width=1.5pt](5,1.8)--(5,1.1)--(4.1,1.1)--(4.1,0.5)--(5.9,0.5)--(5.9,1.1);
+						\node[font=\bfseries\small] at (5,0.78){$500$};
+					\end{tikzpicture}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.55\textwidth}
+					\textit{Izquierdo: $x$ junto a una pesa de 200\,g}\\[3pt]
+					\textbf{a)} $x \cdot 200 = 500$\quad
+					\textbf{b)} $x + 200 = 500$\quad
+					\textbf{c)} $x - 200 = 500$\quad
+					\textbf{d)} $\frac{x}{200} = 500$\\[3pt]
+					Respuesta: \boxfill[1.5cm]
+				\end{minipage}
+			\end{enumerate}
+			
+			\vspace{0.5cm}
+			\textbf{B) Fórmulas de Ciencias:}
+			
+			\vspace{0.2cm}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm, start=4]
+				\item La fórmula para convertir grados Fahrenheit a Celsius es
+				$C = \dfrac{5(F-32)}{9}$. Si la temperatura es $F = 212^{\circ}\text{F}$,
+				¿cuántos grados Celsius son?
+				\begin{espaciotrabajo}{Sustitución}
+					$C = \dfrac{5(\boxstep[1cm]-32)}{9}$\;$=\dfrac{5\cdot\boxstep[1cm]}{9}$\;$=\dfrac{\boxstep[1.5cm]}{9}=$\boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item Andrea trota durante $t$ minutos y quema $8t$ kilocalorías.
+				Si quemó 200 kcal, ¿cuántos minutos trotó? Forma y resuelve la ecuación:
+				
+				\begin{espaciotrabajo}{Ecuación}
+					Ecuación: \boxfill[4cm]\quad
+					Solución: $t=$\boxfill[2cm]\quad
+					Verifica: \boxfill[4cm]
+				\end{espaciotrabajo}
+				
+				\item Si $F = 32^{\circ}\text{F}$, ¿cuántos Celsius son?
+				Muestra el procedimiento completo.
+				\begin{espaciotrabajo}{}
+					\vspace{0.8cm}
+					$C=$\boxfill[2cm]
+				\end{espaciotrabajo}
+			\end{enumerate}
+			
+			\vspace{0.5cm}
+			\textbf{C) Geometría y Álgebra:}
+			
+			\vspace{0.2cm}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm, start=7]
+				\item Un rectángulo tiene largo $2x - 7$ y ancho $x - 4$. ¿Qué expresión representa su \textbf{perímetro}?
+				
+				\begin{center}
+					\begin{tikzpicture}
+						\draw[valblue, line width=2pt](0,0) rectangle (5,2.5);
+						\node[above, font=\bfseries\small, valblue] at (2.5,2.5){$2x-7$};
+						\node[right, font=\bfseries\small, valblue] at (5,1.25){$x-4$};
+					\end{tikzpicture}
+				\end{center}
+				
+				\textbf{a)} $3x - 11$ \quad
+				\textbf{b)} $6x - 22$ \quad
+				\textbf{c)} $2x^2 - 11x + 28$ \quad
+				\textbf{d)} $x - 3$
+				\hfill Respuesta: \boxfill[1.5cm]
+				
+				Justifica: \underline{\hspace{8cm}}
+				
+				\item El perímetro del rectángulo anterior es 32 cm. Forma la ecuación con tu respuesta del punto anterior y resuelve:
+				
+				\begin{espaciotrabajo}{}
+					\vspace{0.2cm}\underline{\hspace{12cm}}\\[0.3cm]
+					$x=$\boxfill[2cm]\quad Largo $=$\boxfill[2cm]\quad
+					Ancho $=$\boxfill[2cm]
+				\end{espaciotrabajo}
+			\end{enumerate}
+			
+			\vspace{0.5cm}
+			\textbf{D) Razonamiento con Símbolos (Sistema visual):}
+			
+			\vspace{0.3cm}
+			\textit{Usa las pistas para determinar el valor de cada símbolo y luego
+				resuelve las ecuaciones numéricas:}
+			
+			\vspace{0.3cm}
+			\begin{tcolorbox}[enhanced, colback=vallightorange,
+				colframe=valorange, arc=3pt]
+				\textbf{Pistas:}
+				\begin{itemize}
+					\item \faSmile[regular]\;+\;\faSmile[regular]\;$= 10$
+					\quad$\rightarrow$\quad \faSmile[regular]$=$\boxfill[1.5cm]
+					\item \faStar\;$\times\;3 = 12$
+					\quad$\rightarrow$\quad \faStar$=$\boxfill[1.5cm]
+					\item \faHeart[regular]\;$-$\;\faSmile[regular]\;$= 1$
+					\quad$\rightarrow$\quad \faHeart[regular]$=$\boxfill[1.5cm]
+				\end{itemize}
+			\end{tcolorbox}
+			
+			\vspace{0.3cm}
+			Ahora reemplaza los símbolos por sus valores y resuelve:
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm, start=9]
+				\item $x +$\;\faSmile[regular]\;$= 15$
+				\hfill $x + \boxstep[1cm]=15$
+				\hfill $x=$\boxfill[2cm]
+				
+				\item $n \times$\;\faStar\;$= 24$
+				\hfill $n \times \boxstep[1cm]=24$
+				\hfill $n=$\boxfill[2cm]
+				
+				\item \faHeart[regular]\;$- y = 4$
+				\hfill \boxstep[1cm]$- y=4$
+				\hfill $y=$\boxfill[2cm]
+				
+				\item $2k =$\;\faSmile[regular]\;$+$\;\faStar
+				\hfill $2k =$\boxstep[0.8cm]$+$\boxstep[0.8cm]$=$\boxstep[1cm]
+				\hfill $k=$\boxfill[2cm]
+			\end{enumerate}
+			
+			\vspace{0.5cm}
+			\textbf{E) Razonamiento avanzado — Formula y resuelve (8 ejercicios):}
+			
+			\vspace{0.3cm}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.75cm, start=13]
+				\item La diferencia de dos números consecutivos es siempre 1.
+				Si el menor es $n$ y el mayor es 28, escribe y resuelve la ecuación.
+				\begin{espaciotrabajo}{}
+					Ecuación:\;\boxfill[4cm]\quad $n=$\boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item Un número $x$ es solución de $2x - 4 = x + 3$. Resuelve (pasa $x$ a un lado): $2x - x = 3 + 4$
+				\begin{espaciotrabajo}{}
+					\vspace{0.3cm}$x=$\boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item La fórmula del área de un triángulo es $A = \frac{1}{2}bh$. Si $A = 30$ y $h = 6$, ¿cuánto mide la base $b$?
+				\begin{espaciotrabajo}{}
+					$30 = \frac{1}{2}\cdot b \cdot$\boxstep[0.7cm]\quad
+					$30 =$\boxstep[1cm]$\cdot b$\quad
+					$b=$\boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item El libro original indica que la multa en zona de construcción es el
+				\textit{doble} de la normal. En otra ciudad la multa duplicada es
+				\$240. Forma la ecuación y resuelve para la multa normal.
+				\begin{espaciotrabajo}{}
+					Ecuación:\;\boxfill[4cm]\quad Solución:\;\boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item Un sistema de ecuaciones visual:
+				$\heartsuit + \heartsuit = 18$ y $\heartsuit - \clubsuit = 4$.
+				¿Cuánto vale $\clubsuit$?
+				\begin{espaciotrabajo}{}
+					$\heartsuit=$\boxfill[1.5cm]\quad
+					$\clubsuit = \heartsuit - 4 =$\boxfill[1.5cm]
+				\end{espaciotrabajo}
+				
+				\item Si $\frac{n}{5} + 2 = 7$, ¿cuánto vale $n$? \textit{(Pista: resta 2 primero, luego multiplica por 5.)}
+				\begin{espaciotrabajo}{}
+					Paso 1: \underline{\hspace{4cm}} \quad Paso 2: \underline{\hspace{4cm}}\\[0.2cm]
+					$n=$\boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item El perímetro de un cuadrado es 52 cm. Escribe y resuelve la ecuación
+				para hallar el lado $s$.
+				\begin{espaciotrabajo}{}
+					Ecuación:\;\boxfill[4cm]\quad $s=$\boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item Una tienda tiene $x$ artículos. Vendió 30 y quedaron 45.
+				Formula la ecuación, resuélvela y verifica con el enunciado original.
+				\begin{espaciotrabajo}{}
+					Ecuación:\;\boxfill[4cm]\quad $x=$\boxfill[2cm]\\[0.2cm]
+					Verificación:\;\underline{\hspace{7cm}}
+				\end{espaciotrabajo}
+			\end{enumerate}
+			
+		\end{tcolorbox}
+	\end{comment}
+	
+	% =========================================================
+	%  AUTOEVALUACIÓN FINAL
+	% =========================================================
+	\newpage
+	\section*{Autoevaluación Final}
+	
+	\begin{tcolorbox}[colback=boxbg, colframe=valmid, arc=2mm, boxrule=0.8pt]
+		\small\textit{Trabaja sin consultar el módulo. Tiempo estimado: 40 minutos.}
+	\end{tcolorbox}
+	
+	\vspace{0.4cm}
+	\noindent\textbf{Parte 1 — Completa los espacios}\hfill\small(5 puntos)
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm]
+		\item Un enunciado que indica que dos expresiones son iguales se llama \underline{\hspace{3cm}}.
+		\item El número que hace verdadera una ecuación al sustituir la variable se llama \underline{\hspace{3cm}}.
+		\item Para resolver $x - 8 = 5$ se utiliza la propiedad uniforme de la \underline{\hspace{3cm}}.
+		\item Para resolver $3x = 15$ se utiliza la propiedad uniforme de la \underline{\hspace{3cm}}.
+		\item En el Paso 6 de resolución de problemas, la comprobación se hace usando \underline{\hspace{4cm}}, no la ecuación formada.
+	\end{enumerate}
+	
+	\vspace{0.4cm}
+	\noindent\textbf{Parte 2 — Selección múltiple}\hfill\small(4 pts)
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm]
+		\item ¿Cuál es la solución de $n - 7 = 15$?
+		\textbf{a)} $n=8$\quad\textbf{b)} $n=22$\quad\textbf{c)} $n=-8$\quad\textbf{d)} $n=105$
+		\hfill Rta: \boxfill[1.2cm]
+		
+		\item ¿Cuál operación resuelve $\dfrac{2}{3}x = 8$?
+		\textbf{a)} $\div\dfrac{2}{3}$\quad\textbf{b)} $\times\dfrac{3}{2}$\quad\textbf{c)} $-\dfrac{2}{3}$\quad\textbf{d)} $+\dfrac{2}{3}$
+		\hfill Rta: \boxfill[1.2cm]
+		
+		\item Si $-12 = y$ como resultado, ¿qué se puede afirmar?
+		\textbf{a)} Es incorrecto, la variable va a la izquierda\\
+		\textbf{b)} Es válido: equivale a $y = -12$\\
+		\textbf{c)} Hay un error de signo\\
+		\textbf{d)} La ecuación no tiene solución
+		\hfill Rta: \boxfill[1.2cm]
+		
+		\item La frase ``el doble de un número $n$ disminuido en 3 es 11'' se traduce como:
+		
+		\textbf{a)} $2(n-3)=11$\quad\textbf{b)} $2n-3=11$\quad
+		\textbf{c)} $n-3=11$\quad\textbf{d)} $2n=11-3$
+		\hfill Rta: \boxfill[1.2cm]
+	\end{enumerate}
+	
+	\vspace{0.4cm}
+	\noindent\textbf{Parte 3 — Resolución directa}\hfill\small(4 ecuaciones)
+	
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.9cm]
+			\item $x - 14 = 30$
+			\begin{espaciotrabajo}{}
+				\vspace{1.2cm}$x=$\boxfill[2.5cm]
+			\end{espaciotrabajo}
+			
+			\item $n + 9 = -5$
+			\begin{espaciotrabajo}{}
+				\vspace{1.2cm}$n=$\boxfill[2.5cm]
+			\end{espaciotrabajo}
+			
+			\item $\dfrac{3}{4}m = 18$
+			\begin{espaciotrabajo}{}
+				\vspace{1.2cm}$m=$\boxfill[2.5cm]
+			\end{espaciotrabajo}
+			
+			\item $-6k = 42$
+			\begin{espaciotrabajo}{}
+				\vspace{1.2cm}$k=$\boxfill[2.5cm]
+			\end{espaciotrabajo}
+		\end{enumerate}
+	\end{multicols}
+	
+	\vspace{0.4cm}
+	\noindent\textbf{Parte 4 — Problema de aplicación}
+	
+	\textit{Una tienda de zapatos vende un par de botas con un descuento de \$35. El precio
+		final es \$120. ¿Cuál era el precio original? Usa los 6 pasos.}
+	
+	\vspace{0.2cm}
+	\renewcommand{\arraystretch}{1.7}
+	\begin{center}
+		\begin{tabular}{|m{5.5cm}|m{7.8cm}|}
+			\hline \rowcolor{valblue!10}
+			\textbf{Paso 1: Analizar (Subraya los datos y escribe la PALABRA CLAVE de la operación)}  & \vspace{0.5cm} \\
+			\hline
+			\textbf{2. Asignar}   & \vspace{0.4cm} \\
+			\hline
+			\textbf{3. Formar}    & \vspace{0.4cm} \\
+			\hline
+			\textbf{4. Resolver}  & \vspace{0.8cm} \\
+			\hline
+			\textbf{5. Enunciar}  & \vspace{0.4cm} \\
+			\hline
+			\rowcolor{valgreen!8}
+			\textbf{6. Comprobar} & \vspace{0.4cm} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\noindent\textbf{Parte 5 — Rejilla de autoevaluación}
+	
+	\vspace{0.2cm}
+	\renewcommand{\arraystretch}{1.65}
+	\begin{center}
+		\begin{tabular}{|m{8.5cm}|c|c|c|}
+			\hline
+			\rowcolor{valdark!80}
+			\color{white}\textbf{Indicador} &
+			\color{white}\textbf{Lo logré} &
+			\color{white}\textbf{En proceso} &
+			\color{white}\textbf{Debo repasar} \\
+			\hline
+			Identifico las partes de una ecuación (LI, LD, variable). & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Verifico si un número es solución de una ecuación. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Resuelvo ecuaciones con la propiedad de la suma. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Resuelvo ecuaciones con la propiedad de la resta. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Resuelvo ecuaciones con la propiedad de la multiplicación. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Uso recíprocos para despejar coeficientes fraccionarios. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Resuelvo ecuaciones con la propiedad de la división. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Aplico la estrategia de 6 pasos en problemas de contexto. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Compruebo soluciones usando el enunciado original. & $\square$ & $\square$ & $\square$ \\
+			\hline
+			Interpreto balanzas, fórmulas y sistemas de ecuaciones visuales. & $\square$ & $\square$ & $\square$ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.5cm}
+	\begin{center}
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
+			width=0.72\textwidth, arc=3mm, boxrule=1.5pt]
+			\centering\itshape
+			``Hacia un Aprendizaje Significativo, Autónomo y en Libertad'' --- Liceo V.A.L.
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}

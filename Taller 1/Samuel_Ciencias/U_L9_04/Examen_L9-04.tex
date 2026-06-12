@@ -1,0 +1,133 @@
+\documentclass[12pt, letterpaper]{article}
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{xcolor}
+
+% --- FUENTE --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% ==========================================
+%  CONFIGURACIÓN DE RESPUESTAS (ACTIVAR/DESACTIVAR)
+% ==========================================
+% Cambia 'true' por 'false' para ocultar las respuestas e imprimir la versión del estudiante.
+\newboolean{mostrarRespuestas}
+\setboolean{mostrarRespuestas}{false}
+
+% Comando interno para generar las cajas de solución
+\newcommand{\solucion}[1]{
+	\ifthenelse{\boolean{mostrarRespuestas}}{
+		\vspace{0.2cm}
+		\begin{tcolorbox}[colframe=red!70!black, colback=red!5, boxrule=1pt, arc=3pt, left=5pt, right=5pt, top=5pt, bottom=5pt]
+			\textcolor{red!70!black}{\textbf{Solución de calificación:} #1}
+		\end{tcolorbox}
+	}{}
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO --- 
+	\begin{center} 
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.2cm] 
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.2cm] 
+		\textbf{Examen - CIENCIAS 2}\\[0.1cm] 
+		\textit{TAU 4: El Cielo y la Tierra} 
+	\end{center}
+	
+\vspace{0.3cm}
+\hfill \textbf{Código:} \textbf{L9-04 FL}\\[0.1cm]
+\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+\vspace{0.8cm}
+	
+	% --- PREGUNTA 1 --- 
+	\noindent \textbf{1.} El gran filósofo griego Aristóteles dividió todo el Universo en dos zonas o regiones. Escribe al frente de cada descripción a qué región corresponde\\
+	\begin{center}
+		(\textbf{Región Sublunar} o \textbf{Región Celeste})
+	\end{center}
+	 
+	
+	\vspace{0.3cm}
+	\begin{itemize}[itemsep=0.4cm]
+		\item Es la región donde se encuentra la Tierra, llena de imperfección, donde los cuerpos sufren cambios, se corrompen y son mortales: \underline{\hspace{4cm}}
+		
+		\item Es la región donde se encuentran el Sol y las estrellas, formada por cuerpos totalmente perfectos e inmortales: \underline{\hspace{4cm}}
+	\end{itemize}
+	
+	\solucion{\textbf{Región Sublunar} (la primera, la imperfecta) / \textbf{Región Celeste} (la segunda, la perfecta).}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 2 --- 
+	\noindent \textbf{2} En la antigüedad, los observadores del cielo notaron que había unas cuantas estrellas que no seguían el movimiento ordenado del resto, sino que parecían moverse a su propio ritmo.
+	
+	\vspace{0.2cm} 
+	\begin{itemize}[itemsep=0.3cm]
+		\item ¿Qué palabra de nuestro idioma, que proviene del griego ``vagabundo'', usamos hoy en día para llamar a estos cuerpos? \underline{\hspace{4cm}}
+
+	\end{itemize}
+	
+	\solucion{\textbf{A.} Planeta (o planetas). \\ \textbf{B.} Mercurio, Venus, Marte, Júpiter y Saturno.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 3 --- 
+	\noindent \textbf{3.} Durante la Edad Media, gran parte del conocimiento de la antigua civilización greco-latina estuvo a punto de perderse para siempre. Según lo leído en el libro, ¿quiénes se encargaron de traducir, estudiar y conservar los grandes libros de Aristóteles para luego devolverlos a Europa?
+	\vspace{0.2cm} 
+	\begin{itemize}[itemsep=0.2cm, label={}] 
+		\item[ $\square$ ] Los caballeros feudales europeos.
+		\item[ $\square$ ] Los sabios árabes.
+		\item[ $\square$ ] Los antiguos egipcios.
+	\end{itemize}
+	
+	\solucion{La respuesta correcta es la segunda: \textbf{Los sabios árabes}.}
+	\vspace{0.5cm}
+	\newpage
+	% --- PREGUNTA 4 --- 
+	\vspace*{1cm}
+	\noindent \textbf{4.} Relaciona con una línea a cada personaje histórico de la izquierda con la hazaña o evento por el que lo recordamos en el TAU 4:
+	
+	\vspace{0.4cm}
+	\noindent
+	\begin{tabular}{p{0.35\textwidth} c p{0.55\textwidth}}
+		\textbf{Santo Tomás de Aquino} & $\circ$ & Fue quemado en la hoguera en el año 1600 por atreverse a decir que el Universo era infinito y que las estrellas eran otros soles. \\[0.8cm]
+		\textbf{Alejandro Magno} & $\circ$ & Gran guerrero que fundó en Egipto la ciudad donde se construiría la Gran Biblioteca de la antigüedad. \\[0.8cm]
+		\textbf{Giordano Bruno} & $\circ$ & Escribió el famoso libro ``Suma Teológica'', usando las teorías de Aristóteles para justificar a la Iglesia. \\
+	\end{tabular}
+	
+	\solucion{\textbf{Santo Tomás de Aquino} $\rightarrow$ Escribió la ``Suma Teológica''. \\ \textbf{Alejandro Magno} $\rightarrow$ Gran guerrero que fundó la ciudad en Egipto (Alejandría). \\ \textbf{Giordano Bruno} $\rightarrow$ Fue quemado en la hoguera en el año 1600.}
+	\vspace{0.5cm}
+	
+	% --- PREGUNTA 5 --- 
+	\noindent \textbf{5.} Teniendo en cuenta cómo ha evolucionado el conocimiento astronómico humano, marca con una \textbf{X} si las siguientes afirmaciones son Verdaderas (V) o Falsas (F):
+	
+	\vspace{0.3cm} 
+	\begin{itemize}[itemsep=0.6cm, label={}] 
+		\item \textbf{A.} Aristóteles afirmaba que el Universo era infinito y\\
+		 no tenía un centro específico. \hfill  ( \hspace{0.3cm} ) V \quad  ( \hspace{0.3cm} ) F 
+		
+		\item \textbf{B.} Para las personas de la antigüedad era lógico pensar que\\
+		 la Tierra estaba quieta en el centro, porque al no tener vehículos
+		  rápidos\\
+		   para comparar, nunca lograban sentir que se estuvieran moviendo. \hfill  ( \hspace{0.3cm} ) V \quad  ( \hspace{0.3cm} ) F 
+	\end{itemize}
+	
+	\solucion{\textbf{A es Falsa} (Aristóteles creía que la Tierra era el centro y que el Universo tenía fin; fue Giordano Bruno quien dedujo que era infinito). \\ \textbf{B es Verdadera} (Al no tener con qué comparar el movimiento constante, la inmovilidad parecía la conclusión más "natural" y lógica).}
+	
+\end{document}

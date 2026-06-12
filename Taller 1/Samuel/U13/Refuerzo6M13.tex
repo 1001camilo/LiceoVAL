@@ -1,0 +1,162 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen ajustado para papel Carta y espacio para el fondo
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO (Ruta Local TeXstudio) ---
+\AddToShipoutPictureBG{%
+	\IfFileExists{FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+		}%
+	}{}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valdark}{RGB}{50, 50, 50}
+
+% --- COMANDO PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+% Comando para el espacio de procedimiento
+\newtcolorbox{espaciotrabajonb}[1]{colback=white, colframe=valdark!40, title={\small \textbf{Espacio de Procedimiento: #1}}, arc=1mm, boxrule=0.6pt, coltitle=valdark!90, top=2mm, bottom=2mm}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		\textbf{TALLER DE REFUERZO Y RECUPERACIÓN}\\[0.1cm]
+		Matemáticas 6º - Unidad 13: Introducción al Álgebra
+	\end{center}
+	
+	
+	% ==========================================
+	% PUNTO 1: PARTES DE LA EXPRESIÓN
+	% ==========================================
+	\noindent \textbf{{1. PARTES DE LA EXPRESIÓN ALGEBRAICA}}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Identifica la variable (letras), el coeficiente (los números pegados a las letras) y la constante (el número que está solo, con su signo). Completa la tabla.}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{2}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Expresión} & \textbf{Variable(s)} & \textbf{Coeficiente(s)} & \textbf{Constante(s)} \\
+			\hline
+			\textbf{A)} $8m - 12$ & \boxfill[2cm] & \boxfill[2cm] & \boxfill[2cm] \\
+			\hline
+			\textbf{B)} $-5k + 20$ & \boxfill[2cm] & \boxfill[2cm] & \boxfill[2cm] \\
+			\hline
+			\textbf{C)} $p^2 - 4$ & \boxfill[2cm] & \boxfill[2cm] & \boxfill[2cm] \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.6cm}
+	
+	% ==========================================
+	% PUNTO 2: LENGUAJE COMÚN A MATEMÁTICO
+	% ==========================================
+	\noindent \textbf{{2. TRADUCTOR ALGEBRAICO}}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Traduce las siguientes frases del lenguaje común al lenguaje matemático (usa la letra $x$ si no te dicen cuál usar).}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.8cm]
+		\item "El doble de un número disminuido en 5": \boxfill[5cm]
+		\item "El triple de la suma de $y$ y 4": \boxfill[5cm]
+		\item "La diferencia entre un número al cubo y su doble": \boxfill[5cm]
+	\end{enumerate}
+	
+	\newpage
+	
+	% ==========================================
+	% PUNTO 3: TÉRMINOS SEMEJANTES (SIMPLIFICAR)
+	% ==========================================
+	\noindent \textbf{{3. AGRUPANDO FAMILIAS (SIMPLIFICAR)}}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Simplifica las expresiones uniendo los términos semejantes (las mismas letras con las mismas letras). Haz el cálculo mentalmente y anota la expresión final.}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\textbf{\Alph*)}, itemsep=1.2cm]
+		\item $15y - 7y + 4y = $ \boxfill[5cm]
+		
+		\item $6m + 5n - 2m + 3n = $ \boxfill[6cm]
+		
+		\item $4x^2 - 3x + 2x^2 + 8x - 5 = $ \boxfill[7cm]
+	\end{enumerate}
+	
+	\vspace{0.8cm}
+	
+	% ==========================================
+	% PUNTO 4: PERÍMETROS ALGEBRAICOS
+	% ==========================================
+	\noindent \textbf{{4. PERÍMETROS CON LETRAS}}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Escribe la expresión algebraica que representa el perímetro de cada figura. Recuerda sumar todos los lados y luego simplificar (juntar las letras).}
+	
+	\vspace{0.4cm}
+	\textbf{A) Triángulo:}
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[thick] (0,0) -- (4,0) -- (2,3) -- cycle;
+			\node[below] at (2,0) {$3x+1$};
+			\node[above left] at (1,1.5) {$x$};
+			\node[above right] at (3,1.5) {$x$};
+		\end{tikzpicture}
+	\end{center}
+	\begin{espaciotrabajonb}{}
+		$P = \boxfill[2cm] + \boxfill[2cm] + \boxfill[2cm]$ \\[0.2cm]
+		$P = \boxfill[4cm]$
+	\end{espaciotrabajonb}
+	
+	\vspace{0.4cm}
+	\textbf{B) Cuadrado:}
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[thick] (0,0) rectangle (2.5,2.5);
+			\node[above] at (1.25,2.5) {$2y-1$};
+		\end{tikzpicture}
+	\end{center}
+	\begin{espaciotrabajonb}{}
+		$P = 4 \times ( \ \boxfill[3cm] \ )$ \\[0.2cm]
+		$P = \boxfill[4cm]$
+	\end{espaciotrabajonb}
+	
+	
+	\textbf{C) Rectángulo:}
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[thick] (0,0) rectangle (4,2);
+			\node[above] at (2,2) {$5m+2$};
+			\node[right] at (4,1) {$2m$};
+		\end{tikzpicture}
+	\end{center}
+	\begin{espaciotrabajonb}{}
+		$P = 2 \times ( \ \boxfill[3cm] \ ) + 2 \times ( \ \boxfill[2cm] \ )$ \\[0.2cm]
+		$P = \boxfill[6cm]$
+	\end{espaciotrabajonb}
+\end{document}
