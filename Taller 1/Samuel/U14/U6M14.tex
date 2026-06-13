@@ -50,7 +50,7 @@
 % --- ENTORNOS INSTITUCIONALES ---
 \newtcolorbox{concepto}[1]{breakable, colback=valblue!5,
 	colframe=valblue,
-	title={\ding{111}\ Presionar aquí;\ \textbf{Aprende el Concepto: #1}},
+	title={\ding{111}\ \textbf{Aprende el Concepto: #1}},
 	arc=2mm, boxrule=1pt, fonttitle=\large}
 \newtcolorbox{truco}[1]{breakable, colback=valorange!5,
 	colframe=valorange,
@@ -341,7 +341,7 @@
 	
 	\vspace{0.3cm}
 	\begin{minicheck}
-		Sin ver los ejercicios, responde: ¿Es $x=10$ solución de $x - 3 = 7$?
+		Responde: ¿Es $x=10$ solución de $x - 3 = 7$?
 		\quad\textit{Sustitución:}\;\underline{\hspace{10cm}}\quad
 		\textit{¿Verdadero?:}\;\boxfill[1.2cm]
 	\end{minicheck}
@@ -460,7 +460,7 @@
 		\end{enumerate}
 		
 		%\newpage
-		\textbf{C) Completar el concepto:}
+		\textbf{C) Completa el concepto:}
 		
 		\vspace{0.2cm}
 		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm, start=13]
@@ -472,7 +472,7 @@
 		\end{enumerate}
 		
 		\newpage
-		\textbf{D) ¿Cuál es la solución? — Prueba los dos valores y marca la correcta con \checkmark y en la columna de Solución escribe $x=$(número que soluciona la ecuación):}
+		\textbf{D) Prueba los dos valores y marca la correcta con \checkmark y en la columna de Solución escribe $x=$(número que soluciona la ecuación):}
 		
 		\vspace{0.3cm}
 		\renewcommand{\arraystretch}{1.75}
@@ -511,9 +511,13 @@
 	% =========================================================
 	\section*{Misión 2: Propiedad Uniforme de la Suma}
 	
+	\begin{concepto}{Resolver una ecuación}
+		Relosver una ecuación significa encontrar \textbf{todos} los valores de la variable que hacen \textbf{verdadera} la ecuación.
+	\end{concepto}
+	
 	\begin{concepto}{Deshacer una Resta — Suma igual a ambos lados}
 		Para resolver ecuaciones del tipo $x - a = b$, se \textbf{suma} el mismo
-		número a \textbf{ambos lados} para mantener el equilibrio:
+		número a \textbf{ambos lados} para mantener el equilibrio en la balanza, entre el lado izquiero y el lado derecho, los dos deben seguir "pesando" lo mismo:
 		
 		\vspace{0.4cm}
 		\begin{center}
@@ -543,6 +547,8 @@
 		\vspace{0.4cm}
 		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
 			\centering\large\bfseries
+			Sumar el mismo número a ambos lados de la ecuación no cambia su solución, para cualesquiera números a,b,c.\vspace{0.5cm}
+			
 			Si $a = b$, entonces $a + c = b + c$\\[4pt]
 			\normalsize\normalfont
 			Para despejar $x$ en $x - a = b$:\; suma $a$ a \textbf{ambos} lados $\rightarrow$ $x = b + a$
@@ -610,12 +616,12 @@
 			\begin{center}
 				\begin{tikzpicture}[scale=0.9]
 					\node[font=\large\bfseries] at (0,1.2)
-					{Sustituyo $x=23$ en la ecuación original: \;$23 - 9 \stackrel{?}{=} 14$};
+					{Sustituyo $x=23$ en la ecuación original:\; $x-9=14\rightarrow$ \;$23 - 9 \stackrel{?}{=} 14$};
 					\draw[-{Stealth}, valdark, line width=1.5pt](0,0.7)--(0,0.2);
 					\node[font=\large\bfseries, valgreen] at (0,-0.2)
 					{$14 = 14 \quad$ \textcolor{valgreen}{\Large\checkmark}\;\; \textbf{¡Correcto!}};
 					\node[draw=valorange, fill=vallightorange, rounded corners=4pt,
-					font=\normalsize\bfseries, text width=4cm, align=center] at (7,-0.2)
+					font=\normalsize\bfseries, text width=4cm, align=center] at (6.5,-0.2)
 					{Si LI $=$ LD, la\\solución es correcta};
 				\end{tikzpicture}
 			\end{center}
@@ -633,12 +639,10 @@
 					\node[nodo=valdark]  (a) at (0,0)   {Ecuación original\\$n-7=-2$};
 					\node[nodo=valblue]  (b) at (4.5,0) {Sumo $+7$ a ambos lados\\$n-7+7=-2+7$};
 					\node[nodo=valgreen] (c) at (9,0)   {Simplifico\\$n=5$};
-					\node[nodo=valorange](d) at (13.5,0){Verifico: $5-7=-2$\\$-2=-2$\;\checkmark};
+					\node[nodo=valorange](d) at (9,-2){Verifico: $5-7=-2$\\$-2=-2$\;\checkmark};
 					\foreach \s/\t in {a/b, b/c, c/d}{
 						\draw[-{Stealth}, valdark, line width=2pt](\s)--(\t);}
-					% Nota negativos
-					\node[font=\small, valred, text width=4cm, align=center] at (4.5,-1.3)
-					{\textbf{Ojo:} $-2 + 7 = +5$\\(número mayor positivo)};
+					
 				\end{tikzpicture}
 			\end{center}
 		\end{pasocaja}
@@ -651,11 +655,11 @@
 		\hspace{0.5cm} $\rightarrow x = 14$\quad \textcolor{valred}{\texttimes}\\[4pt]
 		\textbf{Correcto:}\quad $x - 9 = 14 \;\rightarrow\; x - 9 + 9 = 14 + 9$\quad (sumé a ambos)
 		\hspace{0.5cm} $\rightarrow x = 23$\quad \textcolor{valgreen}{\checkmark}\\[4pt]
-		\textit{Regla de oro: lo que hago en un platillo, lo hago en el otro.}
+		\textbf{\textit{Regla: lo que hago en un lado, lo hago en el otro.}}
 	\end{errorcomun}
 	
 	\begin{minicheck}
-		Resuelve mentalmente antes de ir a los ejercicios:\\
+		Resuelve:\\
 		\textbf{1)} $x - 4 = 10$ \;\;$\rightarrow$\;\; $x=$\boxfill[1.5cm]\qquad
 		\textbf{2)} $m - 6 = -1$ \;\;$\rightarrow$\;\; $m=$\boxfill[1.5cm]\qquad
 		\textbf{3)} $k - 0 = 9$ \;\;$\rightarrow$\;\; $k=$\boxfill[1.5cm]
@@ -2307,7 +2311,10 @@
 	% =========================================================
 	%  AUTOEVALUACIÓN FINAL
 	% =========================================================
-	\newpage
+	%\newpage
+	\begin{comment}
+		
+	
 	\section*{Autoevaluación Final}
 	
 	\begin{tcolorbox}[colback=boxbg, colframe=valmid, arc=2mm, boxrule=0.8pt]
@@ -2450,5 +2457,5 @@
 			``Hacia un Aprendizaje Significativo, Autónomo y en Libertad'' --- Liceo V.A.L.
 		\end{tcolorbox}
 	\end{center}
-	
+\end{comment}
 \end{document}
