@@ -1,6 +1,7 @@
 \documentclass[12pt, letterpaper]{article}
 
 % --- PAQUETES ---
+\usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish, es-noshorthands]{babel}
@@ -476,7 +477,7 @@
 		
 		\vspace{0.3cm}
 		\renewcommand{\arraystretch}{1.75}
-		\begin{longtable}{|m{3cm}|m{3.5cm}|m{3.5cm}|m{2.2cm}|}
+		\begin{longtable}{|>{\centering\arraybackslash}p{3cm}|>{\centering\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}p{2.2cm}|}
 			\hline
 			\rowcolor{valblue!20}
 			\textbf{Ecuación} & \textbf{¿Es $x=a$?} & \textbf{¿Es $x=b$?} & \textbf{Solución} \\
@@ -661,15 +662,16 @@
 	\begin{minicheck}
 		Resuelve:\\
 		\textbf{1)} $x - 4 = 10$ \;\;$\rightarrow$\;\; $x=$\boxfill[1.5cm]\qquad
-		\textbf{2)} $m - 6 = -1$ \;\;$\rightarrow$\;\; $m=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $m - 6 = -1$ \;\;$\rightarrow$\;\; $m=$\boxfill[1.5cm]\qquad\\
+		
 		\textbf{3)} $k - 0 = 9$ \;\;$\rightarrow$\;\; $k=$\boxfill[1.5cm]
 	\end{minicheck}
 	
 	
 	
-	\begin{practica}{Propiedad Uniforme de la Suma — 22 ejercicios}
+	\begin{practica}{Propiedad Uniforme de la Suma}
 		
-		\textbf{A) Con andamiaje: completa cada paso — 10 ejercicios:}
+		\textbf{A) completa cada paso}
 		
 		\vspace{0.2cm}
 		\begin{multicols}{2}
@@ -776,42 +778,7 @@
 					\vspace{0.5cm}
 					$s=$\boxfill[1.8cm]
 				\end{espaciotrabajonb}
-				
-				\item $h - 45 = 45$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}
-					$h=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $f - 9 = -9$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}
-					$f=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $j - 0.8 = 0.2$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}
-					$j=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $q - \frac{1}{4} = \frac{3}{4}$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}
-					$q=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $v - 7 = 7$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}
-					$v=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $d - 200 = -50$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}
-					$d=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
+			
 			\end{enumerate}
 		\end{multicols}
 	\end{practica}
@@ -834,19 +801,19 @@
 		\end{tcolorbox}
 		
 		\vspace{0.3cm}
-		\textbf{Ejemplo:} $x + 3 = 5$ \hfill
-		$x + 3 - 3 = 5 - 3$ \hfill $x = 2$
+		\textbf{Ejemplo:} $x + 3 = 5$ \hspace*{5mm} $\rightarrow$ \hspace*{5mm}
+		$x + 3 - 3 = 5 - 3$  \hspace*{5mm} $\rightarrow$  \hspace*{5mm} $x = 2$
 	\end{concepto}
 	
 	\begin{atencion}{¡Atención! La variable puede quedar en cualquier lado}
 		Si al resolver obtienes $-12 = y$ , esa respuesta es \textbf{válida}
 		y equivalente a $y = -12$. La variable no tiene que estar siempre a la izquierda del igual.\\
-		Ejemplo: $8 + n = 3 \;\rightarrow\; n = 3 - 8 \;\rightarrow\; n = -5$.
+		Ejemplo: $3= 8+n \;\rightarrow\; 3 - 8 = n \;\rightarrow\; -5 = n$.
 	\end{atencion}
 	
 	\begin{ejemploresuelto}{Resolver usando la Propiedad de la Resta}
 		
-		Cuando la ecuación es $x + a = b$, el $+a$ ``estorba'' la variable. Para eliminarlo usamos la \textbf{operación inversa}: restar.
+		Cuando la ecuación es $x + a = b$, el $+a$ \textbf{``estorba''} la variable. Para eliminarlo usamos la \textbf{operación inversa}: restar.
 		
 		\vspace{0.3cm}
 		\begin{pasocaja}{valblue}{1}{Reconocer el problema: ¿qué le están \textit{sumando} a $x$?}
@@ -856,11 +823,11 @@
 					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
 					font=\small\bfseries, text width=4cm, align=center] at (1.5,1.5)
 					{A $x$ le están\\sumando \textbf{3}};
-					\draw[-{Stealth}, valblue, line width=2pt](1.5,1.1)--(3.8,0.3);
+					\draw[-{Stealth}, valblue, line width=2pt](1.5,1)--(3.5,0);
 					\node[draw=valorange, fill=vallightorange, rounded corners=4pt,
 					font=\small\bfseries, text width=4cm, align=center] at (8.5,1.5)
 					{Solución: restar \textbf{3}\\a ambos lados};
-					\draw[-{Stealth}, valorange, line width=2pt, dashed](5.8,1.1)--(5.0,0.3);
+					\draw[-{Stealth}, valorange, line width=2pt, dashed](6.5,1.1)--(5.0,0.3);
 				\end{tikzpicture}
 			\end{center}
 		\end{pasocaja}
@@ -882,12 +849,12 @@
 					\node[draw=valred, fill=vallightred, rounded corners=3pt,
 					font=\small\bfseries, text width=3.2cm, align=center] at (5.5,0.7)
 					{LD: $5-3 = 2$\\simplemente resto};
-					\draw[-{Stealth}, valred, line width=1.5pt](-2.0,0.7)--(-3.5,0.7);
-					\draw[-{Stealth}, valred, line width=1.5pt](1.5,0.7)--(2.9,0.7);
+					\draw[-{Stealth}, valred, line width=1.5pt](-2.2,0.7)--(-3.2,0.7);
+					\draw[-{Stealth}, valred, line width=1.5pt](2.2,0.7)--(3.7,0.7);
 					\node[draw=valgreen!80, fill=valgreen!15, rounded corners=4pt,
 					font=\Large\bfseries, minimum width=3.5cm, minimum height=0.9cm] at (0,-0.5)
 					{$x = \mathbf{2}$};
-					\draw[-{Stealth}, valdark, line width=2pt](0,0.3)--(0,-0.1);
+					\draw[-{Stealth}, valdark, line width=2pt](0,0.5)--(0,0);
 				\end{tikzpicture}
 			\end{center}
 		\end{pasocaja}
@@ -895,8 +862,7 @@
 		\vspace{0.3cm}
 		\begin{pasocaja}{valorange}{3}{Verificar en la ecuación original}
 			\centering
-			$x=2$ en $x+3=5$:\quad $2 + 3 \stackrel{?}{=} 5$\quad
-			$5 = 5$ \;\textcolor{valgreen}{\Large\checkmark}
+			$x=2$ en $x+3=5$ \hspace*{5mm} $\rightarrow$ \hspace*{5mm} $2 + 3 \stackrel{?}{=} 5$ \hspace*{5mm} $\rightarrow$ \hspace*{5mm} $5 = 5$ \;\textcolor{valgreen}{\Large\checkmark}
 		\end{pasocaja}
 		
 		\vspace{0.4cm}
@@ -913,22 +879,19 @@
 					\node[paso=valred]   (c) at (8.4,0)  {$t+14-14=9-14$\\$t=-5$};
 					\node[paso=valgreen] (d) at (12.6,0) {Verifico:\\$-5+14=9$\;\checkmark};
 					\foreach \s/\t in {a/b, b/c, c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
-					\node[draw=valred, fill=vallightred, rounded corners=3pt,
-					font=\small\bfseries, text width=4cm, align=center] at (8.4,-1.5)
-					{$9 - 14 = -5$ \\\small(número pequeño menos grande = negativo)};
-					\draw[-{Stealth},valred,line width=1.2pt,dashed](8.4,-0.45)--(8.4,-0.9);
+					
 				\end{tikzpicture}
 			\end{center}
 		\end{pasocaja}
 		
 		\vspace{0.3cm}
-		\begin{pasocaja}{valdark}{Dato clave}{La variable puede quedar en cualquier lado}
+		\begin{pasocaja}{valdark}{(Dato clave)}{La variable puede quedar en cualquier lado}
 			\begin{center}
 				\begin{tikzpicture}
 					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
 					font=\normalsize\bfseries, minimum width=4cm, minimum height=0.9cm,
-					align=center] (a) at (0,0) {$-12 = y$};
-					\draw[-{Stealth[scale=1.3]}, valgreen, line width=2.5pt](1.8,0)--(2.8,0)
+					align=center] (a) at (-2,0) {$-12 = y$};
+					\draw[-{Stealth[scale=1.3]}, valgreen, line width=2.5pt](0,0)--(2.6,0)
 					node[midway,above,font=\small\bfseries]{equivale a};
 					\node[draw=valgreen, fill=vallightgreen, rounded corners=4pt,
 					font=\normalsize\bfseries, minimum width=4cm, minimum height=0.9cm,
@@ -950,13 +913,14 @@
 	
 	\begin{minicheck}
 		\textbf{1)} $x + 8 = 12$ \;$\rightarrow$\; $x=$\boxfill[1.5cm]\qquad
-		\textbf{2)} $n + 5 = 2$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $n + 5 = 2$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]\qquad\\
+		
 		\textbf{3)} $p + 20 = 0$ \;$\rightarrow$\; $p=$\boxfill[1.5cm]
 	\end{minicheck}
 	
-	\begin{practica}{Propiedad Uniforme de la Resta — 22 ejercicios}
+	\begin{practica}{Propiedad Uniforme de la Resta}
 		
-		\textbf{A) Con andamiaje — 10 ejercicios:}
+		\textbf{A) Resuelve:}
 		
 		\begin{multicols}{2}
 			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm]
@@ -1023,7 +987,7 @@
 		\end{multicols}
 		
 		\vspace{0.3cm}
-		\textbf{B) Resuelve directamente — 12 ejercicios:}
+		\textbf{B) Resuelve directamente:}
 		
 		\begin{multicols}{3}
 			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm, start=11]
@@ -1057,35 +1021,6 @@
 					\vspace{0.5cm}$g=$\boxfill[1.8cm]
 				\end{espaciotrabajonb}
 				
-				\item $j + 100 = 75$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}$j=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $v + 6 = 6$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}$v=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $f + 7 = -7$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}$f=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $q + \frac{1}{2} = 2$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}$q=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $h + 1.9 = 0$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}$h=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
-				
-				\item $5 + z = -3$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.5cm}$z=$\boxfill[1.8cm]
-				\end{espaciotrabajonb}
 			\end{enumerate}
 		\end{multicols}
 	\end{practica}
@@ -1114,13 +1049,13 @@
 			\begin{tikzpicture}
 				\node[draw=valblue, fill=vallightblue, rounded corners=5pt,
 				minimum width=2.8cm, minimum height=0.9cm,
-				align=center, font=\bfseries, line width=1.5pt] at (0,0)
+				align=center, font=\bfseries, line width=1.5pt] at (-1,0)
 				{$\dfrac{2}{3}$};
-				\draw[-{Stealth}, valdark, line width=1.5pt](1.6,0)--(2.8,0)
+				\draw[-{Stealth}, valdark, line width=1.5pt](0.6,0)--(3.8,0)
 				node[midway, above, font=\small\bfseries]{recíproco};
 				\node[draw=valorange, fill=vallightorange, rounded corners=5pt,
 				minimum width=2.8cm, minimum height=0.9cm,
-				align=center, font=\bfseries, line width=1.5pt] at (4.4,0)
+				align=center, font=\bfseries, line width=1.5pt] at (5.4,0)
 				{$\dfrac{3}{2}$};
 				\node[font=\small, valdark] at (2.2,-0.7)
 				{$\dfrac{2}{3} \times \dfrac{3}{2} = \dfrac{6}{6} = 1$};
@@ -1128,7 +1063,7 @@
 		\end{center}
 		
 		\vspace{0.3cm}
-		\textbf{Ejemplo completo:}\quad
+		\textbf{Ejemplo:}\quad
 		$\dfrac{2}{3}x = 6$\;\;
 		$\xrightarrow{\times\,\frac{3}{2}}$\;\;
 		$\dfrac{3}{2}\cdot\dfrac{2}{3}x = 6\cdot\dfrac{3}{2}$\;\;
@@ -1152,13 +1087,13 @@
 				\begin{tikzpicture}[scale=0.95]
 					\node[font=\Large\bfseries] at (0,0) {$\dfrac{x}{15} = 3$};
 					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
-					font=\small\bfseries, text width=5.5cm, align=center] at (0,-1.6)
+					font=\small\bfseries, text width=5.5cm, align=center] at (0,-2.5)
 					{La variable $x$ está dividida entre 15.\\
 						Operación inversa de dividir: \textbf{multiplicar}.\\
 						Multiplico por \textbf{15} a ambos lados.};
 				\end{tikzpicture}
 			\end{center}
-			\vspace{0.2cm}
+			\vspace{-1cm}
 			\begin{center}
 				\begin{tikzpicture}[
 					paso/.style={draw=#1, fill=#1!10, rounded corners=5pt, font=\normalsize\bfseries,
@@ -1167,12 +1102,12 @@
 					\node[paso=valdark]  at (0,0)   (a) {Ecuación\\$\dfrac{x}{15}=3$};
 					\node[paso=valblue]  at (5,0)   (b) {Multiplico $\times 15$\\ ambos lados};
 					\node[paso=valorange]at (10,0)  (c) {$\dfrac{x}{\cancel{15}}\cdot\cancel{15}=3\cdot 15$\\ el 15 se cancela};
-					\node[paso=valgreen] at (15,0)  (d) {$x = \mathbf{45}$\\ \checkmark};
+					\node[paso=valgreen] at (10,-2)  (d) {$x = \mathbf{45}$\\ \checkmark};
 					\foreach \s/\t in {a/b,b/c,c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
 				\end{tikzpicture}
 			\end{center}
-			\vspace{0.1cm}
-			\textbf{Verificación:} $\dfrac{45}{15} = 3$ \;\textcolor{valgreen}{\checkmark}
+			\vspace{-1cm}
+			\textbf{Verificación:} $\dfrac{\mathbf{(45)}}{15} = 3$ \;\textcolor{valgreen}{\checkmark}
 		\end{pasocaja}
 		
 		\vspace{0.4cm}
@@ -1185,88 +1120,47 @@
 					\node[font=\Large\bfseries] (eq) at (0,2.8) {$\dfrac{2}{3}x = 6$};
 					% Concepto recíproco
 					\node[draw=valdark, fill=valdark!8, rounded corners=5pt,
-					font=\small, text width=12cm, align=center] at (0,1.6)
+					font=\small, text width=12cm, align=center] at (0,0.5)
 					{El coeficiente de $x$ es $\dfrac{2}{3}$. Para que quede solo $x$, necesito que el coeficiente sea $\mathbf{1}$.\\
 						Multiplico por el \textbf{recíproco}: voltear la fracción
 						$\dfrac{2}{3} \;\xrightarrow{\text{voltear}}\; \dfrac{3}{2}$,
 						porque $\dfrac{2}{3}\times\dfrac{3}{2}=\dfrac{6}{6}=\mathbf{1}$};
 					% Cadena de pasos
 					\node[draw=valblue, fill=vallightblue, rounded corners=4pt,
-					font=\normalsize\bfseries, align=center, text width=4cm] at (-4.5,0)
+					font=\normalsize\bfseries, align=center, text width=4cm] at (-5.5,-2.5)
 					{Multiplico por $\dfrac{3}{2}$\\a ambos lados:\\
 						$\dfrac{3}{2}\cdot\dfrac{2}{3}x=\dfrac{3}{2}\cdot 6$};
-					\draw[-{Stealth},valblue,line width=2pt](-0.8,1.1)--(-3.5,0.6);
+					
 					\node[draw=valorange, fill=vallightorange, rounded corners=4pt,
-					font=\normalsize\bfseries, align=center, text width=3.5cm] at (0,-0.3)
+					font=\normalsize\bfseries, align=center, text width=3.5cm] at (0,-2.5)
 					{Las fracciones\\se cancelan:\\$\cancel{\dfrac{3}{2}}\cdot\cancel{\dfrac{2}{3}}\,x$
 						$=\dfrac{3}{\cancel{2}}\cdot\cancel{6}^{\,3}$};
-					\draw[-{Stealth},valdark,line width=2pt](-2.6,0)--(-1.0,-0.3);
+					\draw[-{Stealth},valdark,line width=2pt](-3.2,-2.5)--(-2.0,-2.5);
 					\node[draw=valgreen, fill=vallightgreen, rounded corners=4pt,
-					font=\Large\bfseries, minimum width=3cm, minimum height=1cm] at (4.5,-0.3)
+					font=\Large\bfseries, minimum width=3cm, minimum height=1cm] at (4.5,-2.5)
 					{$x = \mathbf{9}$};
-					\draw[-{Stealth},valgreen,line width=2pt](1.0,-0.3)--(3.0,-0.3);
+					\draw[-{Stealth},valgreen,line width=2pt](2.0,-2.5)--(3.0,-2.5);
 				\end{tikzpicture}
 			\end{center}
-			\textbf{Verificación:} $\dfrac{2}{3}(9) = \dfrac{18}{3} = 6$ \;\textcolor{valgreen}{\checkmark}
+			\textbf{Verificación:} $\dfrac{2}{3}\mathbf{(9)} = \dfrac{18}{3} = 6$ \;\textcolor{valgreen}{\checkmark}
 		\end{pasocaja}
 		
-		\vspace{0.3cm}
-		\begin{pasocaja}{valorange}{Regla rápida}{Cómo hallar el recíproco de cualquier fracción}
-			\begin{center}
-				\begin{tikzpicture}
-					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (0,0) {$\dfrac{2}{3}$};
-					\draw[-{Stealth},valdark,line width=1.2pt](1.1,0)--(1.6,0)
-					node[midway,above,font=\scriptsize]{voltear};
-					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (2.8,0) {$\dfrac{3}{2}$};
-					%
-					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (5,0) {$\dfrac{3}{4}$};
-					\draw[-{Stealth},valdark,line width=1.2pt](6.1,0)--(6.6,0)
-					node[midway,above,font=\scriptsize]{voltear};
-					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (7.8,0) {$\dfrac{4}{3}$};
-					%
-					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (10,0) {$-\dfrac{5}{4}$};
-					\draw[-{Stealth},valdark,line width=1.2pt](11.2,0)--(11.7,0)
-					node[midway,above,font=\scriptsize]{voltear};
-					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (12.9,0) {$-\dfrac{4}{5}$};
-					%
-					\node[draw=valblue,fill=vallightblue,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (15,0) {$\dfrac{1}{2}$};
-					\draw[-{Stealth},valdark,line width=1.2pt](16.1,0)--(16.6,0)
-					node[midway,above,font=\scriptsize]{voltear};
-					\node[draw=valgreen,fill=vallightgreen,rounded corners=3pt,
-					font=\bfseries,minimum width=2.4cm,minimum height=0.85cm,align=center]
-					at (17.8,0) {$2$};
-				\end{tikzpicture}
-			\end{center}
-			\textit{Multiplica numerador y denominador entre sí: $\dfrac{a}{b}\times\dfrac{b}{a}=1$ siempre.}
-		\end{pasocaja}
+		
 	\end{ejemploresuelto}
 	
 	\begin{minicheck}
 		\textbf{1)} $\dfrac{x}{4}=9$ \;$\rightarrow$\; $x=$\boxfill[1.5cm]\qquad
-		\textbf{2)} $\dfrac{1}{2}n=10$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $\dfrac{1}{2}n=10$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]\qquad\\
+		
 		\textbf{3)} El recíproco de $\dfrac{5}{3}$ es \boxfill[1.5cm]
 	\end{minicheck}
 	
-	\begin{practica}{Propiedad Uniforme de la Multiplicación — 22 ejercicios}
+	\begin{practica}{Propiedad Uniforme de la Multiplicación}
 		
-		\textbf{A) Ecuaciones del tipo $\frac{x}{a}=b$ — con andamiaje, 10 ejercicios:}
+		\textbf{A) Ecuaciones del tipo $\frac{x}{a}=b$:}
 		
 		\begin{multicols}{2}
-			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.9cm]
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.2cm]
 				\item $\dfrac{x}{15} = 3$
 				\begin{espaciotrabajonb}{}
 					\boxstep[0.8cm]$\cdot\dfrac{x}{15}=$\boxstep[0.8cm]$\cdot 3$\\[0.2cm]
@@ -1330,11 +1224,11 @@
 		\end{multicols}
 		
 		\vspace{0.4cm}
-		\textbf{B) Coeficientes fraccionarios (usa el recíproco) — 12 ejercicios:}
+		\textbf{B) Coeficientes fraccionarios:}
 		
 		\vspace{0.2cm}
 		\begin{multicols}{2}
-			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.95cm, start=11]
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.2cm, start=11]
 				\item $\dfrac{2}{3}x = 6$
 				\begin{espaciotrabajonb}{}
 					Recíproco de $\frac{2}{3}$: \boxstep[1.2cm]\\[0.1cm]
@@ -1374,41 +1268,6 @@
 					$m=$\boxfill[2cm]
 				\end{espaciotrabajonb}
 				
-				\item $-\dfrac{3}{5}a = 9$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
-					$a=$\boxfill[2cm]
-				\end{espaciotrabajonb}
-				
-				\item $\dfrac{5}{6}k = 10$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
-					$k=$\boxfill[2cm]
-				\end{espaciotrabajonb}
-				
-				\item $\dfrac{1}{3}y = -6$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
-					$y=$\boxfill[2cm]
-				\end{espaciotrabajonb}
-				
-				\item $-\dfrac{2}{3}p = -8$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
-					$p=$\boxfill[2cm]
-				\end{espaciotrabajonb}
-				
-				\item $\dfrac{7}{2}s = 14$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
-					$s=$\boxfill[2cm]
-				\end{espaciotrabajonb}
-				
-				\item $-\dfrac{1}{4}w = 3$
-				\begin{espaciotrabajonb}{}
-					\vspace{0.2cm}\underline{\hspace{5.8cm}}\\[0.1cm]
-					$w=$\boxfill[2cm]
-				\end{espaciotrabajonb}
 			\end{enumerate}
 		\end{multicols}
 	\end{practica}
@@ -1452,11 +1311,11 @@
 					\node[draw=valred, fill=vallightred, rounded corners=4pt,
 					font=\small\bfseries, text width=4.5cm, align=center] at (0.5,1.4)
 					{Coeficiente: \textbf{2}\\$t$ está siendo\\multiplicado por 2};
-					\draw[-{Stealth}, valred, line width=2pt](0.5,0.9)--(2.6,0.25);
+					\draw[-{Stealth}, valred, line width=2pt](0.5,0.5)--(2.6,0.25);
 					\node[draw=valgreen, fill=vallightgreen, rounded corners=4pt,
 					font=\small\bfseries, text width=4.5cm, align=center] at (7.5,1.4)
 					{Operación inversa:\\dividir entre \textbf{2}\\a ambos lados};
-					\draw[-{Stealth}, valgreen, line width=2pt, dashed](6.5,0.9)--(5.2,0.25);
+					\draw[-{Stealth}, valgreen, line width=2pt, dashed](6.5,0.5)--(5.2,0.25);
 				\end{tikzpicture}
 			\end{center}
 		\end{pasocaja}
@@ -1475,7 +1334,7 @@
 					\node[draw=valorange, fill=vallightorange, rounded corners=3pt,
 					font=\small\bfseries, text width=3.5cm, align=center] at (5,0.5)
 					{LD: $\dfrac{80}{2}=40$\\simplemente divido};
-					\draw[-{Stealth},valblue,line width=1.5pt](-2.5,0.5)--(-1.0,0.5);
+					\draw[-{Stealth},valblue,line width=1.5pt](-1,0.5)--(-2.5,0.5);
 					\draw[-{Stealth},valorange,line width=1.5pt](1.2,0.5)--(2.4,0.5);
 					\node[draw=valgreen!80, fill=valgreen!15, rounded corners=4pt,
 					font=\Large\bfseries, minimum width=3cm, minimum height=0.9cm] at (0,-0.7)
@@ -1503,13 +1362,9 @@
 						line width=1.5pt,text width=3.6cm}]
 					\node[n=valdark]  (a) at (0,0)    {$-3.4y=-1.7$\\coeficiente: $-3.4$};
 					\node[n=valblue]  (b) at (4.5,0)  {Divido entre $-3.4$\\(conservo el signo)};
-					\node[n=valorange](c) at (9,0)    {$y=\dfrac{-1.7}{-3.4}$\\neg$\div$neg $=$ pos};
-					\node[n=valgreen] (d) at (13.5,0) {$y=0.5$\\\checkmark};
+					\node[n=valorange](c) at (9,0)    {$y=\dfrac{-1.7}{-3.4}$\\$(-)\div(-)=(+)$ };
+					\node[n=valgreen] (d) at (9,-1.8) {$y=0.5$\\\checkmark};
 					\foreach \s/\t in {a/b,b/c,c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
-					\node[draw=valred,fill=vallightred,rounded corners=3pt,
-					font=\small\bfseries,text width=5cm,align=center] at (9,-1.6)
-					{\textbf{Regla de signos:}\\negativo $\div$ negativo $=$ \textbf{positivo}\\$\frac{-1.7}{-3.4}=+0.5$};
-					\draw[-{Stealth},valred,line width=1.2pt,dashed](9,-0.5)--(9,-0.9);
 				\end{tikzpicture}
 			\end{center}
 		\end{pasocaja}
@@ -1543,16 +1398,17 @@
 	
 	\begin{minicheck}
 		\textbf{1)} $5x=35$ \;$\rightarrow$\; $x=$\boxfill[1.5cm]\qquad
-		\textbf{2)} $-4m=20$ \;$\rightarrow$\; $m=$\boxfill[1.5cm]\qquad
+		\textbf{2)} $-4m=20$ \;$\rightarrow$\; $m=$\boxfill[1.5cm]\qquad\\
+		
 		\textbf{3)} $0.5n=3$ \;$\rightarrow$\; $n=$\boxfill[1.5cm]
 	\end{minicheck}
 	
-	\begin{practica}{Propiedad Uniforme de la División — 24 ejercicios}
+	\begin{practica}{Propiedad Uniforme de la División}
 		
-		\textbf{A) Con andamiaje — 12 ejercicios:}
+		\textbf{A) Resuelve:}
 		
 		\begin{multicols}{2}
-			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.95cm]
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=1.5cm]
 				\item $2t = 80$
 				\begin{espaciotrabajonb}{}
 					$\dfrac{2t}{\boxstep[0.7cm]}=\dfrac{80}{\boxstep[0.7cm]}$\\[0.2cm]
@@ -1627,13 +1483,13 @@
 			\end{enumerate}
 		\end{multicols}
 		
-		\vspace{0.4cm}
-		\textbf{B) Directo — identificar la propiedad utilizada (S=Suma, R=Resta, M=Mult., D=Div.)
-			y resolver — 12 ejercicios:}
+		\newpage
+		\textbf{B) Identifica la propiedad utilizada (S=Suma, R=Resta, M=Mult., D=Div.)
+			y resuelve:}
 		
 		\vspace{0.2cm}
 		\renewcommand{\arraystretch}{1.8}
-		\begin{longtable}{|m{3.8cm}|m{1.6cm}|m{2.8cm}|m{2.5cm}|}
+		\begin{longtable}{|>{\raggedright\arraybackslash}p{3.8cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2.8cm}|>{\centering\arraybackslash}p{2.5cm}|}
 			\hline
 			\rowcolor{valblue!20}
 			\textbf{Ecuación} & \textbf{Propiedad} & \textbf{Operación} & \textbf{Solución} \\
@@ -1690,12 +1546,12 @@
 					text width=3cm},
 				arr/.style={-{Stealth}, #1, line width=2pt}
 				]
-				\node[paso=valblue]   (p1) at (0,0)    {\color{valblue}PASO 1\\\normalfont Analizar\\\small Lee e identifica datos};
-				\node[paso=valgreen]  (p2) at (3.8,0)  {\color{valgreen}PASO 2\\\normalfont Asignar\\\small Elige la variable $x$};
-				\node[paso=valorange] (p3) at (7.6,0)  {\color{valorange}PASO 3\\\normalfont Formar\\\small Escribe la ecuación};
-				\node[paso=valred]    (p4) at (11.4,0) {\color{valred}PASO 4\\\normalfont Resolver\\\small Aplica propiedades};
-				\node[paso=valblue]   (p5) at (0,-2.5) {\color{valblue}PASO 5\\\normalfont Enunciar\\\small Respuesta con unidades};
-				\node[paso=valgreen]  (p6) at (3.8,-2.5){\color{valgreen}PASO 6\\\normalfont Comprobar\\\small Usa el enunciado original};
+				\node[paso=valblue]   (p1) at (0,0)    {\color{valblue}PASO 1\\\normalfont Analizar:\\\small Lee e identifica datos};
+				\node[paso=valgreen]  (p2) at (3.8,0)  {\color{valgreen}PASO 2\\\normalfont Asignar:\\\small Elige la variable (puede ser $x$)};
+				\node[paso=valorange] (p3) at (7.6,0)  {\color{valorange}PASO 3\\\normalfont Formar:\\\small Escribe la ecuación};
+				\node[paso=valred]    (p4) at (11.4,0) {\color{valred}PASO 4\\\normalfont Resolver:\\\small Aplica propiedades};
+				\node[paso=valblue]   (p5) at (0,-3.1) {\color{valblue}PASO 5\\\normalfont Enunciar:\\\small Respuesta con unidades};
+				\node[paso=valgreen]  (p6) at (3.8,-3.1){\color{valgreen}PASO 6\\\normalfont Comprobar:\\\small Usa el enunciado original};
 				\draw[arr=valblue](p1)--(p2); \draw[arr=valgreen](p2)--(p3);
 				\draw[arr=valorange](p3)--(p4);
 				\draw[arr=valred](p4.south) -- ++(0,-0.5) -| (p5.north);
@@ -1703,7 +1559,6 @@
 			\end{tikzpicture}
 		\end{center}
 		
-		\vspace{0.2cm}
 		\begin{atencion}{¡CUIDADO en el Paso 6 — Comprobación!}
 			La verificación final debe hacerse usando el \textbf{enunciado original del
 				problema}, \textbf{no} la ecuación que formaste. Esto asegura que no hubo
@@ -1724,11 +1579,12 @@
 					font=\small\bfseries,text width=5cm,align=center,
 					minimum height=1.2cm,line width=1.5pt] (dato) at (0,0)
 					{\faInfoCircle\ \textbf{Dato conocido}\\Multa zona construcción\\$= \$160$};
-					\draw[-{Stealth},valdark,line width=2pt](2.7,0)--(3.6,0);
+					\draw[-{Stealth},valdark,line width=2pt](2.7,0)--(3.8,0);
 					\node[draw=valorange,fill=vallightorange,rounded corners=5pt,
 					font=\small\bfseries,text width=5cm,align=center,
 					minimum height=1.2cm,line width=1.5pt] at (6.4,0)
 					{\faQuestionCircle\ \textbf{Incógnita}\\¿Cuánto es la multa\\normal?};
+					\draw[-{Stealth},valdark,line width=2pt](9,0)--(10.2,0);
 					\node[draw=valdark,fill=valdark!8,rounded corners=5pt,
 					font=\small\bfseries,text width=5cm,align=center,
 					minimum height=1.2cm,line width=1.5pt] at (12.8,0)
@@ -1773,20 +1629,20 @@
 					\node[n=valdark]  (a) at (0,0)    {Ecuación\\$2m=160$};
 					\node[n=valblue]  (b) at (4.5,0)  {Divido $\div 2$\\a ambos lados};
 					\node[n=valorange](c) at (9,0)    {$\dfrac{2m}{2}=\dfrac{160}{2}$};
-					\node[n=valgreen] (d) at (13.5,0) {$m = \mathbf{80}$\\\textcolor{valgreen}{\checkmark}};
+					\node[n=valgreen] (d) at (9,-1.8) {$m = \mathbf{80}$\\\textcolor{valgreen}{\checkmark}};
 					\foreach \s/\t in {a/b,b/c,c/d}{\draw[-{Stealth},valdark,line width=2pt](\s)--(\t);}
 				\end{tikzpicture}
 			\end{center}
 		\end{pasocaja}
 		
-		\vspace{0.2cm}
+		%\vspace{0.2cm}
 		\begin{pasocaja}{valblue}{5}{Enunciar — Respondo en lenguaje natural CON unidades}
 			\centering
 			\textcolor{valblue}{\faCheckCircle}\; \textbf{La multa normal de tránsito es de \$80.}\\[3pt]
 			\textit{(Nunca olvides incluir las unidades: dólares, metros, años, minutos...)}
 		\end{pasocaja}
 		
-		\vspace{0.2cm}
+		%\vspace{0.2cm}
 		\begin{pasocaja}{valgreen}{6}{Comprobar — Uso el ENUNCIADO ORIGINAL, no la ecuación}
 			\begin{tcolorbox}[enhanced,colback=valgreen!5,colframe=valgreen,arc=2pt,boxrule=0.8pt]
 				\textbf{Enunciado original dice:} ``la multa en zona de construcción es el doble de la normal''\\
@@ -1796,12 +1652,11 @@
 			\end{tcolorbox}
 		\end{pasocaja}
 		
-		\vspace{0.5cm}
+		%\vspace{0.5cm}
 		% ─── Problema B ────────────────────────────────────────────────
 		\textbf{Problema B — Contexto:} De 120 invitaciones de graduación enviadas,
 		algunas regresaron por correo. Quedaron 107 entregadas. ¿Cuántas regresaron?
 		
-		\vspace{0.3cm}
 		\begin{center}
 			\renewcommand{\arraystretch}{1.8}
 			\begin{tabular}{|m{5.5cm}|m{7.8cm}|}
@@ -1839,16 +1694,16 @@
 	\begin{minicheck}
 		\textbf{Practica el Paso 3:} Traduce a ecuación (solo la ecuación, no resuelvas):
 		\begin{enumerate}[label=\textbf{\alph*)}]
-			\item ``Una tienda bajó el precio en \$15 y ahora cuesta \$85.''
-			\hfill Ecuación: \boxfill[4.5cm]
-			\item ``El triple de un número es 45.''
-			\hfill Ecuación: \boxfill[4.5cm]
+			\item ``Una tienda bajó el precio en \$15 y ahora cuesta \$85.''\\
+			Ecuación: \boxfill[4.5cm]
+			\item ``El triple de un número es 45.''\\
+			 Ecuación: \boxfill[4.5cm]
 		\end{enumerate}
 	\end{minicheck}
 	
 	\vspace{0.4cm}
 	\begin{minicheck}
-		\textbf{Diccionario de Operaciones (Mejora Pedagógica):} Clasifica los siguientes términos cotidianos en su respectivo símbolo matemático ($+$, $-$, $\times$, $\div$):
+		\textbf{Diccionario de Operaciones:} Clasifica los siguientes términos cotidianos en su respectivo símbolo matemático ($+$, $-$, $\times$, $\div$):
 		\begin{center}
 			\renewcommand{\arraystretch}{1.5}
 			\begin{tabular}{|m{4cm}|m{2.5cm}|m{4cm}|m{2.5cm}|}
@@ -1864,7 +1719,7 @@
 	
 	\begin{practica}{Estrategia de 6 Pasos}
 		
-		\textit{Usa la tabla de 6 pasos en cada problema. Muestra todo.}
+		\textit{Usa la tabla de 6 pasos en cada problema.}
 		
 		\vspace{0.3cm}
 		% ─── Plantilla de 6 pasos reutilizable ───
@@ -1905,15 +1760,16 @@
 			\item Un sistema telefónico antiguo soporta la mitad de llamadas que uno
 			moderno. Si el antiguo soporta 45 llamadas, ¿cuántas soporta el moderno?
 			\seispasos
-			
+			\newpage
 			\item Una multa de tránsito en zona escolar es el triple de la multa normal. Si en zona escolar cuesta \$90, ¿cuánto es la multa normal?
 			\seispasos
 			
 			\item Un artefacto histórico fue fabricado 2.300 años antes que otro. Si el
 			más antiguo data del año 500 a.C., ¿en qué año fue fabricado el
-			más reciente? \textit{(Pista: usa año$_2$ = año$_1$ + 2300).}
+			más reciente? 
 			\seispasos
-			
+			\begin{comment}
+				
 			\item Un ciclista recorrió $d$ km el lunes. El martes recorrió 15 km más que
 			el lunes. En total recorrió 83 km en los dos días. ¿Cuántos km recorrió el lunes?
 			\seispasos
@@ -1972,6 +1828,7 @@
 			\item El triple de un número, aumentado en 5, es igual a 29.
 			¿Cuál es ese número?
 			\seispasos
+		\end{comment}
 		\end{enumerate}
 	\end{practica}
 	
