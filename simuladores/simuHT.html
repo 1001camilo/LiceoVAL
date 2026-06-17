@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Óptico Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para las fórmulas matemáticas */
+        .frac {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 0.2em;
+            font-size: 1.1em;
+        }
+        .frac > span {
+            display: block;
+            padding: 0.1em;
+        }
+        .frac > span.bottom {
+            border-top: 1px solid currentColor;
+        }
+        
+        /* Asegurar que el canvas no rompa los contenedores flexibles */
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-[#FAFAFA] text-[#2C3E50] min-h-screen flex flex-col font-sans overflow-x-hidden">
+
+    <!-- Encabezado -->
+    <header class="bg-[#2C3E50] text-white p-3 shadow-md flex justify-between items-center z-20 sticky top-0">
+        <h1 class="text-lg md:text-xl font-bold truncate pr-2">Laboratorio Virtual de Óptica</h1>
+        <span class="text-xs md:text-sm bg-[#34495E] px-3 py-1 rounded-full whitespace-nowrap">v6 (Corrección Rayos)</span>
+    </header>
+
+    <!-- Contenedor Principal. Sin overflow-hidden para permitir scroll natural en móviles/tablets -->
+    <main class="flex-1 flex flex-col lg:flex-row w-full max-w-[1600px] mx-auto">
+        
+        <!-- Zona Izquierda: Gráficos (Canvas) -->
+        <section class="flex-1 flex flex-col p-3 md:p-5 gap-5">
+            
+            <!-- Banco Óptico Principal -->
+            <div class="bg-white border border-[#BDC3C7] rounded-lg shadow-sm flex flex-col w-full h-[350px] md:h-[450px] lg:flex-1 min-h-[350px]">
+                <div class="bg-gray-100 px-3 py-2 border-b border-gray-200 text-xs md:text-sm font-bold flex flex-wrap justify-between gap-2">
+                    <span>Riel Óptico</span>
+                    <span id="bench-info" class="text-gray-500 font-normal">f=10.0 cm | so=25.0 cm | si=16.7 cm | M=-0.67</span>
+                </div>
+                <div class="flex-1 relative w-full h-full overflow-hidden">
+                    <canvas id="benchCanvas" class="absolute inset-0 w-full h-full"></canvas>
+                </div>
+            </div>
+
+            <!-- Zona Inferior: Vistas Frontales -->
+            <div class="flex flex-col sm:flex-row gap-5 h-auto">
+                <!-- Objeto Original -->
+                <div class="flex-1 bg-white border border-[#27AE60] border-2 rounded-lg shadow-sm flex flex-col min-h-[250px]">
+                    <div class="text-center text-[#27AE60] font-bold text-xs md:text-sm py-1.5 bg-green-50 border-b border-green-200 uppercase tracking-wide">
+                        Objeto Original
+                    </div>
+                    <div class="flex-1 relative p-3 flex justify-center items-center">
+                        <canvas id="objCanvas" width="200" height="200" class="max-w-full max-h-full border border-gray-100 shadow-inner bg-white"></canvas>
+                    </div>
+                </div>
+
+                <!-- Pantalla -->
+                <div class="flex-[1.5] bg-white border border-[#BDC3C7] border-2 rounded-lg shadow-sm flex flex-col min-h-[250px]">
+                    <div id="screen-title" class="text-center font-bold text-xs md:text-sm py-1.5 bg-gray-50 border-b border-gray-200 tracking-wide uppercase">
+                        Pantalla de Proyección
+                    </div>
+                    <div class="flex-1 relative p-3 flex justify-center items-center bg-gray-50">
+                        <canvas id="screenCanvas" width="300" height="300" class="max-w-full max-h-full bg-white shadow-md transition-transform duration-200"></canvas>
+                    </div>
+                    <div id="screen-subtitle" class="text-center text-xs text-gray-500 py-1.5 bg-gray-100 border-t border-gray-200">
+                        -
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zona Derecha: Controles y Panel -->
+        <aside class="w-full lg:w-[400px] flex-none bg-white border-t lg:border-t-0 lg:border-l border-[#BDC3C7] flex flex-col shadow-lg z-10 h-auto lg:min-h-screen">
+            
+            <!-- Controles -->
+            <div class="p-4 md:p-6 border-b border-[#BDC3C7] bg-gray-50">
+                <h2 class="text-sm font-bold text-[#2980B9] mb-4 uppercase tracking-wider">Configuración del Sistema</h2>
+                
+                <!-- Sliders -->
+                <div class="space-y-5 mb-5">
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-1">
+                            <span>Distancia objeto (so)</span>
+                            <span id="val-so" class="text-[#2C3E50]">25.0 cm</span>
+                        </div>
+                        <input type="range" id="sl-so" min="5" max="60" step="0.5" value="25" class="w-full h-2 rounded-lg appearance-none bg-gray-300 accent-[#2C3E50] cursor-pointer">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-1">
+                            <span>Distancia focal (|f|)</span>
+                            <span id="val-f" class="text-[#2980B9]">10.0 cm</span>
+                        </div>
+                        <input type="range" id="sl-f" min="5" max="30" step="0.5" value="10" class="w-full h-2 rounded-lg appearance-none bg-gray-300 accent-[#2980B9] cursor-pointer">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-1">
+                            <span>Posición pantalla (xs)</span>
+                            <span id="val-xs" class="text-gray-600">40.0 cm</span>
+                        </div>
+                        <input type="range" id="sl-xs" min="0" max="80" step="0.5" value="40" class="w-full h-2 rounded-lg appearance-none bg-gray-300 accent-[#7F8C8D] cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Selectores -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex-1">
+                        <label class="block text-xs font-bold mb-1.5 text-gray-600">Tipo de Lente</label>
+                        <select id="sel-lens" class="w-full p-2 text-sm border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-[#2980B9] outline-none shadow-sm cursor-pointer">
+                            <option value="Convexo">Convexo</option>
+                            <option value="Concavo">Cóncavo</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-xs font-bold mb-1.5 text-gray-600">Objeto (Acetato)</label>
+                        <select id="sel-obj" class="w-full p-2 text-sm border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-[#2980B9] outline-none shadow-sm cursor-pointer">
+                            <option value="Letra F">Letra F</option>
+                            <option value="Flecha">Flecha</option>
+                            <option value="Letra J">Letra J</option>
+                            <option value="Auto Sedan" selected>Auto Sedán</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Información (Pestañas) -->
+            <div class="flex flex-col flex-1 h-auto bg-white">
+                <div class="flex border-b border-[#BDC3C7] bg-gray-100 text-sm">
+                    <button class="tab-btn flex-1 py-3 font-bold text-[#2980B9] bg-white border-t-2 border-[#2980B9] transition-colors" data-tab="datos">Datos</button>
+                    <button class="tab-btn flex-1 py-3 font-semibold text-gray-500 hover:bg-gray-50 border-t-2 border-transparent transition-colors" data-tab="analisis">Análisis</button>
+                    <button class="tab-btn flex-1 py-3 font-semibold text-gray-500 hover:bg-gray-50 border-t-2 border-transparent transition-colors" data-tab="ecuaciones">Ecuaciones</button>
+                </div>
+                
+                <div class="p-5" id="tab-content">
+                    <!-- El contenido de las pestañas se inyecta por JS -->
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Lógica JavaScript -->
+    <script>
+        // ══════════════════════════════════════════════════════════
+        // CONFIGURACIÓN Y ESTADO
+        // ══════════════════════════════════════════════════════════
+        const ESTILO = {
+            color_r1: '#E74C3C',
+            color_r2: '#2980B9',
+            color_r3: '#27AE60',
+            color_virtual: '#F39C12',
+            color_lente: '#85C1E9',
+            color_luz_fuente: 'rgba(255, 245, 157, 0.3)',
+            color_acetato: '#7F8C8D',
+            color_pantalla: '#BDC3C7',
+            color_eje: '#2C3E50',
+            color_imagen: '#C0392B'
+        };
+
+        const state = {
+            so: 25.0,
+            fMag: 10.0,
+            xs: 40.0,
+            lens: 'Convexo',
+            obj: 'Auto Sedan',
+            tab: 'datos',
+            physics: {} // Almacenará los resultados calculados
+        };
+
+        // Elementos DOM
+        const benchCanvas = document.getElementById('benchCanvas');
+        const objCanvas = document.getElementById('objCanvas');
+        const screenCanvas = document.getElementById('screenCanvas');
+        const ctxBench = benchCanvas.getContext('2d');
+        const ctxObj = objCanvas.getContext('2d', { willReadFrequently: true });
+        const ctxScreen = screenCanvas.getContext('2d');
+
+        // Controles DOM
+        const inputs = {
+            so: document.getElementById('sl-so'),
+            f: document.getElementById('sl-f'),
+            xs: document.getElementById('sl-xs'),
+            lens: document.getElementById('sel-lens'),
+            obj: document.getElementById('sel-obj')
+        };
+        const labels = {
+            so: document.getElementById('val-so'),
+            f: document.getElementById('val-f'),
+            xs: document.getElementById('val-xs')
+        };
+
+        // ══════════════════════════════════════════════════════════
+        // GENERADORES DE ACETATOS (Gráficos Vectoriales en Canvas)
+        // ══════════════════════════════════════════════════════════
+        function drawShape(ctx, shapeName, size) {
+            ctx.clearRect(0, 0, size, size);
+            ctx.strokeStyle = '#222';
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            const s = size;
+            const t = s / 15; // Grosor base
+            ctx.lineWidth = t;
+
+            ctx.beginPath();
+            
+            if (shapeName === 'Letra F') {
+                ctx.moveTo(0.23*s, 0.1*s); ctx.lineTo(0.23*s, 0.9*s);
+                ctx.moveTo(0.23*s, 0.1*s); ctx.lineTo(0.80*s, 0.1*s);
+                ctx.moveTo(0.23*s, 0.5*s); ctx.lineTo(0.66*s, 0.5*s);
+            } 
+            else if (shapeName === 'Flecha') {
+                ctx.moveTo(0.15*s, 0.85*s); ctx.lineTo(0.85*s, 0.15*s);
+                ctx.moveTo(0.85*s, 0.15*s); ctx.lineTo(0.85*s, 0.45*s);
+                ctx.moveTo(0.85*s, 0.15*s); ctx.lineTo(0.55*s, 0.15*s);
+            }
+            else if (shapeName === 'Letra J') {
+                ctx.moveTo(0.30*s, 0.1*s); ctx.lineTo(0.72*s, 0.1*s);
+                ctx.moveTo(0.60*s, 0.1*s); ctx.lineTo(0.60*s, 0.70*s);
+                ctx.arc(0.40*s, 0.70*s, 0.20*s, 0, Math.PI);
+            }
+            else if (shapeName === 'Auto Sedan') {
+                ctx.lineWidth = s / 20;
+                // Ruedas
+                ctx.arc(0.25*s, 0.7*s, 0.1*s, 0, Math.PI*2); ctx.stroke(); ctx.beginPath();
+                ctx.arc(0.75*s, 0.7*s, 0.1*s, 0, Math.PI*2); ctx.stroke(); ctx.beginPath();
+                
+                // Contorno
+                ctx.moveTo(0.1*s, 0.7*s);
+                ctx.lineTo(0.1*s, 0.55*s); // Frente
+                ctx.lineTo(0.3*s, 0.55*s); // Capo
+                ctx.lineTo(0.4*s, 0.4*s);  // Parabrisas
+                ctx.lineTo(0.7*s, 0.4*s);  // Techo
+                ctx.lineTo(0.85*s, 0.55*s);// Trasero arriba
+                ctx.lineTo(0.9*s, 0.55*s); // Maletero
+                ctx.lineTo(0.9*s, 0.7*s);  // Trasera baja
+                ctx.closePath();
+                ctx.stroke(); ctx.beginPath();
+
+                // Chasis inferior
+                ctx.moveTo(0.1*s, 0.7*s); ctx.lineTo(0.15*s, 0.7*s);
+                ctx.moveTo(0.35*s, 0.7*s); ctx.lineTo(0.65*s, 0.7*s);
+                ctx.moveTo(0.85*s, 0.7*s); ctx.lineTo(0.9*s, 0.7*s);
+                
+                // Ventanas y Pilar
+                ctx.moveTo(0.32*s, 0.55*s); ctx.lineTo(0.83*s, 0.55*s);
+                ctx.moveTo(0.55*s, 0.4*s); ctx.lineTo(0.55*s, 0.7*s);
+            }
+            ctx.stroke();
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // MOTOR DE FÍSICA
+        // ══════════════════════════════════════════════════════════
+        function calculatePhysics() {
+            let f = state.lens === 'Convexo' ? state.fMag : -state.fMag;
+            let so = state.so;
+            
+            // Evitar singularidad exacta (objeto en el foco exacto)
+            if (Math.abs(so - f) < 0.01) so += 0.02;
+
+            let si = 1.0 / (1.0/f - 1.0/so);
+            let M = !isFinite(si) ? 1.0 : -si / so;
+            let isReal = si > 0;
+            let deltaX = isReal ? Math.abs(state.xs - si) : Infinity;
+
+            state.physics = { so, si, f, M, isReal, deltaX };
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // FUNCIONES DE DIBUJO (RENDERIZADO)
+        // ══════════════════════════════════════════════════════════
+
+        function resizeCanvases() {
+            // El canvas toma exactamente el tamaño visual que el contenedor padre le asigna dinámicamente
+            const benchRect = benchCanvas.parentElement.getBoundingClientRect();
+            // Aseguramos dimensiones razonables incluso si el dom está cargando
+            if (benchRect.width > 0 && benchRect.height > 0) {
+                benchCanvas.width = benchRect.width;
+                benchCanvas.height = benchRect.height;
+            }
+        }
+
+        function renderFrontViews() {
+            // 1. Dibujar acetato original
+            drawShape(ctxObj, state.obj, 200);
+
+            // 2. Dibujar proyección en la pantalla
+            const sCanvas = screenCanvas;
+            const p = state.physics;
+            ctxScreen.clearRect(0, 0, sCanvas.width, sCanvas.height);
+            
+            const titleEl = document.getElementById('screen-title');
+            const subEl = document.getElementById('screen-subtitle');
+            
+            if (p.isReal) {
+                // Imagen Real
+                let nitida = p.deltaX < 0.5;
+                let sigma = p.deltaX * 1.5; // Factor de difuminado
+                
+                titleEl.innerText = nitida ? 'PANTALLA — NÍTIDA' : `PANTALLA — BORROSA (Δ=${p.deltaX.toFixed(1)} cm)`;
+                titleEl.className = `text-center font-bold text-xs md:text-sm py-1.5 uppercase tracking-wide text-white ${nitida ? 'bg-[#27AE60]' : 'bg-[#E74C3C]'}`;
+                
+                let orientacion = p.M < 0 ? 'Invertida' : 'Derecha';
+                let tamano = Math.abs(p.M) > 1 ? 'Aumentada' : 'Reducida';
+                subEl.innerText = `${orientacion} | ${tamano} | M = ${p.M.toFixed(2)}`;
+                
+                if (sigma > 25) {
+                    ctxScreen.fillStyle = '#E5E7EB';
+                    ctxScreen.fillRect(0,0,300,300);
+                } else {
+                    ctxScreen.save();
+                    ctxScreen.translate(150, 150);
+                    ctxScreen.scale(Math.sign(p.M), Math.sign(p.M)); 
+                    let visualM = Math.min(Math.max(Math.abs(p.M), 0.2), 3.0);
+                    ctxScreen.scale(visualM, visualM);
+                    ctxScreen.translate(-100, -100); 
+                    
+                    if (sigma > 0.1) {
+                        ctxScreen.filter = `blur(${sigma}px)`;
+                    }
+                    
+                    drawShape(ctxScreen, state.obj, 200);
+                    ctxScreen.restore();
+                }
+            } else {
+                // Imagen Virtual (Sombra difusa)
+                titleEl.innerText = 'PANTALLA — Sombra (Imagen virtual)';
+                titleEl.className = 'text-center font-bold text-xs md:text-sm py-1.5 uppercase tracking-wide bg-gray-300 text-gray-600';
+                subEl.innerText = 'No proyectable (la luz diverge)';
+                
+                let sigma = state.xs * 0.5 + 2;
+                ctxScreen.save();
+                ctxScreen.translate(150, 150);
+                let visualM = 0.5 + (state.xs / 100); 
+                ctxScreen.scale(visualM, visualM);
+                ctxScreen.translate(-100, -100);
+                ctxScreen.filter = `blur(${sigma}px) opacity(30%)`;
+                drawShape(ctxScreen, state.obj, 200);
+                ctxScreen.restore();
+            }
+        }
+
+        function renderBench() {
+            const w = benchCanvas.width;
+            const h = benchCanvas.height;
+            const ctx = ctxBench;
+            const p = state.physics;
+
+            if (w === 0 || h === 0) return; // Salvaguardia inicial
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Mapeo de coordenadas (cm a px) adaptativo
+            const lensX_px = w * 0.5;
+            const originY_px = h / 2;
+            const scale = w / 140; // Escala ajustada dinámicamente
+
+            const px = (cm) => lensX_px + (cm * scale);
+            const py = (cm) => originY_px - (cm * scale);
+
+            document.getElementById('bench-info').innerText = 
+                `f=${p.f.toFixed(1)} cm | so=${p.so.toFixed(1)} cm | si=${p.si === Infinity ? '∞' : p.si.toFixed(1)} cm | M=${p.M.toFixed(2)}`;
+
+            // Eje Óptico
+            ctx.beginPath();
+            ctx.moveTo(0, originY_px);
+            ctx.lineTo(w, originY_px);
+            ctx.strokeStyle = ESTILO.color_eje;
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            const h_obj = 10; 
+            const x_obj = -p.so;
+            
+            // Luz de fondo
+            ctx.fillStyle = ESTILO.color_luz_fuente;
+            ctx.fillRect(px(x_obj - 20), py(h_obj*1.2), px(x_obj) - px(x_obj - 20), py(-h_obj*1.2) - py(h_obj*1.2));
+            
+            // Caja fuente
+            ctx.fillStyle = '#34495E';
+            ctx.fillRect(px(x_obj - 15), py(h_obj*1.5), px(x_obj - 10) - px(x_obj - 15), py(-h_obj*1.5) - py(h_obj*1.5));
+            ctx.fillStyle = 'white';
+            ctx.font = '10px sans-serif';
+            ctx.fillText("Luz", px(x_obj - 14), py(0));
+
+            // Rayos físicos
+            ctx.strokeStyle = '#F1C40F';
+            ctx.lineWidth = 2;
+            for(let y = -h_obj*0.8; y <= h_obj*0.8; y += h_obj*0.4) {
+                ctx.beginPath();
+                ctx.moveTo(px(x_obj - 10), py(y));
+                ctx.lineTo(px(x_obj - 0.5), py(y)); 
+                ctx.stroke();
+            }
+
+            // Acetato
+            ctx.beginPath();
+            ctx.moveTo(px(x_obj), py(-h_obj*1.1));
+            ctx.lineTo(px(x_obj), py(h_obj*1.1));
+            ctx.strokeStyle = ESTILO.color_acetato;
+            ctx.lineWidth = 6;
+            ctx.stroke();
+            
+            drawArrow(ctx, px(x_obj), py(0), px(x_obj), py(h_obj), 'black', 3);
+            ctx.fillStyle = 'black';
+            ctx.fillText("Objeto", px(x_obj) - 15, py(h_obj + 2));
+
+            // Pantalla
+            ctx.beginPath();
+            ctx.moveTo(px(state.xs), py(-h_obj*1.5));
+            ctx.lineTo(px(state.xs), py(h_obj*1.5));
+            ctx.strokeStyle = ESTILO.color_pantalla;
+            ctx.lineWidth = 8;
+            ctx.stroke();
+            ctx.fillStyle = '#7F8C8D';
+            ctx.fillText("Pantalla", px(state.xs) + 5, py(h_obj + 2));
+
+            // Focos
+            ctx.fillStyle = 'black';
+            ctx.fillRect(px(p.f)-2, py(0)-2, 4, 4);
+            ctx.fillText("F", px(p.f)-3, py(-1.5));
+            ctx.fillRect(px(-p.f)-2, py(0)-2, 4, 4);
+            ctx.fillText("F'", px(-p.f)-3, py(-1.5));
+
+            // ════════════════════════════════════════════════════════════
+            // RAYOS DE CONSTRUCCIÓN GEOMÉTRICA (CORREGIDOS)
+            // Se calculan estrictamente en centímetros (cm) y luego
+            // se proyectan todos usando las funciones de escala px() y py()
+            // ════════════════════════════════════════════════════════════
+            if (isFinite(p.si)) {
+                let cm_end = Math.max(p.si, state.xs) + 30; // 30cm extra después del punto más lejano
+                let pt_obj = {x: x_obj, y: h_obj};
+                let pt_lente_r1 = {x: 0, y: h_obj};
+                let pt_img = {x: p.si, y: p.M * h_obj};
+
+                // Rayo 1 (Rojo): Paralelo -> pasa por el foco posterior F'
+                ctx.strokeStyle = ESTILO.color_r1; ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(px(pt_obj.x), py(pt_obj.y));
+                ctx.lineTo(px(pt_lente_r1.x), py(pt_lente_r1.y));
+                let m1 = (0 - h_obj) / (p.f - 0); // Pendiente desde el lente hasta F'
+                let y1_end = h_obj + m1 * cm_end;
+                ctx.lineTo(px(cm_end), py(y1_end));
+                ctx.stroke();
+
+                // Rayo 2 (Azul): Pasa por el centro óptico (0,0) sin desviarse
+                ctx.strokeStyle = ESTILO.color_r2;
+                ctx.beginPath();
+                ctx.moveTo(px(pt_obj.x), py(pt_obj.y));
+                let m2 = (0 - h_obj) / (0 - x_obj); // Pendiente desde el objeto al centro (0,0)
+                let y2_end = m2 * cm_end;
+                ctx.lineTo(px(cm_end), py(y2_end));
+                ctx.stroke();
+
+                // Rayo 3 (Verde): Pasa por el foco anterior F -> sale paralelo al eje principal
+                ctx.strokeStyle = ESTILO.color_r3;
+                let m3 = (0 - h_obj) / (-p.f - x_obj); // Pendiente desde objeto hasta foco anterior
+                let y_lente_r3 = h_obj + m3 * (0 - x_obj); // Altura a la que golpea el lente
+                
+                // Evitamos dibujar este rayo si está tan vertical que se sale del lente bruscamente
+                if (Math.abs(y_lente_r3) < h_obj * 3) {
+                    ctx.beginPath();
+                    ctx.moveTo(px(pt_obj.x), py(pt_obj.y));
+                    ctx.lineTo(px(0), py(y_lente_r3));
+                    ctx.lineTo(px(cm_end), py(y_lente_r3));
+                    ctx.stroke();
+                }
+
+                // ── Dibujo de la Imagen y Extensiones Virtuales ──
+                if (p.isReal) {
+                    // Imagen real (flecha sólida)
+                    drawArrow(ctx, px(p.si), py(0), px(p.si), py(pt_img.y), ESTILO.color_imagen, 3);
+                    
+                    // Círculo en la intersección exacta para demostrar precisión
+                    ctx.fillStyle = 'white'; ctx.strokeStyle = ESTILO.color_imagen;
+                    ctx.beginPath(); ctx.arc(px(p.si), py(pt_img.y), 4, 0, 2*Math.PI); ctx.fill(); ctx.stroke();
+                } else {
+                    // Si es virtual, dibujamos las extensiones hacia atrás (hacia el objeto)
+                    ctx.strokeStyle = ESTILO.color_r1; ctx.setLineDash([4, 4]);
+                    ctx.beginPath(); ctx.moveTo(px(0), py(h_obj)); ctx.lineTo(px(p.si), py(pt_img.y)); ctx.stroke();
+                    
+                    ctx.strokeStyle = ESTILO.color_r2;
+                    ctx.beginPath(); ctx.moveTo(px(0), py(0)); ctx.lineTo(px(p.si), py(pt_img.y)); ctx.stroke();
+                    
+                    if (Math.abs(y_lente_r3) < h_obj * 3) {
+                        ctx.strokeStyle = ESTILO.color_r3;
+                        ctx.beginPath(); ctx.moveTo(px(0), py(y_lente_r3)); ctx.lineTo(px(p.si), py(y_lente_r3)); ctx.stroke();
+                    }
+                    
+                    ctx.setLineDash([]);
+                    // Imagen virtual (flecha punteada)
+                    ctx.setLineDash([3, 3]);
+                    drawArrow(ctx, px(p.si), py(0), px(p.si), py(pt_img.y), ESTILO.color_virtual, 3);
+                    ctx.setLineDash([]);
+                    ctx.fillStyle = ESTILO.color_virtual;
+                    ctx.fillText("Virtual", px(p.si) - 15, py(pt_img.y + 2*Math.sign(pt_img.y)));
+                }
+            }
+
+            // Lente
+            let factor = 10.0 / Math.abs(p.f); 
+            let tCentro = state.lens === 'Convexo' ? 12 * factor : 2 * factor;
+            let tBorde = state.lens === 'Convexo' ? 2 * factor : 12 * factor;
+            tCentro = Math.max(tCentro, 2); tBorde = Math.max(tBorde, 2);
+
+            ctx.fillStyle = 'rgba(133, 193, 233, 0.6)';
+            ctx.strokeStyle = '#2980B9';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(px(0), py(h_obj*2.5));
+            ctx.quadraticCurveTo(px(0) + tCentro, py(0), px(0), py(-h_obj*2.5));
+            ctx.lineTo(px(0) - tBorde/2, py(-h_obj*2.5));
+            ctx.quadraticCurveTo(px(0) - tCentro, py(0), px(0) - tBorde/2, py(h_obj*2.5));
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(px(0), py(h_obj*2.6)); ctx.lineTo(px(0), py(-h_obj*2.6)); 
+            ctx.strokeStyle = 'rgba(41, 128, 185, 0.3)'; ctx.stroke();
+        }
+
+        function drawArrow(ctx, fromx, fromy, tox, toy, color, width) {
+            let headlen = 10;
+            let dx = tox - fromx;
+            let dy = toy - fromy;
+            let angle = Math.atan2(dy, dx);
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = width;
+            ctx.moveTo(fromx, fromy);
+            ctx.lineTo(tox, toy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(tox, toy);
+            ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+            ctx.fill();
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // PANEL DE TEXTO (Pestañas)
+        // ══════════════════════════════════════════════════════════
+        function renderPanel() {
+            const container = document.getElementById('tab-content');
+            const p = state.physics;
+            let html = '';
+
+            if (state.tab === 'datos') {
+                html = `
+                    <h3 class="text-center font-bold text-[#2980B9] border-b border-gray-200 pb-3 mb-5 uppercase text-sm tracking-wide">Tabla de Mediciones</h3>
+                    
+                    <div class="mb-5">
+                        <h4 class="font-bold text-gray-700 mb-2.5">Parámetros del Sistema</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-mono text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <div class="flex justify-between sm:block"><span class="sm:block text-xs text-gray-400">Objeto:</span> <span class="text-gray-900 font-bold">so = ${p.so.toFixed(2)} cm</span></div>
+                            <div class="flex justify-between sm:block"><span class="sm:block text-xs text-gray-400">Focal:</span> <span class="text-gray-900 font-bold">f = ${p.f.toFixed(2)} cm</span></div>
+                            <div class="flex justify-between sm:block sm:col-span-2"><span class="sm:block text-xs text-gray-400">Posición pantalla:</span> <span class="text-gray-900 font-bold">xs = ${state.xs.toFixed(2)} cm</span></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <h4 class="font-bold text-[#27AE60] mb-2.5">Resultados Calculados</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-mono text-gray-600 bg-green-50 p-3 rounded-lg border border-green-100">
+                            <div class="flex justify-between sm:block"><span class="sm:block text-xs text-green-600/70">Imagen:</span> <span class="text-gray-900 font-bold">si = ${p.si === Infinity ? '∞' : p.si.toFixed(2)} cm</span></div>
+                            <div class="flex justify-between sm:block"><span class="sm:block text-xs text-green-600/70">Aumento:</span> <span class="text-gray-900 font-bold">M = ${p.M.toFixed(3)}</span></div>
+                            <div class="flex justify-between sm:block sm:col-span-2"><span class="sm:block text-xs text-green-600/70">Desfase enfoque:</span> <span class="text-gray-900 font-bold">Δx = ${p.isReal ? p.deltaX.toFixed(2) : '∞'} cm</span></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-gray-700 mb-2.5">Clasificación</h4>
+                        <div class="space-y-2 text-sm bg-gray-50 p-3 rounded-lg border border-gray-100 text-gray-700">
+                            <div class="flex justify-between border-b border-gray-200 pb-1.5"><span class="text-gray-500">Tipo:</span> <span class="font-bold">${p.isReal ? 'Real (proyectable)' : 'Virtual (no proyectable)'}</span></div>
+                            <div class="flex justify-between border-b border-gray-200 pb-1.5"><span class="text-gray-500">Orientación:</span> <span class="font-bold">${p.M < 0 ? 'Invertida' : 'Derecha'}</span></div>
+                            <div class="flex justify-between"><span class="text-gray-500">Tamaño:</span> <span class="font-bold">${Math.abs(p.M) > 1 ? 'Aumentada' : 'Reducida'}</span></div>
+                        </div>
+                    </div>
+                `;
+            } 
+            else if (state.tab === 'analisis') {
+                if (p.isReal) {
+                    html = `
+                        <h3 class="text-center font-bold text-[#27AE60] border-b pb-3 mb-5 uppercase text-sm tracking-wide">Lente Convexo — Imagen Real</h3>
+                        <div class="space-y-4 text-sm text-gray-700 leading-relaxed text-justify">
+                            <p>Los rayos de luz que atraviesan las zonas transparentes del acetato original convergen físicamente en un punto exacto ubicado a la distancia <span class="font-bold bg-gray-100 px-1 rounded">si = ${p.si.toFixed(1)} cm</span>.</p>
+                            <p>Si la pantalla se coloca exactamente en ese punto, se observará una imagen <strong class="text-green-600 font-bold">NÍTIDA</strong> (alto contraste entre la tinta y la luz).</p>
+                            <p>Si la pantalla se mueve lejos de ese punto ideal, los rayos comienzan a separarse nuevamente formando "círculos de confusión", lo que visualmente se percibe como una imagen <strong class="text-red-500 font-bold">BORROSA</strong>.</p>
+                            <div class="bg-blue-50 p-3 rounded border border-blue-100 font-medium">La imagen real siempre estará <strong>INVERTIDA</strong> en el eje vertical y horizontal, tal como se puede apreciar en el comparativo visual.</div>
+                        </div>
+                    `;
+                } else {
+                    html = `
+                        <h3 class="text-center font-bold text-[#E67E22] border-b pb-3 mb-5 uppercase text-sm tracking-wide">Imagen Virtual — No Proyectable</h3>
+                        <div class="space-y-4 text-sm text-gray-700 leading-relaxed text-justify">
+                            <p>Debido a la configuración actual (Lente Cóncavo, o un objeto muy cerca del Lente Convexo), los rayos de luz <strong>divergen</strong> al salir del cristal.</p>
+                            <p>Al no converger físicamente en el espacio detrás del lente, es <strong class="text-red-500">imposible</strong> proyectar una imagen nítida sobre una pantalla física.</p>
+                            <p>Para el ojo humano mirando a través del lente, parece que la luz proviene de una imagen ubicada del mismo lado que el objeto original. Esta es la "Imagen Virtual".</p>
+                            <div class="bg-orange-50 p-3 rounded border border-orange-100 font-medium">En la pantalla física solo se observará una <strong>SOMBRA DIFUSA</strong> del objeto bloqueando la luz, la cual se hará más grande y borrosa cuanto más lejos se ubique la pantalla.</div>
+                        </div>
+                    `;
+                }
+            } 
+            else if (state.tab === 'ecuaciones') {
+                html = `
+                    <h3 class="text-center font-bold text-[#2C3E50] border-b pb-3 mb-5 uppercase text-sm tracking-wide">Ecuaciones Ópticas</h3>
+                    
+                    <div class="mb-6">
+                        <p class="text-xs text-gray-500 mb-1.5 font-bold tracking-wide uppercase">Ecuación de la lente delgada</p>
+                        <div class="bg-[#EBF5FB] border border-[#AED6F1] rounded-lg py-5 text-center text-lg md:text-xl font-serif text-[#2C3E50] shadow-inner">
+                            <div class="frac"><span>1</span><span class="bottom">f</span></div> =
+                            <div class="frac"><span>1</span><span class="bottom">s<sub>o</sub></span></div> +
+                            <div class="frac"><span>1</span><span class="bottom">s<sub>i</sub></span></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <p class="text-xs text-gray-500 mb-1.5 font-bold tracking-wide uppercase">Magnificación lineal</p>
+                        <div class="bg-[#EBF5FB] border border-[#AED6F1] rounded-lg py-4 text-center text-lg md:text-xl font-serif text-[#2C3E50] shadow-inner">
+                            M = - <div class="frac"><span>s<sub>i</sub></span><span class="bottom">s<sub>o</sub></span></div> = 
+                            <div class="frac"><span>h<sub>i</sub></span><span class="bottom">h<sub>o</sub></span></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <p class="text-xs text-gray-500 mb-1.5 font-bold tracking-wide uppercase">Distancia imagen (despejada)</p>
+                        <div class="bg-[#EBF5FB] border border-[#AED6F1] rounded-lg py-4 text-center text-lg md:text-xl font-serif text-[#2C3E50] shadow-inner">
+                            s<sub>i</sub> = <div class="frac"><span>f · s<sub>o</sub></span><span class="bottom">s<sub>o</sub> - f</span></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#F9F9F9] border border-[#BDC3C7] rounded-lg p-4 text-xs md:text-sm font-mono text-gray-600 leading-relaxed shadow-sm">
+                        <span class="font-bold text-[#2C3E50] uppercase tracking-wide block mb-2 border-b pb-1">Convenio de signos:</span>
+                        <div class="grid grid-cols-1 gap-1.5 mt-2">
+                            <div><span class="font-bold text-[#2980B9]">f > 0</span>  → Convexo (convergente)</div>
+                            <div><span class="font-bold text-[#2980B9]">f < 0</span>  → Cóncavo (divergente)</div>
+                            <div><span class="font-bold text-[#27AE60]">si > 0</span> → Imagen real (proyectable)</div>
+                            <div><span class="font-bold text-[#E67E22]">si < 0</span> → Imagen virtual</div>
+                            <div><span class="font-bold text-gray-800">M < 0</span>  → Imagen invertida</div>
+                            <div><span class="font-bold text-gray-800">|M| > 1</span> → Imagen aumentada</div>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // CICLO PRINCIPAL
+        // ══════════════════════════════════════════════════════════
+        function updateAll() {
+            state.so = parseFloat(inputs.so.value);
+            state.fMag = parseFloat(inputs.f.value);
+            state.xs = parseFloat(inputs.xs.value);
+            state.lens = inputs.lens.value;
+            state.obj = inputs.obj.value;
+
+            labels.so.innerText = state.so.toFixed(1) + ' cm';
+            labels.f.innerText  = state.fMag.toFixed(1) + ' cm';
+            labels.xs.innerText = state.xs.toFixed(1) + ' cm';
+
+            calculatePhysics();
+            renderBench();
+            renderFrontViews();
+            renderPanel();
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // EVENT LISTENERS E INICIALIZACIÓN
+        // ══════════════════════════════════════════════════════════
+        
+        Object.values(inputs).forEach(input => {
+            input.addEventListener('input', updateAll);
+            input.addEventListener('change', updateAll);
+        });
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('text-[#2980B9]', 'bg-white', 'border-[#2980B9]', 'font-bold');
+                    b.classList.add('text-gray-500', 'hover:bg-gray-50', 'border-transparent', 'font-semibold');
+                });
+                const t = e.target;
+                t.classList.remove('text-gray-500', 'hover:bg-gray-50', 'border-transparent', 'font-semibold');
+                t.classList.add('text-[#2980B9]', 'bg-white', 'border-[#2980B9]', 'font-bold');
+                
+                state.tab = t.getAttribute('data-tab');
+                renderPanel();
+            });
+        });
+
+        // Asegurar que al cambiar el tamaño (o rotar la tablet), el canvas interno se redibuje bien
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeCanvases();
+                updateAll();
+            }, 50);
+        });
+
+        // Arranque Inicial
+        // Pequeño timeout para permitir que el navegador dibuje el CSS Grid/Flexbox antes del canvas
+        setTimeout(() => {
+            resizeCanvases();
+            updateAll();
+        }, 100);
+
+    </script>
+</body>
+</html>

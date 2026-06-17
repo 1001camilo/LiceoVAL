@@ -1,0 +1,453 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- CONFIGURACIÓN GENERAL ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Márgenes amplios para dar espacio a la lectura
+\usepackage[top=3.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont} 
+\usepackage{tikz} 
+\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES DE CAJAS ---
+\usepackage[most]{tcolorbox}
+
+% --- FONDO (Membrete Ruta Local) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230, 120, 20}
+
+% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
+\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco del Maestro: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo Guiado Visual}}, arc=2mm, boxrule=1pt}
+
+% Caja de práctica "breakable"
+\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+
+% --- COMANDOS PARA CASILLAS DE RESPUESTA ---
+% Casilla normal gris
+\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=gray!5, boxrule=0.8pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
+% Casilla azul pequeña para llevar números
+\newcommand{\cajitalleva}{\tcbox[on line, size=minimal, colframe=valblue!80, colback=valblue!10, boxrule=0.8pt, arc=1mm, boxsep=2pt]{\makebox[0.4cm]{\vphantom{0}}}}
+
+\begin{document}
+	
+	% =======================================================
+	%                     PORTADA
+	% =======================================================
+	\begin{center}
+		\vspace*{1cm}
+		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large \textbf{MATEMÁTICAS ADAPTADAS 6$^\circ$}}\\[0.5cm]
+		
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
+			\centering \Huge \textbf{UNIDAD 7}\\[0.2cm]
+			\Large \textbf{La Multiplicación de Números Naturales}
+		\end{tcolorbox}
+		
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			\vspace{0.3cm}
+			\textbf{Nombre del Estudiante:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:} \underline{06M-07 AC} \hspace{1cm} \textbf{Año:} \underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		
+		\vspace{0.8cm}
+		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
+		
+		\vspace{0.8cm}
+		\begin{tcolorbox}[colback=valorange!10, colframe=valorange, width=14cm, arc=2mm]
+			\textbf{Instrucciones de uso:}\\
+			Ya eres un experto sumando y restando. ¿Pero qué pasa si tienes que sumar el mismo número muchísimas veces? ¡Nos demoraríamos un montón! Hoy aprenderás el superpoder matemático de la \textbf{MULTIPLICACIÓN}. Lee con cuidado, mira los dibujos y usa lápiz para llenar los cuadros. ¡Tú puedes hacerlo!
+		\end{tcolorbox}
+	\end{center}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 1: ¿QUÉ ES MULTIPLICAR?
+	% =======================================================
+	\section*{Misión 1: ¿Qué es multiplicar?}
+	
+	\begin{concepto}{Multiplicar es una suma repetida}
+		Multiplicar es una forma rápida de sumar el mismo número muchas veces.
+		Imagina que tienes 4 cajas y en cada caja hay 3 juguetes.
+		Podrías sumar: $3 + 3 + 3 + 3 = 12$.
+		Pero es más rápido multiplicar: $3 \times 4 = 12$.
+		\begin{itemize}
+			\item El signo es una equis ($\times$) o un punto ($\cdot$).
+			\item Se lee: ``3 \textbf{por} 4''.
+		\end{itemize}
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{center}
+			\begin{tikzpicture}[scale=1]
+				% Grupo 1
+				\draw[ultra thick, valblue, rounded corners, fill=valblue!5] (0,0) rectangle (2.5,2);
+				\fill[valorange] (0.7,0.6) circle (0.25); \fill[valorange] (1.8,0.6) circle (0.25);
+				\fill[valorange] (0.7,1.4) circle (0.25); \fill[valorange] (1.8,1.4) circle (0.25);
+				\node[font=\Large\bfseries, valdark] at (1.25, -0.5) {4};
+				
+				\node[font=\Huge\bfseries, valdark] at (3.25, 1) {$+$};
+				
+				% Grupo 2
+				\draw[ultra thick, valblue, rounded corners, fill=valblue!5] (4,0) rectangle (6.5,2);
+				\fill[valorange] (4.7,0.6) circle (0.25); \fill[valorange] (5.8,0.6) circle (0.25);
+				\fill[valorange] (4.7,1.4) circle (0.25); \fill[valorange] (5.8,1.4) circle (0.25);
+				\node[font=\Large\bfseries, valdark] at (5.25, -0.5) {4};
+				
+				\node[font=\Huge\bfseries, valdark] at (7.25, 1) {$+$};
+				
+				% Grupo 3
+				\draw[ultra thick, valblue, rounded corners, fill=valblue!5] (8,0) rectangle (10.5,2);
+				\fill[valorange] (8.7,0.6) circle (0.25); \fill[valorange] (9.8,0.6) circle (0.25);
+				\fill[valorange] (8.7,1.4) circle (0.25); \fill[valorange] (9.8,1.4) circle (0.25);
+				\node[font=\Large\bfseries, valdark] at (9.25, -0.5) {4};
+				
+				% Texto explicativo
+				\node[font=\LARGE\bfseries, valred] at (5.25, -1.8) {Tenemos 3 grupos de 4};
+				\node[font=\Huge\bfseries, valdark] at (5.25, -3) {$\mathbf{3 \ \times \ 4 \ = \ 12}$};
+			\end{tikzpicture}
+		\end{center}
+	\end{ejemplo}
+	
+	\vspace{0.4cm}
+	\begin{practica}{De Suma a Multiplicación (8 Ejercicios)}
+		\textit{Cuenta cuántas veces se repite el número y escribe la multiplicación. Luego pon el resultado final usando tus tablas de multiplicar.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1cm]
+				\item $5 + 5 + 5 \rightarrow \mathbf{3 \times 5} = $ \boxfill[1cm]
+				\item $2 + 2 + 2 + 2 \rightarrow$ \boxfill[0.8cm] $\times \ 2 =$ \boxfill[1cm]
+				\item $7 + 7 \rightarrow$ \boxfill[0.8cm] $\times \ 7 =$ \boxfill[1cm]
+				\item $10 + 10 + 10 \rightarrow$ \boxfill[0.8cm] $\times \ 10 =$ \boxfill[1.5cm]
+				\item $4 + 4 + 4 + 4 + 4 \rightarrow$ \boxfill[0.8cm] $\times \ 4 =$ \boxfill[1cm]
+				\item $8 + 8 + 8 \rightarrow$ \boxfill[0.8cm] $\times \ 8 =$ \boxfill[1cm]
+				\item $1 + 1 + 1 + 1 + 1 \rightarrow$ \boxfill[0.8cm] $\times \ 1 =$ \boxfill[1cm]
+				\item $100 + 100 \rightarrow$ \boxfill[0.8cm] $\times \ 100 =$ \boxfill[1.5cm]
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 2: MULTIPLICACIÓN VERTICAL (SIN LLEVAR)
+	% =======================================================
+	\section*{Misión 2: Multiplicar Hacia Abajo}
+	
+	\begin{concepto}{El Edificio de la Multiplicación}
+		Cuando tenemos un número grande, lo multiplicamos en forma vertical (hacia abajo). El número pequeño de abajo multiplica \textbf{a cada uno} de los números de arriba, empezando \textbf{siempre por la derecha} (Unidades), luego las Decenas.
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{multicols}{2}
+			\textbf{Queremos multiplicar $23 \times 3$:}\\
+			Imagina que cada paquete trae 23 galletas y compramos 3 paquetes.
+			
+			\vspace{0.4cm}
+			\textbf{Pasos:}
+			\begin{enumerate}
+				\item Multiplica el de abajo por la Unidad: $3 \times 3 = \mathbf{9}$.
+				\item Multiplica el de abajo por la Decena: $3 \times 2 = \mathbf{6}$.
+			\end{enumerate}
+			
+			\columnbreak
+			
+			\begin{center}
+				\Large
+				\begin{tabular}{r c c}
+					& \textbf{D} & \textbf{U} \\
+					& 2 & 3 \\
+					$\times$ & & \textbf{3} \\
+					\hline
+					& \textbf{6} & \textbf{9}
+				\end{tabular}
+				\\[0.4cm]
+				\normalsize \textbf{¡En total tenemos 69 galletas!}
+			\end{center}
+		\end{multicols}
+	\end{ejemplo}
+	
+	\begin{practica}{Multiplicar directo (8 Ejercicios)}
+		\textit{Multiplica el número de abajo por cada uno de los números de arriba y anota el resultado abajo. ¡Aquí no tienes que llevar nada!}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{4}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1.5cm]
+				\item 
+				\begin{tabular}{r}
+					1 2 \\
+					$\times$ \ 4 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					2 1 \\
+					$\times$ \ 3 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					3 4 \\
+					$\times$ \ 2 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					4 2 \\
+					$\times$ \ 2 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					1 1 \\
+					$\times$ \ 5 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					2 0 \\
+					$\times$ \ 4 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					3 3 \\
+					$\times$ \ 3 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r}
+					1 0 \\
+					$\times$ \ 6 \\
+					\hline
+					\boxfill[1.2cm]
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 3: MULTIPLICACIÓN VERTICAL (LLEVANDO)
+	% =======================================================
+	\section*{Misión 3: El Regalo para el Vecino (Llevando)}
+	
+	\begin{concepto}{Cuando el resultado es muy grande}
+		Si al multiplicar una columna el resultado es \textbf{10 o más}, ¡no caben los dos números abajo! Dejas el número de la derecha abajo y \textbf{"llevas"} el otro número hacia arriba de la siguiente columna. ¡Escríbelo en la \textbf{cajita azul}! Luego, \textbf{SE LO SUMAS} al resultado de la siguiente multiplicación.
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\begin{multicols}{2}
+			\textbf{Queremos multiplicar $14 \times 3$:}\\
+			\textbf{Paso 1:} Multiplica $3 \times 4 = 12$. Ponemos el \textbf{2} abajo y \textcolor{valblue}{\textbf{llevamos 1}} a la cajita del vecino.
+			
+			\vspace{0.2cm}
+			\textbf{Paso 2:} Multiplica el de abajo por la Decena: $3 \times 1 = 3$. ¡Y le SUMAMOS el 1 que teníamos guardado en la cajita! $3 + 1 = \mathbf{4}$.
+			
+			\columnbreak
+			
+			\begin{center}
+				\Large
+				\begin{tabular}{r c c}
+					& \cajitalleva & \\[-0.5ex]
+					& 1 & 4 \\
+					$\times$ & & \textbf{3} \\
+					\hline
+					& \textbf{4} & \textbf{2}
+				\end{tabular}
+				\\[0.4cm]
+				\normalsize \textbf{¡El resultado es 42!}
+			\end{center}
+		\end{multicols}
+	\end{ejemplo}
+	
+	\begin{practica}{Multiplicar llevando (8 Ejercicios)}
+		\textit{Multiplica. Si el número se pasa de 9, anota el número que llevas en la \textbf{cajita azul} de arriba, y no olvides SUMARLO en tu siguiente paso.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{4}
+			\raggedcolumns
+			\begin{enumerate}[itemsep=1.5cm]
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					1 & 5 \\
+					$\times$ & 3 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					2 & 4 \\
+					$\times$ & 4 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					3 & 6 \\
+					$\times$ & 2 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					4 & 5 \\
+					$\times$ & 3 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					1 & 8 \\
+					$\times$ & 5 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					2 & 7 \\
+					$\times$ & 3 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					4 & 8 \\
+					$\times$ & 2 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+				
+				\item 
+				\begin{tabular}{r c}
+					\cajitalleva & \\[-0.5ex]
+					1 & 5 \\
+					$\times$ & 6 \\
+					\hline
+					\multicolumn{2}{c}{\boxfill[1.5cm]}
+				\end{tabular}
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	\newpage
+	
+	% =======================================================
+	% MISIÓN 4: PROBLEMAS DE LA VIDA REAL
+	% =======================================================
+	\section*{Misión 4: Detectives de la Multiplicación}
+	
+	\begin{truco}{Las Palabras Clave}
+		Cuando leas un problema en la vida real, ¿cómo saber que tienes que multiplicar? Busca estas palabras clave: \textbf{Cada uno}, \textbf{El doble} (multiplicar por 2), \textbf{El triple} (multiplicar por 3), \textbf{Veces}, o cuando te pidan \textbf{un total de muchos objetos exactamente iguales}.
+	\end{truco}
+	
+	\begin{practica}{Resuelve los casos (6 Ejercicios)}
+		\textit{Lee el caso. Escribe la multiplicación de forma vertical en el espacio (si lo necesitas) y anota el resultado en la respuesta. ¡Usa tus cajitas mentales!}
+		
+		\vspace{0.4cm}
+		\begin{enumerate}[itemsep=1.5cm]
+			\item Un paquete trae \textbf{12} galletas dulces. Si mi mamá compra \textbf{3} paquetes para la semana, ¿cuántas galletas hay en total? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Hay en total \boxfill[1.5cm] galletas.
+			\end{tabular}
+			
+			\item Una caja de madera tiene \textbf{24} colores. Si para el colegio me piden comprar \textbf{2} cajas, ¿cuántos colores tendré en total? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Tendré \boxfill[1.5cm] colores.
+			\end{tabular}
+			
+			\item Un lápiz súper especial cuesta \textbf{\$ 150}. Si quiero comprar \textbf{3} lápices iguales, ¿cuánto dinero debo pagar en la caja? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Debes pagar \$ \boxfill[1.5cm]
+			\end{tabular}
+			
+			\item En un salón de clases hay \textbf{16} mesas. Si en cada mesa se pueden sentar \textbf{2} estudiantes, ¿cuántos estudiantes caben en todo el salón? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Caben \boxfill[1.5cm] estudiantes.
+			\end{tabular}
+			
+			\item Un álbum de animales tiene \textbf{15} páginas. Si en cada página caben exactamente \textbf{4} figuras, ¿cuántas figuras caben en todo el álbum? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Caben \boxfill[1.5cm] figuras.
+			\end{tabular}
+			
+			\item Un edificio tiene \textbf{5} pisos de altura. En cada uno de los pisos hay \textbf{14} ventanas grandes. ¿Cuántas ventanas hay en total en todo el edificio? \\
+			\begin{tabular}{c c}
+				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Hay \boxfill[1.5cm] ventanas.
+			\end{tabular}
+			
+		\end{enumerate}
+		\vspace{0.2cm}
+	\end{practica}
+	
+	\vspace{1cm}
+	% --- MENSAJE FINAL ---
+	\begin{center}
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, width=14cm, arc=3mm, boxrule=1.5pt]
+			\centering \Large \textbf{¡MÓDULO UNIDAD 7 COMPLETADO!}\\[0.2cm]
+			\normalsize Has dominado la magia de la multiplicación y el truco de llevar números. ¡Avisa al profesor para que te entregue tu examen!
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}
