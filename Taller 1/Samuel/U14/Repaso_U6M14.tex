@@ -1,0 +1,169 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen de 1 pulgada en todos los lados
+\usepackage[letterpaper, top=3cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+% --- FONDO (Membrete Ruta Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+	}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COMANDOS PARA CAJAS DE RESPUESTA ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=black, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{TALLER DE REPASO PRE-EXAMEN}\\[0.1cm]
+		Matemáticas 6º - Unidad 14: Ecuaciones Lineales
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \underline{T-06M-14 FL}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.4cm}
+	\noindent \textbf{Instrucciones:} Este es tu entrenamiento oficial para el examen. Resuelve los ejercicios aplicando las propiedades de la igualdad. Usa los espacios indicados.
+	
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.5cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Traducción al Lenguaje Algebraico}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Lee cada frase del lenguaje común y tradúcela a una ecuación matemática usando la letra que prefieras.}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\textbf{\Alph*)}, itemsep=0.8cm]
+		\item Un número disminuido en ocho es igual a veinticinco:\\ \boxfill[5cm]
+		
+		\item El doble de un número es igual a cuarenta y ocho:\\ \boxfill[5cm]
+		
+		\item La tercera parte de un número es igual a veinte:\\ \boxfill[5cm]
+		
+		\item La suma del doble de un número y cinco es igual a quince:\\ \boxfill[5cm]
+	\end{enumerate}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Propiedad Uniforme: Suma y Resta}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Resuelve las ecuaciones aplicando la operación contraria a ambos lados.}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\Alph*)}, itemsep=1cm]
+			\item \quad $m + 15 = 45$ \\
+			Procedimiento: \\
+			$m + 15 \ - $ \boxfill[1cm] $= 45 \ - $ \boxfill[1cm] \\
+			$m = $ \boxfill[1.5cm]
+			
+			\item \quad $y - 22 = 18$ \\
+			Procedimiento: \\
+			$y - 22 \ + $ \boxfill[1cm] $= 18 \ + $ \boxfill[1cm] \\
+			$y = $ \boxfill[1.5cm]
+		\end{enumerate}
+	\end{multicols}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. Propiedad Uniforme: Multiplicación y División}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Aplica la operación contraria para despejar la incógnita.}
+	
+	\vspace{0.4cm}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\Alph*)}, itemsep=1cm]
+			\item \quad $7 \cdot x = 56$ \\
+			Procedimiento: \\
+			$\dfrac{7 \cdot x}{\boxfill[1cm]} = \dfrac{56}{\boxfill[1cm]}$ \\
+			$x = $ \boxfill[1.5cm]
+			
+			\item \quad $\dfrac{p}{4} = 12$ \\
+			Procedimiento: \\
+			$\dfrac{p}{4} \cdot \boxfill[1cm] = 12 \cdot \boxfill[1cm]$ \\
+			$p = $ \boxfill[1.5cm]
+		\end{enumerate}
+	\end{multicols}
+	
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Reto de Dos Pasos (Ecuaciones Combinadas)}
+	
+	\vspace{0.2cm}
+	\noindent \textit{A veces debes aplicar dos propiedades para dejar la letra sola. Sigue los pasos indicados.}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\textbf{\Alph*)}, itemsep=1.2cm]
+		\item \quad $\mathbf{2x + 10 = 30}$ \\
+		\textbf{Paso 1:} Resta 10 a ambos lados para eliminar la suma.\\
+		$2x + 10 \ - $ \boxfill[1cm] $= 30 \ - $ \boxfill[1cm] \\
+		$2x = $ \boxfill[1.5cm] \\
+		\textbf{Paso 2:} Divide ambos lados entre 2 para despejar la $x$.\\
+		$\dfrac{2x}{\boxfill[1cm]} = \dfrac{\boxfill[1.5cm]}{\boxfill[1cm]}$ \\
+		$x = $ \boxfill[1.5cm]
+		
+		\item \quad $\mathbf{3y - 5 = 16}$ \\
+		\textbf{Paso 1:} Suma 5 a ambos lados.\\
+		$3y - 5 \ + $ \boxfill[1cm] $= 16 \ + $ \boxfill[1cm] \\
+		$3y = $ \boxfill[1.5cm] \\
+		\textbf{Paso 2:} Divide ambos lados entre 3.\\
+		$\dfrac{3y}{\boxfill[1cm]} = \dfrac{\boxfill[1.5cm]}{\boxfill[1cm]}$ \\
+		$y = $ \boxfill[1.5cm]
+	\end{enumerate}
+	
+	\vspace{1cm}
+	
+	% --- PUNTO 5 ---
+	\noindent \textbf{5. Resolución de Problemas}
+	
+	\vspace{0.2cm}
+	\noindent \textit{Construye la ecuación y resuélvela.}
+	
+	\vspace{0.4cm}
+	\noindent \textbf{Problema:} María compró 3 cuadernos exactamente iguales. Al llegar a la caja, pagó un total de \$15.000. ¿Cuánto costó cada cuaderno?
+	
+	\vspace{0.5cm}
+	\begin{itemize}[itemsep=0.8cm, label={}]
+		\item \textbf{A) Arma la Ecuación} (Usa la letra \textbf{c} para el costo del cuaderno):\\
+		\boxfill[4cm]
+		
+		\item \textbf{B) Resuelve} (Aplica la propiedad uniforme):\\
+		\boxfill[6cm]
+		
+		\item \textbf{C) Respuesta Final:}\\
+		Cada cuaderno costó \$ \boxfill[2cm].
+	\end{itemize}
+
+	
+
+\end{document}	
