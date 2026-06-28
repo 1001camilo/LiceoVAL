@@ -1,453 +1,1253 @@
-\documentclass[12pt, letterpaper]{article}
+% ╔══════════════════════════════════════════════════════════════════════════╗
+% ║  LICEO V.A.L. – MÓDULO DE AUTOAPRENDIZAJE                              ║
+% ║  Código: 06M-07 AC  |  Grado: 6°  |  Ruta: Adaptación Curricular      ║
+% ║  Unidad 7: Multiplicación de Números Naturales                          ║
+% ╚══════════════════════════════════════════════════════════════════════════╝
 
-% --- CONFIGURACIÓN GENERAL ---
+\documentclass[12pt,letterpaper]{article}
+
+% ── CODIFICACIÓN Y TIPOGRAFÍA ──────────────────────────────────────────────
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[spanish, es-noshorthands]{babel}
-% Márgenes amplios para dar espacio a la lectura
-\usepackage[top=3.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
-\usepackage{graphicx}
-\usepackage[table]{xcolor}
-\usepackage{enumitem}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{multicol}
+\usepackage[spanish,es-noshorthands]{babel}
 \usepackage{helvet}
-\usepackage{pifont} 
-\usepackage{tikz} 
-\usetikzlibrary{babel, shapes.geometric, arrows.meta, positioning, calc}
 \renewcommand{\familydefault}{\sfdefault}
 
-% --- PAQUETES DE CAJAS ---
-\usepackage[most]{tcolorbox}
+% ── GEOMETRÍA ──────────────────────────────────────────────────────────────
+\usepackage[
+letterpaper,
+left=1.8cm, right=1.8cm,
+top=2.0cm,  bottom=2.0cm
+]{geometry}
 
-% --- FONDO (Membrete Ruta Local) ---
+% ── GRÁFICOS, COLOR Y FONDO ────────────────────────────────────────────────
+\usepackage{graphicx}
 \usepackage{eso-pic}
+\usepackage{xcolor}
+
+% ── TIKZ ──────────────────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, calc, positioning, backgrounds}
+
+% ── TCOLORBOX ──────────────────────────────────────────────────────────────
+\usepackage{tcolorbox}
+\tcbuselibrary{most, skins, breakable}
+
+% ── PAQUETES ADICIONALES ───────────────────────────────────────────────────
+\usepackage{array, tabularx, booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{gensymb}
+\usepackage{needspace}
+\usepackage{multicol}
+
+% ══════════════════════════════════════════════════════════════════════════════
+% PALETA INSTITUCIONAL VAL
+% ══════════════════════════════════════════════════════════════════════════════
+\definecolor{valblue}       {RGB}{  0,  84, 166}
+\definecolor{valgreen}      {RGB}{  0, 150,  64}
+\definecolor{valred}        {RGB}{200,  16,  46}
+\definecolor{valdark}       {RGB}{ 40,  40,  40}
+\definecolor{valorange}     {RGB}{230, 100,   0}
+\definecolor{vallightblue}  {RGB}{220, 235, 250}
+\definecolor{vallightgreen} {RGB}{220, 245, 230}
+\definecolor{vallightred}   {RGB}{255, 228, 228}
+\definecolor{vallightorange}{RGB}{255, 238, 210}
+\definecolor{valgray}       {RGB}{245, 245, 245}
+
+% ══════════════════════════════════════════════════════════════════════════════
+% FONDO INSTITUCIONAL
+% ══════════════════════════════════════════════════════════════════════════════
 \AddToShipoutPictureBG{%
-	\AtPageLowerLeft{%
-		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
-	}%
+	\includegraphics[width=\paperwidth,height=\paperheight,%
+	keepaspectratio=false]{../../FondoVAL.pdf}%
 }
 
-% --- COLORES INSTITUCIONALES ---
-\definecolor{valblue}{RGB}{0, 70, 140}
-\definecolor{valgreen}{RGB}{40, 120, 40}
-\definecolor{valred}{RGB}{200, 40, 40}
-\definecolor{valdark}{RGB}{50, 50, 50}
-\definecolor{valorange}{RGB}{230, 120, 20}
+% ══════════════════════════════════════════════════════════════════════════════
+% TIKZSET – estilos con nombre (evita el parámetro #1 dentro de breakable)
+% ══════════════════════════════════════════════════════════════════════════════
+\tikzset{
+	cajaz/.style   = {draw=valblue,   fill=vallightblue,   rounded corners=5pt},
+	cajag/.style   = {draw=valgreen,  fill=vallightgreen,  rounded corners=5pt},
+	cajar/.style   = {draw=valred,    fill=vallightred,    rounded corners=5pt},
+	cajao/.style   = {draw=valorange, fill=vallightorange, rounded corners=5pt},
+	btnazul/.style = {draw=valblue,   fill=valblue,   rounded corners=7pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnorange/.style={draw=valorange, fill=valorange, rounded corners=7pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnverde/.style= {draw=valgreen,  fill=valgreen,  rounded corners=7pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnrojo/.style = {draw=valred,    fill=valred,    rounded corners=7pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	flechaop/.style= {->, >=stealth, ultra thick},
+}
 
-% --- ESTILOS DE CAJAS PARA AUTOAPRENDIZAJE ---
-\newtcolorbox{concepto}[1]{colback=valblue!5, colframe=valblue, title={\ding{111} \textbf{Aprende el Concepto: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
-\newtcolorbox{truco}[1]{colback=valorange!5, colframe=valorange, title={\ding{51} \textbf{El Truco del Maestro: #1}}, arc=2mm, boxrule=1pt, fonttitle=\large}
-\newtcolorbox{ejemplo}{colback=valgreen!5, colframe=valgreen, title={\ding{45} \textbf{Ejemplo Guiado Visual}}, arc=2mm, boxrule=1pt}
+% ══════════════════════════════════════════════════════════════════════════════
+% AMBIENTES TCOLORBOX INSTITUCIONALES
+% ══════════════════════════════════════════════════════════════════════════════
 
-% Caja de práctica "breakable"
-\newtcolorbox{practica}[1]{breakable, colback=white, colframe=valdark, title={\ding{46} \textbf{¡Tu Turno! (#1)}}, arc=2mm, boxrule=1pt, borderline west={3pt}{0pt}{valdark!50}}
+\newtcolorbox{concepto}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightblue,
+	colframe     = valblue,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm, xshift=4mm},
+	boxed title style={colback=valblue, colframe=valblue, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
 
-% --- COMANDOS PARA CASILLAS DE RESPUESTA ---
-% Casilla normal gris
-\newcommand{\boxfill}[1][1.2cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=gray!5, boxrule=0.8pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
-% Casilla azul pequeña para llevar números
-\newcommand{\cajitalleva}{\tcbox[on line, size=minimal, colframe=valblue!80, colback=valblue!10, boxrule=0.8pt, arc=1mm, boxsep=2pt]{\makebox[0.4cm]{\vphantom{0}}}}
+\newtcolorbox{truco}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightorange,
+	colframe     = valorange,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm, xshift=4mm},
+	boxed title style={colback=valorange, colframe=valorange, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
 
+\newtcolorbox{ejemplo}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightgreen,
+	colframe     = valgreen,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm, xshift=4mm},
+	boxed title style={colback=valgreen, colframe=valgreen, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+\newtcolorbox{practica}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = valgray,
+	colframe     = valdark,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm, xshift=4mm},
+	boxed title style={colback=valdark, colframe=valdark, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+\newtcolorbox{espaciotrabajo}[1]{
+	enhanced, breakable,
+	title    = {\bfseries #1},
+	colback  = white,
+	colframe = valblue!50,
+	coltitle = valblue,
+	arc=2mm, boxrule=0.8pt,
+	left=2mm, right=2mm, top=4mm,
+}
+
+% Variante no-breakable (para usar dentro de multicols)
+\newtcolorbox{espaciotrabajonb}[1]{
+	enhanced,
+	title    = {\bfseries #1},
+	colback  = white,
+	colframe = valblue!50,
+	coltitle = valblue,
+	arc=2mm, boxrule=0.8pt,
+	left=2mm, right=2mm, top=4mm,
+}
+
+% ── Caja de respuesta ─────────────────────────────────────────────────────
+\newcommand{\boxfill}[1][3.5cm]{%
+	\tikz[baseline=-0.5ex]%
+	\draw[valblue, line width=1pt] (0,0) rectangle (#1, 0.75cm);%
+}
+
+% ── Encabezado de Misión ─────────────────────────────────────────────────
+\newcommand{\mision}[2]{%
+	\needspace{5cm}%
+	\vspace{5pt}%
+	\begin{tcolorbox}[
+		enhanced,
+		colback  = #1,
+		colframe = #1!60!black,
+		arc=3mm, boxrule=1.5pt,
+		left=6pt, right=6pt, top=5pt, bottom=5pt,
+		]
+		{\large\bfseries\color{white} #2}
+	\end{tcolorbox}%
+	\vspace{2pt}%
+}
+
+% ══════════════════════════════════════════════════════════════════════════════
+% CONFIGURACIÓN DE PÁGINA
+% ══════════════════════════════════════════════════════════════════════════════
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+% ╔══════════════════════════════════════════════════════════════════════════╗
+% ║                       INICIO DEL DOCUMENTO                             ║
+% ╚══════════════════════════════════════════════════════════════════════════╝
 \begin{document}
 	
-	% =======================================================
-	%                     PORTADA
-	% =======================================================
+	% ── PORTADA ──────────────────────────────────────────────────────────────
 	\begin{center}
-		\vspace*{1cm}
-		{\Huge \textbf{LICEO V.A.L.}}\\[0.5cm]
-		{\LARGE \textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
-		{\Large \textbf{MATEMÁTICAS ADAPTADAS 6$^\circ$}}\\[0.5cm]
+		{\Large\bfseries\color{valblue} LICEO V.A.L.\ (VIDA, AMOR, LUZ)}\\[4pt]
+		{\large\bfseries MÓDULO DE AUTOAPRENDIZAJE\ ---\ MATEMÁTICAS}\\[8pt]
 		
-		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=3mm, boxrule=1.5pt]
-			\centering \Huge \textbf{UNIDAD 7}\\[0.2cm]
-			\Large \textbf{La Multiplicación de Números Naturales}
+		\begin{tcolorbox}[
+			enhanced, arc=6mm, boxrule=2pt,
+			colback=valblue, colframe=valdark,
+			halign=center,
+			]
+			{\Huge\bfseries\color{white} UNIDAD 7}\\[4pt]
+			{\Large\bfseries\color{yellow!90!white}
+				Multiplicación de Números Naturales}
 		\end{tcolorbox}
 		
-		\vspace{0.6cm}
-		\begin{tcolorbox}[colback=white, colframe=valblue, width=12cm, arc=3mm, boxrule=1.5pt]
-			\centering
-			\vspace{0.3cm}
-			\textbf{Nombre del Estudiante:}\\[0.3cm]
-			\underline{\hspace{9cm}}\\[0.5cm]
-			\textbf{Código:} \underline{06M-07 AC} \hspace{1cm} \textbf{Año:} \underline{2026}
-			\vspace{0.3cm}
+		\vspace{6pt}
+		\begin{tcolorbox}[
+			enhanced, arc=4mm, boxrule=1.5pt,
+			colback=white, colframe=valblue,
+			width=0.88\linewidth, halign=center,
+			]
+			{\bfseries Nombre del Estudiante:}\\[6pt]
+			\rule{9cm}{0.5pt}\\[6pt]
+			{\bfseries Código:}\ \underline{06M-07 AC}
+			\hspace{2cm}
+			{\bfseries Año:}\ \underline{2026}
 		\end{tcolorbox}
 		
-		\vspace{0.8cm}
-		\textit{"Hacia un Aprendizaje Significativo, Autónomo y en Libertad"}
-		
-		\vspace{0.8cm}
-		\begin{tcolorbox}[colback=valorange!10, colframe=valorange, width=14cm, arc=2mm]
-			\textbf{Instrucciones de uso:}\\
-			Ya eres un experto sumando y restando. ¿Pero qué pasa si tienes que sumar el mismo número muchísimas veces? ¡Nos demoraríamos un montón! Hoy aprenderás el superpoder matemático de la \textbf{MULTIPLICACIÓN}. Lee con cuidado, mira los dibujos y usa lápiz para llenar los cuadros. ¡Tú puedes hacerlo!
-		\end{tcolorbox}
+		\vspace{4pt}
+		{\itshape
+			``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
 	\end{center}
 	
+	\vspace{6pt}
+	
+	% ══════════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 1 – ¿Qué es Multiplicar?
+	% ══════════════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 1: Multiplicar es Sumar Rápido}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto}
+		Multiplicar es una forma \textbf{rápida} de sumar el mismo número
+		\textbf{muchas veces}.
+		
+		\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				%── Grupo 1 ──────────────────────────────────────────
+				\draw[cajaz, line width=1.5pt] (0, 0) rectangle (1.6, 1.6);
+				\node[font=\LARGE, color=valgreen] at (0.45, 1.15) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (1.15, 1.15) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (0.45, 0.52) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (1.15, 0.52) {\textbullet};
+				\node[font=\bfseries\small, color=valdark] at (0.80, -0.28) {grupo 1};
+				
+				%── Grupo 2 ──────────────────────────────────────────
+				\draw[cajaz, line width=1.5pt] (2.2, 0) rectangle (3.8, 1.6);
+				\node[font=\LARGE, color=valgreen] at (2.65, 1.15) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (3.35, 1.15) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (2.65, 0.52) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (3.35, 0.52) {\textbullet};
+				\node[font=\bfseries\small, color=valdark] at (3.00, -0.28) {grupo 2};
+				
+				%── Grupo 3 ──────────────────────────────────────────
+				\draw[cajaz, line width=1.5pt] (4.4, 0) rectangle (6.0, 1.6);
+				\node[font=\LARGE, color=valgreen] at (4.85, 1.15) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (5.55, 1.15) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (4.85, 0.52) {\textbullet};
+				\node[font=\LARGE, color=valgreen] at (5.55, 0.52) {\textbullet};
+				\node[font=\bfseries\small, color=valdark] at (5.20, -0.28) {grupo 3};
+				
+				%── Flecha ───────────────────────────────────────────
+				\draw[flechaop, valblue] (6.3, 0.8) -- (7.3, 0.8);
+				
+				%── Ecuaciones ───────────────────────────────────────
+				\node[font=\bfseries\large, color=valred]
+				at (9.4, 1.25) {$4 + 4 + 4 = 12$};
+				\node[font=\bfseries\normalsize, color=valdark]
+				at (9.4, 0.65) {es lo mismo que:};
+				\node[font=\bfseries\LARGE, color=valorange]
+				at (9.4, 0.05) {$4 \times 3 = 12$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{center}
+			\begin{tikzpicture}
+				\node[cajaz, minimum width=12.5cm, minimum height=0.9cm,
+				font=\bfseries\large, inner sep=8pt]
+				at (0,0)
+				{3 grupos de 4\; $=$\; $4{+}4{+}4$\; $=$\; $4\times3$\;
+					$=\ \mathbf{12}$};
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
 	\newpage
 	
-	% =======================================================
-	% MISIÓN 1: ¿QUÉ ES MULTIPLICAR?
-	% =======================================================
-	\section*{Misión 1: ¿Qué es multiplicar?}
+	\begin{practica}{$\square$ ¡Tu Turno! --- Convierte la suma en multiplicación}
+		\textit{Cuenta cuántas veces se repite el número y completa los espacios.}
+		
+		\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				% Encabezado
+				\node[font=\bfseries\normalsize, color=valblue] at (-0.5,  0.0) {Suma repetida};
+				\node[font=\bfseries\normalsize, color=valblue] at (6.2,  0.0) {Multiplicación};
+				\node[font=\bfseries\normalsize, color=valblue] at (9.6,  0.0) {Resultado};
+				\draw[valdark, line width=0.8pt] (-3,-0.32) -- (11.5,-0.32);
+				
+				% Fila 1
+				\node[anchor=west, font=\bfseries\large] at (-3.0,-1.1) {1.\quad $5+5+5$};
+				\node[font=\bfseries\large] at (5.4,-1.1) {$5\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-1.45) rectangle (7.5,-0.72);
+				\node[font=\bfseries\large]   at (8.1,-1.1) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-1.45) rectangle (10.5,-0.72);
+				
+				% Fila 2
+				\node[anchor=west, font=\bfseries\large] at (-3.0,-2.3) {2.\quad $2+2+2+2$};
+				\node[font=\bfseries\large] at (5.4,-2.3) {$2\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-2.65) rectangle (7.5,-1.92);
+				\node[font=\bfseries\large]   at (8.1,-2.3) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-2.65) rectangle (10.5,-1.92);
+				
+				% Fila 3
+				\node[anchor=west, font=\bfseries\large] at (-3.0,-3.5) {3.\quad $7+7$};
+				\node[font=\bfseries\large] at (5.4,-3.5) {$7\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-3.85) rectangle (7.5,-3.12);
+				\node[font=\bfseries\large]   at (8.1,-3.5) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-3.85) rectangle (10.5,-3.12);
+				
+				% Fila 4
+				\node[anchor=west, font=\bfseries\large] at (-3.0,-4.7) {4.\quad $10+10+10+10$};
+				\node[font=\bfseries\large] at (5.4,-4.7) {$10\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-5.05) rectangle (7.5,-4.32);
+				\node[font=\bfseries\large]   at (8.1,-4.7) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-5.05) rectangle (10.5,-4.32);
+				
+				% Fila 5
+				\node[anchor=west, font=\bfseries\large] at (-3.0,-5.9) {5.\quad $6+6+6$};
+				\node[font=\bfseries\large] at (5.4,-5.9) {$6\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-6.25) rectangle (7.5,-5.52);
+				\node[font=\bfseries\large]   at (8.1,-5.9) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-6.25) rectangle (10.5,-5.52);
+				
+				% Fila 6
+				\node[anchor=west, font=\bfseries\large] at (-3.0,-7.1) {6.\quad $8+8+8+8$};
+				\node[font=\bfseries\large] at (5.4,-7.1) {$8\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-7.45) rectangle (7.5,-6.72);
+				\node[font=\bfseries\large]   at (8.1,-7.1) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-7.45) rectangle (10.5,-6.72);
+				% Fila 7
+				\node[anchor=west, font=\bfseries\large] at (-3,-8.3) {7.\quad $11+11+11+11+11+11$};
+				\node[font=\bfseries\large] at (5.4,-8.3) {$11\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-8.65) rectangle (7.5,-7.92);
+				\node[font=\bfseries\large]   at (8.1,-8.3) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-8.65) rectangle (10.5,-7.92);
+				% Fila 8
+				\node[anchor=west, font=\bfseries\large] at (-3.0,-9.5) {8.\quad $3+3+3+3+3$};
+				\node[font=\bfseries\large] at (5.4,-9.5) {$3\ \times$};
+				\draw[valblue, line width=1pt] (6.0,-9.85) rectangle (7.5,-9.12);
+				\node[font=\bfseries\large]   at (8.1,-9.5) {$=$};
+				\draw[valblue, line width=1pt] (8.5,-9.85) rectangle (10.5,-9.12);
+			\end{tikzpicture}
+		\end{center}
+	\end{practica}
 	
-	\begin{concepto}{Multiplicar es una suma repetida}
-		Multiplicar es una forma rápida de sumar el mismo número muchas veces.
-		Imagina que tienes 4 cajas y en cada caja hay 3 juguetes.
-		Podrías sumar: $3 + 3 + 3 + 3 = 12$.
-		Pero es más rápido multiplicar: $3 \times 4 = 12$.
-		\begin{itemize}
-			\item El signo es una equis ($\times$) o un punto ($\cdot$).
-			\item Se lee: ``3 \textbf{por} 4''.
+	%\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 2 – Las Partes de la Multiplicación
+	% ══════════════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 2: Las Partes de la Multiplicación}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto: ¿Cómo se llaman?}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				%── Cajas Factor × Factor = Producto ────────────────
+				\node[btnazul, minimum width=2.6cm, minimum height=1.4cm]
+				at (0.0, 0) {\Huge 5};
+				\node[font=\bfseries\large, color=valblue] at (0.0,-1.1) {FACTOR};
+				
+				\node[font=\bfseries\Huge, color=valdark] at (2.1, 0) {$\times$};
+				
+				\node[btnazul, minimum width=2.6cm, minimum height=1.4cm]
+				at (4.2, 0) {\Huge 4};
+				\node[font=\bfseries\large, color=valblue] at (4.2,-1.1) {FACTOR};
+				
+				\node[font=\bfseries\Huge, color=valdark] at (6.3, 0) {$=$};
+				
+				\node[btnrojo, minimum width=2.6cm, minimum height=1.4cm]
+				at (8.4, 0) {\Huge 20};
+				\node[font=\bfseries\large, color=valred]  at (8.4,-1.1) {PRODUCTO};
+				
+				%── Regla general ────────────────────────────────────
+				\node[cajao, minimum width=11.5cm, minimum height=1.0cm,
+				font=\bfseries\large, inner sep=6pt] at (4.2,-2.5)
+				{FACTOR \quad $\times$ \quad FACTOR \quad $=$ \quad PRODUCTO};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{6pt}
+		\begin{itemize}[leftmargin=*, itemsep=2pt]
+			\item Los \textbf{\color{valblue}FACTORES} son los números que
+			\textbf{se multiplican}.
+			\item El \textbf{\color{valred}PRODUCTO} es el \textbf{resultado}
+			de la multiplicación.
 		\end{itemize}
 	\end{concepto}
 	
-	\begin{ejemplo}
+	\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Identifica las partes}
+		\textit{Escribe \textbf{F} (Factor) o \textbf{P} (Producto) en la
+			línea debajo de cada número, según corresponda.}
+		
+		\vspace{10pt}
 		\begin{center}
-			\begin{tikzpicture}[scale=1]
-				% Grupo 1
-				\draw[ultra thick, valblue, rounded corners, fill=valblue!5] (0,0) rectangle (2.5,2);
-				\fill[valorange] (0.7,0.6) circle (0.25); \fill[valorange] (1.8,0.6) circle (0.25);
-				\fill[valorange] (0.7,1.4) circle (0.25); \fill[valorange] (1.8,1.4) circle (0.25);
-				\node[font=\Large\bfseries, valdark] at (1.25, -0.5) {4};
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				%── Ej 1: 6 × 3 = 18 ─────────────────────────────────
+				\node[font=\bfseries\large] at (0, 0) {1)};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (1.0, 0) {6};
+				\node[font=\bfseries\Large]  at (2.1, 0) {$\times$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (3.2, 0) {3};
+				\node[font=\bfseries\Large]  at (4.1, 0) {$=$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=vallightred] at (5.2, 0) {18};
+				\draw[valdark] (0.42,-1.2) -- (1.58,-1.2);
+				\draw[valdark] (2.62,-1.2) -- (3.78,-1.2);
+				\draw[valdark] (4.62,-1.2) -- (5.78,-1.2);
 				
-				\node[font=\Huge\bfseries, valdark] at (3.25, 1) {$+$};
+				%── Ej 2: 8 × 5 = 40 ─────────────────────────────────
+				\node[font=\bfseries\large] at (7.8, 0) {2)};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (8.8, 0) {8};
+				\node[font=\bfseries\Large]  at (9.9, 0) {$\times$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (11.0, 0) {5};
+				\node[font=\bfseries\Large]  at (11.9, 0) {$=$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=vallightred] at (13.0, 0) {40};
+				\draw[valdark] (8.22,-1.2) -- (9.38,-1.2);
+				\draw[valdark] (10.42,-1.2) -- (11.58,-1.2);
+				\draw[valdark] (12.42,-1.2) -- (13.58,-1.2);
 				
-				% Grupo 2
-				\draw[ultra thick, valblue, rounded corners, fill=valblue!5] (4,0) rectangle (6.5,2);
-				\fill[valorange] (4.7,0.6) circle (0.25); \fill[valorange] (5.8,0.6) circle (0.25);
-				\fill[valorange] (4.7,1.4) circle (0.25); \fill[valorange] (5.8,1.4) circle (0.25);
-				\node[font=\Large\bfseries, valdark] at (5.25, -0.5) {4};
+				%── Ej 3: 9 × 7 = 63 ─────────────────────────────────
+				\node[font=\bfseries\large] at (0,-2.0) {3)};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (1.0,-2.0) {9};
+				\node[font=\bfseries\Large]  at (2.1,-2.0) {$\times$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (3.2,-2.0) {7};
+				\node[font=\bfseries\Large]  at (4.1,-2.0) {$=$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=vallightred] at (5.2,-2.0) {63};
+				\draw[valdark] (0.42,-3.2) -- (1.58,-3.2);
+				\draw[valdark] (2.62,-3.2) -- (3.78,-3.2);
+				\draw[valdark] (4.62,-3.2) -- (5.78,-3.2);
 				
-				\node[font=\Huge\bfseries, valdark] at (7.25, 1) {$+$};
+				%── Ej 4: 4 × 10 = 40 ────────────────────────────────
+				\node[font=\bfseries\large] at (7.8,-2.0) {4)};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (8.8,-2.0) {4};
+				\node[font=\bfseries\Large]  at (9.9,-2.0) {$\times$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=white] at (11.0,-2.0) {10};
+				\node[font=\bfseries\Large]  at (11.9,-2.0) {$=$};
+				\node[draw=valdark, minimum width=1.15cm, minimum height=0.9cm,
+				font=\bfseries\Large, fill=vallightred] at (13.0,-2.0) {40};
+				\draw[valdark] (8.22,-3.2) -- (9.38,-3.2);
+				\draw[valdark] (10.42,-3.2) -- (11.58,-3.2);
+				\draw[valdark] (12.42,-3.2) -- (13.58,-3.2);
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{10pt}
+		\textit{Completa las oraciones:}
+		
+		\vspace{10pt}
+		Los números que se multiplican se llaman:\underline{\hspace*{8cm}}
+		
+		\vspace{10pt}
+		El resultado de la multiplicación se llama:\underline{\hspace*{8cm}}
+	\end{practica}
+	
+	%\newpage
+	% ══════════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 3 – Las Reglas de la Multiplicación
+	% ══════════════════════════════════════════════════════════════════════════════
+	\mision{valorange}{Misión 3: Las Reglas de la Multiplicación}
+	
+	\begin{concepto}{$\square$ Hay 3 Reglas que debes conocer}
+		
+		% ── REGLA 1: Conmutativa ─────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[btnazul, minimum width=1.0cm, minimum height=0.75cm,
+				font=\bfseries\large] at (0,0) {1};
+				\node[anchor=west, font=\bfseries\Large, color=valblue,
+				align=left, text width=14.5cm] at (0.68,0)
+				{REGLA: El orden \textbf{no cambia} el resultado.};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{center}
+			\begin{tikzpicture}[x=0.55cm,y=0.55cm]
+				%── Array 3×4 (izquierda) ──────────────────────────────────
+				% Fila 0
+				\node[color=valblue,font=\Large] at (0,0) {\textbullet};
+				\node[color=valblue,font=\Large] at (1,0) {\textbullet};
+				\node[color=valblue,font=\Large] at (2,0) {\textbullet};
+				\node[color=valblue,font=\Large] at (3,0) {\textbullet};
+				% Fila 1
+				\node[color=valblue,font=\Large] at (0,1) {\textbullet};
+				\node[color=valblue,font=\Large] at (1,1) {\textbullet};
+				\node[color=valblue,font=\Large] at (2,1) {\textbullet};
+				\node[color=valblue,font=\Large] at (3,1) {\textbullet};
+				% Fila 2
+				\node[color=valblue,font=\Large] at (0,2) {\textbullet};
+				\node[color=valblue,font=\Large] at (1,2) {\textbullet};
+				\node[color=valblue,font=\Large] at (2,2) {\textbullet};
+				\node[color=valblue,font=\Large] at (3,2) {\textbullet};
+				% Etiquetas array izq
+				\draw[<->,valblue,line width=0.8pt] (-0.6,0) -- (-0.6,2);
+				\node[font=\bfseries\small,color=valblue,rotate=90] at (-1.1,1) {3 filas};
+				\draw[<->,valblue,line width=0.8pt] (0,-0.6) -- (3,-0.6);
+				\node[font=\bfseries\small,color=valblue] at (1.5,-1.1) {4 por fila};
+				\node[cajaz,inner sep=5pt,font=\bfseries\LARGE] at (1.5,-2.5)
+				{$3 \times 4 = 12$};
 				
-				% Grupo 3
-				\draw[ultra thick, valblue, rounded corners, fill=valblue!5] (8,0) rectangle (10.5,2);
-				\fill[valorange] (8.7,0.6) circle (0.25); \fill[valorange] (9.8,0.6) circle (0.25);
-				\fill[valorange] (8.7,1.4) circle (0.25); \fill[valorange] (9.8,1.4) circle (0.25);
-				\node[font=\Large\bfseries, valdark] at (9.25, -0.5) {4};
+				%── Símbolo "igual" ────────────────────────────────────────
+				\node[font=\bfseries\Huge,color=valgreen] at (5.5,1) {$=$};
 				
-				% Texto explicativo
-				\node[font=\LARGE\bfseries, valred] at (5.25, -1.8) {Tenemos 3 grupos de 4};
-				\node[font=\Huge\bfseries, valdark] at (5.25, -3) {$\mathbf{3 \ \times \ 4 \ = \ 12}$};
+				%── Array 4×3 (derecha) ────────────────────────────────────
+				% Fila 0
+				\node[color=valorange,font=\Large] at (9,0) {\textbullet};
+				\node[color=valorange,font=\Large] at (10,0) {\textbullet};
+				\node[color=valorange,font=\Large] at (11,0) {\textbullet};
+				% Fila 1
+				\node[color=valorange,font=\Large] at (9,1) {\textbullet};
+				\node[color=valorange,font=\Large] at (10,1) {\textbullet};
+				\node[color=valorange,font=\Large] at (11,1) {\textbullet};
+				% Fila 2
+				\node[color=valorange,font=\Large] at (9,2) {\textbullet};
+				\node[color=valorange,font=\Large] at (10,2) {\textbullet};
+				\node[color=valorange,font=\Large] at (11,2) {\textbullet};
+				% Fila 3
+				\node[color=valorange,font=\Large] at (9,3) {\textbullet};
+				\node[color=valorange,font=\Large] at (10,3) {\textbullet};
+				\node[color=valorange,font=\Large] at (11,3) {\textbullet};
+				% Etiquetas array der
+				\draw[<->,valorange,line width=0.8pt] (8.4,0) -- (8.4,3);
+				\node[font=\bfseries\small,color=valorange,rotate=90] at (7.9,1.5) {4 filas};
+				\draw[<->,valorange,line width=0.8pt] (9,-0.6) -- (11,-0.6);
+				\node[font=\bfseries\small,color=valorange] at (10,-1.1) {3 por fila};
+				\node[cajao,inner sep=5pt,font=\bfseries\LARGE] at (10,-2.5)
+				{$4 \times 3 = 12$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{8pt}
+		
+		% ── REGLA 2: ×1 ──────────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[btnorange, minimum width=1.0cm, minimum height=0.75cm,
+				font=\bfseries\large] at (0,0) {2};
+				\node[anchor=west, font=\bfseries\Large, color=valorange,
+				align=left, text width=14.5cm] at (0.68,0)
+				{REGLA: Cualquier número \textbf{multiplicado por 1} da \textbf{el mismo número}.};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── 1 caja con 5 estrellas ───────────────────────────────
+				\draw[cajag,line width=1.5pt] (-0.9,-0.15) rectangle (2.5,1.1);
+				\node[font=\bfseries\Large,color=valgreen] at (-0.56,0.48) {$\bigstar$};
+				\node[font=\bfseries\Large,color=valgreen] at (0.10,0.48) {$\bigstar$};
+				\node[font=\bfseries\Large,color=valgreen] at (0.76,0.48) {$\bigstar$};
+				\node[font=\bfseries\Large,color=valgreen] at (1.42,0.48) {$\bigstar$};
+				\node[font=\bfseries\Large,color=valgreen] at (2.08,0.48) {$\bigstar$};
+				\node[font=\bfseries\Large,color=valgreen] at (0.44,0.05) {};
+				% segunda fila
+				\node[font=\bfseries\Large,color=valgreen] at (0.66,-0.05) {};
+				\node[font=\bfseries\normalsize,color=valdark,below] at (0.8,-0.18)
+				{\bfseries 1 grupo de 5};
+				% ── ecuaciones ──────────────────────────────────────────
+				\node[font=\bfseries\LARGE,color=valdark] at (4.2,0.48) {$5\times1$};
+				\node[font=\bfseries\LARGE,color=valdark] at (5.5,0.48) {$=$};
+				\node[cajag,inner sep=6pt,font=\bfseries\LARGE] at (6.3,0.48) {$5$};
+				\node[font=\bfseries\large,color=valgreen] at (5.1,-0.5)
+				{¡Sigue siendo 5!};
+				%── regla general ────────────────────────────────────────
+				\node[cajag,inner sep=7pt,font=\bfseries\Large,
+				minimum width=6cm] at (10.5,0.48)
+				{$N \times 1 = N$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{8pt}
+		
+		% ── REGLA 3: ×0 ──────────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[btnrojo, minimum width=1.0cm, minimum height=0.75cm,
+				font=\bfseries\large] at (0,0) {3};
+				\node[anchor=west, font=\bfseries\Large, color=valred,
+				align=left, text width=14.5cm] at (0.68,0)
+				{REGLA: Cualquier número \textbf{multiplicado por 0} siempre da \textbf{0}.};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── 4 cajas vacías ──────────────────────────────────────
+				\draw[valred!40,dashed,line width=1.5pt,rounded corners=3pt]
+				(0.0,-0.15) rectangle (1.0,1.0);
+				\draw[valred!40,dashed,line width=1.5pt,rounded corners=3pt]
+				(1.3,-0.15) rectangle (2.3,1.0);
+				\draw[valred!40,dashed,line width=1.5pt,rounded corners=3pt]
+				(2.6,-0.15) rectangle (3.6,1.0);
+				\draw[valred!40,dashed,line width=1.5pt,rounded corners=3pt]
+				(3.9,-0.15) rectangle (4.9,1.0);
+				\node[font=\bfseries\normalsize,color=valred] at (0.5, 0.43) {?};
+				\node[font=\bfseries\normalsize,color=valred] at (1.8, 0.43) {?};
+				\node[font=\bfseries\normalsize,color=valred] at (3.1, 0.43) {?};
+				\node[font=\bfseries\normalsize,color=valred] at (4.4, 0.43) {?};
+				\node[font=\bfseries\small,color=valdark] at (2.45,-0.45)
+				{4 grupos de \textbf{0 cosas}};
+				%── ecuaciones ───────────────────────────────────────────
+				\node[font=\bfseries\LARGE,color=valdark]    at (6.8, 0.43) {$4\times0$};
+				\node[font=\bfseries\LARGE,color=valdark]    at (7.9, 0.43) {$=$};
+				\node[cajar,inner sep=6pt,font=\bfseries\LARGE] at (8.7, 0.43) {$0$};
+				\node[font=\bfseries\large,color=valred]     at (7.5,-0.45)
+				{{¡}No hay nada!};
+				%── regla general ────────────────────────────────────────
+				\node[cajar,inner sep=7pt,font=\bfseries\Large,
+				minimum width=6cm] at (13.5,0.43)
+				{$N \times 0 = 0$};
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	
+	\vspace{4pt}
+	
+	\begin{practica}{$\square$ {¡}Tu Turno! --- Aplica las 3 Reglas}
+		\textit{Escribe el resultado. Piensa qué regla usas en cada uno.}
+		
+		\vspace{8pt}
+		% ── Sección Conmutativa ────────────────────────────────────────────────────
+		\begin{tcolorbox}[
+			enhanced,
+			colback=vallightblue, colframe=valblue,
+			arc=3mm, boxrule=1pt,
+			left=4pt, right=4pt, top=4pt, bottom=4pt,
+			title={\bfseries Regla 1 --- El orden no cambia}, coltitle=white,
+			fonttitle=\normalsize,
+			attach boxed title to top left={yshift=-2mm,xshift=3mm},
+			boxed title style={colback=valblue,colframe=valblue,rounded corners},
+			]
+			\begin{center}
+				\begin{tikzpicture}[x=1cm,y=1cm]
+					% Par 1
+					\node[font=\bfseries\large] at (0.0, 0) {$2\times5=$};
+					\draw[valblue,line width=1pt] (1,-0.32) rectangle (2.4,0.36);
+					\node[font=\bfseries\large] at (4.2, 0) {y también};
+					\node[font=\bfseries\large] at (6.9, 0) {$5\times2=$};
+					\draw[valblue,line width=1pt] (7.8,-0.32) rectangle (9.2,0.36);
+					% Par 2
+					\node[font=\bfseries\large] at (0.0,-1.3) {$6\times3=$};
+					\draw[valblue,line width=1pt] (1,-1.62) rectangle (2.4,-0.94);
+					\node[font=\bfseries\large] at (4.2,-1.3) {y también};
+					\node[font=\bfseries\large] at (6.9,-1.3) {$3\times6=$};
+					\draw[valblue,line width=1pt] (7.8,-1.62) rectangle (9.2,-0.94);
+					% Par 3
+					\node[font=\bfseries\large] at (0.0,-2.6) {$8\times4=$};
+					\draw[valblue,line width=1pt] (1,-2.92) rectangle (2.4,-2.24);
+					\node[font=\bfseries\large] at (4.2,-2.6) {y también};
+					\node[font=\bfseries\large] at (6.9,-2.6) {$4\times8=$};
+					\draw[valblue,line width=1pt] (7.8,-2.92) rectangle (9.2,-2.24);
+				\end{tikzpicture}
+			\end{center}
+		\end{tcolorbox}
+		
+		\vspace{6pt}
+		
+		% ── Sección ×1 y ×0 en dos columnas ───────────────────────────────────────
+		\begin{minipage}[t]{0.47\textwidth}
+			\begin{tcolorbox}[
+				enhanced,
+				colback=vallightgreen, colframe=valgreen,
+				arc=3mm, boxrule=1pt,
+				left=4pt, right=4pt, top=4pt, bottom=4pt,
+				title={\bfseries Regla 2 --- Por 1}, coltitle=white,
+				fonttitle=\normalsize,
+				attach boxed title to top left={yshift=-2mm,xshift=3mm},
+				boxed title style={colback=valgreen,colframe=valgreen,rounded corners},
+				]
+				\centering
+				\begin{tikzpicture}[x=1cm,y=1cm]
+					\node[font=\bfseries\large] at (2.5, 0.0) {$7\times1=$};
+					\draw[valgreen,line width=1pt] (3.45,-0.32) rectangle (4.9,0.36);
+					\node[font=\bfseries\large] at (2.3,-1.2) {$15\times1=$};
+					\draw[valgreen,line width=1pt] (3.45,-1.52) rectangle (4.9,-0.84);
+					\node[font=\bfseries\large] at (2.5,-2.4) {$1\times9=$};
+					\draw[valgreen,line width=1pt] (3.45,-2.72) rectangle (4.9,-2.04);
+					\node[font=\bfseries\large] at (2.3,-3.6) {$1\times100=$};
+					\draw[valgreen,line width=1pt] (3.45,-3.92) rectangle (4.9,-3.24);
+				\end{tikzpicture}
+			\end{tcolorbox}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.47\textwidth}
+			\begin{tcolorbox}[
+				enhanced,
+				colback=vallightred, colframe=valred,
+				arc=3mm, boxrule=1pt,
+				left=4pt, right=4pt, top=4pt, bottom=4pt,
+				title={\bfseries Regla 3 --- Por 0}, coltitle=white,
+				fonttitle=\normalsize,
+				attach boxed title to top left={yshift=-2mm,xshift=3mm},
+				boxed title style={colback=valred,colframe=valred,rounded corners},
+				]
+				\centering
+				\begin{tikzpicture}[x=1cm,y=1cm]
+					\node[font=\bfseries\large] at (0.0, 0.0) {$8\times0=$};
+					\draw[valred,line width=1pt] (0.95,-0.32) rectangle (2.45,0.36);
+					\node[font=\bfseries\large] at (-0.2,-1.2) {$0\times50=$};
+					\draw[valred,line width=1pt] (0.95,-1.52) rectangle (2.45,-0.84);
+					\node[font=\bfseries\large] at (-0.3,-2.4) {$999\times0=$};
+					\draw[valred,line width=1pt] (0.95,-2.72) rectangle (2.45,-2.04);
+					\node[font=\bfseries\large] at (0.0,-3.6) {$0\times1=$};
+					\draw[valred,line width=1pt] (0.95,-3.92) rectangle (2.45,-3.24);
+				\end{tikzpicture}
+			\end{tcolorbox}
+		\end{minipage}
+		
+		\vspace{6pt}
+		\textit{\textbf{Pregunta:} María dice que $9\times0=9$. ¿Tiene razón? Explica en la caja.}\\[4pt]
+		\begin{tcolorbox}[
+			enhanced, colback=white, colframe=valdark!40,
+			arc=2mm, boxrule=0.8pt, height=1.8cm,
+			]
+		\end{tcolorbox}
+	\end{practica}
+	
+	\newpage
+	
+	
+	% ══════════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 4 – El Truco de los Ceros
+	% ══════════════════════════════════════════════════════════════════════════════
+	\mision{valorange}{{¡}Misión 4: El Truco de los Ceros!}
+	
+	\begin{truco}{{¡}El Truco: Multiplicar por 10, 100 y 1.000!}
+		Si multiplicar por 10, 100, 1.000, 10.000 o cualquier número de este tipo (es decir que empiece en \textbf{uno} y los demás sean \textbf{ceros})No necesitas hacer cuentas largas.
+		\textbf{Solo agrega ceros al final del número.}
+		
+		\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				%── Regla ×10 ──────────────────────────────────────────
+				\node[cajaz, minimum width=4.0cm, minimum height=1.25cm,
+				font=\bfseries\large, align=center, inner sep=6pt] at (0, 0)
+				{$\times\ 10$\\[2pt]{\normalsize agrega \textbf{1 cero}}};
+				\node[font=\bfseries\large, color=valdark]   at (2.7, 0) {Ej:};
+				\node[font=\bfseries\LARGE, color=valred]    at (5.2, 0) {$6\times10=60$};
+				
+				%── Regla ×100 ─────────────────────────────────────────
+				\node[cajag, minimum width=4.0cm, minimum height=1.25cm,
+				font=\bfseries\large, align=center, inner sep=6pt] at (0,-2.0)
+				{$\times\ 100$\\[2pt]{\normalsize agrega \textbf{2 ceros}}};
+				\node[font=\bfseries\large, color=valdark]   at (2.7,-2.0) {Ej:};
+				\node[font=\bfseries\LARGE, color=valred]    at (5.4,-2.0) {$6\times100=600$};
+				
+				%── Regla ×1.000 ───────────────────────────────────────
+				\node[cajao, minimum width=4.0cm, minimum height=1.25cm,
+				font=\bfseries\large, align=center, inner sep=6pt] at (0,-4.0)
+				{$\times\ 1.000$\\[2pt]{\normalsize agrega \textbf{3 ceros}}};
+				\node[font=\bfseries\large, color=valdark]   at (2.7,-4.0) {Ej:};
+				\node[font=\bfseries\LARGE, color=valred]    at (5.8,-4.0)
+				{$6\times1.000=6.000$};
+			\end{tikzpicture}
+		\end{center}
+	\end{truco}
+	
+	\vspace{4pt}
+	
+	\begin{ejemplo}{Mira bien: El truco en acción}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				\node[font=\bfseries\huge, color=valblue]   at (0,   0) {$45$};
+				\node[font=\bfseries\huge, color=valdark]   at (1.3, 0) {$\times$};
+				\node[font=\bfseries\huge, color=valblue]   at (2.7, 0) {$100$};
+				\node[font=\bfseries\huge, color=valdark]   at (3.9, 0) {$=$};
+				\node[font=\bfseries\huge, color=valdark]   at (4.8, 0) {$4$};
+				\node[font=\bfseries\huge, color=valdark]   at (5.3, 0) {$5$};
+				\node[font=\bfseries\huge, color=valorange] at (5.85,0) {$0$};
+				\node[font=\bfseries\huge, color=valorange] at (6.35,0) {$0$};
+				
+				% Flechas señalando ceros
+				\draw[flechaop, valorange] (5.85,-0.42) -- (5.85,-1.05);
+				\draw[flechaop, valorange] (6.35,-0.42) -- (6.35,-1.05);
+				\node[font=\bfseries\normalsize, color=valorange] at (6.1,-1.35)
+				{2 ceros del 100};
+				
+				\node[cajao, minimum width=4.2cm, minimum height=0.85cm,
+				font=\bfseries\normalsize, inner sep=5pt] at (10.0, 0)
+				{$45\times 100\;\to\;4.500$};
 			\end{tikzpicture}
 		\end{center}
 	\end{ejemplo}
 	
-	\vspace{0.4cm}
-	\begin{practica}{De Suma a Multiplicación (8 Ejercicios)}
-		\textit{Cuenta cuántas veces se repite el número y escribe la multiplicación. Luego pon el resultado final usando tus tablas de multiplicar.}
+	%\newpage
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Agrega los ceros}
+		\textit{Escribe el resultado directamente}
 		
-		\vspace{0.4cm}
-		\begin{multicols}{2}
-			\raggedcolumns
-			\begin{enumerate}[itemsep=1cm]
-				\item $5 + 5 + 5 \rightarrow \mathbf{3 \times 5} = $ \boxfill[1cm]
-				\item $2 + 2 + 2 + 2 \rightarrow$ \boxfill[0.8cm] $\times \ 2 =$ \boxfill[1cm]
-				\item $7 + 7 \rightarrow$ \boxfill[0.8cm] $\times \ 7 =$ \boxfill[1cm]
-				\item $10 + 10 + 10 \rightarrow$ \boxfill[0.8cm] $\times \ 10 =$ \boxfill[1.5cm]
-				\item $4 + 4 + 4 + 4 + 4 \rightarrow$ \boxfill[0.8cm] $\times \ 4 =$ \boxfill[1cm]
-				\item $8 + 8 + 8 \rightarrow$ \boxfill[0.8cm] $\times \ 8 =$ \boxfill[1cm]
-				\item $1 + 1 + 1 + 1 + 1 \rightarrow$ \boxfill[0.8cm] $\times \ 1 =$ \boxfill[1cm]
-				\item $100 + 100 \rightarrow$ \boxfill[0.8cm] $\times \ 100 =$ \boxfill[1.5cm]
-			\end{enumerate}
-		\end{multicols}
-		\vspace{0.2cm}
+		\vspace{6pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				%── Columna izquierda ─────────────────────────────────
+				\node[anchor=west, font=\bfseries\large] at (-0.5,  0.0)
+				{1.\quad $7 \times 10 =$};
+				\draw[valblue, line width=1pt] (2.7,-0.33) rectangle (4.9, 0.36);
+				
+				\node[anchor=west, font=\bfseries\large] at (-0.5, -1.3)
+				{2.\quad $5 \times 100 =$};
+				\draw[valblue, line width=1pt] (3.0,-1.63) rectangle (5.2,-0.94);
+				
+				\node[anchor=west, font=\bfseries\large] at (-0.5, -2.6)
+				{3.\quad $3 \times 1.000 =$};
+				\draw[valblue, line width=1pt] (3.3,-2.93) rectangle (5.5,-2.24);
+				
+				\node[anchor=west, font=\bfseries\large] at (-0.5, -3.9)
+				{4.\quad $12 \times 10 =$};
+				\draw[valblue, line width=1pt] (2.9,-4.23) rectangle (5.1,-3.54);
+				
+				\node[anchor=west, font=\bfseries\large] at (-0.5, -5.2)
+				{5.\quad $20 \times 100 =$};
+				\draw[valblue, line width=1pt] (3.1,-5.53) rectangle (5.3,-4.84);
+				
+				%── Columna derecha ───────────────────────────────────
+				\node[anchor=west, font=\bfseries\large] at (6.7,  0.0)
+				{6.\quad $9 \times 10 =$};
+				\draw[valblue, line width=1pt] (9.8,-0.33) rectangle (12.0, 0.36);
+				
+				\node[anchor=west, font=\bfseries\large] at (6.7, -1.3)
+				{7.\quad $4 \times 1.000 =$};
+				\draw[valblue, line width=1pt] (10.4,-1.63) rectangle (12.6,-0.94);
+				
+				\node[anchor=west, font=\bfseries\large] at (6.7, -2.6)
+				{8.\quad $15 \times 100 =$};
+				\draw[valblue, line width=1pt] (10.2,-2.93) rectangle (12.4,-2.24);
+				
+				\node[anchor=west, font=\bfseries\large] at (6.7, -3.9)
+				{9.\quad $8 \times 10 =$};
+				\draw[valblue, line width=1pt] (9.7,-4.23) rectangle (11.9,-3.54);
+				
+				\node[anchor=west, font=\bfseries\large] at (6.7, -5.2)
+				{10.\quad $50 \times 1.000 =$};
+				\draw[valblue, line width=1pt] (10.9,-5.53) rectangle (13.1,-4.84);
+			\end{tikzpicture}
+		\end{center}
 	\end{practica}
 	
-	\newpage
+	%\newpage
 	
-	% =======================================================
-	% MISIÓN 2: MULTIPLICACIÓN VERTICAL (SIN LLEVAR)
-	% =======================================================
-	\section*{Misión 2: Multiplicar Hacia Abajo}
+	% ══════════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 5 – Multiplicar por 1 Cifra, Paso a Paso
+	% ══════════════════════════════════════════════════════════════════════════════
+	\mision{valgreen}{Misión 5: Multiplicar por 1 Cifra --- Paso a Paso}
 	
-	\begin{concepto}{El Edificio de la Multiplicación}
-		Cuando tenemos un número grande, lo multiplicamos en forma vertical (hacia abajo). El número pequeño de abajo multiplica \textbf{a cada uno} de los números de arriba, empezando \textbf{siempre por la derecha} (Unidades), luego las Decenas.
+	\begin{concepto}{$\square$ Aprende: Los 3 Pasos}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				\node[btnazul, minimum width=1.25cm, minimum height=1.25cm]
+				at (0, 0) {1};
+				\node[anchor=west, font=\bfseries\large, color=valdark,
+				align=left, text width=13.5cm] at (0.75, 0)
+				{Escribe el número grande \textbf{arriba} y el número
+					chico \textbf{abajo}.};
+				
+				\node[btnorange, minimum width=1.25cm, minimum height=1.25cm]
+				at (0,-1.45) {2};
+				\node[anchor=west, font=\bfseries\large, color=valdark,
+				align=left, text width=13.5cm] at (0.75,-1.45)
+				{Multiplica de \textbf{derecha a izquierda}
+					(desde las Unidades hacia las Centenas).};
+				
+				\node[btnverde, minimum width=1.25cm, minimum height=1.25cm]
+				at (0,-2.90) {3};
+				\node[anchor=west, font=\bfseries\large, color=valdark,
+				align=left, text width=13.5cm] at (0.75,-2.90)
+				{Si el resultado da \textbf{10 ó más},
+					\textbf{lleva} la decena a la columna de la izquierda.};
+			\end{tikzpicture}
+		\end{center}
 	\end{concepto}
 	
-	\begin{ejemplo}
-		\begin{multicols}{2}
-			\textbf{Queremos multiplicar $23 \times 3$:}\\
-			Imagina que cada paquete trae 23 galletas y compramos 3 paquetes.
-			
-			\vspace{0.4cm}
-			\textbf{Pasos:}
-			\begin{enumerate}
-				\item Multiplica el de abajo por la Unidad: $3 \times 3 = \mathbf{9}$.
-				\item Multiplica el de abajo por la Decena: $3 \times 2 = \mathbf{6}$.
-			\end{enumerate}
-			
-			\columnbreak
-			
-			\begin{center}
-				\Large
-				\begin{tabular}{r c c}
-					& \textbf{D} & \textbf{U} \\
-					& 2 & 3 \\
-					$\times$ & & \textbf{3} \\
-					\hline
-					& \textbf{6} & \textbf{9}
-				\end{tabular}
-				\\[0.4cm]
-				\normalsize \textbf{¡En total tenemos 69 galletas!}
-			\end{center}
-		\end{multicols}
+	\vspace{4pt}
+	
+	\begin{ejemplo}{Ejemplo sin llevar: $32 \times 3$}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				%── Pasos con etiquetas ────────────────────────────────
+				\node[btnazul, minimum width=0.75cm, minimum height=0.75cm,
+				font=\bfseries\normalsize] at (0, 0) {1};
+				\node[anchor=west, font=\large, color=valdark] at (0.55, 0)
+				{Escribe: el 32 arriba y el 3 abajo.};
+				
+				\node[btnorange, minimum width=0.75cm, minimum height=0.75cm,
+				font=\bfseries\normalsize] at (0,-0.95) {2};
+				\node[anchor=west, font=\large, color=valdark] at (0.55,-0.95)
+				{Unidades: $2 \times 3 = 6$. Escribe 6.};
+				
+				\node[btnverde, minimum width=0.75cm, minimum height=0.75cm,
+				font=\bfseries\normalsize] at (0,-1.90) {3};
+				\node[anchor=west, font=\large, color=valdark] at (0.55,-1.90)
+				{Decenas: $3 \times 3 = 9$. Escribe 9.};
+				
+				%── Operación visual ───────────────────────────────────
+				\begin{scope}[xshift=8.8cm, yshift=-0.2cm]
+					\draw[valblue, line width=1pt] (-0.2,-2.2) rectangle (2.0, 0.5);
+					\node[font=\bfseries\LARGE, color=valblue] at (0.6,  0.1) {3};
+					\node[font=\bfseries\LARGE, color=valblue] at (1.3,  0.1) {2};
+					\node[font=\bfseries\LARGE, color=valdark] at (-0.05,-0.55) {$\times$};
+					\node[font=\bfseries\LARGE, color=valblue] at (1.3, -0.55) {3};
+					\draw[valdark, line width=1.8pt] (-0.05,-0.88) -- (1.9,-0.88);
+					\node[font=\bfseries\LARGE, color=valred]  at (0.6,-1.50) {9};
+					\node[font=\bfseries\LARGE, color=valred]  at (1.3,-1.50) {6};
+				\begin{comment}
+					% Flechas indicando el orden
+					\draw[flechaop, valorange, thick] (1.3,-0.42) -- (1.3,-0.93);
+					\draw[flechaop, valgreen,  thick] (0.6,-0.42) -- (0.6,-0.93);
+				\end{comment}
+				
+				\end{scope}
+				
+				%── Resultado final ────────────────────────────────────
+				\node[cajar, minimum width=2.5cm, minimum height=0.9cm,
+				font=\bfseries\LARGE, inner sep=6pt] at (12.5,-1.50)
+				{$= 96$};
+				\draw[flechaop, valred] (10.7,-1.50) -- (11.2,-1.50);
+			\end{tikzpicture}
+		\end{center}
 	\end{ejemplo}
 	
-	\begin{practica}{Multiplicar directo (8 Ejercicios)}
-		\textit{Multiplica el número de abajo por cada uno de los números de arriba y anota el resultado abajo. ¡Aquí no tienes que llevar nada!}
+	\vspace{4pt}
+	
+	\begin{ejemplo}{Ejemplo con llevar: $45 \times 3$}
+		Cuando el resultado es 10 ó más, \textbf{lleva} la decena a la
+		columna de la izquierda.
 		
-		\vspace{0.4cm}
-		\begin{multicols}{4}
-			\raggedcolumns
-			\begin{enumerate}[itemsep=1.5cm]
-				\item 
-				\begin{tabular}{r}
-					1 2 \\
-					$\times$ \ 4 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
+		\vspace{4pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				\node[anchor=west, font=\bfseries\large, color=valdark] at (0,  0.0)
+				{\textbf{Unidades:}\quad $5\times3=15$.
+					\ Escribo \textbf{5} y llevo \textbf{1} a las decenas.};
+				\node[anchor=west, font=\bfseries\large, color=valdark] at (0, -0.95)
+				{\textbf{Decenas:}\quad $4\times3=12$.
+					\ Sumo el \textbf{1} que llevé: $12+1=13$.
+					\ Escribo \textbf{13}.};
+				\node[anchor=west, font=\bfseries\large, color=valorange] at (0, -1.90)
+				{\textbf{Resultado:}\quad $45\times3=\mathbf{135}$};
 				
-				\item 
-				\begin{tabular}{r}
-					2 1 \\
-					$\times$ \ 3 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
-				
-				\item 
-				\begin{tabular}{r}
-					3 4 \\
-					$\times$ \ 2 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
-				
-				\item 
-				\begin{tabular}{r}
-					4 2 \\
-					$\times$ \ 2 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
-				
-				\item 
-				\begin{tabular}{r}
-					1 1 \\
-					$\times$ \ 5 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
-				
-				\item 
-				\begin{tabular}{r}
-					2 0 \\
-					$\times$ \ 4 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
-				
-				\item 
-				\begin{tabular}{r}
-					3 3 \\
-					$\times$ \ 3 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
-				
-				\item 
-				\begin{tabular}{r}
-					1 0 \\
-					$\times$ \ 6 \\
-					\hline
-					\boxfill[1.2cm]
-				\end{tabular}
-			\end{enumerate}
-		\end{multicols}
-		\vspace{0.2cm}
-	\end{practica}
-	
-	\newpage
-	
-	% =======================================================
-	% MISIÓN 3: MULTIPLICACIÓN VERTICAL (LLEVANDO)
-	% =======================================================
-	\section*{Misión 3: El Regalo para el Vecino (Llevando)}
-	
-	\begin{concepto}{Cuando el resultado es muy grande}
-		Si al multiplicar una columna el resultado es \textbf{10 o más}, ¡no caben los dos números abajo! Dejas el número de la derecha abajo y \textbf{"llevas"} el otro número hacia arriba de la siguiente columna. ¡Escríbelo en la \textbf{cajita azul}! Luego, \textbf{SE LO SUMAS} al resultado de la siguiente multiplicación.
-	\end{concepto}
-	
-	\begin{ejemplo}
-		\begin{multicols}{2}
-			\textbf{Queremos multiplicar $14 \times 3$:}\\
-			\textbf{Paso 1:} Multiplica $3 \times 4 = 12$. Ponemos el \textbf{2} abajo y \textcolor{valblue}{\textbf{llevamos 1}} a la cajita del vecino.
-			
-			\vspace{0.2cm}
-			\textbf{Paso 2:} Multiplica el de abajo por la Decena: $3 \times 1 = 3$. ¡Y le SUMAMOS el 1 que teníamos guardado en la cajita! $3 + 1 = \mathbf{4}$.
-			
-			\columnbreak
-			
-			\begin{center}
-				\Large
-				\begin{tabular}{r c c}
-					& \cajitalleva & \\[-0.5ex]
-					& 1 & 4 \\
-					$\times$ & & \textbf{3} \\
-					\hline
-					& \textbf{4} & \textbf{2}
-				\end{tabular}
-				\\[0.4cm]
-				\normalsize \textbf{¡El resultado es 42!}
-			\end{center}
-		\end{multicols}
+				%── Operación visual ───────────────────────────────────
+				\begin{scope}[xshift=9.2cm]
+					\draw[valblue, line width=1pt] (-0.2,-4.4) rectangle (2.0, -1.3);
+					\node[font=\bfseries\scriptsize, color=valorange] at (0.6, -1.48)
+					{lleva 1};
+					\node[font=\bfseries\LARGE, color=valblue] at (0.6,  -1.9) {4};
+					\node[font=\bfseries\LARGE, color=valblue] at (1.3,  -1.9) {5};
+					\node[font=\bfseries\LARGE, color=valdark] at (-0.05,-2.55) {$\times$};
+					\node[font=\bfseries\LARGE, color=valblue] at (1.3, -2.55) {3};
+					\draw[valdark, line width=1.8pt] (-0.05,-2.90) -- (1.90,-2.90);
+					\node[font=\bfseries\LARGE, color=valred]  at (-0.05,-3.60) {1};
+					\node[font=\bfseries\LARGE, color=valred]  at (0.6, -3.60) {3};
+					\node[font=\bfseries\LARGE, color=valred]  at (1.3, -3.60) {5};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
 	\end{ejemplo}
 	
-	\begin{practica}{Multiplicar llevando (8 Ejercicios)}
-		\textit{Multiplica. Si el número se pasa de 9, anota el número que llevas en la \textbf{cajita azul} de arriba, y no olvides SUMARLO en tu siguiente paso.}
+	\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Multiplica paso a paso}
+		\textit{Escribe las operaciones y resuelvelas}
 		
-		\vspace{0.4cm}
-		\begin{multicols}{4}
-			\raggedcolumns
-			\begin{enumerate}[itemsep=1.5cm]
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					1 & 5 \\
-					$\times$ & 3 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
+		\vspace{8pt}
+		\begin{center}
+			% ─── Primera fila ────────────────────────────────────
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				\node[font=\bfseries\normalsize, color=valdark] at (0.9, 0.45) {1)\ $23\times3$};
+				\draw[valblue!20, step=0.55] (0.0,-0.08) grid (1.8,-2.48);
+				\draw[valblue, line width=1.5pt]  (0.0,-0.08) rectangle (1.8,-2.48);
 				
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					2 & 4 \\
-					$\times$ & 4 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
+				\node[font=\bfseries\normalsize, color=valdark] at (4.0, 0.45) {2)\ $41\times2$};
+				\draw[valblue!20, step=0.55] (3.1,-0.08) grid (4.9,-2.48);
+				\draw[valblue, line width=1.5pt]  (3.1,-0.08) rectangle (4.9,-2.48);
 				
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					3 & 6 \\
-					$\times$ & 2 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
+				\node[font=\bfseries\normalsize, color=valdark] at (7.1, 0.45) {3)\ $32\times3$};
+				\draw[valblue!20, step=0.55] (6.2,-0.08) grid (8.0,-2.48);
+				\draw[valblue, line width=1.5pt]  (6.2,-0.08) rectangle (8.0,-2.48);
 				
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					4 & 5 \\
-					$\times$ & 3 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
+				\node[font=\bfseries\normalsize, color=valdark] at (10.2, 0.45) {4)\ $14\times4$};
+				\draw[valblue!20, step=0.55] (9.3,-0.08) grid (11.1,-2.48);
+				\draw[valblue, line width=1.5pt]  (9.3,-0.08) rectangle (11.1,-2.48);
+			\end{tikzpicture}
+			
+			\vspace{10pt}
+			
+			% ─── Segunda fila ────────────────────────────────────
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				\node[font=\bfseries\normalsize, color=valdark] at (0.9, 0.45) {5)\ $25\times2$};
+				\draw[valblue!20, step=0.55] (0.0,-0.08) grid (1.8,-2.48);
+				\draw[valblue, line width=1.5pt]  (0.0,-0.08) rectangle (1.8,-2.48);
 				
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					1 & 8 \\
-					$\times$ & 5 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
+				\node[font=\bfseries\normalsize, color=valdark] at (4.0, 0.45) {6)\ $43\times2$};
+				\draw[valblue!20, step=0.55] (3.1,-0.08) grid (4.9,-2.48);
+				\draw[valblue, line width=1.5pt]  (3.1,-0.08) rectangle (4.9,-2.48);
 				
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					2 & 7 \\
-					$\times$ & 3 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
+				\node[font=\bfseries\normalsize, color=valdark] at (7.1, 0.45) {7)\ $21\times4$};
+				\draw[valblue!20, step=0.55] (6.2,-0.08) grid (8.0,-2.48);
+				\draw[valblue, line width=1.5pt]  (6.2,-0.08) rectangle (8.0,-2.48);
 				
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					4 & 8 \\
-					$\times$ & 2 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
+				\node[font=\bfseries\normalsize, color=valdark] at (10.2, 0.45) {8)\ $33\times3$};
+				\draw[valblue!20, step=0.55] (9.3,-0.08) grid (11.1,-2.48);
+				\draw[valblue, line width=1.5pt]  (9.3,-0.08) rectangle (11.1,-2.48);
+			\end{tikzpicture}
+			
+				% ─── Tercera fila ────────────────────────────────────
+			\vspace{10pt}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				\node[font=\bfseries\normalsize, color=valdark] at (0.9, 0.45) {9)\ $22\times2$};
+				\draw[valblue!20, step=0.55] (0.0,-0.08) grid (1.8,-2.48);
+				\draw[valblue, line width=1.5pt]  (0.0,-0.08) rectangle (1.8,-2.48);
 				
-				\item 
-				\begin{tabular}{r c}
-					\cajitalleva & \\[-0.5ex]
-					1 & 5 \\
-					$\times$ & 6 \\
-					\hline
-					\multicolumn{2}{c}{\boxfill[1.5cm]}
-				\end{tabular}
-			\end{enumerate}
-		\end{multicols}
-		\vspace{0.2cm}
+				\node[font=\bfseries\normalsize, color=valdark] at (4.0, 0.45) {10)\ $16\times2$};
+				\draw[valblue!20, step=0.55] (3.1,-0.08) grid (4.9,-2.48);
+				\draw[valblue, line width=1.5pt]  (3.1,-0.08) rectangle (4.9,-2.48);
+				
+				\node[font=\bfseries\normalsize, color=valdark] at (7.1, 0.45) {11)\ $15\times4$};
+				\draw[valblue!20, step=0.55] (6.2,-0.08) grid (8.0,-2.48);
+				\draw[valblue, line width=1.5pt]  (6.2,-0.08) rectangle (8.0,-2.48);
+				
+				\node[font=\bfseries\normalsize, color=valdark] at (10.2, 0.45) {12)\ $11\times3$};
+				\draw[valblue!20, step=0.55] (9.3,-0.08) grid (11.1,-2.48);
+				\draw[valblue, line width=1.5pt]  (9.3,-0.08) rectangle (11.1,-2.48);
+			\end{tikzpicture}
+		\end{center}
 	\end{practica}
 	
-	\newpage
+	%\newpage
+	%\vspace*{-3.6cm}
+	% ══════════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 6 – La Multiplicación en la Vida Real
+	% ══════════════════════════════════════════════════════════════════════════════
+	\mision{valred}{Misión 6: La Multiplicación en la Vida Real}
 	
-	% =======================================================
-	% MISIÓN 4: PROBLEMAS DE LA VIDA REAL
-	% =======================================================
-	\section*{Misión 4: Detectives de la Multiplicación}
-	
-	\begin{truco}{Las Palabras Clave}
-		Cuando leas un problema en la vida real, ¿cómo saber que tienes que multiplicar? Busca estas palabras clave: \textbf{Cada uno}, \textbf{El doble} (multiplicar por 2), \textbf{El triple} (multiplicar por 3), \textbf{Veces}, o cuando te pidan \textbf{un total de muchos objetos exactamente iguales}.
+	\begin{truco}{Los 4 Pasos para Resolver Problemas}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				\node[btnazul,   minimum width=1.15cm, minimum height=1.15cm]
+				at (0, 0) {1};
+				\node[anchor=west, font=\bfseries\large, color=valdark] at (0.75, 0)
+				{\textbf{LEE} el problema despacio.};
+				
+				\node[btnorange, minimum width=1.15cm, minimum height=1.15cm]
+				at (0,-1.4) {2};
+				\node[anchor=west, font=\bfseries\large, color=valdark] at (0.75,-1.4)
+				{\textbf{SUBRAYA} los números importantes.};
+				
+				\node[btnverde,  minimum width=1.15cm, minimum height=1.15cm]
+				at (0,-2.8) {3};
+				\node[anchor=west, font=\bfseries\large, color=valdark] at (0.75,-2.8)
+				{\textbf{ESCRIBE} la multiplicación:\quad
+					\underline{\hspace{1.8cm}}\ $\times$\
+					\underline{\hspace{1.8cm}}\ $= ?$};
+				
+				\node[btnrojo,   minimum width=1.15cm, minimum height=1.15cm]
+				at (0,-4.2) {4};
+				\node[anchor=west, font=\bfseries\large, color=valdark] at (0.75,-4.2)
+				{\textbf{CALCULA} y escribe la respuesta.};
+			\end{tikzpicture}
+		\end{center}
 	\end{truco}
 	
-	\begin{practica}{Resuelve los casos (6 Ejercicios)}
-		\textit{Lee el caso. Escribe la multiplicación de forma vertical en el espacio (si lo necesitas) y anota el resultado en la respuesta. ¡Usa tus cajitas mentales!}
-		
-		\vspace{0.4cm}
-		\begin{enumerate}[itemsep=1.5cm]
-			\item Un paquete trae \textbf{12} galletas dulces. Si mi mamá compra \textbf{3} paquetes para la semana, ¿cuántas galletas hay en total? \\
-			\begin{tabular}{c c}
-				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Hay en total \boxfill[1.5cm] galletas.
-			\end{tabular}
-			
-			\item Una caja de madera tiene \textbf{24} colores. Si para el colegio me piden comprar \textbf{2} cajas, ¿cuántos colores tendré en total? \\
-			\begin{tabular}{c c}
-				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Tendré \boxfill[1.5cm] colores.
-			\end{tabular}
-			
-			\item Un lápiz súper especial cuesta \textbf{\$ 150}. Si quiero comprar \textbf{3} lápices iguales, ¿cuánto dinero debo pagar en la caja? \\
-			\begin{tabular}{c c}
-				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Debes pagar \$ \boxfill[1.5cm]
-			\end{tabular}
-			
-			\item En un salón de clases hay \textbf{16} mesas. Si en cada mesa se pueden sentar \textbf{2} estudiantes, ¿cuántos estudiantes caben en todo el salón? \\
-			\begin{tabular}{c c}
-				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Caben \boxfill[1.5cm] estudiantes.
-			\end{tabular}
-			
-			\item Un álbum de animales tiene \textbf{15} páginas. Si en cada página caben exactamente \textbf{4} figuras, ¿cuántas figuras caben en todo el álbum? \\
-			\begin{tabular}{c c}
-				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Caben \boxfill[1.5cm] figuras.
-			\end{tabular}
-			
-			\item Un edificio tiene \textbf{5} pisos de altura. En cada uno de los pisos hay \textbf{14} ventanas grandes. ¿Cuántas ventanas hay en total en todo el edificio? \\
-			\begin{tabular}{c c}
-				\makebox[5cm]{ \boxfill[3cm] } & \textbf{Respuesta:} Hay \boxfill[1.5cm] ventanas.
-			\end{tabular}
-			
-		\end{enumerate}
-		\vspace{0.2cm}
-	\end{practica}
+	\newpage
 	
-	\vspace{1cm}
-	% --- MENSAJE FINAL ---
-	\begin{center}
-		\begin{tcolorbox}[colback=valblue!10, colframe=valblue, width=14cm, arc=3mm, boxrule=1.5pt]
-			\centering \Large \textbf{¡MÓDULO UNIDAD 7 COMPLETADO!}\\[0.2cm]
-			\normalsize Has dominado la magia de la multiplicación y el truco de llevar números. ¡Avisa al profesor para que te entregue tu examen!
-		\end{tcolorbox}
-	\end{center}
+	% ─── Problema 1 ──────────────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 1 --- Las Cajas de Naranjas}
+		\begin{minipage}{0.57\textwidth}
+			\textit{En la tienda hay \textbf{3 cajas} de naranjas.
+				En cada caja hay \textbf{12 naranjas}.
+				{¿}Cuántas naranjas hay en total?}
+			
+			\vspace{7pt}
+			Operación:\quad
+			\boxfill[1.9cm]\;$\times$\;\boxfill[1.9cm]\;$=$\;\boxfill[1.9cm]
+			
+			\vspace{5pt}
+			Respuesta: Hay\;\boxfill[4cm]\;naranjas en total.
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.38\textwidth}
+			\begin{center}
+				\begin{tikzpicture}[x=1cm, y=1cm]
+					\draw[cajag, line width=1.5pt] (0.0,0) rectangle (1.5,1.1);
+					\draw[cajag, line width=1.5pt] (1.8,0) rectangle (3.3,1.1);
+					\draw[cajag, line width=1.5pt] (3.6,0) rectangle (5.1,1.1);
+					\node[font=\bfseries\large, color=valgreen] at (0.75,0.55) {12};
+					\node[font=\bfseries\large, color=valgreen] at (2.55,0.55) {12};
+					\node[font=\bfseries\large, color=valgreen] at (4.35,0.55) {12};
+					\node[font=\bfseries\footnotesize, color=valdark] at (0.75,-0.25) {caja 1};
+					\node[font=\bfseries\footnotesize, color=valdark] at (2.55,-0.25) {caja 2};
+					\node[font=\bfseries\footnotesize, color=valdark] at (4.35,-0.25) {caja 3};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+
+	\end{espaciotrabajonb}
+	
+	% ─── Problema 2 ──────────────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 2 --- Los Buses Escolares}
+		\begin{minipage}{0.57\textwidth}
+			\textit{Hay \textbf{4 buses} escolares.
+				Cada bus lleva \textbf{25 estudiantes}.
+				{¿}Cuántos estudiantes hay en total?}
+			
+			\vspace{7pt}
+			Operación:\quad
+			\boxfill[1.9cm]\;$\times$\;\boxfill[1.9cm]\;$=$\;\boxfill[1.9cm]
+			
+			\vspace{5pt}
+			Respuesta: Hay\;\boxfill[4cm]\;estudiantes en total.
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.38\textwidth}
+			\begin{center}
+				\begin{tikzpicture}[x=1cm, y=1cm]
+					\draw[cajaz, line width=1.5pt] (0.0, 0.0) rectangle (2.1, 1.1);
+					\draw[cajaz, line width=1.5pt] (2.4, 0.0) rectangle (4.5, 1.1);
+					\draw[cajaz, line width=1.5pt] (0.0,-1.5) rectangle (2.1,-0.4);
+					\draw[cajaz, line width=1.5pt] (2.4,-1.5) rectangle (4.5,-0.4);
+					\node[font=\bfseries\normalsize, color=valblue] at (1.05, 0.7) {BUS};
+					\node[font=\bfseries\normalsize, color=valblue] at (3.45, 0.7) {BUS};
+					\node[font=\bfseries\normalsize, color=valblue] at (1.05,-0.8) {BUS};
+					\node[font=\bfseries\normalsize, color=valblue] at (3.45,-0.8) {BUS};
+					\node[font=\bfseries\small, color=valdark] at (1.05, 0.2) {25 est.};
+					\node[font=\bfseries\small, color=valdark] at (3.45, 0.2) {25 est.};
+					\node[font=\bfseries\small, color=valdark] at (1.05,-1.3) {25 est.};
+					\node[font=\bfseries\small, color=valdark] at (3.45,-1.3) {25 est.};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+
+	\end{espaciotrabajonb}
+	
+	% ─── Problema 3 ──────────────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 3 --- Los Equipos de Fútbol}
+		\begin{minipage}{0.57\textwidth}
+			\textit{En el torneo hay \textbf{5 equipos}.
+				Cada equipo tiene \textbf{11 jugadores}.
+				{¿}Cuántos jugadores hay en total?}
+			
+			\vspace{7pt}
+			Operación:\quad
+			\boxfill[1.9cm]\;$\times$\;\boxfill[1.9cm]\;$=$\;\boxfill[1.9cm]
+			
+			\vspace{5pt}
+			Respuesta: Hay\;\boxfill[4cm]\;jugadores en total.
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	% ─── Problema 4 ──────────────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 4 --- Las Plantas del Jardín}
+		\begin{minipage}{0.57\textwidth}
+			\textit{En el jardín hay \textbf{6 filas} de plantas.
+				En cada fila hay \textbf{8 plantas}.
+				{¿}Cuántas plantas hay en total?}
+			
+			\vspace{7pt}
+			Operación:\quad
+			\boxfill[1.9cm]\;$\times$\;\boxfill[1.9cm]\;$=$\;\boxfill[1.9cm]
+			
+			\vspace{5pt}
+			Respuesta: Hay\;\boxfill[4cm]\;plantas en total.
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.38\textwidth}
+			\begin{center}
+				\begin{tikzpicture}[x=0.44cm, y=0.44cm]
+					% 6 filas × 8 columnas — sin \foreach para evitar conflictos
+					% Fila 0
+					\node[color=valgreen] at (0,0) {\textbullet};
+					\node[color=valgreen] at (1,0) {\textbullet};
+					\node[color=valgreen] at (2,0) {\textbullet};
+					\node[color=valgreen] at (3,0) {\textbullet};
+					\node[color=valgreen] at (4,0) {\textbullet};
+					\node[color=valgreen] at (5,0) {\textbullet};
+					\node[color=valgreen] at (6,0) {\textbullet};
+					\node[color=valgreen] at (7,0) {\textbullet};
+					% Fila 1
+					\node[color=valgreen] at (0,1) {\textbullet};
+					\node[color=valgreen] at (1,1) {\textbullet};
+					\node[color=valgreen] at (2,1) {\textbullet};
+					\node[color=valgreen] at (3,1) {\textbullet};
+					\node[color=valgreen] at (4,1) {\textbullet};
+					\node[color=valgreen] at (5,1) {\textbullet};
+					\node[color=valgreen] at (6,1) {\textbullet};
+					\node[color=valgreen] at (7,1) {\textbullet};
+					% Fila 2
+					\node[color=valgreen] at (0,2) {\textbullet};
+					\node[color=valgreen] at (1,2) {\textbullet};
+					\node[color=valgreen] at (2,2) {\textbullet};
+					\node[color=valgreen] at (3,2) {\textbullet};
+					\node[color=valgreen] at (4,2) {\textbullet};
+					\node[color=valgreen] at (5,2) {\textbullet};
+					\node[color=valgreen] at (6,2) {\textbullet};
+					\node[color=valgreen] at (7,2) {\textbullet};
+					% Fila 3
+					\node[color=valgreen] at (0,3) {\textbullet};
+					\node[color=valgreen] at (1,3) {\textbullet};
+					\node[color=valgreen] at (2,3) {\textbullet};
+					\node[color=valgreen] at (3,3) {\textbullet};
+					\node[color=valgreen] at (4,3) {\textbullet};
+					\node[color=valgreen] at (5,3) {\textbullet};
+					\node[color=valgreen] at (6,3) {\textbullet};
+					\node[color=valgreen] at (7,3) {\textbullet};
+					% Fila 4
+					\node[color=valgreen] at (0,4) {\textbullet};
+					\node[color=valgreen] at (1,4) {\textbullet};
+					\node[color=valgreen] at (2,4) {\textbullet};
+					\node[color=valgreen] at (3,4) {\textbullet};
+					\node[color=valgreen] at (4,4) {\textbullet};
+					\node[color=valgreen] at (5,4) {\textbullet};
+					\node[color=valgreen] at (6,4) {\textbullet};
+					\node[color=valgreen] at (7,4) {\textbullet};
+					% Fila 5
+					\node[color=valgreen] at (0,5) {\textbullet};
+					\node[color=valgreen] at (1,5) {\textbullet};
+					\node[color=valgreen] at (2,5) {\textbullet};
+					\node[color=valgreen] at (3,5) {\textbullet};
+					\node[color=valgreen] at (4,5) {\textbullet};
+					\node[color=valgreen] at (5,5) {\textbullet};
+					\node[color=valgreen] at (6,5) {\textbullet};
+					\node[color=valgreen] at (7,5) {\textbullet};
+					% Anotaciones
+					\draw[<->, valred, line width=0.8pt] (-0.65,0) -- (-0.65,5);
+					\node[font=\bfseries\large, color=valred, rotate=90] at (-1.2,2.5)
+					{6 filas};
+					\draw[<->, valblue, line width=0.8pt] (0,-0.65) -- (7,-0.65);
+					\node[font=\bfseries\large, color=valblue] at (3.5,-1.4)
+					{8 por fila};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+	
+	\end{espaciotrabajonb}
+	
+
 	
 \end{document}
