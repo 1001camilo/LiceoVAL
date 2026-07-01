@@ -144,7 +144,7 @@ top=2.0cm,  bottom=2.0cm
 % ── Caja de respuesta ─────────────────────────────────────────────────────
 \newcommand{\boxfill}[1][3.5cm]{%
 	\tikz[baseline=-0.5ex]%
-	\draw[valblue,line width=1pt] (0,0) rectangle (#1,0.78cm);%
+	\draw[valblue,line width=1pt] (0,-0.5) rectangle (#1,0.5cm);%
 }
 
 % ── Encabezado de Misión ───────────────────────────────────────────────────
@@ -259,16 +259,16 @@ top=2.0cm,  bottom=2.0cm
 			
 		\end{center}
 	\end{concepto}
-	
+	\newpage
 	%\vspace{4pt}
-	
+%\vspace*{2cm}
 	\begin{truco}{¡Regla de Oro: Las Partes Deben Ser IGUALES!}
 		Para que algo sea una fracción correcta, \textbf{todas las partes}
 		deben tener el \textbf{mismo tamaño}.
 		
 		%\vspace{8pt}
 		\begin{center}
-			\begin{tikzpicture}[x=1cm,y=1cm]
+			\begin{tikzpicture}[x=1cm,y=0.5cm]
 				%── CORRECTO: rectángulo 4 partes iguales ───────────────
 				\begin{scope}[shift={(0,0)}]
 					\draw[valdark,line width=1.5pt,fill=vallightgreen]
@@ -290,7 +290,7 @@ top=2.0cm,  bottom=2.0cm
 					\draw[valdark,line width=1.2pt] (2.3,0) -- (2.3,1.3);
 					\node[font=\Huge,color=valred] at (5.0,0.65) {\textbf{X}};
 					\node[font=\bfseries\normalsize,color=valred,align=center,
-					text width=3cm] at (2.0,-0.65)
+					text width=5cm] at (2.0,-0.65)
 					{INCORRECTO\\ {\footnotesize partes desiguales}};
 				\end{scope}
 			\end{tikzpicture}
@@ -307,7 +307,7 @@ top=2.0cm,  bottom=2.0cm
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				%── A: rectángulo 4 partes iguales ──────────────────────
-				\begin{scope}[shift={(0,0)}]
+				\begin{scope}[shift={(-2.5,4)}]
 					\node[font=\bfseries\normalsize,color=valdark] at (2.0,1.85) {A)};
 					\draw[valdark,line width=1.3pt,fill=white]
 					(0,0) rectangle (4.0,1.5);
@@ -318,8 +318,8 @@ top=2.0cm,  bottom=2.0cm
 				\end{scope}
 				
 				%── B: círculo 3 partes desiguales ──────────────────────
-				\begin{scope}[shift={(7.3,0.75)}]
-					\node[font=\bfseries\normalsize,color=valdark] at (0,1.6) {B)};
+				\begin{scope}[shift={(5.3,4)}]
+					\node[font=\bfseries\normalsize,color=valdark] at (0,2) {B)};
 					\draw[valdark,line width=1.3pt,fill=white]
 					(0,0) -- (0:1.7) arc (0:40:1.7) -- cycle;
 					\draw[valdark,line width=1.3pt,fill=white]
@@ -330,8 +330,8 @@ top=2.0cm,  bottom=2.0cm
 				\end{scope}
 				
 				%── C: círculo 6 partes iguales ──────────────────────────
-				\begin{scope}[shift={(12.0,0.75)}]
-					\node[font=\bfseries\normalsize,color=valdark] at (0,1.6) {C)};
+				\begin{scope}[shift={(11.0,4)}]
+					\node[font=\bfseries\normalsize,color=valdark] at (0,2) {C)};
 					\draw[valdark,line width=1.3pt,fill=white]
 					(0,0) -- (0:1.7) arc (0:60:1.7) -- cycle;
 					\draw[valdark,line width=1.3pt,fill=white]
@@ -353,7 +353,7 @@ top=2.0cm,  bottom=2.0cm
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				%── D: rectángulo 3 partes desiguales ───────────────────
-				\node[font=\bfseries\normalsize,color=valdark] at (2.0,0.95) {D)};
+				\node[font=\bfseries\normalsize,color=valdark] at (2.3,1.2) {D)};
 				\draw[valdark,line width=1.3pt,fill=white]
 				(0,-0.75) rectangle (4.5,0.75);
 				\draw[valdark,line width=1pt] (0.6,-0.75) -- (0.6,0.75);
@@ -363,7 +363,7 @@ top=2.0cm,  bottom=2.0cm
 		\end{center}
 	\end{practica}
 	
-	\newpage
+	%\newpage
 	
 	% ══════════════════════════════════════════════════════════════════════════
 	%  MISIÓN 2 – Los Términos de la Fracción
@@ -635,13 +635,13 @@ top=2.0cm,  bottom=2.0cm
 				\end{scope}
 				
 				%── Item 2: rectángulo 1/2 ───────────────────────────────
-				\begin{scope}[shift={(5.6,0.6)}]
-					\node[font=\bfseries\normalsize] at (1.0,1.2) {2)};
+				\begin{scope}[shift={(4.6,0.6)}]
+					\node[font=\bfseries\normalsize] at (1.0,1.4) {2)};
 					\draw[valdark,line width=1.3pt,fill=vallightgreen]
 					(0,0) rectangle (1.5,1.1);
 					\draw[valdark,line width=1.3pt,fill=white]
 					(1.5,0) rectangle (3.0,1.1);
-					\draw[valblue,line width=1pt] (0.5,-1.0) rectangle (1.7,-0.2);
+					\draw[valblue,line width=1pt] (0.9,-1.0) rectangle (2.1,-0.2);
 				\end{scope}
 				
 				%── Item 3: círculo 5/6 ───────────────────────────────────
@@ -664,7 +664,7 @@ top=2.0cm,  bottom=2.0cm
 				
 				%── Item 4: rectángulo 2/5 ────────────────────────────────
 				\begin{scope}[shift={(12.4,0.6)}]
-					\node[font=\bfseries\normalsize] at (1.5,1.2) {4)};
+					\node[font=\bfseries\normalsize] at (1.5,1.4) {4)};
 					\draw[valdark,line width=1.3pt,fill=vallightred]
 					(0,0) rectangle (1.2,1.1);
 					\draw[valdark,line width=1.1pt] (0.6,0) -- (0.6,1.1);
@@ -672,7 +672,7 @@ top=2.0cm,  bottom=2.0cm
 					(1.2,0) rectangle (3.0,1.1);
 					\draw[valdark,line width=1.1pt] (1.8,0) -- (1.8,1.1);
 					\draw[valdark,line width=1.1pt] (2.4,0) -- (2.4,1.1);
-					\draw[valblue,line width=1pt] (0.4,-1.0) rectangle (1.6,-0.2);
+					\draw[valblue,line width=1pt] (0.9,-1.0) rectangle (2.1,-0.2);
 				\end{scope}
 			\end{tikzpicture}
 		\end{center}
@@ -751,7 +751,7 @@ top=2.0cm,  bottom=2.0cm
 		\end{center}
 	\end{practica}
 	
-	\newpage
+	%\newpage
 	
 	% ══════════════════════════════════════════════════════════════════════════
 	%  MISIÓN 4 – ¿Cómo se Leen las Fracciones?
@@ -887,20 +887,20 @@ top=2.0cm,  bottom=2.0cm
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				\node[font=\bfseries\large] at (0,0) {$\frac{2}{5}\ =$};
-				\draw[valblue,line width=1pt] (1.4,-0.33) rectangle (4.4,0.38);
+				\draw[valblue,line width=1pt] (1,-0.33) rectangle (14,0.38);
 				
-				\node[font=\bfseries\large] at (6.5,0) {$\frac{4}{6}\ =$};
-				\draw[valblue,line width=1pt] (7.9,-0.33) rectangle (10.9,0.38);
+				\node[font=\bfseries\large] at (0,-1) {$\frac{4}{6}\ =$};
+				\draw[valblue,line width=1pt] (1,-1.33) rectangle (14,-0.62);
 			\end{tikzpicture}
 		\end{center}
 	\end{practica}
 	
-	\newpage
+	%\newpage
 	
 	% ══════════════════════════════════════════════════════════════════════════
 	%  MISIÓN 5 – Fracciones en la Vida Real
 	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valred}{Misión 5: {¡}Matemáticas para la Vida! --- Fracciones en lo Cotidiano}
+	\mision{valred}{Misión 5: Fracciones en lo Cotidiano}
 	
 	\begin{concepto}{$\square$ Las Fracciones Están en Todas Partes}
 		Usamos fracciones \textbf{todos los días}: cuando vemos la hora, cuando
@@ -940,7 +940,7 @@ top=2.0cm,  bottom=2.0cm
 			\end{center}
 		\end{minipage}
 	\end{espaciotrabajonb}
-	
+	\newpage
 	%\vspace{5pt}
 	
 	% ── Problema 2: El Dinero ────────────────────────────────────────────────
@@ -981,7 +981,7 @@ top=2.0cm,  bottom=2.0cm
 		\end{minipage}
 	\end{espaciotrabajonb}
 	
-	\newpage
+	%\newpage
 	
 	% ── Problema 3: La Cocina ────────────────────────────────────────────────
 	\begin{espaciotrabajonb}{Situación 3 --- La Cocina}
@@ -1074,7 +1074,7 @@ top=2.0cm,  bottom=2.0cm
 				\node[cajar,minimum width=2.6cm,minimum height=1.6cm,
 				font=\bfseries\Huge,inner sep=5pt] at (9.2,0) {$\dfrac{2}{5}$};
 				\node[font=\bfseries\normalsize,color=valdark,align=center,
-				text width=4.3cm] at (9.2,-1.4)
+				text width=4.3cm] at (9.2,-1.6)
 				{2 objetos rojos\\ de 5 objetos en total};
 			\end{tikzpicture}
 		\end{center}
@@ -1091,7 +1091,7 @@ top=2.0cm,  bottom=2.0cm
 				% Item 1: 5 frutas, 2 manzanas (rojas)
 				\node[anchor=west,font=\bfseries\large,color=valdark,
 				align=left,text width=14cm] at (0,1.1)
-				{1) Hay \textbf{5 frutas} en la canasta. \textbf{2} son manzanas
+				{1) Hay \textbf{5 frutas} en la canasta. \textbf{2} son pelotas
 					rojas. {¿}Qué fracción de la canasta son manzanas?};
 				
 				\node[draw=valred,fill=vallightred,circle,
@@ -1170,77 +1170,7 @@ top=2.0cm,  bottom=2.0cm
 		\end{center}
 	\end{practica}
 	
-	\newpage
-	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  AUTOEVALUACIÓN
-	% ══════════════════════════════════════════════════════════════════════════
-	\begin{tcolorbox}[
-		enhanced, breakable,
-		colback   = vallightblue,
-		colframe  = valblue,
-		arc=6mm, boxrule=2pt,
-		title     = {Autoevaluación --- {¿}Qué aprendí?},
-		coltitle  = white,
-		fonttitle = \bfseries\large,
-		attach boxed title to top left={yshift=-2mm,xshift=4mm},
-		boxed title style={colback=valblue,colframe=valblue,rounded corners},
-		top=6mm,
-		]
-		\textit{Marca con una \textbf{X} en el cuadro si lo entendiste:}
-		
-		%\vspace{6pt}
-		\begin{tikzpicture}[x=1cm,y=1cm]
-			\draw[valdark,line width=1pt] (0,-0.26) rectangle (0.54,0.26);
-			\node[anchor=west,font=\bfseries\large,color=valdark,
-			align=left,text width=14cm] at (0.72,0)
-			{Entiendo que una fracción es una parte de un todo dividido en
-				partes iguales.};
-			
-			\draw[valdark,line width=1pt] (0,-1.46) rectangle (0.54,-0.94);
-			\node[anchor=west,font=\bfseries\large,color=valdark] at (0.72,-1.2)
-			{Conozco el Numerador y el Denominador.};
-			
-			\draw[valdark,line width=1pt] (0,-2.46) rectangle (0.54,-1.94);
-			\node[anchor=west,font=\bfseries\large,color=valdark,
-			align=left,text width=14cm] at (0.72,-2.2)
-			{Puedo representar una fracción en círculos, rectángulos, recta
-				numérica y grupos.};
-			
-			\draw[valdark,line width=1pt] (0,-3.66) rectangle (0.54,-3.14);
-			\node[anchor=west,font=\bfseries\large,color=valdark] at (0.72,-3.4)
-			{Sé leer fracciones (medios, tercios, cuartos\ldots).};
-			
-			\draw[valdark,line width=1pt] (0,-4.66) rectangle (0.54,-4.14);
-			\node[anchor=west,font=\bfseries\large,color=valdark,
-			align=left,text width=14cm] at (0.72,-4.4)
-			{Puedo identificar fracciones en situaciones de la vida real
-				(reloj, dinero, comida).};
-			
-			\draw[valdark,line width=1pt] (0,-5.86) rectangle (0.54,-5.34);
-			\node[anchor=west,font=\bfseries\large,color=valdark] at (0.72,-5.6)
-			{Puedo identificar la fracción de un grupo de objetos.};
-		\end{tikzpicture}
-	\end{tcolorbox}
-	
-	%\vspace{8pt}
-	
-	\begin{center}
-		\begin{tcolorbox}[
-			enhanced,
-			colback  = vallightgreen,
-			colframe = valgreen,
-			arc=8mm, boxrule=2pt,
-			width=0.82\linewidth,
-			halign=center,
-			]
-			{\Large\bfseries\color{valgreen}
-				{¡}MÓDULO UNIDAD 9 COMPLETADO!}\\[4pt]
-			{\large\bfseries\color{valdark} {¡}FELICITACIONES!}\\[4pt]
-			{\normalsize\color{valdark}\itshape
-				{¡}Ya sabes representar y leer fracciones!
-				{¡}Sigue adelante!}
-		\end{tcolorbox}
-	\end{center}
+
+
 	
 \end{document}
