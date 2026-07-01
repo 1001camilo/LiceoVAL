@@ -9,7 +9,7 @@
 % ── CODIFICACIÓN Y TIPOGRAFÍA ──────────────────────────────────────────────
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
+\usepackage[spanish, es-noshorthands]{babel}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -27,7 +27,7 @@ top=2.0cm,  bottom=2.0cm
 
 % ── TIKZ ──────────────────────────────────────────────────────────────────
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric,arrows.meta,calc,positioning,backgrounds}
+\usetikzlibrary{babel,shapes.geometric,arrows.meta,calc,positioning,backgrounds}
 
 % ── TCOLORBOX ──────────────────────────────────────────────────────────────
 \usepackage{tcolorbox}
@@ -145,7 +145,7 @@ top=2.0cm,  bottom=2.0cm
 % ── Caja de respuesta ─────────────────────────────────────────────────────
 \newcommand{\boxfill}[1][3.5cm]{%
 	\tikz[baseline=-0.5ex]%
-	\draw[valblue,line width=1pt] (0,0) rectangle (#1,0.78cm);%
+	\draw[valblue,line width=1pt] (0,-0.5) rectangle (#1,0.5cm);%
 }
 
 % ── Encabezado de Misión ──────────────────────────────────────────────────
@@ -260,7 +260,7 @@ top=2.0cm,  bottom=2.0cm
 			\end{tikzpicture}
 		\end{center}
 		
-		\vspace{6pt}
+		%\vspace{6pt}
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				\node[cajaz,minimum width=14cm,minimum height=1.0cm,
@@ -270,13 +270,14 @@ top=2.0cm,  bottom=2.0cm
 		\end{center}
 	\end{concepto}
 	
-	\vspace{4pt}
+	%\vspace{4pt}
+	\newpage
 	
 	\begin{truco}{¡Dividir y Multiplicar son Operaciones Hermanas!}
 		Si sabes multiplicar, ¡ya sabes dividir!
 		Cuando multiplicas $3 \times 4 = 12$, puedes obtener \textbf{dos divisiones}, ya que la división es la operación contraria, cuando pienses en dividir, puedes pensar en una multiplicación, por ejemplo al $12\div4$ te puedes preguntar por que número multiplico a $4$ para que de $12$:
 		
-		\vspace{6pt}
+		%\vspace{6pt}
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				% Multiplication center
@@ -301,12 +302,12 @@ top=2.0cm,  bottom=2.0cm
 		\end{center}
 	\end{truco}
 	
-	\vspace{4pt}
+	%\vspace{4pt}
 	
 	\begin{practica}{$\square$ ¡Tu Turno! --- Usa la multiplicación para dividir}
 		\textit{Completa las familias de operaciones. Usa lo que ya sabes de multiplicar.}
 		
-		\vspace{8pt}
+		%\vspace{8pt}
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				% Familia 1
@@ -314,9 +315,9 @@ top=2.0cm,  bottom=2.0cm
 				{Familia 1};
 				\node[font=\bfseries\large,color=valdark] at (0,-0.8)
 				{$5 \times 3 = 15$};
-				\draw[valblue,line width=1pt] (-1.3,-1.7) rectangle (1.3,-1.05);
+				\draw[valblue,line width=1pt] (-1.3,-1.7) rectangle (1.6,-1.05);
 				\node[font=\bfseries\large,color=valdark] at (0,-1.38) {$15 \div 3 =$};
-				\draw[valblue,line width=1pt] (-1.3,-2.4) rectangle (1.3,-1.75);
+				\draw[valblue,line width=1pt] (-1.3,-2.4) rectangle (1.6,-1.75);
 				\node[font=\bfseries\large,color=valdark] at (0,-2.08) {$15 \div 5 =$};
 				
 				% Familia 2
@@ -324,9 +325,9 @@ top=2.0cm,  bottom=2.0cm
 				{Familia 2};
 				\node[font=\bfseries\large,color=valdark] at (5.0,-0.8)
 				{$4 \times 6 = 24$};
-				\draw[valblue,line width=1pt] (3.7,-1.7) rectangle (6.3,-1.05);
+				\draw[valblue,line width=1pt] (3.7,-1.7) rectangle (6.6,-1.05);
 				\node[font=\bfseries\large,color=valdark] at (5.0,-1.38) {$24 \div 6 =$};
-				\draw[valblue,line width=1pt] (3.7,-2.3) rectangle (6.3,-1.65);
+				\draw[valblue,line width=1pt] (3.7,-2.3) rectangle (6.6,-1.65);
 				\node[font=\bfseries\large,color=valdark] at (5.0,-2.08) {$24 \div 4 =$};
 				
 				% Familia 3
@@ -334,9 +335,9 @@ top=2.0cm,  bottom=2.0cm
 				{Familia 3};
 				\node[font=\bfseries\large,color=valdark] at (10.0,-0.8)
 				{$7 \times 3 = 21$};
-				\draw[valblue,line width=1pt] (8.7,-1.7) rectangle (11.3,-1.05);
+				\draw[valblue,line width=1pt] (8.7,-1.7) rectangle (11.6,-1.05);
 				\node[font=\bfseries\large,color=valdark] at (10.0,-1.38) {$21 \div 3 =$};
-				\draw[valblue,line width=1pt] (8.7,-2.4) rectangle (11.3,-1.65);
+				\draw[valblue,line width=1pt] (8.7,-2.4) rectangle (11.6,-1.65);
 				\node[font=\bfseries\large,color=valdark] at (10.0,-2.08) {$21 \div 7 =$};
 			\end{tikzpicture}
 		\end{center}
@@ -418,7 +419,7 @@ top=2.0cm,  bottom=2.0cm
 	\begin{practica}{$\square$ ¡Tu Turno! --- Identifica las Partes}
 		\textit{Encierra con color rojo el Dividendo, con azul el Divisor, con verde el Cociente y con amarillo el Residuo) .}
 		
-		\vspace{10pt}
+	%	\vspace{10pt}
 		\begin{center}
 		
 		
@@ -513,28 +514,243 @@ top=2.0cm,  bottom=2.0cm
 		\end{tikzpicture}
 		\end{center}
 		
-		\vspace{8pt}
+	%	\vspace{8pt}
 		\textit{Completa las oraciones:}
 		
-		\vspace{4pt}
+	%	\vspace{4pt}
 		El número que dividimos se llama: \underline{\hspace*{8cm}}
 		
-		\vspace{6pt}
+		%\vspace{6pt}
 		El número en el que dividimos se llama: \underline{\hspace*{8cm}}
 		
-		\vspace{6pt}
+	%	\vspace{6pt}
 		El resultado de la división se llama: \underline{\hspace*{8cm}}
 		
-		\vspace{6pt}
+	%	\vspace{6pt}
 		Lo que sobra al final se llama: \underline{\hspace*{8cm}}
 	\end{practica}
 	
-	\newpage
+	%\newpage
+	
+	 \vspace*{1cm}
+	% ══════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 3 – Las Reglas de la División
+	% ══════════════════════════════════════════════════════════════════════════
+	\mision{valorange}{Misión 3: Las Reglas de la División}
+	
+	\begin{concepto}{$\square$ Hay 3 Reglas que debes conocer}
+		
+		% ── REGLA 1: ÷ 1 ──────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[btnazul,minimum width=1.0cm,minimum height=0.78cm,
+				font=\bfseries\large] at (0,0) {1};
+				\node[anchor=west,font=\bfseries\Large,color=valblue,
+				align=left,text width=14cm] at (0.70,0)
+				{REGLA: Cualquier número dividido entre \textbf{1}
+					da el \textbf{mismo número}.};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Una sola caja con 6 puntos adentro
+				\draw[cajag,line width=1.5pt] (0.5,-0.3) rectangle (3.2,1.1);
+				% 6 puntos en la caja
+				\node[font=\LARGE,color=valgreen] at (1.15,0.65) {\textbullet};
+				\node[font=\LARGE,color=valgreen] at (1.80,0.65) {\textbullet};
+				\node[font=\LARGE,color=valgreen] at (2.45,0.65) {\textbullet};
+				\node[font=\LARGE,color=valgreen] at (1.15,0.05) {\textbullet};
+				\node[font=\LARGE,color=valgreen] at (1.8,0.05) {\textbullet};
+				\node[font=\LARGE,color=valgreen] at (2.45,0.05) {\textbullet};
+				\node[font=\bfseries\normalsize,color=valdark] at (1.9,-0.75)
+				{1 único grupo};
+				% Ecuaciones
+				\node[font=\bfseries\LARGE,color=valdark]  at (6.0,0.40) {$6\div1$};
+				\node[font=\bfseries\LARGE,color=valdark]  at (7.6,0.40) {$=$};
+				\node[cajag,inner sep=7pt,font=\bfseries\LARGE] at (8.9,0.40) {$6$};
+				\node[font=\bfseries\large,color=valgreen] at (7.2,-0.55)
+				{{¡}Sigue siendo 6!};
+				% Fórmula general
+				\node[cajag,inner sep=7pt,font=\bfseries\Large,
+				minimum width=5.5cm] at (13.0,0.40)
+				{$N \div 1 = N$};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{10pt}
+		
+		% ── REGLA 2: ÷ 0 ──────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[btnrojo,minimum width=1.0cm,minimum height=0.78cm,
+				font=\bfseries\large] at (0,0) {2};
+				\node[anchor=west,font=\bfseries\Large,color=valred,
+				align=left,text width=14cm] at (0.70,0)
+				{REGLA: Cualquier número dividido entre \textbf{0}
+					es \textbf{IMPOSIBLE}. No se puede hacer.};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Grupos imposibles (cajas fantasma tachadas)
+				\draw[valred!35,dashed,line width=1.6pt,rounded corners=3pt]
+				(0.0,-0.3) rectangle (1.4,1.1);
+				\draw[valred!35,dashed,line width=1.6pt,rounded corners=3pt]
+				(1.8,-0.3) rectangle (3.2,1.1);
+				\draw[valred!35,dashed,line width=1.6pt,rounded corners=3pt]
+				(3.6,-0.3) rectangle (5.0,1.1);
+				\node[font=\bfseries\Large,color=valred] at (0.70,0.42) {?};
+				\node[font=\bfseries\Large,color=valred] at (2.50,0.42) {?};
+				\node[font=\bfseries\Large,color=valred] at (4.30,0.42) {?};
+				% Gran X roja encima
+				\draw[valred,line width=4pt] (0.0,-0.30) -- (5.0,1.10);
+				\draw[valred,line width=4pt] (5.0,-0.30) -- (0.0,1.10);
+				\node[font=\bfseries\normalsize,color=valred] at (2.5,-0.88)
+				{0 grupos no existe};
+				% Ecuación
+				\node[font=\bfseries\LARGE,color=valdark]  at (6.5,0.42) {$6\div0$};
+				\node[font=\bfseries\LARGE,color=valred]   at (7.7,0.42) {$=$};
+				\node[cajar,inner sep=7pt,font=\bfseries\large] at (9.8,0.42)
+				{IMPOSIBLE};
+				% Explicación
+				\node[font=\bfseries\normalsize,color=valred,align=center,
+				text width=4.5cm] at (9.8,-0.65)
+				{No se puede repartir\\ entre 0 grupos};
+				% Fórmula general (separada del nodo anterior con espacio claro)
+				\node[cajaz,inner sep=6pt,font=\bfseries\large,
+				minimum width=4.2cm] at (14.5,0.42)
+				{$N \div 0 =$ \textbf{Error}};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{10pt}
+		
+		% ── REGLA 3 (Bonus): N ÷ N ───────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[btnverde,minimum width=1.0cm,minimum height=0.78cm,
+				font=\bfseries\large] at (0,0) {3};
+				\node[anchor=west,font=\bfseries\Large,color=valgreen,
+				align=left,text width=14cm] at (0.70,0)
+				{REGLA: Un número dividido entre \textbf{sí mismo}
+					siempre da \textbf{1}.};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% 4 grupos de 1 punto = 4 ÷ 4 = 1
+				\draw[cajaz,line width=1.4pt] (0.0,-0.3) rectangle (1.0,1.1);
+				\node[font=\LARGE,color=valblue] at (0.5,0.42) {\textbullet};
+				\draw[cajaz,line width=1.4pt] (1.3,-0.3) rectangle (2.3,1.1);
+				\node[font=\LARGE,color=valblue] at (1.8,0.42) {\textbullet};
+				\draw[cajaz,line width=1.4pt] (2.6,-0.3) rectangle (3.6,1.1);
+				\node[font=\LARGE,color=valblue] at (3.1,0.42) {\textbullet};
+				\draw[cajaz,line width=1.4pt] (3.9,-0.3) rectangle (4.9,1.1);
+				\node[font=\LARGE,color=valblue] at (4.4,0.42) {\textbullet};
+				\node[font=\bfseries\normalsize,color=valdark] at (2.45,-0.78)
+				{4 grupos de 1};
+				% Ecuaciones
+				\node[font=\bfseries\LARGE,color=valdark]  at (7.0,0.42) {$4\div4$};
+				\node[font=\bfseries\LARGE,color=valdark]  at (8.6,0.42) {$=$};
+				\node[cajaz,inner sep=7pt,font=\bfseries\LARGE] at (9.8,0.42) {$1$};
+				\node[font=\bfseries\large,color=valblue] at (8,-0.60)
+				{{¡}Siempre 1!};
+				% Fórmula general
+				\node[cajaz,inner sep=7pt,font=\bfseries\Large,
+				minimum width=5.5cm] at (13.5,0.42)
+				{$N \div N = 1$};
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	%\newpage
+	\begin{practica}{$\square$ {¡}Tu Turno! --- Aplica las 3 Reglas}
+		\textit{Escribe el resultado en la caja azul, o escribe \textbf{IMPOSIBLE}
+			si no se puede resolver.}
+		
+		% ── Sección Regla 1: ÷1 ─────────────────────────────────────────────────
+		\begin{tcolorbox}[
+			enhanced,
+			colback=vallightgreen, colframe=valgreen,
+			arc=3mm, boxrule=1pt,
+			left=4pt, right=4pt, top=4pt, bottom=4pt,
+			title={\bfseries Regla 1 --- Dividir entre 1}, coltitle=white,
+			fonttitle=\normalsize,
+			attach boxed title to top left={yshift=-2mm,xshift=3mm},
+			boxed title style={colback=valgreen,colframe=valgreen,rounded corners},
+			]
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[font=\bfseries\large] at (0.0,0) {a)\quad $8\div1=$};
+				\draw[valgreen,line width=1pt] (2.2,-0.33) rectangle (3.9,0.38);
+				\node[font=\bfseries\large] at (5.6,0) {b)\quad $45\div1=$};
+				\draw[valgreen,line width=1pt] (7.8,-0.33) rectangle (9.5,0.38);
+				\node[font=\bfseries\large] at (11.2,0) {c)\quad $1\div1=$};
+				\draw[valgreen,line width=1pt] (13.1,-0.33) rectangle (14.8,0.38);
+			\end{tikzpicture}
+		\end{tcolorbox}
+		
+		
+		% ── Sección Regla 2: ÷0 ─────────────────────────────────────────────────
+		\begin{tcolorbox}[
+			enhanced,
+			colback=vallightred, colframe=valred,
+			arc=3mm, boxrule=1pt,
+			left=4pt, right=4pt, top=4pt, bottom=4pt,
+			title={\bfseries Regla 2 --- Dividir entre 0}, coltitle=white,
+			fonttitle=\normalsize,
+			attach boxed title to top left={yshift=-2mm,xshift=3mm},
+			boxed title style={colback=valred,colframe=valred,rounded corners},
+			]
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[font=\bfseries\large] at (0.0,0) {d)\quad $12\div0=$};
+				\draw[valred,line width=1pt] (2.5,-0.33) rectangle (5.5,0.38);
+				\node[font=\bfseries\large] at (8.0,0) {e)\quad $0\div0=$};
+				\draw[valred,line width=1pt] (10.1,-0.33) rectangle (13.1,0.38);
+				\node[font=\bfseries\large] at (0.0,-1.4) {f)\quad $99\div0=$};
+				\draw[valred,line width=1pt] (2.6,-1.73) rectangle (5.6,-1.02);
+			\end{tikzpicture}
+		\end{tcolorbox}
+		
+		
+		% ── Sección Regla 3: N÷N ────────────────────────────────────────────────
+		\begin{tcolorbox}[
+			enhanced,
+			colback=vallightblue, colframe=valblue,
+			arc=3mm, boxrule=1pt,
+			left=4pt, right=4pt, top=4pt, bottom=4pt,
+			title={\bfseries Regla 3 --- Dividir entre sí mismo}, coltitle=white,
+			fonttitle=\normalsize,
+			attach boxed title to top left={yshift=-2mm,xshift=3mm},
+			boxed title style={colback=valblue,colframe=valblue,rounded corners},
+			]
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[font=\bfseries\large] at (0.0,0) {g)\quad $7\div7=$};
+				\draw[valblue,line width=1pt] (2.2,-0.33) rectangle (5.2,0.38);
+				\node[font=\bfseries\large] at (7.6,0) {h)\quad $20\div20=$};
+				\draw[valblue,line width=1pt] (10.1,-0.33) rectangle (13.1,0.38);
+				\node[font=\bfseries\large] at (0.0,-1.4) {i)\quad $100\div100=$};
+				\draw[valblue,line width=1pt] (2.8,-1.73) rectangle (5.8,-1.02);
+			\end{tikzpicture}
+		\end{tcolorbox}
+		
+		
+		% ── Pregunta de comprensión ──────────────────────────────────────────────
+		\textit{\textbf{Pregunta:} Tu profesor dice que $5\div0=0$.
+			{¿}Tiene razón? Explica en la caja:}\\[4pt]
+		\begin{tcolorbox}[
+			enhanced, colback=white, colframe=valdark!40,
+			arc=2mm, boxrule=0.8pt, height=1.9cm,
+			]
+		\end{tcolorbox}
+	\end{practica}
+	
 	
 	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 3 – División Exacta e Inexacta
+	%  MISIÓN 4 – División Exacta e Inexacta
 	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valorange}{Misión 3: División Exacta e Inexacta}
+	\mision{valorange}{Misión 4: División Exacta e Inexacta}
 	
 	\begin{concepto}{$\square$ Aprende el Concepto}
 		\begin{minipage}{0.46\textwidth}
@@ -549,7 +765,7 @@ top=2.0cm,  bottom=2.0cm
 				top=5mm,
 				]
 				\begin{center}
-					\vspace{4pt}
+					%\vspace{4pt}
 					\begin{tikzpicture}[x=0.48cm,y=0.48cm]
 						% 12 dots in 4 groups of 3 — no leftover
 						% Group A
@@ -573,11 +789,11 @@ top=2.0cm,  bottom=2.0cm
 						\node[color=valgreen,font=\large] at (8.5,0.5) {\textbullet};
 						\node[color=valgreen,font=\large] at (9.1,0.5) {\textbullet};
 					\end{tikzpicture}
-					\vspace{4pt}
+				%	\vspace{4pt}
 					
 					{\bfseries\large\color{valgreen} $12 \div 4 = 3$ \quad R = \textcolor{valred}{0}}
 					
-					\vspace{4pt}
+					%\vspace{4pt}
 					{\bfseries\normalsize El residuo es \textcolor{valred}{0}.}\\
 					{\normalsize No sobra nada.\\¡Todo se repartió!}
 				\end{center}
@@ -596,7 +812,7 @@ top=2.0cm,  bottom=2.0cm
 				top=5mm,
 				]
 				\begin{center}
-					\vspace{4pt}
+					%\vspace{4pt}
 					\begin{tikzpicture}[x=0.48cm,y=0.48cm]
 						% 13 dots in 4 groups of 3 + 1 leftover
 						% Group A
@@ -625,18 +841,17 @@ top=2.0cm,  bottom=2.0cm
 						\node[font=\bfseries\tiny,color=valred] at (10.6,-0.35)
 						{{¡}Sobra!};
 					\end{tikzpicture}
-					\vspace{4pt}
+				%	\vspace{4pt}
 					
 					{\bfseries\large\color{valred} $13 \div 4 = 3$ \quad R = \textcolor{valred}{1}}
 					
-					\vspace{4pt}
+					%\vspace{4pt}
 					{\bfseries\normalsize El residuo es \textcolor{valred}{1}.}\\
 					{\normalsize Sobra 1 que no cabe\\ en ningún grupo.}
 				\end{center}
 			\end{tcolorbox}
 		\end{minipage}
 		
-		\vspace{6pt}
 		\begin{center}
 			\begin{tikzpicture}
 				\node[cajaz,minimum width=14cm,minimum height=0.9cm,
@@ -651,12 +866,11 @@ top=2.0cm,  bottom=2.0cm
 		\end{center}
 	\end{concepto}
 	
-	\vspace{4pt}
 	
 	\begin{practica}{$\square$ ¡Tu Turno! --- Clasifica cada división}
 		\textit{Observa el residuo y marca con \textbf{X} si la división es Exacta o Inexacta.}
 		
-		\vspace{8pt}
+		%\vspace{8pt}
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				% Header
@@ -685,20 +899,6 @@ top=2.0cm,  bottom=2.0cm
 				\draw[valblue,line width=1pt] (7.2,-2.50) rectangle (8.8,-1.78);
 				\draw[valdark,line width=0.8pt] (11.0,-2.50) rectangle (12.6,-1.78);
 				\draw[valdark,line width=0.8pt] (13.8,-2.50) rectangle (15.4,-1.78);
-				
-				% Fila 3: 36÷6=6 R0
-				\node[font=\bfseries\large,color=valdark] at (2.5,-3.35)
-				{$36 \div 6 = 6$ \quad R \textcolor{valred}{0}};
-				\draw[valblue,line width=1pt] (7.2,-3.70) rectangle (8.8,-2.98);
-				\draw[valdark,line width=0.8pt] (11.0,-3.70) rectangle (12.6,-2.98);
-				\draw[valdark,line width=0.8pt] (13.8,-3.70) rectangle (15.4,-2.98);
-				
-				% Fila 4: 25÷7=3 R4
-				\node[font=\bfseries\large,color=valdark] at (2.5,-4.55)
-				{$25 \div 7 = 3$ \quad R \textcolor{valred}{4}};
-				\draw[valblue,line width=1pt] (7.2,-4.90) rectangle (8.8,-4.18);
-				\draw[valdark,line width=0.8pt] (11.0,-4.90) rectangle (12.6,-4.18);
-				\draw[valdark,line width=0.8pt] (13.8,-4.90) rectangle (15.4,-4.18);
 			\end{tikzpicture}
 		\end{center}
 	\end{practica}
@@ -706,9 +906,9 @@ top=2.0cm,  bottom=2.0cm
 	%\newpage
 	
 	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 4 – Dividir Paso a Paso
+	%  MISIÓN 5 – Dividir Paso a Paso
 	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valgreen}{Misión 4: Dividir Paso a Paso}
+	\mision{valgreen}{Misión 5: Dividir Paso a Paso}
 
 	\begin{ejemplo}
 		\textbf{Vamos a dividir $84 \div 4$ paso a paso:}\\[0.3cm]
@@ -727,7 +927,7 @@ top=2.0cm,  bottom=2.0cm
 				\begin{scope}[xshift=10.5cm, yshift=0.5cm]
 					\draw[valdark,line width=2pt] (1.5,0.5) -- (1.5,-1);
 					\draw[valdark,line width=2pt] (1.5,0) -- (3,0);
-					\node[font=\bfseries\LARGE,color=valblue]  at (0.8,0.25) {8\textcolor{gray!40}{4}};
+					\node[font=\bfseries\LARGE,color=valblue]  at (0.8,0.25) {8\textcolor{darkgray!40}{4}};
 					\node[font=\bfseries\LARGE,color=valgreen] at (2.2,0.25) {4};
 					\node[font=\bfseries\LARGE,color=valorange]  at (2.2,-0.5) {2};
 					% highlight
@@ -736,27 +936,27 @@ top=2.0cm,  bottom=2.0cm
 				
 				%── Paso 2 ──────────────────────────────────────────────
 				\node[paso, fill=valred] at (0,-4) {2};
-				\node[texto] at (0.8,-4) {\textbf{Multiplica y Resta:}\\ Ahora, multiplica tu respuesta por el divisor: $\textcolor{valorange}{\mathbf{2}} \times \textcolor{valgreen}{\mathbf{4}} = \textcolor{valred}{\mathbf{8}}$.\\ ¡Ese resultado es lo que vamos a quitar! Escribe ese \textbf{8} debajo del 8 original y \textbf{réstalo}: $8 - 8 = \mathbf{0}$.};
+				\node[texto] at (0.8,-4) {\textbf{Multiplica y Resta:}\\ Ahora, multiplica tu respuesta por el divisor: $\textcolor{valorange}{\mathbf{2}} \times \textcolor{valgreen}{\mathbf{4}} = \textcolor{valred}{\mathbf{8}}$.\\ Escribe ese \textbf{8} debajo del 8 original y \textbf{réstalo}: $8 - 8 = \mathbf{0}$.};
 				
 				\begin{scope}[xshift=10.5cm, yshift=-3.5cm]
 					\draw[valdark,line width=2pt] (1.5,0.5) -- (1.5,-1.5);
 					\draw[valdark,line width=2pt] (1.5,0) -- (3,0);
-					\node[font=\bfseries\LARGE,color=valblue]  at (0.8,0.25) {8\textcolor{gray!40}{4}};
+					\node[font=\bfseries\LARGE,color=valblue]  at (0.8,0.25) {8\textcolor{darkgray!40}{4}};
 					\node[font=\bfseries\LARGE,color=valgreen] at (2.2,0.25) {4};
 					\node[font=\bfseries\LARGE,color=valorange]  at (2.2,-0.5) {2};
 					
 					\node[font=\bfseries\Large,color=valred] at (0,-0.4) {$-$};
-					\node[font=\bfseries\LARGE,color=valred] at (0.8,-0.4) {8};
-					\draw[valdark,line width=1.2pt] (0.2,-0.8) -- (1.2,-0.8);
-					\node[font=\bfseries\LARGE] at (0.8,-1.2) {0};
+					\node[font=\bfseries\LARGE,color=valred] at (0.6,-0.4) {8};
+					\draw[valdark,line width=1.2pt] (0.3,-0.8) -- (0.9,-0.8);
+					\node[font=\bfseries\LARGE] at (0.6,-1.2) {0};
 					
 					% flecha multiplicacion
-					\draw[->, thick, valorange] (1.9, -0.5) to[bend right=45] node[right, font=\footnotesize\bfseries]{$2 \times 4 = \textcolor{valred}{8}$} (1.9, 0.25);
+					\draw[->, thick, valorange] (2.7, -0.5) to[bend right=45] node[right, font=\large\bfseries]{$2 \times 4 = \textcolor{valred}{8}$} (2.7, 0.25);
 				\end{scope}
 				
 				%── Paso 3 ──────────────────────────────────────────────
 				\node[paso, fill=valgreen] at (0,-8.5) {3};
-				\node[texto] at (0.8,-8.5) {\textbf{Baja el siguiente y repite:}\\ \textbf{Baja} la siguiente cifra (\textcolor{valblue}{\textbf{4}}). ¿Cuántas veces cabe el \textcolor{valgreen}{\textbf{4}} adentro de este nuevo \textcolor{valblue}{\textbf{4}}? Cabe \textcolor{valorange}{\textbf{1}} vez. Ponlo en el cociente.\\ Ahora multiplica: $\textcolor{valorange}{\mathbf{1}} \times \textcolor{valgreen}{\mathbf{4}} = \textcolor{valred}{\mathbf{4}}$. Ese 4 lo restamos abajo: $4 - 4 = \mathbf{0}$. ¡Terminamos!};
+				\node[texto] at (0.8,-8.5) {\textbf{Baja el siguiente y repite:}\\ \textbf{Baja} la siguiente cifra (\textcolor{valblue}{\textbf{4}}) (como queda 04, es como un 4). ¿Cuántas veces cabe el \textcolor{valgreen}{\textbf{4}} adentro de este nuevo \textcolor{valblue}{\textbf{4}}? Cabe \textcolor{valorange}{\textbf{1}} vez. Ponlo en el cociente.\\ Ahora multiplica: $\textcolor{valorange}{\mathbf{1}} \times \textcolor{valgreen}{\mathbf{4}} = \textcolor{valred}{\mathbf{4}}$. Ese 4 lo restamos abajo: $4 - 4 = \mathbf{0}$. ¡Terminamos!};
 				
 				\begin{scope}[xshift=10.5cm, yshift=-8cm]
 					\draw[valdark,line width=2pt] (1.5,0.5) -- (1.5,-3);
@@ -779,29 +979,29 @@ top=2.0cm,  bottom=2.0cm
 					\node[font=\bfseries\LARGE,color=valred] at (1.2,-1.8) {4};
 					\draw[valdark,line width=1.2pt] (0.8,-2.2) -- (1.5,-2.2);
 					\node[font=\bfseries\LARGE] at (1.2,-2.6) {0};
-					\node[font=\bfseries\small,color=valred, align=center] at (-0.2,-2.6) {Residuo\\Exacto};
+					\node[font=\bfseries\small,color=valred, align=center] at (3.5,-2.6) {Residuo 0\\División exacta};
 					
-					\draw[->, thick, valorange] (2.5, -0.7) to[bend right=45] node[right, font=\footnotesize\bfseries]{$1 \times 4 = \textcolor{valred}{4}$} (2.5, 0.1);
+					\draw[->, thick, valorange] (2.8, -0.5) to[bend right=45] node[right, font=\large\bfseries]{$1 \times 4 = \textcolor{valred}{4}$} (2.6, 0.5);
 				\end{scope}
 			\end{tikzpicture}
 		\end{center}
 	\end{ejemplo}
 	
-	\vspace{4pt}
+	%\vspace{4pt}
 	
 	\begin{practica}{$\square$ ¡Tu Turno! --- Completa las divisiones}
-		\textit{La caja ya está dibujada. Escribe el cociente y el residuo. Usa el espacio para el trabajo.}
+		\textit{La caja ya está dibujada. Resuelve las siguientes divisiones}
 		
-		\vspace{8pt}
+		%\vspace{8pt}
 		\begin{center}
 			\begin{tikzpicture}[x=1cm,y=1cm]
 				% ── Div 1: 63 ÷ 3 ────────────────────────────────────────
 				\node[cajaz,inner sep=4pt,font=\bfseries\normalsize] at (1.6,0.7)
 				{1)\quad $63 \div 3$};
 				\draw[valdark,line width=2pt] (2.0,0.2) -- (2.0,-3.5);
-				\draw[valdark,line width=2pt] (2.0,0.2) -- (3.9,0.2);
-				\node[font=\bfseries\LARGE,color=valblue]   at (1.0,0.42) {63};
-				\node[font=\bfseries\LARGE,color=valorange] at (2.9,0.42) {3};
+				\draw[valdark,line width=2pt] (2.0,-0.3) -- (3.9,-0.3);
+				\node[font=\bfseries\LARGE,color=valblue]   at (1.0,0) {63};
+				\node[font=\bfseries\LARGE,color=valorange] at (2.9,0) {3};
 				% grid inside left
 				\draw[valblue!15,step=0.4] (0.0,-0.05) grid (1.9,-3.45);
 				
@@ -809,23 +1009,23 @@ top=2.0cm,  bottom=2.0cm
 				\node[cajag,inner sep=4pt,font=\bfseries\normalsize] at (7.2,0.7)
 				{2)\quad $48 \div 4$};
 				\draw[valdark,line width=2pt] (7.6,0.2) -- (7.6,-3.5);
-				\draw[valdark,line width=2pt] (7.6,0.2) -- (9.5,0.2);
-				\node[font=\bfseries\LARGE,color=valblue]   at (6.6,0.42) {48};
-				\node[font=\bfseries\LARGE,color=valorange] at (8.5,0.42) {4};
+				\draw[valdark,line width=2pt] (7.6,-0.3) -- (9.5,-0.3);
+				\node[font=\bfseries\LARGE,color=valblue]   at (6.6,0) {48};
+				\node[font=\bfseries\LARGE,color=valorange] at (8.5,0) {4};
 				\draw[valblue!15,step=0.4] (5.6,-0.05) grid (7.5,-3.45);
 				
 				% ── Div 3: 75 ÷ 5 ────────────────────────────────────────
 				\node[cajao,inner sep=4pt,font=\bfseries\normalsize] at (12.8,0.7)
 				{3)\quad $75 \div 5$};
 				\draw[valdark,line width=2pt] (13.2,0.2) -- (13.2,-3.5);
-				\draw[valdark,line width=2pt] (13.2,0.2) -- (15.1,0.2);
-				\node[font=\bfseries\LARGE,color=valblue]   at (12.2,0.42) {75};
-				\node[font=\bfseries\LARGE,color=valorange] at (14.1,0.42) {5};
+				\draw[valdark,line width=2pt] (13.2,-0.3) -- (15.1,-0.3);
+				\node[font=\bfseries\LARGE,color=valblue]   at (12.2,-0) {75};
+				\node[font=\bfseries\LARGE,color=valorange] at (14.1,-0) {5};
 				\draw[valblue!15,step=0.4] (11.2,-0.05) grid (13.1,-3.45);
 			\end{tikzpicture}
 		\end{center}
 		
-		\vspace{10pt}
+		%\vspace{10pt}
 		
 		% Second row with remainder
 		\begin{center}
@@ -834,143 +1034,31 @@ top=2.0cm,  bottom=2.0cm
 				\node[cajaz,inner sep=4pt,font=\bfseries\normalsize] at (1.6,0.7)
 				{4)\quad $50 \div 4$};
 				\draw[valdark,line width=2pt] (2.0,0.2) -- (2.0,-3.5);
-				\draw[valdark,line width=2pt] (2.0,0.2) -- (3.9,0.2);
-				\node[font=\bfseries\LARGE,color=valblue]   at (1.0,0.42) {50};
-				\node[font=\bfseries\LARGE,color=valorange] at (2.9,0.42) {4};
+				\draw[valdark,line width=2pt] (2.0,-0.3) -- (3.9,-0.3);
+				\node[font=\bfseries\LARGE,color=valblue]   at (1.0,0) {50};
+				\node[font=\bfseries\LARGE,color=valorange] at (2.9,0) {4};
 				\draw[valblue!15,step=0.4] (0.0,-0.05) grid (1.9,-3.45);
 				
 				% ── Div 5: 38 ÷ 3 ────────────────────────────────────────
 				\node[cajag,inner sep=4pt,font=\bfseries\normalsize] at (7.2,0.7)
 				{5)\quad $38 \div 3$};
 				\draw[valdark,line width=2pt] (7.6,0.2) -- (7.6,-3.5);
-				\draw[valdark,line width=2pt] (7.6,0.2) -- (9.5,0.2);
-				\node[font=\bfseries\LARGE,color=valblue]   at (6.6,0.42) {38};
-				\node[font=\bfseries\LARGE,color=valorange] at (8.5,0.42) {3};
+				\draw[valdark,line width=2pt] (7.6,-0.3) -- (9.5,-0.3);
+				\node[font=\bfseries\LARGE,color=valblue]   at (6.6,0) {38};
+				\node[font=\bfseries\LARGE,color=valorange] at (8.5,0) {3};
 				\draw[valblue!15,step=0.4] (5.6,-0.05) grid (7.5,-3.45);
 				
 				% ── Div 6: 59 ÷ 5 ────────────────────────────────────────
 				\node[cajao,inner sep=4pt,font=\bfseries\normalsize] at (12.8,0.7)
 				{6)\quad $59 \div 5$};
 				\draw[valdark,line width=2pt] (13.2,0.2) -- (13.2,-3.5);
-				\draw[valdark,line width=2pt] (13.2,0.2) -- (15.1,0.2);
-				\node[font=\bfseries\LARGE,color=valblue]   at (12.2,0.42) {59};
-				\node[font=\bfseries\LARGE,color=valorange] at (14.1,0.42) {5};
+				\draw[valdark,line width=2pt] (13.2,-0.3) -- (15.1,-0.3);
+				\node[font=\bfseries\LARGE,color=valblue]   at (12.2,0) {59};
+				\node[font=\bfseries\LARGE,color=valorange] at (14.1,0) {5};
 				\draw[valblue!15,step=0.4] (11.2,-0.05) grid (13.1,-3.45);
 			\end{tikzpicture}
 		\end{center}
 	\end{practica}
-	
-	%\newpage
-	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 5 – La Prueba de la División
-	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valorange}{Misión 5: La Prueba de la División}
-	
-	\begin{truco}{¿Cómo sé si mi división está bien?}
-		Existe una fórmula para \textbf{verificar} que tu respuesta es correcta.
-		Si la fórmula da el Dividendo original, ¡tu división está bien!
-		
-		\vspace{8pt}
-		\begin{center}
-			\begin{tikzpicture}[x=1cm,y=1cm]
-				%── Fórmula principal ────────────────────────────────────
-				\node[cajaz,minimum width=15cm,minimum height=1.4cm,
-				font=\bfseries\LARGE,inner sep=10pt] at (0,0)
-				{\textcolor{valblue}{\textbf{Dividendo}}
-					\;$=$\;
-					\textcolor{valorange}{\textbf{Divisor}}
-					\;$\times$\;
-					\textcolor{valgreen}{\textbf{Cociente}}
-					\;$+$\;
-					\textcolor{valred}{\textbf{Residuo}}};
-				
-				%── Abreviado ────────────────────────────────────────────
-				\node[cajao,minimum width=8cm,minimum height=1.0cm,
-				font=\bfseries\Large,inner sep=7pt] at (0,-1.9)
-				{\textbf{D} $=$ \textbf{d} $\times$ \textbf{c} $+$ \textbf{r}};
-			\end{tikzpicture}
-		\end{center}
-	\end{truco}
-	
-	\vspace{4pt}
-	
-	\begin{ejemplo}{Mira cómo se hace: verificar $25 \div 4 = 6$ R $1$}
-		\begin{center}
-			\begin{tikzpicture}[x=1cm,y=1cm]
-				%── Datos de la división ─────────────────────────────────
-				\node[cajaz,inner sep=6pt,font=\bfseries\large] at (0,0)
-				{Dividendo $= 25$};
-				\node[cajao,inner sep=6pt,font=\bfseries\large] at (4.5,0)
-				{Divisor $= 4$};
-				\node[cajag,inner sep=6pt,font=\bfseries\large] at (9.0,0)
-				{Cociente $= 6$};
-				\node[cajar,inner sep=6pt,font=\bfseries\large] at (13.0,0)
-				{Residuo $= 1$};
-				
-				%── Sustitución ──────────────────────────────────────────
-				\draw[flechaop,valdark] (7.0,-0.6) -- (7.0,-1.4);
-				\node[font=\bfseries\LARGE,color=valdark] at (7.0,-1.9)
-				{D $=$ d $\times$ c $+$ r};
-				\node[font=\bfseries\LARGE,color=valdark] at (7.0,-2.9)
-				{$25 = 4 \times 6 + 1$};
-				\node[font=\bfseries\LARGE,color=valdark] at (7.0,-3.9)
-				{$25 = 24 + 1$};
-				\node[cajag,minimum width=4cm,minimum height=1.0cm,
-				font=\bfseries\LARGE,inner sep=7pt] at (7.0,-5.1)
-				{$25 = 25$ \quad\checkmark};
-				\node[font=\bfseries\large,color=valgreen] at (7.0,-6.0)
-				{{¡}El resultado coincide! La división está bien.};
-			\end{tikzpicture}
-		\end{center}
-	\end{ejemplo}
-	
-	\vspace{4pt}
-	
-	\begin{practica}{$\square$ ¡Tu Turno! --- Verifica estas divisiones}
-		\textit{Aplica la fórmula D $=$ d $\times$ c $+$ r y confirma si la división es correcta.}
-		
-		\vspace{8pt}
-		\begin{center}
-			\begin{tikzpicture}[x=1cm,y=1cm]
-				%── Header ───────────────────────────────────────────────
-				\draw[valblue,fill=vallightblue,rounded corners=3pt]
-				(-0.2,0.55) rectangle (16.2,-0.05);
-				\node[font=\bfseries\normalsize,color=valblue] at (2.0,0.27)
-				{División};
-				\node[font=\bfseries\normalsize,color=valblue] at (6.5,0.27)
-				{Sustitución en D $=$ d$\times$c$+$r};
-				\node[font=\bfseries\normalsize,color=valblue] at (13.0,0.27)
-				{¿Está correcta?};
-				
-				% Fila 1: 48÷4=12 R0
-				\node[font=\bfseries\large,color=valdark] at (2.0,-0.85)
-				{$48 \div 4 = 12$ \quad R $0$};
-				\draw[valblue,line width=1pt] (4.3,-1.25) rectangle (10.5,-0.45);
-				\node[font=\bfseries\normalsize,color=valdark!50] at (7.4,-0.85)
-				{$48 = 4 \times 12 + 0 = $};
-				\draw[valblue,line width=1pt] (10.5,-1.25) rectangle (12.5,-0.45);
-				\draw[valdark,line width=0.8pt] (12.0,-1.25) rectangle (15.8,-0.45);
-				
-				% Fila 2: 38÷3=12 R2
-				\node[font=\bfseries\large,color=valdark] at (2.0,-2.05)
-				{$38 \div 3 = 12$ \quad R $2$};
-				\draw[valblue,line width=1pt] (4.3,-2.45) rectangle (10.5,-1.65);
-				\draw[valblue,line width=1pt] (10.5,-2.45) rectangle (12.5,-1.65);
-				\draw[valdark,line width=0.8pt] (12.0,-2.45) rectangle (15.8,-1.65);
-				
-				% Fila 3: 75÷5=15 R0
-				\node[font=\bfseries\large,color=valdark] at (2.0,-3.25)
-				{$75 \div 5 = 15$ \quad R $0$};
-				\draw[valblue,line width=1pt] (4.3,-3.65) rectangle (10.5,-2.85);
-				\draw[valblue,line width=1pt] (10.5,-3.65) rectangle (12.5,-2.85);
-				\draw[valdark,line width=0.8pt] (12.0,-3.65) rectangle (15.8,-2.85);
-			\end{tikzpicture}
-		\end{center}
-	\end{practica}
-	
-	%\newpage
-	
 	% ══════════════════════════════════════════════════════════════════════════
 	%  MISIÓN 6 – La División en la Vida Real
 	% ══════════════════════════════════════════════════════════════════════════
@@ -1007,8 +1095,8 @@ top=2.0cm,  bottom=2.0cm
 			\end{tikzpicture}
 		\end{center}
 	\end{truco}
-	
-	\vspace{5pt}
+	\newpage
+	%\vspace{5pt}
 	
 	% ── Problema 1 ────────────────────────────────────────────────────────────
 	\begin{espaciotrabajonb}{Problema 1 --- Los Dulces}
@@ -1016,12 +1104,12 @@ top=2.0cm,  bottom=2.0cm
 			\textit{Tengo \textbf{24 dulces} y los quiero repartir en \textbf{4} bolsas
 				iguales. ¿Cuántos dulces va en cada bolsa?}
 			
-			\vspace{6pt}
+		%	\vspace{6pt}
 			Operación:\quad
 			\boxfill[1.8cm]\;$\div$\;\boxfill[1.8cm]\;$=$\;\boxfill[1.8cm]
 			\quad R\;\boxfill[1.2cm]
 			
-			\vspace{5pt}
+		%	\vspace{5pt}
 			Respuesta: En cada bolsa van\;\boxfill[3.5cm]\;dulces.
 		\end{minipage}%
 		\hfill
@@ -1043,11 +1131,11 @@ top=2.0cm,  bottom=2.0cm
 			\end{center}
 		\end{minipage}
 		
-		\vspace{4pt}
+	%	\vspace{4pt}
 		\textbf{Espacio de trabajo:}\vspace{2.5cm}
 	\end{espaciotrabajonb}
 	
-	\vspace{4pt}
+%	\vspace{4pt}
 	
 	% ── Problema 2 ────────────────────────────────────────────────────────────
 	\begin{espaciotrabajonb}{Problema 2 --- Los Equipos de Fútbol}
@@ -1055,22 +1143,22 @@ top=2.0cm,  bottom=2.0cm
 			\textit{Hay \textbf{35 estudiantes} y se quieren armar equipos de
 				\textbf{5} personas. ¿Cuántos equipos se pueden formar?}
 			
-			\vspace{6pt}
+		%	\vspace{6pt}
 			Operación:\quad
 			\boxfill[1.8cm]\;$\div$\;\boxfill[1.8cm]\;$=$\;\boxfill[1.8cm]
 			\quad R\;\boxfill[1.2cm]
 			
-			\vspace{5pt}
+		%	\vspace{5pt}
 			Respuesta: Se pueden formar\;\boxfill[3cm]\;equipos.
 		\end{minipage}%
 		\hfill
 		\begin{minipage}{0.35\textwidth}
-			\vspace{4pt}
+		%	\vspace{4pt}
 			\textbf{Espacio de trabajo:}\vspace{3cm}
 		\end{minipage}
 	\end{espaciotrabajonb}
 	
-	\vspace{4pt}
+	%\vspace{4pt}
 	
 	% ── Problema 3 ────────────────────────────────────────────────────────────
 	\begin{espaciotrabajonb}{Problema 3 --- Los Libros}
@@ -1078,41 +1166,17 @@ top=2.0cm,  bottom=2.0cm
 			\textit{Una librería tiene \textbf{56 libros} para colocar en
 				\textbf{7} estantes. ¿Cuántos libros van en cada estante?}
 			
-			\vspace{6pt}
+			%\vspace{6pt}
 			Operación:\quad
 			\boxfill[1.8cm]\;$\div$\;\boxfill[1.8cm]\;$=$\;\boxfill[1.8cm]
 			\quad R\;\boxfill[1.2cm]
 			
-			\vspace{5pt}
+		%	\vspace{5pt}
 			Respuesta: En cada estante van\;\boxfill[3cm]\;libros.
 		\end{minipage}%
 		\hfill
 		\begin{minipage}{0.35\textwidth}
-			\vspace{4pt}
-			\textbf{Espacio de trabajo:}\vspace{3cm}
-		\end{minipage}
-	\end{espaciotrabajonb}
-	
-	\vspace{4pt}
-	
-	% ── Problema 4 ────────────────────────────────────────────────────────────
-	\begin{espaciotrabajonb}{Problema 4 --- Las Galletas}
-		\begin{minipage}{0.60\textwidth}
-			\textit{Mamá hornea \textbf{50 galletas} y las reparte en cajas de
-				\textbf{6}. ¿Cuántas cajas completas tiene? ¿Cuántas galletas sobran?}
-			
-			\vspace{6pt}
-			Operación:\quad
-			\boxfill[1.8cm]\;$\div$\;\boxfill[1.8cm]\;$=$\;\boxfill[1.8cm]
-			\quad R\;\boxfill[1.2cm]
-			
-			\vspace{5pt}
-			Respuesta: Hay\;\boxfill[2.2cm]\;cajas completas
-			y sobran\;\boxfill[2.2cm]\;galletas.
-		\end{minipage}%
-		\hfill
-		\begin{minipage}{0.35\textwidth}
-			\vspace{4pt}
+		%	\vspace{4pt}
 			\textbf{Espacio de trabajo:}\vspace{3cm}
 		\end{minipage}
 	\end{espaciotrabajonb}

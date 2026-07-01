@@ -1,0 +1,1246 @@
+% ╔══════════════════════════════════════════════════════════════════════════╗
+% ║  LICEO V.A.L. – MÓDULO DE AUTOAPRENDIZAJE                              ║
+% ║  Código: 06M-09 AC  |  Grado: 6°  |  Ruta: Adaptación Curricular      ║
+% ║  Unidad 9: Fracciones — Representación y Términos                       ║
+% ╚══════════════════════════════════════════════════════════════════════════╝
+
+\documentclass[12pt,letterpaper]{article}
+
+% ── CODIFICACIÓN Y TIPOGRAFÍA ──────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ── GEOMETRÍA ──────────────────────────────────────────────────────────────
+\usepackage[
+letterpaper,
+left=1.8cm, right=1.8cm,
+top=2.0cm,  bottom=2.0cm
+]{geometry}
+
+% ── GRÁFICOS, COLOR Y FONDO ────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+% ── TIKZ ──────────────────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,calc,positioning,backgrounds}
+
+% ── TCOLORBOX ──────────────────────────────────────────────────────────────
+\usepackage{tcolorbox}
+\tcbuselibrary{most,skins,breakable}
+
+% ── PAQUETES ADICIONALES ───────────────────────────────────────────────────
+\usepackage{array,tabularx,booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{gensymb}
+\usepackage{needspace}
+
+% ══════════════════════════════════════════════════════════════════════════
+% PALETA INSTITUCIONAL VAL
+% ══════════════════════════════════════════════════════════════════════════
+\definecolor{valblue}       {RGB}{  0, 84,166}
+\definecolor{valgreen}      {RGB}{  0,150, 64}
+\definecolor{valred}        {RGB}{200, 16, 46}
+\definecolor{valdark}       {RGB}{ 40, 40, 40}
+\definecolor{valorange}     {RGB}{230,100,  0}
+\definecolor{vallightblue}  {RGB}{220,235,250}
+\definecolor{vallightgreen} {RGB}{220,245,230}
+\definecolor{vallightred}   {RGB}{255,228,228}
+\definecolor{vallightorange}{RGB}{255,238,210}
+\definecolor{valgray}       {RGB}{245,245,245}
+\definecolor{valpurple}     {RGB}{120, 70,160}
+\definecolor{vallightpurple}{RGB}{235,225,245}
+
+% ══════════════════════════════════════════════════════════════════════════
+% FONDO INSTITUCIONAL
+% ══════════════════════════════════════════════════════════════════════════
+\AddToShipoutPictureBG{%
+	\includegraphics[width=\paperwidth,height=\paperheight,%
+	keepaspectratio=false]{../../FondoVAL.pdf}%
+}
+
+% ══════════════════════════════════════════════════════════════════════════
+% TIKZSET – estilos con nombre (sin parámetro #1)
+% ══════════════════════════════════════════════════════════════════════════
+\tikzset{
+	cajaz/.style    = {draw=valblue,   fill=vallightblue,   rounded corners=4pt},
+	cajag/.style    = {draw=valgreen,  fill=vallightgreen,  rounded corners=4pt},
+	cajar/.style    = {draw=valred,    fill=vallightred,    rounded corners=4pt},
+	cajao/.style    = {draw=valorange, fill=vallightorange, rounded corners=4pt},
+	cajap/.style    = {draw=valpurple, fill=vallightpurple, rounded corners=4pt},
+	btnazul/.style  = {draw=valblue,   fill=valblue,   rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnorange/.style= {draw=valorange, fill=valorange, rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnverde/.style = {draw=valgreen,  fill=valgreen,  rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnrojo/.style  = {draw=valred,    fill=valred,    rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	flechaop/.style = {->,>=stealth,ultra thick},
+}
+
+% ══════════════════════════════════════════════════════════════════════════
+% AMBIENTES TCOLORBOX INSTITUCIONALES
+% ══════════════════════════════════════════════════════════════════════════
+\newtcolorbox{concepto}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightblue,
+	colframe     = valblue,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm,xshift=4mm},
+	boxed title style={colback=valblue,colframe=valblue,rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+\newtcolorbox{truco}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightorange,
+	colframe     = valorange,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm,xshift=4mm},
+	boxed title style={colback=valorange,colframe=valorange,rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+\newtcolorbox{ejemplo}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightgreen,
+	colframe     = valgreen,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm,xshift=4mm},
+	boxed title style={colback=valgreen,colframe=valgreen,rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+\newtcolorbox{practica}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = valgray,
+	colframe     = valdark,
+	coltitle     = white,
+	attach boxed title to top left={yshift=-2mm,xshift=4mm},
+	boxed title style={colback=valdark,colframe=valdark,rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+\newtcolorbox{espaciotrabajonb}[1]{
+	enhanced,
+	title    = {\bfseries #1},
+	colback  = white,
+	colframe = valblue!50,
+	coltitle = valblue,
+	arc=2mm, boxrule=0.8pt,
+	left=2mm, right=2mm, top=4mm,
+}
+
+% ── Caja de respuesta ─────────────────────────────────────────────────────
+\newcommand{\boxfill}[1][3.5cm]{%
+	\tikz[baseline=-0.5ex]%
+	\draw[valblue,line width=1pt] (0,0) rectangle (#1,0.78cm);%
+}
+
+% ── Encabezado de Misión ───────────────────────────────────────────────────
+\newcommand{\mision}[2]{%
+	\needspace{5cm}%
+	\vspace{5pt}%
+	\begin{tcolorbox}[
+		enhanced,
+		colback=#1, colframe=#1!60!black,
+		arc=3mm, boxrule=1.5pt,
+		left=6pt, right=6pt, top=5pt, bottom=5pt,
+		]
+		{\large\bfseries\color{white} #2}
+	\end{tcolorbox}%
+	\vspace{2pt}%
+}
+
+% ══════════════════════════════════════════════════════════════════════════
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+% ╔══════════════════════════════════════════════════════════════════════════╗
+% ║                       INICIO DEL DOCUMENTO                             ║
+% ╚══════════════════════════════════════════════════════════════════════════╝
+\begin{document}
+	
+	% ── PORTADA ───────────────────────────────────────────────────────────────
+	\begin{center}
+		{\Large\bfseries\color{valblue} LICEO V.A.L.\ (VIDA, AMOR, LUZ)}\\[4pt]
+		{\large\bfseries MÓDULO DE AUTOAPRENDIZAJE\ ---\ MATEMÁTICAS 6\textdegree}\\[8pt]
+		
+		\begin{tcolorbox}[
+			enhanced, arc=6mm, boxrule=2pt,
+			colback=valblue, colframe=valdark,
+			halign=center,
+			]
+			{\Huge\bfseries\color{white} UNIDAD 9}\\[4pt]
+			{\Large\bfseries\color{yellow!90!white}
+				Fracciones: Representación y Términos}
+		\end{tcolorbox}
+		
+		\vspace{6pt}
+		\begin{tcolorbox}[
+			enhanced, arc=4mm, boxrule=1.5pt,
+			colback=white, colframe=valblue,
+			width=0.88\linewidth, halign=center,
+			]
+			{\bfseries Nombre:}\\[6pt]
+			\rule{9cm}{0.5pt}\\[6pt]
+			{\bfseries Código:}\ \underline{06M-09 AC}
+			\hspace{2cm}
+			{\bfseries Año:}\ \underline{2026}
+		\end{tcolorbox}
+		
+		%\vspace{4pt}
+		{\itshape
+			``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+	\end{center}
+	
+	%\vspace{6pt}
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 1 – ¿Qué es una Fracción?
+	% ══════════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 1: {¿}Qué es una Fracción?}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto}
+		Una \textbf{fracción} representa una \textbf{PARTE} de un \textbf{TODO},
+		que ha sido dividido en partes \textbf{IGUALES}.
+		
+		%\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── Pizza dividida en 4, 1 parte coloreada ──────────────
+				\begin{scope}[shift={(2.3,0)}]
+					\draw[valdark,line width=1.6pt,fill=valorange]
+					(0,0) -- (0:2.2) arc (0:90:2.2) -- cycle;
+					\draw[valdark,line width=1.6pt,fill=white]
+					(0,0) -- (90:2.2) arc (90:180:2.2) -- cycle;
+					\draw[valdark,line width=1.6pt,fill=white]
+					(0,0) -- (180:2.2) arc (180:270:2.2) -- cycle;
+					\draw[valdark,line width=1.6pt,fill=white]
+					(0,0) -- (270:2.2) arc (270:360:2.2) -- cycle;
+					\node[font=\bfseries\normalsize,color=valdark] at (0,-2.8)
+					{Pizza dividida en 4 partes};
+				\end{scope}
+				
+				%── Flecha ───────────────────────────────────────────────
+				\draw[flechaop,valdark] (5.0,0) -- (6.0,0);
+				
+				%── Resultado fracción ───────────────────────────────────
+				\node[cajao,minimum width=3.6cm,minimum height=2.0cm,
+				font=\bfseries\Huge,inner sep=8pt] at (8.4,0)
+				{$\dfrac{1}{4}$};
+				\node[font=\bfseries\normalsize,color=valdark,align=center,
+				text width=4.2cm] at (8.4,-1.7)
+				{Tomamos \textbf{1} parte\\ de un total de \textbf{4}};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{6pt}
+		\begin{center}
+			\begin{tikzpicture}
+				\node[cajaz,minimum width=14.5cm,minimum height=0.9cm,
+				font=\bfseries\large,inner sep=7pt] at (0,0)
+				{El signo de fracción es una raya: $\dfrac{\;\;}{\;\;}$};
+				\node[cajaz,minimum width=14.5cm,minimum height=0.9cm,
+				font=\bfseries\large,inner sep=7pt] at (0,-1.5)
+				{$\dfrac{1}{4}$\ Se lee: ``un cuarto'' o ``1 de 4''};
+			\end{tikzpicture}
+			
+		\end{center}
+	\end{concepto}
+	
+	%\vspace{4pt}
+	
+	\begin{truco}{¡Regla de Oro: Las Partes Deben Ser IGUALES!}
+		Para que algo sea una fracción correcta, \textbf{todas las partes}
+		deben tener el \textbf{mismo tamaño}.
+		
+		%\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── CORRECTO: rectángulo 4 partes iguales ───────────────
+				\begin{scope}[shift={(0,0)}]
+					\draw[valdark,line width=1.5pt,fill=vallightgreen]
+					(0,0) rectangle (4.0,1.3);
+					\draw[valdark,line width=1.2pt] (1.0,0) -- (1.0,1.3);
+					\draw[valdark,line width=1.2pt] (2.0,0) -- (2.0,1.3);
+					\draw[valdark,line width=1.2pt] (3.0,0) -- (3.0,1.3);
+					\node[font=\Huge,color=valgreen] at (5.0,0.65) {\checkmark};
+					\node[font=\bfseries\normalsize,color=valgreen,align=center,
+					text width=3cm] at (2.0,-0.65)
+					{CORRECTO\\ {\footnotesize partes iguales}};
+				\end{scope}
+				
+				%── INCORRECTO: rectángulo 3 partes desiguales ──────────
+				\begin{scope}[shift={(8.8,0)}]
+					\draw[valdark,line width=1.5pt,fill=vallightred]
+					(0,0) rectangle (4.0,1.3);
+					\draw[valdark,line width=1.2pt] (0.7,0) -- (0.7,1.3);
+					\draw[valdark,line width=1.2pt] (2.3,0) -- (2.3,1.3);
+					\node[font=\Huge,color=valred] at (5.0,0.65) {\textbf{X}};
+					\node[font=\bfseries\normalsize,color=valred,align=center,
+					text width=3cm] at (2.0,-0.65)
+					{INCORRECTO\\ {\footnotesize partes desiguales}};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+	\end{truco}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- {¿}Partes Iguales o No?}
+		\textit{Observa cada figura. Marca con \checkmark\ si está dividida en
+			partes \textbf{IGUALES}, o con \textbf{X} si \textbf{NO} lo está.}
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── A: rectángulo 4 partes iguales ──────────────────────
+				\begin{scope}[shift={(0,0)}]
+					\node[font=\bfseries\normalsize,color=valdark] at (2.0,1.85) {A)};
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) rectangle (4.0,1.5);
+					\draw[valdark,line width=1pt] (1.0,0) -- (1.0,1.5);
+					\draw[valdark,line width=1pt] (2.0,0) -- (2.0,1.5);
+					\draw[valdark,line width=1pt] (3.0,0) -- (3.0,1.5);
+					\draw[valblue,line width=1pt] (4.5,0.1) rectangle (5.5,1.4);
+				\end{scope}
+				
+				%── B: círculo 3 partes desiguales ──────────────────────
+				\begin{scope}[shift={(7.3,0.75)}]
+					\node[font=\bfseries\normalsize,color=valdark] at (0,1.6) {B)};
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (0:1.7) arc (0:40:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (40:1.7) arc (40:110:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (110:1.7) arc (110:360:1.7) -- cycle;
+					\draw[valblue,line width=1pt] (2.4,-0.65) rectangle (3.4,0.65);
+				\end{scope}
+				
+				%── C: círculo 6 partes iguales ──────────────────────────
+				\begin{scope}[shift={(12.0,0.75)}]
+					\node[font=\bfseries\normalsize,color=valdark] at (0,1.6) {C)};
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (0:1.7) arc (0:60:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (60:1.7) arc (60:120:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (120:1.7) arc (120:180:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (180:1.7) arc (180:240:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (240:1.7) arc (240:300:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (300:1.7) arc (300:360:1.7) -- cycle;
+					\draw[valblue,line width=1pt] (2.4,-0.65) rectangle (3.4,0.65);
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{6pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── D: rectángulo 3 partes desiguales ───────────────────
+				\node[font=\bfseries\normalsize,color=valdark] at (2.0,0.95) {D)};
+				\draw[valdark,line width=1.3pt,fill=white]
+				(0,-0.75) rectangle (4.5,0.75);
+				\draw[valdark,line width=1pt] (0.6,-0.75) -- (0.6,0.75);
+				\draw[valdark,line width=1pt] (2.1,-0.75) -- (2.1,0.75);
+				\draw[valblue,line width=1pt] (5.0,-0.65) rectangle (6.0,0.65);
+			\end{tikzpicture}
+		\end{center}
+	\end{practica}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 2 – Los Términos de la Fracción
+	% ══════════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 2: Los Términos de la Fracción}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto: Las 2 Partes con Nombre}
+		Toda fracción tiene \textbf{2 números} con nombre propio, separados por
+		una \textbf{raya}.
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── Número de arriba ─────────────────────────────────────
+				\node[btnazul,minimum width=2.1cm,minimum height=1.5cm,
+				font=\bfseries\Huge] at (0,1.4) {3};
+				%── Raya ──────────────────────────────────────────────────
+				\draw[valdark,line width=3pt] (-1.4,0) -- (1.4,0);
+				%── Número de abajo ──────────────────────────────────────
+				\node[btnorange,minimum width=2.1cm,minimum height=1.5cm,
+				font=\bfseries\Huge] at (0,-1.4) {4};
+				
+				%── Flecha y etiqueta NUMERADOR ──────────────────────────
+				\draw[flechaop,valblue,line width=1.5pt] (1.9,1.4) -- (2.9,1.4);
+				\node[cajaz,inner sep=6pt,font=\bfseries\large,align=left,
+				text width=5.2cm] at (5.9,1.4)
+				{NUMERADOR\\[2pt]
+					{\normalsize cuántas partes\\ \textbf{tomamos}}};
+				
+				%── Flecha y etiqueta DENOMINADOR ────────────────────────
+				\draw[flechaop,valorange,line width=1.5pt] (1.9,-1.4) -- (2.9,-1.4);
+				\node[cajao,inner sep=6pt,font=\bfseries\large,align=left,
+				text width=5.4cm] at (6.0,-1.4)
+				{DENOMINADOR\\[2pt]
+					{\normalsize en cuántas partes\\ se dividió el \textbf{entero}}};
+				
+				%── Pequeña pizza de apoyo (3/4) ─────────────────────────
+				\begin{scope}[shift={(10.7,0)}]
+					\draw[valdark,line width=1.3pt,fill=vallightblue]
+					(0,0) -- (0:1.4) arc (0:90:1.4) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=vallightblue]
+					(0,0) -- (90:1.4) arc (90:180:1.4) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=vallightblue]
+					(0,0) -- (180:1.4) arc (180:270:1.4) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (270:1.4) arc (270:360:1.4) -- cycle;
+					\node[font=\bfseries\small,color=valdark] at (0,-1.9)
+					{3 de 4 partes};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	
+	%\vspace{4pt}
+	
+	\begin{truco}{¡El de ABAJO Manda!}
+		Un truco fácil para recordar:
+		\begin{itemize}[leftmargin=*,itemsep=2pt]
+			\item El \textcolor{valorange}{\textbf{DENOMINADOR}} (de \textbf{abajo})
+			\textbf{manda}: dice en cuántas partes se cortó el entero.
+			\item El \textcolor{valblue}{\textbf{NUMERADOR}} (de \textbf{arriba})
+			\textbf{cuenta} cuántas de esas partes tomamos.
+		\end{itemize}
+	\end{truco}
+	
+	%\vspace{4pt}
+	
+	\begin{ejemplo}{Mira cómo se hace: Leer una imagen y escribir la fracción}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── Pasos ────────────────────────────────────────────────
+				\node[btnazul,minimum width=0.8cm,minimum height=0.8cm,
+				font=\bfseries\normalsize] at (0,0) {1};
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=7.5cm] at (0.65,0)
+				{Cuenta cuántas partes \textbf{TOTALES} tiene la figura.
+					Eso es el \textcolor{valorange}{\textbf{Denominador}}.};
+				
+				\node[btnorange,minimum width=0.8cm,minimum height=0.8cm,
+				font=\bfseries\normalsize] at (0,-1.7) {2};
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=7.5cm] at (0.65,-1.7)
+				{Cuenta cuántas partes están \textbf{coloreadas}.
+					Eso es el \textcolor{valblue}{\textbf{Numerador}}.};
+				
+				\node[btnverde,minimum width=0.8cm,minimum height=0.8cm,
+				font=\bfseries\normalsize] at (0,-3.4) {3};
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=7.5cm] at (0.65,-3.4)
+				{Escribe Numerador arriba, Denominador abajo.};
+				
+				%── Pizza ejemplo: 5 partes, 2 coloreadas ────────────────
+				\begin{scope}[shift={(10.5,-1.7)}]
+					\draw[valdark,line width=1.4pt,fill=vallightblue]
+					(0,0) -- (0:1.8) arc (0:72:1.8) -- cycle;
+					\draw[valdark,line width=1.4pt,fill=vallightblue]
+					(0,0) -- (72:1.8) arc (72:144:1.8) -- cycle;
+					\draw[valdark,line width=1.4pt,fill=white]
+					(0,0) -- (144:1.8) arc (144:216:1.8) -- cycle;
+					\draw[valdark,line width=1.4pt,fill=white]
+					(0,0) -- (216:1.8) arc (216:288:1.8) -- cycle;
+					\draw[valdark,line width=1.4pt,fill=white]
+					(0,0) -- (288:1.8) arc (288:360:1.8) -- cycle;
+				\end{scope}
+				
+				\draw[flechaop,valdark] (12.3,-1.7) -- (13.1,-1.7);
+				\node[cajag,minimum width=2.5cm,minimum height=1.7cm,
+				font=\bfseries\LARGE,inner sep=6pt] at (14.7,-1.7)
+				{$\dfrac{2}{5}$};
+			\end{tikzpicture}
+		\end{center}
+	\end{ejemplo}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Identifica Numerador y Denominador}
+		\textit{Escribe \textbf{N} (Numerador) o \textbf{D} (Denominador) debajo de
+			cada número.}
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── Fracción 1: 2/5 ───────────────────────────────────────
+				\node[font=\bfseries\normalsize] at (0,1.7) {1)};
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (0.8,2.0) {2};
+				\draw[valdark,line width=1.5pt] (0.2,1.4) -- (1.4,1.4);
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (0.8,0.8) {5};
+				\draw[valdark] (0.2,0.15) -- (1.4,0.15);
+				\node[font=\bfseries\small,color=valdark] at (0.8,-0.20) {};
+				
+				%── Fracción 2: 7/8 ───────────────────────────────────────
+				\node[font=\bfseries\normalsize] at (4.3,1.7) {2)};
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (5.1,2.0) {7};
+				\draw[valdark,line width=1.5pt] (4.5,1.4) -- (5.7,1.4);
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (5.1,0.8) {8};
+				\draw[valdark] (4.5,0.15) -- (5.7,0.15);
+				
+				%── Fracción 3: 1/3 ───────────────────────────────────────
+				\node[font=\bfseries\normalsize] at (8.6,1.7) {3)};
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (9.4,2.0) {1};
+				\draw[valdark,line width=1.5pt] (8.8,1.4) -- (10.0,1.4);
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (9.4,0.8) {3};
+				\draw[valdark] (8.8,0.15) -- (10.0,0.15);
+				
+				%── Fracción 4: 4/9 ───────────────────────────────────────
+				\node[font=\bfseries\normalsize] at (12.9,1.7) {4)};
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (13.7,2.0) {4};
+				\draw[valdark,line width=1.5pt] (13.1,1.4) -- (14.3,1.4);
+				\node[draw=valdark,fill=white,minimum width=1.1cm,minimum height=0.85cm,
+				font=\bfseries\Large] at (13.7,0.8) {9};
+				\draw[valdark] (13.1,0.15) -- (14.3,0.15);
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{8pt}
+		\textit{Completa las oraciones:}
+		
+		%\vspace{4pt}
+		El número de \textbf{arriba} se llama: \boxfill[5.5cm]
+		
+		%\vspace{6pt}
+		El número de \textbf{abajo} se llama: \boxfill[5.5cm]
+	\end{practica}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 3 – Representación Gráfica de Fracciones
+	% ══════════════════════════════════════════════════════════════════════════
+	\mision{valgreen}{Misión 3: Representación Gráfica de Fracciones}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto: ¡Una Fracción, Muchas Formas!}
+		La misma fracción se puede dibujar de \textbf{diferentes maneras}.
+		Mira las \textbf{4 formas} de representar $\dfrac{3}{4}$:
+		
+		%\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%══ PANEL 1: Círculo ════════════════════════════════════
+				\begin{scope}[shift={(2.0,6.6)}]
+					\draw[valdark,line width=1.4pt,fill=vallightblue]
+					(0,0) -- (0:1.7) arc (0:90:1.7) -- cycle;
+					\draw[valdark,line width=1.4pt,fill=vallightblue]
+					(0,0) -- (90:1.7) arc (90:180:1.7) -- cycle;
+					\draw[valdark,line width=1.4pt,fill=vallightblue]
+					(0,0) -- (180:1.7) arc (180:270:1.7) -- cycle;
+					\draw[valdark,line width=1.4pt,fill=white]
+					(0,0) -- (270:1.7) arc (270:360:1.7) -- cycle;
+					\node[font=\bfseries\normalsize,color=valblue] at (0,-2.25)
+					{C\'irculo};
+				\end{scope}
+				
+				%══ PANEL 2: Rectángulo ═════════════════════════════════
+				\begin{scope}[shift={(8.2,7.0)}]
+					\draw[valdark,line width=1.4pt,fill=vallightgreen]
+					(0,0) rectangle (3.0,1.3);
+					\draw[valdark,line width=1.4pt,fill=white]
+					(3.0,0) rectangle (4.0,1.3);
+					\draw[valdark,line width=1.1pt] (1.0,0) -- (1.0,1.3);
+					\draw[valdark,line width=1.1pt] (2.0,0) -- (2.0,1.3);
+					\node[font=\bfseries\normalsize,color=valgreen] at (2.0,-0.6)
+					{Rect\'angulo};
+				\end{scope}
+				
+				%══ PANEL 3: Recta numérica ═════════════════════════════
+				\begin{scope}[shift={(0.6,3.0)}]
+					\draw[valdark,line width=1.5pt] (0,0) -- (6.4,0);
+					\draw[valdark,line width=1.2pt] (0,-0.15)   -- (0,0.15);
+					\draw[valdark,line width=1.2pt] (1.6,-0.15) -- (1.6,0.15);
+					\draw[valdark,line width=1.2pt] (3.2,-0.15) -- (3.2,0.15);
+					\draw[valdark,line width=1.2pt] (4.8,-0.15) -- (4.8,0.15);
+					\draw[valdark,line width=1.2pt] (6.4,-0.15) -- (6.4,0.15);
+					\node[font=\normalsize,below] at (0,-0.30)   {0};
+					\node[font=\normalsize,below] at (6.4,-0.30) {1};
+					\fill[valred] (4.8,0) circle (4.5pt);
+					\node[font=\bfseries\normalsize,color=valred,above]
+					at (4.8,0.30) {$\frac{3}{4}$};
+					\node[font=\bfseries\normalsize,color=valorange] at (3.2,-0.95)
+					{Recta num\'erica};
+				\end{scope}
+				
+				%══ PANEL 4: Conjunto de objetos ════════════════════════
+				\begin{scope}[shift={(9.0,2.7)}]
+					\node[draw=valpurple,fill=vallightpurple,circle,
+					minimum size=1.0cm] at (0,0)   {};
+					\node[draw=valpurple,fill=vallightpurple,circle,
+					minimum size=1.0cm] at (1.3,0) {};
+					\node[draw=valpurple,fill=vallightpurple,circle,
+					minimum size=1.0cm] at (2.6,0) {};
+					\node[draw=valdark,fill=white,circle,
+					minimum size=1.0cm] at (3.9,0) {};
+					\node[font=\bfseries\normalsize,color=valpurple] at (1.95,-0.95)
+					{Conjunto};
+				\end{scope}
+				
+				%── Fracción central grande ──────────────────────────────
+				\node[cajar,minimum width=2.3cm,minimum height=1.6cm,
+				font=\bfseries\Huge,inner sep=5pt] at (15.2,4.85)
+				{$\dfrac{3}{4}$};
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Escribe la Fracción}
+		\textit{Observa cada figura y escribe la fracción que representa.}
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── Item 1: círculo 2/3 ──────────────────────────────────
+				\begin{scope}[shift={(1.5,1.2)}]
+					\node[font=\bfseries\normalsize] at (0,2.0) {1)};
+					\draw[valdark,line width=1.3pt,fill=vallightblue]
+					(0,0) -- (0:1.5) arc (0:120:1.5) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=vallightblue]
+					(0,0) -- (120:1.5) arc (120:240:1.5) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (240:1.5) arc (240:360:1.5) -- cycle;
+					\draw[valblue,line width=1pt] (-0.7,-2.3) rectangle (0.7,-1.5);
+				\end{scope}
+				
+				%── Item 2: rectángulo 1/2 ───────────────────────────────
+				\begin{scope}[shift={(5.6,0.6)}]
+					\node[font=\bfseries\normalsize] at (1.0,1.2) {2)};
+					\draw[valdark,line width=1.3pt,fill=vallightgreen]
+					(0,0) rectangle (1.5,1.1);
+					\draw[valdark,line width=1.3pt,fill=white]
+					(1.5,0) rectangle (3.0,1.1);
+					\draw[valblue,line width=1pt] (0.5,-1.0) rectangle (1.7,-0.2);
+				\end{scope}
+				
+				%── Item 3: círculo 5/6 ───────────────────────────────────
+				\begin{scope}[shift={(10.6,1.2)}]
+					\node[font=\bfseries\normalsize] at (0,2.0) {3)};
+					\draw[valdark,line width=1.3pt,fill=vallightorange]
+					(0,0) -- (0:1.5) arc (0:60:1.5) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=vallightorange]
+					(0,0) -- (60:1.5) arc (60:120:1.5) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=vallightorange]
+					(0,0) -- (120:1.5) arc (120:180:1.5) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=vallightorange]
+					(0,0) -- (180:1.5) arc (180:240:1.5) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=vallightorange]
+					(0,0) -- (240:1.5) arc (240:300:1.5) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (300:1.5) arc (300:360:1.5) -- cycle;
+					\draw[valblue,line width=1pt] (-0.7,-2.3) rectangle (0.7,-1.5);
+				\end{scope}
+				
+				%── Item 4: rectángulo 2/5 ────────────────────────────────
+				\begin{scope}[shift={(12.4,0.6)}]
+					\node[font=\bfseries\normalsize] at (1.5,1.2) {4)};
+					\draw[valdark,line width=1.3pt,fill=vallightred]
+					(0,0) rectangle (1.2,1.1);
+					\draw[valdark,line width=1.1pt] (0.6,0) -- (0.6,1.1);
+					\draw[valdark,line width=1.3pt,fill=white]
+					(1.2,0) rectangle (3.0,1.1);
+					\draw[valdark,line width=1.1pt] (1.8,0) -- (1.8,1.1);
+					\draw[valdark,line width=1.1pt] (2.4,0) -- (2.4,1.1);
+					\draw[valblue,line width=1pt] (0.4,-1.0) rectangle (1.6,-0.2);
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── Item 5: conjunto 3/4 (cuadrados) ──────────────────────
+				\begin{scope}[shift={(1.7,0.5)}]
+					\node[font=\bfseries\normalsize] at (1.4,1.2) {5)};
+					\draw[draw=valpurple,fill=vallightpurple,line width=1.2pt]
+					(0,0) rectangle (0.85,0.85);
+					\draw[draw=valpurple,fill=vallightpurple,line width=1.2pt]
+					(1.1,0) rectangle (1.95,0.85);
+					\draw[draw=valpurple,fill=vallightpurple,line width=1.2pt]
+					(2.2,0) rectangle (3.05,0.85);
+					\draw[draw=valdark,fill=white,line width=1.2pt]
+					(3.3,0) rectangle (4.15,0.85);
+					\draw[valblue,line width=1pt] (1.5,-1.0) rectangle (2.7,-0.2);
+				\end{scope}
+				
+				%── Item 6: recta numérica 1/3 ────────────────────────────
+				\begin{scope}[shift={(8.6,0.4)}]
+					\node[font=\bfseries\normalsize] at (2.0,1.2) {6)};
+					\draw[valdark,line width=1.4pt] (0,0) -- (4.8,0);
+					\draw[valdark,line width=1.1pt] (0,-0.13)   -- (0,0.13);
+					\draw[valdark,line width=1.1pt] (1.6,-0.13) -- (1.6,0.13);
+					\draw[valdark,line width=1.1pt] (3.2,-0.13) -- (3.2,0.13);
+					\draw[valdark,line width=1.1pt] (4.8,-0.13) -- (4.8,0.13);
+					\node[font=\small,below] at (0,-0.25)   {0};
+					\node[font=\small,below] at (4.8,-0.25) {1};
+					\fill[valred] (1.6,0) circle (4pt);
+					\draw[valblue,line width=1pt] (1.4,-1.4) rectangle (2.6,-0.6);
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+	\end{practica}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Ahora al Revés! --- Sombrea la Fracción}
+		\textit{Usa tu lápiz para sombrear la cantidad que indica cada fracción.}
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				%── A: rectángulo en blanco, dividido en 4, sombrea 3/4 ──
+				\begin{scope}[shift={(0,0)}]
+					\node[font=\bfseries\large,color=valdark] at (2.0,1.5)
+					{A)\quad Sombrea $\dfrac{3}{4}$};
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) rectangle (4.0,1.0);
+					\draw[valdark,line width=1pt] (1.0,0) -- (1.0,1.0);
+					\draw[valdark,line width=1pt] (2.0,0) -- (2.0,1.0);
+					\draw[valdark,line width=1pt] (3.0,0) -- (3.0,1.0);
+				\end{scope}
+				
+				%── B: círculo en blanco, dividido en 6, sombrea 2/6 ─────
+				\begin{scope}[shift={(9.5,0.5)}]
+					\node[font=\bfseries\large,color=valdark] at (0,2.2)
+					{B)\quad Sombrea $\dfrac{2}{6}$};
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (0:1.7) arc (0:60:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (60:1.7) arc (60:120:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (120:1.7) arc (120:180:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (180:1.7) arc (180:240:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (240:1.7) arc (240:300:1.7) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (300:1.7) arc (300:360:1.7) -- cycle;
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+	\end{practica}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 4 – ¿Cómo se Leen las Fracciones?
+	% ══════════════════════════════════════════════════════════════════════════
+	\mision{valorange}{Misión 4: {¿}Cómo se Leen las Fracciones?}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto: Nombres Especiales}
+		Cada denominador tiene un \textbf{nombre especial} cuando lo lees en
+		voz alta.
+		
+		%\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Columna izquierda
+				\node[cajaz,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (0,0)    {$\frac{1}{2}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (1.9,0)
+				{un \textbf{medio}};
+				
+				\node[cajaz,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (0,-1.15) {$\frac{1}{3}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (1.9,-1.15)
+				{un \textbf{tercio}};
+				
+				\node[cajaz,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (0,-2.30) {$\frac{1}{4}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (1.9,-2.30)
+				{un \textbf{cuarto}};
+				
+				\node[cajaz,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (0,-3.45) {$\frac{1}{5}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (1.9,-3.45)
+				{un \textbf{quinto}};
+				
+				\node[cajaz,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (0,-4.60) {$\frac{1}{6}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (1.9,-4.60)
+				{un \textbf{sexto}};
+				
+				% Columna derecha
+				\node[cajao,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (7.6,0)    {$\frac{1}{7}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (9.5,0)
+				{un \textbf{s\'eptimo}};
+				
+				\node[cajao,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (7.6,-1.15) {$\frac{1}{8}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (9.5,-1.15)
+				{un \textbf{octavo}};
+				
+				\node[cajao,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (7.6,-2.30) {$\frac{1}{9}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (9.5,-2.30)
+				{un \textbf{noveno}};
+				
+				\node[cajao,minimum width=3.3cm,minimum height=0.85cm,
+				font=\bfseries\large,inner sep=4pt] at (7.6,-3.45) {$\frac{1}{10}$};
+				\node[anchor=west,font=\bfseries\large,color=valdark] at (9.5,-3.45)
+				{un \textbf{d\'ecimo}};
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	
+	%\vspace{4pt}
+	
+	\begin{truco}{¡Cuando hay más de 1 arriba!}
+		Si el numerador es \textbf{mayor que 1}, dices el número y el nombre
+		\textbf{en plural}.
+		
+		%\vspace{6pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[cajag,minimum width=2.6cm,minimum height=0.9cm,
+				font=\bfseries\Large,inner sep=4pt] at (0,0) {$\frac{3}{4}$};
+				\node[font=\bfseries\Large,color=valdark] at (2.4,0) {$\to$};
+				\node[anchor=west,font=\bfseries\large,color=valgreen] at (3.0,0)
+				{tres \textbf{cuartos}};
+				
+				\node[cajag,minimum width=2.6cm,minimum height=0.9cm,
+				font=\bfseries\Large,inner sep=4pt] at (8.0,0) {$\frac{2}{3}$};
+				\node[font=\bfseries\Large,color=valdark] at (10.4,0) {$\to$};
+				\node[anchor=west,font=\bfseries\large,color=valgreen] at (11.0,0)
+				{dos \textbf{tercios}};
+			\end{tikzpicture}
+		\end{center}
+	\end{truco}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Une con una Línea}
+		\textit{Conecta cada fracción con su nombre correcto.}
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Columna izquierda: fracciones
+				\node[cajaz,minimum width=2.4cm,minimum height=0.85cm,
+				font=\bfseries\large] at (0,0)    {$\frac{1}{8}$};
+				\node[cajaz,minimum width=2.4cm,minimum height=0.85cm,
+				font=\bfseries\large] at (0,-1.3) {$\frac{1}{2}$};
+				\node[cajaz,minimum width=2.4cm,minimum height=0.85cm,
+				font=\bfseries\large] at (0,-2.6) {$\frac{1}{10}$};
+				\node[cajaz,minimum width=2.4cm,minimum height=0.85cm,
+				font=\bfseries\large] at (0,-3.9) {$\frac{1}{3}$};
+				
+				% Puntos de anclaje (para visualizar dónde unir)
+				\fill[valdark] (1.3,0)    circle (2pt);
+				\fill[valdark] (1.3,-1.3) circle (2pt);
+				\fill[valdark] (1.3,-2.6) circle (2pt);
+				\fill[valdark] (1.3,-3.9) circle (2pt);
+				
+				\fill[valdark] (7.7,0)    circle (2pt);
+				\fill[valdark] (7.7,-1.3) circle (2pt);
+				\fill[valdark] (7.7,-2.6) circle (2pt);
+				\fill[valdark] (7.7,-3.9) circle (2pt);
+				
+				% Columna derecha: nombres (en orden mezclado)
+				\node[cajao,minimum width=3.6cm,minimum height=0.85cm,
+				font=\bfseries\large] at (10.2,0)    {un tercio};
+				\node[cajao,minimum width=3.6cm,minimum height=0.85cm,
+				font=\bfseries\large] at (10.2,-1.3) {un octavo};
+				\node[cajao,minimum width=3.6cm,minimum height=0.85cm,
+				font=\bfseries\large] at (10.2,-2.6) {un medio};
+				\node[cajao,minimum width=3.6cm,minimum height=0.85cm,
+				font=\bfseries\large] at (10.2,-3.9) {un d\'ecimo};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{8pt}
+		\textit{Escribe el nombre de estas fracciones:}
+		
+		%\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[font=\bfseries\large] at (0,0) {$\frac{2}{5}\ =$};
+				\draw[valblue,line width=1pt] (1.4,-0.33) rectangle (4.4,0.38);
+				
+				\node[font=\bfseries\large] at (6.5,0) {$\frac{4}{6}\ =$};
+				\draw[valblue,line width=1pt] (7.9,-0.33) rectangle (10.9,0.38);
+			\end{tikzpicture}
+		\end{center}
+	\end{practica}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 5 – Fracciones en la Vida Real
+	% ══════════════════════════════════════════════════════════════════════════
+	\mision{valred}{Misión 5: {¡}Matemáticas para la Vida! --- Fracciones en lo Cotidiano}
+	
+	\begin{concepto}{$\square$ Las Fracciones Están en Todas Partes}
+		Usamos fracciones \textbf{todos los días}: cuando vemos la hora, cuando
+		repartimos comida, cuando cocinamos o cuando usamos dinero.
+		¡Vamos a practicar con situaciones reales!
+	\end{concepto}
+	
+	%\vspace{5pt}
+	
+	% ── Problema 1: El Reloj ─────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Situación 1 --- El Reloj}
+		\begin{minipage}{0.56\textwidth}
+			\textit{La manecilla larga del reloj avanzó desde las 12 hasta las 6
+				(\textbf{la mitad} del reloj completo). {¿}Qué fracción de la hora
+				ha pasado?}
+			
+			%\vspace{8pt}
+			Fracción: \boxfill[3cm]
+			
+			%\vspace{6pt}
+			Eso equivale a \boxfill[2.2cm]\ minutos
+			(recuerda: una hora completa tiene 60 minutos).
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.40\textwidth}
+			\begin{center}
+				\begin{tikzpicture}[x=1cm,y=1cm]
+					\draw[valdark,line width=1.5pt,fill=vallightred]
+					(0,0) -- (-90:1.9) arc (-90:90:1.9) -- cycle;
+					\draw[valdark,line width=1.5pt,fill=white]
+					(0,0) -- (90:1.9) arc (90:270:1.9) -- cycle;
+					\node[font=\bfseries\normalsize,color=valdark] at (0,2.25) {12};
+					\node[font=\bfseries\normalsize,color=valdark] at (2.25,0) {3};
+					\node[font=\bfseries\normalsize,color=valdark] at (0,-2.25) {6};
+					\node[font=\bfseries\normalsize,color=valdark] at (-2.25,0) {9};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	%\vspace{5pt}
+	
+	% ── Problema 2: El Dinero ────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Situación 2 --- El Dinero}
+		\begin{minipage}{0.56\textwidth}
+			\textit{Tienes \textbf{4 monedas} de \$200 cada una. Vas a usar
+				\textbf{3} de ellas para comprar un dulce. {¿}Qué fracción de tus
+				monedas vas a usar?}
+			
+			
+			%\vspace{8pt}
+			Numerador (monedas que uso): \boxfill[1.8cm]
+			
+			%\vspace{6pt}
+			Denominador (monedas en total): \boxfill[1.8cm]
+			
+			%\vspace{6pt}
+			Fracción completa: \boxfill[3cm]
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.40\textwidth}
+			\begin{center}
+				\begin{tikzpicture}[x=1cm,y=1cm]
+					\draw[valred,line width=1.6pt,fill=vallightred]
+					(0,0) circle (0.62cm);
+					\node[font=\bfseries\small,color=valred] at (0,0) {200};
+					\draw[valred,line width=1.6pt,fill=vallightred]
+					(1.5,0) circle (0.62cm);
+					\node[font=\bfseries\small,color=valred] at (1.5,0) {200};
+					\draw[valred,line width=1.6pt,fill=vallightred]
+					(3.0,0) circle (0.62cm);
+					\node[font=\bfseries\small,color=valred] at (3.0,0) {200};
+					\draw[valdark,line width=1.4pt,fill=white]
+					(4.5,0) circle (0.62cm);
+					\node[font=\bfseries\small,color=valdark] at (4.5,0) {200};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	\newpage
+	
+	% ── Problema 3: La Cocina ────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Situación 3 --- La Cocina}
+		\begin{minipage}{0.56\textwidth}
+			\textit{La receta de limonada dice: ``Usa \textbf{2 de 3 partes} de
+				una jarra de agua.'' Sombrea la jarra para mostrar esa cantidad.}
+			
+			%\vspace{8pt}
+			Escribe la fracción que sombreaste: \boxfill[3cm]
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.40\textwidth}
+			\begin{center}
+				\begin{tikzpicture}[x=1cm,y=1cm]
+					\draw[valdark,line width=1.5pt,fill=white]
+					(0,0) rectangle (2.4,3.0);
+					\draw[valdark,line width=1pt] (0,1.0) -- (2.4,1.0);
+					\draw[valdark,line width=1pt] (0,2.0) -- (2.4,2.0);
+					\node[font=\bfseries\small,color=valdark] at (1.2,3.4)
+					{jarra de agua};
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	%\vspace{5pt}
+	
+	% ── Problema 4: Compartir Pizza ──────────────────────────────────────────
+	\begin{espaciotrabajonb}{Situación 4 --- Compartir con Amigos}
+		\begin{minipage}{0.56\textwidth}
+			\textit{\textbf{6 amigos} van a compartir esta pizza en partes
+				iguales. Sombrea la parte que le toca a \textbf{SOLO UN} amigo.}
+			
+			%\vspace{8pt}
+			{¿}Qué fracción de la pizza come cada amigo? \boxfill[3cm]
+			
+			%\vspace{6pt}
+			Si Camilo se comió \textbf{2} pedazos, {¿}qué fracción de la pizza
+			comió Camilo? \boxfill[3cm]
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.40\textwidth}
+			\begin{center}
+				\begin{tikzpicture}[x=1cm,y=1cm]
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (0:1.9) arc (0:60:1.9) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (60:1.9) arc (60:120:1.9) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (120:1.9) arc (120:180:1.9) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (180:1.9) arc (180:240:1.9) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (240:1.9) arc (240:300:1.9) -- cycle;
+					\draw[valdark,line width=1.3pt,fill=white]
+					(0,0) -- (300:1.9) arc (300:360:1.9) -- cycle;
+				\end{tikzpicture}
+			\end{center}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 6 – Fracciones de un Grupo
+	% ══════════════════════════════════════════════════════════════════════════
+	\mision{valpurple}{Misión 6: Fracciones de un Grupo (Conjunto)}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto: No Siempre es Una Sola Figura}
+		Una fracción también puede representar una parte de un \textbf{GRUPO}
+		de objetos, ¡no solo de una figura dividida!
+		
+		%\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Grupo de 5 objetos: 2 coloreados
+				\node[draw=valred,fill=vallightred,circle,
+				minimum size=1.1cm,font=\bfseries] at (0,0)    {};
+				\node[draw=valred,fill=vallightred,circle,
+				minimum size=1.1cm,font=\bfseries] at (1.4,0)  {};
+				\node[draw=valdark,fill=white,circle,
+				minimum size=1.1cm] at (2.8,0)  {};
+				\node[draw=valdark,fill=white,circle,
+				minimum size=1.1cm] at (4.2,0)  {};
+				\node[draw=valdark,fill=white,circle,
+				minimum size=1.1cm] at (5.6,0)  {};
+				
+				\draw[flechaop,valdark] (6.4,0) -- (7.2,0);
+				
+				\node[cajar,minimum width=2.6cm,minimum height=1.6cm,
+				font=\bfseries\Huge,inner sep=5pt] at (9.2,0) {$\dfrac{2}{5}$};
+				\node[font=\bfseries\normalsize,color=valdark,align=center,
+				text width=4.3cm] at (9.2,-1.4)
+				{2 objetos rojos\\ de 5 objetos en total};
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- {¿}Qué Fracción del Grupo?}
+		\textit{Observa cada grupo y escribe la fracción que se pide.}
+		
+		%\vspace{10pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Item 1: 5 frutas, 2 manzanas (rojas)
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=14cm] at (0,1.1)
+				{1) Hay \textbf{5 frutas} en la canasta. \textbf{2} son manzanas
+					rojas. {¿}Qué fracción de la canasta son manzanas?};
+				
+				\node[draw=valred,fill=vallightred,circle,
+				minimum size=0.85cm] at (0.45,0)  {};
+				\node[draw=valred,fill=vallightred,circle,
+				minimum size=0.85cm] at (1.55,0)  {};
+				\node[draw=valorange,fill=vallightorange,circle,
+				minimum size=0.85cm] at (2.65,0)  {};
+				\node[draw=valorange,fill=vallightorange,circle,
+				minimum size=0.85cm] at (3.75,0)  {};
+				\node[draw=valorange,fill=vallightorange,circle,
+				minimum size=0.85cm] at (4.85,0)  {};
+				
+				\node[font=\bfseries\large,color=valdark] at (6.6,0) {Fracci\'on:};
+				\draw[valblue,line width=1pt] (7.7,-0.33) rectangle (9.9,0.38);
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{12pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Item 2: 8 estudiantes en fila, 3 con mochila roja
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=14cm] at (0,1.1)
+				{2) En la fila hay \textbf{8 estudiantes}. \textbf{3} llevan
+					mochila roja. {¿}Qué fracción de la fila lleva mochila roja?};
+				
+				\node[draw=valred,fill=vallightred,minimum width=0.7cm,
+				minimum height=1.0cm] at (0.4,0)  {};
+				\node[draw=valred,fill=vallightred,minimum width=0.7cm,
+				minimum height=1.0cm] at (1.3,0)  {};
+				\node[draw=valred,fill=vallightred,minimum width=0.7cm,
+				minimum height=1.0cm] at (2.2,0)  {};
+				\node[draw=valdark,fill=white,minimum width=0.7cm,
+				minimum height=1.0cm] at (3.1,0)  {};
+				\node[draw=valdark,fill=white,minimum width=0.7cm,
+				minimum height=1.0cm] at (4.0,0)  {};
+				\node[draw=valdark,fill=white,minimum width=0.7cm,
+				minimum height=1.0cm] at (4.9,0)  {};
+				\node[draw=valdark,fill=white,minimum width=0.7cm,
+				minimum height=1.0cm] at (5.8,0)  {};
+				\node[draw=valdark,fill=white,minimum width=0.7cm,
+				minimum height=1.0cm] at (6.7,0)  {};
+				
+				\node[font=\bfseries\large,color=valdark] at (8.6,0) {Fracci\'on:};
+				\draw[valblue,line width=1pt] (9.7,-0.33) rectangle (11.9,0.38);
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{12pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				% Item 3: 6 lápices, 4 de tonos fríos
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=14cm] at (0,1.35)
+				{3) Tienes \textbf{6 l\'apices} de colores. \textbf{4} son de
+					tonos fr\'ios. {¿}Qué fracción de tus l\'apices son de tonos
+					fr\'ios?};
+				
+				\node[draw=valblue,fill=valblue,minimum width=0.45cm,
+				minimum height=1.4cm] at (0.3,0)  {};
+				\node[draw=valgreen,fill=valgreen,minimum width=0.45cm,
+				minimum height=1.4cm] at (0.9,0)  {};
+				\node[draw=valpurple,fill=valpurple,minimum width=0.45cm,
+				minimum height=1.4cm] at (1.5,0)  {};
+				\node[draw=valblue!60!valgreen,fill=valblue!60!valgreen,
+				minimum width=0.45cm,minimum height=1.4cm] at (2.1,0)  {};
+				\node[draw=valred,fill=valred,minimum width=0.45cm,
+				minimum height=1.4cm] at (2.7,0)  {};
+				\node[draw=valorange,fill=valorange,minimum width=0.45cm,
+				minimum height=1.4cm] at (3.3,0)  {};
+				
+				\node[font=\bfseries\large,color=valdark] at (5.6,0) {Fracci\'on:};
+				\draw[valblue,line width=1pt] (6.7,-0.33) rectangle (8.9,0.38);
+			\end{tikzpicture}
+		\end{center}
+	\end{practica}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════════
+	%  AUTOEVALUACIÓN
+	% ══════════════════════════════════════════════════════════════════════════
+	\begin{tcolorbox}[
+		enhanced, breakable,
+		colback   = vallightblue,
+		colframe  = valblue,
+		arc=6mm, boxrule=2pt,
+		title     = {Autoevaluación --- {¿}Qué aprendí?},
+		coltitle  = white,
+		fonttitle = \bfseries\large,
+		attach boxed title to top left={yshift=-2mm,xshift=4mm},
+		boxed title style={colback=valblue,colframe=valblue,rounded corners},
+		top=6mm,
+		]
+		\textit{Marca con una \textbf{X} en el cuadro si lo entendiste:}
+		
+		%\vspace{6pt}
+		\begin{tikzpicture}[x=1cm,y=1cm]
+			\draw[valdark,line width=1pt] (0,-0.26) rectangle (0.54,0.26);
+			\node[anchor=west,font=\bfseries\large,color=valdark,
+			align=left,text width=14cm] at (0.72,0)
+			{Entiendo que una fracción es una parte de un todo dividido en
+				partes iguales.};
+			
+			\draw[valdark,line width=1pt] (0,-1.46) rectangle (0.54,-0.94);
+			\node[anchor=west,font=\bfseries\large,color=valdark] at (0.72,-1.2)
+			{Conozco el Numerador y el Denominador.};
+			
+			\draw[valdark,line width=1pt] (0,-2.46) rectangle (0.54,-1.94);
+			\node[anchor=west,font=\bfseries\large,color=valdark,
+			align=left,text width=14cm] at (0.72,-2.2)
+			{Puedo representar una fracción en círculos, rectángulos, recta
+				numérica y grupos.};
+			
+			\draw[valdark,line width=1pt] (0,-3.66) rectangle (0.54,-3.14);
+			\node[anchor=west,font=\bfseries\large,color=valdark] at (0.72,-3.4)
+			{Sé leer fracciones (medios, tercios, cuartos\ldots).};
+			
+			\draw[valdark,line width=1pt] (0,-4.66) rectangle (0.54,-4.14);
+			\node[anchor=west,font=\bfseries\large,color=valdark,
+			align=left,text width=14cm] at (0.72,-4.4)
+			{Puedo identificar fracciones en situaciones de la vida real
+				(reloj, dinero, comida).};
+			
+			\draw[valdark,line width=1pt] (0,-5.86) rectangle (0.54,-5.34);
+			\node[anchor=west,font=\bfseries\large,color=valdark] at (0.72,-5.6)
+			{Puedo identificar la fracción de un grupo de objetos.};
+		\end{tikzpicture}
+	\end{tcolorbox}
+	
+	%\vspace{8pt}
+	
+	\begin{center}
+		\begin{tcolorbox}[
+			enhanced,
+			colback  = vallightgreen,
+			colframe = valgreen,
+			arc=8mm, boxrule=2pt,
+			width=0.82\linewidth,
+			halign=center,
+			]
+			{\Large\bfseries\color{valgreen}
+				{¡}MÓDULO UNIDAD 9 COMPLETADO!}\\[4pt]
+			{\large\bfseries\color{valdark} {¡}FELICITACIONES!}\\[4pt]
+			{\normalsize\color{valdark}\itshape
+				{¡}Ya sabes representar y leer fracciones!
+				{¡}Sigue adelante!}
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}
