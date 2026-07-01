@@ -1,0 +1,152 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen superior amplio para respetar el encabezado del fondo
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, calc, positioning}
+\usepackage{array}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO (Ruta Local TeXstudio) ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{vallightblue}{RGB}{220,235,250}
+\definecolor{vallightgreen}{RGB}{220,245,230}
+
+% --- COMANDOS PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{EVALUACIÓN ADAPTADA (AC) - MATEMÁTICAS 6º}\\[0.1cm]
+		Unidad 9: Fracciones — Representación y Términos
+	\end{center}
+	
+	
+	\hfill \textbf{Código:} \textbf{06M-09 AC}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Une con una línea cada término o concepto de las fracciones con su significado correcto: \hfill(25\%)}
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{2}
+		\begin{tabular}{r c m{10cm}} % <--- CAMBIO AQUÍ: m{10cm} en lugar de l
+			\textbf{\Large Denominador} & \hspace{0.5cm} $\bullet$ \hspace{1.5cm} $\bullet$ \hspace{0.5cm} & \large Representa una parte de un todo dividido en partes IGUALES.\\[0.2cm]
+			\textbf{\Large Numerador}   & \hspace{0.5cm} $\bullet$ \hspace{1.5cm} $\bullet$ \hspace{0.5cm} & \large Es el número de abajo; indica en cuántas partes se dividió el entero.\\[0.2cm]
+			\textbf{\Large Fracción}    & \hspace{0.5cm} $\bullet$ \hspace{1.5cm} $\bullet$ \hspace{0.5cm} & \large Es el número de arriba; cuenta cuántas partes tomamos.
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Observa las siguientes figuras y escribe la fracción que representa la parte coloreada en los cuadros vacíos: \hfill (25\%)}
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\Large \textbf{A)} \\
+			\begin{tikzpicture}[scale=1.2]
+				\draw[valdark,line width=1.4pt,fill=vallightblue] (0,0) -- (0:1.5) arc (0:90:1.5) -- cycle;
+				\draw[valdark,line width=1.4pt,fill=vallightblue] (0,0) -- (90:1.5) arc (90:180:1.5) -- cycle;
+				\draw[valdark,line width=1.4pt,fill=vallightblue] (0,0) -- (180:1.5) arc (180:270:1.5) -- cycle;
+				\draw[valdark,line width=1.4pt,fill=white] (0,0) -- (270:1.5) arc (270:360:1.5) -- cycle;
+			\end{tikzpicture}\\
+			Fracción: \boxfill[1.5cm]
+		\end{center}
+		
+		\begin{center}
+			\Large \textbf{B)} \\[0.4cm]
+			\begin{tikzpicture}[scale=1.2]
+				\draw[valdark,line width=1.4pt,fill=vallightgreen] (0,0) rectangle (1.2,1.2);
+				\draw[valdark,line width=1.4pt,fill=vallightgreen] (1.2,0) rectangle (2.4,1.2);
+				\draw[valdark,line width=1.4pt,fill=white] (2.4,0) rectangle (3.6,1.2);
+				\draw[valdark,line width=1.4pt,fill=white] (3.6,0) rectangle (4.8,1.2);
+				\draw[valdark,line width=1.4pt,fill=white] (4.8,0) rectangle (6.0,1.2);
+			\end{tikzpicture}\\[0.4cm]
+			Fracción: \boxfill[1.5cm]
+		\end{center}
+	\end{multicols}
+	
+	\newpage % Salto de página para organizar el espacio
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{{3. Escribe cómo se leen las siguientes fracciones: \hfill (25\%)}}
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\begin{itemize}[itemsep=1cm, label={}]
+			\item \textbf{A.} $\dfrac{1}{2} =$ \boxfill[4cm]
+			
+			\item \textbf{B.} $\dfrac{3}{4} =$ \boxfill[4cm]
+			
+			\item \textbf{C.} $\dfrac{1}{8} =$ \boxfill[4cm]
+			
+			\item \textbf{D.} $\dfrac{2}{5} =$ \boxfill[4cm]
+		\end{itemize}
+	\end{multicols}
+	
+	\vspace{1cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{{4. Lee la siguiente situación y resuelve. \hfill (25\%)}}
+	
+	\vspace{0.4cm}
+	\begin{tcolorbox}[colback=white, colframe=valdark, arc=2mm, boxrule=1pt]
+		\large \textit{Juan tiene \textbf{6 manzanas} en una canasta. De esas manzanas, decide usar \textbf{4} para preparar un jugo. Arma la fracción que representa el número de manzanas que Juan usó para el jugo}
+		
+		\vspace{0.6cm}
+		\begin{center}
+			\textbf{Acomoda y Resuelve:}\\[0.4cm]
+			\begin{tikzpicture}
+				\node[font=\bfseries\normalsize] at (0,1.5) {Numerador:};
+				\node at (5,1.5) {\Large \boxfill[1.2cm]};
+				
+				\node[font=\bfseries\normalsize] at (0,0.5) {Denominador:};
+				\node at (5,0.5) {\Large \boxfill[1.2cm]};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.6cm}
+		\textbf{Respuesta:} \\[0.2cm]
+		La fracción de manzanas que Juan usó para el jugo es \boxfill[2cm].
+		\vspace{0.3cm}
+	\end{tcolorbox}
+	
+	\vspace{1.5cm}
+	
+\end{document}
