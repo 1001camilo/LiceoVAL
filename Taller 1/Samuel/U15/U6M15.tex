@@ -1,0 +1,358 @@
+% ╔══════════════════════════════════════════════════════════════════════════╗
+% ║  LICEO V.A.L. – MÓDULO DE AUTOAPRENDIZAJE                              ║
+% ║  Código: 06M-15 FL  |  Grado: 6°  |  Ruta: Formación Libre (Regular)     ║
+% ║  Unidad 15: Geometría, Ángulos y Triángulos                             ║
+% ╚══════════════════════════════════════════════════════════════════════════╝
+
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usetikzlibrary{angles, quotes, arrows.meta, shapes.geometric, positioning, calc, backgrounds, fit}
+
+% --- COLORES INSTITUCIONALES Y DE DISEÑO ---
+\definecolor{valblue}       {RGB}{0,   74,  153}
+\definecolor{valgreen}      {RGB}{0,  153,   76}
+\definecolor{valred}        {RGB}{204,   0,    0}
+\definecolor{valdark}       {RGB}{ 40,  40,   40}
+\definecolor{valorange}     {RGB}{230, 115,    0}
+\definecolor{vallightblue}  {RGB}{230, 240,  255}
+\definecolor{vallightgreen} {RGB}{230, 250,  235}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- FONDO INSTITUCIONAL ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\IfFileExists{../../FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+		}%
+	}{}%
+}
+
+% --- CAJITAS PARA COMPLETAR EN TEXTO ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.6pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+% --- ENTORNOS DE CAJAS PERSONALIZADOS ---
+\newtcolorbox{conceptbox}[1][Aprende el Concepto]{
+	enhanced, colback=vallightblue, colframe=valblue, arc=2mm, boxrule=1.2pt,
+	title={\Large \faLightbulb\ \textbf{#1}}, fonttitle=\bfseries, coltitle=white,
+	attach boxed title to top left={xshift=5mm, yshift=-3mm},
+	boxed title style={colback=valblue, arc=1mm},
+	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+}
+
+\newtcolorbox{examplebox}[1][Ejemplo Resuelto]{
+	enhanced, colback=vallightgreen, colframe=valgreen, arc=2mm, boxrule=1.2pt,
+	title={\Large \faCheckSquare\ \textbf{#1}}, fonttitle=\bfseries, coltitle=white,
+	attach boxed title to top left={xshift=5mm, yshift=-3mm},
+	boxed title style={colback=valgreen, arc=1mm},
+	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+}
+
+\newtcolorbox{espaciotrabajo}[1][]{
+	breakable, enhanced, colback=white, colframe=valdark, arc=2mm, boxrule=0.8pt,
+	title={\faPen\ #1}, coltitle=white, fonttitle=\bfseries,
+	attach boxed title to top left={xshift=4mm, yshift=-2mm},
+	boxed title style={colback=valdark, arc=1mm, boxrule=0pt},
+	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+}
+
+\newcommand{\mision}[1]{
+	\vspace{0.6cm}
+	\begin{tcolorbox}[
+		enhanced, colback=valdark, colframe=valdark, arc=2mm, boxrule=0pt,
+		halign=center, valign=center, top=3mm, bottom=3mm, left=2mm, right=2mm,
+		drop shadow=valdark!50
+		]
+		\textcolor{white}{\Large \textbf{\faFlagCheckered\ #1}}
+	\end{tcolorbox}
+	\vspace{0.3cm}
+}
+
+\begin{document}
+	
+	\begin{center}
+		{\Huge\textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE\textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large\textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
+			arc=3mm, boxrule=1.5pt]
+			\centering
+			\Huge\textbf{UNIDAD 14}\\[0.2cm]
+			\Large\textbf{Solución de ecuaciones}\\[0.2cm]
+			\large Propiedades de igualdad, determinación de soluciones.
+		\end{tcolorbox}
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue,
+			width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering\vspace{0.3cm}
+			\textbf{Nombre:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:}\;\textbf{06M-14 FL}
+			\hspace{1cm}\textbf{Año:}\;\underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		\vspace{0.8cm}
+		\textit{``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+	\end{center}
+	% ----------------------------------------------------------------------
+	% MISIÓN 1: CLASIFICACIÓN DE ÁNGULOS
+	% ----------------------------------------------------------------------
+	\mision{Misión 1: Clasificación de Ángulos}
+	
+	\begin{conceptbox}[La Abertura de las Líneas]
+		Un \textbf{ángulo} está formado por dos semirrectas que comparten un punto inicial llamado \textbf{vértice}. La unidad de medida estándar es el \textbf{grado ($^\circ$)}. Según su abertura, los clasificamos en:
+		\begin{itemize}[itemsep=0.1cm]
+			\item \textbf{Agudo:} Mide menos de $90^\circ$.
+			\item \textbf{Recto:} Mide exactamente $90^\circ$ (forma una "L" perfecta).
+			\item \textbf{Obtuso:} Mide más de $90^\circ$ pero menos de $180^\circ$.
+			\item \textbf{Llano:} Mide exactamente $180^\circ$ (una línea recta plana).
+		\end{itemize}
+	\end{conceptbox}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.9, thick]
+			% Agudo
+			\draw[<->] (2,1.5) -- (0,0) -- (2.5,0);
+			\draw[valblue, fill=valblue!20] (0.5,0) arc (0:36.8:0.5) -- (0,0) -- cycle;
+			\node[valblue] at (1, 0.3) {$< 90^\circ$};
+			\node at (1.2, -0.5) {\textbf{Agudo}};
+			
+			% Recto
+			\begin{scope}[xshift=4cm]
+				\draw[<->] (0,2) -- (0,0) -- (2.5,0);
+				\draw[valred, fill=valred!20] (0,0.4) -- (0.4,0.4) -- (0.4,0) -- (0,0) -- cycle;
+				\node[valred] at (0.8, 0.8) {$90^\circ$};
+				\node at (1.2, -0.5) {\textbf{Recto}};
+			\end{scope}
+			
+			% Obtuso
+			\begin{scope}[xshift=8cm]
+				\draw[<->] (-1.5,1.5) -- (0,0) -- (2.5,0);
+				\draw[valgreen, fill=valgreen!20] (0.5,0) arc (0:135:0.5) -- (0,0) -- cycle;
+				\node[valgreen] at (0.5, 0.8) {$> 90^\circ$};
+				\node at (0.5, -0.5) {\textbf{Obtuso}};
+			\end{scope}
+			
+			% Llano
+			\begin{scope}[xshift=13cm]
+				\draw[<->] (-1.5,0) -- (0,0) -- (1.5,0);
+				\fill (0,0) circle (2pt);
+				\draw[valorange, fill=valorange!20] (0.5,0) arc (0:180:0.5) -- (0,0) -- cycle;
+				\node[valorange] at (0, 0.8) {$180^\circ$};
+				\node at (0, -0.5) {\textbf{Llano}};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{espaciotrabajo}[¡Tu Turno! - Clasificador de Ángulos]
+		Observa la medida de cada ángulo e indica a qué clasificación pertenece.
+		\vspace{0.3cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $45^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $120^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $90^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $175^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $18^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $180^\circ \ \rightarrow \ $ \boxfill[3cm]
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{espaciotrabajo}
+	
+	\newpage
+	
+	% ----------------------------------------------------------------------
+	% MISIÓN 2: RELACIONES ENTRE ÁNGULOS (ÁLGEBRA)
+	% ----------------------------------------------------------------------
+	\mision{Misión 2: Ángulos Complementarios y Suplementarios}
+	
+	\begin{conceptbox}[Equipos de Ángulos]
+		A veces los ángulos trabajan en equipo para formar figuras perfectas:\\
+		$\bullet$ \textbf{Complementarios:} Dos ángulos que al sumarse forman un ángulo recto (\textbf{$\mathbf{90^\circ}$}).\\
+		$\bullet$ \textbf{Suplementarios:} Dos ángulos que al sumarse forman un ángulo llano (\textbf{$\mathbf{180^\circ}$}).
+	\end{conceptbox}
+	
+	\begin{examplebox}
+		Encuentra el valor del ángulo faltante $x$ sabiendo que los ángulos son \textbf{suplementarios}.\\[0.2cm]
+		\begin{minipage}{0.35\textwidth}
+			\begin{tikzpicture}[scale=0.8, thick]
+				\draw[<->] (-3,0) -- (3,0);
+				\draw[->] (0,0) -- (1.5,2.5);
+				\draw[valblue, fill=valblue!10] (0.8,0) arc (0:59:0.8) -- (0,0) -- cycle;
+				\draw[valred, fill=valred!10] (1.1,1.8) arc (59:180:1.2) -- (0,0) -- cycle;
+				\node at (1.5, 0.5) {$60^\circ$};
+				\node at (-1, 0.8) {$x$};
+			\end{tikzpicture}
+		\end{minipage}%
+		\begin{minipage}{0.6\textwidth}
+			\textbf{1. Plantea la ecuación:} \quad $x + 60^\circ = 180^\circ$\\[0.2cm]
+			\textbf{2. Despeja (resta):} \qquad $x = 180^\circ - 60^\circ$\\[0.2cm]
+			\textbf{3. Resultado:} \qquad \qquad $\mathbf{x = 120^\circ}$
+		\end{minipage}
+	\end{examplebox}
+	
+	\begin{espaciotrabajo}[¡Tu Turno! - Ecuaciones Geométricas]
+		Plantea la ecuación lineal para encontrar el ángulo desconocido $x$ en cada caso y resuélvela.
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\textbf{A) Son Complementarios}\\
+			\begin{tikzpicture}[scale=0.7, thick]
+				\draw[<->] (0,3) -- (0,0) -- (3,0);
+				\draw[->] (0,0) -- (2.5,1.5);
+				% Símbolo de 90° general
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0);
+				\node at (2, 0.5) {$35^\circ$};
+				\node at (0.8, 1.8) {$x$};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Ecuación:}\\
+			$x + \boxfill[1cm] = 90^\circ$\\[0.2cm]
+			\textbf{Despeje:}\\
+			$x = 90^\circ - \boxfill[1cm]$\\[0.2cm]
+			\textbf{Respuesta:} \quad $x = $ \boxfill[1.5cm]
+			
+			\columnbreak
+			
+			\textbf{B) Son Suplementarios}\\
+			\begin{tikzpicture}[scale=0.7, thick]
+				\draw[<->] (-3,0) -- (3,0);
+				\draw[->] (0,0) -- (-1.5,2);
+				\node at (1, 0.5) {$x$};
+				\node at (-1.5, 0.6) {$110^\circ$};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Ecuación:}\\
+			$x + \boxfill[1cm] = \boxfill[1.5cm]$\\[0.2cm]
+			\textbf{Despeje:}\\
+			$x = \boxfill[1cm] - \boxfill[1cm]$\\[0.2cm]
+			\textbf{Respuesta:} \quad $x = $ \boxfill[1.5cm]
+		\end{multicols}
+	\end{espaciotrabajo}
+	
+	\newpage
+	
+	% ----------------------------------------------------------------------
+	% MISIÓN 3: CLASIFICACIÓN DE TRIÁNGULOS
+	% ----------------------------------------------------------------------
+	\mision{Misión 3: Familias de Triángulos}
+	
+	\begin{conceptbox}[Según sus Lados y según sus Ángulos]
+		\textbf{Por sus Lados:}\\
+		$\bullet$ \textbf{Equilátero:} 3 lados iguales. \quad $\bullet$ \textbf{Isósceles:} 2 lados iguales. \quad $\bullet$ \textbf{Escaleno:} Ningún lado igual.\\[0.2cm]
+		\textbf{Por sus Ángulos:}\\
+		$\bullet$ \textbf{Acutángulo:} 3 ángulos agudos. \quad $\bullet$ \textbf{Rectángulo:} 1 ángulo recto ($90^\circ$). \quad $\bullet$ \textbf{Obtusángulo:} 1 ángulo obtuso.
+	\end{conceptbox}
+	
+	\begin{espaciotrabajo}[¡Tu Turno! - Doble Clasificación]
+		Observa cada triángulo y clasifícalo con \textbf{dos palabras} (una por sus lados y otra por sus ángulos). \textit{Guíate por las marcas de los lados (líneas rojas).}
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{2.5}
+			\begin{tabular}{| c | c | c |}
+				\hline
+				\rowcolor{valblue!20}
+				\textbf{Triángulo} & \textbf{Por sus Lados} & \textbf{Por sus Ángulos} \\
+				\hline
+				% T1
+				\begin{tikzpicture}[scale=0.8, thick]
+					\draw (0,0) -- (3,0) -- (0,2) -- cycle;
+					\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Recto
+					\draw[valred] (1.5,-0.1) -- (1.5,0.1); % L1
+					\draw[valred] (-0.1,1) -- (0.1,1); \draw[valred] (-0.1,1.1) -- (0.1,1.1); % L2
+					\draw[valred] (1.4,1.1) -- (1.6,0.9); \draw[valred] (1.5,1.2) -- (1.7,1.0); \draw[valred] (1.6,1.3) -- (1.8,1.1); % L3
+				\end{tikzpicture} & 
+				\boxfill[3.5cm] & 
+				\boxfill[3.5cm] \\
+				\hline
+				% T2
+				\begin{tikzpicture}[scale=0.8, thick]
+					\draw (0,0) -- (2.5,0) -- (1.25,2.16) -- cycle;
+					\draw[valred] (1.25,-0.1) -- (1.25,0.1); 
+					\draw[valred] (0.5,1.1) -- (0.7,0.9); 
+					\draw[valred] (2.0,1.1) -- (1.8,0.9); 
+				\end{tikzpicture} & 
+				\boxfill[3.5cm] & 
+				\boxfill[3.5cm] \\
+				\hline
+				% T3
+				\begin{tikzpicture}[scale=0.8, thick]
+					\draw (0,0) -- (4,0) -- (1,1.5) -- cycle;
+					\draw[valred] (2,-0.1) -- (2,0.1); 
+					\draw[valred] (0.4,0.8) -- (0.6,0.6); \draw[valred] (0.5,0.9) -- (0.7,0.7);
+					\draw[valred] (2.4,0.8) -- (2.6,0.6); \draw[valred] (2.5,0.9) -- (2.7,0.7); \draw[valred] (2.6,1.0) -- (2.8,0.8);
+				\end{tikzpicture} & 
+				\boxfill[3.5cm] & 
+				\boxfill[3.5cm] \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{espaciotrabajo}
+	
+	% ----------------------------------------------------------------------
+	% MISIÓN 4: TEOREMA FUNDAMENTAL
+	% ----------------------------------------------------------------------
+	\mision{Misión 4: El Teorema de los 180°}
+	
+	\begin{conceptbox}[La Regla de Oro de los Triángulos]
+		No importa si el triángulo es grande, pequeño, rectángulo o escaleno. \textbf{La suma de los tres ángulos internos de CUALQUIER triángulo siempre es exactamente $\mathbf{180^\circ}$.}\\
+		Ecuación Maestra: \quad $\boldsymbol{\angle A + \angle B + \angle C = 180^\circ}$
+	\end{conceptbox}
+	
+	\begin{espaciotrabajo}[¡Tu Turno! - Ecuaciones Triangulares]
+		Arma la ecuación sumando los 3 ángulos para que den $180^\circ$ y despeja la $x$.
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\textbf{A)}\\
+			\begin{tikzpicture}[scale=0.8, thick]
+				\draw (0,0) -- (4,0) -- (1,2.5) -- cycle;
+				\node at (0.6, 0.3) {$x$};
+				\node at (3.2, 0.3) {$40^\circ$};
+				\node at (1.2, 1.8) {$80^\circ$};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Ecuación:}\\
+			$x + \boxfill[1cm] + \boxfill[1cm] = 180^\circ$\\[0.2cm]
+			\textbf{Suma los conocidos:}\\
+			$x + \boxfill[1.5cm] = 180^\circ$\\[0.2cm]
+			\textbf{Despeja:}\\
+			$x = 180^\circ - \boxfill[1.5cm]$\\[0.2cm]
+			\textbf{Respuesta:} $x = $ \boxfill[1.5cm]
+			
+			\columnbreak
+			
+			\textbf{B) (¡Ojo con la "L"!)}\\
+			\begin{tikzpicture}[scale=0.8, thick]
+				\draw (0,0) -- (3,0) -- (0,4) -- cycle;
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Recto
+				\node at (0.4, 3.2) {$x$};
+				\node at (2.2, 0.4) {$35^\circ$};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Ecuación:}\\
+			$x + \boxfill[1cm] + \boxfill[1cm] = 180^\circ$\\[0.2cm]
+			\textbf{Suma los conocidos:}\\
+			$x + \boxfill[1.5cm] = 180^\circ$\\[0.2cm]
+			\textbf{Despeja:}\\
+			$x = 180^\circ - \boxfill[1.5cm]$\\[0.2cm]
+			\textbf{Respuesta:} $x = $ \boxfill[1.5cm]
+		\end{multicols}
+	\end{espaciotrabajo}
+	
+\end{document}
