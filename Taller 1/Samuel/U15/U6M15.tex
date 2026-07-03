@@ -1,12 +1,7 @@
-% ╔══════════════════════════════════════════════════════════════════════════╗
-% ║  LICEO V.A.L. – MÓDULO DE AUTOAPRENDIZAJE                              ║
-% ║  Código: 06M-15 FL  |  Grado: 6°  |  Ruta: Formación Libre (Regular)     ║
-% ║  Unidad 15: Geometría, Ángulos y Triángulos                             ║
-% ╚══════════════════════════════════════════════════════════════════════════╝
-
 \documentclass[12pt, letterpaper]{article}
 
 % --- PAQUETES ---
+\usepackage{array}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish, es-noshorthands]{babel}
@@ -19,74 +14,173 @@
 \usepackage{multicol}
 \usepackage{helvet}
 \usepackage{pifont}
-\usepackage{fontawesome5}
+\usepackage{longtable}
 \usepackage{tikz}
-\usepackage[most]{tcolorbox}
-\usetikzlibrary{angles, quotes, arrows.meta, shapes.geometric, positioning, calc, backgrounds, fit}
+\usetikzlibrary{arrows.meta, shapes.geometric, calc, positioning, decorations.markings}
 
-% --- COLORES INSTITUCIONALES Y DE DISEÑO ---
+% ---- Marca de "lado igual" (una rayita perpendicular al lado, en el punto medio) ----
+\tikzset{
+	marcalado/.style={postaction={decorate}, decoration={markings,
+			mark=at position 0.5 with {\draw[line width=1.1pt] (0,-0.10) -- (0,0.10);}}}
+}
+
+% --- COLORES INSTITUCIONALES ---
 \definecolor{valblue}       {RGB}{0,   74,  153}
 \definecolor{valgreen}      {RGB}{0,  153,   76}
 \definecolor{valred}        {RGB}{204,   0,    0}
-\definecolor{valdark}       {RGB}{ 40,  40,   40}
+\definecolor{valdark}       {RGB}{ 30,  30,   30}
 \definecolor{valorange}     {RGB}{230, 115,    0}
-\definecolor{vallightblue}  {RGB}{230, 240,  255}
-\definecolor{vallightgreen} {RGB}{230, 250,  235}
+\definecolor{vallightblue}  {RGB}{220, 235,  255}
+\definecolor{vallightgreen} {RGB}{220, 255,  235}
+\definecolor{vallightred}   {RGB}{255, 220,  220}
+\definecolor{vallightorange}{RGB}{255, 240,  215}
+\definecolor{valgray}       {RGB}{248, 248,  248}
+\definecolor{valmid}        {RGB}{190, 190,  190}
+\definecolor{boxbg}         {RGB}{245, 245,  245}
 
 \renewcommand{\familydefault}{\sfdefault}
 
-% --- FONDO INSTITUCIONAL ---
+\usepackage[most]{tcolorbox}
 \usepackage{eso-pic}
 \AddToShipoutPictureBG{%
-	\IfFileExists{../../FondoVAL.pdf}{%
-		\AtPageLowerLeft{%
-			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
-		}%
-	}{}%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,
+		keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+% --- ENTORNOS INSTITUCIONALES ---
+\newtcolorbox{concepto}[1]{breakable, colback=valblue!5,
+	colframe=valblue,
+	title={\ding{111}\ \textbf{Aprende el Concepto: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{breakable, colback=valorange!5,
+	colframe=valorange,
+	title={\ding{51}\;\textbf{El Truco: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{breakable, colback=valgreen!5,
+	colframe=valgreen,
+	title={\ding{45}\;\textbf{Ejemplo}},
+	arc=2mm, boxrule=1pt}
+\newtcolorbox{atencion}[1]{breakable, colback=vallightred,
+	colframe=valred,
+	title={\textbf{\color{white}#1}},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valred, sharp corners},
+	arc=2mm, boxrule=1pt}
+\newenvironment{practica}[1]{%
+	\vspace{0.4cm}
+	\noindent{\Large\textbf{\textcolor{valblue}{\ding{46}\;¡Tu Turno! (#1)}}}
+	\vspace{0.1cm}\hrule\vspace{0.3cm}}{\vspace{0.3cm}}
+\newtcolorbox{espaciotrabajo}[1]{breakable, colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90,
+	top=2mm, bottom=2mm}
+\newtcolorbox{espaciotrabajonb}[1]{colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90,
+	top=2mm, bottom=2mm}
+
+% --- CASILLAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!60, colback=boxbg, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxstep}[1][2cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!40, colback=white, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+
+\setlength{\columnseprule}{0.4pt}
+
+% ============================================================
+%  MACROS DE GEOMETRÍA (TikZ) REUTILIZABLES
+% ============================================================
+
+% ---- Ángulo simple: vértice O, dos Semirectas, arco con etiqueta ----
+% #1 vértice  #2 punto Semirecta 1  #3 punto Semirecta 2  #4 grados del Semirecta 2  #5 texto del arco
+\newcommand{\anguloTikz}[5]{%
+	\begin{tikzpicture}[scale=0.85]
+		\coordinate (O) at (0,0);
+		\pgfmathsetmacro{\halfang}{(#4)/2}
+		\draw[valdark,line width=1.3pt] (O) -- (2.0,0) node[right,font=\small]{$#2$};
+		\draw[valdark,line width=1.3pt] (O) -- (#4:2.0) node[above right,font=\small]{$#3$};
+		\fill[valdark] (O) circle(1.3pt);
+		\node[below left,font=\small] at (O) {$#1$};
+		\draw[valorange,line width=1.1pt] (0.55,0) arc (0:#4:0.55);
+		\node[valorange,font=\bfseries\small] at (\halfang:0.92) {#5};
+	\end{tikzpicture}%
 }
 
-% --- CAJITAS PARA COMPLETAR EN TEXTO ---
-\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.6pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
-
-% --- ENTORNOS DE CAJAS PERSONALIZADOS ---
-\newtcolorbox{conceptbox}[1][Aprende el Concepto]{
-	enhanced, colback=vallightblue, colframe=valblue, arc=2mm, boxrule=1.2pt,
-	title={\Large \faLightbulb\ \textbf{#1}}, fonttitle=\bfseries, coltitle=white,
-	attach boxed title to top left={xshift=5mm, yshift=-3mm},
-	boxed title style={colback=valblue, arc=1mm},
-	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+% ---- Ángulo recto marcado con escuadrita (sin número) ----
+% #1 vértice  #2 punto Semirecta 1  #3 punto Semirecta 2
+\newcommand{\anguloRectoMarca}[3]{%
+	\begin{tikzpicture}[scale=0.85]
+		\coordinate (O) at (0,0);
+		\draw[valdark,line width=1.3pt] (O) -- (2.0,0) node[right,font=\small]{$#2$};
+		\draw[valdark,line width=1.3pt] (O) -- (90:2.0) node[above,font=\small]{$#3$};
+		\fill[valdark] (O) circle(1.3pt);
+		\node[below left,font=\small] at (O) {$#1$};
+		\draw[valblue,line width=1pt] (0.35,0) -- (0.35,0.35) -- (0,0.35);
+	\end{tikzpicture}%
 }
 
-\newtcolorbox{examplebox}[1][Ejemplo Resuelto]{
-	enhanced, colback=vallightgreen, colframe=valgreen, arc=2mm, boxrule=1.2pt,
-	title={\Large \faCheckSquare\ \textbf{#1}}, fonttitle=\bfseries, coltitle=white,
-	attach boxed title to top left={xshift=5mm, yshift=-3mm},
-	boxed title style={colback=valgreen, arc=1mm},
-	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+% ---- Ángulos opuestos por el vértice (dos rectas que se cruzan) ----
+% #1 etiqueta región derecha-arriba  #2 etiqueta región izquierda-abajo (opuesta a #1)
+\newcommand{\angulosOpuestos}[2]{%
+	\begin{tikzpicture}[scale=0.9]
+		\draw[valdark,line width=1.3pt] (-2,-1) -- (2,1);
+		\draw[valdark,line width=1.3pt] (-2,1) -- (2,-1);
+		\fill[valdark] (0,0) circle(1.3pt);
+		\node[valorange,font=\bfseries\small] at (1.4,0) {#1};
+		\node[valred,font=\bfseries\small]    at (-1.4,0) {#2};
+	\end{tikzpicture}%
 }
 
-\newtcolorbox{espaciotrabajo}[1][]{
-	breakable, enhanced, colback=white, colframe=valdark, arc=2mm, boxrule=0.8pt,
-	title={\faPen\ #1}, coltitle=white, fonttitle=\bfseries,
-	attach boxed title to top left={xshift=4mm, yshift=-2mm},
-	boxed title style={colback=valdark, arc=1mm, boxrule=0pt},
-	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+% ---- Ángulos complementarios (esquina recta dividida en dos) ----
+% #1 etiqueta región A (inferior)  #2 etiqueta región B (superior)
+\newcommand{\angulosComplementarios}[2]{%
+	\begin{tikzpicture}[scale=0.9]
+		\draw[valdark,line width=1.3pt] (0,0) -- (2.3,0);
+		\draw[valdark,line width=1.3pt] (0,0) -- (0,2.3);
+		\draw[valdark,line width=1.3pt] (0,0) -- (55:2.1);
+		\draw[valblue,line width=0.9pt] (0.28,0) -- (0.28,0.28) -- (0,0.28);
+		\node[valorange,font=\bfseries\small] at (25:1.15) {#1};
+		\node[valred,font=\bfseries\small]    at (72:1.15) {#2};
+	\end{tikzpicture}%
 }
 
-\newcommand{\mision}[1]{
-	\vspace{0.6cm}
-	\begin{tcolorbox}[
-		enhanced, colback=valdark, colframe=valdark, arc=2mm, boxrule=0pt,
-		halign=center, valign=center, top=3mm, bottom=3mm, left=2mm, right=2mm,
-		drop shadow=valdark!50
-		]
-		\textcolor{white}{\Large \textbf{\faFlagCheckered\ #1}}
-	\end{tcolorbox}
-	\vspace{0.3cm}
+% ---- Ángulos suplementarios (recta dividida en dos por un Semirecta) ----
+% #1 etiqueta región A (izquierda)  #2 etiqueta región B (derecha)
+\newcommand{\angulosSuplementarios}[2]{%
+	\begin{tikzpicture}[scale=0.9]
+		\draw[valdark,line width=1.3pt] (-2.3,0) -- (2.3,0);
+		\draw[valdark,line width=1.3pt] (0,0) -- (50:2.1);
+		\fill[valdark] (0,0) circle(1.2pt);
+		\node[valorange,font=\bfseries\small] at (25:1.2) {#1};
+		\node[valred,font=\bfseries\small]    at (115:1.2) {#2};
+	\end{tikzpicture}%
 }
 
+% ---- Triángulo genérico con 3 ángulos internos etiquetados ----
+% #1 ángulo en A(izq-inf)  #2 ángulo en B(der-inf)  #3 ángulo en C(arriba)
+\newcommand{\trianguloAngulos}[3]{%
+	\begin{tikzpicture}[scale=0.85]
+		\coordinate (A) at (0,0);
+		\coordinate (B) at (3.4,0);
+		\coordinate (C) at (1.3,2.4);
+		\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+		\node[valorange,font=\bfseries\small] at ($(A)+(0.65,0.28)$) {#1};
+		\node[valred,font=\bfseries\small]    at ($(B)+(-0.65,0.28)$) {#2};
+		\node[valblue,font=\bfseries\small]   at ($(C)+(0.2,-0.7)$) {#3};
+	\end{tikzpicture}%
+}
+
+% ============================================================
 \begin{document}
+	% ============================================================
 	
+	% ----- PORTADA -----
 	\begin{center}
 		{\Huge\textbf{LICEO V.A.L.}}\\[0.5cm]
 		{\LARGE\textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
@@ -94,265 +188,1057 @@
 		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
 			arc=3mm, boxrule=1.5pt]
 			\centering
-			\Huge\textbf{UNIDAD 14}\\[0.2cm]
-			\Large\textbf{Solución de ecuaciones}\\[0.2cm]
-			\large Propiedades de igualdad, determinación de soluciones.
+			\Huge\textbf{UNIDAD 15}\\[0.2cm]
+			\Large\textbf{Geometría, Ángulos y Triángulos}\\[0.2cm]
+			\large Propiedades, medición y clasificación.
 		\end{tcolorbox}
-		\vspace{0.6cm}
+		%\vspace{0.6cm}
 		\begin{tcolorbox}[colback=white, colframe=valblue,
 			width=12cm, arc=3mm, boxrule=1.5pt]
-			\centering\vspace{0.3cm}
+			\centering%\vspace{0.3cm}
 			\textbf{Nombre:}\\[0.3cm]
 			\underline{\hspace{9cm}}\\[0.5cm]
-			\textbf{Código:}\;\textbf{06M-14 FL}
+			\textbf{Código:}\;\textbf{06M-15 FL}
 			\hspace{1cm}\textbf{Año:}\;\underline{2026}
-			\vspace{0.3cm}
+			%\vspace{0.3cm}
 		\end{tcolorbox}
-		\vspace{0.8cm}
+		%\vspace{0.8cm}
 		\textit{``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
 	\end{center}
-	% ----------------------------------------------------------------------
-	% MISIÓN 1: CLASIFICACIÓN DE ÁNGULOS
-	% ----------------------------------------------------------------------
-	\mision{Misión 1: Clasificación de Ángulos}
 	
-	\begin{conceptbox}[La Abertura de las Líneas]
-		Un \textbf{ángulo} está formado por dos semirrectas que comparten un punto inicial llamado \textbf{vértice}. La unidad de medida estándar es el \textbf{grado ($^\circ$)}. Según su abertura, los clasificamos en:
-		\begin{itemize}[itemsep=0.1cm]
-			\item \textbf{Agudo:} Mide menos de $90^\circ$.
-			\item \textbf{Recto:} Mide exactamente $90^\circ$ (forma una "L" perfecta).
-			\item \textbf{Obtuso:} Mide más de $90^\circ$ pero menos de $180^\circ$.
-			\item \textbf{Llano:} Mide exactamente $180^\circ$ (una línea recta plana).
-		\end{itemize}
-	\end{conceptbox}
+	% =========================================================
+	%  MISIÓN 1 — ELEMENTOS BÁSICOS Y TIPOS DE ÁNGULOS
+	% =========================================================
+	\section*{Misión 1: Elementos Básicos y Tipos de Ángulos}
 	
-	\begin{center}
-		\begin{tikzpicture}[scale=0.9, thick]
-			% Agudo
-			\draw[<->] (2,1.5) -- (0,0) -- (2.5,0);
-			\draw[valblue, fill=valblue!20] (0.5,0) arc (0:36.8:0.5) -- (0,0) -- cycle;
-			\node[valblue] at (1, 0.3) {$< 90^\circ$};
-			\node at (1.2, -0.5) {\textbf{Agudo}};
-			
-			% Recto
-			\begin{scope}[xshift=4cm]
-				\draw[<->] (0,2) -- (0,0) -- (2.5,0);
-				\draw[valred, fill=valred!20] (0,0.4) -- (0.4,0.4) -- (0.4,0) -- (0,0) -- cycle;
-				\node[valred] at (0.8, 0.8) {$90^\circ$};
-				\node at (1.2, -0.5) {\textbf{Recto}};
-			\end{scope}
-			
-			% Obtuso
-			\begin{scope}[xshift=8cm]
-				\draw[<->] (-1.5,1.5) -- (0,0) -- (2.5,0);
-				\draw[valgreen, fill=valgreen!20] (0.5,0) arc (0:135:0.5) -- (0,0) -- cycle;
-				\node[valgreen] at (0.5, 0.8) {$> 90^\circ$};
-				\node at (0.5, -0.5) {\textbf{Obtuso}};
-			\end{scope}
-			
-			% Llano
-			\begin{scope}[xshift=13cm]
-				\draw[<->] (-1.5,0) -- (0,0) -- (1.5,0);
-				\fill (0,0) circle (2pt);
-				\draw[valorange, fill=valorange!20] (0.5,0) arc (0:180:0.5) -- (0,0) -- cycle;
-				\node[valorange] at (0, 0.8) {$180^\circ$};
-				\node at (0, -0.5) {\textbf{Llano}};
-			\end{scope}
-		\end{tikzpicture}
-	\end{center}
-	
-	\begin{espaciotrabajo}[¡Tu Turno! - Clasificador de Ángulos]
-		Observa la medida de cada ángulo e indica a qué clasificación pertenece.
-		\vspace{0.3cm}
-		\begin{multicols}{2}
-			\begin{enumerate}[itemsep=0.8cm]
-				\item $45^\circ \ \rightarrow \ $ \boxfill[3cm]
-				\item $120^\circ \ \rightarrow \ $ \boxfill[3cm]
-				\item $90^\circ \ \rightarrow \ $ \boxfill[3cm]
-				\item $175^\circ \ \rightarrow \ $ \boxfill[3cm]
-				\item $18^\circ \ \rightarrow \ $ \boxfill[3cm]
-				\item $180^\circ \ \rightarrow \ $ \boxfill[3cm]
-			\end{enumerate}
-		\end{multicols}
-		\vspace{0.2cm}
-	\end{espaciotrabajo}
-	
-	\newpage
-	
-	% ----------------------------------------------------------------------
-	% MISIÓN 2: RELACIONES ENTRE ÁNGULOS (ÁLGEBRA)
-	% ----------------------------------------------------------------------
-	\mision{Misión 2: Ángulos Complementarios y Suplementarios}
-	
-	\begin{conceptbox}[Equipos de Ángulos]
-		A veces los ángulos trabajan en equipo para formar figuras perfectas:\\
-		$\bullet$ \textbf{Complementarios:} Dos ángulos que al sumarse forman un ángulo recto (\textbf{$\mathbf{90^\circ}$}).\\
-		$\bullet$ \textbf{Suplementarios:} Dos ángulos que al sumarse forman un ángulo llano (\textbf{$\mathbf{180^\circ}$}).
-	\end{conceptbox}
-	
-	\begin{examplebox}
-		Encuentra el valor del ángulo faltante $x$ sabiendo que los ángulos son \textbf{suplementarios}.\\[0.2cm]
-		\begin{minipage}{0.35\textwidth}
-			\begin{tikzpicture}[scale=0.8, thick]
-				\draw[<->] (-3,0) -- (3,0);
-				\draw[->] (0,0) -- (1.5,2.5);
-				\draw[valblue, fill=valblue!10] (0.8,0) arc (0:59:0.8) -- (0,0) -- cycle;
-				\draw[valred, fill=valred!10] (1.1,1.8) arc (59:180:1.2) -- (0,0) -- cycle;
-				\node at (1.5, 0.5) {$60^\circ$};
-				\node at (-1, 0.8) {$x$};
-			\end{tikzpicture}
-		\end{minipage}%
-		\begin{minipage}{0.6\textwidth}
-			\textbf{1. Plantea la ecuación:} \quad $x + 60^\circ = 180^\circ$\\[0.2cm]
-			\textbf{2. Despeja (resta):} \qquad $x = 180^\circ - 60^\circ$\\[0.2cm]
-			\textbf{3. Resultado:} \qquad \qquad $\mathbf{x = 120^\circ}$
-		\end{minipage}
-	\end{examplebox}
-	
-	\begin{espaciotrabajo}[¡Tu Turno! - Ecuaciones Geométricas]
-		Plantea la ecuación lineal para encontrar el ángulo desconocido $x$ en cada caso y resuélvela.
+	\begin{concepto}{Punto, Recta, Semirecta y Segmento}
+		Estos cuatro elementos son la base de toda la Geometría. Todo lo demás
+		(ángulos, polígonos, triángulos) se construye a partir de ellos.
 		
-		\vspace{0.4cm}
-		\begin{multicols}{2}
-			\textbf{A) Son Complementarios}\\
-			\begin{tikzpicture}[scale=0.7, thick]
-				\draw[<->] (0,3) -- (0,0) -- (3,0);
-				\draw[->] (0,0) -- (2.5,1.5);
-				% Símbolo de 90° general
-				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0);
-				\node at (2, 0.5) {$35^\circ$};
-				\node at (0.8, 1.8) {$x$};
-			\end{tikzpicture}\\[0.2cm]
-			\textbf{Ecuación:}\\
-			$x + \boxfill[1cm] = 90^\circ$\\[0.2cm]
-			\textbf{Despeje:}\\
-			$x = 90^\circ - \boxfill[1cm]$\\[0.2cm]
-			\textbf{Respuesta:} \quad $x = $ \boxfill[1.5cm]
-			
-			\columnbreak
-			
-			\textbf{B) Son Suplementarios}\\
-			\begin{tikzpicture}[scale=0.7, thick]
-				\draw[<->] (-3,0) -- (3,0);
-				\draw[->] (0,0) -- (-1.5,2);
-				\node at (1, 0.5) {$x$};
-				\node at (-1.5, 0.6) {$110^\circ$};
-			\end{tikzpicture}\\[0.2cm]
-			\textbf{Ecuación:}\\
-			$x + \boxfill[1cm] = \boxfill[1.5cm]$\\[0.2cm]
-			\textbf{Despeje:}\\
-			$x = \boxfill[1cm] - \boxfill[1cm]$\\[0.2cm]
-			\textbf{Respuesta:} \quad $x = $ \boxfill[1.5cm]
-		\end{multicols}
-	\end{espaciotrabajo}
-	
-	\newpage
-	
-	% ----------------------------------------------------------------------
-	% MISIÓN 3: CLASIFICACIÓN DE TRIÁNGULOS
-	% ----------------------------------------------------------------------
-	\mision{Misión 3: Familias de Triángulos}
-	
-	\begin{conceptbox}[Según sus Lados y según sus Ángulos]
-		\textbf{Por sus Lados:}\\
-		$\bullet$ \textbf{Equilátero:} 3 lados iguales. \quad $\bullet$ \textbf{Isósceles:} 2 lados iguales. \quad $\bullet$ \textbf{Escaleno:} Ningún lado igual.\\[0.2cm]
-		\textbf{Por sus Ángulos:}\\
-		$\bullet$ \textbf{Acutángulo:} 3 ángulos agudos. \quad $\bullet$ \textbf{Rectángulo:} 1 ángulo recto ($90^\circ$). \quad $\bullet$ \textbf{Obtusángulo:} 1 ángulo obtuso.
-	\end{conceptbox}
-	
-	\begin{espaciotrabajo}[¡Tu Turno! - Doble Clasificación]
-		Observa cada triángulo y clasifícalo con \textbf{dos palabras} (una por sus lados y otra por sus ángulos). \textit{Guíate por las marcas de los lados (líneas rojas).}
-		
-		\vspace{0.4cm}
+		%\vspace{0.3cm}
 		\begin{center}
-			\renewcommand{\arraystretch}{2.5}
-			\begin{tabular}{| c | c | c |}
+			\begin{tikzpicture}[scale=0.85]
+				% PUNTO
+				\begin{scope}[shift={(0,0)}]
+					\fill[valblue] (0,0) circle(2.3pt);
+					\node[above] at (0,0.18) {$P$};
+					\node[below,font=\bfseries\small,valblue,align=center,
+					text width=2.5cm] at (0,-0.55)
+					{PUNTO\\ \normalfont\footnotesize posición exacta, sin tamaño};
+				\end{scope}
+				% RECTA
+				\begin{scope}[shift={(4.0,0)}]
+					\draw[valgreen,line width=1.3pt,{Stealth[scale=1.1]}-{Stealth[scale=1.1]}]
+					(-1,0) -- (1,0);
+					\node[above] at (-0.55,0.05) {$A$};
+					\node[above] at (0.55,0.05) {$B$};
+					\node[below,font=\bfseries\small,valgreen,align=center,
+					text width=2.6cm] at (0,-0.55)
+					{RECTA\\ \normalfont\footnotesize $\overleftrightarrow{AB}$, infinita en ambos sentidos};
+				\end{scope}
+				% Semirecta
+				\begin{scope}[shift={(8.0,0)}]
+					\draw[valorange,line width=1.3pt,-{Stealth[scale=1.1]}] (-1,0) -- (1,0);
+					\fill[valorange] (-1,0) circle(2.3pt);
+					\node[above] at (-1,0.05) {$A$};
+					\node[above] at (0.35,0.05) {$B$};
+					\node[below,font=\bfseries\small,valorange,align=center,
+					text width=2.6cm] at (0,-0.55)
+					{SEMIRECTA\\ \normalfont\footnotesize $\overrightarrow{AB}$, un origen, infinito en un sentido};
+				\end{scope}
+				% SEGMENTO
+				\begin{scope}[shift={(12.0,0)}]
+					\draw[valred,line width=1.3pt] (-1,0) -- (1,0);
+					\fill[valred] (-1,0) circle(2.3pt);
+					\fill[valred] (1,0) circle(2.3pt);
+					\node[above] at (-1,0.05) {$C$};
+					\node[above] at (1,0.05) {$D$};
+					\node[below,font=\bfseries\small,valred,align=center,
+					text width=2.6cm] at (0,-0.55)
+					{SEGMENTO\\ \normalfont\footnotesize $\overline{CD}$, dos extremos, longitud medible};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	
+	\begin{concepto}{¿Cómo se Nombra un Ángulo?}
+		Un \textbf{ángulo} es la abertura formada por dos semirectas (llamados
+		\textbf{lados}) que comparten el mismo punto de origen, llamado
+		\textbf{vértice}. Se nombra con \textbf{tres letras}: un punto de un
+		lado, el \textbf{vértice en el medio}, y un punto del otro lado. También
+		puede nombrarse solo con la letra del vértice si no hay confusión posible.
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\anguloTikz{O}{A}{B}{62}{\hspace{7mm}$\angle AOB$}
+		\end{center}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\centering\large\bfseries
+			$\angle AOB = \angle BOA = \angle O$
+			\quad\normalsize\normalfont (¡el vértice SIEMPRE va en el medio!)
+		\end{tcolorbox}
+	\end{concepto}
+	
+	\begin{concepto}{Clasificación de los Ángulos según su Medida}
+		Todo ángulo se clasifica comparando su medida con $90^\circ$ y $180^\circ$:
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.3}
+			\begin{tabular}{cccc}
+				\anguloTikz{O}{A}{B}{40}{$40^\circ$} &
+				\anguloTikz{O}{A}{B}{90}{$90^\circ$} &
+				\anguloTikz{O}{A}{B}{130}{$130^\circ$} &
+				\anguloTikz{O}{A}{B}{180}{$180^\circ$} \\
+				\textbf{\color{valblue}AGUDO} & \textbf{\color{valgreen}RECTO} &
+				\textbf{\color{valorange}OBTUSO} & \textbf{\color{valred}LLANO} \\
+				\footnotesize entre $0^\circ$ y $90^\circ$ & \footnotesize exactamente $90^\circ$ &
+				\footnotesize entre $90^\circ$ y $180^\circ$ & \footnotesize exactamente $180^\circ$
+			\end{tabular}
+		\end{center}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt]
+			Un ángulo \textbf{recto} se marca a veces con un pequeño cuadrado
+			($\square$) en el vértice, en vez de escribir el número. ¡Ese
+			cuadrado significa exactamente $90^\circ$!
+		\end{tcolorbox}
+	\end{concepto}
+	
+	
+	\begin{ejemplo}
+		\textbf{Observa el siguiente ángulo. Nómbralo y clasifícalo:}
+		\begin{center}
+			\anguloTikz{P}{M}{N}{115}{$115^\circ$}
+		\end{center}
+		\begin{itemize}[leftmargin=*]
+			\item \textbf{Vértice:} $P$ \qquad \textbf{Lados:} $\overrightarrow{PM}$ y
+			$\overrightarrow{PN}$
+			\item \textbf{Nombre del ángulo:} $\angle MPN$ (o $\angle NPM$, o $\angle P$)
+			\item \textbf{Medida:} $115^\circ$
+			\item \textbf{Clasificación:} como $90^\circ < 115^\circ < 180^\circ$,
+			es un ángulo \textbf{OBTUSO}.
+		\end{itemize}
+	\end{ejemplo}
+	
+	\begin{practica}{Elementos y Ángulos}
+		
+		\textbf{A) Identifica cada elemento geométrico (Punto, Recta, Semirecta o
+			Segmento) y escribe su notación correcta:}
+		
+		%\vspace{0.3cm}
+		\renewcommand{\arraystretch}{2.6}
+		\begin{center}
+			\begin{tabular}{|c|c|c|}
 				\hline
-				\rowcolor{valblue!20}
-				\textbf{Triángulo} & \textbf{Por sus Lados} & \textbf{Por sus Ángulos} \\
+				\rowcolor{valblue!15}
+				\textbf{Figura} & \textbf{Nombre del elemento} & \textbf{Notación} \\
 				\hline
-				% T1
-				\begin{tikzpicture}[scale=0.8, thick]
-					\draw (0,0) -- (3,0) -- (0,2) -- cycle;
-					\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Recto
-					\draw[valred] (1.5,-0.1) -- (1.5,0.1); % L1
-					\draw[valred] (-0.1,1) -- (0.1,1); \draw[valred] (-0.1,1.1) -- (0.1,1.1); % L2
-					\draw[valred] (1.4,1.1) -- (1.6,0.9); \draw[valred] (1.5,1.2) -- (1.7,1.0); \draw[valred] (1.6,1.3) -- (1.8,1.1); % L3
-				\end{tikzpicture} & 
-				\boxfill[3.5cm] & 
-				\boxfill[3.5cm] \\
+				\begin{tikzpicture}[scale=0.6]
+					\fill[valdark] (0,0) circle(2.5pt);
+					\node[above] at (0,0.3) {$X$};
+				\end{tikzpicture}
+				& \boxfill[3.2cm] & \boxfill[2cm] \\
 				\hline
-				% T2
-				\begin{tikzpicture}[scale=0.8, thick]
-					\draw (0,0) -- (2.5,0) -- (1.25,2.16) -- cycle;
-					\draw[valred] (1.25,-0.1) -- (1.25,0.1); 
-					\draw[valred] (0.5,1.1) -- (0.7,0.9); 
-					\draw[valred] (2.0,1.1) -- (1.8,0.9); 
-				\end{tikzpicture} & 
-				\boxfill[3.5cm] & 
-				\boxfill[3.5cm] \\
+				\begin{tikzpicture}[scale=0.6]
+					\draw[valdark,line width=1.2pt,{Stealth[scale=1]}-{Stealth[scale=1]}]
+					(-1.3,0) -- (1.3,0);
+					\node[below] at (-0.6,-0.05) {$C$};
+					\node[below] at (0.6,-0.05) {$D$};
+				\end{tikzpicture}
+				& \boxfill[3.2cm] & \boxfill[2cm] \\
 				\hline
-				% T3
-				\begin{tikzpicture}[scale=0.8, thick]
-					\draw (0,0) -- (4,0) -- (1,1.5) -- cycle;
-					\draw[valred] (2,-0.1) -- (2,0.1); 
-					\draw[valred] (0.4,0.8) -- (0.6,0.6); \draw[valred] (0.5,0.9) -- (0.7,0.7);
-					\draw[valred] (2.4,0.8) -- (2.6,0.6); \draw[valred] (2.5,0.9) -- (2.7,0.7); \draw[valred] (2.6,1.0) -- (2.8,0.8);
-				\end{tikzpicture} & 
-				\boxfill[3.5cm] & 
-				\boxfill[3.5cm] \\
+				\begin{tikzpicture}[scale=0.6]
+					\draw[valdark,line width=1.2pt,-{Stealth[scale=1]}] (-1.3,0) -- (1.3,0);
+					\fill[valdark] (-1.3,0) circle(2.2pt);
+					\node[below] at (-1.3,-0.05) {$E$};
+					\node[below] at (0.3,-0.05) {$F$};
+				\end{tikzpicture}
+				& \boxfill[3.2cm] & \boxfill[2cm] \\
+				\hline
+				\begin{tikzpicture}[scale=0.6]
+					\draw[valdark,line width=1.2pt] (-1.3,0) -- (1.3,0);
+					\fill[valdark] (-1.3,0) circle(2.2pt);
+					\fill[valdark] (1.3,0) circle(2.2pt);
+					\node[below] at (-1.3,-0.05) {$G$};
+					\node[below] at (1.3,-0.05) {$H$};
+				\end{tikzpicture}
+				& \boxfill[3.2cm] & \boxfill[2cm] \\
+				\hline
+				\begin{tikzpicture}[scale=0.6]
+					\draw[valdark,line width=1.2pt,-{Stealth[scale=1]}] (0,1.3) -- (0,-1.3);
+					\fill[valdark] (0,1.3) circle(2.2pt);
+					\node[right] at (0.08,1.3) {$I$};
+					\node[right] at (0.08,-0.3) {$J$};
+				\end{tikzpicture}
+				& \boxfill[3.2cm] & \boxfill[2cm] \\
 				\hline
 			\end{tabular}
 		\end{center}
-	\end{espaciotrabajo}
-	
-	% ----------------------------------------------------------------------
-	% MISIÓN 4: TEOREMA FUNDAMENTAL
-	% ----------------------------------------------------------------------
-	\mision{Misión 4: El Teorema de los 180°}
-	
-	\begin{conceptbox}[La Regla de Oro de los Triángulos]
-		No importa si el triángulo es grande, pequeño, rectángulo o escaleno. \textbf{La suma de los tres ángulos internos de CUALQUIER triángulo siempre es exactamente $\mathbf{180^\circ}$.}\\
-		Ecuación Maestra: \quad $\boldsymbol{\angle A + \angle B + \angle C = 180^\circ}$
-	\end{conceptbox}
-	
-	\begin{espaciotrabajo}[¡Tu Turno! - Ecuaciones Triangulares]
-		Arma la ecuación sumando los 3 ángulos para que den $180^\circ$ y despeja la $x$.
+		\vspace{0.2cm}
+		\textbf{B) Observa cada ángulo. Escribe su nombre (notación de 3 letras) y
+			su clasificación (agudo, recto, obtuso o llano):}
 		
-		\vspace{0.4cm}
+		\vspace{0.3cm}
 		\begin{multicols}{2}
-			\textbf{A)}\\
-			\begin{tikzpicture}[scale=0.8, thick]
-				\draw (0,0) -- (4,0) -- (1,2.5) -- cycle;
-				\node at (0.6, 0.3) {$x$};
-				\node at (3.2, 0.3) {$40^\circ$};
-				\node at (1.2, 1.8) {$80^\circ$};
-			\end{tikzpicture}\\[0.2cm]
-			\textbf{Ecuación:}\\
-			$x + \boxfill[1cm] + \boxfill[1cm] = 180^\circ$\\[0.2cm]
-			\textbf{Suma los conocidos:}\\
-			$x + \boxfill[1.5cm] = 180^\circ$\\[0.2cm]
-			\textbf{Despeja:}\\
-			$x = 180^\circ - \boxfill[1.5cm]$\\[0.2cm]
-			\textbf{Respuesta:} $x = $ \boxfill[1.5cm]
-			
-			\columnbreak
-			
-			\textbf{B) (¡Ojo con la "L"!)}\\
-			\begin{tikzpicture}[scale=0.8, thick]
-				\draw (0,0) -- (3,0) -- (0,4) -- cycle;
-				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Recto
-				\node at (0.4, 3.2) {$x$};
-				\node at (2.2, 0.4) {$35^\circ$};
-			\end{tikzpicture}\\[0.2cm]
-			\textbf{Ecuación:}\\
-			$x + \boxfill[1cm] + \boxfill[1cm] = 180^\circ$\\[0.2cm]
-			\textbf{Suma los conocidos:}\\
-			$x + \boxfill[1.5cm] = 180^\circ$\\[0.2cm]
-			\textbf{Despeja:}\\
-			$x = 180^\circ - \boxfill[1.5cm]$\\[0.2cm]
-			\textbf{Respuesta:} $x = $ \boxfill[1.5cm]
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm]
+				\item \anguloTikz{O}{A}{B}{38}{$38^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloTikz{Q}{R}{S}{90}{$90^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloTikz{T}{U}{V}{148}{$148^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloTikz{W}{X}{Y}{180}{$180^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\newpage
+				
+				\item \anguloTikz{K}{L}{M}{12}{\hspace{3.5cm}$12^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloTikz{E}{F}{G}{165}{$165^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloTikz{H}{I}{J}{88}{$88^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloTikz{N}{P}{Q}{92}{$92^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloRectoMarca{Z}{C}{D}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+				
+				\item \anguloTikz{S}{T}{U}{175}{$175^\circ$}\\[0.1cm]
+				Nombre ($\angle$): \boxfill[2.2cm] \\ Clasificación: \boxfill[2.4cm]
+			\end{enumerate}
 		\end{multicols}
-	\end{espaciotrabajo}
+	\end{practica}
+	
+	%\newpage
+	
+	
+	% =========================================================
+	%  MISIÓN 2 — ECUACIONES CON ÁNGULOS (PAREJAS ESPECIALES)
+	% =========================================================
+	\section*{Misión 2: Ecuaciones con Ángulos (Parejas Especiales)}
+	
+	\begin{concepto}{Ángulos Opuestos por el Vértice}
+		Cuando dos rectas se cruzan (se intersecan) en un punto, se forman
+		\textbf{4 ángulos}, agrupados en \textbf{2 parejas de ángulos opuestos
+			por el vértice} (uno frente al otro, sin compartir ningún lado).
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1]
+				\draw[valdark,line width=1.4pt] (-2.2,-1.1) -- (2.2,1.1);
+				\draw[valdark,line width=1.4pt] (-2.2,1.1) -- (2.2,-1.1);
+				\fill[valdark] (0,0) circle(1.5pt);
+				\node[valorange,font=\bfseries] at (0,0.55) {$a$};
+				\node[valorange,font=\bfseries] at (0,-0.55) {$a'$};
+				\node[valblue,font=\bfseries] at (0.95,0) {$b$};
+				\node[valblue,font=\bfseries] at (-0.95,0) {$b'$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightorange, colframe=valorange, arc=3pt]
+			\centering\large\bfseries
+			Los ángulos opuestos por el vértice son SIEMPRE
+			\textbf{CONGRUENTES} (iguales): \quad $m\angle a = m\angle a'$
+			\qquad $m\angle b = m\angle b'$
+		\end{tcolorbox}
+	\end{concepto}
+	
+	\begin{concepto}{Ángulos Complementarios y Suplementarios}
+		Estas son dos parejas especiales que se definen \textbf{únicamente por
+			la suma} de sus medidas (los ángulos NO necesitan estar juntos para
+		tener estos nombres):
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.2}
+			\begin{tabular}{cc}
+				\angulosComplementarios{$A$}{$B$} & \angulosSuplementarios{$A$}{$B$} \\
+				\textbf{\color{valblue}COMPLEMENTARIOS} & \textbf{\color{valred}SUPLEMENTARIOS}
+			\end{tabular}
+		\end{center}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\centering\bfseries
+			Si $A$ y $B$ son \textbf{complementarios}:\quad $m\angle A + m\angle B = 90^\circ$\\[4pt]
+			Si $A$ y $B$ son \textbf{suplementarios}:\quad $m\angle A + m\angle B = 180^\circ$
+		\end{tcolorbox}
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{Resuelve usando lo que sabes de parejas de ángulos:}
+		
+		\vspace{0.2cm}
+		\textbf{1) Opuestos por el vértice:} $\angle a$ y $\angle b$ son opuestos
+		por el vértice. Si $\angle a = (3x+10)^\circ$ y $\angle b = 70^\circ$,
+		halla $x$.\\
+		Como son opuestos por el vértice, $\angle a = \angle b$:
+		$$3x + 10 = 70 \quad\rightarrow\quad 3x = 70 - 10 \quad\rightarrow\quad
+		3x = 60 \quad\rightarrow\quad x=60\div 3 \quad\rightarrow\quad\mathbf{x = 20}$$
+		
+		\textbf{2) Complementarios:} $\angle A$ y $\angle B = 35^\circ$ son
+		complementarios. Halla $\angle A$.
+		$$\angle A + 35^\circ = 90^\circ \quad\rightarrow\quad
+		\angle A = 90^\circ - 35^\circ \quad\rightarrow\quad \mathbf{\angle A = 55^\circ}$$
+		
+		\textbf{3) Suplementarios:} $\angle A = (2x-10)^\circ$ y
+		$\angle B = 120^\circ$ son suplementarios. Halla $x$.
+		$$(2x - 10) + 120 = 180 \quad\rightarrow\quad 2x + 110 = 180
+		\quad\rightarrow\quad 2x = 70 \quad\rightarrow\quad \mathbf{x = 35}$$
+	\end{ejemplo}
+	
+	\begin{practica}{Ecuaciones con Ángulos}
+		\textit{Recuerda: las figuras son esquemáticas (no están a escala).
+			Plantea la ecuación y resuelve para $x$.}
+		
+		%\vspace{0.3cm}
+		\textbf{A) Ángulos Opuestos por el Vértice:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+				\item \angulosOpuestos{$(2x+5)^\circ$}{$55^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$2x+5=$\boxstep[1.1cm]\\[0.15cm]
+					$2x=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{$90^\circ$}{$(4x-10)^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$4x-10=$\boxstep[1.1cm]\\[0.15cm]
+					$4x=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{$(5x)^\circ$}{$75^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$5x=$\boxstep[1.4cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{$(3x-8)^\circ$}{$100^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{$48^\circ$}{$(x+20)^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.2cm}
+		\textbf{B) Ángulos Complementarios (suman $90^\circ$):}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm, start=6]
+				\item \angulosComplementarios{$x^\circ$}{$27^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$x+27=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\vspace*{2cm}
+				
+				\item \angulosComplementarios{$(2x)^\circ$}{$34^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$2x+34=$\boxstep[1.1cm]\\[0.15cm]
+					$2x=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\vspace{1cm}
+				\item \angulosComplementarios{$(x+15)^\circ$}{$41^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$x+15+41=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosComplementarios{$(3x-5)^\circ$}{$20^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosComplementarios{$62^\circ$}{$x^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.2cm}
+		\textbf{C) Ángulos Suplementarios (suman $180^\circ$):}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm, start=11]
+				\item \angulosSuplementarios{$x^\circ$}{$112^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					$x+112=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosSuplementarios{$(2x+10)^\circ$}{$90^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					$2x+10+90=$\boxstep[1.1cm]\\[0.15cm]
+					$2x=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosSuplementarios{$(x+30)^\circ$}{$95^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					$x+30+95=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosSuplementarios{$(4x-20)^\circ$}{$100^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	
+	% =========================================================
+	%  MISIÓN 3 — POLÍGONOS Y CLASIFICACIÓN DE TRIÁNGULOS
+	% =========================================================
+	\section*{Misión 3: Polígonos y Clasificación de Triángulos}
+	
+	\begin{concepto}{Clasificación de Polígonos según su Número de Lados}
+		Un \textbf{polígono} es una figura plana y \textbf{cerrada}, formada
+		únicamente por segmentos de recta llamados \textbf{lados}. El nombre de
+		un polígono depende de \textbf{cuántos lados} tiene:
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.9}
+			\begin{tabular}{|c|l|c|c|l|c|}
+				\hline
+				\rowcolor{valblue!20}
+				\textbf{N.° lados} & \textbf{Nombre} & \textbf{Figura} &
+				\textbf{N.° lados} & \textbf{Nombre} & \textbf{Figura} \\
+				\hline
+				3 & Triángulo &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=3,minimum size=1.0cm]{};} &
+				7 & Heptágono &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=7,minimum size=1.0cm]{};} \\
+				\hline
+				4 & Cuadrilátero &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=4,minimum size=1.0cm]{};} &
+				8 & Octágono &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=8,minimum size=1.0cm]{};} \\
+				\hline
+				5 & Pentágono &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=5,minimum size=1.0cm]{};} &
+				9 & Nonágono &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=9,minimum size=1.0cm]{};} \\
+				\hline
+				6 & Hexágono &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=6,minimum size=1.0cm]{};} &
+				10 & Decágono &
+				\tikz{\node[draw=valblue,fill=vallightblue,regular polygon,
+					regular polygon sides=10,minimum size=1.0cm]{};} \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	
+	\begin{concepto}{Clasificación de Triángulos según sus LADOS}
+		\begin{center}
+			\begin{tabular}{ccc}
+				\begin{tikzpicture}[scale=0.9]
+					\coordinate (A) at (0,0); \coordinate (B) at (2,0); \coordinate (C) at (1,1.73);
+					\draw[valdark,line width=1.3pt,marcalado] (A) -- (B);
+					\draw[valdark,line width=1.3pt,marcalado] (B) -- (C);
+					\draw[valdark,line width=1.3pt,marcalado] (C) -- (A);
+				\end{tikzpicture} &
+				\begin{tikzpicture}[scale=0.9]
+					\coordinate (A) at (0,0); \coordinate (B) at (2.2,0); \coordinate (C) at (1.1,1.7);
+					\draw[valdark,line width=1.3pt] (A) -- (B);
+					\draw[valdark,line width=1.3pt,marcalado] (B) -- (C);
+					\draw[valdark,line width=1.3pt,marcalado] (C) -- (A);
+				\end{tikzpicture} &
+				\begin{tikzpicture}[scale=0.9]
+					\coordinate (A) at (0,0); \coordinate (B) at (2.4,0); \coordinate (C) at (0.7,1.5);
+					\draw[valdark,line width=1.3pt] (A) -- (B);
+					\draw[valdark,line width=1.3pt] (B) -- (C);
+					\draw[valdark,line width=1.3pt] (C) -- (A);
+				\end{tikzpicture} \\
+				\textbf{\color{valblue}EQUILÁTERO} & \textbf{\color{valgreen}ISÓSCELES} & \textbf{\color{valorange}ESCALENO} \\
+				\footnotesize sus 3 lados iguales & \footnotesize 2 lados iguales & \footnotesize ningún lado igual
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	
+	\begin{concepto}{Clasificación de Triángulos según sus ÁNGULOS}
+		\begin{center}
+			\begin{tabular}{ccc}
+				\begin{tikzpicture}[scale=0.9]
+					\draw[valdark,line width=1.3pt] (0,0) -- (2,0) -- (0.9,1.6) -- cycle;
+				\end{tikzpicture} &
+				\begin{tikzpicture}[scale=0.9]
+					\draw[valdark,line width=1.3pt] (0,0) -- (2,0) -- (0,1.6) -- cycle;
+					\draw[valblue,line width=1pt] (0.28,0) -- (0.28,0.28) -- (0,0.28);
+				\end{tikzpicture} &
+				\begin{tikzpicture}[scale=0.9]
+					\draw[valdark,line width=1.3pt] (0,0) -- (2.6,0) -- (2.2,0.45) -- cycle;
+				\end{tikzpicture} \\
+				\textbf{\color{valblue}ACUTÁNGULO} & \textbf{\color{valgreen}RECTÁNGULO} & \textbf{\color{valorange}OBTUSÁNGULO} \\
+				\footnotesize sus 3 ángulos agudos & \footnotesize tiene 1 ángulo recto & \footnotesize tiene 1 ángulo obtuso
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	
+	\begin{truco}{Un Dato que te Ayudará en la Misión 4}
+		Un triángulo \textbf{NUNCA} puede tener dos ángulos rectos, ni dos
+		ángulos obtusos al mismo tiempo. Además, un
+		triángulo \textbf{equilátero SIEMPRE es acutángulo}: sus tres ángulos
+		miden $60^\circ$.\\[4pt]
+		\textbf{Truco visual:} si ves una marquita de cuadradito ($\square$) en
+		una esquina, ese triángulo YA es rectángulo, sin importar qué forma
+		tengan los otros lados.
+	\end{truco}
+	
+	\begin{ejemplo}
+		\textbf{Clasifica el siguiente triángulo por sus lados y por sus ángulos:}
+		\begin{center}
+			\begin{tikzpicture}[scale=1]
+				\coordinate (A) at (0,0); \coordinate (B) at (2.6,0); \coordinate (C) at (0,2.6);
+				\draw[valdark,line width=1.4pt,marcalado] (A) -- (B);
+				\draw[valdark,line width=1.4pt,marcalado] (A) -- (C);
+				\draw[valdark,line width=1.4pt] (B) -- (C);
+				\draw[valblue,line width=1pt] (0.3,0) -- (0.3,0.3) -- (0,0.3);
+			\end{tikzpicture}
+		\end{center}
+		\begin{itemize}[leftmargin=*]
+			\item \textbf{Por sus lados:} tiene 2 lados marcados como iguales
+			(las marquitas) $\rightarrow$ es \textbf{ISÓSCELES}.
+			\item \textbf{Por sus ángulos:} tiene un ángulo marcado con el
+			cuadradito $\rightarrow$ es \textbf{RECTÁNGULO}.
+			\item \textbf{Conclusión:} es un triángulo \textbf{ISÓSCELES RECTÁNGULO}.
+		\end{itemize}
+	\end{ejemplo}
+	
+	\begin{practica}{Polígonos y Triángulos}
+		
+		\textbf{A) Cuenta los lados de cada polígono y escribe su nombre:}
+		
+		%\vspace{0.3cm}
+		\renewcommand{\arraystretch}{2.6}
+		\begin{center}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\rowcolor{valblue!15}
+				\textbf{Figura} & \textbf{N.° de lados} & \textbf{Nombre} \\
+				\hline
+				\begin{tikzpicture}[scale=0.55]
+					\draw[valdark,line width=1.2pt,fill=vallightblue]
+					(0,0) -- (2,0.3) -- (1.7,1.8) -- (0.2,1.5) -- cycle;
+				\end{tikzpicture}
+				&  &  \\
+				\hline
+				\begin{tikzpicture}[scale=0.55]
+					\draw[valdark,line width=1.2pt,fill=vallightgreen]
+					(0,0) -- (1.8,-0.2) -- (2.3,1.2) -- (1,2.1) -- (-0.4,1.1) -- cycle;
+				\end{tikzpicture}
+				&  &  \\
+				\hline
+				\begin{tikzpicture}[scale=0.55]
+					\draw[valdark,line width=1.2pt,fill=vallightorange]
+					(0,0) -- (1.5,-0.3) -- (2.4,0.6) -- (2.1,1.8) -- (0.8,2.2) -- (-0.5,1.2) -- cycle;
+				\end{tikzpicture}
+				&  &  \\
+				\hline
+				\begin{tikzpicture}[scale=0.55]
+					\draw[valdark,line width=1.2pt,fill=vallightred]
+					(0,0) -- (2,0.2) -- (0.9,1.7) -- cycle;
+				\end{tikzpicture}
+				&  &  \\
+				\hline
+				\begin{tikzpicture}[scale=0.55]
+					\draw[valdark,line width=1.2pt,fill=vallightblue]
+					(0,0) -- (1.2,-0.5) -- (2.3,0.1) -- (2.6,1.3) -- (1.7,2.2) -- (0.5,2.1) -- (-0.6,1.0) -- cycle;
+				\end{tikzpicture}
+				&  & \hspace{6cm} \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\vspace{0.2cm}
+		\newpage
+		\textbf{B) Clasifica cada triángulo por sus LADOS y por sus ÁNGULOS
+			(las marquitas indican lados iguales; el cuadradito indica ángulo recto):}
+		
+		\vspace{0.3cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm]
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (2,0); \coordinate (C) at (1,1.73);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(B);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (C)--(A);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (2.4,0); \coordinate (C) at (1.2,2.0);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (C)--(A);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (2,0); \coordinate (C) at (0,2);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(B);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt] (B)--(C);
+					\draw[valblue,line width=1pt] (0.28,0)--(0.28,0.28)--(0,0.28);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (3,0); \coordinate (C) at (1.5,0.6);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (C)--(A);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (2.6,0); \coordinate (C) at (1.4,1.9);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\draw[valdark,line width=1.3pt] (B)--(C);
+					\draw[valdark,line width=1.3pt] (C)--(A);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (3,0); \coordinate (C) at (0,2.2);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\draw[valdark,line width=1.3pt] (A)--(C);
+					\draw[valdark,line width=1.3pt] (B)--(C);
+					\draw[valblue,line width=1pt] (0.28,0)--(0.28,0.28)--(0,0.28);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.2,0); \coordinate (C) at (2.6,0.6);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\draw[valdark,line width=1.3pt] (B)--(C);
+					\draw[valdark,line width=1.3pt] (C)--(A);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,2.0); \coordinate (B) at (2.4,2.0); \coordinate (C) at (1.2,0);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (C)--(A);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72,rotate=25]
+					\coordinate (A) at (0,0); \coordinate (B) at (2,0); \coordinate (C) at (1,1.73);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(B);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (C)--(A);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+				
+				\item
+				\begin{tikzpicture}[scale=0.72,rotate=-45]
+					\coordinate (A) at (0,0); \coordinate (B) at (2,0); \coordinate (C) at (0,2);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(B);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt] (B)--(C);
+					\draw[valblue,line width=1pt] (0.28,0)--(0.28,0.28)--(0,0.28);
+				\end{tikzpicture}\\[0.1cm]
+				Por lados: \boxfill[2.4cm] \\ Por ángulos: \boxfill[2.4cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	%\newpage
+	
+	
+	% =========================================================
+	%  MISIÓN 4 — EL SECRETO DE LOS TRIÁNGULOS (180°)
+	% =========================================================
+	\section*{Misión 4: El Secreto de los Triángulos ($180^\circ$)}
+	
+	\begin{concepto}{El Secreto de los $180^\circ$}
+		La suma	de las medidas de los TRES ángulos internos de \textbf{CUALQUIER}
+		triángulo —sin importar su forma o tamaño— es SIEMPRE $180^\circ$.
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\trianguloAngulos{$a$}{$b$}{$c$}
+		\end{center}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightblue, colframe=valblue, arc=3pt]
+			\centering\Large\bfseries
+			$m\angle a + m\angle b + m\angle c = 180^\circ$
+		\end{tcolorbox}
+		
+		\textbf{¿Por qué pasa esto?} Si ``arrancas'' los tres ángulos de un
+		triángulo y los juntas uno al lado del otro por su vértice, ¡forman
+		exactamente una línea recta (media vuelta $=180^\circ$)!
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.1]
+				\coordinate (O) at (0,0);
+				\draw[valdark,line width=1.5pt] (-2.2,0) -- (2.2,0);
+				\draw[valdark,line width=1.2pt] (O) -- (50:2.0);
+				\draw[valdark,line width=1.2pt] (O) -- (120:2.0);
+				\draw[valorange,fill=vallightorange,opacity=0.65] (O) -- (0:0.7) arc (0:50:0.7) -- cycle;
+				\draw[valred,fill=vallightred,opacity=0.65] (O) -- (50:0.7) arc (50:120:0.7) -- cycle;
+				\draw[valblue,fill=vallightblue,opacity=0.65] (O) -- (120:0.7) arc (120:180:0.7) -- cycle;
+				\node[valorange,font=\bfseries\small] at (25:0.95) {$a$};
+				\node[valred,font=\bfseries\small] at (85:0.95) {$b$};
+				\node[valblue,font=\bfseries\small] at (150:0.95) {$c$};
+			\end{tikzpicture}\\
+			\footnotesize $a+b+c=180^\circ$ (media vuelta $=$ una recta)
+		\end{center}
+	\end{concepto}
+	
+	\begin{concepto}{Caso Especial: El Triángulo Isósceles}
+		En un triángulo isósceles, los DOS ángulos que están junto a la base
+		(el lado distinto) se llaman \textbf{ángulos de la base}, y son SIEMPRE
+		\textbf{IGUALES} entre sí, porque cada uno queda ``enfrente'' de uno de
+		los dos lados iguales.
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1]
+				\coordinate (A) at (0,0); \coordinate (B) at (3.2,0); \coordinate (C) at (1.6,2.6);
+				\draw[valdark,line width=1.4pt,marcalado] (A) -- (C);
+				\draw[valdark,line width=1.4pt,marcalado] (B) -- (C);
+				\draw[valdark,line width=1.4pt] (A) -- (B);
+				\node[valorange,font=\bfseries] at (0.55,0.28) {$x$};
+				\node[valorange,font=\bfseries] at (2.65,0.28) {$x$};
+				\node[valblue,font=\bfseries] at (1.6,2.05) {$v$};
+				\node[below,font=\small] at (1.6,-0.28) {base};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{tcolorbox}[enhanced, colback=vallightgreen, colframe=valgreen, arc=3pt]
+			\centering\bfseries
+			Si conoces el ángulo del vértice ($v$), cada ángulo de la base ($x$)
+			cumple:
+			$$2x + v = 180^\circ$$
+		\end{tcolorbox}
+	\end{concepto}
+	
+	\begin{truco}{El Tercer Ángulo}
+		Si ya conoces dos ángulos de un triángulo (o puedes plantear una
+		ecuación con ellos), el tercero siempre se calcula igual:
+		$$x = 180^\circ - (\text{suma de los otros dos ángulos})$$
+		Y en un triángulo isósceles, si conoces el ángulo del vértice entre los dos lados iguales, ¡ya
+		sabes que los otros dos son IGUALES entre sí! Solo falta repartir en
+		partes iguales lo que queda de $180^\circ$.
+	\end{truco}
+	
+	\begin{ejemplo}
+		\textbf{1) Triángulo general:} halla el valor de $x$.
+		\begin{center}
+			\trianguloAngulos{$40^\circ$}{$90^\circ$}{$x$}
+		\end{center}
+		$$x + 40^\circ + 90^\circ = 180^\circ \quad\rightarrow\quad
+		x + 130^\circ = 180^\circ \quad\rightarrow\quad \mathbf{x = 50^\circ}$$
+		
+		\textbf{2) Triángulo isósceles:} el ángulo del vértice mide $40^\circ$.
+		Halla cada ángulo de la base.
+		\begin{center}
+			\begin{tikzpicture}[scale=0.85]
+				\coordinate (A) at (0,0); \coordinate (B) at (3.2,0); \coordinate (C) at (1.6,2.6);
+				\draw[valdark,line width=1.4pt,marcalado] (A) -- (C);
+				\draw[valdark,line width=1.4pt,marcalado] (B) -- (C);
+				\draw[valdark,line width=1.4pt] (A) -- (B);
+				\node[valorange,font=\bfseries] at (0.55,0.28) {$x$};
+				\node[valorange,font=\bfseries] at (2.65,0.28) {$x$};
+				\node[valblue,font=\bfseries] at (1.6,2.05) {$40^\circ$};
+			\end{tikzpicture}
+		\end{center}
+		Como los ángulos de la base son iguales, llamamos $x$ a cada uno:
+		$$x + x + 40^\circ = 180^\circ \quad\rightarrow\quad 2x = 140^\circ
+		\quad\rightarrow\quad \mathbf{x = 70^\circ}$$
+	\end{ejemplo}
+	
+	\begin{practica}{Los $180^\circ$}
+		\textit{Plantea la ecuación $180^\circ$ y resuelve para $x$.}
+		
+		%\vspace{0.3cm}
+		\textbf{A) Triángulos Generales:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.2,0); \coordinate (C) at (2.4,1.6);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\node[valorange,font=\bfseries\small] at ($(A)+(1,0.25)$) {$35^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.55,0.25)$) {$60^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(-0.1,-0.4)$) {$x$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$x+35+60=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.0,0); \coordinate (C) at (0,1.4);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\draw[valblue,line width=1pt] (0.28,0) -- (0.28,0.28) -- (0,0.28);
+					\node[valorange,font=\bfseries\small] at ($(A)+(0.5,0.35)$) {$90^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-1,0.22)$) {$25^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(0.25,-0.4)$) {$x$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$x+90+25=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.0,0); \coordinate (C) at (1.3,2.0);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\node[valorange,font=\bfseries\small] at ($(A)+(15,0.28)$) {$(2x)^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.55,0.28)$) {$50^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(0,-0.4)$) {$70^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$2x+50+70=$\boxstep[1.1cm]\\[0.15cm]
+					$2x=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.0,0); \coordinate (C) at (1.5,1.5);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\draw[valblue,line width=1pt] (1.32, 1.32) -- (1.5, 1.15) -- (1.68, 1.32);
+					\node[valorange,font=\bfseries\small] at ($(A)+(0.5,0.25)$) {$x^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.55,0.25)$) {$x^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(0,-0.45)$) {$90^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$2x+90=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.2,0); \coordinate (C) at (1.8,1.8);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\node[valorange,font=\bfseries\small] at ($(A)+(0.5,0.25)$) {$(3x-10)^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.55,0.25)$) {$45^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(0,-0.4)$) {$85^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$3x-10+45+85=$\boxstep[1.1cm]\\[0.15cm]
+					$3x=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.0,0); \coordinate (C) at (1.4,1.9);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\node[valorange,font=\bfseries\small] at ($(A)+(0.5,0.25)$) {$55^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.55,0.25)$) {$65^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(0,-0.4)$) {$x$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (C) at (0,1.8); \coordinate (B) at (3.8,1.8);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\draw[valblue,line width=1pt] (0, 1.5) -- (0.3, 1.5) -- (0.3, 1.8);
+					\node[valorange,font=\bfseries\small] at ($(A)+(0.35,0.4)$) {$(4x)^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.6,0.22)$) {$20^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(0.4,-0.35)$) {$90^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.0,0); \coordinate (C) at (1.5,2.6);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\node[valorange,font=\bfseries\small] at ($(A)+(0.5,0.28)$) {$x^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.55,0.28)$) {$x^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(0,-0.4)$) {$x^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item 
+				\begin{tikzpicture}[scale=0.85]
+					\coordinate (A) at (0,0); \coordinate (B) at (3.2,0); \coordinate (C) at (2.0,1.5);
+					\draw[valdark,line width=1.4pt] (A) -- (B) -- (C) -- cycle;
+					\node[valorange,font=\bfseries\small] at ($(A)+(0.5,0.25)$) {$(2x+5)^\circ$};
+					\node[valred,font=\bfseries\small]    at ($(B)+(-0.55,0.25)$) {$(x+15)^\circ$};
+					\node[valblue,font=\bfseries\small]   at ($(C)+(-0.1,-0.4)$) {$85^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.2cm}
+		\textbf{B) Triángulos Isósceles (los dos ángulos de la base son iguales):}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm, start=10]
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (2.0,0); \coordinate (C) at (1.0,2.4);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\node[valorange,font=\bfseries\small] at (0.45,0.28) {$x$};
+					\node[valorange,font=\bfseries\small] at (1.55,0.28) {$x$};
+					\node[valblue,font=\bfseries\small] at (1.0,2.6) {$40^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$2x+40=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (2.4,0); \coordinate (C) at (1.2,2.3);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\node[valorange,font=\bfseries\small] at (0.45,0.28) {$65^\circ$};
+					\node[valorange,font=\bfseries\small] at (1.95,0.28) {$65^\circ$};
+					\node[valblue,font=\bfseries\small] at (1.2,2.6) {$(2x)^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$65+65+2x=$\boxstep[1.1cm]\\[0.15cm]
+					$2x=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (4.0,0); \coordinate (C) at (2.0,1.2);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\node[valorange,font=\bfseries\small] at (0.75,0.25) {$x^\circ$};
+					\node[valorange,font=\bfseries\small] at (3.25,0.25) {$x^\circ$};
+					\node[valblue,font=\bfseries\small] at (2.0,1.5) {$110^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					$2x+110=$\boxstep[1.1cm]\\[0.15cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (2.8,0); \coordinate (C) at (1.4,1.8);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\node[valorange,font=\bfseries\small] at (0.5,0.25) {$55^\circ$};
+					\node[valorange,font=\bfseries\small] at (2.3,0.25) {$55^\circ$};
+					\node[valblue,font=\bfseries\small] at (1.4,2) {$(x+10)^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (4.4,0); \coordinate (C) at (2.2,0.9);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\node[valorange,font=\bfseries\small] at (-0.55,0.22) {$x^\circ$};
+					\node[valorange,font=\bfseries\small] at (4.85,0.22) {$x^\circ$};
+					\node[valblue,font=\bfseries\small] at (2.2,1) {$(4x)^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item
+				\begin{tikzpicture}[scale=0.72]
+					\coordinate (A) at (0,0); \coordinate (B) at (1.6,0); \coordinate (C) at (0.8,2.7);
+					\draw[valdark,line width=1.3pt,marcalado] (A)--(C);
+					\draw[valdark,line width=1.3pt,marcalado] (B)--(C);
+					\draw[valdark,line width=1.3pt] (A)--(B);
+					\node[valorange,font=\bfseries\small] at (-0.6,0.28) {$(x+5)^\circ$};
+					\node[valorange,font=\bfseries\small] at (2.5,0.28) {$(x+5)^\circ$};
+					\node[valblue,font=\bfseries\small] at (0.8,2.8) {$30^\circ$};
+				\end{tikzpicture}
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.2cm}\underline{\hspace{4.6cm}}\\[0.2cm]
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
 	
 \end{document}

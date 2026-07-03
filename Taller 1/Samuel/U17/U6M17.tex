@@ -1,0 +1,802 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tikz}
+\usepackage{comment}
+\usetikzlibrary{
+	arrows.meta, shapes.geometric, positioning, calc,
+	decorations.pathmorphing, backgrounds, fit, shadows.blur
+}
+
+% --- COLORES ---
+\definecolor{valblue}       {RGB}{0,   74,  153}
+\definecolor{valgreen}      {RGB}{0,  153,   76}
+\definecolor{valred}        {RGB}{204,   0,    0}
+\definecolor{valdark}       {RGB}{ 30,  30,   30}
+\definecolor{valorange}     {RGB}{230, 115,    0}
+\definecolor{vallightblue}  {RGB}{220, 235,  255}
+\definecolor{vallightgreen} {RGB}{220, 255,  235}
+\definecolor{vallightred}   {RGB}{255, 220,  220}
+\definecolor{vallightorange}{RGB}{255, 240,  215}
+\definecolor{valgray}       {RGB}{248, 248,  248}
+\definecolor{valmid}        {RGB}{190, 190,  190}
+\definecolor{boxbg}         {RGB}{245, 245,  245}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[most]{tcolorbox}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,
+		keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+% --- ENTORNOS INSTITUCIONALES ---
+\newtcolorbox{concepto}[1]{breakable, colback=valblue!5,
+	colframe=valblue,
+	title={\ding{111}\ \textbf{Aprende el Concepto: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{breakable, colback=valorange!5,
+	colframe=valorange,
+	title={\ding{51}\;\textbf{El Truco: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{breakable, colback=valgreen!5,
+	colframe=valgreen,
+	title={\ding{45}\;\textbf{Ejemplo}},
+	arc=2mm, boxrule=1pt}
+\newtcolorbox{atencion}[1]{breakable, colback=vallightred,
+	colframe=valred,
+	title={\textbf{\color{white}#1}},
+	attach boxed title to top left={yshift=-2.5mm, xshift=5mm},
+	boxed title style={colback=valred, sharp corners},
+	arc=2mm, boxrule=1pt}
+\newtcolorbox{minicheck}{
+	breakable,
+	colback=valorange!8, colframe=valorange,
+	title={\ding{51}\;\textbf{Comprueba tú mismo antes de continuar}},
+	arc=2mm, boxrule=1pt, fonttitle=\normalsize}
+\newenvironment{practica}[1]{%
+	\vspace{0.4cm}
+	\noindent{\Large\textbf{\textcolor{valblue}{\ding{46}\;¡Tu Turno! (#1)}}}
+	\vspace{0.1cm}\hrule\vspace{0.3cm}}{\vspace{0.3cm}}
+\newtcolorbox{espaciotrabajo}[1]{colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90,
+	top=2mm, bottom=2mm}
+\newtcolorbox{espaciotrabajonb}[1]{colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90,
+	top=2mm, bottom=2mm}
+
+% --- CASILLAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!60, colback=boxbg, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxstep}[1][2cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!40, colback=white, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+
+\setlength{\columnseprule}{0.4pt}
+
+% ============================================================
+\begin{document}
+	% ============================================================
+	
+	% ─────────────────────────────────────────────────────────────
+	% PORTADA
+	% ─────────────────────────────────────────────────────────────
+	\begin{center}
+		{\Huge\textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE\textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large\textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
+			arc=3mm, boxrule=1.5pt]
+			\centering
+			\Huge\textbf{UNIDAD 17}\\[0.2cm]
+			\Large\textbf{Estadística. Gráfica de Barras.}\\[0.1cm]
+			\Large\textbf{Lectura de tablas, gráficas y pictogramas}
+		\end{tcolorbox}
+		\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue,
+			width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering\vspace{0.3cm}
+			\textbf{Nombre:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:}\;\textbf{06M-17 FL}
+			\hspace{1cm}\textbf{Año:}\;\underline{2026}
+			\vspace{0.3cm}
+		\end{tcolorbox}
+		\vspace{0.8cm}
+		\textit{``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+	\end{center}
+	
+	% =========================================================
+	%  MISIÓN 1 — TIPOS DE GRÁFICAS Y LECTURA DE TABLAS
+	% =========================================================
+	\section*{Misión 1: Tipos de Gráficas y Lectura de Tablas}
+	
+	\begin{concepto}{La Estadística y sus Representaciones}
+		La \textbf{estadística} recoge, organiza e interpreta datos para poder
+		sacar conclusiones sobre una situación. Un mismo conjunto de datos
+		puede representarse de \textbf{varias formas} según lo que se quiera
+		mostrar:
+		
+		\vspace{0.3cm}
+		\renewcommand{\arraystretch}{1.8}
+		\begin{center}
+			\begin{longtable}{|>{\bfseries}m{3.3cm}|m{10.8cm}|}
+				\hline
+				\rowcolor{valblue!20}
+				\textbf{Tipo de gráfica} & \textbf{¿Para qué se usa?} \\
+				\hline
+				Gráfica de \textcolor{valblue}{barras} &
+				Compara \textbf{cantidades} entre distintas categorías usando
+				rectángulos de distinta altura o longitud. \\
+				\hline
+				Gráfica \textcolor{valorange}{circular} (de torta) &
+				Muestra cómo se \textbf{reparte un total} en partes
+				proporcionales, generalmente en porcentajes. \\
+				\hline
+				\textcolor{valgreen}{Pictograma} &
+				Usa \textbf{símbolos o íconos} repetidos, donde cada símbolo
+				representa una cantidad fija de elementos. \\
+				\hline
+				Gráfica de \textcolor{valred}{líneas} &
+				Conecta puntos con segmentos para mostrar la
+				\textbf{evolución} de un dato a través del \textbf{tiempo}. \\
+				\hline
+				Histograma &
+				Agrupa datos numéricos \textbf{continuos} en intervalos,
+				representados con barras \textbf{unidas} entre sí (sin
+				espacio). \\
+				\hline
+			\end{longtable}
+		\end{center}
+	\end{concepto}
+	
+	\begin{atencion}{¡Cuidado! Barras vs. Histograma}
+		En la gráfica de barras hay \textbf{espacio} entre cada barra porque
+		representa \textbf{categorías distintas} (ej: países, colores,
+		equipos). En el histograma las barras están \textbf{pegadas} porque
+		representan \textbf{intervalos consecutivos} de un mismo dato
+		numérico (ej: edades de 0-10, 10-20, 20-30...).
+	\end{atencion}
+	
+	\vspace{0.3cm}
+	\begin{ejemplo}
+		\textbf{Tabla de datos:} Una tabla organiza la información en filas
+		y columnas \textbf{antes} de graficarla. Para leerla correctamente,
+		primero identifica \textbf{qué representa cada fila} y \textbf{qué
+			representa cada columna}.
+	\end{ejemplo}
+	%\vspace{0.4cm}
+	\begin{center}
+	\noindent\textbf{Tabla de trabajo — Vuelos cancelados por aerolínea
+		(Enero a Abril):}
+	\end{center}
+	%\vspace{0.3cm}
+	\renewcommand{\arraystretch}{1.7}
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|c|}
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Aerolínea} & \textbf{Enero} & \textbf{Febrero} &
+			\textbf{Marzo} & \textbf{Abril} \\
+			\hline
+			AeroSur     & 12 & 8  & 15 & 10 \\
+			\hline
+			Vuela Alto  & 5  & 9  & 6  & 14 \\
+			\hline
+			CieloAzul   & 18 & 3  & 7  & 9  \\
+			\hline
+			TransAndes  & 9  & 12 & 4  & 12 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\begin{practica}{Tipos de Gráficas y Lectura de Tablas}
+		
+		\textbf{A) Identifica el tipo de gráfica según la descripción
+			(Barras, Circular, Pictograma, Líneas o Histograma).}
+		
+		\vspace{0.1cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+			\item ``Utiliza símbolos o íconos repetidos, donde cada uno
+			representa una cantidad fija'':\\
+			\quad\boxfill[3cm]
+			
+			\item ``Divide un círculo en partes proporcionales para mostrar
+			porcentajes de un total'':\\
+			\quad\boxfill[3cm]
+			
+			\item ``Usa barras rectangulares con espacio entre ellas para
+			comparar cantidades entre categorías'':\quad\boxfill[3cm]
+			
+			\item ``Conecta puntos con segmentos de recta para mostrar la
+			evolución de un dato a través del tiempo'':\quad\boxfill[3cm]
+			
+			\item ``Agrupa datos numéricos continuos en intervalos
+			representados con barras unidas entre sí'':\quad\boxfill[3cm]
+		\end{enumerate}
+		
+		\textbf{B) Usa la tabla anterior para responder.}
+		\vspace{0.1cm}		
+		\begin{enumerate}[start=6]	
+			\item ¿Cuántos vuelos canceló \textbf{AeroSur} en
+			\textbf{marzo}?\quad\boxfill[1.5cm]
+			
+			\item ¿Cuántos vuelos canceló \textbf{CieloAzul} en
+			\textbf{enero}?\quad\boxfill[1.5cm]
+			
+			\item ¿Cuál aerolínea canceló \textbf{más} vuelos en
+			\textbf{abril}?\quad\boxfill[3cm]
+			
+			\item ¿Cuál aerolínea canceló \textbf{menos} vuelos en
+			\textbf{febrero}?\quad\boxfill[3cm]
+			
+			\item ¿Cuántos vuelos canceló \textbf{TransAndes en total}
+			durante los cuatro meses?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[1.8cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuál fue el mes con \textbf{más} cancelaciones para
+			\textbf{Vuela Alto}?\quad\boxfill[3cm]
+			
+			\item ¿Cuántos vuelos \textbf{más} canceló CieloAzul en enero
+			que en febrero?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[1.8cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Qué aerolínea canceló el \textbf{mismo número} de
+			vuelos en dos meses distintos? ¿En cuáles meses y con
+			cuántos?\\
+			\underline{\hspace{13cm}}
+			
+			\item Sumando las cuatro aerolíneas, ¿cuántos vuelos se
+			cancelaron en \textbf{enero}?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[1.8cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuál fue el \textbf{mes con mayor total} de
+			cancelaciones, sumando las cuatro aerolíneas? Muestra los
+			totales de cada mes.
+			\begin{espaciotrabajonb}{}
+				\vspace{0.3cm}\underline{\hspace{12.5cm}}\\[0.2cm]
+				Mes con mayor total: \boxfill[3cm]
+			\end{espaciotrabajonb}
+		\end{enumerate}
+	\end{practica}
+	
+	%\newpage
+	% =========================================================
+	%  MISIÓN 2 — ANÁLISIS PROFUNDO DE GRÁFICAS DE BARRAS
+	% =========================================================
+	\section*{Misión 2: Análisis de Gráficas de Barras}
+	
+	\begin{concepto}{Barras con Valores Positivos y Negativos}
+		Una gráfica de barras también puede mostrar \textbf{números
+			enteros}: las barras que suben desde la línea del cero representan
+		\textbf{ganancias} (positivo) y las que bajan representan
+		\textbf{pérdidas} (negativo). La línea del \textbf{cero} es siempre
+		el punto de referencia para leer la gráfica.
+	\end{concepto}
+	
+	\vspace{0.3cm}
+	\noindent\textbf{Gráfica: Ganancias y Pérdidas de la Constructora
+		ANDES (en millones de \$) 2007 – 2012}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% --- Gridlines y etiquetas del eje Y ---
+			\foreach \v in {-30,-20,-10,0,10,20,30,40,50}{
+				\draw[valmid, dashed] (-0.6,\v*0.1) -- (13.2,\v*0.1);
+				\node[left, font=\small] at (-0.6,\v*0.1) {\v};
+			}
+			\node[rotate=90, font=\small\bfseries, valdark]
+			at (-1.7,1.0) {Millones de \$};
+			
+			% --- Línea del cero ---
+			\draw[valdark, line width=1.3pt] (-0.6,0) -- (13.2,0);
+			
+			% --- Barras (año: valor en millones) ---
+			% 2007: +20
+			\draw[fill=valgreen!80, draw=valdark, line width=0.8pt]
+			(0,0) rectangle (1.4,2.0);
+			\node[above, font=\small\bfseries] at (0.7,2.0) {+20};
+			\node[below, font=\small\bfseries] at (0.7,-0.3) {2007};
+			
+			% 2008: +35
+			\draw[fill=valgreen!80, draw=valdark, line width=0.8pt]
+			(2.2,0) rectangle (3.6,3.5);
+			\node[above, font=\small\bfseries] at (2.9,3.5) {+35};
+			\node[below, font=\small\bfseries] at (2.9,-0.3) {2008};
+			
+			% 2009: -15
+			\draw[fill=valred!70, draw=valdark, line width=0.8pt]
+			(4.4,0) rectangle (5.8,-1.5);
+			\node[below, font=\small\bfseries] at (5.1,-1.8) {-15};
+			\node[below, font=\small\bfseries] at (5.1,-2.6) {2009};
+			
+			% 2010: -25
+			\draw[fill=valred!70, draw=valdark, line width=0.8pt]
+			(6.6,0) rectangle (8.0,-2.5);
+			\node[below, font=\small\bfseries] at (7.3,-2.8) {-25};
+			\node[below, font=\small\bfseries] at (7.3,-3.6) {2010};
+			
+			% 2011: +10
+			\draw[fill=valgreen!80, draw=valdark, line width=0.8pt]
+			(8.8,0) rectangle (10.2,1.0);
+			\node[above, font=\small\bfseries] at (9.5,1.0) {+10};
+			\node[below, font=\small\bfseries] at (9.5,-0.3) {2011};
+			
+			% 2012: +45
+			\draw[fill=valgreen!80, draw=valdark, line width=0.8pt]
+			(11.0,0) rectangle (12.4,4.5);
+			\node[above, font=\small\bfseries] at (11.7,4.5) {+45};
+			\node[below, font=\small\bfseries] at (11.7,-0.3) {2012};
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{minicheck}
+		Observa la gráfica: ¿la barra de qué año llega \textbf{más abajo}
+		de la línea del cero? \boxfill[16cm]
+	\end{minicheck}
+	
+	\begin{practica}{Análisis de Gráficas de Barras}
+		
+		\vspace{0.2cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+			\item ¿Cuál fue la ganancia de la empresa en
+			\textbf{2007}?\quad\boxfill[2cm]
+			
+			\item ¿Cuál fue la pérdida de la empresa en
+			\textbf{2009}?\quad\boxfill[2cm]
+			
+			\item ¿En qué año se presentó la \textbf{mayor
+				ganancia}?\quad\boxfill[2cm]
+			
+			\item ¿En qué año se presentó la \textbf{mayor
+				pérdida}?\quad\boxfill[2cm]
+			
+			\item Calcula la diferencia neta entre 2008 y 2009 (resta el
+			valor de 2009 al de 2008, ten cuidado con el signo).
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántos de los \textbf{6 años} tuvieron
+			\textbf{pérdidas}?\quad\boxfill[1.5cm]
+			
+			\item ¿Cuántos de los \textbf{6 años} tuvieron
+			\textbf{ganancias}?\quad\boxfill[1.5cm]
+			
+			\item Suma las ganancias de 2007, 2008, 2011 y 2012.
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item Suma (en valor negativo) las pérdidas de 2009 y 2010.
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			\newpage
+			\item Calcula el \textbf{balance total} de la empresa sumando
+			los 6 años (ganancias y pérdidas juntas).
+			\begin{espaciotrabajonb}{}
+				\vspace{0.3cm}\underline{\hspace{12.5cm}}\\[0.2cm]
+				Balance total: \boxfill[2.5cm]
+			\end{espaciotrabajonb}
+			
+			\item Calcula la diferencia entre el año de mayor ganancia y
+			el año de mayor pérdida.
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item Compara 2010 y 2011: ¿cuánto \textbf{mejoró} el
+			resultado de la empresa de un año al otro?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item Si en 2013 la empresa gana 10 millones \textbf{más} que
+			en 2012, ¿cuánto ganaría en 2013?\quad\boxfill[2cm]
+			
+			\item ¿Qué representa que una barra baje por debajo de la
+			línea del cero?\\
+			
+			\underline{\hspace{16cm}}\\
+			
+			\underline{\hspace{16cm}}
+			
+			\item Ordena de \textbf{menor a mayor} los 6 valores de la
+			gráfica.\\
+			
+			\underline{\hspace{16cm}}\\
+			
+			\underline{\hspace{16cm}}
+		\end{enumerate}
+	\end{practica}
+	
+	\newpage
+	% =========================================================
+	%  MISIÓN 3 — GRÁFICAS DE LÍNEAS
+	% =========================================================
+	\section*{Misión 3: Gráficas de Líneas (Tendencias Temporales)}
+	
+	\begin{concepto}{Lectura de una Gráfica de Líneas}
+		En una gráfica de líneas, el eje \textbf{horizontal (X)}
+		generalmente representa el \textbf{tiempo}, y el eje
+		\textbf{vertical (Y)} representa la cantidad que cambia. La línea
+		puede:
+		\begin{itemize}
+			\item \textbf{Subir} $\rightarrow$ el dato \textbf{aumenta}.
+			\item \textbf{Bajar} $\rightarrow$ el dato \textbf{disminuye}.
+			\item Mantenerse \textbf{horizontal}
+			$\rightarrow$ el dato permanece \textbf{constante}.
+		\end{itemize}
+	\end{concepto}
+	
+	\vspace{0.3cm}
+	\noindent\textbf{Gráfica: Altitud de un avión durante un vuelo
+		(en miles de pies) según las horas transcurridas}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% --- Gridlines y etiquetas del eje Y (cada 5, hasta 35) ---
+			\foreach \v in {0,5,10,15,20,25,30,35}{
+				\draw[valmid, dashed] (-0.4,\v*0.09) -- (11.6,\v*0.09);
+				\node[left, font=\small] at (-0.4,\v*0.09) {\v};
+			}
+			\node[rotate=90, font=\small\bfseries, valdark]
+			at (-1.5,1.4) {Altitud (miles de pies)};
+			
+			% --- Eje X ---
+			\draw[valdark, line width=1.3pt] (-0.4,0) -- (11.6,0);
+			\foreach \h/\x in {0/0,1/1.6,2/3.2,3/4.8,4/6.4,5/8.0,6/9.6,7/11.2}{
+				\node[below, font=\small] at (\x,-0.15) {\h};
+			}
+			\node[below, font=\small\bfseries, valdark] at (5.6,-0.9)
+			{Horas de vuelo};
+			
+			% --- Línea de datos ---
+			\draw[valblue, line width=2pt]
+			(0,0) -- (1.6,1.35) -- (3.2,2.7) -- (4.8,2.88) --
+			(6.4,2.88) -- (8.0,2.88) -- (9.6,1.62) -- (11.2,0);
+			
+			% --- Puntos y etiquetas de valor ---
+			\foreach \x/\y/\lab in {0/0/0, 1.6/1.35/15, 3.2/2.7/30,
+				4.8/2.88/32, 6.4/2.88/32, 8.0/2.88/32, 9.6/1.62/18,
+				11.2/0/0}{
+				\filldraw[valred] (\x,\y) circle (2.2pt);
+			}
+			\node[above, font=\scriptsize\bfseries] at (1.6,1.45) {15};
+			\node[above, font=\scriptsize\bfseries] at (3.2,2.8) {30};
+			\node[above, font=\scriptsize\bfseries] at (4.8,2.98) {32};
+			\node[above, font=\scriptsize\bfseries] at (9.6,1.72) {18};
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{minicheck}
+		Entre la hora 3 y la hora 5, ¿la línea sube, baja o se mantiene
+		constante?\quad\boxfill[16cm]
+	\end{minicheck}
+	
+	\begin{practica}{Gráficas de Líneas}
+		
+		\vspace{0.2cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+			\item ¿Cuál era la altitud del avión en la \textbf{hora
+				0}?\quad\boxfill[2cm]
+			
+			\item ¿Cuál era la altitud del avión en la \textbf{hora
+				2}?\quad\boxfill[2cm]
+			
+			\item ¿Cuál era la altitud del avión en la \textbf{hora
+				4}?\quad\boxfill[2cm]
+			
+			\item ¿Cuál era la altitud del avión en la \textbf{hora
+				6}?\quad\boxfill[2cm]
+			
+			\item ¿Cuál fue la \textbf{máxima altitud} alcanzada durante
+			el vuelo?\quad\boxfill[2cm]
+			
+			\item ¿En qué intervalo de horas la altitud se mantuvo
+			\textbf{constante}?\quad\boxfill[3.5cm]
+			
+			\item ¿En qué intervalo de horas el avión estuvo
+			\textbf{ascendiendo}?\quad\boxfill[3.5cm]
+			
+			\item ¿En qué intervalo de horas el avión estuvo
+			\textbf{descendiendo}?\quad\boxfill[3.5cm]
+			
+			\item ¿Cuántas \textbf{horas duró} el vuelo completo (desde el
+			despegue hasta el aterrizaje)?\quad\boxfill[2cm]
+			
+			\item Calcula cuánto \textbf{ascendió} el avión entre la hora
+			0 y la hora 1.
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item Calcula cuánto \textbf{descendió} el avión entre la hora
+			5 y la hora 6.
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item Compara el ascenso entre horas 0-1, con el
+			ascenso entre horas 1-2. ¿Cuál fue mayor?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Respuesta: \boxfill[2.5cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuál fue la \textbf{diferencia} entre la altitud máxima
+			y la altitud en la hora 6?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			\newpage
+			\item Si a partir de la hora 7 el avión permaneciera en
+			tierra (altitud 0) durante 2 horas más, ¿cómo se vería esa
+			parte de la línea en la gráfica? (dibújalo)\\
+			\vspace*{3cm}
+			
+			\underline{\hspace{13cm}}
+			
+			\item En tus palabras, describe \textbf{la historia completa}
+			del vuelo usando las palabras ``sube'', ``se mantiene'' y
+			``baja''.\\
+			\underline{\hspace{13cm}}\\[0.2cm]
+			\underline{\hspace{13cm}}
+		\end{enumerate}
+	\end{practica}
+	
+	%\newpage
+	% =========================================================
+	%  MISIÓN 4 — GRÁFICAS CIRCULARES Y PICTOGRAMAS
+	% =========================================================
+	\section*{Misión 4: Gráficas Circulares y Pictogramas}
+	
+	\begin{concepto}{Proporciones en una Gráfica Circular}
+		En una gráfica circular, el círculo completo representa el
+		\textbf{100\% del total}. Cada porción (o ``tajada'') representa un
+		\textbf{porcentaje} de ese total. Para hallar \textbf{cuántos
+			elementos} representa una porción, se multiplica el
+		\textbf{porcentaje} (en forma decimal) por el \textbf{total de
+			datos}.\\
+			\textbf{Nota: La forma decimal es el valor del porcentaje dividido 100, es decir, 25\% en decimal es 0.25, 5\% es 0.05 y así con cualquier porcentaje}
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\noindent\textbf{Gráfica: Actividad preferida de 240 estudiantes del
+		Liceo V.A.L.}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% Deporte: 90 a -54 (144°, 40%)
+			\draw[fill=valblue!70, draw=valdark, line width=0.8pt]
+			(0,0) -- (90:3) arc (90:-54:3) -- cycle;
+			% Lectura: -54 a -144 (90°, 25%)
+			\draw[fill=valgreen!70, draw=valdark, line width=0.8pt]
+			(0,0) -- (-54:3) arc (-54:-144:3) -- cycle;
+			% Música: -144 a -216 (72°, 20%)
+			\draw[fill=valorange!70, draw=valdark, line width=0.8pt]
+			(0,0) -- (-144:3) arc (-144:-216:3) -- cycle;
+			% Arte: -216 a -270 (54°, 15%)
+			\draw[fill=valred!70, draw=valdark, line width=0.8pt]
+			(0,0) -- (-216:3) arc (-216:-270:3) -- cycle;
+			
+			% Etiquetas de porcentaje dentro de cada porción
+			\node[font=\bfseries\small, white] at (18:1.9) {40\%};
+			\node[font=\bfseries\small, white] at (-99:1.9) {25\%};
+			\node[font=\bfseries\small, white] at (180:1.9) {20\%};
+			\node[font=\bfseries\small, white] at (117:1.9) {15\%};
+			
+			% Leyenda
+			\node[draw=valdark, fill=valblue!70, minimum width=0.4cm,
+			minimum height=0.4cm] at (5.2,1.6) {};
+			\node[right, font=\small] at (5.45,1.6) {Deporte};
+			\node[draw=valdark, fill=valgreen!70, minimum width=0.4cm,
+			minimum height=0.4cm] at (5.2,0.8) {};
+			\node[right, font=\small] at (5.45,0.8) {Lectura};
+			\node[draw=valdark, fill=valorange!70, minimum width=0.4cm,
+			minimum height=0.4cm] at (5.2,0.0) {};
+			\node[right, font=\small] at (5.45,0.0) {Música};
+			\node[draw=valdark, fill=valred!70, minimum width=0.4cm,
+			minimum height=0.4cm] at (5.2,-0.8) {};
+			\node[right, font=\small] at (5.45,-0.8) {Arte};
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{concepto}{Lectura de un Pictograma}
+		En un pictograma, cada símbolo (o parte de él) representa una
+		\textbf{cantidad fija}. Para hallar el total de una categoría, se
+		\textbf{multiplica} el número de símbolos por el valor de cada
+		símbolo. Medio símbolo representa la \textbf{mitad} de ese valor.\\
+		\textbf{Nota: La forma decimal es el valor del porcentaje dividido 100, es decir, 25\% en decimal es 0.25, 5\% es 0.05 y así con cualquier porcentaje}
+	\end{concepto}
+	
+	\vspace{0.2cm}
+	\noindent\textbf{Pictograma: Mascotas favoritas de los estudiantes de
+		grado 6º}\\
+	\textit{Cada símbolo\; \tikz[baseline=-2pt]{\draw[fill=valblue!70,
+			draw=valdark] (0,0) rectangle (0.35,0.35);}\;representa
+		\textbf{4 mascotas}.}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{2.2}
+		\begin{tabular}{|l|l|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Mascota} & \textbf{Símbolos} \\
+			\hline
+			Perros &
+			\begin{tikzpicture}[baseline=-2pt]
+				\foreach \i in {0,1,2,3,4}{
+					\draw[fill=valblue!70, draw=valdark]
+					(\i*0.5,0) rectangle (\i*0.5+0.35,0.35);
+				}
+			\end{tikzpicture} \\
+			\hline
+			Gatos &
+			\begin{tikzpicture}[baseline=-2pt]
+				\foreach \i in {0,1,2}{
+					\draw[fill=valblue!70, draw=valdark]
+					(\i*0.5,0) rectangle (\i*0.5+0.35,0.35);
+				}
+				\draw[fill=valblue!70, draw=valdark]
+				(1.5,0) rectangle (1.675,0.35);
+			\end{tikzpicture} \\
+			\hline
+			Peces &
+			\begin{tikzpicture}[baseline=-2pt]
+				\foreach \i in {0,1}{
+					\draw[fill=valblue!70, draw=valdark]
+					(\i*0.5,0) rectangle (\i*0.5+0.35,0.35);
+				}
+			\end{tikzpicture} \\
+			\hline
+			Aves &
+			\begin{tikzpicture}[baseline=-2pt]
+				\draw[fill=valblue!70, draw=valdark]
+				(0,0) rectangle (0.35,0.35);
+			\end{tikzpicture} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\begin{practica}{Gráficas Circulares y Pictogramas}
+		
+		\textbf{A) Usa la gráfica circular (240 estudiantes en total).
+			\quad B) Usa el pictograma de mascotas.}
+		
+		\vspace{0.3cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm]
+			\item ¿Cuántos estudiantes prefieren \textbf{Deporte}
+			(40\% de 240)?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántos estudiantes prefieren \textbf{Lectura}
+			(25\% de 240)?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			\newpage
+			\item ¿Cuántos estudiantes prefieren \textbf{Música}?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántos estudiantes prefieren \textbf{Arte}?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántos estudiantes \textbf{más} prefieren Deporte que
+			Arte?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item Si el 25\% representa a los estudiantes de Lectura,
+			¿cuántos estudiantes representaría el \textbf{50\%}?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Qué \textbf{fracción} del total representa la
+			categoría Música (20\%)? \textit{(Pista: simplifica la
+				fracción)}\quad\boxfill[2.5cm]
+			\newpage
+			\item Si 20 nuevos estudiantes ingresan al Liceo y todos
+			eligen Arte, ¿cuántos estudiantes tendría ahora la categoría
+			Arte en total?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántas mascotas tipo \textbf{Perro} hay en total
+			(recuerda: cada símbolo vale 4)?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántas mascotas tipo \textbf{Gato} hay en total
+			(recuerda: medio símbolo vale la mitad)?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántas mascotas tipo \textbf{Pez} hay en
+			total?\quad\boxfill[2cm]
+			
+			\item ¿Cuántas mascotas tipo \textbf{Ave} hay en
+			total?\quad\boxfill[2cm]
+			
+			\item ¿Cuántas mascotas hay \textbf{en total}, sumando las
+			cuatro categorías?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+			
+			\item ¿Cuántas mascotas \textbf{más} hay de tipo Perro que de
+			tipo Ave?
+			\begin{espaciotrabajonb}{}
+				\vspace{0.2cm}\underline{\hspace{9cm}}
+				\hfill Resultado: \boxfill[2cm]
+			\end{espaciotrabajonb}
+		\end{enumerate}
+	\end{practica}
+	
+\end{document}

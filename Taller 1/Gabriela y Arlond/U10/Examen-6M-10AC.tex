@@ -1,0 +1,211 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen superior amplio para respetar el encabezado del fondo
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, calc, positioning}
+\usepackage{array}
+\usepackage{booktabs}
+
+% --- PAQUETE PARA FONDO ---
+\usepackage{eso-pic}
+
+% --- CONFIGURACIÓN DEL FONDO (Ruta Local TeXstudio) ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 70, 140}
+\definecolor{valgreen}{RGB}{40, 120, 40}
+\definecolor{valred}{RGB}{200, 40, 40}
+\definecolor{valdark}{RGB}{50, 50, 50}
+\definecolor{valorange}{RGB}{230,100,  0}
+\definecolor{valpurple}{RGB}{120, 70,160}
+\definecolor{vallightblue}{RGB}{220,235,250}
+\definecolor{vallightgreen}{RGB}{220,245,230}
+
+% --- COMANDOS PARA CASILLAS DE RESPUESTA PEQUEÑAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{EVALUACIÓN - MATEMÁTICAS 6º}\\[0.1cm]
+		Unidad 10: Diagramas de Barras
+	\end{center}
+	
+	
+	\hfill \textbf{Código:} \textbf{06M-10 AC}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Une con una línea cada parte del diagrama de barras con su significado \\
+		correcto: \hfill(25\%)}
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{2}
+		\begin{tabular}{r c m{9cm}} 
+			\textbf{\Large Diagrama de barras} & \hspace{0.5cm} $\bullet$ \hspace{1.5cm} $\bullet$ \hspace{0.5cm} & \large Son los números en la línea vertical que indican la cantidad (de 2 en 2, etc.).\\[0.2cm]
+			\textbf{\Large Escala (Eje Y)}   & \hspace{0.5cm} $\bullet$ \hspace{1.5cm} $\bullet$ \hspace{0.5cm} & \large Es el rectángulo coloreado que indica cuánto hay de cada categoría.\\[0.2cm]
+			\textbf{\Large Barra}    & \hspace{0.5cm} $\bullet$ \hspace{1.5cm} $\bullet$ \hspace{0.5cm} & \large Usa rectángulos para mostrar y comparar diferentes cantidades fácilmente.
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Observa el diagrama de deportes favoritos y responde las preguntas llenando las casillas: \hfill (25\%)}
+	
+	\vspace{0.5cm}
+	\begin{minipage}{0.5\textwidth}
+		\begin{center}
+			\begin{tikzpicture}[x=1.1cm,y=0.4cm]
+				% Cuadrícula y escala
+				\foreach \y in {2,4,6,8,10} {
+					\draw[gray!30,line width=0.5pt] (0,\y) -- (4.2,\y);
+					\node[left,font=\bfseries\small] at (0,\y) {\y};
+				}
+				\node[left,font=\bfseries\small] at (0,0) {0};
+				
+				% Barras
+				\path[fill=valblue!75, draw=valblue, line width=1pt] (0.5,0) rectangle (1.5,10);
+				\node[below,font=\bfseries\small] at (1,0) {Fútbol};
+				
+				\path[fill=valorange!75, draw=valorange, line width=1pt] (1.7,0) rectangle (2.7,4);
+				\node[below,font=\bfseries\small] at (2.2,0) {Natación};
+				
+				\path[fill=valgreen!75, draw=valgreen, line width=1pt] (2.9,0) rectangle (3.9,6);
+				\node[below,font=\bfseries\small] at (3.4,0) {Tenis};
+				
+				% Ejes
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,11);
+				\draw[valdark,line width=1.5pt] (0,0) -- (4.3,0);
+			\end{tikzpicture}
+		\end{center}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\begin{itemize}[itemsep=0.8cm, label={}]
+			\item \textbf{A.} ¿Cuál es el deporte \textbf{más} votado? \\ \boxfill[4cm]
+			
+			\item \textbf{B.} ¿Cuántos estudiantes eligieron \textbf{Tenis}? \\ \boxfill[4cm]
+			
+			\item \textbf{C.} ¿Cuál fue el deporte \textbf{menos} votado? \\ \boxfill[4cm]
+		\end{itemize}
+	\end{minipage}
+	
+	\newpage % Salto de página para organizar el espacio
+	
+% --- PUNTO 3 ---
+\noindent \textbf{{3. Observa los datos de la tabla y DIBUJA la barra del "Pez" que falta en el diagrama: \hfill (25\%)}}
+
+\vspace{0.6cm}
+\begin{minipage}[c]{0.45\textwidth}
+	\begin{center}
+		\begin{tcolorbox}[colback=vallightblue, colframe=valblue, width=6cm, arc=2mm, boxrule=1pt, halign=center]
+			\textbf{\large Tabla de Mascotas} \\[0.3cm]
+			Perro: \textbf{8} estudiantes \\[0.15cm]
+			Gato: \textbf{6} estudiantes \\[0.15cm]
+			Pez: \textbf{4} estudiantes
+		\end{tcolorbox}
+	\end{center}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.5\textwidth}
+	\begin{center}
+		\begin{tikzpicture}[x=1.3cm,y=0.5cm]
+			% Cuadrícula
+			\foreach \y in {2,4,6,8,10} {
+				\draw[gray!30,line width=0.5pt] (0,\y) -- (4,\y);
+				\node[left,font=\bfseries] at (0,\y) {\y};
+			}
+			\node[left,font=\bfseries] at (0,0) {0};
+			
+			% Barras completas
+			\path[fill=valblue!75, draw=valblue, line width=1.2pt] (0.4,0) rectangle (1.2,8);
+			\node[below,font=\bfseries\large] at (0.8,0) {Perro};
+			
+			\path[fill=valpurple!75, draw=valpurple, line width=1.2pt] (1.6,0) rectangle (2.4,6);
+			\node[below,font=\bfseries\large] at (2.0,0) {Gato};
+			
+			% Barra por completar (Pez)
+			\draw[gray!50, dashed, line width=1pt, fill=gray!5] (2.8,0) rectangle (3.6,10);
+			\node[below,font=\bfseries\large] at (3.2,0) {Pez};
+			
+			% Ejes
+			\draw[valdark,line width=1.5pt] (0,0) -- (0,11);
+			\draw[valdark,line width=1.5pt] (0,0) -- (4,0);
+		\end{tikzpicture}
+	\end{center}
+\end{minipage}
+
+\vspace{0.8cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{{4. Lee la siguiente situación, observa el diagrama y resuelve. \hfill (25\%)}}
+	
+	\vspace{0.4cm}
+	\begin{tcolorbox}[colback=white, colframe=valdark, arc=2mm, boxrule=1pt]
+		\large \textit{La tienda escolar registró la venta de helados durante los dos primeros días de la semana.}
+		
+		%\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[x=1.5cm,y=0.45cm]
+				\foreach \y in {2,4,6,8} {
+					\draw[gray!30,line width=0.5pt] (0,\y) -- (3,\y);
+					\node[left,font=\bfseries] at (0,\y) {\y};
+				}
+				\node[left,font=\bfseries] at (0,0) {0};
+				
+				\path[fill=valred!75, draw=valred, line width=1.2pt] (0.5,0) rectangle (1.3,6);
+				\node[above, font=\bfseries] at (0.9,6) {6};
+				\node[below,font=\bfseries] at (0.9,0) {Lunes};
+				
+				\path[fill=valgreen!75, draw=valgreen, line width=1.2pt] (1.7,0) rectangle (2.5,4);
+				\node[above, font=\bfseries] at (2.1,4) {4};
+				\node[below,font=\bfseries] at (2.1,0) {Martes};
+				
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,9);
+				\draw[valdark,line width=1.5pt] (0,0) -- (3,0);
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\large \textbf{Pregunta:} ¿Cuántos helados se vendieron \textbf{en total} uniendo los dos días?
+		
+		\vspace{0.6cm}
+		\begin{center}
+			\textbf{Resuelve:}\\[0.4cm]
+			{\Large \boxfill[15cm]}
+		\end{center}
+		
+		\vspace{0.4cm}
+		\textbf{Respuesta:} \\[0.2cm]
+		En total se vendieron \boxfill[1.5cm] helados.
+		\vspace{0.3cm}
+	\end{tcolorbox}
+	
+\end{document}

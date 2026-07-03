@@ -1,565 +1,668 @@
-% ╔══════════════════════════════════════════════════════════════════════════╗
-% ║  LICEO V.A.L. – MÓDULO DE AUTOAPRENDIZAJE                                ║
-% ║  Código: 06M-10 AC  |  Grado: 6°  |  Ruta: Adaptación Curricular         ║
-% ║  Unidad 10: Diagrama de Barras (Lectura e Interpretación de Ejes)        ║
-% ╚══════════════════════════════════════════════════════════════════════════╝
-
+% ╔══════════════════════════════════════════════════════════════════════╗
+% ║  LICEO V.A.L.  –  MÓDULO DE AUTOAPRENDIZAJE                        ║
+% ║  Código: 06M-10 AC  |  Grado: 6°  |  Ruta: Adaptación Curricular  ║
+% ║  Unidad 10: Diagramas de Barras                                     ║
+% ╚══════════════════════════════════════════════════════════════════════╝
 \documentclass[12pt,letterpaper]{article}
 
-% ── CODIFICACIÓN Y TIPOGRAFÍA ──────────────────────────────────────────────
+% ── Codificación y tipografía ──────────────────────────────────────────
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[spanish]{babel}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 
-% ── GEOMETRÍA (Exactamente 1 pulgada) ──────────────────────────────────────
-\usepackage[margin=1in]{geometry}
+% ── Geometría ─────────────────────────────────────────────────────────
+\usepackage[letterpaper,left=1.5cm,right=1.5cm,top=1.8cm,bottom=1.8cm]{geometry}
 
-% ── GRÁFICOS, COLOR Y FONDO ────────────────────────────────────────────────
+% ── Gráficos y color ──────────────────────────────────────────────────
+\usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{eso-pic}
-\usepackage{xcolor}
 
-% ── TIKZ ──────────────────────────────────────────────────────────────────
+% ── TikZ ──────────────────────────────────────────────────────────────
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric,arrows.meta,calc,positioning,backgrounds}
+\usetikzlibrary{babel,shapes.geometric,arrows.meta,calc,positioning,backgrounds}
 
-% ── TCOLORBOX ──────────────────────────────────────────────────────────────
+% ── Tcolorbox ─────────────────────────────────────────────────────────
 \usepackage{tcolorbox}
 \tcbuselibrary{most,skins,breakable}
 
-% ── PAQUETES ADICIONALES ───────────────────────────────────────────────────
+% ── Paquetes adicionales ──────────────────────────────────────────────
 \usepackage{array,tabularx,booktabs}
 \usepackage{amsmath,amssymb}
 \usepackage{enumitem}
+\usepackage{multicol}
 \usepackage{needspace}
+\usepackage{ifthen}
 
-% ══════════════════════════════════════════════════════════════════════════
-% PALETA INSTITUCIONAL VAL
-% ══════════════════════════════════════════════════════════════════════════
+% ═══════════════════════════════════════════════════════════════════════
+%  PALETA INSTITUCIONAL VAL
+% ═══════════════════════════════════════════════════════════════════════
 \definecolor{valblue}       {RGB}{  0, 84,166}
 \definecolor{valgreen}      {RGB}{  0,150, 64}
 \definecolor{valred}        {RGB}{200, 16, 46}
 \definecolor{valdark}       {RGB}{ 40, 40, 40}
 \definecolor{valorange}     {RGB}{230,100,  0}
+\definecolor{valpurple}     {RGB}{120, 70,160}
+\definecolor{valteal}       {RGB}{  0,128,128}
 \definecolor{vallightblue}  {RGB}{220,235,250}
 \definecolor{vallightgreen} {RGB}{220,245,230}
 \definecolor{vallightred}   {RGB}{255,228,228}
 \definecolor{vallightorange}{RGB}{255,238,210}
-\definecolor{valgray}       {RGB}{245,245,245}
-\definecolor{valpurple}     {RGB}{120, 70,160}
 \definecolor{vallightpurple}{RGB}{235,225,245}
+\definecolor{vallightteal}  {RGB}{210,240,240}
+\definecolor{valgray}       {RGB}{245,245,245}
+\definecolor{valbargray}    {RGB}{210,210,210}
 
-% ══════════════════════════════════════════════════════════════════════════
-% FONDO INSTITUCIONAL
-% ══════════════════════════════════════════════════════════════════════════
-\AddToShipoutPictureBG{%
-	\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+% ═══════════════════════════════════════════════════════════════════════
+%  TIKZSET — Estilos de dibujo
+% ═══════════════════════════════════════════════════════════════════════
+\tikzset{
+	cajaz/.style    = {draw=valblue,   fill=vallightblue,   rounded corners=4pt},
+	cajag/.style    = {draw=valgreen,  fill=vallightgreen,  rounded corners=4pt},
+	cajar/.style    = {draw=valred,    fill=vallightred,    rounded corners=4pt},
+	cajao/.style    = {draw=valorange, fill=vallightorange, rounded corners=4pt},
+	cajap/.style    = {draw=valpurple, fill=vallightpurple, rounded corners=4pt},
+	cajateal/.style = {draw=valteal,   fill=vallightteal,   rounded corners=4pt},
+	flechaop/.style = {->,>=stealth,ultra thick},
+	barblue/.style  = {fill=valblue!75,   draw=valblue,   line width=0.9pt},
+	barorange/.style= {fill=valorange!75, draw=valorange, line width=0.9pt},
+	bargreen/.style = {fill=valgreen!75,  draw=valgreen,  line width=0.9pt},
+	barred/.style   = {fill=valred!75,    draw=valred,    line width=0.9pt},
+	barpurple/.style= {fill=valpurple!65, draw=valpurple, line width=0.9pt},
+	barteal/.style  = {fill=valteal!70,   draw=valteal,   line width=0.9pt},
+	btnazul/.style  = {circle, fill=valblue, text=white, font=\bfseries\small, minimum size=0.6cm, align=center},
+	btnorange/.style= {circle, fill=valorange, text=white, font=\bfseries\small, minimum size=0.6cm, align=center},
+	btnverde/.style = {circle, fill=valgreen, text=white, font=\bfseries\small, minimum size=0.6cm, align=center}
 }
 
-% ══════════════════════════════════════════════════════════════════════════
-% AMBIENTES TCOLORBOX (SOLO PARA CONCEPTOS Y TRUCOS)
-% ══════════════════════════════════════════════════════════════════════════
+% ═══════════════════════════════════════════════════════════════════════
+%  AMBIENTES TCOLORBOX INSTITUCIONALES
+% ═══════════════════════════════════════════════════════════════════════
 \newtcolorbox{concepto}[1]{
-	enhanced, breakable,
-	title        = {\large\bfseries #1},
-	colback      = vallightblue,
-	colframe     = valblue,
-	coltitle     = white,
+	enhanced,breakable, title={\large\bfseries #1},
+	colback=vallightblue, colframe=valblue, coltitle=white,
 	attach boxed title to top left={yshift=-2mm,xshift=4mm},
 	boxed title style={colback=valblue,colframe=valblue,rounded corners},
 	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
 }
-
 \newtcolorbox{truco}[1]{
-	enhanced, breakable,
-	title        = {\large\bfseries #1},
-	colback      = vallightorange,
-	colframe     = valorange,
-	coltitle     = white,
+	enhanced,breakable, title={\large\bfseries #1},
+	colback=vallightorange, colframe=valorange, coltitle=white,
 	attach boxed title to top left={yshift=-2mm,xshift=4mm},
 	boxed title style={colback=valorange,colframe=valorange,rounded corners},
 	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
 }
-
-% ── Título para prácticas (Flujo libre) ───────────────────────────────────
-\newcommand{\titulopractica}[1]{%
-	\vspace{12pt}\noindent
-	\tcbox[
-	enhanced,
-	colback=valdark, colframe=valdark, coltext=white,
-	arc=3mm, boxrule=0pt, boxsep=2pt,
-	left=6pt, right=6pt, top=4pt, bottom=4pt
-	]{\large\bfseries #1}\par\vspace{8pt}
+\newtcolorbox{ejemplo}[1]{
+	enhanced,breakable, title={\large\bfseries #1},
+	colback=vallightgreen, colframe=valgreen, coltitle=white,
+	attach boxed title to top left={yshift=-2mm,xshift=4mm},
+	boxed title style={colback=valgreen,colframe=valgreen,rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+\newtcolorbox{practica}[1]{
+	enhanced,breakable, title={\large\bfseries #1},
+	colback=valgray, colframe=valdark, coltitle=white,
+	attach boxed title to top left={yshift=-2mm,xshift=4mm},
+	boxed title style={colback=valdark,colframe=valdark,rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+\newtcolorbox{espaciotrabajonb}[1]{
+	enhanced, title={\bfseries #1},
+	colback=white, colframe=valblue!50, coltitle=valblue,
+	arc=2mm, boxrule=0.8pt, left=2mm, right=2mm, top=4mm,
 }
 
-% ── Caja de respuesta (Ajustada para dos columnas) ────────────────────────
-\newcommand{\boxfill}[1][1.2cm]{%
+% ── Casilla de respuesta ajustada para columnas ───────────────────────
+\newcommand{\boxfill}[1][2.2cm]{%
 	\tikz[baseline=-0.5ex]%
-	\draw[valdark!80,line width=1pt, fill=white] (0,-0.4) rectangle (#1,0.5cm);%
+	\draw[valblue,line width=1pt] (0,-0.3) rectangle (#1,0.3cm);%
 }
 
-% ── Encabezado de Misión ───────────────────────────────────────────────────
+% ── Encabezado de Misión ──────────────────────────────────────────────
 \newcommand{\mision}[2]{%
-	\needspace{3cm}%
-	\vspace{10pt}%
+	\needspace{4cm}%
+	\vspace{4pt}%
 	\begin{tcolorbox}[
-		enhanced,
-		colback=#1, colframe=#1!60!black,
-		arc=3mm, boxrule=1.5pt,
-		left=6pt, right=6pt, top=5pt, bottom=5pt,
+		enhanced, colback=#1, colframe=#1!60!black, arc=3mm, boxrule=1.5pt,
+		left=6pt, right=6pt, top=4pt, bottom=4pt,
 		]
 		{\large\bfseries\color{white} #2}
 	\end{tcolorbox}%
-	\vspace{5pt}%
+	\vspace{2pt}%
 }
 
-% ── Comandos TikZ para Barras ──────────────────────────────────────────────
-\newcommand{\dibujarbarra}[4]{
-	% #1=posicion x, #2=altura, #3=color, #4=etiqueta
-	\foreach \y in {1,...,#2} {
-		\draw[fill=#3, draw=valdark, thick] (#1, \y-1) rectangle (#1+1, \y);
-	}
-	\node[font=\bfseries\scriptsize, align=center, text width=1.2cm] at (#1+0.5, -0.3) {#4};
+% ── Círculo numerado para partes (M2) ────────────────────────────────
+\newcommand{\calloutC}[2][valblue]{%
+	\begin{tikzpicture}[baseline=(c.south)]
+		\fill[#1] (0,0.12cm) circle[radius=0.24cm];
+		\node[font=\bfseries\footnotesize,white] (c) at (0,0.12cm) {#2};
+	\end{tikzpicture}%
 }
 
-\newcommand{\dibujarbarrahorizontal}[4]{
-	% #1=posicion y, #2=ancho, #3=color, #4=etiqueta
-	\foreach \x in {1,...,#2} {
-		\draw[fill=#3, draw=valdark, thick] (\x-1, #1) rectangle (\x, #1+1);
-	}
-	\node[font=\bfseries\scriptsize, left] at (-0.1, #1+0.5) {#4};
-}
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
 
+% ═══════════════════════════════════════════════════════════════════════
+%  INICIO DEL DOCUMENTO
+% ═══════════════════════════════════════════════════════════════════════
 \begin{document}
 	
-	% ── PORTADA ───────────────────────────────────────────────────────────────
+% ── PORTADA ───────────────────────────────────────────────────────────
+\begin{center}
+	{\Large\bfseries\color{valblue} LICEO V.A.L.\ (VIDA, AMOR, LUZ)}\\[4pt]
+	{\large\bfseries MÓDULO DE AUTOAPRENDIZAJE\ ---\ MATEMÁTICAS 6\textdegree}\\[8pt]
+	\begin{tcolorbox}[enhanced,arc=6mm,boxrule=2pt,
+		colback=valblue,colframe=valdark,halign=center]
+		{\Huge\bfseries\color{white} UNIDAD 10}\\[4pt]
+		{\Large\bfseries\color{yellow!90!white} Diagramas de Barras}
+	\end{tcolorbox}
+	%\vspace{6pt}
+	\begin{tcolorbox}[enhanced,arc=4mm,boxrule=1.5pt,
+		colback=white,colframe=valblue,width=0.88\linewidth,halign=center]
+		{\bfseries Nombre:}\\[6pt]
+		\rule{9cm}{0.5pt}\\[6pt]
+		{\bfseries Código:}\ \textbf{06M-10 AC}
+		\hspace{2cm}
+		{\bfseries Año:}\ \underline{2026}
+	\end{tcolorbox}
+	%\vspace{4pt}
+	{\itshape ``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+\end{center}
+%\vspace{6pt}
+	
+	% ══════════════════════════════════════════════════════════════════════
+	%  MISIÓN 1 — ¿Qué es un Diagrama de Barras?
+	% ══════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 1: ¿Qué es un Diagrama de Barras?}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto}
+	Un \textbf{diagrama de barras} usa \textbf{rectángulos} (barras) para
+	mostrar y \textbf{comparar cantidades}.
+	Cuanto más \textbf{alta} es la barra, \textbf{mayor} es el valor.
+	
+	\vspace{6pt}
+	\textbf{Ejemplo: }\textit{Los estudiantes de Taller 4 votaron por su deporte favorito.
+		Estos son los resultados:}
+	\end{concepto}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Lee el Diagrama y Responde}
+		\begin{minipage}[t]{0.52\linewidth}
+			\centering
+			\vspace{0pt}
+			\begin{tikzpicture}[x=0.55cm,y=0.35cm]
+				% Escala e hilos de grilla automáticos (FÁCIL EDITAR RANGO)
+				\foreach \y in {2,4,6,8,10,12} {
+					\draw[darkgray!22,line width=1pt] (0,\y) -- (9.6,\y);
+					\draw[valdark] (-0.12,\y) -- (0,\y);
+					\node[left,font=\bfseries\tiny] at (0,\y) {\y};
+				}
+				\node[left,font=\bfseries\tiny] at (0,0) {0};
+				
+				% === EDITAR DATOS AQUÍ: {Posición X / Altura / Color Base / Nombre} ===
+				\foreach \x/\y/\col/\name in {
+					0.9/10/valblue/F\'utbol,
+					2.5/6/valorange/Nataci\'on,
+					4.3/4/valgreen/Ciclismo,
+					6.3/8/valred/Baloncesto,
+					8.4/2/valpurple/Atletismo%
+				} {
+					\path[fill=\col!75, draw=\col, line width=0.9pt] (\x-0.6,0) rectangle (\x+0.6,\y);
+					\node[above,font=\bfseries\small,color=\col] at (\x,\y) {\textbf{\y}};
+					\node[below=2pt,font=\bfseries\tiny,align=center,text width=1.1cm] at (\x,0) {\name};
+				}
+				
+				% Ejes y títulos
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,13.2);
+				\draw[valdark,line width=1.5pt] (0,0) -- (9.6,0);
+				\node[rotate=90,font=\bfseries\small,color=valdark] at (-1.2,6) {Estudiantes};
+				\node[font=\bfseries\small,color=valdark] at (4.3,-2.2) {Deporte favorito};
+				\node[font=\bfseries\small,color=valblue,align=center,text width=4.5cm] at (4.3,14.5) {Deportes Favoritos de Taller 4};
+			\end{tikzpicture}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.45\linewidth}
+			\vspace{0pt}
+			\begin{enumerate}[itemsep=0.25cm, leftmargin=0.4cm, label=\textbf{\arabic*.}]
+				\item {¿}Cu\'al es el deporte \textbf{m\'as} votado?\quad
+				\boxfill[5.5cm]
+				\item {¿}Cu\'al es el deporte \textbf{menos} votado?\quad
+				\boxfill[5.5cm]
+				\item {¿}Cu\'antos estudiantes eligieron \textbf{Nataci\'on}?\quad
+				\boxfill[3cm]
+				\item {¿}Cu\'antos estudiantes eligieron \textbf{Baloncesto}?\quad
+				\boxfill[3cm]
+				\item {¿}Cu\'antos estudiantes m\'as eligieron F\'utbol que Atletismo?
+				\quad \boxfill[3cm]
+				\item {¿}Cu\'antos estudiantes participaron en total en la encuesta?
+				\quad \boxfill[3cm]
+			\end{enumerate}
+		\end{minipage}
+	\end{practica}
+	
+	% ══════════════════════════════════════════════════════════════════════
+	%  MISIÓN 2 — Las Partes del Diagrama de Barras
+	% ══════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 2: Las Partes del Diagrama de Barras}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto: ¡Cada Parte Tiene su Nombre!}
+		Un diagrama de barras tiene \textbf{6 partes} importantes. Los círculos de colores muestran dónde está cada una:
+		
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=0.45cm]
+				\draw[gray!22,line width=0.5pt] (0,4) -- (5.3,4);
+				\draw[gray!22,line width=0.5pt] (0,8) -- (5.3,8);
+				
+				% Gráfico base simplificado con variables de control directo
+				\foreach \x/\y/\col/\name/\val in {0.9/6/valblue/Rojo/6, 2.5/4/valorange/Azul/4, 4.1/8/valgreen/Verde/8} {
+					\path[fill=\col!75, draw=\col, line width=0.9pt] (\x-0.5,0) rectangle (\x+0.5,\y);
+					\node[above,font=\bfseries\small,color=\col] at (\x,\y) {\val};
+					\node[below=2pt,font=\small] at (\x,0) {\name};
+				}
+				
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,11.2);
+				\draw[valdark,line width=1.5pt] (0,0) -- (5.4,0);
+				\foreach \y in {4,8} { \draw[valdark](-0.1,\y)--(0,\y); \node[left,font=\small] at (0,\y) {\y}; }
+				\node[left,font=\small] at (0,0) {0};
+				\node[font=\bfseries\small,color=valblue] at (2.7,12.3) {Colores Favoritos};
+				
+				% Círculos indicadores corregidos
+				\fill[valblue] (4.7,12.4) circle[radius=0.25cm] node[white,font=\bfseries\tiny] {1};
+				\fill[valred] (0.0,10.2) circle[radius=0.25cm] node[white,font=\bfseries\tiny] {2};
+				\fill[valorange] (-0.7,4.0) circle[radius=0.25cm] node[white,font=\bfseries\tiny] {3};
+				\fill[valgreen] (4.1,4.7) circle[radius=0.25cm] node[white,font=\bfseries\tiny] {4};
+				\fill[valpurple] (5.2,0.0) circle[radius=0.25cm] node[white,font=\bfseries\tiny] {5};
+				\fill[valteal] (0.9,-2.0) circle[radius=0.25cm] node[white,font=\bfseries\tiny] {6};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{-4pt}
+		\begin{center}
+			\small
+			\begin{tabular}{clclcl}
+				\calloutC[valblue]{1} & \textbf{TÍTULO:} El tema. & \calloutC[valorange]{3} & \textbf{ESCALA:} Números Y. & \calloutC[valpurple]{5} & \textbf{EJE X:} Línea horizontal. \\
+				\calloutC[valred]{2} & \textbf{EJE Y:} Línea vertical. & \calloutC[valgreen]{4} & \textbf{BARRA:} El rectángulo. & \calloutC[valteal]{6} & \textbf{CATEGORÍAS:} Nombres X.
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Identifica las Partes}
+		\small \textit{Escribe el número del círculo ($1$ a $6$) correspondiente a la descripción.}
+		\begin{multicols}{2}
+			\begin{enumerate}[itemsep=0.2cm, label=\textbf{\Alph*)}]
+				\item Nombres debajo de las barras. \hfill \boxfill[1.2cm]
+				\item Rectángulo que mide cantidad. \hfill \boxfill[1.2cm]
+				\item Números que están en el costado. \hfill \boxfill[1.2cm]
+				\item Frase que explica el tema. \hfill \boxfill[1.2cm]
+				\item La línea vertical izquierda. \hfill \boxfill[1.2cm]
+				\item La línea horizontal de la base. \hfill \boxfill[1.2cm]
+			\end{enumerate}
+		\end{multicols}
+	\end{practica}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════
+	%  MISIÓN 3 — Leer un Diagrama de Barras
+	% ══════════════════════════════════════════════════════════════════════
+	\mision{valgreen}{Misión 3: Aprender a Leer un Diagrama de Barras}
+	
+	\begin{truco}{¡El Truco de los 3 Pasos para Leer una Barra!}
+		\centering
+		\begin{tikzpicture}[x=0.9cm,y=0.45cm]
+			\foreach \y in {4,8,10} { \draw[gray!20,line width=0.5pt] (0,\y) -- (4.5,\y); \draw[valdark](-0.1,\y)--(0,\y); }
+			\node[left,font=\small] at (0,0) {0}; \node[left,font=\small] at (0,4) {4};
+			\node[left,font=\bfseries\small,color=valred] at (0,8) {\textbf{8}}; \node[left,font=\small] at (0,10) {10};
+			
+			\path[fill=valbargray,draw=gray!60] (0.4,0) rectangle (1.2,4);
+			\path[fill=valbargray,draw=gray!60] (3.2,0) rectangle (4.0,10);
+			\path[barblue] (1.8,0) rectangle (2.6,8); \node[above,font=\bfseries,color=valblue] at (2.2,8) {?};
+			\draw[valdark,line width=1.5pt] (0,0) -- (0,11.5); \draw[valdark,line width=1.5pt] (0,0) -- (4.6,0);
+			
+			% Pasos dinámicos
+			\draw[->,>=stealth,valblue,line width=1.5pt] (2.2,10.2) -- (2.2,8.4);
+			\node[cajaz,inner sep=3pt,font=\bfseries\tiny,align=center,text width=2.2cm] at (2.2,11.4) {\textbf{PASO 1}\\Mira el \textbf{tope}};
+			
+			\draw[valred,dashed,line width=1.5pt] (0.1,8) -- (1.8,8);
+			\fill[valred!20] (0,8) circle[radius=0cm]; \draw[valred,line width=1pt] (0,8) circle[radius=0.5cm];
+			
+			\node[cajao,inner sep=3pt,font=\bfseries\tiny,align=center,text width=2.4cm] at (6.8,8.5) {\textbf{PASO 2}\\Traza una línea\\\textbf{horizontal} al eje Y};
+			\draw[->,>=stealth,valorange,line width=1.2pt] (5.4,8.5) -- (3.0,8);
+			
+			\node[cajar,inner sep=3pt,font=\bfseries\tiny,align=center,text width=2.4cm] at (6.8,5.0) {\textbf{PASO 3}\\Lee el número:\\¡Es el \textbf{8}!};
+			\draw[->,>=stealth,valred,line width=1.2pt] (5.4,5.5) -- (0.4,7.8);
+		\end{tikzpicture}
+	\end{truco}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Lee el Diagrama y Responde}
+		\begin{minipage}[t]{0.52\linewidth}
+			\centering
+			\vspace{0pt}
+			\begin{tikzpicture}[x=0.55cm,y=0.35cm]
+				\foreach \y in {2,4,6,8,10,12} {
+					\draw[gray!22,line width=0.55pt] (0,\y) -- (8.5,\y);
+					\draw[valdark] (-0.12,\y) -- (0,\y);
+					\node[left,font=\bfseries\tiny] at (0,\y) {\y};
+				}
+				\node[left,font=\bfseries\tiny] at (0,0) {0};
+				
+				% === EDITAR DATOS AQUÍ ===
+				\foreach \x/\y/\col/\name in {
+					0.9/8/valblue/A pie,
+					2.5/12/valorange/Bus,
+					4.1/4/valgreen/Bicicleta,
+					5.7/6/valred/Carro,
+					7.3/2/valteal/Metro%
+				} {
+					\path[fill=\col!75, draw=\col, line width=0.9pt] (\x-0.6,0) rectangle (\x+0.6,\y);
+					\node[above,font=\bfseries\small,color=\col] at (\x,\y) {\textbf{\y}};
+					\node[below=2pt,font=\bfseries\tiny,align=center,text width=1.2cm] at (\x,0) {\name};
+				}
+				
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,13.4);
+				\draw[valdark,line width=1.5pt] (0,0) -- (8.6,0);
+				\node[rotate=90,font=\bfseries\small,color=valdark] at (-1.2,6) {Estudiantes};
+				\node[font=\bfseries\small,color=valdark] at (4.3,-2.2) {Medio de transporte};
+				\node[font=\bfseries\small,color=valblue,align=center,text width=4.5cm] at (4.3,14.8) {Transporte al Colegio};
+			\end{tikzpicture}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.45\linewidth}
+			\vspace{0pt}
+			\begin{enumerate}[itemsep=0.25cm, leftmargin=0.4cm, label=\textbf{\arabic*.}]
+				\item {¿}Cu\'antos estudiantes van al colegio \textbf{a pie}?
+				\quad\boxfill[3cm]
+				
+				\item {¿}Cu\'al es el medio de transporte \textbf{m\'as usado}?
+				\quad\boxfill[4.5cm]
+				
+				\item {¿}Cu\'al es el medio de transporte \textbf{menos usado}?
+				\quad\boxfill[4.5cm]
+				
+				\item {¿}Cu\'antos estudiantes m\'as van en \textbf{Bus} que en
+				\textbf{Bicicleta}?  \quad\boxfill[3cm]
+				
+				\item {¿}Cu\'antos estudiantes participaron en la encuesta \textbf{en total}?
+				\quad\boxfill[3cm]
+				
+				\item El doble de los que van en Carro, {¿}cu\'antos ser\'ian?
+				\quad\boxfill[3cm]
+			\end{enumerate}
+		\end{minipage}
+	\end{practica}
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════
+	%  MISIÓN 4 — Completar el Diagrama de Barras
+	% ══════════════════════════════════════════════════════════════════════
+	\mision{valorange}{Misión 4: Completar el Diagrama de Barras}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto: De la Tabla al Diagrama}
+		Una \textbf{tabla de datos} nos da los valores fijos. Con ellos \textbf{dibujamos las barras} coloreando hasta la altura correcta de la escala.
+	\end{concepto}
+	
+	\begin{practica}{$\square$ ¡Tu Turno! --- Dibuja las Barras}
+		\begin{minipage}[t]{0.52\linewidth}
+			\centering
+			\vspace{0pt}
+			\begin{tikzpicture}[x=0.95cm,y=0.65cm]
+				\foreach \y in {2,4,6,8,10} {
+					\draw[gray!22,line width=0.55pt] (0,\y) -- (8.5,\y);
+					\draw[valdark] (-0.12,\y) -- (0,\y);
+					\node[left,font=\bfseries\tiny] at (0,\y) {\y};
+				}
+				\node[left,font=\bfseries\tiny] at (0,0) {0};
+				
+				% === EDITAR COLUMNAS GUÍA (Zonas grises para rellenar) ===
+				\foreach \x/\name in {0.9/Perro, 2.5/Gato, 4.1/Pez, 5.7/Ave, 7.3/Tortuga} {
+					\fill[gray!10] (\x-0.5,0) rectangle (\x+0.5,10);
+					\draw[gray!35,dashed,line width=0.7pt] (\x-0.5,0) rectangle (\x+0.5,10);
+					\node[below=2pt,font=\bfseries\tiny,align=center,text width=1.1cm] at (\x,0) {\name};
+				}
+				
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,11.5);
+				\draw[valdark,line width=1.5pt] (0,0) -- (8.6,0);
+				\node[rotate=90,font=\bfseries\small,color=valdark] at (-0.8,5) {Número de estudiantes};
+				\node[font=\bfseries\small,color=valdark] at (4.3,-1.2) {Mascotas};
+				\node[font=\bfseries\small,color=valorange,align=center] at (4.3,12.0) {Mascotas de los estudiantes};
+			\end{tikzpicture}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.45\linewidth}
+			\vspace{0pt}
+			\begin{tcolorbox}[
+				enhanced, colback=vallightblue,colframe=valblue, arc=2mm,boxrule=1pt,
+				title={\bfseries\scriptsize Tabla de Datos}, coltitle=white,
+				attach boxed title to top left={yshift=-1.5mm,xshift=3mm},
+				boxed title style={colback=valblue,rounded corners}, top=3mm, bottom=2mm
+				]
+				\centering\small
+				\renewcommand{\arraystretch}{1.2}
+				\begin{tabular}{lc}
+					\toprule \textbf{Mascota} & \textbf{N.º} \\ \midrule
+					Perro & \textbf{8} \\ Gato & \textbf{6} \\ Pez & \textbf{4} \\ Ave & \textbf{2} \\ Tortuga & \textbf{10} \\ \bottomrule
+				\end{tabular}
+			\end{tcolorbox}
+		\end{minipage}
+		\vspace*{2cm}
+		
+		\textbf{Responde usando el diagrama que acabas de completar:}
+		
+		%\vspace{4pt}
+		\begin{enumerate}[itemsep=0.6cm, label=\textbf{\arabic*.}]
+			\item {¿}Cu\'al es la mascota que tienen m\'as estudiantes?\quad\boxfill[4.5cm]
+			\item {¿}Cu\'antos estudiantes tienen un Pez?\quad\boxfill[3cm]
+			\item {¿}Cuanta es la diferencia entre estudiantes que tienen Perro y los que tienen Ave?
+			\quad\boxfill[3cm]
+		\end{enumerate}
+	\end{practica}
+	
+	\newpage
+	
+	% ══════════════════════════════════════════════════════════════════════
+	%  MISIÓN 5 — Crear mi Propio Diagrama de Barras
+	% ══════════════════════════════════════════════════════════════════════
+	\mision{valred}{¡Misión 5: Crea tu Propio Diagrama de Barras!}
+	
+	\begin{truco}{Los 3 Pasos para Crear un Diagrama}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm,y=1cm]
+				\node[btnazul,minimum width=0.9cm,minimum height=0.9cm]    at (0,0)   {1};
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=13cm] at (0.68,0)
+				{\textbf{CUENTA} cu\'antas veces aparece cada categor\'ia y
+					ll\'enalo en la tabla.};
+				
+				\node[btnorange,minimum width=0.9cm,minimum height=0.9cm]  at (0,-1.2) {2};
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=13cm] at (0.68,-1.2)
+				{\textbf{ESCOGE} la escala: mira el valor m\'as alto y sube
+					un poco m\'as.};
+				
+				\node[btnverde,minimum width=0.9cm,minimum height=0.9cm]   at (0,-2.4) {3};
+				\node[anchor=west,font=\bfseries\large,color=valdark,
+				align=left,text width=13cm] at (0.68,-2.4)
+				{\textbf{DIBUJA} una barra para cada categor\'ia hasta la
+					altura correcta.};
+			\end{tikzpicture}
+		\end{center}
+	\end{truco}
+	\textit{Los 20 estudiantes eligieron su color favorito.
+		Cada c\'irculo de color representa \textbf{1 estudiante}.}
+	
+	%\vspace{8pt}
+	
+	% ── Tabla de bolitas ─────────────────────────────────────────────────
 	\begin{center}
-		%{\Large\bfseries\color{valblue} LICEO V.A.L.\ (VIDA, AMOR, LUZ)}\\[4pt]
-		%{\large\bfseries MÓDULO DE AUTOAPRENDIZAJE\ ---\ MATEMÁTICAS 6\textdegree}\\[8pt]
-		
-		\begin{tcolorbox}[
-			enhanced, arc=6mm, boxrule=2pt,
-			colback=valblue, colframe=valdark,
-			halign=center,
-			]
-			{\Huge\bfseries\color{white} UNIDAD 10}\\[4pt]
-			{\Large\bfseries\color{yellow!90!white} Diagrama de Barras: ¡Ejes e Interpretación!}
-		\end{tcolorbox}
-		
-		%\vspace{6pt}
-		\begin{tcolorbox}[
-			enhanced, arc=4mm, boxrule=1.5pt,
-			colback=white, colframe=valblue,
-			width=0.88\linewidth, halign=center,
-			]
-			{\bfseries Nombre:}\\[6pt]
-			\rule{9cm}{0.5pt}\\[6pt]
-			{\bfseries Código:}\ \underline{06M-10 AC}
-			\hspace{2cm}
-			{\bfseries Año:}\ \underline{2026}
-		\end{tcolorbox}
+		\begin{tikzpicture}[x=0.6cm,y=0.6cm]
+			%── Encabezado ────────────────────────────────────────────────────
+			\fill[vallightblue]  (-1.1,1.0) rectangle (17.5,1.8);
+			\draw[valblue,line width=0.6pt] (-1.1,1.0) rectangle (17.5,1.8);
+			\node[font=\bfseries\normalsize,color=valblue] at (0.5,1.4) {Color};
+			\node[font=\bfseries\normalsize,color=valblue] at (7.5,1.4)
+			{Votos (1 c\'irculo = 1 estudiante)};
+			
+			%── Fila Rojo ─────────────────────────────────────────────────────
+			\fill[vallightred!40] (-1.1,0.0) rectangle (17.5,0.95);
+			\node[font=\bfseries\large,color=valred]   at (0.6,0.47) {Rojo};
+			\fill[valred!80]  (2.7,0.47) circle[radius=0.22cm];
+			\fill[valred!80]  (3.5,0.47) circle[radius=0.22cm];
+			\fill[valred!80]  (4.3,0.47) circle[radius=0.22cm];
+			\fill[valred!80]  (5.1,0.47) circle[radius=0.22cm];
+			\fill[valred!80]  (5.9,0.47) circle[radius=0.22cm];
+			
+			%── Fila Azul ─────────────────────────────────────────────────────
+			\fill[vallightblue!50] (-1.1,-0.95) rectangle (17.5,0.0);
+			\node[font=\bfseries\large,color=valblue]   at (0.6,-0.48) {Azul};
+			\fill[valblue!80] (2.7,-0.48) circle[radius=0.22cm];
+			\fill[valblue!80] (3.5,-0.48) circle[radius=0.22cm];
+			\fill[valblue!80] (4.3,-0.48) circle[radius=0.22cm];
+			\fill[valblue!80] (5.1,-0.48) circle[radius=0.22cm];
+			\fill[valblue!80] (5.9,-0.48) circle[radius=0.22cm];
+			\fill[valblue!80] (6.7,-0.48) circle[radius=0.22cm];
+			\fill[valblue!80] (7.5,-0.48) circle[radius=0.22cm];
+			\fill[valblue!80] (8.3,-0.48) circle[radius=0.22cm];
+			
+			%── Fila Verde ────────────────────────────────────────────────────
+			\fill[vallightgreen!50] (-1.1,-1.90) rectangle (17.5,-0.95);
+			\node[font=\bfseries\large,color=valgreen]  at (0.6,-1.43) {Verde};
+			\fill[valgreen!80](2.7,-1.43) circle[radius=0.22cm];
+			\fill[valgreen!80](3.5,-1.43) circle[radius=0.22cm];
+			\fill[valgreen!80](4.3,-1.43) circle[radius=0.22cm];
+			\fill[valgreen!80](5.1,-1.43) circle[radius=0.22cm];
+			
+			%── Fila Amarillo ─────────────────────────────────────────────────
+			\fill[vallightorange!40] (-1.1,-2.85) rectangle (17.5,-1.90);
+			\node[font=\bfseries\large,color=valorange] at (0.6,-2.38) {Amarillo};
+			\fill[valorange!80](2.7,-2.38) circle[radius=0.2cm];
+			\fill[valorange!80](3.5,-2.38) circle[radius=0.22cm];
+			\fill[valorange!80](4.3,-2.38) circle[radius=0.22cm];
+			
+			%── Borde externo ─────────────────────────────────────────────────
+			\draw[valdark,line width=1pt] (-1.1,-2.85) rectangle (17.5,1.8);
+		\end{tikzpicture}
 	\end{center}
 	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 1
-	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valblue}{Misión 1: ¿Para qué sirve un Gráfico y sus Ejes?}
 	
-	\begin{concepto}{$\square$ Aprende el Concepto: Las dos líneas importantes}
-		Un \textbf{Diagrama de Barras} sirve para organizar información y entenderla rápido, ¡como en una foto! Todo gráfico tiene dos líneas gruesas llamadas \textbf{EJES}:
-		\begin{itemize}[leftmargin=*, itemsep=2pt]
-			\item La \textbf{línea horizontal} (abajo) tiene palabras y nos dice \textbf{DE QUÉ} hablamos.
-			\item La \textbf{línea vertical} (al lado) tiene números y nos dice \textbf{CUÁNTA CANTIDAD} hay.
-		\end{itemize}
+	\begin{practica}{$\square$ ¡Tu Turno! --- ¡Crea el Diagrama!}
+		\begin{minipage}[t]{0.52\linewidth}
+			\centering
+			\vspace{0pt}
+			\begin{tikzpicture}[x=1.4cm,y=0.65cm]
+				\foreach \y in {2,4,6,8,10} {
+					\draw[gray!22,line width=0.55pt] (0,\y) -- (5.8,\y);
+					\draw[valdark] (-0.10,\y) -- (0,\y);
+					\node[left,font=\bfseries\tiny] at (0,\y) {\y};
+				}
+				\node[left,font=\bfseries\tiny] at (0,0) {0};
+				
+				% Columnas guía automáticas vacías
+				\foreach \x/\name in {0.8/Rojo, 2.1/Azul, 3.4/Verde, 4.7/Amarillo} {
+					\fill[gray!8] (\x-0.4,0) rectangle (\x+0.4,10);
+					\draw[gray!35,dashed,line width=0.6pt] (\x-0.4,0) rectangle (\x+0.4,10);
+					\node[below=2pt,font=\bfseries\tiny] at (\x,0) {\name};
+				}
+				
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,11.5);
+				\draw[valdark,line width=1.5pt] (0,0) -- (5.8,0);
+				\node[rotate=90,font=\bfseries\small,color=valdark] at (-0.7,5) {Número de estudiantes};
+				\node[font=\bfseries\small,color=valdark] at (2.9,-1.5) {Color favorito};
+				\node[font=\bfseries\small,color=valred,align=center,text width=5.5cm] at (2.9,13.0) {Colores Favoritos};
+			\end{tikzpicture}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.45\linewidth}
+			\vspace{0pt}
+			\textbf{Paso 1:} Cuenta los c\'irculos de cada color y completa la tabla.\\
+			\renewcommand{\arraystretch}{1.2}
+			\small
+			\begin{tabular}{|l|c|}
+				\hline
+				\rowcolor{vallightblue} \textbf{Color} & \textbf{Total Estudiantes} \\ \hline
+				Rojo & \hspace{2cm} \\ \hline
+				Azul & \\ \hline
+				Verde & \\ \hline
+				Amarillo & \\ \hline
+			\end{tabular}
+			
+			\vspace{10pt}
+			\textbf{Pasos 2 y 3:} Usa los datos de tu tabla para dibujar las barras correspondientes en la cuadrícula de la izquierda. Recuerda que la escala numérica sube de 2 en 2.
+		\end{minipage}
+	\end{practica}
+	
+	% ══════════════════════════════════════════════════════════════════════
+	%  MISIÓN 6 — Matemáticas para la Vida
+	% ══════════════════════════════════════════════════════════════════════
+	\mision{valred}{¡Misión 6: Matemáticas para la Vida!}
+	
+	\begin{concepto}{$\square$ Los Diagramas de Barras Sirven para Tomar Decisiones}
+		Con un diagrama podemos \textbf{comparar}, \textbf{sumar}, \textbf{restar} y tomar \textbf{decisiones}. Los usamos todos los días en la tienda, en el colegio, deportes, etc.
 	\end{concepto}
 	
-	\titulopractica{$\square$ Práctica: Leer información y contar}
-	\textit{Mira las líneas del gráfico con atención para entender de qué trata y responde.}
-	
-	%\vspace{0.4cm}
-	
-	% -- BLOQUE A DOS COLUMNAS (GRÁFICO A) --
-	\noindent
-	\begin{minipage}[c]{0.45\textwidth}
-		\textbf{Mascotas en Casa}
-		%\vspace{0.2cm}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.85]
-				\draw[step=1cm, valdark!20, thin] (0,0) grid (6,5);
-				\draw[valdark, ultra thick, ->] (0,0) -- (6.2,0); % Eje horizontal
-				\draw[valdark, ultra thick, ->] (0,0) -- (0,5.2); % Eje vertical
-				\foreach \y in {1,2,3,4,5} \node[left] at (0,\y-0.5) {\textbf{\y}};
+	\begin{espaciotrabajonb}{Situación: La Tienda Escolar}
+		\begin{minipage}[t]{0.48\linewidth}
+			\centering
+			\vspace{0pt}
+			\begin{tikzpicture}[x=1.25cm,y=0.65cm]
+				\foreach \y in {2,4,6,8,10,12} {
+					\draw[gray!22,line width=0.5pt] (0,\y) -- (6.6,\y);
+					\draw[valdark] (-0.10,\y) -- (0,\y);
+					\node[left,font=\bfseries\tiny] at (0,\y) {\y};
+				}
+				\node[left,font=\bfseries\tiny] at (0,0) {0};
 				
-				\dibujarbarra{0.5}{4}{valblue!60}{Perro}
-				\dibujarbarra{2.0}{3}{valgreen!60}{Gato}
-				\dibujarbarra{3.5}{1}{valorange!60}{Pez}
-				\dibujarbarra{5.0}{5}{valred!60}{Loro}
+				% === EDITAR HELADOS VENDIDOS ===
+				\foreach \x/\y/\col/\name in {
+					0.7/10/valblue/Lun,
+					2.0/6/valorange/Mar,
+					3.3/8/valgreen/Mi\'e,
+					4.6/4/valred/Jue,
+					5.9/12/valpurple/Vie%
+				} {
+					\path[fill=\col!75, draw=\col, line width=0.9pt] (\x-0.45,0) rectangle (\x+0.45,\y);
+					\node[above,font=\bfseries\tiny,color=\col] at (\x,\y) {\y};
+					\node[below=2pt,font=\bfseries\tiny] at (\x,0) {\name};
+				}
 				
-				% Etiquetas de Ejes
-				\node[font=\bfseries\scriptsize\color{valblue}, below] at (3.1,-0.6) {Línea de Nombres (¿De qué hablamos?)};
-				\node[font=\bfseries\scriptsize\color{valred}, rotate=90] at (-0.7,2.5) {Línea de Números (¿Cuánto?)};
+				\draw[valdark,line width=1.5pt] (0,0) -- (0,13.5);
+				\draw[valdark,line width=1.5pt] (0,0) -- (6.7,0);
+				\node[rotate=90,font=\bfseries\small,color=valdark] at (-0.4,6) {Helados};
+				\node[font=\bfseries\small,color=valred,align=center] at (3.3,15.2) {Helados Vendidos};
+				\node[font=\bfseries\small,color=valdark] at (3.3,-1.3) {Día de la semana};
 			\end{tikzpicture}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.52\textwidth}
-		\begin{enumerate}[leftmargin=*, itemsep=10pt, label={\textbf{\color{valdark}\arabic*.}}]
-			\item Mira la línea de abajo. ¿De qué trata este gráfico? \boxfill[6cm]
-			\item ¿Qué mascota tiene la barra más alta de todas? \boxfill[6cm]
-			\item ¿Hasta que número llega la barra del\\
-			 \textbf{Perro}? \boxfill[6cm]
-			\item ¿De que animal solo hay \textbf{uno}? \boxfill[6cm]
-		\end{enumerate}
-	\end{minipage}
-	
-	%\vspace{0.4cm}
-	%\rule{\textwidth}{0.5pt}
-	%\vspace{0.2cm}
-	
-	% -- BLOQUE A DOS COLUMNAS (GRÁFICO B) --
-	\noindent
-	\begin{minipage}[c]{0.45\textwidth}
-		\textbf{Frutas de la Merienda}
-		%\vspace{0.2cm}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.85]
-				\draw[step=1cm, valdark!20, thin] (0,0) grid (6,6);
-				\draw[valdark, ultra thick, ->] (0,0) -- (6.2,0);
-				\draw[valdark, ultra thick, ->] (0,0) -- (0,6.2);
-				\foreach \y in {1,2,3,4,5,6} \node[left] at (0,\y-0.5) {\textbf{\y}};
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.50\linewidth}
+			\vspace{0pt}
+			\small \textit{La tienda escolar registró en una gráfica la venta diaria de helados. Responde:}
+			\begin{enumerate}[itemsep=0.7cm, label=\textbf{\arabic*.}]
+				\item {¿}Cu\'antos helados se vendieron el \textbf{mi\'ercoles}?
+				\quad\boxfill[2.5cm]
 				
-				\dibujarbarra{0.5}{6}{valred!60}{Manzana}
-				\dibujarbarra{2.0}{2}{valorange!60}{Naranja}
-				\dibujarbarra{3.5}{4}{valgreen!60}{Pera}
-				\dibujarbarra{5.0}{3}{valpurple!60}{Uva}
-				% Etiquetas de Ejes
-				\node[font=\bfseries\scriptsize\color{valblue}, below] at (3.1,-0.6) {Frutas};
-				\node[font=\bfseries\scriptsize\color{valred}, rotate=90] at (-0.7,2.5) {Cantidad en la alacena};
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.52\textwidth}
-		\begin{enumerate}[leftmargin=*, itemsep=10pt, label={\textbf{\color{valdark}\arabic*.}}]
-			\setcounter{enumi}{4}
-			\item Mira la línea de abajo. ¿De qué tema hablamos ahora? \boxfill[5cm]
-			\item ¿Qué fruta es la que \textbf{menos} cantidad tiene? \boxfill[6cm]
-			\item ¿Cuántas \textbf{Manzanas} hay en total? \boxfill[1.2cm]
-			\item ¿De qué fruta hay exactamente \textbf{4} unidades? \boxfill[6cm]
-		\end{enumerate}
-	\end{minipage}
-	
-	%\newpage
-	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 2
-	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valgreen}{Misión 2: Registrar Datos del Gráfico a la Tabla}
-	
-	\begin{concepto}{$\square$ Aprende el Concepto}
-		Las tablas y los gráficos son mejores amigos. Las \textbf{palabras de la línea de abajo} del gráfico van en una columna de la tabla, y los \textbf{números de la línea del lado} van en la otra columna.
-	\end{concepto}
-	
-	\titulopractica{$\square$ Práctica: Llenar los cajones}
-	\textit{Mira la altura de cada barra y escribe el número en la tabla que está a su lado.}
-	
-	%\vspace{0.4cm}
-	
-	% -- BLOQUE A DOS COLUMNAS (GRÁFICO C) --
-	\noindent
-	\begin{minipage}[c]{0.45\textwidth}
-		\textbf{Juguetes}
-		%\vspace{0.2cm}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.85]
-				\draw[step=1cm, valdark!20, thin] (0,0) grid (6,5);
-				\draw[valdark, thick] (0,0) -- (6,0);
-				\draw[valdark, thick] (0,0) -- (0,5);
-				\foreach \y in {1,2,3,4,5} \node[left] at (0,\y-0.5) {\textbf{\y}};
+				\item {¿}Qu\'e d\'ia se vendieron \textbf{m\'as} helados?
+				\quad\boxfill[3cm]
 				
-				\dibujarbarra{0.5}{4}{valpurple}{Carros}
-				\dibujarbarra{2.0}{5}{valblue}{Muñecas}
-				\dibujarbarra{3.5}{2}{valgreen}{Balones}
-				\dibujarbarra{5.0}{3}{valorange}{Trenes}
-				% Etiquetas de Ejes
-				\node[font=\bfseries\scriptsize\color{valblue}, below] at (3.1,-0.6) {Juguetes};
-				\node[font=\bfseries\scriptsize\color{valred}, rotate=90] at (-0.7,2.5) {Cantidad en la habitción};
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.52\textwidth}
-		\renewcommand{\arraystretch}{1.6}
-		\begin{tabular}{|c|m{2.5cm}|}
-			\hline
-			 \textbf{Juguete} & \textbf{Cantidad} \\ \hline
-			Carros &  \\ \hline
-			Muñecas &\\ \hline
-			Balones &\\ \hline
-			Trenes & \\ \hline
-		\end{tabular}
-	\end{minipage}
-	
-	% -- BLOQUE A DOS COLUMNAS (GRÁFICO D) --
-	\noindent
-	\begin{minipage}[c]{0.45\textwidth}
-		\textbf{El Clima}
-		%\vspace{0.2cm}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.85]
-				\draw[step=1cm, valdark!20, thin] (0,0) grid (6,6);
-				\draw[valdark, thick] (0,0) -- (6,0);
-				\draw[valdark, thick] (0,0) -- (0,6);
-				\foreach \y in {1,2,3,4,5,6} \node[left] at (0,\y-0.5) {\textbf{\y}};
+				\item {¿}Qu\'e d\'ia se vendieron \textbf{menos} helados?
+				\quad\boxfill[3cm]
 				
-				\dibujarbarra{0.5}{5}{valorange!80}{Soleado}
-				\dibujarbarra{2.0}{3}{valblue!50}{Lluvioso}
-				\dibujarbarra{3.5}{6}{valgray!80}{Nublado}
-				\dibujarbarra{5.0}{2}{valpurple!40}{Ventoso}
-				% Etiquetas de Ejes
-				\node[font=\bfseries\scriptsize\color{valblue}, below] at (3.1,-0.6) {Clima};
-				\node[font=\bfseries\scriptsize\color{valred}, rotate=90] at (-0.7,2.5) {Días};
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.52\textwidth}
-		\renewcommand{\arraystretch}{1.6}
-		\begin{tabular}{|c|c|m{2.5cm}|}
-			\hline
-			 \textbf{Clima} & \textbf{Días} \\ \hline
-			Soleado &  \\ \hline
-			Lluvioso & \\ \hline
-			Nublado &  \\ \hline
-			Ventoso &  \\ \hline
-		\end{tabular}
-	\end{minipage}
-	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 3
-	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valorange}{Misión 3: ¡A Pintar! De la Tabla al Gráfico}
-	
-	\begin{concepto}{$\square$ Aprende el Concepto}
-		¡Ahora tú eres el diseñador! Mira el número que te da la tabla a la izquierda y **colorea esa misma cantidad de cuadritos** en el gráfico vacío de la derecha. Comienza a pintar siempre desde abajo hacia arriba.
-	\end{concepto}
-	
-	\titulopractica{$\square$ Práctica: Construir las barras }
-	
-	%\vspace{0.4cm}
-	
-	% -- BLOQUE A DOS COLUMNAS (TABLA E) --
-	\noindent
-	\begin{minipage}[c]{0.35\textwidth}
-		\textbf{Colores}
-		%\vspace{0.3cm}
-		
-		\renewcommand{\arraystretch}{1.7}
-		\begin{tabular}{|c|c|}
-			\hline
-			\textbf{Color} & \textbf{Cantidad} \\ \hline
-			 Rojo & \textbf{4} \\ \hline
-			 Azul & \textbf{6} \\ \hline
-			 Verde & \textbf{2} \\ \hline
-			 Amarillo & \textbf{5} \\ \hline
-		\end{tabular}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.60\textwidth}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.9]
-				\draw[step=1cm, valdark, thin, dashed] (0,0) grid (8,6);
-				\draw[valdark, ultra thick] (0,0) -- (8,0);
-				\draw[valdark, ultra thick] (0,0) -- (0,6);
-				\foreach \y in {1,2,3,4,5,6} \node[left] at (0,\y-0.5) {\textbf{\y}};
+				\item {¿}Cu\'antos helados m\'as se vendieron el viernes que
+				el jueves?  \quad\boxfill[2.5cm]
 				
-				\node[font=\bfseries] at (0.5, -0.4) {Rojo};
-				\node[font=\bfseries] at (2.5, -0.4) {Azul};
-				\node[font=\bfseries] at (4.5, -0.4) {Verde};
-				\node[font=\bfseries] at (6.5, -0.4) {Ambar};
-				% Etiquetas de Ejes
-				\node[font=\bfseries\scriptsize\color{valblue}, below] at (3.1,-0.6) {Colores};
-				\node[font=\bfseries\scriptsize\color{valred}, rotate=90] at (-0.7,2.5) {Cantidad};
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}
-	
-	% -- BLOQUE A DOS COLUMNAS (TABLA F) --
-	\noindent
-	\begin{minipage}[c]{0.35\textwidth}
-		\textbf{Materias}
-		%\vspace{0.3cm}
-		
-		\renewcommand{\arraystretch}{1.7}
-		\begin{tabular}{|c|c|}
-			\hline
-			\textbf{Materia} & \textbf{Estudiantes} \\ \hline
-			Matemáticas & \textbf{5} \\ \hline
-			Ciencias & \textbf{3} \\ \hline
-			Arte & \textbf{6} \\ \hline
-			Deportes & \textbf{4} \\ \hline
-		\end{tabular}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.60\textwidth}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.9]
-				\draw[step=1cm, valdark, thin, dashed] (0,0) grid (8,6);
-				\draw[valdark, ultra thick] (0,0) -- (8,0);
-				\draw[valdark, ultra thick] (0,0) -- (0,6);
-				\foreach \y in {1,2,3,4,5,6} \node[left] at (0,\y-0.5) {\textbf{\y}};
+				\item {¿}Cu\'antos helados se vendieron en total durante la
+				semana?  \quad\boxfill[2.5cm]
 				
-				\node[font=\bfseries] at (0.5, -0.4) {Mate};
-				\node[font=\bfseries] at (2.5, -0.4) {Cien.};
-				\node[font=\bfseries] at (4.5, -0.4) {Arte};
-				\node[font=\bfseries] at (6.5, -0.4) {Depor.};
-				% Etiquetas de Ejes
-				\node[font=\bfseries\scriptsize\color{valblue}, below] at (3.1,-0.6) {Materias};
-				\node[font=\bfseries\scriptsize\color{valred}, rotate=90] at (-0.7,2.5) {Estudiantes};
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}
-	
-	%\newpage
-	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 4
-	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valpurple}{Misión 4: Comparaciones y descubrir "La Moda"}
-	
-	\begin{concepto}{$\square$ Aprende el Concepto: ¿Qué es la Moda?}
-		\textbf{Interpretar} un gráfico es usar sus datos para responder preguntas y encontrar diferencias. Por ejemplo, en matemáticas, la \textbf{Moda} es el dato que más se repite o más se eligió. ¡Es muy fácil de encontrar porque siempre es la barra más alta!
-	\end{concepto}
-	
-	\titulopractica{$\square$ Práctica: Encontrar el mayor y comparar}
-	\textit{Observa el gráfico de postres y responde las preguntas a su lado.}
-	
-	%\vspace{0.4cm}
-	
-	\noindent
-	\begin{minipage}[c]{0.45\textwidth}
-		\textbf{Elección de Postres}
-		%\vspace{0.2cm}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.85]
-				\draw[step=1cm, valdark!20, thin] (0,0) grid (6,6);
-				\draw[valdark, thick] (0,0) -- (6,0);
-				\draw[valdark, thick] (0,0) -- (0,6);
-				\foreach \y in {1,2,3,4,5,6} \node[left] at (0,\y-0.5) {\textbf{\y}};
+				\item Si cada helado cuesta \$\,2.000, {¿}cu\'anto dinero
+				gan\'o la tienda el \textbf{lunes}?
 				
-				\dibujarbarra{0.5}{6}{valblue!70}{Helado}
-				\dibujarbarra{2.0}{3}{valred!50}{Pastel}
-				\dibujarbarra{3.5}{2}{valgreen!50}{Gelatina}
-				\dibujarbarra{5.0}{5}{valorange!70}{Galleta}
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.52\textwidth}
-		\begin{enumerate}[leftmargin=*, itemsep=8pt, label={\textbf{\color{valdark}\arabic*.}}]
-			\item ¿Qué postre es la \textbf{Moda} (la barra más alta)? \boxfill[2cm]
-			\item ¿Cuál es el postre menos votado? \boxfill[2cm]
-			\item ¿Cuántos niños prefieren \textbf{Helado}? \boxfill[1cm]
-			\item ¿Cuántos niños prefieren \textbf{Pastel}? \boxfill[1cm]
-			\item ¡Resta! ¿Cuántos más prefieren Helado que Pastel? ($6 - 3$) \boxfill[1cm]
-			\item ¡Otra resta! ¿Cuántos más prefieren Galleta que Gelatina? ($5 - 2$) \boxfill[1cm]
-			\item La Gelatina es \textbf{2}. ¿Es \textbf{PAR} o \textbf{IMPAR}? \boxfill[1.5cm]
-			\item La Galleta es \textbf{5}. ¿Es \textbf{PAR} o \textbf{IMPAR}? \boxfill[1.5cm]
-		\end{enumerate}
-	\end{minipage}
+				%\vspace{4pt}
+				Operaci\'on: \boxfill[1.8cm] $\times$ \boxfill[1.8cm]
+				$=$ \boxfill[2.5cm]
+			\end{enumerate}
+		\end{minipage}
+	\end{espaciotrabajonb}
 	
-	%\vspace{0.5cm}
 	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 5
-	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valorange}{Misión 5: Diagramas de Barras Horizontales}
-	
-	\begin{concepto}{$\square$ Aprende el Concepto: ¡Se cruzaron los ejes!}
-		Las barras no siempre van hacia arriba. A veces crecen \textbf{hacia la derecha}. Fíjate muy bien: \textbf{¡los ejes cambiaron de lugar!} Ahora los Nombres están en la línea vertical, y los Números están en la línea horizontal (abajo). Se leen igual, contando de izquierda a derecha.
-	\end{concepto}
-	
-	\titulopractica{$\square$ Práctica: Leer hacia la derecha }
-	
-	\noindent
-	\begin{minipage}[c]{0.52\textwidth}
-		\textbf{Taller de Música}
-		%\vspace{0.2cm}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.85]
-				\draw[step=1cm, valdark!20, thin] (0,0) grid (6,5);
-				\draw[valdark, ultra thick, ->] (0,0) -- (6.2,0);
-				\draw[valdark, ultra thick, ->] (0,0) -- (0,5.2);
-				\foreach \x in {1,2,3,4,5,6} \node[below] at (\x-0.5, 0) {\textbf{\x}};
-				
-				\dibujarbarrahorizontal{3.5}{3}{valred!60}{Guitarra}
-				\dibujarbarrahorizontal{2.3}{5}{valblue!60}{Piano}
-				\dibujarbarrahorizontal{1.1}{2}{valorange!60}{Flauta}
-				\dibujarbarrahorizontal{0.0}{4}{valgreen!60}{Tambor}
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.45\textwidth}
-		\textbf{Ej. 1 al 4: Cuenta bloques}
-		\begin{enumerate}[leftmargin=*, itemsep=6pt, label={\textbf{\color{valdark}\arabic*.}}]
-			\item \textbf{Guitarras}: \boxfill[1cm]
-			\item \textbf{Pianos}: \boxfill[1cm]
-			\item \textbf{Flautas}: \boxfill[1cm]
-			\item \textbf{Tambores}: \boxfill[1cm]
-		\end{enumerate}
-		
-		%\vspace{0.2cm}
-		\textbf{Ej. 5 al 8: Llena la tabla}
-		\renewcommand{\arraystretch}{1.3}
-		\begin{tabular}{|c|c|c|}
-			\hline
-			\textbf{Ej.} & \textbf{Instrum.} & \textbf{Cant.} \\ \hline
-			\textbf{5.} & Guitarra & \boxfill[1cm] \\ \hline
-			\textbf{6.} & Piano & \boxfill[1cm] \\ \hline
-			\textbf{7.} & Flauta & \boxfill[1cm] \\ \hline
-			\textbf{8.} & Tambor & \boxfill[1cm] \\ \hline
-		\end{tabular}
-	\end{minipage}
-	
-	%\newpage
-	
-	% ══════════════════════════════════════════════════════════════════════════
-	%  MISIÓN 6
-	% ══════════════════════════════════════════════════════════════════════════
-	\mision{valred}{Misión 6: Situaciones Reales}
-	
-	\begin{concepto}{$\square$ Aprende el Concepto}
-		¡Los diagramas nos ayudan en la vida real! Camilo usó un gráfico para ver cuántos **billetes de \$1000** guardó en su alcancía durante la semana. Vamos a ayudarlo a analizar su dinero acumulado.
-	\end{concepto}
-	
-	\titulopractica{$\square$ Práctica: El dinero de Camilo }
-	
-	%\vspace{0.4cm}
-	
-	\noindent
-	\begin{minipage}[c]{0.45\textwidth}
-		\textbf{Ahorros de Camilo}
-		%\vspace{0.2cm}
-		\begin{center}
-			\begin{tikzpicture}[scale=0.85]
-				\draw[step=1cm, valdark!20, thin] (0,0) grid (6,6);
-				\draw[valdark, thick] (0,0) -- (6,0);
-				\draw[valdark, thick] (0,0) -- (0,6);
-				\foreach \y in {1,2,3,4,5,6} \node[left] at (0,\y-0.5) {\textbf{\y} bill.};
-				
-				\dibujarbarra{0.5}{3}{valgreen}{Lunes}
-				\dibujarbarra{2.0}{5}{valgreen}{Martes}
-				\dibujarbarra{3.5}{2}{valgreen}{Miér.}
-				\dibujarbarra{5.0}{4}{valgreen}{Jueves}
-			\end{tikzpicture}
-		\end{center}
-	\end{minipage}\hfill
-	\begin{minipage}[c]{0.52\textwidth}
-		\begin{enumerate}[leftmargin=*, itemsep=8pt, label={\textbf{\color{valdark}\arabic*.}}]
-			\item ¿Cuántos billetes ahorró el \textbf{Lunes}? \boxfill[1cm]
-			\item ¿Cuántos billetes ahorró el \textbf{Jueves}? \boxfill[1cm]
-			\item ¡Suma! Lunes (3) más Miércoles (2). ¿Total? \boxfill[1cm]
-			\item ¡Resta! Ahorro del Martes (5) menos Miércoles (2). \boxfill[1cm]
-			\item ¿Qué día es la \textbf{Moda} (más ahorro)? \boxfill[2cm]
-			\item ¿Qué día ahorró menos? \boxfill[2cm]
-			\item Si el Lunes tiene \textbf{3 billetes de \$1000}, ¿cuánto dinero es? \textbf{\$} \boxfill[1.5cm]
-			\item Si el Martes tiene \textbf{5 billetes de \$1000}, ¿cuánto dinero es? \textbf{\$} \boxfill[1.5cm]
-		\end{enumerate}
-	\end{minipage}
 	
 \end{document}
