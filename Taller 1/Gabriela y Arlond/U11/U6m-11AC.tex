@@ -1,0 +1,1079 @@
+% ╔════════════════════════════════════════════════════════════════════════╗
+% ║         LICEO V.A.L.  —  MÓDULO DE AUTOAPRENDIZAJE                   ║
+% ║                                                                        ║
+% ║  Archivo  :  TAU_6M11_AC.tex                                          ║
+% ║  Unidad   :  11 — Combinaciones y Conteo Básico                       ║
+% ║  Ruta     :  Adaptación Curricular (AC)                               ║
+% ║  Código   :  06M-11 AC        Grado: 6°        Año: 2026             ║
+% ╠════════════════════════════════════════════════════════════════════════╣
+% ║  GUÍA RÁPIDA DE EDICIÓN                                               ║
+% ║                                                                        ║
+% -- Tamaño de fuente  = \documentclass[12pt, ...]  (línea ~45)        ║
+% -- Márgenes          = geometry (líneas ~52-56)                       ║
+% -- Colores           = "PALETA INSTITUCIONAL VAL" (líneas ~80-95)     ║
+% -- Datos de ejemplos = busca el marcador   % EDITAR:                  ║
+% -- Textos de misión  = busca el marcador   % TEXTO:                   ║
+% ║                                                                        ║
+% ║  Para compilar:                                                        ║
+% ║    pdflatex -interaction=nonstopmode TAU_6M11_AC.tex                  ║
+% ╚════════════════════════════════════════════════════════════════════════╝
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 1: CLASE DE DOCUMENTO
+% Cambia "12pt" para alterar el tamaño base de letra.
+% Cambia "letterpaper" por "a4paper" si necesitas papel A4.
+% ─────────────────────────────────────────────────────────────────────────
+\documentclass[12pt, letterpaper]{article}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 2: CODIFICACIÓN Y TIPOGRAFÍA
+% utf8     = permite acentos directamente en el código (á, é, ñ...)
+% T1       = fuentes con soporte completo de caracteres latinos
+% spanish  = reglas de babel para español (guiones, fechas, etc.)
+% helvet   = fuente Helvetica (sans-serif, más legible para AC)
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}   % Aplica Helvetica a todo el doc
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 3: GEOMETRÍA DE PÁGINA
+% Modifica los valores para ajustar márgenes.
+% left/right = margen izquierdo/derecho   top/bottom = arriba/abajo
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage[
+letterpaper,
+left   = 1.8cm,
+right  = 1.8cm,
+top    = 2.0cm,
+bottom = 2.0cm
+]{geometry}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 4: PAQUETES GRÁFICOS
+% eso-pic  = permite poner el fondo institucional en cada página
+% xcolor   = gestión de colores RGB
+% tikz     = diagramas vectoriales (árboles, cuadrículas, etc.)
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, calc, positioning, backgrounds}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 5: CAJAS DE TEXTO (tcolorbox)
+% "most"     = carga la mayoría de librerías de tcolorbox
+% "skins"    = estilos visuales avanzados (sombras, bordes decorativos)
+% "breakable"= permite que una caja se divida entre páginas
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage{tcolorbox}
+\tcbuselibrary{most, skins, breakable}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 6: PAQUETES ADICIONALES
+% array / tabularx / booktabs = tablas profesionales
+% amsmath / amssymb          = fórmulas matemáticas
+% enumitem                   = listas personalizadas
+% multicol                   = texto en múltiples columnas
+% needspace                  = evita que una sección quede al borde de página
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage{array, tabularx, booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{needspace}
+
+% ═════════════════════════════════════════════════════════════════════════
+% PALETA INSTITUCIONAL VAL
+% Para cambiar un color: modifica los valores RGB en \definecolor{...}
+% Formato: {R, G, B}  = valores de 0 a 255
+% ═════════════════════════════════════════════════════════════════════════
+\definecolor{valblue}       {RGB}{  0,  84, 166}  % Azul institucional
+\definecolor{valgreen}      {RGB}{  0, 150,  64}  % Verde institucional
+\definecolor{valred}        {RGB}{200,  16,  46}  % Rojo institucional
+\definecolor{valdark}       {RGB}{ 40,  40,  40}  % Casi negro
+\definecolor{valorange}     {RGB}{230, 100,   0}  % Naranja institucional
+\definecolor{valpurple}     {RGB}{120,  70, 160}  % Morado (complementario)
+\definecolor{vallightblue}  {RGB}{220, 235, 250}  % Azul muy claro (fondo)
+\definecolor{vallightgreen} {RGB}{220, 245, 230}  % Verde muy claro (fondo)
+\definecolor{vallightred}   {RGB}{255, 228, 228}  % Rojo muy claro (fondo)
+\definecolor{vallightorange}{RGB}{255, 238, 210}  % Naranja muy claro (fondo)
+\definecolor{vallightpurple}{RGB}{235, 225, 245}  % Morado muy claro (fondo)
+\definecolor{valgray}       {RGB}{245, 245, 245}  % Gris muy claro
+\definecolor{valwhite}       {RGB}{255, 255, 255}  % Blanco
+\definecolor{vallightwhite}       {RGB}{255, 255, 255}  % Blanco
+
+% ─────────────────────────────────────────────────────────────────────────
+% FONDO INSTITUCIONAL
+% Ruta relativa al archivo FondoVAL.pdf (dos niveles arriba)
+% Si el archivo no se encuentra, LaTeX compilará pero sin fondo.
+% ─────────────────────────────────────────────────────────────────────────
+\AddToShipoutPictureBG{%
+	\includegraphics[
+	width=\paperwidth,
+	height=\paperheight,
+	keepaspectratio=false
+	]{../../FondoVAL.pdf}%
+}
+
+% ═════════════════════════════════════════════════════════════════════════
+% ESTILOS TIKZ CON NOMBRE
+% REGLA CRÍTICA: NO usar \foreach dentro de tcolorbox con breakable.
+%   Todos los nodos y rutas deben ser EXPLÍCITOS.
+% Los estilos se definen aquí para reutilizarlos sin el carácter #1
+% que causa error dentro de entornos breakable.
+% ═════════════════════════════════════════════════════════════════════════
+\tikzset{
+	% ── Cajas de nodo (para etiquetas dentro de diagramas) ────────────────
+	cajaz/.style   = {draw=valblue,   fill=vallightblue,   rounded corners=4pt},
+	cajag/.style   = {draw=valgreen,  fill=vallightgreen,  rounded corners=4pt},
+	cajar/.style   = {draw=valred,    fill=vallightred,    rounded corners=4pt},
+	cajao/.style   = {draw=valorange, fill=vallightorange, rounded corners=4pt},
+	cajap/.style   = {draw=valpurple, fill=vallightpurple, rounded corners=4pt},
+	cajab/.style   = {draw=valwhite, fill=vallightwhite, rounded corners=4pt},
+	% ── Botones de paso numerado ──────────────────────────────────────────
+	btnazul/.style  = {draw=valblue,  fill=valblue,  rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnorange/.style= {draw=valorange,fill=valorange, rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnverde/.style = {draw=valgreen, fill=valgreen,  rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	btnrojo/.style  = {draw=valred,   fill=valred,    rounded corners=6pt,
+		text=white, font=\bfseries\Large, inner sep=4pt},
+	% ── Flecha estándar ───────────────────────────────────────────────────
+	flechaop/.style = {->, >=stealth, ultra thick},
+	% ── Nodo de árbol (para diagramas de árbol) ───────────────────────────
+	% raiz:  nodo raíz del árbol
+	raiz/.style    = {draw=valdark,fill=valgray,rounded corners=5pt,
+		inner sep=7pt,font=\bfseries\large},
+	% nivel1: nodos de primer nivel (grupo A)
+	nivel1/.style  = {draw=valblue, fill=vallightblue,rounded corners=4pt,
+		inner sep=6pt,font=\bfseries\normalsize},
+	% nivel2: nodos de segundo nivel (grupo B)
+	nivel2/.style  = {draw=valgreen,fill=vallightgreen,rounded corners=4pt,
+		inner sep=5pt,font=\normalsize},
+	% hoja:  nodo resultado final (combinación)
+	hoja/.style    = {draw=valorange,fill=vallightorange,rounded corners=3pt,
+		inner sep=4pt,font=\bfseries\small,align=center},
+}
+
+% ═════════════════════════════════════════════════════════════════════════
+% AMBIENTES TCOLORBOX INSTITUCIONALES
+%
+% USO: \begin{concepto}{Título del concepto} ... \end{concepto}
+%
+% concepto  = azul   = definiciones y conceptos clave
+% truco     = naranja = reglas, atajos y principios
+% ejemplo   = verde   = ejemplos resueltos paso a paso
+% practica  = gris    = ejercicios para el estudiante
+% definicion= azul oscuro = definición formal (estilo libro académico)
+% ═════════════════════════════════════════════════════════════════════════
+
+% ── Concepto (azul) ───────────────────────────────────────────────────
+\newtcolorbox{concepto}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightblue,
+	colframe     = valblue,
+	coltitle     = white,
+	attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+	boxed title style = {colback=valblue, colframe=valblue, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── Truco / Regla (naranja) ───────────────────────────────────────────
+\newtcolorbox{truco}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightorange,
+	colframe     = valorange,
+	coltitle     = white,
+	attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+	boxed title style = {colback=valorange, colframe=valorange, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── Ejemplo resuelto (verde) ──────────────────────────────────────────
+\newtcolorbox{ejemplo}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = vallightgreen,
+	colframe     = valgreen,
+	coltitle     = white,
+	attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+	boxed title style = {colback=valgreen, colframe=valgreen, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── Práctica del estudiante (gris) ────────────────────────────────────
+\newtcolorbox{practica}[1]{
+	enhanced, breakable,
+	title        = {\large\bfseries #1},
+	colback      = valgray,
+	colframe     = valdark,
+	coltitle     = white,
+	attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+	boxed title style = {colback=valdark, colframe=valdark, rounded corners},
+	arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── Espacio de trabajo NO divisible (para minipages con TikZ) ─────────
+\newtcolorbox{espaciotrabajonb}[1]{
+	enhanced,                        % ← sin breakable: nunca se divide
+	title    = {\bfseries #1},
+	colback  = white,
+	colframe = valblue!50,
+	coltitle = valblue,
+	arc=2mm, boxrule=0.8pt,
+	left=2mm, right=2mm, top=4mm,
+}
+
+% ── Resumen de misión (morado — estilo libro académico) ───────────────
+\newtcolorbox{resumen}{
+	enhanced, breakable,
+	colback  = vallightpurple,
+	colframe = valpurple,
+	arc=4mm, boxrule=1.5pt,
+	left=4mm, right=4mm, top=4mm, bottom=4mm,
+}
+
+% ═════════════════════════════════════════════════════════════════════════
+% COMANDOS PERSONALIZADOS
+% ═════════════════════════════════════════════════════════════════════════
+
+% ── \boxfill{ancho} ───────────────────────────────────────────────────
+% Dibuja una caja vacía azul donde el estudiante escribe su respuesta.
+% USO:  \boxfill[4cm]   (ancho por defecto: 3.5 cm)
+\newcommand{\boxfill}[1][3.5cm]{%
+	\tikz[baseline=-0.5ex]%
+	\draw[valblue, line width=1pt] (0,-0.3) rectangle (#1, 0.4cm);%
+}
+
+% ── \mision{color}{Título} ────────────────────────────────────────────
+% Encabezado visual de cada misión (barra de color sólido + texto blanco)
+% USO:  \mision{valblue}{Misión 1: Título}
+\newcommand{\mision}[2]{%
+	\needspace{4cm}%                   % Garantiza espacio antes de la barra
+	\vspace{5pt}%
+	\begin{tcolorbox}[
+		enhanced,
+		colback  = #1,
+		colframe = #1!60!black,
+		arc=3mm, boxrule=1.5pt,
+		left=6pt, right=6pt, top=5pt, bottom=5pt,
+		]
+		{\large\bfseries\color{white} #2}
+	\end{tcolorbox}%
+	\vspace{2pt}%
+}
+
+% ── \numstep{color}{número} ───────────────────────────────────────────
+% Círculo numerado para pasos de un procedimiento (estilo libro).
+% USO:  \numstep{valblue}{1}  \numstep{valorange}{2}
+\newcommand{\numstep}[2]{%
+	\begin{tikzpicture}[baseline=(c.south)]
+		\fill[#1] (0, 0.12cm) circle[radius=0.26cm];
+		\node[font=\bfseries\normalsize, white] (c) at (0, 0.12cm) {#2};
+	\end{tikzpicture}%
+}
+
+% ─────────────────────────────────────────────────────────────────────────
+% CONFIGURACIÓN GENERAL DE PÁGINA
+% ─────────────────────────────────────────────────────────────────────────
+\pagestyle{plain}
+\setlength{\parindent}{0pt}     % Sin sangría al inicio de párrafo
+\setlength{\parskip}{3pt}       % Espacio vertical entre párrafos
+
+% ╔════════════════════════════════════════════════════════════════════════╗
+% ║                    INICIO DEL DOCUMENTO                               ║
+% ╚════════════════════════════════════════════════════════════════════════╝
+\begin{document}
+	
+	% ─────────────────────────────────────────────────────────────────────────
+	% PORTADA — ESTILO LIBRO ACADÉMICO
+	% EDITAR: Cambiar el título, el código y el año.
+	% ─────────────────────────────────────────────────────────────────────────
+	\begin{center}
+		% Nombre de la institución
+		{\Large\bfseries\color{valblue} LICEO V.A.L.\ (VIDA, AMOR, LUZ)}\\[4pt]
+		{\large\bfseries MÓDULO DE AUTOAPRENDIZAJE\ ---\ MATEMÁTICAS 6\textdegree}\\[8pt]
+		
+		% Franja del título principal
+		\begin{tcolorbox}[
+			enhanced, arc=6mm, boxrule=2pt,
+			colback=valblue, colframe=valdark,
+			halign=center,
+			]
+			% EDITAR: Número de unidad
+			{\Huge\bfseries\color{white} UNIDAD 11}\\[4pt]
+			% EDITAR: Título de la unidad
+			{\Large\bfseries\color{yellow!90!white}
+				Combinaciones y Conteo Básico}
+		\end{tcolorbox}
+		
+		\vspace{6pt}
+		
+		% Caja de datos del estudiante
+		\begin{tcolorbox}[
+			enhanced, arc=4mm, boxrule=1.5pt,
+			colback=white, colframe=valblue,
+			width=0.88\linewidth, halign=center,
+			]
+			{\bfseries Nombre:}			\rule{9cm}{0.5pt}\\[6pt]
+			% EDITAR: Código de la unidad
+			{\bfseries Código:}\ \textbf{06M-11 AC}
+			\hspace{2cm}
+			% EDITAR: Año lectivo
+			{\bfseries Año:}\ \underline{2026}
+		\end{tcolorbox}
+		
+		\vspace{4pt}
+		{\itshape ``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+	\end{center}
+	
+	\vspace{4pt}
+	\begin{comment}
+		
+	
+	% ── Contenido del módulo (estilo libro académico) ─────────────────────
+	\begin{tcolorbox}[
+		enhanced,
+		colback=vallightblue, colframe=valblue!50,
+		arc=3mm, boxrule=1pt,
+		left=5mm, right=5mm, top=3mm, bottom=3mm,
+		]
+		{\bfseries\normalsize\color{valblue} CONTENIDO DE ESTE MÓDULO}
+		
+		\vspace{4pt}
+		\begin{multicols}{2}
+			\begin{itemize}[leftmargin=*, itemsep=1pt, label={\color{valblue}$\blacktriangleright$}]
+				\item \textbf{Misión 1:} {¿}Qué es una Combinación?
+				\item \textbf{Misión 2:} El Diagrama de Árbol
+				\item \textbf{Misión 3:} El Principio de Multiplicación
+				\item \textbf{Misión 4:} Combinaciones con 3 Grupos
+				\item \textbf{Misión 5:} {¡}Matemáticas para la Vida!
+				\item Autoevaluación
+			\end{itemize}
+		\end{multicols}
+	\end{tcolorbox}
+	
+	\vspace{6pt}
+	
+	% ── Objetivos de aprendizaje (estilo libro académico) ─────────────────
+	\begin{tcolorbox}[
+		enhanced,
+		colback=vallightgreen, colframe=valgreen,
+		arc=3mm, boxrule=1.2pt,
+		title={\bfseries\normalsize Al terminar este módulo podrás\ldots},
+		coltitle=white,
+		attach boxed title to top left={yshift=-2mm, xshift=4mm},
+		boxed title style={colback=valgreen, colframe=valgreen, rounded corners},
+		top=6mm,
+		]
+		\begin{enumerate}[leftmargin=*, itemsep=2pt,
+			label={\color{valgreen}\textbf{\arabic*.}}]
+			\item Explicar qué es una \textbf{combinación} de dos grupos de cosas.
+			\item Usar un \textbf{diagrama de árbol} para encontrar
+			todas las combinaciones posibles.
+			\item Aplicar el \textbf{principio de multiplicación}
+			para contar sin listar todo.
+			\item Resolver problemas de conteo de la \textbf{vida real}.
+		\end{enumerate}
+	\end{tcolorbox}
+	
+	\vspace{6pt}
+\end{comment}
+	% ═════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 1 — ¿Qué es una Combinación?
+	%  Objetivo pedagógico: El estudiante identifica qué es una combinación
+	%  y puede reconocer cuántas hay en un caso sencillo (2×2).
+	%  TikZ: Cuadrícula 2×2 mostrando las 4 combinaciones de ropa.
+	%  EDITAR: Cambia los nombres en los \node para otro contexto.
+	% ═════════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 1: {¿}Qué es una Combinación?}
+	
+	% ── Concepto ──────────────────────────────────────────────────────────
+	\begin{concepto}{$\square$ Aprende el Concepto}
+		
+		% TEXTO: Definición de combinación para AC (lenguaje simple)
+		Una \textbf{combinación} ocurre cuando elegimos \textbf{una cosa de
+			un grupo} y la unimos con \textbf{una cosa de otro grupo}.
+		
+		\vspace{6pt}
+		\textit{\textbf{Ejemplo:} Tienes 2 camisas y 2 pantalones.
+			Cada camisa se puede usar con cada pantalón.
+			{¿}Cuántos atuendos distintos puedes hacer?}
+		
+		\vspace{8pt}
+		
+		% ─────────────────────────────────────────────────────────────────────
+		% DIAGRAMA: Cuadrícula 2×2 de combinaciones ropa.
+		% EDITAR: Cambia los textos de los \node para otro ejemplo.
+		%   Eje X (columnas) = pantalones:  "Negro" y "Blanco"
+		%   Eje Y (filas)    = camisas:     "Roja"  y "Azul"
+		%   Celdas           = combinaciones: "R+N", "R+B", etc.
+		% ─────────────────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=2.6cm, y=1.4cm]
+				% ── Encabezado de columnas (PANTALONES) ──────────────────────────
+				\fill[vallightblue!80] (1.0, 0.65) rectangle (2.0, 0.05);
+				\fill[vallightblue!80] (2.0, 0.65) rectangle (3.0, 0.05);
+				% EDITAR: nombres de pantalones (2 opciones)
+				\node[font=\bfseries\normalsize, color=valblue] at (1.61, 0.35)
+				{Pantalón Negro};
+				\node[font=\bfseries\normalsize, color=valblue] at (2.9, 0.35)
+				{Pantalón Blanco};
+				% Título de eje X
+				\node[font=\bfseries\small, color=valdark] at (2.23, 0.92)
+				{\textsc{Pantalones}};
+				
+				% ── Encabezado de filas (CAMISAS) ────────────────────────────────
+				\fill[vallightred!60]   (0.05, 0.05) rectangle (1.0, -0.95);
+				\fill[vallightblue!50]  (0.05,-0.95) rectangle (1.0, -1.95);
+				% EDITAR: nombres de camisas (2 opciones)
+				\node[font=\bfseries\normalsize, color=valred]  at (0.52,-0.45)
+				{Camisa Roja};
+				\node[font=\bfseries\normalsize, color=valblue] at (0.52,-1.45)
+				{Camisa Azul};
+				% Título de eje Y
+				\node[font=\bfseries\small, color=valdark, rotate=90] at (-0.28,-0.95)
+				{\textsc{Camisas}};
+				
+				% ── Las 4 celdas de combinación ──────────────────────────────────
+				% EDITAR: Si cambias los nombres arriba, actualiza estos textos.
+				% Celda (Roja, Negro) = Combo 1
+				\fill[vallightred!25]   (1.01,0.05) rectangle (2.23,-0.95);
+				\node[font=\bfseries\normalsize, color=valred, align=center]
+				at (1.61,-0.45) {\large\checkmark\\Atuendo 1};
+				
+				% Celda (Roja, Blanco) = Combo 2
+				\fill[vallightred!15]   (2.23,0.05) rectangle (3.54,-0.95);
+				\node[font=\bfseries\normalsize, color=valred, align=center]
+				at (2.9,-0.45) {\large\checkmark\\Atuendo 2};
+				
+				% Celda (Azul, Negro) = Combo 3
+				\fill[vallightblue!25]  (1.01,-0.95) rectangle (2.23,-1.95);
+				\node[font=\bfseries\normalsize, color=valblue, align=center]
+				at (1.61,-1.45) {\large\checkmark\\Atuendo 3};
+				
+				% Celda (Azul, Blanco) = Combo 4
+				\fill[vallightblue!15]  (2.23,-0.95) rectangle (3.54,-1.95);
+				\node[font=\bfseries\normalsize, color=valblue, align=center]
+				at (2.9,-1.45) {\large\checkmark\\Atuendo 4};
+				
+				% ── Líneas de cuadrícula ─────────────────────────────────────────
+				\draw[valdark, line width=1.5pt] (1.01,0.65) rectangle (3.54,-1.98);
+				\draw[valdark, line width=0.8pt] (2.23, 0.65) -- (2.23,-1.98);
+				\draw[valdark, line width=0.8pt] (1.01,-0.95) -- (3.54,-0.95);
+				
+				% ── Resultado total ───────────────────────────────────────────────
+				\node[cajao, inner sep=7pt, font=\bfseries\large] at (2.0,-2.65)
+				{Total: 2 camisas $\times$ 2 pantalones $= \mathbf{4}$ atuendos};
+			\end{tikzpicture}
+		\end{center}
+	\end{concepto}
+	\newpage
+	
+	% ── Práctica Misión 1 ─────────────────────────────────────────────────
+	\begin{practica}{$\square$ {¡}Tu Turno! --- Identifica y Cuenta}
+		
+		\textit{Lee cada situación y responde las preguntas.}
+		
+		\vspace{6pt}
+		% EDITAR: Cambiar los ítems a continuación para adaptar al contexto.
+		\begin{enumerate}[itemsep=0.8cm, label=\textbf{\arabic*.}]
+			\item Ana tiene \textbf{2 sabores de jugo} (naranja y mango) y
+			\textbf{2 tamaños de vaso} (pequeño y grande).
+			{¿}Cu\'antas combinaciones diferentes puede pedir?
+			\quad \boxfill[3cm]
+			
+			\item Un restaurante ofrece \textbf{3 sopas} y \textbf{2 jugos}.
+			Si compras 1 sopa y 1 jugo, {¿}cu\'antas combinaciones hay?
+			\quad \boxfill[3cm]
+			
+			\item Dibuja en el espacio de abajo \textbf{TODAS} las combinaciones
+			posibles del ejercicio 1 (como en el ejemplo de las camisas).
+			
+			\vspace{7cm}
+			%\fbox{\parbox[t][4.2cm][t]{\dimexpr\linewidth-1\fboxsep-2\fboxrule\relax}{}}
+		\end{enumerate}
+	\end{practica}
+	
+	%\newpage
+	
+	% ═════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 2 — El Diagrama de Árbol
+	%  Objetivo: El estudiante usa un árbol para organizar combinaciones.
+	%  TikZ: Árbol de 2 niveles (3 sabores × 2 tamaños = 6 helados).
+	%  REGLA CRÍTICA: Todos los \node son EXPLÍCITOS (sin \foreach).
+	%  EDITAR: Busca los comentarios % EDITAR-ÁRBOL para cambiar datos.
+	% ═════════════════════════════════════════════════════════════════════════
+	\mision{valblue}{Misión 2: El Diagrama de Árbol}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto}
+		
+		% TEXTO: Qué es el diagrama de árbol
+		Un \textbf{diagrama de árbol} es una herramienta para listar
+		\textbf{todas las combinaciones} de forma organizada.
+		Empieza desde un punto central y abre \textit{ramas} para cada opción.
+		
+		\vspace{6pt}
+		\textit{Ejemplo: En la heladería hay 3 sabores y 2 tamaños.
+			{¿}Cuántos helados diferentes puedes pedir?}
+	\end{concepto}
+\newpage
+	\vspace*{-2cm}
+	\begin{ejemplo}{Ejemplo --- Árbol de 3 sabores $\times$ 2 tamaños}
+		
+		% ─────────────────────────────────────────────────────────────────────
+		% DIAGRAMA DE ÁRBOL — 3 SABORES × 2 TAMAÑOS = 6 COMBINACIONES
+		%
+		% ESTRUCTURA DEL ÁRBOL:
+		%   Nivel 0 (raíz)  : ROOT en (5.5, 0)
+		%   Nivel 1 (sabores): Vainilla(2,-2), Chocolate(5.5,-2), Fresa(9,-2)
+		%   Nivel 2 (tamaños): P y G bajo cada sabor (±1 del padre)
+		%   Nivel 3 (hojas)  : Etiquetas de cada combinación
+		%
+		% EDITAR-ÁRBOL: Para cambiar los sabores, modifica los textos
+		%   en los \node con etiqueta (V), (C), (F).
+		% EDITAR-ÁRBOL: Para cambiar tamaños, modifica los \node con
+		%   etiqueta (VP), (VG), (CP), (CG), (FP), (FG).
+		% EDITAR-ÁRBOL: Para agregar un cuarto sabor, replica el bloque
+		%   de Fresa con posición x=13 y añade 2 hojas más.
+		% ─────────────────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				
+				% ── NODO RAÍZ ────────────────────────────────────────────────────
+				% EDITAR-ÁRBOL: Cambiar el texto del título central
+				\node[raiz] (ROOT) at (5.5, 0) {{¿}Qué helado eliges?};
+				
+				% ── NIVEL 1: SABORES ─────────────────────────────────────────────
+				% EDITAR-ÁRBOL: Cambia "Vainilla", "Chocolate", "Fresa"
+				\node[cajag, inner sep=6pt, font=\bfseries\normalsize]
+				(V) at (1.0, -2.0) {Vainilla};
+				\node[cajao, inner sep=6pt, font=\bfseries\normalsize]
+				(C) at (5.5, -2.0) {Chocolate};
+				\node[cajar, inner sep=6pt, font=\bfseries\normalsize]
+				(F) at (10.0, -2.0) {Fresa};
+				
+				% Etiqueta sobre las ramas del nivel 1
+				\node[font=\bfseries\small, color=valdark] at (-0.7,-2) {SABOR};
+				
+				% Flechas raíz = sabores
+				\draw[->, >=stealth, valdark, line width=1.3pt] (ROOT) -- (V);
+				\draw[->, >=stealth, valdark, line width=1.3pt] (ROOT) -- (C);
+				\draw[->, >=stealth, valdark, line width=1.3pt] (ROOT) -- (F);
+				
+				% ── NIVEL 2: TAMAÑOS BAJO VAINILLA ───────────────────────────────
+				% EDITAR-ÁRBOL: Cambia "Pequeño" y "Grande"
+				\node[cajaz, inner sep=5pt, font=\normalsize] (VP) at (0,-4.0) {Pequeño};
+				\node[cajaz, inner sep=5pt, font=\normalsize] (VG) at (2.0,-4.0) {Grande};
+				\draw[->, >=stealth, valgreen, line width=1pt] (V) -- (VP);
+				\draw[->, >=stealth, valgreen, line width=1pt] (V) -- (VG);
+				
+				% ── NIVEL 2: TAMAÑOS BAJO CHOCOLATE ──────────────────────────────
+				\node[cajaz, inner sep=5pt, font=\normalsize] (CP) at (4.5,-4.0) {Pequeño};
+				\node[cajaz, inner sep=5pt, font=\normalsize] (CG) at (6.5,-4.0) {Grande};
+				\draw[->, >=stealth, valorange, line width=1pt] (C) -- (CP);
+				\draw[->, >=stealth, valorange, line width=1pt] (C) -- (CG);
+				
+				% ── NIVEL 2: TAMAÑOS BAJO FRESA ──────────────────────────────────
+				\node[cajaz, inner sep=5pt, font=\normalsize] (FP) at (9.0,-4.0) {Pequeño};
+				\node[cajaz, inner sep=5pt, font=\normalsize] (FG) at (11.0,-4.0) {Grande};
+				\draw[->, >=stealth, valred, line width=1pt] (F) -- (FP);
+				\draw[->, >=stealth, valred, line width=1pt] (F) -- (FG);
+				
+				% Etiqueta sobre las ramas del nivel 2
+				\node[font=\bfseries\small, color=valdark] at (-2,-4) {TAMAÑO};
+				
+				% ── NIVEL 3: HOJAS (COMBINACIONES FINALES) ───────────────────────
+				% EDITAR-ÁRBOL: Cambia los textos de cada combinación
+				\node[hoja, text width=1.6cm] at (0,-6.0)
+				{Vainilla\\ + Peq.\\ \textbf{Combo 1}};
+				\node[hoja, text width=1.6cm] at (2.0,-6.0)
+				{Vainilla\\ + Gra.\\ \textbf{Combo 2}};
+				\node[hoja, text width=1.6cm] at (4.5,-6.0)
+				{Chocolate\\ + Peq.\\ \textbf{Combo 3}};
+				\node[hoja, text width=1.6cm] at (6.5,-6.0)
+				{Chocolate\\ + Gra.\\ \textbf{Combo 4}};
+				\node[hoja, text width=1.6cm] at (9.0,-6.0)
+				{Fresa\\ + Peq.\\ \textbf{Combo 5}};
+				\node[hoja, text width=1.6cm] at (11.0,-6.0)
+				{Fresa\\ + Gra.\\ \textbf{Combo 6}};
+				
+				% Líneas de conexión hacia las hojas
+				\draw[valdark, line width=0.8pt] (VP) -- (0,-5);
+				\draw[valdark, line width=0.8pt] (VG) -- (2.0,-5);
+				\draw[valdark, line width=0.8pt] (CP) -- (4.5,-5);
+				\draw[valdark, line width=0.8pt] (CG) -- (6.5,-5);
+				\draw[valdark, line width=0.8pt] (FP) -- (9.0,-5);
+				\draw[valdark, line width=0.8pt] (FG) -- (11.0,-5);
+				
+				% ── RESULTADO TOTAL ───────────────────────────────────────────────
+				\node[cajaz, inner sep=8pt, font=\bfseries\large] at (5.5,-7.7)
+				{Total: 3 sabores $\times$ 2 tama\~nos $= \mathbf{6}$ helados posibles};
+				
+			\end{tikzpicture}
+		\end{center}
+	\end{ejemplo}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ {¡}Tu Turno! --- Completa el Árbol}
+		
+		\textit{Una tienda de ropa vende 2 tipos de pantalón (Jean, Sudadera)
+			y 3 colores de camiseta (Blanca, Negra, Roja).
+			Completa el diagrama de árbol.}
+		
+		\vspace{6pt}
+		\fbox{\parbox[t][10.2cm][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+				%\vspace{4pt}
+				{\small\bfseries\color{valblue} Espacio para tu diagrama de árbol:}
+				%\vspace{0.5cm}
+				
+				{\small\color{valdark}
+					Comienza con un punto central.
+					Dibuja \textbf{2 ramas} (una por tipo de pantal\'on).
+					De cada rama, dibuja \textbf{3 ramas} (una por color de camiseta).
+					Escribe el nombre de cada combinaci\'on al final.}
+		}}
+		
+		%\vspace{3.2cm}
+		{¿}Cu\'antas combinaciones encontraste?  \quad \boxfill[3cm]
+		
+	\end{practica}
+	
+	%\newpage
+	
+	% ═════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 3 — El Principio de Multiplicación
+	%  Objetivo: El estudiante usa A × B para contar sin árbol.
+	%  TikZ: Cuadrícula 3×2 mostrando las 6 celdas como visión del producto.
+	%  EDITAR: Los textos de filas/columnas en el diagrama de cuadrícula.
+	% ═════════════════════════════════════════════════════════════════════════
+	\mision{valorange}{Misión 3: El Principio de Multiplicación}
+	
+	\begin{truco}{{¡}La Regla de Oro para Contar Combinaciones!}
+		
+		% TEXTO: Regla del principio multiplicativo
+		Si tienes \textbf{A} opciones del Grupo 1 y \textbf{B} opciones del
+		Grupo 2, el total de combinaciones es:
+		
+		%\vspace{8pt}
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				% Caja A
+				\node[cajag, minimum width=3cm, minimum height=1.1cm,
+				font=\bfseries\LARGE, inner sep=8pt] at (0,0) {A};
+				\node[font=\bfseries\small, color=valgreen] at (0,-0.88)
+				{opciones Grupo 1};
+				
+				% Signo multiplicación
+				\node[font=\bfseries\Huge, color=valdark] at (2.5,0) {$\times$};
+				
+				% Caja B
+				\node[cajaz, minimum width=3cm, minimum height=1.1cm,
+				font=\bfseries\LARGE, inner sep=8pt] at (5.0,0) {B};
+				\node[font=\bfseries\small, color=valblue] at (5.0,-0.88)
+				{opciones Grupo 2};
+				
+				% Signo igual
+				\node[font=\bfseries\Huge, color=valdark] at (7.5,0) {$=$};
+				
+				% Caja resultado
+				\node[cajar, minimum width=3.5cm, minimum height=1.1cm,
+				font=\bfseries\LARGE, inner sep=8pt] at (10.5,0) {A $\times$ B};
+				\node[font=\bfseries\small, color=valred] at (10.5,-0.88)
+				{combinaciones totales};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{6pt}
+		% TEXTO: Ejemplo aplicado
+		\textbf{Aplicando al ejemplo del helado:}
+		\quad 3 sabores $\times$ 2 tama\~nos $= 6$ helados distintos.
+	\end{truco}
+	
+	%\vspace{4pt}
+	
+	\begin{ejemplo}{Mira cómo la cuadrícula confirma la multiplicación}
+		
+		% ─────────────────────────────────────────────────────────────────────
+		% DIAGRAMA: Cuadrícula 3×2 (3 sabores × 2 tamaños)
+		% Cada celda muestra una combinación única = total = 3×2 = 6 celdas.
+		% EDITAR: Cambia los nombres en los \node de filas y columnas.
+		% ─────────────────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=2.8cm, y=1.4cm]
+				% ── Encabezado de columnas ─────────────────────────────────────
+				\fill[vallightblue!90] (1.0, 0.75) rectangle (2.0, 0.10);
+				\fill[vallightblue!90] (2.0, 0.75) rectangle (3.0, 0.10);
+				% EDITAR: nombres de tamaños
+				\node[font=\bfseries\normalsize, color=valblue] at (1.5,0.43) {Pequeño};
+				\node[font=\bfseries\normalsize, color=valblue] at (2.5,0.43) {Grande};
+				\node[font=\bfseries\small, color=valdark]      at (2.0,1.06)
+				{TAMAÑO — Grupo B $= 2$};
+				
+				% ── Encabezado de filas ────────────────────────────────────────
+				\fill[vallightgreen!70]  (0.08, 0.10) rectangle (1.0,-0.95);
+				\fill[vallightorange!70] (0.08,-0.95) rectangle (1.0,-2.00);
+				\fill[vallightred!70]    (0.08,-2.00) rectangle (1.0,-3.05);
+				% EDITAR: nombres de sabores
+				\node[font=\bfseries\normalsize, color=valgreen]  at (0.54,-0.43)
+				{Vainilla};
+				\node[font=\bfseries\normalsize, color=valorange] at (0.54,-1.48)
+				{Chocolate};
+				\node[font=\bfseries\normalsize, color=valred]    at (0.54,-2.53)
+				{Fresa};
+				\node[font=\bfseries\small, color=valdark, rotate=90] at (-0.23,-1.48)
+				{SABOR — Grupo A $= 3$};
+				
+				% ── 6 celdas (A × B combinaciones) ───────────────────────────
+				% Fila Vainilla
+				\fill[vallightgreen!25] (1.0, 0.10) rectangle (2.0,-0.95);
+				\fill[vallightgreen!20] (2.0, 0.10) rectangle (3.0,-0.95);
+				\node[font=\Large, color=valgreen] at (1.5,-0.43) {\checkmark};
+				\node[font=\Large, color=valgreen] at (2.5,-0.43) {\checkmark};
+				
+				% Fila Chocolate
+				\fill[vallightorange!25] (1.0,-0.95) rectangle (2.0,-2.00);
+				\fill[vallightorange!20] (2.0,-0.95) rectangle (3.0,-2.00);
+				\node[font=\Large, color=valorange] at (1.5,-1.48) {\checkmark};
+				\node[font=\Large, color=valorange] at (2.5,-1.48) {\checkmark};
+				
+				% Fila Fresa
+				\fill[vallightred!25] (1.0,-2.00) rectangle (2.0,-3.05);
+				\fill[vallightred!20] (2.0,-2.00) rectangle (3.0,-3.05);
+				\node[font=\Large, color=valred] at (1.5,-2.53) {\checkmark};
+				\node[font=\Large, color=valred] at (2.5,-2.53) {\checkmark};
+				
+				% Líneas de cuadrícula
+				\draw[valdark, line width=1.5pt] (1.0,0.75) rectangle (3.0,-3.08);
+				\draw[valdark, line width=0.8pt] (2.0,0.75) -- (2.0,-3.08);
+				\draw[valdark, line width=0.8pt] (1.0,-0.95) -- (3.0,-0.95);
+				\draw[valdark, line width=0.8pt] (1.0,-2.00) -- (3.0,-2.00);
+				
+				% Resultado total
+				\node[cajar, inner sep=7pt, font=\bfseries\large] at (2.0,-3.85)
+				{3 filas $\times$ 2 columnas $= \mathbf{6}$ combinaciones};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{4pt}
+		\begin{center}
+			\textbf{\color{valblue}
+				Número de celdas $=$ A $\times$ B $\to$ \;Por eso multiplicamos.}
+		\end{center}
+	\end{ejemplo}
+	
+	%\vspace{4pt}
+	
+	\begin{practica}{$\square$ {¡}Tu Turno! --- Aplica el Principio}
+		
+		\textit{Usa la regla \textbf{A $\times$ B} para encontrar el total.
+			NO necesitas dibujar el árbol.}
+		
+		%\vspace{6pt}
+		\begin{enumerate}[itemsep=0.8cm, label=\textbf{\arabic*.}]
+			\item Una cafetería tiene 4 tipos de sándwich y 3 bebidas.
+			{¿}Cu\'antas combinaciones posibles hay?\\[3pt]
+			Grupo A $=$ \boxfill[1.5cm] \quad
+			Grupo B $=$ \boxfill[1.5cm] \quad
+			Total $=$ A$\times$B $=$ \boxfill[2.5cm]
+			
+			\item Hay 5 colores de camiseta y 2 tallas (S y M).
+			{¿}Cu\'antas combinaciones hay?\\[3pt]
+			Grupo A $=$ \boxfill[1.5cm] \quad
+			Grupo B $=$ \boxfill[1.5cm] \quad
+			Total $=$ \boxfill[2.5cm]
+			
+			\item Un men\'u tiene 3 entradas, 4 platos principales y 2 postres.
+			{¿}Cu\'antas combinaciones de men\'u completo hay?\\[3pt]
+			A $=$ \boxfill[1.2cm] \;
+			B $=$ \boxfill[1.2cm] \;
+			C $=$ \boxfill[1.2cm] \;
+			Total $=$ A$\times$B$\times$C $=$ \boxfill[2.5cm]
+		\end{enumerate}
+	\end{practica}
+	
+	%\newpage
+	
+	% ═════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 4 — Combinaciones con 3 Grupos
+	%  Objetivo: El estudiante extiende A×B a A×B×C.
+	%  TikZ: Árbol PARCIAL mostrando la rama izquierda completa
+	%        (para no sobrecargar; la derecha se concluye por simetría).
+	%  EDITAR: Nombres de camisas, pantalones y zapatos.
+	% ═════════════════════════════════════════════════════════════════════════
+	\mision{valgreen}{Misión 4: Combinaciones con 3 Grupos}
+	
+	\begin{concepto}{$\square$ Aprende el Concepto}
+		
+		% TEXTO: Extensión a 3 grupos
+		Cuando tienes \textbf{3 grupos} de opciones, la regla se extiende:
+		
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=0.8cm]
+				\node[cajag, minimum width=2.5cm, inner sep=6pt, font=\bfseries\large] at (0,0) {A};
+				\node[font=\bfseries\Huge, color=valdark] at (2.0,0) {$\times$};
+				\node[cajaz, minimum width=2.5cm, inner sep=6pt, font=\bfseries\large] at (4.0,0) {B};
+				\node[font=\bfseries\Huge, color=valdark] at (6.0,0) {$\times$};
+				\node[cajap, minimum width=2.5cm, inner sep=6pt, font=\bfseries\large] at (8.0,0) {C};
+				\node[font=\bfseries\Huge, color=valdark] at (10.0,0) {$=$};
+				\node[cajar, minimum width=3.5cm, inner sep=6pt, font=\bfseries\large] at (12.4,0)
+				{A $\times$ B $\times$ C};
+				\node[font=\bfseries\small, color=valdark] at (0,-0.95) {Grupo 1};
+				\node[font=\bfseries\small, color=valdark] at (4,-0.95) {Grupo 2};
+				\node[font=\bfseries\small, color=valdark] at (8,-0.95) {Grupo 3};
+				\node[font=\bfseries\small, color=valred]  at (12.4,-0.95) {Total};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{6pt}
+		% TEXTO: Ejemplo
+		\textit{Ejemplo: Tienes 2 camisas, 2 pantalones y 2 zapatos.
+			{¿}Cuántos atuendos completos puedes hacer?}
+		\quad
+		\textbf{$2 \times 2 \times 2 = 8$ atuendos.}
+	\end{concepto}
+	
+	\vspace{4pt}
+	
+	\begin{ejemplo}{Árbol Parcial — Solo la rama de Camisa Roja}
+		
+		% ─────────────────────────────────────────────────────────────────────
+		% DIAGRAMA: Árbol parcial (3 niveles) mostrando los 4 resultados
+		% de la camisa roja: C.Roja × 2 pantalones × 2 zapatos = 4 combos.
+		% La otra rama (C.Azul) genera 4 más = total = 4+4 = 8.
+		% EDITAR-ÁRBOL3: Modifica los textos de los \node para cambiar
+		%   los nombres de camisas, pantalones y zapatos.
+		% ─────────────────────────────────────────────────────────────────────
+		\begin{center}
+			\begin{tikzpicture}[x=1cm, y=1cm]
+				
+				% RAÍZ
+				\node[raiz] (ROOT) at (3.5, 0) {Elige el atuendo};
+				
+				% NIVEL 1: CAMISAS — solo mostramos la rama izquierda completa
+				% EDITAR-ÁRBOL3: nombres de camisas
+				\node[cajar, inner sep=6pt, font=\bfseries\normalsize]
+				(CR) at (-2.5, -1.8) {Camisa Roja};
+				\node[cajaz, inner sep=6pt, font=\bfseries\normalsize,
+				align=center, text width=2.8cm]
+				(CA) at (3.5, -1.8) {\textit{Camisa Azul}};
+				\node[cajab, inner sep=6pt, font=\bfseries\normalsize,
+				align=center, text width=3.05cm]
+				(CB) at (9.5, -1.8) {\textit{Camisa Blanca}};
+				
+				\draw[->, >=stealth, valdark, line width=1.2pt] (ROOT) -- (CR);
+				\draw[->, >=stealth, valdark, line width=1.2pt] (ROOT) -- (CA);
+				\draw[->, >=stealth, valdark, line width=1.2pt] (ROOT) -- (CB);
+				
+				% NIVEL 2: PANTALONES (bajo Camisa Roja)
+				% EDITAR-ÁRBOL3: nombres de pantalones
+				\node[cajag, inner sep=5pt, font=\normalsize]
+				(PN) at (-4, -3.6) {P. Negro};
+				\node[cajag, inner sep=5pt, font=\normalsize]
+				(PB) at (-1, -3.6) {P. Blanco};
+				\draw[->, >=stealth, valred, line width=1pt] (CR) -- (PN);
+				\draw[->, >=stealth, valred, line width=1pt] (CR) -- (PB);
+				
+				\node[cajag, inner sep=5pt, font=\normalsize]
+				(PN2) at (2, -3.6) {P. Negro};
+				\node[cajag, inner sep=5pt, font=\normalsize]
+				(PB2) at (5, -3.6) {P. Blanco};
+				\draw[->, >=stealth, valred, line width=1pt] (CA) -- (PN2);
+				\draw[->, >=stealth, valred, line width=1pt] (CA) -- (PB2);
+				
+				\node[cajag, inner sep=5pt, font=\normalsize]
+				(PN3) at (8, -3.6) {P. Negro};
+				\node[cajag, inner sep=5pt, font=\normalsize]
+				(PB3) at (11, -3.6) {P. Blanco};
+				\draw[->, >=stealth, valred, line width=1pt] (CB) -- (PN3);
+				\draw[->, >=stealth, valred, line width=1pt] (CB) -- (PB3);
+				% NIVEL 3: ZAPATOS (bajo cada pantalón)
+				% EDITAR-ÁRBOL3: nombres de zapatos
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZNT) at (-4.7, -5.2) {Tenis};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZNF) at (-3.3, -5.2) {Formal};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZBT) at (-1.7, -5.2) {Tenis};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZBF) at (-0.3, -5.2) {Formal};
+				
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZNT2) at (1.3, -5.2) {Tenis};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZNF2) at (2.7, -5.2) {Formal};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZBT2) at (4.3, -5.2) {Tenis};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZBF2) at (5.7, -5.2) {Formal};
+				
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZNT3) at (7.3, -5.2) {Tenis};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZNF3) at (8.7, -5.2) {Formal};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZBT3) at (10.3, -5.2) {Tenis};
+				\node[cajap, inner sep=4pt, font=\small]
+				(ZBF3) at (11.7, -5.2) {Formal};
+				
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PN) -- (ZNT);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PN) -- (ZNF);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PB) -- (ZBT);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PB) -- (ZBF);
+				
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PN2) -- (ZNT2);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PN2) -- (ZNF2);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PB2) -- (ZBT2);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PB2) -- (ZBF2);
+				
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PN3) -- (ZNT3);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PN3) -- (ZNF3);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PB3) -- (ZBT3);
+				\draw[->, >=stealth, valgreen, line width=0.9pt] (PB3) -- (ZBF3);
+				
+				% Anotación de la rama punteada
+				%\node[cajaz, inner sep=5pt, font=\bfseries\small, align=center]
+				%at (5.5,-3.8) {La Camisa Azul\\genera 4 combos\\m\'as (igual)};
+				
+				% Cómputo total
+				\node[cajaz, inner sep=8pt, font=\bfseries\large] at (3.0,-8.0)
+				{2 camisas $\times$ 2 pantalones $\times$ 2 zapatos $= \mathbf{8}$
+					atuendos};
+			\end{tikzpicture}
+		\end{center}
+	\end{ejemplo}
+	
+	\vspace{4pt}
+	
+	\begin{practica}{$\square$ {¡}Tu Turno! --- 3 Grupos}
+		\begin{enumerate}[itemsep=0.8cm, label=\textbf{\arabic*.}]
+			\item Un men\'u tiene 3 sopas, 2 jugos y 4 postres.
+			{¿}Cu\'antos men\'us completos diferentes hay?\\[3pt]
+			Operaci\'on: \boxfill[1.5cm]
+			$\times$ \boxfill[1.5cm]
+			$\times$ \boxfill[1.5cm]
+			$=$ \boxfill[2.5cm]
+			
+			\item Una alarma tiene 2 d\'igitos. Cada d\'igito puede ser del 0 al 9
+			(10 opciones). {¿}Cu\'antas claves de 2 d\'igitos existen?\\[3pt]
+			Operaci\'on: \boxfill[1.5cm]
+			$\times$ \boxfill[1.5cm]
+			$=$ \boxfill[2.5cm]
+		\end{enumerate}
+	\end{practica}
+	
+	%\newpage
+	
+	% ═════════════════════════════════════════════════════════════════════════
+	%  MISIÓN 5 — ¡Matemáticas para la Vida!
+	%  Objetivo: Aplicar conteo de combinaciones a contextos cotidianos.
+	%  EDITAR: Modifica los 4 problemas cambiando contexto y datos.
+	% ═════════════════════════════════════════════════════════════════════════
+	\mision{valred}{{¡}Misión 5: Matemáticas para la Vida!}
+	
+	\begin{concepto}{$\square$ En la Vida Real, Contamos Combinaciones Todo el Tiempo}
+		% TEXTO: Motivación
+		Los datos celulares, los men\'us de restaurante, los colores de autos
+		y las contraseñas de computador son ejemplos de combinaciones que
+		usamos todos los d\'ias. ¡Vamos a practicar con situaciones reales!
+	\end{concepto}
+	
+	\vspace{4pt}
+	
+	% ── Problema 1 ──────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 1 --- La Pizzería}
+		\begin{minipage}[t]{0.58\linewidth}
+			% EDITAR: Cambia el enunciado del problema
+			\textit{Una pizzer\'ia ofrece pizzas con \textbf{4 tipos de masa}
+				(delgada, gruesa, integral, sin gluten) y \textbf{3 salsas}
+				(tomate, pesto, blanca). Si un cliente elige 1 masa y 1 salsa,
+				{¿}cu\'antas pizzas distintas puede pedir?}
+			
+			\vspace{8pt}
+			A $=$ \boxfill[1.5cm] \quad
+			B $=$ \boxfill[1.5cm] \quad
+			Total $=$ \boxfill[2cm]
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.36\linewidth}
+			\textbf{Espacio de trabajo:}\vspace{2.2cm}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	\vspace{5pt}
+	
+	% ── Problema 2 ──────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 2 --- La Tienda de Zapatos}
+		\begin{minipage}[t]{0.58\linewidth}
+			\textit{Una tienda tiene un modelo de zapato disponible en
+				\textbf{5 colores} y \textbf{4 tallas} (36, 37, 38, 39).
+				{¿}Cu\'antas variaciones del zapato existen?}
+			
+			\vspace{8pt}
+			Operaci\'on: \boxfill[1.5cm]
+			$\times$ \boxfill[1.5cm]
+			$=$ \boxfill[2.5cm]
+			
+			\vspace{6pt}
+			Respuesta: Existen \boxfill[2.5cm] variaciones.
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.36\linewidth}
+			\textbf{Espacio de trabajo:}\vspace{2.2cm}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	\vspace{5pt}
+	
+	% ── Problema 3 ──────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 3 --- La Contraseña}
+		\begin{minipage}[t]{0.58\linewidth}
+			\textit{Una cerradura tiene \textbf{3 diales}, y cada dial muestra
+				los n\'umeros del \textbf{1 al 6} (6 opciones por dial).
+				{¿}Cu\'antas contraseñas de 3 d\'igitos diferentes existen?}
+			
+			\vspace{8pt}
+			Operaci\'on: \boxfill[1.2cm]
+			$\times$ \boxfill[1.2cm]
+			$\times$ \boxfill[1.2cm]
+			$=$ \boxfill[2.5cm]
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.36\linewidth}
+			\textbf{Espacio de trabajo:}\vspace{2.2cm}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+	\vspace{5pt}
+	
+	% ── Problema 4 ──────────────────────────────────────────────────────
+	\begin{espaciotrabajonb}{Problema 4 --- El Torneo}
+		\begin{minipage}[t]{0.58\linewidth}
+			\textit{En un torneo de f\'utbol participan \textbf{4 equipos}.
+				Cada equipo puede jugar contra \textbf{cada uno de los otros 3}.
+				{¿}Cu\'antos partidos se juegan en total si cada pareja juega
+				\textbf{solo una vez}?}
+			
+			\vspace{5pt}
+			\textit{\small Ayuda: Equipo A puede enfrentarse a B, C o D (3 partidos).
+				Equipo B puede enfrentarse a C o D (2 partidos, ya contó A-B).
+				Equipo C puede enfrentarse a D (1 partido). Equipo D: 0 nuevos.}
+			
+			\vspace{5pt}
+			Total de partidos: \boxfill[3cm]
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.36\linewidth}
+			\textbf{Espacio de trabajo:}\vspace{2.2cm}
+		\end{minipage}
+	\end{espaciotrabajonb}
+	
+\end{document}
