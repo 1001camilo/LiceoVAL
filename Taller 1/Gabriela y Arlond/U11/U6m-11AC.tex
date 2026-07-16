@@ -835,22 +835,18 @@ bottom = 2.0cm
 		
 		%\vspace{6pt}
 		% TEXTO: Ejemplo
-		\textit{Ejemplo: Tienes 2 camisas, 2 pantalones y 2 zapatos.
+		\textit{Ejemplo: Tienes 3 camisas, 2 pantalones y 2 zapatos.
 			{¿}Cuántos atuendos completos puedes hacer?}
 		\quad
-		\textbf{$2 \times 2 \times 2 = 8$ atuendos.}
+		\textbf{$3 \times 2 \times 2 = 12$ atuendos.}
 	\end{concepto}
 	
 	\vspace{4pt}
 	
-	\begin{ejemplo}{Árbol Parcial — Solo la rama de Camisa Roja}
+	\begin{ejemplo}{Árbol}
 		
 		% ─────────────────────────────────────────────────────────────────────
-		% DIAGRAMA: Árbol parcial (3 niveles) mostrando los 4 resultados
-		% de la camisa roja: C.Roja × 2 pantalones × 2 zapatos = 4 combos.
-		% La otra rama (C.Azul) genera 4 más = total = 4+4 = 8.
-		% EDITAR-ÁRBOL3: Modifica los textos de los \node para cambiar
-		%   los nombres de camisas, pantalones y zapatos.
+		% DIAGRAMA: Árbol mostrando los 12 resultados
 		% ─────────────────────────────────────────────────────────────────────
 		\begin{center}
 			\begin{tikzpicture}[x=1cm, y=1cm]
@@ -943,9 +939,26 @@ bottom = 2.0cm
 				%\node[cajaz, inner sep=5pt, font=\bfseries\small, align=center]
 				%at (5.5,-3.8) {La Camisa Azul\\genera 4 combos\\m\'as (igual)};
 				
+				% --- NUMERACIÓN (1 al 12) ---
+				\draw[->, >=stealth, line width=0.8pt] (ZNT) -- ++(0,-1.2) node[below, font=\bfseries] {1};
+				\draw[->, >=stealth, line width=0.8pt] (ZNF) -- ++(0,-1.2) node[below, font=\bfseries] {2};
+				\draw[->, >=stealth, line width=0.8pt] (ZBT) -- ++(0,-1.2) node[below, font=\bfseries] {3};
+				\draw[->, >=stealth, line width=0.8pt] (ZBF) -- ++(0,-1.2) node[below, font=\bfseries] {4};
+				
+				\draw[->, >=stealth, line width=0.8pt] (ZNT2) -- ++(0,-1.2) node[below, font=\bfseries] {5};
+				\draw[->, >=stealth, line width=0.8pt] (ZNF2) -- ++(0,-1.2) node[below, font=\bfseries] {6};
+				\draw[->, >=stealth, line width=0.8pt] (ZBT2) -- ++(0,-1.2) node[below, font=\bfseries] {7};
+				\draw[->, >=stealth, line width=0.8pt] (ZBF2) -- ++(0,-1.2) node[below, font=\bfseries] {8};
+				
+				\draw[->, >=stealth, line width=0.8pt] (ZNT3) -- ++(0,-1.2) node[below, font=\bfseries] {9};
+				\draw[->, >=stealth, line width=0.8pt] (ZNF3) -- ++(0,-1.2) node[below, font=\bfseries] {10};
+				\draw[->, >=stealth, line width=0.8pt] (ZBT3) -- ++(0,-1.2) node[below, font=\bfseries] {11};
+				\draw[->, >=stealth, line width=0.8pt] (ZBF3) -- ++(0,-1.2) node[below, font=\bfseries] {12};
+				% --------------------------------------------
+				
 				% Cómputo total
 				\node[cajaz, inner sep=8pt, font=\bfseries\large] at (3.0,-8.0)
-				{2 camisas $\times$ 2 pantalones $\times$ 2 zapatos $= \mathbf{8}$
+				{3 camisas $\times$ 2 pantalones $\times$ 2 zapatos $= \mathbf{12}$
 					atuendos};
 			\end{tikzpicture}
 		\end{center}
@@ -977,11 +990,11 @@ bottom = 2.0cm
 	%  Objetivo: Aplicar conteo de combinaciones a contextos cotidianos.
 	%  EDITAR: Modifica los 4 problemas cambiando contexto y datos.
 	% ═════════════════════════════════════════════════════════════════════════
-	\mision{valred}{{¡}Misión 5: Matemáticas para la Vida!}
+	\mision{valred}{Misión 5: Matemáticas en la Vida cotidiana}
 	
 	\begin{concepto}{$\square$ En la Vida Real, Contamos Combinaciones Todo el Tiempo}
 		% TEXTO: Motivación
-		Los datos celulares, los men\'us de restaurante, los colores de autos
+		Los números de telefono, los men\'us de restaurante, los colores de autos
 		y las contraseñas de computador son ejemplos de combinaciones que
 		usamos todos los d\'ias. ¡Vamos a practicar con situaciones reales!
 	\end{concepto}
@@ -1037,7 +1050,7 @@ bottom = 2.0cm
 	\begin{espaciotrabajonb}{Problema 3 --- La Contraseña}
 		\begin{minipage}[t]{0.58\linewidth}
 			\textit{Una cerradura tiene \textbf{3 diales}, y cada dial muestra
-				los n\'umeros del \textbf{1 al 6} (6 opciones por dial).
+				los n\'umeros del \textbf{1 al 6}.
 				{¿}Cu\'antas contraseñas de 3 d\'igitos diferentes existen?}
 			
 			\vspace{8pt}

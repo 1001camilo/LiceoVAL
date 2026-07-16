@@ -1,0 +1,314 @@
+% ╔══════════════════════════════════════════════════════════════════════════╗
+% ║  LICEO V.A.L. – MÓDULO DE AUTOAPRENDIZAJE                              ║
+% ║  Unidad 15: Geometría, Ángulos y Triángulos                             ║
+% ╚══════════════════════════════════════════════════════════════════════════╝
+
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=3.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usetikzlibrary{arrows.meta, shapes.geometric, positioning, calc}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0, 74, 153}
+\definecolor{valgreen}{RGB}{0, 153, 76}
+\definecolor{valred}{RGB}{204, 0, 0}
+\definecolor{valdark}{RGB}{40, 40, 40}
+\definecolor{valorange}{RGB}{230, 115, 0}
+\definecolor{vallightblue}{RGB}{230, 240, 255}
+\definecolor{vallightgreen}{RGB}{230, 250, 235}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- FONDO INSTITUCIONAL ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\IfFileExists{../../FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+		}%
+	}{}%
+}
+
+% --- CAJITAS PARA COMPLETAR EN TEXTO ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.6pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+% --- ENTORNOS DE CAJAS PERSONALIZADOS (CORREGIDOS) ---
+\newtcolorbox{conceptbox}[1]{
+	enhanced, colback=vallightblue, colframe=valblue, arc=2mm, boxrule=1.2pt,
+	title={\Large \ding{111}\ \textbf{#1}}, fonttitle=\bfseries, coltitle=white,
+	attach boxed title to top left={xshift=5mm, yshift=-3mm},
+	boxed title style={colback=valblue, arc=1mm},
+	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+}
+
+\newtcolorbox{espaciotrabajo}[1]{
+	breakable, enhanced, colback=white, colframe=valdark, arc=2mm, boxrule=0.8pt,
+	title={\ding{46}\ \textbf{#1}}, coltitle=white, fonttitle=\bfseries,
+	attach boxed title to top left={xshift=4mm, yshift=-2mm},
+	boxed title style={colback=valdark, arc=1mm, boxrule=0pt},
+	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
+}
+
+\newcommand{\mision}[1]{
+	\vspace{0.6cm}
+	\begin{tcolorbox}[
+		enhanced, colback=valdark, colframe=valdark, arc=2mm, boxrule=0pt,
+		halign=center, valign=center, top=3mm, bottom=3mm, left=2mm, right=2mm,
+		drop shadow=valdark!50
+		]
+		\textcolor{white}{\Large \textbf{\ding{118}\ #1}}
+	\end{tcolorbox}
+	\vspace{0.3cm}
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{flushright}
+		{\LARGE \textbf{\textcolor{valblue}{LICEO V.A.L.}}}\\[0.1cm]
+		{\large MÓDULO DE AUTOAPRENDIZAJE}\\[0.1cm]
+		\textbf{MATEMÁTICAS $6^{\circ}$}\\[0.1cm]
+		\textbf{\textcolor{valorange}{UNIDAD 15: Geometría, Ángulos y Triángulos}}
+	\end{flushright}
+	
+	\vspace{0.2cm}
+	\hrule height 1pt
+	\vspace{0.3cm}
+	
+	\noindent
+	\textbf{Nombre:} \underline{\hspace{7cm}} \hfill \textbf{Código:} \textbf{06M-15} \quad \textbf{Año:} 2026\\[0.1cm]
+	\textit{``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+	
+	% ----------------------------------------------------------------------
+	% MISIÓN 1: CLASIFICACIÓN DE ÁNGULOS
+	% ----------------------------------------------------------------------
+	\mision{Misión 1: Clasificación de Ángulos}
+	
+	\begin{conceptbox}{La Abertura de las Líneas}
+		Un \textbf{ángulo} está formado por dos líneas que se unen en un punto llamado \textbf{vértice}. La unidad de medida es el \textbf{grado ($^\circ$)}. Según qué tan abiertos estén, se clasifican así:
+		\begin{itemize}[itemsep=0.1cm]
+			\item \textbf{Agudo:} Mide menos de $90^\circ$ (Es muy cerrado).
+			\item \textbf{Recto:} Mide exactamente $90^\circ$ (Forma una "L" perfecta).
+			\item \textbf{Obtuso:} Mide más de $90^\circ$ pero menos de $180^\circ$ (Es muy abierto).
+			\item \textbf{Llano:} Mide exactamente $180^\circ$ (Es una línea totalmente plana).
+		\end{itemize}
+	\end{conceptbox}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=0.9, thick]
+			% Agudo
+			\draw[<->] (2,1.5) -- (0,0) -- (2.5,0);
+			\draw[valblue, fill=valblue!20] (0.5,0) arc (0:36.8:0.5) -- (0,0) -- cycle;
+			\node[valblue] at (1, 0.3) {$< 90^\circ$};
+			\node at (1.2, -0.5) {\textbf{Agudo}};
+			
+			% Recto
+			\begin{scope}[xshift=4cm]
+				\draw[<->] (0,2) -- (0,0) -- (2.5,0);
+				\draw[valred, fill=valred!20] (0,0.4) -- (0.4,0.4) -- (0.4,0) -- (0,0) -- cycle;
+				\node[valred] at (0.8, 0.8) {$90^\circ$};
+				\node at (1.2, -0.5) {\textbf{Recto}};
+			\end{scope}
+			
+			% Obtuso
+			\begin{scope}[xshift=8cm]
+				\draw[<->] (-1.5,1.5) -- (0,0) -- (2.5,0);
+				\draw[valgreen, fill=valgreen!20] (0.5,0) arc (0:135:0.5) -- (0,0) -- cycle;
+				\node[valgreen] at (0.5, 0.8) {$> 90^\circ$};
+				\node at (0.5, -0.5) {\textbf{Obtuso}};
+			\end{scope}
+			
+			% Llano
+			\begin{scope}[xshift=13cm]
+				\draw[<->] (-1.5,0) -- (0,0) -- (1.5,0);
+				\fill (0,0) circle (2pt);
+				\draw[valorange, fill=valorange!20] (0.5,0) arc (0:180:0.5) -- (0,0) -- cycle;
+				\node[valorange] at (0, 0.8) {$180^\circ$};
+				\node at (0, -0.5) {\textbf{Llano}};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{espaciotrabajo}{¡Tu Turno! - Clasificador}
+		Observa la medida de cada ángulo e indica a qué tipo pertenece (Agudo, Recto, Obtuso o Llano):
+		\vspace{0.3cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[itemsep=0.8cm]
+				\item $45^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $120^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $90^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $175^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $18^\circ \ \rightarrow \ $ \boxfill[3cm]
+				\item $180^\circ \ \rightarrow \ $ \boxfill[3cm]
+			\end{enumerate}
+		\end{multicols}
+		\vspace{0.2cm}
+	\end{espaciotrabajo}
+	
+	\newpage
+	
+	% ----------------------------------------------------------------------
+	% MISIÓN 2: ÁNGULOS QUE TRABAJAN EN EQUIPO
+	% ----------------------------------------------------------------------
+	\mision{Misión 2: Ángulos Complementarios y Suplementarios}
+	
+	\begin{conceptbox}{Equipos Perfectos}
+		A veces los ángulos se unen para formar figuras perfectas:\\
+		$\bullet$ \textbf{Complementarios:} Son dos ángulos que al juntarse suman exactamente \textbf{$\mathbf{90^\circ}$} (un ángulo Recto).\\
+		$\bullet$ \textbf{Suplementarios:} Son dos ángulos que al juntarse suman exactamente \textbf{$\mathbf{180^\circ}$} (un ángulo Llano).
+	\end{conceptbox}
+	
+	\begin{espaciotrabajo}{¡Tu Turno! - Descubre el ángulo escondido}
+		Encuentra cuánto mide el ángulo que falta ($?$). Haz la resta sencilla para descubrirlo.
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\textbf{A) Son Complementarios (Llegan a 90°)}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\draw[<->] (0,3) -- (0,0) -- (3,0);
+				\draw[->] (0,0) -- (55:3.5cm);
+				% Angulo conocido 55
+				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:55:1.2cm) -- cycle;
+				\node at (25:1.8cm) {\textbf{$55^\circ$}};
+				% Angulo desconocido
+				\draw[valred, fill=valred!10] (0,0) -- (55:1.4cm) arc (55:90:1.4cm) -- cycle;
+				\node[valred] at (72:2cm) {\Large \textbf{?}};
+				% Cuadro de 90
+				\draw (0,0.4) -- (0.4,0.4) -- (0.4,0);
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Operación:}\\
+			$? \ = 90^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
+			
+			\columnbreak
+			
+			\textbf{B) Son Suplementarios (Llegan a 180°)}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\draw[<->] (-3.5,0) -- (3.5,0);
+				\draw[->] (0,0) -- (110:3cm);
+				% Angulo conocido 110
+				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:110:1.2cm) -- cycle;
+				\node at (55:1.8cm) {\textbf{$110^\circ$}};
+				% Angulo desconocido
+				\draw[valred, fill=valred!10] (0,0) -- (110:1.4cm) arc (110:180:1.4cm) -- cycle;
+				\node[valred] at (145:2cm) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Operación:}\\
+			$? \ = 180^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
+		\end{multicols}
+	\end{espaciotrabajo}
+	
+	% ----------------------------------------------------------------------
+	% MISIÓN 3: LA MAGIA DE LOS TRIÁNGULOS (180°)
+	% ----------------------------------------------------------------------
+	\mision{Misión 3: El Teorema de los 180°}
+	
+	\begin{conceptbox}{La Regla de Oro de los Triángulos}
+		No importa si un triángulo es grande, pequeño, flaco o gordito. \textbf{La suma de sus TRES ángulos internos siempre, siempre dará exactamente $\mathbf{180^\circ}$.}
+	\end{conceptbox}
+	
+	\begin{espaciotrabajo}{¡Tu Turno! - Triángulos Incompletos}
+		Te damos dos ángulos. Encuentra el tercero ($?$). 
+		\textit{Instrucciones: Primero suma los dos que conoces. Luego, réstale ese resultado a 180°.}
+		
+		\vspace{0.4cm}
+		\begin{multicols}{2}
+			\textbf{A)}\\
+			\begin{tikzpicture}[scale=1, thick]
+				% Triángulo Isósceles 30-30-120
+				\coordinate (A) at (0,0);
+				\coordinate (B) at (5,0);
+				\coordinate (C) at (2.5, 1.443); % 2.5 * tan(30)
+				\draw (A) -- (B) -- (C) -- cycle;
+				
+				\begin{scope}
+					\clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (A) circle (0.8cm);
+					\draw[fill=valblue!20] (B) circle (0.8cm);
+					\draw[fill=valred!20] (C) circle (0.5cm);
+				\end{scope}
+				\node at (1.1, 0.3) {\textbf{$30^\circ$}};
+				\node at (3.9, 0.3) {\textbf{$30^\circ$}};
+				\node[valred] at (2.5, 1) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Paso 1: Suma los que conoces}\\
+			\boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.5cm]$^\circ$\\[0.2cm]
+			\textbf{Paso 2: Resta a 180°}\\
+			$? \ = 180^\circ - \boxfill[1.5cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} $? = $ \boxfill[1.5cm]$^\circ$
+			
+			\columnbreak
+			
+			\textbf{B) (¡Ojo con la forma de "L" de la esquina!)}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				% Triángulo Rectángulo 90-35-55
+				\coordinate (A) at (0,0);
+				\coordinate (B) at (4,0);
+				\coordinate (C) at (0, 2.8); % 4 * tan(35)
+				\draw (A) -- (B) -- (C) -- cycle;
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Marca de ángulo recto
+				
+				\begin{scope}
+					\clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (B) circle (0.9cm);
+					\draw[fill=valred!20] (C) circle (0.7cm);
+				\end{scope}
+				\node at (3.1, 0.3) {\textbf{$35^\circ$}};
+				\node[valred] at (0.4, 2) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Paso 1: Suma los que conoces}\\
+			\boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.5cm]$^\circ$\\[0.2cm]
+			\textbf{Paso 2: Resta a 180°}\\
+			$? \ = 180^\circ - \boxfill[1.5cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} $? = $ \boxfill[1.5cm]$^\circ$
+		\end{multicols}
+		
+		\vspace{0.4cm}
+		\hrule
+		\vspace{0.4cm}
+		
+		\begin{center}
+			\textbf{C) Triángulo Escaleno}\\
+			\begin{tikzpicture}[scale=1.1, thick]
+				% Triángulo Escaleno 45-60-75
+				\coordinate (A) at (0,0);
+				\coordinate (B) at (5,0);
+				\coordinate (C) at (3.17, 3.17); 
+				\draw (A) -- (B) -- (C) -- cycle;
+				
+				\begin{scope}
+					\clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (A) circle (0.9cm);
+					\draw[fill=valblue!20] (B) circle (0.9cm);
+					\draw[fill=valred!20] (C) circle (0.7cm);
+				\end{scope}
+				\node at (1.1, 0.4) {\textbf{$45^\circ$}};
+				\node at (4.2, 0.5) {\textbf{$60^\circ$}};
+				\node[valred] at (3.17, 2.4) {\Large \textbf{?}};
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\textbf{Paso 1: Suma los que conoces}\\
+		\boxfill[1.5cm]$^\circ \ + \ $ \boxfill[1.5cm]$^\circ \ = \ $ \boxfill[2cm]$^\circ$\\[0.4cm]
+		\textbf{Paso 2: Resta a 180°}\\
+		$? \ = 180^\circ - \boxfill[2cm]^\circ \quad \longrightarrow \quad$ \textbf{Respuesta:} $? = $ \boxfill[2cm]$^\circ$
+		\vspace{0.3cm}
+	\end{espaciotrabajo}
+	
+\end{document}

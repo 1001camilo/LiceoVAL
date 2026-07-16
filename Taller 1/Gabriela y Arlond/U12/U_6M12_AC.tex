@@ -1,0 +1,1462 @@
+% ╔════════════════════════════════════════════════════════════════════════╗
+% ║         LICEO V.A.L.  —  MÓDULO DE AUTOAPRENDIZAJE                     ║
+% ║                                                                        ║
+% ║  Archivo  :  TAU_6M12_AC.tex                                           ║
+% ║  Unidad   :  12 — Medidas de Longitud                                  ║
+% ║  Ruta     :  Adaptación Curricular (AC)                                ║
+% ║  Código   :  06M-12 AC        Grado: 6°        Año: 2026               ║
+% ╠════════════════════════════════════════════════════════════════════════╣
+% ║  GUÍA RÁPIDA DE EDICIÓN                                                ║
+% ║                                                                        ║
+% ║  >> Tamaño de fuente  = \documentclass[12pt, ...]  (línea ~45)         ║
+% ║  >> Márgenes          = geometry (líneas ~52-56)                       ║
+% ║  >> Colores           = "PALETA INSTITUCIONAL VAL" (líneas ~80-95)     ║
+% ║  >> Medidas ejemplo   = busca el marcador   % EDITAR:                  ║
+% ║  >> Textos narrativos = busca el marcador   % TEXTO:                   ║
+% ║                                                                        ║
+% ║  Para compilar:                                                        ║
+% ║    pdflatex -interaction=nonstopmode TAU_6M12_AC.tex                   ║
+% ╚════════════════════════════════════════════════════════════════════════╝
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 1: CLASE DE DOCUMENTO
+% 12pt = tamaño base de letra.  letterpaper = hoja carta colombiana.
+% ─────────────────────────────────────────────────────────────────────────
+\documentclass[12pt, letterpaper]{article}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 2: CODIFICACIÓN Y TIPOGRAFÍA
+% utf8     = permite acentos directamente (á, é, ñ…)
+% T1       = fuentes con caracteres latinos completos
+% spanish + es-noshorthands = español sin shorthands que rompen TikZ
+% helvet   = fuente sans-serif Helvetica, más legible para AC
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 3: GEOMETRÍA DE PÁGINA
+% Ajusta left/right para cambiar los márgenes laterales.
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage[
+  letterpaper,
+  left   = 1.8cm,
+  right  = 1.8cm,
+  top    = 2.0cm,
+  bottom = 2.0cm
+]{geometry}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 4: PAQUETES GRÁFICOS
+% eso-pic  = fondo institucional en cada página
+% xcolor   = colores RGB
+% tikz     = diagramas vectoriales (regla, escalera métrica, etc.)
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, calc, positioning}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 5: CAJAS DE TEXTO (tcolorbox)
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage{tcolorbox}
+\tcbuselibrary{most, skins, breakable}
+
+% ─────────────────────────────────────────────────────────────────────────
+% SECCIÓN 6: PAQUETES ADICIONALES
+% ─────────────────────────────────────────────────────────────────────────
+\usepackage{array, tabularx, booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{needspace}
+
+% ═════════════════════════════════════════════════════════════════════════
+% PALETA INSTITUCIONAL VAL
+% EDITAR: Modifica los valores RGB para cambiar colores.
+% Formato:  {R, G, B}  donde cada valor va de 0 a 255.
+% ═════════════════════════════════════════════════════════════════════════
+\definecolor{valblue}       {RGB}{  0,  84, 166}  % Azul institucional
+\definecolor{valgreen}      {RGB}{  0, 150,  64}  % Verde institucional
+\definecolor{valred}        {RGB}{200,  16,  46}  % Rojo institucional
+\definecolor{valdark}       {RGB}{ 40,  40,  40}  % Casi negro
+\definecolor{valorange}     {RGB}{230, 100,   0}  % Naranja institucional
+\definecolor{valpurple}     {RGB}{120,  70, 160}  % Morado
+\definecolor{valteal}       {RGB}{  0, 128, 128}  % Teal / verde-azul
+\definecolor{vallightblue}  {RGB}{220, 235, 250}  % Azul claro (fondo)
+\definecolor{vallightgreen} {RGB}{220, 245, 230}  % Verde claro (fondo)
+\definecolor{vallightred}   {RGB}{255, 228, 228}  % Rojo claro (fondo)
+\definecolor{vallightorange}{RGB}{255, 238, 210}  % Naranja claro (fondo)
+\definecolor{vallightpurple}{RGB}{235, 225, 245}  % Morado claro (fondo)
+\definecolor{vallightteal}  {RGB}{210, 240, 240}  % Teal claro (fondo)
+\definecolor{valgray}       {RGB}{245, 245, 245}  % Gris muy claro
+
+% ─────────────────────────────────────────────────────────────────────────
+% FONDO INSTITUCIONAL
+% La ruta ../../FondoVAL.pdf asume que el .tex está en una subcarpeta
+% de dos niveles (ej: TAU/TAU_12AC/TAU_6M12_AC.tex).
+% Ajusta la ruta si la estructura de carpetas es diferente.
+% ─────────────────────────────────────────────────────────────────────────
+\AddToShipoutPictureBG{%
+  \includegraphics[
+    width=\paperwidth,
+    height=\paperheight,
+    keepaspectratio=false
+  ]{../../FondoVAL.pdf}%
+}
+
+% ═════════════════════════════════════════════════════════════════════════
+% ESTILOS TIKZ CON NOMBRE (sin parámetro #1 — obligatorio para breakable)
+%
+% REGLA DE ORO: dentro de tcolorbox con breakable=true, NUNCA uses \foreach
+% ni estilos parametrizados con #1. Solo estilos con nombre fijo.
+% ═════════════════════════════════════════════════════════════════════════
+\tikzset{
+  % ── Cajas de nodo para etiquetas ──────────────────────────────────────
+  cajaz/.style   = {draw=valblue,   fill=vallightblue,   rounded corners=4pt},
+  cajag/.style   = {draw=valgreen,  fill=vallightgreen,  rounded corners=4pt},
+  cajar/.style   = {draw=valred,    fill=vallightred,    rounded corners=4pt},
+  cajao/.style   = {draw=valorange, fill=vallightorange, rounded corners=4pt},
+  cajap/.style   = {draw=valpurple, fill=vallightpurple, rounded corners=4pt},
+  cajat/.style   = {draw=valteal,   fill=vallightteal,   rounded corners=4pt},
+  % ── Botones numerados de pasos ─────────────────────────────────────────
+  btnazul/.style  = {draw=valblue,   fill=valblue,  rounded corners=6pt,
+                     text=white, font=\bfseries\Large, inner sep=4pt},
+  btnorange/.style= {draw=valorange, fill=valorange, rounded corners=6pt,
+                     text=white, font=\bfseries\Large, inner sep=4pt},
+  btnverde/.style = {draw=valgreen,  fill=valgreen,  rounded corners=6pt,
+                     text=white, font=\bfseries\Large, inner sep=4pt},
+  btnrojo/.style  = {draw=valred,    fill=valred,    rounded corners=6pt,
+                     text=white, font=\bfseries\Large, inner sep=4pt},
+  % ── Flecha estándar ────────────────────────────────────────────────────
+  flechaop/.style = {->, >=stealth, ultra thick},
+  % ── Unidades del sistema métrico (para la escalera) ────────────────────
+  % unidad:   caja estándar de unidad métrica
+  unidad/.style  = {draw=valblue, fill=vallightblue, rounded corners=4pt,
+                    minimum width=2.3cm, minimum height=0.95cm,
+                    font=\bfseries\Large, inner sep=5pt},
+  % base:     resalta el metro como unidad base
+  base/.style    = {draw=valgreen, fill=vallightgreen, rounded corners=4pt,
+                    minimum width=2.6cm, minimum height=1.1cm,
+                    font=\bfseries\LARGE, inner sep=6pt},
+}
+
+% ═════════════════════════════════════════════════════════════════════════
+% AMBIENTES TCOLORBOX INSTITUCIONALES
+% ═════════════════════════════════════════════════════════════════════════
+
+% ── Concepto (azul) ───────────────────────────────────────────────────
+\newtcolorbox{concepto}[1]{
+  enhanced, breakable,
+  title        = {\large\bfseries #1},
+  colback      = vallightblue,
+  colframe     = valblue,
+  coltitle     = white,
+  attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+  boxed title style = {colback=valblue, colframe=valblue, rounded corners},
+  arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── Truco / Regla (naranja) ───────────────────────────────────────────
+\newtcolorbox{truco}[1]{
+  enhanced, breakable,
+  title        = {\large\bfseries #1},
+  colback      = vallightorange,
+  colframe     = valorange,
+  coltitle     = white,
+  attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+  boxed title style = {colback=valorange, colframe=valorange, rounded corners},
+  arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── Ejemplo resuelto (verde) ──────────────────────────────────────────
+\newtcolorbox{ejemplo}[1]{
+  enhanced, breakable,
+  title        = {\large\bfseries #1},
+  colback      = vallightgreen,
+  colframe     = valgreen,
+  coltitle     = white,
+  attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+  boxed title style = {colback=valgreen, colframe=valgreen, rounded corners},
+  arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── Práctica del estudiante (gris) ────────────────────────────────────
+\newtcolorbox{practica}[1]{
+  enhanced, breakable,
+  title        = {\large\bfseries #1},
+  colback      = valgray,
+  colframe     = valdark,
+  coltitle     = white,
+  attach boxed title to top left = {yshift=-2mm, xshift=4mm},
+  boxed title style = {colback=valdark, colframe=valdark, rounded corners},
+  arc=4mm, boxrule=1.5pt, top=6mm, left=3mm, right=3mm,
+}
+
+% ── No divisible entre páginas (para diagramas grandes) ───────────────
+\newtcolorbox{espaciotrabajonb}[1]{
+  enhanced,                    % sin breakable: nunca se parte en páginas
+  title    = {\bfseries #1},
+  colback  = white,
+  colframe = valblue!50,
+  coltitle = valblue,
+  arc=2mm, boxrule=0.8pt,
+  left=2mm, right=2mm, top=4mm,
+}
+
+% ═════════════════════════════════════════════════════════════════════════
+% COMANDOS PERSONALIZADOS
+% ═════════════════════════════════════════════════════════════════════════
+
+% ── \boxfill[ancho] ───────────────────────────────────────────────────
+% Caja vacía donde el estudiante escribe su respuesta.
+% Ancho por defecto: 3.5 cm
+\newcommand{\boxfill}[1][3.5cm]{%
+  \tikz[baseline=-0.5ex]%
+    \draw[valblue, line width=1pt] (0,-0.3) rectangle (#1, 0.3cm);%
+}
+
+% ── \mision{color}{Título} ────────────────────────────────────────────
+% Barra de encabezado de cada misión.
+% EDITAR: Cambia el color del primer argumento para otra misión.
+\newcommand{\mision}[2]{%
+  \needspace{4cm}%
+  \vspace{5pt}%
+  \begin{tcolorbox}[
+    enhanced,
+    colback  = #1,
+    colframe = #1!60!black,
+    arc=3mm, boxrule=1.5pt,
+    left=6pt, right=6pt, top=5pt, bottom=5pt,
+  ]
+    {\large\bfseries\color{white} #2}
+  \end{tcolorbox}%
+  \vspace{2pt}%
+}
+
+% ── \numstep{color}{número} ───────────────────────────────────────────
+% Círculo numerado para pasos en un procedimiento.
+\newcommand{\numstep}[2]{%
+  \begin{tikzpicture}[baseline=(c.south)]
+    \fill[#1] (0, 0.12cm) circle[radius=0.26cm];
+    \node[font=\bfseries\normalsize, white] (c) at (0, 0.12cm) {#2};
+  \end{tikzpicture}%
+}
+
+% ─────────────────────────────────────────────────────────────────────────
+% CONFIGURACIÓN GENERAL DE PÁGINA
+% ─────────────────────────────────────────────────────────────────────────
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+% ╔════════════════════════════════════════════════════════════════════════╗
+% ║                     INICIO DEL DOCUMENTO                              ║
+% ╚════════════════════════════════════════════════════════════════════════╝
+\begin{document}
+
+% ─────────────────────────────────────────────────────────────────────────
+% PORTADA
+% EDITAR: título, código y año en las líneas señaladas.
+% ─────────────────────────────────────────────────────────────────────────
+\begin{center}
+  {\Large\bfseries\color{valblue} LICEO V.A.L.\ (VIDA, AMOR, LUZ)}\\[4pt]
+  {\large\bfseries MÓDULO DE AUTOAPRENDIZAJE\ ---\ MATEMÁTICAS 6\textdegree}\\[8pt]
+
+  \begin{tcolorbox}[enhanced,arc=6mm,boxrule=2pt,
+      colback=valblue,colframe=valdark,halign=center]
+    % EDITAR: número y nombre de la unidad
+    {\Huge\bfseries\color{white} UNIDAD 12}\\[4pt]
+    {\Large\bfseries\color{yellow!90!white} Medidas de Longitud}
+  \end{tcolorbox}
+
+  \vspace{6pt}
+  \begin{tcolorbox}[enhanced,arc=4mm,boxrule=1.5pt,
+      colback=white,colframe=valblue,width=0.88\linewidth,halign=center]
+    {\bfseries Nombre del Estudiante:}\\[6pt]
+    \rule{9cm}{0.5pt}\\[6pt]
+    % EDITAR: código y año
+    {\bfseries Código:}\ \textbf{06M-12 AC}
+    \hspace{2cm}
+    {\bfseries Año:}\ \underline{2026}
+  \end{tcolorbox}
+
+  \vspace{4pt}
+  {\itshape ``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+\end{center}
+\begin{comment}
+
+\vspace{4pt}
+
+% ── Tabla de contenido (estilo libro académico) ───────────────────────
+\begin{tcolorbox}[enhanced,colback=vallightblue,colframe=valblue!50,
+    arc=3mm,boxrule=1pt,left=5mm,right=5mm,top=3mm,bottom=3mm]
+{\bfseries\normalsize\color{valblue} CONTENIDO DE ESTE MÓDULO}
+
+\vspace{4pt}
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=*, itemsep=1pt, label={$\blacktriangleright$}]
+  \item \textbf{Misión 1:} {¿}Qué es la Longitud?
+  \item \textbf{Misión 2:} Las 7 Unidades del Sistema Métrico
+  \item \textbf{Misión 3:} Conversiones hacia Unidades Menores
+  \item \textbf{Misión 4:} Conversiones hacia Unidades Mayores
+  \item \textbf{Misión 5:} Leer una Regla o Cinta Métrica
+  \item \textbf{Misión 6:} {¡}Matemáticas para la Vida!
+  \item Autoevaluación
+\end{itemize}
+\end{multicols}
+\end{tcolorbox}
+
+\vspace{5pt}
+
+% ── Objetivos de aprendizaje ──────────────────────────────────────────
+\begin{tcolorbox}[enhanced,colback=vallightgreen,colframe=valgreen,
+    arc=3mm,boxrule=1.2pt,
+    title={\bfseries\normalsize Al terminar este módulo podrás\ldots},
+    coltitle=white,
+    attach boxed title to top left={yshift=-2mm,xshift=4mm},
+    boxed title style={colback=valgreen,colframe=valgreen,rounded corners},
+    top=6mm]
+\begin{enumerate}[leftmargin=*,itemsep=2pt,
+                  label={\color{valgreen}\textbf{\arabic*.}}]
+  \item Explicar qué es la \textbf{longitud} y para qué se mide.
+  \item Identificar las 7 unidades del \textbf{sistema métrico}: Km, Hm, Dm, m, Dm, cm, mm.
+  \item Convertir medidas entre unidades usando \textbf{$\times 10$} o \textbf{$\div 10$}.
+  \item Leer correctamente una \textbf{regla o cinta métrica}.
+  \item Resolver problemas de medición de la \textbf{vida cotidiana}.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{5pt}
+\end{comment}
+
+% ═════════════════════════════════════════════════════════════════════════
+%  MISIÓN 1 — ¿Qué es la Longitud?
+%  Objetivo: El estudiante entiende el concepto de longitud y reconoce
+%            ejemplos de medidas en la vida diaria.
+%  TikZ: Escala visual de objetos desde mm hasta Km.
+%  EDITAR: los nombres y medidas de los objetos en los \node.
+% ═════════════════════════════════════════════════════════════════════════
+\mision{valblue}{Misión 1: {¿}Qué es la Longitud?}
+
+\begin{concepto}{$\square$ Aprende el Concepto}
+	
+	La \textbf{longitud} es la medida de qué tan \textbf{largo} es algo:
+	un camino, un objeto, una persona. Para medirla usamos \textbf{unidades de medida} del \textbf{sistema métrico}.
+	
+	\vspace{12pt}
+	
+	% ─────────────────────────────────────────────────────────────────────
+	% DIAGRAMA: Escala visual con ilustraciones dibujadas en TikZ
+	% ─────────────────────────────────────────────────────────────────────
+	\begin{center}
+		\begin{tikzpicture}[x=1cm, y=1.5cm]
+			
+			% Eje de tamaño a la izquierda
+			\draw[valdark, line width=1.5pt, ->, >=stealth] (-0.5, -0.2) -- (-0.5, 6.2);
+			\node[rotate=90, font=\bfseries\normalsize, color=valdark] at (-1.2, 3) {De menor a mayor longitud};
+			
+			% 1. Hormiga (~ 2 mm)
+			\begin{scope}[shift={(0.5, 0)}]
+				% Dibujo hormiga
+				\fill[valdark] (0,0) circle (0.1);
+				\fill[valdark] (0.25,0) circle (0.12);
+				\fill[valdark] (0.55,0) circle (0.15);
+				\draw[thick, valdark] (0.25,0) -- (0.25, 0.3) (0.25,0) -- (0.25, -0.3);
+				\draw[thick, valdark] (0.1,0) -- (0.1, 0.2) (0.1,0) -- (0.1, -0.2);
+				\draw[thick, valdark] (0.4,0) -- (0.4, 0.2) (0.4,0) -- (0.4, -0.2);
+				\draw[thick, valdark] (0,0) -- (-0.15, 0.15) (0,0) -- (-0.15, -0.15); % antenas
+				
+				\node[anchor=west, font=\bfseries\normalsize, color=valblue] at (1.5, 0) {Hormiga};
+				\node[cajaz, inner sep=3pt, font=\bfseries\small] at (5, 0) {\textbf{$\approx$ 2 milímetros}};
+			\end{scope}
+			
+			% 2. Lápiz (~ 18 cm)
+			\begin{scope}[shift={(0.5, 1.2)}]
+				% Dibujo lápiz
+				\fill[valorange!80] (0,-0.15) rectangle (1.2,0.15);
+				\draw[thick, valdark] (0,-0.15) rectangle (1.2,0.15);
+				\fill[pink] (1.2,-0.15) rectangle (1.4,0.15);
+				\draw[thick, valdark] (1.2,-0.15) rectangle (1.4,0.15);
+				\fill[brown!60] (0,-0.15) -- (-0.4,0) -- (0,0.15) -- cycle;
+				\draw[thick, valdark] (0,-0.15) -- (-0.4,0) -- (0,0.15) -- cycle;
+				\fill[valdark] (-0.25,-0.06) -- (-0.4,0) -- (-0.25,0.06) -- cycle; % punta
+				\draw[thick, valdark] (0,0) -- (1.2,0);
+				
+				\node[anchor=west, font=\bfseries\normalsize, color=valgreen] at (1.5, 0) {Lápiz};
+				\node[cajag, inner sep=3pt, font=\bfseries\small] at (4.5, 0) {\textbf{$\approx$ 18 centímetros}};
+			\end{scope}
+			
+			% 3. Escritorio (~ 1.2 m)
+			\begin{scope}[shift={(0.5, 2.4)}]
+				% Dibujo escritorio
+				\fill[brown!80] (0, 0.1) rectangle (1.5, 0.25);
+				\draw[thick, valdark] (0, 0.1) rectangle (1.5, 0.25);
+				\fill[gray] (0.1, -0.3) rectangle (0.25, 0.1);
+				\draw[thick, valdark] (0.1, -0.3) rectangle (0.25, 0.1);
+				\fill[gray] (1.25, -0.3) rectangle (1.4, 0.1);
+				\draw[thick, valdark] (1.25, -0.3) rectangle (1.4, 0.1);
+				
+				\node[anchor=west, font=\bfseries\normalsize, color=valorange] at (1.7, 0) {Escritorio};
+				\node[cajao, inner sep=3pt, font=\bfseries\small] at (5.5, 0) {\textbf{$\approx$ 1.2 metros}};
+			\end{scope}
+			
+			% 4. Salón de clase (~ 8 m)
+			\begin{scope}[shift={(0.5, 3.6)}]
+				% Dibujo salón de clase (Tablero y escritorio)
+				\fill[vallightblue] (0,-0.3) rectangle (2, 0.5);
+				\draw[thick, valdark] (0,-0.3) rectangle (2, 0.5);
+				\fill[valgreen!50!black] (0.3, 0) rectangle (1.7, 0.4); % tablero
+				\draw[thick, valdark] (0.3, 0) rectangle (1.7, 0.4);
+				\fill[brown] (0.8, -0.3) rectangle (1.2, -0.1); % mesita profesor
+				\draw[thick, valdark] (0.8, -0.3) rectangle (1.2, -0.1);
+				
+				\node[anchor=west, font=\bfseries\normalsize, color=valred] at (2.2, 0) {Salón de clase};
+				\node[cajar, inner sep=3pt, font=\bfseries\small] at (6.5, 0) {\textbf{$\approx$ 8 metros}};
+			\end{scope}
+			
+			% 5. Cancha de fútbol (~ 100 m)
+			\begin{scope}[shift={(0.5, 4.8)}]
+				% Dibujo cancha
+				\fill[valgreen!80!black] (0,-0.3) rectangle (2.5, 0.3);
+				\draw[thick, white] (0,-0.3) rectangle (2.5, 0.3);
+				\draw[thick, white] (1.25, -0.3) -- (1.25, 0.3); % linea central
+				\draw[thick, white] (1.25, 0) circle (0.15); % circulo central
+				\draw[thick, white] (0, -0.1) rectangle (0.3, 0.1); % area 1
+				\draw[thick, white] (2.5, -0.1) rectangle (2.2, 0.1); % area 2
+				
+				\node[anchor=west, font=\bfseries\normalsize, color=valpurple] at (2.7, 0) {Cancha de fútbol};
+				\node[cajap, inner sep=3pt, font=\bfseries\small] at (7.8, 0) {\textbf{$\approx$ 100 metros}};
+			\end{scope}
+			
+			% 6. Distancia Larga (~ 1 Km)
+			\begin{scope}[shift={(0.5, 6)}]
+				% Dibujo ruta / camino
+				\fill[gray!40] (0,-0.1) to[bend left=15] (1.5,0.2) to[bend right=15] (3,-0.1) -- (3,0.1) to[bend left=15] (1.5,0.4) to[bend right=15] (0,0.1) -- cycle;
+				\draw[dashed, white, thick] (0,0) to[bend left=15] (1.5,0.3) to[bend right=15] (3,0);
+				\fill[valred] (-0.3, -0.1) rectangle (0, 0.3); % casa/colegio
+				\fill[valblue] (3, -0.1) rectangle (3.3, 0.3); % destino
+				
+				\node[anchor=west, font=\bfseries\normalsize, color=valteal, text width=3cm, align=left] at (3.5, 0) {Del colegio a la Escuela de Cadetes};
+				\node[cajat, inner sep=3pt, font=\bfseries\small] at (8, 0) {\textbf{$\approx$ 1 Kilómetro}};
+			\end{scope}
+			
+		\end{tikzpicture}
+	\end{center}
+\end{concepto}
+
+\begin{truco}{{¡}Aprende a Leer los Símbolos de las Unidades!}
+	
+	% TEXTO: explicación de símbolos/abreviaturas
+	Cada unidad de longitud tiene un \textbf{símbolo corto} (abreviatura)
+	que usamos para escribir más rápido.
+	El símbolo \textbf{nunca} lleva punto al final ni va en plural.
+	
+	\vspace{6pt}
+	
+	% ── Tabla de abreviaturas ─────────────────────────────────────────────
+	% EDITAR: Cambia el texto de cualquier fila para otro idioma o contexto.
+	\renewcommand{\arraystretch}{1.6}
+	\begin{center}
+		\begin{tabular}{|c|l|l|p{5.2cm}|}
+			\hline
+			\rowcolor{vallightorange}
+			\textbf{Símbolo} & \textbf{Nombre} &
+			\textbf{Cómo se lee} & \textbf{Para medir\ldots} \\
+			\hline
+			\rowcolor{vallightteal!50}
+			\textbf{Km} & kilómetro  & Kiló-metro &
+			Distancias entre ciudades \\
+			\hline
+			\rowcolor{valgray}
+			\textbf{Hm} & hectómetro & Hectó-metro &
+			Grandes extensiones de tierra \\
+			\hline
+			\rowcolor{valgray}
+			\textbf{Dm} & decámetro & Decá-metro &
+			Estadios, cuadras \\
+			\hline
+			\rowcolor{vallightblue!80}
+			\textbf{m}  & \textbf{metro (BASE)} & Metro &
+			Habitaciones, personas, puertas \\
+			\hline
+			\rowcolor{valgray}
+			\textbf{dm} & decímetro  & decí-metro &
+			Libros, cuadernos, sillas \\
+			\hline
+			\rowcolor{valgray}
+			\textbf{cm} & centímetro & centí-metro &
+			Lápices, manos, fotos \\
+			\hline
+			\rowcolor{vallightred!50}
+			\textbf{mm} & milímetro  & milí-metro &
+			Monedas, granos de arroz, telas \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{6pt}
+	
+	% ── Truco de los prefijos ─────────────────────────────────────────────
+	{\bfseries {¿}Qué significa cada prefijo?}
+	
+	\vspace{4pt}
+	\begin{center}
+		\begin{tikzpicture}[x=1cm, y=0.75cm]
+			% mili
+			\node[cajar, minimum width=2.1cm, minimum height=0.7cm,
+			font=\bfseries\normalsize, inner sep=4pt] at (0,0) {mili-};
+			\node[anchor=west, font=\normalsize, color=valdark] at (1.2,0)
+			{$=$ la milésima parte del metro
+				\quad $\Rightarrow$ \textbf{1 mm $= 0{,}001$ m}};
+			
+			% centi
+			\node[cajao, minimum width=2.1cm, minimum height=0.7cm,
+			font=\bfseries\normalsize, inner sep=4pt] at (0,-1.0) {centi-};
+			\node[anchor=west, font=\normalsize, color=valdark] at (1.2,-1.0)
+			{$=$ la centésima parte del metro
+				\quad $\Rightarrow$ \textbf{1 cm $= 0{,}01$ m}};
+			
+			% deci
+			\node[cajaz, minimum width=2.1cm, minimum height=0.7cm,
+			font=\bfseries\normalsize, inner sep=4pt] at (0,-2.0) {deci-};
+			\node[anchor=west, font=\normalsize, color=valdark] at (1.2,-2.0)
+			{$=$ la décima parte del metro
+				\quad $\Rightarrow$ \textbf{1 dm $= 0{,}1$ m}};
+				
+			% Decámetro
+			\node[cajag, minimum width=2.1cm, minimum height=0.7cm,
+			font=\bfseries\normalsize, inner sep=4pt] at (0,-3.0) {Deca-};
+			\node[anchor=west, font=\normalsize, color=valdark] at (1.2,-3.0)
+			{$=$ diez veces el metro
+				\quad $\Rightarrow$ \textbf{1 Dm $= 10$ m}};
+				
+			% Hectómetro
+			\node[cajag, minimum width=2.1cm, minimum height=0.7cm,
+			font=\bfseries\normalsize, inner sep=4pt] at (0,-4.0) {Hecto-};
+			\node[anchor=west, font=\normalsize, color=valdark] at (1.2,-4.0)
+			{$=$ Cien veces el metro
+				\quad $\Rightarrow$ \textbf{1 Hm $= 100$ m}};
+			
+			% kilo
+			\node[cajag, minimum width=2.1cm, minimum height=0.7cm,
+			font=\bfseries\normalsize, inner sep=4pt] at (0,-5.0) {kilo-};
+			\node[anchor=west, font=\normalsize, color=valdark] at (1.2,-5.0)
+			{$=$ mil veces el metro
+				\quad $\Rightarrow$ \textbf{1 Km $= 1\,000$ m}};
+		\end{tikzpicture}
+	\end{center}
+\end{truco}
+
+\begin{concepto}{$\square$ {¿}Cuánto Mide Cada Unidad? --- Úsate a Ti Mismo}
+	
+	% TEXTO: motivación de las referencias corporales
+	Para \textbf{estimar} una medida sin usar instrumentos, usa tu cuerpo
+	como referencia. Estas equivalencias son aproximadas, pero muy útiles.
+	
+	\vspace{8pt}
+	
+	\begin{center}
+		\begin{tikzpicture}[x=1cm, y=1cm]
+			
+			% ────────────────────────────────────────────────────────────────
+			%  PANEL 1: milímetro (mm)
+			%  EDITAR: Cambia el texto de referencia si usas otro objeto.
+			% ────────────────────────────────────────────────────────────────
+			\fill[vallightred!70]  (0.0, 0.0) rectangle (2.9, 3.6);
+			\draw[valred, line width=1.2pt] (0.0, 0.0) rectangle (2.9, 3.6);
+			
+			% Símbolo grande
+			\node[font=\bfseries\Huge, color=valred]  at (1.45, 3) {mm};
+			
+			% Dibujo: moneda (círculo)
+			\draw[valdark, line width=2pt]  (1.45, 2) circle[radius=0.55cm];
+			\draw[valdark, line width=0.8pt](1.45, 2) circle[radius=0.40cm];
+			\node[font=\bfseries\tiny, color=valdark] at (1.45,2) {\$100};
+			
+			% Descripción
+			\node[font=\bfseries\small, color=valred, align=center, text width=2.5cm]
+			at (1.45, 1.2) {Grosor de};
+			\node[font=\bfseries\small, color=valred, align=center, text width=2.5cm]
+			at (1.45, 0.9) {una moneda};
+			\node[font=\small, color=valdark, align=center, text width=2.5cm]
+			at (1.45, 0.55) {Objetos muy};
+			\node[font=\small, color=valdark, align=center, text width=2.5cm]
+			at (1.45, 0.15) {delgados};
+			
+			% ────────────────────────────────────────────────────────────────
+			%  PANEL 2: centímetro (cm)
+			%  EDITAR: El dedo meñique puede variar; ajusta la referencia.
+			% ────────────────────────────────────────────────────────────────
+			\fill[vallightorange!70] (3.1, 0.0) rectangle (6.0, 3.6);
+			\draw[valorange, line width=1.2pt] (3.1, 0.0) rectangle (6.0, 3.6);
+			
+			\node[font=\bfseries\Huge, color=valorange] at (4.55, 3) {cm};
+			
+			% Dedo (rectángulo redondeado vertical)
+			\fill[valorange!35] (4.05,1.65) rectangle (5.05,2.70);
+			\draw[valorange, line width=1.8pt, rounded corners=5pt]
+			(4.05,1.65) rectangle (5.05,2.70);
+			\draw[<->, >=stealth, valdark, line width=1pt]
+			(3.82,1.65) -- (3.82,2.70);
+			\node[font=\bfseries\tiny, color=valdark, rotate=90] at (3.60,2.17)
+			{$\approx$ 1 cm};
+			
+			\node[font=\bfseries\small, color=valorange, align=center, text width=2.5cm]
+			at (4.55, 1.30) {Ancho de tu};
+			\node[font=\bfseries\small, color=valorange, align=center, text width=2.5cm]
+			at (4.55, 0.72) {dedo meñique};
+			\node[font=\small, color=valdark, align=center, text width=2.5cm]
+			at (4.55, 0) {Lápices, borradores};
+			
+			% ────────────────────────────────────────────────────────────────
+			%  PANEL 3: decímetro (dm)
+			% ────────────────────────────────────────────────────────────────
+			\fill[vallightgreen!70] (6.2, 0.0) rectangle (9.1, 3.6);
+			\draw[valgreen, line width=1.2pt] (6.2, 0.0) rectangle (9.1, 3.6);
+			
+			\node[font=\bfseries\Huge, color=valgreen] at (7.65, 3) {dm};
+			
+			% Mano abierta (rectángulo horizontal + dedos)
+			\fill[valgreen!30] (6.60,1.60) rectangle (8.70,2.10);
+			\draw[valgreen, line width=1.5pt] (6.60,1.60) rectangle (8.70,2.10);
+			% Dedos (5 rectángulos pequeños sobre la palma)
+			\fill[valgreen!25] (6.70,2.10) rectangle (6.95,2.40);
+			\fill[valgreen!25] (7.05,2.10) rectangle (7.30,2.50);
+			\fill[valgreen!25] (7.40,2.10) rectangle (7.65,2.55);
+			\fill[valgreen!25] (7.75,2.10) rectangle (8.00,2.48);
+			\fill[valgreen!25] (8.10,2.10) rectangle (8.30,2.30);
+			\draw[<->, >=stealth, valdark, line width=1pt]
+			(6.60,1.40) -- (8.70,1.40);
+			\node[font=\bfseries\tiny, color=valdark] at (7.65,1.2) {$\approx$ 1 dm};
+			
+			\node[font=\bfseries\small, color=valgreen, align=center, text width=2.5cm]
+			at (7.65, 0.88) {Ancho de tu};
+			\node[font=\bfseries\small, color=valgreen, align=center, text width=2.5cm]
+			at (7.65, 0.62) {mano abierta};
+			\node[font=\small, color=valdark, align=center, text width=2.5cm]
+			at (7.65, 0.22) {Libros, tablets};
+			
+			% ────────────────────────────────────────────────────────────────
+			%  PANEL 4: metro (m)
+			% ────────────────────────────────────────────────────────────────
+			\fill[vallightblue!70] (9.3, 0.0) rectangle (12.2, 3.6);
+			\draw[valblue, line width=1.8pt] (9.3, 0.0) rectangle (12.2, 3.6);
+			% Borde extra para destacar como unidad base
+			\draw[valblue!50, line width=3pt, dashed] (9.3, 0.0) rectangle (12.2, 3.6);
+			
+			\node[font=\bfseries\Huge, color=valblue] at (10.75, 3.2) {m};
+			\node[font=\bfseries\tiny, color=valblue] at (10.75, 2.88)
+			{\textsc{Unidad base}};
+			
+			% Figura humana simplificada
+			\fill[valblue] (10.75,2.50) circle[radius=0.20cm];  % cabeza
+			\draw[valblue, line width=2pt] (10.75,2.32) -- (10.75,1.60); % cuerpo
+			\draw[valblue, line width=1.5pt] (10.30,2.12) -- (11.20,2.12); % brazos
+			\draw[valblue, line width=1.5pt] (10.75,1.60) -- (10.35,1.05); % pierna izq
+			\draw[valblue, line width=1.5pt] (10.75,1.60) -- (11.15,1.05); % pierna der
+			\draw[<->, >=stealth, valblue, line width=1pt]
+			(11.40,1.05) -- (11.40,2.60);
+			\node[font=\bfseries\tiny, color=valblue, rotate=90] at (11.62,1.78)
+			{$\approx$ 1 m};
+			
+			\node[font=\bfseries\small, color=valblue, align=center, text width=2.5cm]
+			at (10.75,0.50) {Tu propia estatura};
+			\node[font=\small, color=valdark, align=center, text width=2.5cm]
+			at (10.75,-0.48) {Puertas, techos};
+			
+			% ────────────────────────────────────────────────────────────────
+			%  PANEL 5: kilómetro (Km)
+			% ────────────────────────────────────────────────────────────────
+			\fill[vallightpurple!70] (12.4, 0.0) rectangle (15.5, 3.6);
+			\draw[valpurple, line width=1.2pt] (12.4, 0.0) rectangle (15.5, 3.6);
+			
+			\node[font=\bfseries\Huge, color=valpurple] at (13.95, 3) {Km};
+			
+			% Camino con puntos
+			\draw[valpurple, line width=1.8pt, dashed]
+			(12.80,2) -- (15.10,2);
+			\fill[valgreen]  (12.80,2) circle[radius=0.14cm];
+			\fill[valred]    (15.10,2) circle[radius=0.14cm];
+			\node[font=\bfseries\tiny, color=valgreen, below] at (12.80,1.85)
+			{Casa};
+			\node[font=\bfseries\tiny, color=valred, below] at (15.10,1.85)
+			{Colegio};
+			%\node[font=\large, color=valpurple] at (13.95,1.65) {$\sim$};
+			
+			\node[font=\bfseries\small, color=valpurple, align=center, text width=2.8cm]
+			at (13.95, 1) {$\approx$ 12 min caminando};
+			\node[font=\bfseries\small, color=valpurple, align=center, text width=2.8cm]
+			at (13.95, 0.42) {(1\,000 pasos)};
+			\node[font=\small, color=valdark, align=center, text width=2.8cm]
+			at (13.95, -0.4) {Ciudades, carreteras};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	%\vspace{5pt}
+	
+	% ── Regla de oro para estimar ─────────────────────────────────────────
+	\begin{tcolorbox}[
+		enhanced,
+		colback=vallightblue, colframe=valblue,
+		arc=3mm, boxrule=0.8pt,
+		left=4mm, right=4mm, top=3mm, bottom=3mm,
+		]
+		\textbf{\color{valblue} Regla para estimar:}
+		Cuando veas una medida escrita, pregúntate:\\[3pt]
+		{¿}Es del tamaño de una \textbf{moneda} (mm)?
+		\quad {¿}Un \textbf{dedo} (cm)?
+		\quad {¿}Una \textbf{mano} (dm)?
+		\quad {¿}Una \textbf{puerta} (m)?
+		\quad {¿}Un \textbf{camino largo} (Km)?
+	\end{tcolorbox}
+\end{concepto}
+
+\begin{practica}{$\square$ {¡}Tu Turno! --- Estima la medida}
+
+% TEXTO: instrucción de la actividad
+\textit{Escoge la medida más razonable para cada objeto.
+Marca con una \textbf{X} la respuesta correcta.}
+
+\vspace{6pt}
+% EDITAR: Cambia los objetos y las opciones de medida.
+\begin{enumerate}[itemsep=0.7cm, label=\textbf{\arabic*.}]
+  \item La longitud de tu dedo índice:
+        \hspace{0.4cm}$\square$\ 7 mm
+        \hspace{0.8cm}$\square$\ 7 cm
+        \hspace{0.8cm}$\square$\ 7 m
+
+  \item La distancia de Bogotá a Medellín:
+        \hspace{0.4cm}$\square$\ 420 cm
+        \hspace{0.8cm}$\square$\ 420 m
+        \hspace{0.8cm}$\square$\ 420 Km
+
+  \item La altura de una puerta estándar:
+        \hspace{0.4cm}$\square$\ 2 mm
+        \hspace{0.8cm}$\square$\ 2 cm
+        \hspace{0.8cm}$\square$\ 2 m
+
+  \item El grosor de una hoja de papel:
+        \hspace{0.4cm}$\square$\ 0.1 mm
+        \hspace{0.8cm}$\square$\ 1 cm
+        \hspace{0.8cm}$\square$\ 10 m
+\end{enumerate}
+\end{practica}
+
+%\newpage
+
+% ═════════════════════════════════════════════════════════════════════════
+%  MISIÓN 2 — Las 7 Unidades del Sistema Métrico
+%  Objetivo: El estudiante ordena las 7 unidades de mayor a menor y
+%            reconoce el metro como unidad base.
+%  TikZ: Diagrama de escalera vertical (Km arriba, mm abajo).
+%  REGLA CRÍTICA: todos los \node y \draw son EXPLÍCITOS (sin \foreach).
+% ═════════════════════════════════════════════════════════════════════════
+\mision{valblue}{Misión 2: Las 7 Unidades del Sistema Métrico}
+
+\begin{concepto}{$\square$ Aprende el Concepto: La Escalera Métrica}
+
+% TEXTO: introducción al sistema métrico
+En el sistema métrico, las unidades de longitud van desde la
+\textbf{más grande} (kilómetro) hasta la \textbf{más pequeña}
+(milímetro). El \textbf{metro} es la \textit{unidad base}.
+
+\vspace{6pt}
+\textit{Cada escalón hacia abajo \textbf{multiplica por 10}.
+Cada escalón hacia arriba \textbf{divide entre 10}.}
+\end{concepto}
+
+\vspace{4pt}
+
+% ─────────────────────────────────────────────────────────────────────
+% DIAGRAMA: Escalera vertical de unidades métricas.
+% Km (arriba) = mayor, mm (abajo) = menor.
+% Las flechas de la DERECHA muestran ×10 (bajando = haciendo más pequeño).
+% Las flechas de la IZQUIERDA muestran ÷10 (subiendo = haciendo más grande).
+%
+% EDITAR: Los nodos "unidad" tienen minimum width/height.
+%   Para cambiar las unidades, modifica el texto en las llaves {} de cada \node.
+%
+% COORDENADAS: x=1cm, y=1.3cm
+%   La distancia vertical entre celdas es 1.3 cm.
+%   Las celdas están centradas en x=0.
+% ─────────────────────────────────────────────────────────────────────
+\begin{center}
+\begin{tikzpicture}[x=1cm, y=1.3cm]
+
+  % ════ COLUMNA CENTRAL: Las 7 unidades ════════════════════════════
+
+  % EDITAR: El texto de cada nodo es el símbolo de la unidad.
+  % Cambia "Km" por otra unidad si la malla curricular cambia.
+
+  \node[unidad] (Km)  at (0, 6.0) {Km};   % kilómetro
+  \node[unidad] (Hm)  at (0, 4.8) {Hm};   % hectómetro
+  \node[unidad] (Dm) at (0, 3.6) {Dm};  % decámetro
+  \node[base]   (M)   at (0, 2.4) {m};    % metro (UNIDAD BASE, verde destacado)
+  \node[unidad] (Dm)  at (0, 1.2) {Dm};   % decímetro
+  \node[unidad] (CM)  at (0, 0.0) {cm};   % centímetro
+  \node[unidad] (MM)  at (0,-1.2) {mm};   % milímetro
+
+  % Nombres completos a la izquierda de cada nodo
+  % EDITAR: Cambia los textos "kilómetro" etc. si necesitas otro idioma.
+  \node[anchor=east, font=\small, color=valdark] at (-1.7,6.0) {kil\'ometro};
+  \node[anchor=east, font=\small, color=valdark] at (-1.7,4.8) {hect\'ometro};
+  \node[anchor=east, font=\small, color=valdark] at (-1.7,3.6) {dec\'ametro};
+  \node[anchor=east, font=\small, color=valgreen] at (-1.7,2.4)
+    {\textbf{metro (BASE)}};
+  \node[anchor=east, font=\small, color=valdark] at (-1.7,1.2) {dec\'imetro};
+  \node[anchor=east, font=\small, color=valdark] at (-1.7,0.0) {cent\'imetro};
+  \node[anchor=east, font=\small, color=valdark] at (-1.7,-1.2) {mil\'imetro};
+
+  % ════ LADO DERECHO: Flechas ×10 bajando ══════════════════════════
+  % REGLA: No usar \foreach. Cada flecha es explícita.
+  % Las flechas van de una unidad a la siguiente (Km->Hm->Dm->...->mm)
+
+  % Km a Hm
+  \draw[->, >=stealth, valorange, line width=1.6pt]
+    (0.85,5.75) -- (0.85,5.05);
+  \node[font=\bfseries\small, color=valorange] at (1.65,5.40) {$\times 10$};
+
+  % Hm a Dm
+  \draw[->, >=stealth, valorange, line width=1.6pt]
+    (0.85,4.55) -- (0.85,3.85);
+  \node[font=\bfseries\small, color=valorange] at (1.65,4.20) {$\times 10$};
+
+  % Dm a m
+  \draw[->, >=stealth, valorange, line width=1.6pt]
+    (0.85,3.35) -- (0.85,2.65);
+  \node[font=\bfseries\small, color=valorange] at (1.65,3.00) {$\times 10$};
+
+  % m a Dm
+  \draw[->, >=stealth, valorange, line width=1.6pt]
+    (0.85,2.15) -- (0.85,1.45);
+  \node[font=\bfseries\small, color=valorange] at (1.65,1.80) {$\times 10$};
+
+  % Dm a cm
+  \draw[->, >=stealth, valorange, line width=1.6pt]
+    (0.85,0.95) -- (0.85,0.25);
+  \node[font=\bfseries\small, color=valorange] at (1.65,0.60) {$\times 10$};
+
+  % cm a mm
+  \draw[->, >=stealth, valorange, line width=1.6pt]
+    (0.85,-0.25) -- (0.85,-0.95);
+  \node[font=\bfseries\small, color=valorange] at (1.65,-0.60) {$\times 10$};
+
+  % ════ LADO IZQUIERDO: Flechas ÷10 subiendo ═══════════════════════
+
+  % mm a cm
+  \draw[->, >=stealth, valblue, line width=1.6pt]
+    (-0.85,-0.95) -- (-0.85,-0.25);
+  \node[font=\bfseries\small, color=valblue] at (-1.65,-0.60) {$\div 10$};
+
+  % cm a Dm
+  \draw[->, >=stealth, valblue, line width=1.6pt]
+    (-0.85,0.25) -- (-0.85,0.95);
+  \node[font=\bfseries\small, color=valblue] at (-1.65,0.60) {$\div 10$};
+
+  % Dm a m
+  \draw[->, >=stealth, valblue, line width=1.6pt]
+    (-0.85,1.45) -- (-0.85,2.15);
+  \node[font=\bfseries\small, color=valblue] at (-1.65,1.80) {$\div 10$};
+
+  % m a Dm
+  \draw[->, >=stealth, valblue, line width=1.6pt]
+    (-0.85,2.65) -- (-0.85,3.35);
+  \node[font=\bfseries\small, color=valblue] at (-1.65,3.00) {$\div 10$};
+
+  % Dm a Hm
+  \draw[->, >=stealth, valblue, line width=1.6pt]
+    (-0.85,3.85) -- (-0.85,4.55);
+  \node[font=\bfseries\small, color=valblue] at (-1.65,4.20) {$\div 10$};
+
+  % Hm a Km
+  \draw[->, >=stealth, valblue, line width=1.6pt]
+    (-0.85,5.05) -- (-0.85,5.75);
+  \node[font=\bfseries\small, color=valblue] at (-1.65,5.40) {$\div 10$};
+
+  % ════ LEYENDAS DE DIRECCIÓN ═══════════════════════════════════════
+
+  % Flecha grande naranja derecha (bajando)
+  \draw[->, >=stealth, valorange, line width=3pt]
+    (3.0,5.8) -- (3.0,-1.0);
+  \node[font=\bfseries\small, color=valorange, rotate=-90,
+        align=center, text width=2.5cm] at (3.9, 2.4)
+    {Unidades MENORES\\$\times 10$ al bajar};
+
+  % Flecha grande azul izquierda (subiendo)
+  \draw[->, >=stealth, valblue, line width=3pt]
+    (-5.0,-1.0) -- (-5.0,5.8);
+  \node[font=\bfseries\small, color=valblue, rotate=90,
+        align=center, text width=2.5cm] at (-5.9, 2.4)
+    {Unidades MAYORES\\$\div 10$ al subir};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{4pt}
+
+\begin{practica}{$\square$ {¡}Tu Turno! --- Ordena las Unidades}
+\begin{enumerate}[itemsep=0.7cm, label=\textbf{\arabic*.}]
+  \item Escribe las 7 unidades en orden de \textbf{mayor a menor}:
+
+        \boxfill[1.5cm] $>$
+        \boxfill[1.5cm] $>$
+        \boxfill[1.5cm] $>$
+        \boxfill[1.5cm] $>$
+        \boxfill[1.5cm] $>$
+        \boxfill[1.5cm] $>$
+        \boxfill[1.5cm]
+
+  \item Escribe siguiente unidad \textbf{más pequeña} que el metro: \boxfill[3.5cm]
+
+  \item Escribe la siguiente unidad \textbf{más grande} que el metro: \boxfill[3.5cm]
+
+  \item {¿}Para qué usarías los \textbf{kilómetros}? Marca todas las correctas:\\[3pt]
+        $\square$ Medir el largo de un lápiz \hspace{1cm}
+        $\square$ Medir la distancia entre ciudades\\[3pt]
+        $\square$ Medir la longitud de una piscina \hspace{0.5cm}
+        $\square$ Medir la ruta de un maratón
+\end{enumerate}
+\end{practica}
+
+%\newpage
+
+% ═════════════════════════════════════════════════════════════════════════
+%  MISIÓN 3 — Conversiones hacia Unidades Menores (×10)
+%  Objetivo: Multiplicar por 10 cada vez que se baja un escalón.
+%  EDITAR: los números en las tablas de conversión.
+% ═════════════════════════════════════════════════════════════════════════
+\mision{valorange}{Misión 3: Convertir hacia Unidades Menores ($\times 10$)}
+
+\begin{truco}{{¡}La Regla de la Escalera para Bajar!}
+
+% TEXTO: regla de conversión bajando
+Cuando conviertes a una unidad \textbf{más pequeña},
+\textbf{multiplicas por 10} por \textbf{cada escalón} que bajas.
+
+\vspace{8pt}
+\begin{center}
+\begin{tikzpicture}[x=1cm, y=0.8cm]
+  % Cajas de unidades en fila horizontal (simplificada)
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U1) at (0,0) {m};
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U2) at (3,0) {Dm};
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U3) at (6,0) {cm};
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U4) at (9,0) {mm};
+
+  % Flechas con factor ×10
+  \draw[->, >=stealth, valorange, line width=1.8pt] (U1) -- (U2);
+  \draw[->, >=stealth, valorange, line width=1.8pt] (U2) -- (U3);
+  \draw[->, >=stealth, valorange, line width=1.8pt] (U3) -- (U4);
+
+  \node[font=\bfseries\normalsize, color=valorange] at (1.5,0.5) {$\times 10$};
+  \node[font=\bfseries\normalsize, color=valorange] at (4.5,0.5) {$\times 10$};
+  \node[font=\bfseries\normalsize, color=valorange] at (7.5,0.5) {$\times 10$};
+
+  % Flecha larga mostrando 2 escalones
+  \draw[->, >=stealth, valred, line width=1.5pt, bend right=35]
+    (0.8,-0.55) to node[below, font=\bfseries\small, color=valred]
+    {$\times 100$ (2 escalones)} (6.2,-0.55);
+\end{tikzpicture}
+\end{center}
+\end{truco}
+
+\vspace{4pt}
+
+\begin{ejemplo}{Ejemplo Resuelto — Convertir 3 m a cm}
+
+% TEXTO: pasos de conversión
+\numstep{valblue}{1} Identifico el punto de partida: \textbf{3 metros (m)}.
+
+\vspace{5pt}
+\numstep{btnorange}{2} Cuento cuántos escalones debo bajar de \textbf{m a cm}:\\[3pt]
+\hspace{1.5cm} m $\to$ Dm (1 escalón) $\to$ cm (2 escalones).
+\textbf{Son 2 escalones.}
+
+\vspace{5pt}
+\numstep{btnverde}{3} Multiplico por $10\times10 = 100$ (es decir un $1$ y dos $0$, \textbf{un $0$ por cada escalon}):
+\[ 3\,\text{m} \;\times\; 100 \;=\; \mathbf{300\,\text{cm}} \]
+
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}[x=1cm, y=0.8cm]
+  % Diagrama de pasos
+  \node[cajao, inner sep=8pt, font=\bfseries\Large] (A) at (0,0) {3 m};
+  \node[font=\bfseries\Large, color=valdark] at (2.2,0) {$\xrightarrow{\times 10}$};
+  \node[cajaz, inner sep=8pt, font=\bfseries\Large] (B) at (4.4,0) {30 Dm};
+  \node[font=\bfseries\Large, color=valdark] at (6.6,0) {$\xrightarrow{\times 10}$};
+  \node[cajag, inner sep=8pt, font=\bfseries\Large] (C) at (8.8,0) {300 cm};
+
+  % Flecha resultado final
+  \draw[->, >=stealth, valred, line width=2pt] (A) to[bend right=40]
+    node[below, font=\bfseries\normalsize, color=valred]
+    {$\times 100$ directamente} (C);
+\end{tikzpicture}
+\end{center}
+\end{ejemplo}
+
+\vspace{4pt}
+
+\begin{practica}{$\square$ {¡}Tu Turno! --- Baja la Escalera}
+
+\textit{Convierte cada medida a la unidad indicada.
+Muestra cuántos escalones te mueves y el resultado.}
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{|l|c|c|c|}
+  \hline
+  \rowcolor{vallightblue}
+  \textbf{Medida original} & \textbf{Unidad destino} &
+  \textbf{Escalones} & \textbf{Resultado} \\
+  \hline
+  % EDITAR: cambia los valores de la primera columna.
+  5 m  & cm & & \hspace{3.5cm} \\[4pt] \hline
+  2 m  & mm & & \\[4pt] \hline
+  4 Km & m  & & \\[4pt] \hline
+  8 Dm & mm & & \\[4pt] \hline
+  3 Hm & Dm & & \\[4pt] \hline
+\end{tabular}
+\end{practica}
+
+%\newpage
+
+% ═════════════════════════════════════════════════════════════════════════
+%  MISIÓN 4 — Conversiones hacia Unidades Mayores (÷10)
+%  Objetivo: Dividir por 10 cada vez que se sube un escalón.
+%  EDITAR: los ejemplos en la tabla de práctica.
+% ═════════════════════════════════════════════════════════════════════════
+\mision{valorange}{Misión 4: Convertir hacia Unidades Mayores ($\div 10$)}
+
+\begin{truco}{{¡}La Regla de la Escalera para Subir!}
+
+Cuando conviertes a una unidad \textbf{más grande},
+\textbf{divides entre 10} por \textbf{cada escalón} que subes.
+
+\vspace{8pt}
+\begin{center}
+\begin{tikzpicture}[x=1cm, y=0.8cm]
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U1) at (0,0) {mm};
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U2) at (3,0) {cm};
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U3) at (6,0) {Dm};
+  \node[cajaz, minimum width=1.6cm, minimum height=0.8cm,
+        font=\bfseries\large] (U4) at (9,0) {m};
+
+  \draw[->, >=stealth, valblue, line width=1.8pt] (U1) -- (U2);
+  \draw[->, >=stealth, valblue, line width=1.8pt] (U2) -- (U3);
+  \draw[->, >=stealth, valblue, line width=1.8pt] (U3) -- (U4);
+
+  \node[font=\bfseries\normalsize, color=valblue] at (1.5,0.5) {$\div 10$};
+  \node[font=\bfseries\normalsize, color=valblue] at (4.5,0.5) {$\div 10$};
+  \node[font=\bfseries\normalsize, color=valblue] at (7.5,0.5) {$\div 10$};
+
+  \draw[->, >=stealth, valred, line width=1.5pt, bend right=35]
+    (0.8,-0.55) to node[below, font=\bfseries\small, color=valred]
+    {$\div 1\,000$ (3 escalones)} (8.2,-0.55);
+\end{tikzpicture}
+\end{center}
+\end{truco}
+
+\vspace{4pt}
+
+\begin{ejemplo}{Ejemplo Resuelto — Convertir 500 cm a m}
+
+\numstep{valblue}{1} Partida: \textbf{500 cm}.
+
+\vspace{5pt}
+\numstep{btnorange}{2} Escalones de cm a m: \; cm $\to$ Dm $\to$ m \; $=$ \textbf{2 escalones}.
+
+\vspace{5pt}
+\numstep{btnverde}{3} Divido por $10^2 = 100$:
+\[ 500\,\text{cm} \;\div\; 100 \;=\; \mathbf{5\,\text{m}} \]
+
+\begin{center}
+\begin{tikzpicture}[x=1cm, y=0.8cm]
+  \node[cajao, inner sep=8pt, font=\bfseries\Large] (A) at (0,0) {500 cm};
+  \node[font=\bfseries\Large, color=valdark] at (2.4,0) {$\xrightarrow{\div 10}$};
+  \node[cajaz, inner sep=8pt, font=\bfseries\Large] (B) at (4.8,0) {50 Dm};
+  \node[font=\bfseries\Large, color=valdark] at (7.2,0) {$\xrightarrow{\div 10}$};
+  \node[cajag, inner sep=8pt, font=\bfseries\Large] (C) at (9.6,0) {5 m};
+  \draw[->, >=stealth, valblue, line width=2pt] (A) to[bend right=40]
+    node[below, font=\bfseries\normalsize, color=valblue]
+    {$\div 100$ directamente} (C);
+\end{tikzpicture}
+\end{center}
+\end{ejemplo}
+
+\vspace{4pt}
+
+\begin{practica}{$\square$ {¡}Tu Turno! --- Sube la Escalera}
+
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{|l|c|c|c|}
+  \hline
+  \rowcolor{vallightblue}
+  \textbf{Medida original} & \textbf{Unidad destino} &
+  \textbf{Escalones} & \textbf{Resultado} \\
+  \hline
+  300 cm & m  & & \hspace{3.5cm} \\[4pt] \hline
+  5\,000 m & Km & & \\[4pt] \hline
+  80 mm & cm & & \\[4pt] \hline
+  2\,000 mm & m & & \\[4pt] \hline
+  600 Dm & Hm & & \\[4pt] \hline
+\end{tabular}
+\end{practica}
+
+%\newpage
+
+% ═════════════════════════════════════════════════════════════════════════
+%  MISIÓN 5 — Leer una Regla o Cinta Métrica
+%  Objetivo: El estudiante lee medidas en cm y mm con una regla.
+%  TikZ: Regla de 10 cm con marcas de cm y 5mm. EXPLÍCITA (sin \foreach).
+%  EDITAR: los valores de los ejercicios de lectura.
+% ═════════════════════════════════════════════════════════════════════════
+\mision{valgreen}{Misión 5: Leer una Regla o Cinta Métrica}
+
+\begin{concepto}{$\square$ Aprende el Concepto: Las Marcas de la Regla}
+
+% TEXTO: cómo leer una regla
+Una regla tiene dos tipos de marcas:
+\begin{itemize}[leftmargin=*, itemsep=2pt]
+  \item Marcas \textbf{largas}: cada una vale \textbf{1 cm} (centímetro).
+  \item Marcas \textbf{cortas} (entre las largas): cada una vale \textbf{5 mm}
+        (medio centímetro).
+\end{itemize}
+
+\vspace{8pt}
+
+% ─────────────────────────────────────────────────────────────────────
+% DIAGRAMA: Regla de 10 cm con marcas explícitas.
+% EDITAR: Cambia el valor "xmax" (actualmente 10) y las etiquetas
+%   de los \node para mostrar una regla de otro rango.
+% Cada unidad de x = 0.85 cm (x=0.85cm es la escala usada).
+% Marcas de 1cm: en posiciones 1,2,3,...,10
+% Marcas de 5mm: en posiciones 0.5, 1.5, 2.5,..., 9.5
+% ─────────────────────────────────────────────────────────────────────
+\begin{center}
+\begin{tikzpicture}[x=0.85cm, y=0.85cm]
+  % ── Cuerpo de la regla ────────────────────────────────────────────
+  \fill[valorange!15] (0,0) rectangle (10, 1.4);
+  \draw[valorange!70, line width=1.5pt] (0,0) rectangle (10, 1.4);
+
+  % ── Marcas de centímetro (1 cm cada una) — EXPLÍCITAS ─────────────
+  % Cada marca larga va de y=0 hasta y=1.1
+  \draw[valdark, line width=1.3pt] (1,0) -- (1,1.1);
+  \draw[valdark, line width=1.3pt] (2,0) -- (2,1.1);
+  \draw[valdark, line width=1.3pt] (3,0) -- (3,1.1);
+  \draw[valdark, line width=1.3pt] (4,0) -- (4,1.1);
+  \draw[valdark, line width=1.3pt] (5,0) -- (5,1.1);
+  \draw[valdark, line width=1.3pt] (6,0) -- (6,1.1);
+  \draw[valdark, line width=1.3pt] (7,0) -- (7,1.1);
+  \draw[valdark, line width=1.3pt] (8,0) -- (8,1.1);
+  \draw[valdark, line width=1.3pt] (9,0) -- (9,1.1);
+
+  % ── Marcas de 5 mm (media marca) — EXPLÍCITAS ────────────────────
+  % Cada media marca va de y=0 hasta y=0.65
+  \draw[valdark, line width=0.8pt] (0.5,0) -- (0.5,0.65);
+  \draw[valdark, line width=0.8pt] (1.5,0) -- (1.5,0.65);
+  \draw[valdark, line width=0.8pt] (2.5,0) -- (2.5,0.65);
+  \draw[valdark, line width=0.8pt] (3.5,0) -- (3.5,0.65);
+  \draw[valdark, line width=0.8pt] (4.5,0) -- (4.5,0.65);
+  \draw[valdark, line width=0.8pt] (5.5,0) -- (5.5,0.65);
+  \draw[valdark, line width=0.8pt] (6.5,0) -- (6.5,0.65);
+  \draw[valdark, line width=0.8pt] (7.5,0) -- (7.5,0.65);
+  \draw[valdark, line width=0.8pt] (8.5,0) -- (8.5,0.65);
+  \draw[valdark, line width=0.8pt] (9.5,0) -- (9.5,0.65);
+
+  % ── Etiquetas numéricas (cm) ──────────────────────────────────────
+  \node[font=\bfseries\small] at (0, 1.3) {0};
+  \node[font=\bfseries\small] at (1, 1.3) {1};
+  \node[font=\bfseries\small] at (2, 1.3) {2};
+  \node[font=\bfseries\small] at (3, 1.3) {3};
+  \node[font=\bfseries\small] at (4, 1.3) {4};
+  \node[font=\bfseries\small] at (5, 1.3) {5};
+  \node[font=\bfseries\small] at (6, 1.3) {6};
+  \node[font=\bfseries\small] at (7, 1.3) {7};
+  \node[font=\bfseries\small] at (8, 1.3) {8};
+  \node[font=\bfseries\small] at (9, 1.3) {9};
+  \node[font=\bfseries\small] at (10,1.3) {10};
+
+  % ── Etiqueta de unidad ────────────────────────────────────────────
+  \node[font=\bfseries\normalsize, color=valorange] at (10.7, 0.7) {cm};
+
+  % ── Flecha indicando cómo se lee ──────────────────────────────────
+  \draw[->, >=stealth, valred, line width=1.5pt] (3,-0.45) -- (3,-0.05);
+  \node[font=\bfseries\small, color=valred, below] at (3,-0.5)
+    {Este objeto mide 3 cm};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{4pt}
+
+% ── Detalle: leyendo entre marcas ─────────────────────────────────────
+\begin{center}
+\begin{tikzpicture}[x=0.85cm, y=0.85cm]
+  % Ampliación de 2 cm de la regla (de 4 a 6 cm)
+  \fill[vallightorange] (4,0) rectangle (6,1.4);
+  \draw[valorange!70, line width=1.5pt] (4,0) rectangle (6,1.4);
+
+  \draw[valdark, line width=1.3pt] (5,0) -- (5,1.1);
+  \draw[valdark, line width=0.8pt] (4.5,0) -- (4.5,0.65);
+  \draw[valdark, line width=0.8pt] (5.5,0) -- (5.5,0.65);
+
+  \node[font=\bfseries\small] at (4,1.3) {4};
+  \node[font=\bfseries\small] at (5,1.3) {5};
+  \node[font=\bfseries\small] at (6,1.3) {6};
+
+  % Indicadores de lectura
+  \draw[->, >=stealth, valblue, line width=1.3pt]
+    (4.5,-0.35) -- (4.5,-0.05);
+  \node[font=\bfseries\small, color=valblue, below] at (4.5,-0.4)
+    {4 cm + 5 mm = 4.5 cm};
+
+  \node[font=\bfseries\normalsize, color=valorange] at (6.7,0.7) {cm};
+
+  \node[cajao, inner sep=4pt, font=\bfseries\small] at (9.0,0.7)
+    {5 mm = 0.5 cm};
+\end{tikzpicture}
+\end{center}
+
+\end{concepto}
+
+\vspace{4pt}
+
+\begin{practica}{$\square$ {¡}Tu Turno! --- Lee las Medidas}
+
+\textit{Observa dónde termina cada objeto en la regla.
+Escribe la medida en cm y en mm.}
+
+\vspace{8pt}
+% ─────────────────────────────────────────────────────────────────────
+% DIAGRAMA: Regla con 3 objetos (flechas indicando sus longitudes).
+% EDITAR: Cambia las posiciones de las flechas (xfin) para distintas
+%   medidas. Asegúrate de que xfin esté sobre una marca de la regla.
+% ─────────────────────────────────────────────────────────────────────
+\begin{center}
+\begin{tikzpicture}[x=0.85cm, y=0.85cm]
+  % Regla base
+  \fill[valorange!15] (0,0) rectangle (10,1.4);
+  \draw[valorange!70, line width=1.5pt] (0,0) rectangle (10,1.4);
+
+  % Marcas de cm (EXPLÍCITAS)
+  \draw[valdark, line width=1.3pt] (1,0)--(1,1.1);
+  \draw[valdark, line width=1.3pt] (2,0)--(2,1.1);
+  \draw[valdark, line width=1.3pt] (3,0)--(3,1.1);
+  \draw[valdark, line width=1.3pt] (4,0)--(4,1.1);
+  \draw[valdark, line width=1.3pt] (5,0)--(5,1.1);
+  \draw[valdark, line width=1.3pt] (6,0)--(6,1.1);
+  \draw[valdark, line width=1.3pt] (7,0)--(7,1.1);
+  \draw[valdark, line width=1.3pt] (8,0)--(8,1.1);
+  \draw[valdark, line width=1.3pt] (9,0)--(9,1.1);
+
+  % Marcas de 5 mm (EXPLÍCITAS)
+  \draw[valdark, line width=0.8pt] (0.5,0)--(0.5,0.65);
+  \draw[valdark, line width=0.8pt] (1.5,0)--(1.5,0.65);
+  \draw[valdark, line width=0.8pt] (2.5,0)--(2.5,0.65);
+  \draw[valdark, line width=0.8pt] (3.5,0)--(3.5,0.65);
+  \draw[valdark, line width=0.8pt] (4.5,0)--(4.5,0.65);
+  \draw[valdark, line width=0.8pt] (5.5,0)--(5.5,0.65);
+  \draw[valdark, line width=0.8pt] (6.5,0)--(6.5,0.65);
+  \draw[valdark, line width=0.8pt] (7.5,0)--(7.5,0.65);
+  \draw[valdark, line width=0.8pt] (8.5,0)--(8.5,0.65);
+  \draw[valdark, line width=0.8pt] (9.5,0)--(9.5,0.65);
+
+  % Etiquetas
+  \node[font=\bfseries\small] at (0,1.3)  {0};
+  \node[font=\bfseries\small] at (1,1.3)  {1};
+  \node[font=\bfseries\small] at (2,1.3)  {2};
+  \node[font=\bfseries\small] at (3,1.3)  {3};
+  \node[font=\bfseries\small] at (4,1.3)  {4};
+  \node[font=\bfseries\small] at (5,1.3)  {5};
+  \node[font=\bfseries\small] at (6,1.3)  {6};
+  \node[font=\bfseries\small] at (7,1.3)  {7};
+  \node[font=\bfseries\small] at (8,1.3)  {8};
+  \node[font=\bfseries\small] at (9,1.3)  {9};
+  \node[font=\bfseries\small] at (10,1.3) {10};
+  \node[font=\bfseries\small, color=valorange] at (10.7,0.7) {cm};
+
+  % EDITAR: Cambia los valores de xfin para los 3 objetos.
+  % Objeto A: termina en 4.5 cm
+  \fill[valblue!60] (0,-0.7) rectangle (4.5,-0.3);
+  \draw[valblue, line width=1pt] (0,-0.7) rectangle (4.5,-0.3);
+  \node[font=\bfseries\small, color=valblue] at (2.25,-0.5) {Objeto A};
+
+  % Objeto B: termina en 7 cm
+  \fill[valgreen!60] (0,-1.3) rectangle (7,-0.9);
+  \draw[valgreen, line width=1pt] (0,-1.3) rectangle (7,-0.9);
+  \node[font=\bfseries\small, color=valgreen] at (3.5,-1.1) {Objeto B};
+
+  % Objeto C: termina en 5.5 cm
+  \fill[valred!60] (0,-1.9) rectangle (5.5,-1.5);
+  \draw[valred, line width=1pt] (0,-1.9) rectangle (5.5,-1.5);
+  \node[font=\bfseries\small, color=valred] at (2.75,-1.7) {Objeto C};
+\end{tikzpicture}
+\end{center}
+
+\vspace{8pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|c|c|c|}
+  \hline
+  \rowcolor{vallightblue}
+  \textbf{Objeto} & \textbf{Medida en cm} & \textbf{Medida en mm} \\
+  \hline
+  A & \hspace{3.5cm} & \hspace{3.5cm} \\[3pt] \hline
+  B & & \\[3pt] \hline
+  C & & \\[3pt] \hline
+\end{tabular}
+\end{center}
+\end{practica}
+
+%\newpage
+
+% ═════════════════════════════════════════════════════════════════════════
+%  MISIÓN 6 — Matemáticas para la Vida
+%  Objetivo: Resolver problemas reales de medición.
+%  EDITAR: los enunciados y los datos de cada problema.
+% ═════════════════════════════════════════════════════════════════════════
+\mision{valred}{{¡}Misión 6: Matemáticas para la Vida!}
+
+\begin{concepto}{$\square$ Las Medidas Están en Todo lo que Nos Rodea}
+% TEXTO: motivación
+Medimos longitudes para construir casas, coser ropa, diseñar canchas,
+trazar carreteras y hasta para saber si cabemos en un espacio.
+¡Practica con situaciones reales!
+\end{concepto}
+
+\vspace{4pt}
+
+\begin{espaciotrabajonb}{Problema 1 --- El Jardín Escolar}
+\begin{minipage}[t]{0.58\linewidth}
+  % EDITAR: dimensiones del jardín
+  \textit{El jardín escolar tiene una cerca de \textbf{360 cm} de largo.
+  El maestro quiere pintar letreros cada \textbf{1 m}.
+  {¿}Cuántos letreros puede poner?}
+
+  \vspace{8pt}
+  \textbf{Paso 1:} Convierte 360 cm a metros.\\[3pt]
+  \hspace{1cm} 360 cm $\div$ 100 $=$ \boxfill[2.5cm] m
+
+  \vspace{5pt}
+  \textbf{Paso 2:} Divide entre 1 m para saber cuántos letreros.\\[3pt]
+  \hspace{1cm} \boxfill[1.8cm] $\div$ 1 $=$ \boxfill[2.5cm] letreros
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.36\linewidth}
+  \textbf{Espacio de trabajo:}\vspace{2.8cm}
+\end{minipage}
+\end{espaciotrabajonb}
+
+\vspace{5pt}
+
+\begin{espaciotrabajonb}{Problema 2 --- La Maratón Escolar}
+\begin{minipage}[t]{0.58\linewidth}
+  \textit{La ruta de la maratón escolar es de \textbf{5 Km}.
+  Juan ya corrió \textbf{2\,300 m}.
+  {¿}Cuántos metros le faltan para terminar?}
+
+  \vspace{8pt}
+  \textbf{Paso 1:} Convierte 5 Km a metros.\\[3pt]
+  \hspace{1cm} 5 Km $\times$ 1\,000 $=$ \boxfill[3cm] m
+
+  \vspace{5pt}
+  \textbf{Paso 2:} Resta lo que ya corrió.\\[3pt]
+  \hspace{1cm} \boxfill[2.5cm] $-$ 2\,300 $=$ \boxfill[3cm] m
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.36\linewidth}
+  \textbf{Espacio de trabajo:}\vspace{2.8cm}
+\end{minipage}
+\end{espaciotrabajonb}
+
+\vspace{5pt}
+
+\begin{espaciotrabajonb}{Problema 3 --- La Estantería}
+\begin{minipage}[t]{0.58\linewidth}
+  \textit{Una estantería tiene \textbf{4 repisas} iguales.
+  La altura total de la estantería es \textbf{2 m}.
+  {¿}Cuántos cm mide cada repisa?}
+
+  \vspace{8pt}
+  \textbf{Paso 1:} Convierte 2 m a cm.\\[3pt]
+  \hspace{1cm} 2 m $\times$ 100 $=$ \boxfill[2.5cm] cm
+
+  \vspace{5pt}
+  \textbf{Paso 2:} Divide entre 4 repisas.\\[3pt]
+  \hspace{1cm} \boxfill[2.5cm] $\div$ 4 $=$ \boxfill[2.5cm] cm
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.36\linewidth}
+  \textbf{Espacio de trabajo:}\vspace{2.8cm}
+\end{minipage}
+\end{espaciotrabajonb}
+
+\vspace{5pt}
+
+\begin{espaciotrabajonb}{Problema 4 --- La Cuerda de Saltar}
+\begin{minipage}[t]{0.58\linewidth}
+  \textit{Sara tiene una cuerda de \textbf{180 cm}.
+  Necesita cortarla en \textbf{3 partes iguales}.
+  {¿}Cuántos mm mide cada parte?}
+
+  \vspace{8pt}
+  \textbf{Paso 1:} Divide la cuerda entre 3.\\[3pt]
+  \hspace{1cm} 180 $\div$ 3 $=$ \boxfill[2.5cm] cm
+
+  \vspace{5pt}
+  \textbf{Paso 2:} Convierte cm a mm.\\[3pt]
+  \hspace{1cm} \boxfill[2.5cm] cm $\times$ 10 $=$ \boxfill[2.5cm] mm
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.36\linewidth}
+  \textbf{Espacio de trabajo:}\vspace{2.8cm}
+\end{minipage}
+\end{espaciotrabajonb}
+
+\vspace{6pt}
+
+% ── Autoevaluación ────────────────────────────────────────────────────
+\begin{tcolorbox}[enhanced,breakable,colback=vallightblue,colframe=valblue,
+    arc=4mm,boxrule=1.5pt,top=4mm,left=4mm,right=4mm]
+
+{\bfseries\large\color{valblue} Autoevaluación --- {¿}Qué aprendí?}\\[4pt]
+\textit{Marca con \textbf{X} si lo entendiste:}
+
+\vspace{6pt}
+\begin{enumerate}[leftmargin=2.5em, itemsep=0.55em,
+    label={\large$\square$}]
+  \item Entiendo que la longitud mide qué tan largo es algo.
+  \item Conozco las 7 unidades: Km, Hm, Dm, m, Dm, cm, mm.
+  \item Sé que el metro es la unidad base del sistema métrico.
+  \item Puedo convertir a unidades menores multiplicando por 10.
+  \item Puedo convertir a unidades mayores dividiendo entre 10.
+  \item Puedo leer una regla en centímetros y milímetros.
+  \item Puedo resolver problemas de medición de la vida real.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{6pt}
+\begin{center}
+  \begin{tcolorbox}[enhanced,colback=vallightgreen,colframe=valgreen,
+      arc=8mm,boxrule=2pt,width=0.80\linewidth,halign=center]
+    {\Large\bfseries\color{valgreen} {¡}UNIDAD 12 COMPLETADA!}\\[4pt]
+    {\large\bfseries\color{valdark} {¡}FELICITACIONES!}\\[4pt]
+    {\normalsize\color{valdark}\itshape
+      {¡}Ya sabes medir el mundo con el sistema métrico!}
+  \end{tcolorbox}
+\end{center}
+
+\end{document}
