@@ -5,6 +5,53 @@
 
 \documentclass[12pt, letterpaper]{article}
 
+% ---------- Macros nuevas: ángulos dibujados A ESCALA ----------
+
+% \AnguloOpuestos{grados}{etiquetaA}{etiquetaB}
+% Ángulos opuestos por el vértice (iguales). #1 = medida real en grados.
+\newcommand{\AnguloOpuestos}[3]{%
+	\begin{tikzpicture}[scale=0.55]
+		\coordinate (O) at (0,0);
+		\draw[thick] (180:1.8) -- (0:1.8);
+		\draw[thick] ({180+#1}:1.8) -- ({#1}:1.8);
+		\fill[orange!55,opacity=0.75] (O) -- (0:0.7) arc (0:#1:0.7) -- cycle;
+		\fill[cyan!55,opacity=0.75]   (O) -- (180:0.7) arc (180:{180+#1}:0.7) -- cycle;
+		\node at ({#1/2}:1.05) {\footnotesize #2};
+		\node at ({180+(#1/2)}:1.05) {\footnotesize #3};
+	\end{tikzpicture}%
+}
+
+% \AngulosComplementarios{gradosA}{etiquetaA}{etiquetaB}
+% #1 = grados del ángulo A (0° a #1°); el ángulo B ocupa de #1° a 90°.
+\newcommand{\AngulosComplementarios}[3]{%
+	\begin{tikzpicture}[scale=1.5]
+		\coordinate (O) at (0,0);
+		\draw[thick] (0,0) -- (0:1.8);
+		\draw[thick] (0,0) -- (90:1.8);
+		\draw[thick] (0,0) -- (#1:1.8);
+		\draw (0.25,0) -- (0.25,0.25) -- (0,0.25); % marca de ángulo recto (90°)
+		\fill[orange!55,opacity=0.75] (O) -- (0:0.7) arc (0:#1:0.7) -- cycle;
+		\fill[cyan!55,opacity=0.75]   (O) -- (#1:0.7) arc (#1:90:0.7) -- cycle;
+		\node at ({#1/2}:1.0) {\footnotesize #2};
+		\node at ({(#1+90)/2}:1.0) {\footnotesize #3};
+	\end{tikzpicture}%
+}
+
+% \AngulosSuplementarios{gradosA}{etiquetaA}{etiquetaB}
+% #1 = grados del ángulo A (0° a #1°); el ángulo B ocupa de #1° a 180°.
+\newcommand{\AngulosSuplementarios}[3]{%
+	\begin{tikzpicture}[scale=0.55]
+		\coordinate (O) at (0,0);
+		\draw[thick] (180:1.8) -- (0:1.8);
+		\draw[thick] (0,0) -- (#1:1.8);
+		\fill[orange!55,opacity=0.75] (O) -- (0:0.7) arc (0:#1:0.7) -- cycle;
+		\fill[cyan!55,opacity=0.75]   (O) -- (#1:0.7) arc (#1:180:0.7) -- cycle;
+		\node at ({#1/2}:1.0) {\footnotesize #2};
+		\node at ({(#1+180)/2}:1.0) {\footnotesize #3};
+	\end{tikzpicture}%
+}
+
+
 % --- PAQUETES ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -20,7 +67,13 @@
 \usepackage{pifont}
 \usepackage{tikz}
 \usepackage[most]{tcolorbox}
-\usetikzlibrary{arrows.meta, shapes.geometric, positioning, calc}
+\usetikzlibrary{arrows.meta, shapes.geometric, positioning, calc, decorations.markings}
+
+% ---- Marca de "lado igual" para polígonos ----
+\tikzset{
+	marcalado/.style={postaction={decorate}, decoration={markings,
+			mark=at position 0.5 with {\draw[line width=1.1pt] (-0.1,-0.15) -- (0.1,0.15);}}}
+}
 
 % --- COLORES INSTITUCIONALES ---
 \definecolor{valblue}{RGB}{0, 74, 153}
@@ -45,8 +98,9 @@
 
 % --- CAJITAS PARA COMPLETAR EN TEXTO ---
 \newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!80, colback=white, boxrule=0.6pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+\newcommand{\boxstep}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=valdark!40, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\makebox[#1]{\vphantom{M}}}}
 
-% --- ENTORNOS DE CAJAS PERSONALIZADOS (CORREGIDOS) ---
+% --- ENTORNOS DE CAJAS PERSONALIZADOS ---
 \newtcolorbox{conceptbox}[1]{
 	enhanced, colback=vallightblue, colframe=valblue, arc=2mm, boxrule=1.2pt,
 	title={\Large \ding{111}\ \textbf{#1}}, fonttitle=\bfseries, coltitle=white,
@@ -63,6 +117,10 @@
 	top=4mm, bottom=2mm, left=2mm, right=2mm, drop fuzzy shadow
 }
 
+\newtcolorbox{espaciotrabajonb}[1]{
+	breakable, colback=white, colframe=valdark!40, arc=1mm, boxrule=0.6pt, top=2mm, bottom=2mm, left=2mm, right=2mm
+}
+
 \newcommand{\mision}[1]{
 	\vspace{0.6cm}
 	\begin{tcolorbox}[
@@ -73,6 +131,18 @@
 		\textcolor{white}{\Large \textbf{\ding{118}\ #1}}
 	\end{tcolorbox}
 	\vspace{0.3cm}
+}
+
+% --- MACRO PARA ÁNGULOS OPUESTOS A ESCALA ---
+\newcommand{\angulosOpuestos}[3]{%
+	\begin{tikzpicture}[scale=0.75, thick, baseline=(current bounding box.center)]
+		\draw[<->] (-2.2,0) -- (2.2,0);
+		\draw[<->] (180+#1:2.2) -- (#1:2.2);
+		\draw[valblue, fill=valblue!10] (0,0) -- (0.6,0) arc (0:#1:0.6) -- cycle;
+		\draw[valred, fill=valred!10] (0,0) -- (-0.6,0) arc (180:180+#1:0.6) -- cycle;
+		\node[valblue, font=\small\bfseries] at (#1/2:1.35) {#2};
+		\node[valred, font=\small\bfseries] at (180+#1/2:1.35) {#3};
+	\end{tikzpicture}
 }
 
 \begin{document}
@@ -164,54 +234,146 @@
 	% ----------------------------------------------------------------------
 	% MISIÓN 2: ÁNGULOS QUE TRABAJAN EN EQUIPO
 	% ----------------------------------------------------------------------
-	\mision{Misión 2: Ángulos Complementarios y Suplementarios}
+	\mision{Misión 2: Parejas Especiales}
 	
 	\begin{conceptbox}{Equipos Perfectos}
-		A veces los ángulos se unen para formar figuras perfectas:\\
-		$\bullet$ \textbf{Complementarios:} Son dos ángulos que al juntarse suman exactamente \textbf{$\mathbf{90^\circ}$} (un ángulo Recto).\\
-		$\bullet$ \textbf{Suplementarios:} Son dos ángulos que al juntarse suman exactamente \textbf{$\mathbf{180^\circ}$} (un ángulo Llano).
+		A veces los ángulos se unen para formar figuras perfectas o tienen relaciones especiales:\\
+		$\bullet$ \textbf{Complementarios:} Son dos ángulos que al juntarse suman exactamente \textbf{$\mathbf{90^\circ}$} (forman un ángulo Recto perfecto).\\
+		$\bullet$ \textbf{Suplementarios:} Son dos ángulos que al juntarse suman exactamente \textbf{$\mathbf{180^\circ}$} (forman una línea plana o ángulo Llano).\\
+		$\bullet$ \textbf{Opuestos por el Vértice:} Son los ángulos que están frente a frente cuando dos líneas rectas se cruzan. \textbf{¡Siempre miden exactamente lo mismo!}
 	\end{conceptbox}
 	
 	\begin{espaciotrabajo}{¡Tu Turno! - Descubre el ángulo escondido}
-		Encuentra cuánto mide el ángulo que falta ($?$). Haz la resta sencilla para descubrirlo.
+		Calcula la medida del ángulo que falta ($?$) realizando la resta adecuada. ¡No necesitas fórmulas complicadas, solo fíjate en la figura base (90° o 180°)!
 		
 		\vspace{0.4cm}
 		\begin{multicols}{2}
+			
+			% --- Complementarios ---
 			\textbf{A) Son Complementarios (Llegan a 90°)}\\
 			\begin{tikzpicture}[scale=0.9, thick]
 				\draw[<->] (0,3) -- (0,0) -- (3,0);
 				\draw[->] (0,0) -- (55:3.5cm);
-				% Angulo conocido 55
 				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:55:1.2cm) -- cycle;
 				\node at (25:1.8cm) {\textbf{$55^\circ$}};
-				% Angulo desconocido
 				\draw[valred, fill=valred!10] (0,0) -- (55:1.4cm) arc (55:90:1.4cm) -- cycle;
 				\node[valred] at (72:2cm) {\Large \textbf{?}};
-				% Cuadro de 90
 				\draw (0,0.4) -- (0.4,0.4) -- (0.4,0);
 			\end{tikzpicture}\\[0.2cm]
-			\textbf{Operación:}\\
-			$? \ = 90^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Operación:} $? \ = 90^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{B) Son Complementarios}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\draw[<->] (0,3) -- (0,0) -- (3,0);
+				\draw[->] (0,0) -- (28:3.5cm);
+				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:28:1.2cm) -- cycle;
+				\node at (14:1.9cm) {\textbf{$28^\circ$}};
+				\draw[valred, fill=valred!10] (0,0) -- (28:1.4cm) arc (28:90:1.4cm) -- cycle;
+				\node[valred] at (59:2cm) {\Large \textbf{?}};
+				\draw (0,0.4) -- (0.4,0.4) -- (0.4,0);
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Operación:} $? \ = 90^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{C) Son Complementarios}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\draw[<->] (0,3) -- (0,0) -- (3,0);
+				\draw[->] (0,0) -- (64:3.5cm);
+				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:64:1.2cm) -- cycle;
+				\node at (32:1.9cm) {\textbf{$64^\circ$}};
+				\draw[valred, fill=valred!10] (0,0) -- (64:1.4cm) arc (64:90:1.4cm) -- cycle;
+				\node[valred] at (77:2cm) {\Large \textbf{?}};
+				\draw (0,0.4) -- (0.4,0.4) -- (0.4,0);
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Operación:} $? \ = 90^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
 			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
 			
 			\columnbreak
 			
-			\textbf{B) Son Suplementarios (Llegan a 180°)}\\
+			% --- Suplementarios ---
+			\textbf{D) Son Suplementarios (Llegan a 180°)}\\
 			\begin{tikzpicture}[scale=0.9, thick]
 				\draw[<->] (-3.5,0) -- (3.5,0);
 				\draw[->] (0,0) -- (110:3cm);
-				% Angulo conocido 110
 				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:110:1.2cm) -- cycle;
 				\node at (55:1.8cm) {\textbf{$110^\circ$}};
-				% Angulo desconocido
 				\draw[valred, fill=valred!10] (0,0) -- (110:1.4cm) arc (110:180:1.4cm) -- cycle;
 				\node[valred] at (145:2cm) {\Large \textbf{?}};
 			\end{tikzpicture}\\[0.2cm]
-			\textbf{Operación:}\\
-			$? \ = 180^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Operación:} $? \ = 180^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
 			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{E) Son Suplementarios}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\draw[<->] (-3.5,0) -- (3.5,0);
+				\draw[->] (0,0) -- (45:3cm);
+				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:45:1.2cm) -- cycle;
+				\node at (22.5:2cm) {\textbf{$45^\circ$}};
+				\draw[valred, fill=valred!10] (0,0) -- (45:1.4cm) arc (45:180:1.4cm) -- cycle;
+				\node[valred] at (112.5:2cm) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Operación:} $? \ = 180^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{F) Son Suplementarios}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\draw[<->] (-3.5,0) -- (3.5,0);
+				\draw[->] (0,0) -- (142:3cm);
+				\draw[valblue, fill=valblue!10] (0,0) -- (0:1.2cm) arc (0:142:1.2cm) -- cycle;
+				\node at (71:1.8cm) {\textbf{$142^\circ$}};
+				\draw[valred, fill=valred!10] (0,0) -- (142:1.4cm) arc (142:180:1.4cm) -- cycle;
+				\node[valred] at (161:2cm) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			\textbf{Operación:} $? \ = 180^\circ - \boxfill[1cm]^\circ$\\[0.2cm]
+			\textbf{Respuesta:} El ángulo mide \boxfill[1.5cm]$^\circ$
+			
 		\end{multicols}
 	\end{espaciotrabajo}
+	
+	\begin{espaciotrabajo}{¡Tu Turno! - Ángulos Opuestos por el Vértice}
+		\textbf{A) Ángulos Opuestos por el Vértice:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+				\item \angulosOpuestos{55}{$x^\circ$}{$55^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{90}{$90^\circ$}{$x^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{75}{$x^\circ$}{$75^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{100}{$x^\circ$}{$100^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \angulosOpuestos{48}{$48^\circ$}{$x^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+	\end{espaciotrabajo}
+	
+	\newpage
 	
 	% ----------------------------------------------------------------------
 	% MISIÓN 3: LA MAGIA DE LOS TRIÁNGULOS (180°)
@@ -223,92 +385,267 @@
 	\end{conceptbox}
 	
 	\begin{espaciotrabajo}{¡Tu Turno! - Triángulos Incompletos}
-		Te damos dos ángulos. Encuentra el tercero ($?$). 
-		\textit{Instrucciones: Primero suma los dos que conoces. Luego, réstale ese resultado a 180°.}
+		Encuentra el ángulo perdido ($?$). \\
+		\textit{Instrucciones: Paso 1: Suma los dos que conoces. Paso 2: Réstale ese resultado a 180°.}
 		
 		\vspace{0.4cm}
 		\begin{multicols}{2}
 			\textbf{A)}\\
-			\begin{tikzpicture}[scale=1, thick]
-				% Triángulo Isósceles 30-30-120
-				\coordinate (A) at (0,0);
-				\coordinate (B) at (5,0);
-				\coordinate (C) at (2.5, 1.443); % 2.5 * tan(30)
+			\begin{tikzpicture}[scale=0.9, thick]
+				\coordinate (A) at (0,0); \coordinate (B) at (4,0); \coordinate (C) at (2.37, 2.82);
 				\draw (A) -- (B) -- (C) -- cycle;
-				
-				\begin{scope}
-					\clip (A) -- (B) -- (C) -- cycle;
-					\draw[fill=valblue!20] (A) circle (0.8cm);
-					\draw[fill=valblue!20] (B) circle (0.8cm);
-					\draw[fill=valred!20] (C) circle (0.5cm);
+				\begin{scope} \clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (A) circle (0.7);
+					\draw[fill=valblue!20] (B) circle (0.7);
+					\draw[fill=valred!20] (C) circle (0.6);
 				\end{scope}
-				\node at (1.1, 0.3) {\textbf{$30^\circ$}};
-				\node at (3.9, 0.3) {\textbf{$30^\circ$}};
-				\node[valred] at (2.5, 1) {\Large \textbf{?}};
+				\node at (0.9, 0.3) {\textbf{$50^\circ$}}; \node at (3.1, 0.3) {\textbf{$60^\circ$}};
+				\node[valred] at (2.37, 2.1) {\Large \textbf{?}};
 			\end{tikzpicture}\\[0.2cm]
-			\textbf{Paso 1: Suma los que conoces}\\
-			\boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.5cm]$^\circ$\\[0.2cm]
-			\textbf{Paso 2: Resta a 180°}\\
-			$? \ = 180^\circ - \boxfill[1.5cm]^\circ$\\[0.2cm]
-			\textbf{Respuesta:} $? = $ \boxfill[1.5cm]$^\circ$
+			Paso 1: \boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.2cm]$^\circ$\\[0.2cm]
+			Paso 2: $? \ = 180^\circ - \boxfill[1.2cm]^\circ \ = \ $ \boxfill[1.2cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{B) (¡Ojo con la "L" de la esquina!)}\\
+			\begin{tikzpicture}[scale=0.8, thick]
+				\coordinate (A) at (0,0); \coordinate (B) at (3.5,0); \coordinate (C) at (0, 2.45);
+				\draw (A) -- (B) -- (C) -- cycle;
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); 
+				\begin{scope} \clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (B) circle (0.8);
+					\draw[fill=valred!20] (C) circle (0.6);
+				\end{scope}
+				\node at (2.4, 0.3) {\textbf{$35^\circ$}}; \node[valred] at (0.3, 1.7) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			Paso 1: \boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.2cm]$^\circ$\\[0.2cm]
+			Paso 2: $? \ = 180^\circ - \boxfill[1.2cm]^\circ \ = \ $ \boxfill[1.2cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{C) (La marca indica lados iguales)}\\
+			\begin{tikzpicture}[scale=0.8, thick]
+				\coordinate (A) at (0,0); \coordinate (B) at (5,0); \coordinate (C) at (2.5, 1.95);
+				\draw (A) -- (B) -- (C) -- cycle;
+				\draw[marcalado] (A) -- (C); \draw[marcalado] (B) -- (C);
+				\begin{scope} \clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (A) circle (0.8);
+					\draw[fill=valblue!20] (B) circle (0.8);
+					\draw[fill=valred!20] (C) circle (0.6);
+				\end{scope}
+				\node at (1.1, 0.3) {\textbf{$38^\circ$}}; \node at (3.9, 0.3) {\textbf{$38^\circ$}};
+				\node[valred] at (2.5, 1.2) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			Paso 1: \boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.2cm]$^\circ$\\[0.2cm]
+			Paso 2: $? \ = 180^\circ - \boxfill[1.2cm]^\circ \ = \ $ \boxfill[1.2cm]$^\circ$
 			
 			\columnbreak
 			
-			\textbf{B) (¡Ojo con la forma de "L" de la esquina!)}\\
-			\begin{tikzpicture}[scale=0.9, thick]
-				% Triángulo Rectángulo 90-35-55
-				\coordinate (A) at (0,0);
-				\coordinate (B) at (4,0);
-				\coordinate (C) at (0, 2.8); % 4 * tan(35)
+			\textbf{D)}\\
+			\begin{tikzpicture}[scale=0.8, thick]
+				\coordinate (A) at (0,0); \coordinate (B) at (4,0); \coordinate (C) at (-0.58, 1.59);
 				\draw (A) -- (B) -- (C) -- cycle;
-				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Marca de ángulo recto
-				
-				\begin{scope}
-					\clip (A) -- (B) -- (C) -- cycle;
-					\draw[fill=valblue!20] (B) circle (0.9cm);
-					\draw[fill=valred!20] (C) circle (0.7cm);
+				\begin{scope} \clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (A) circle (0.5);
+					\draw[fill=valblue!20] (B) circle (0.9);
+					\draw[fill=valred!20] (C) circle (0.5);
 				\end{scope}
-				\node at (3.1, 0.3) {\textbf{$35^\circ$}};
-				\node[valred] at (0.4, 2) {\Large \textbf{?}};
+				\node at (0.45, 0.45) {\textbf{$110^\circ$}}; \node at (2.8, 0.25) {\textbf{$25^\circ$}};
+				\node[valred] at (-0.1, 1.2) {\Large \textbf{?}};
 			\end{tikzpicture}\\[0.2cm]
-			\textbf{Paso 1: Suma los que conoces}\\
-			\boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.5cm]$^\circ$\\[0.2cm]
-			\textbf{Paso 2: Resta a 180°}\\
-			$? \ = 180^\circ - \boxfill[1.5cm]^\circ$\\[0.2cm]
-			\textbf{Respuesta:} $? = $ \boxfill[1.5cm]$^\circ$
+			Paso 1: \boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.2cm]$^\circ$\\[0.2cm]
+			Paso 2: $? \ = 180^\circ - \boxfill[1.2cm]^\circ \ = \ $ \boxfill[1.2cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{E)}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\coordinate (A) at (0,0); \coordinate (B) at (3,0); \coordinate (C) at (1.5, 2.6);
+				\draw (A) -- (B) -- (C) -- cycle;
+				\begin{scope} \clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (A) circle (0.7);
+					\draw[fill=valblue!20] (B) circle (0.7);
+					\draw[fill=valred!20] (C) circle (0.6);
+				\end{scope}
+				\node at (0.8, 0.35) {\textbf{$60^\circ$}}; \node at (2.2, 0.35) {\textbf{$60^\circ$}};
+				\node[valred] at (1.5, 1.8) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			Paso 1: \boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.2cm]$^\circ$\\[0.2cm]
+			Paso 2: $? \ = 180^\circ - \boxfill[1.2cm]^\circ \ = \ $ \boxfill[1.2cm]$^\circ$
+			
+			\vspace{0.6cm}
+			\textbf{F)}\\
+			\begin{tikzpicture}[scale=0.9, thick]
+				\coordinate (A) at (0,0); \coordinate (B) at (4,0); \coordinate (C) at (-0.99, 1.41);
+				\draw (A) -- (B) -- (C) -- cycle;
+				\begin{scope} \clip (A) -- (B) -- (C) -- cycle;
+					\draw[fill=valblue!20] (A) circle (0.4);
+					\draw[fill=valblue!20] (B) circle (0.9);
+					\draw[fill=valred!20] (C) circle (0.5);
+				\end{scope}
+				\node at (0.45, 0.25) {\textbf{$125^\circ$}}; \node at (2.8, 0.25) {\textbf{$25^\circ$}};
+				\node[valred] at (-0.3, 1.1) {\Large \textbf{?}};
+			\end{tikzpicture}\\[0.2cm]
+			Paso 1: \boxfill[1cm]$^\circ \ + \ $ \boxfill[1cm]$^\circ \ = \ $ \boxfill[1.2cm]$^\circ$\\[0.2cm]
+			Paso 2: $? \ = 180^\circ - \boxfill[1.2cm]^\circ \ = \ $ \boxfill[1.2cm]$^\circ$
+		\end{multicols}
+	\end{espaciotrabajo}
+	
+	\newpage
+	
+	% ----------------------------------------------------------------------
+	% MISIÓN 4: CLASIFICACIÓN DE TRIÁNGULOS
+	% ----------------------------------------------------------------------
+	\mision{Misión 4: Clasificación de Triángulos}
+	
+	\begin{conceptbox}{Nombres y Apellidos de los Triángulos}
+		Todo triángulo tiene un "nombre" según la medida de sus LADOS y un "apellido" según la medida de sus ÁNGULOS internos.
+		\begin{itemize}[itemsep=0.1cm]
+			\item \textbf{Según sus lados (Nombre):}
+			\begin{itemize}
+				\item \textbf{Equilátero:} Sus 3 lados son iguales.
+				\item \textbf{Isósceles:} Tiene 2 lados iguales.
+				\item \textbf{Escaleno:} Tiene 0 lados iguales (todos son diferentes).
+			\end{itemize}
+			\item \textbf{Según sus ángulos internos (Apellido):}
+			\begin{itemize}
+				\item \textbf{Acutángulo:} Sus 3 ángulos son agudos (menores de 90°).
+				\item \textbf{Rectángulo:} Tiene 1 ángulo recto (exactamente 90°).
+				\item \textbf{Obtusángulo:} Tiene 1 ángulo obtuso (mayor de 90°).
+			\end{itemize}
+		\end{itemize}
+	\end{conceptbox}
+	
+	\begin{espaciotrabajo}{¡Tu Turno! - Ponle Nombre y Apellido}
+		Vuelve a mirar los 6 triángulos de la Misión 3 (A, B, C, D, E y F). Sabiendo ya cuánto miden todos sus ángulos internos, clasifícalos en la siguiente tabla:
+		
+		\vspace{0.4cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{2}
+			\begin{tabular}{|c|p{5cm}|p{5cm}|}
+				\hline
+				\rowcolor{valdark}
+				\textcolor{white}{\textbf{Triángulo}} & \textcolor{white}{\textbf{Según sus lados}} & \textcolor{white}{\textbf{Según sus ángulos}} \\
+				\hline
+				\textbf{Triángulo A} & \boxfill[4cm] & \boxfill[4cm] \\
+				\hline
+				\textbf{Triángulo B} & \boxfill[4cm] & \boxfill[4cm] \\
+				\hline
+				\textbf{Triángulo C} & \boxfill[4cm] & \boxfill[4cm] \\
+				\hline
+				\textbf{Triángulo D} & \boxfill[4cm] & \boxfill[4cm] \\
+				\hline
+				\textbf{Triángulo E} & \boxfill[4cm] & \boxfill[4cm] \\
+				\hline
+				\textbf{Triángulo F} & \boxfill[4cm] & \boxfill[4cm] \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\vspace{0.2cm}
+	\end{espaciotrabajo}
+	
+	%\begin{practica}{Ecuaciones con Ángulos}
+		\textit{Los ángulos están dibujados a escala. Observa la figura,
+			identifica el ángulo marcado como $x$ y encuentra su valor.}
+		
+		\textbf{A) Ángulos Opuestos por el Vértice:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+				\item \AnguloOpuestos{55}{$x^\circ$}{$55^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AnguloOpuestos{90}{$90^\circ$}{$x^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AnguloOpuestos{75}{$x^\circ$}{$75^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AnguloOpuestos{100}{$x^\circ$}{$100^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AnguloOpuestos{48}{$48^\circ$}{$x^\circ$}\\
+				$\angle a$ y $\angle b$ son opuestos por el vértice.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
 		\end{multicols}
 		
-		\vspace{0.4cm}
-		\hrule
-		\vspace{0.4cm}
+		\textbf{B) Ángulos Complementarios (suman $90^\circ$):}
 		
-		\begin{center}
-			\textbf{C) Triángulo Escaleno}\\
-			\begin{tikzpicture}[scale=1.1, thick]
-				% Triángulo Escaleno 45-60-75
-				\coordinate (A) at (0,0);
-				\coordinate (B) at (5,0);
-				\coordinate (C) at (3.17, 3.17); 
-				\draw (A) -- (B) -- (C) -- cycle;
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm, start=6]
+				\item \AngulosComplementarios{63}{$x^\circ$}{$27^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
 				
-				\begin{scope}
-					\clip (A) -- (B) -- (C) -- cycle;
-					\draw[fill=valblue!20] (A) circle (0.9cm);
-					\draw[fill=valblue!20] (B) circle (0.9cm);
-					\draw[fill=valred!20] (C) circle (0.7cm);
-				\end{scope}
-				\node at (1.1, 0.4) {\textbf{$45^\circ$}};
-				\node at (4.2, 0.5) {\textbf{$60^\circ$}};
-				\node[valred] at (3.17, 2.4) {\Large \textbf{?}};
-			\end{tikzpicture}
-		\end{center}
+				\item \AngulosComplementarios{56}{$x^\circ$}{$34^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AngulosComplementarios{49}{$x^\circ$}{$41^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AngulosComplementarios{70}{$x^\circ$}{$20^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AngulosComplementarios{62}{$62^\circ$}{$x^\circ$}\\
+				$\angle A$ y $\angle B$ son complementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
 		
-		\vspace{0.2cm}
-		\textbf{Paso 1: Suma los que conoces}\\
-		\boxfill[1.5cm]$^\circ \ + \ $ \boxfill[1.5cm]$^\circ \ = \ $ \boxfill[2cm]$^\circ$\\[0.4cm]
-		\textbf{Paso 2: Resta a 180°}\\
-		$? \ = 180^\circ - \boxfill[2cm]^\circ \quad \longrightarrow \quad$ \textbf{Respuesta:} $? = $ \boxfill[2cm]$^\circ$
-		\vspace{0.3cm}
-	\end{espaciotrabajo}
+		\textbf{C) Ángulos Suplementarios (suman $180^\circ$):}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm, start=11]
+				\item \AngulosSuplementarios{68}{$x^\circ$}{$112^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AngulosSuplementarios{90}{$x^\circ$}{$90^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AngulosSuplementarios{85}{$x^\circ$}{$95^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+				
+				\item \AngulosSuplementarios{80}{$x^\circ$}{$100^\circ$}\\
+				$\angle A$ y $\angle B$ son suplementarios.
+				\begin{espaciotrabajonb}{}
+					$x=$\boxfill[1.6cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+	%\end{practica}
 	
 \end{document}
