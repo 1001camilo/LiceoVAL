@@ -1,0 +1,217 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen de 1 pulgada en todos los lados
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+% --- FONDO (Membrete Ruta Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\IfFileExists{../../FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+		}%
+	}{}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES GEOMÉTRICOS ---
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes.geometric, angles, quotes}
+
+% --- COMANDOS PARA CAJAS DE RESPUESTA ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=black, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+% --- COLORES GEOMETRÍA ---
+\definecolor{valblue}{RGB}{0, 74, 153}
+\definecolor{valred}{RGB}{204, 0, 0}
+\definecolor{valgreen}{RGB}{0, 153, 76}
+\definecolor{valorange}{RGB}{230, 115, 0}
+
+\begin{document}
+	
+	% ==============================================================================
+	%                              TALLER DE REPASO
+	% ==============================================================================
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}} \\
+		\vspace{0.3cm}
+		{\large \textbf{DEPARTAMENTO DE MATEMÁTICAS}} \\
+		\vspace{0.3cm}
+		{\large \textbf{Taller de Repaso - MÓDULO 6}}
+	\end{center}
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \textbf{06M-15 FL}
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Deduciendo Ángulos (Complementarios y Suplementarios)}
+	
+	\vspace{0.2cm}
+	\noindent Encuentra el valor del ángulo faltante $x$ en cada caso sin usar ecuaciones, solo recordando cuánto deben sumar juntos (la esquina perfecta o la media vuelta).
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\textbf{A) Ángulo Recto ($90^\circ$)} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.2]
+				\draw[thick, <->] (0,2) -- (0,0) -- (2,0);
+				\draw[thick, ->] (0,0) -- (1.5, 1.2);
+				% Cuadrito de 90
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0);
+				% Arcos
+				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.6,0) arc (0:38.6:0.6) -- cycle;
+				\node at (0.8, 0.25) {$55^\circ$};
+				
+				\draw[fill=valorange!20, draw=valorange] (0,0) -- (38.6:0.5) arc (38.6:90:0.5) -- cycle;
+				\node at (0.3, 0.8) {$x$};
+			\end{tikzpicture}
+			
+			\vspace{0.2cm}
+			$x = $ \boxfill
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{B) Ángulo Llano ($180^\circ$)} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.2]
+				\draw[thick, <->] (-2,0) -- (2,0);
+				\draw[thick, ->] (0,0) -- (-1, 1.5);
+				
+				% Arcos
+				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.5,0) arc (0:123.7:0.5) -- cycle;
+				\node at (0.5, 0.6) {$125^\circ$};
+				
+				\draw[fill=valorange!20, draw=valorange] (0,0) -- (123.7:0.4) arc (123.7:180:0.4) -- cycle;
+				\node at (-0.6, 0.3) {$x$};
+			\end{tikzpicture}
+			
+			\vspace{0.2cm}
+			$x = $ \boxfill
+		\end{center}
+	\end{multicols}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Parejas Geométricas en Paralelas}
+	
+	\vspace{0.2cm}
+	\noindent Observa las líneas paralelas cortadas por una transversal. Sabiendo que el ángulo resaltado mide $\mathbf{130^\circ}$, deduce el valor de los ángulos indicados por las letras basándote en la lógica visual.
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.2]
+			\draw[thick, <->] (-3, 2) -- (3, 2) node[right] {$L_1$};
+			\draw[thick, <->] (-3, 0) -- (3, 0) node[right] {$L_2$};
+			\draw[thick, <->, >=stealth] (-1.5, -1) -- (1.5, 3) node[above] {$T$};
+			
+			\coordinate (A) at (0.75, 2);
+			\coordinate (B) at (-0.75, 0);
+			
+			% Ángulo principal: 130 grados (obtuso superior izquierdo)
+			\draw[fill=valred!20, draw=valred, thick] (A) -- ++(53:0.5) arc (53:180:0.5) -- cycle;
+			\node at ($(A) + (-0.6, 0.4)$) {$\mathbf{130^\circ}$};
+			
+			% Ángulo x: agudo superior derecho
+			\draw[fill=valblue!20, draw=valblue, thick] (A) -- ++(0.5,0) arc (0:53:0.5) -- cycle;
+			\node at ($(A) + (0.7, 0.25)$) {$x$};
+			
+			% Ángulo y: obtuso inferior derecho (Alterno interno)
+			\draw[fill=valred!20, draw=valred, thick] (B) -- ++(0.5,0) arc (360:233:-0.5) -- cycle;
+			\draw[fill=valred!20, draw=valred, thick] (B) -- ++(0.5,0) arc (0:-127:0.5) -- cycle;
+			\draw[fill=valred!20, draw=valred, thick] (B) -- ++(233:0.5) arc (233:360:0.5) -- cycle;
+			\node at ($(B) + (0.6, -0.4)$) {$y$};
+			
+			% Ángulo z: agudo inferior izquierdo
+			\draw[fill=valblue!20, draw=valblue, thick] (B) -- ++(180:0.5) arc (180:233:0.5) -- cycle;
+			\node at ($(B) + (-0.7, -0.25)$) {$z$};
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{center}
+		$x = $ \boxfill \hspace{1cm} $y = $ \boxfill \hspace{1cm} $z = $ \boxfill
+	\end{center}
+	
+	\newpage
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. La Magia de los Triángulos ($180^\circ$)}
+	
+	\vspace{0.2cm}
+	\noindent La suma de los tres ángulos internos de \textbf{cualquier triángulo} siempre es $180^\circ$. Encuentra el ángulo perdido en cada figura.
+	
+	\vspace{0.5cm}
+	\begin{multicols}{3}
+		\begin{center}
+			\textbf{A) Triángulo Escaleno} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=0.8]
+				\draw[thick] (0,0) -- (4,0) -- (1,2.5) -- cycle;
+				\node at (0.6, 0.3) {$50^\circ$};
+				\node at (3.2, 0.3) {$40^\circ$};
+				\node at (1.1, 1.8) {$x$};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			$x = $ \boxfill[1cm]
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{B) Triángulo Rectángulo} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=0.8]
+				\draw[thick] (0,0) -- (3,0) -- (0,3) -- cycle;
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Ángulo recto
+				\node at (2.2, 0.3) {$35^\circ$};
+				\node at (0.3, 2.2) {$x$};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			$x = $ \boxfill[1cm]
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{C) Triángulo Isósceles} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=0.8]
+				\draw[thick] (0,0) -- (3,0) -- (1.5, 3) -- cycle;
+				% Marcas de lados iguales
+				\draw[thick] (0.6, 1.4) -- (0.9, 1.6);
+				\draw[thick] (2.4, 1.4) -- (2.1, 1.6);
+				\node at (1.5, 2.3) {$70^\circ$};
+				\node at (0.5, 0.3) {$x$};
+			\end{tikzpicture} \\
+			\vspace{0.1cm}
+			\textit{\scriptsize(Pista: Ángulos de la base son iguales)} \\
+			\vspace{0.2cm}
+			$x = $ \boxfill[1cm]
+		\end{center}
+	\end{multicols}
+	
+	
+	%
+\end{document}

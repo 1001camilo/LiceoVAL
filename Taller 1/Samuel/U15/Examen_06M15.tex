@@ -1,0 +1,277 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen de 1 pulgada en todos los lados
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+% --- FONDO (Membrete Ruta Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\IfFileExists{../../FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+		}%
+	}{}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES GEOMÉTRICOS ---
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes.geometric, angles, quotes}
+
+% --- COMANDOS PARA CAJAS DE RESPUESTA ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal, colframe=black, colback=white, boxrule=0.5pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+% --- COLORES GEOMETRÍA ---
+\definecolor{valblue}{RGB}{0, 74, 153}
+\definecolor{valred}{RGB}{204, 0, 0}
+\definecolor{valgreen}{RGB}{0, 153, 76}
+\definecolor{valorange}{RGB}{230, 115, 0}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}} \\
+		\vspace{0.3cm}
+		{\large \textbf{DEPARTAMENTO DE MATEMÁTICAS}} \\
+		\vspace{0.3cm}
+		{\large \textbf{Examen Final - MÓDULO 6}}
+	\end{center}
+	\vspace{0.3cm}
+	
+	\hfill \textbf{Código:} \textbf{06M-15 FL}
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Observa las figuras y encuentra el valor del ángulo desconocido $x$.} \hfill\textbf{(20\%)}
+	
+	
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\textbf{A)} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.5]
+				\draw[thick, <->] (0,2) -- (0,0) -- (2,0);
+				\draw[thick, ->] (0,0) -- (1.2, 1.6);
+				% Cuadrito de 90
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0);
+				% Arcos
+				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.6,0) arc (0:53.1:0.6) -- cycle;
+				\node at (0.8, 0.3) {$55^\circ$};
+				
+				\draw[fill=valorange!20, draw=valorange] (0,0) -- (53.1:0.5) arc (53.1:90:0.5) -- cycle;
+				\node at (0.35, 0.8) {$x$};
+			\end{tikzpicture}
+			
+			%\vspace{0.2cm}
+			%Mi cálculo: \boxfill[3cm] \\
+			\vspace{0.2cm}
+			$x = $ \boxfill
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{B)} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.5]
+				\draw[thick, <->] (-2,0) -- (2,0);
+				\draw[thick, ->] (0,0) -- (-1.2, 1.6);
+				
+				% Arcos
+				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.5,0) arc (0:126.9:0.5) -- cycle;
+				\node at (0.4, 0.5) {$125^\circ$};
+				
+				\draw[fill=valorange!20, draw=valorange] (0,0) -- (126.9:0.4) arc (126.9:180:0.4) -- cycle;
+				\node at (-0.6, 0.25) {$x$};
+			\end{tikzpicture}
+			
+			%\vspace{0.2cm}
+			%Mi cálculo: \boxfill[3cm] \\
+			\vspace{0.2cm}
+			$x = $ \boxfill
+		\end{center}
+	\end{multicols}
+	
+	\vspace{0.5cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Observa las siguientes figuras donde dos rectas se cruzan. Deduce el valor del ángulo $x$ en cada caso.} \hfill\textbf{(20\%)}
+	
+	\vspace{0.2cm}
+	\noindent 
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\textbf{Figura A} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.2]
+				\coordinate (O) at (0,0);
+				\coordinate (A) at (-2,-1);
+				\coordinate (B) at (2,1);
+				\coordinate (C) at (-2,1);
+				\coordinate (D) at (2,-1);
+				
+				\draw[thick, <->] (A) -- (B);
+				\draw[thick, <->] (C) -- (D);
+				
+				\pic [draw=valred, fill=valred!20, thick, angle radius=0.6cm, angle eccentricity=1.5, "$\mathbf{110^\circ}$"] {angle = B--O--C};
+				\pic [draw=valred, fill=valred!20, thick, angle radius=0.6cm, angle eccentricity=1.5, "$x$"] {angle = A--O--D};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			$x = $ \boxfill[1.5cm]
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{Figura B} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.2]
+				\coordinate (O) at (0,0);
+				\coordinate (P) at (-1.5,-2);
+				\coordinate (Q) at (1.5,2);
+				\coordinate (R) at (-2.5,0.5);
+				\coordinate (S) at (2.5,-0.5);
+				
+				\draw[thick, <->] (P) -- (Q);
+				\draw[thick, <->] (R) -- (S);
+				
+				\pic [draw=valblue, fill=valblue!20, thick, angle radius=0.6cm, angle eccentricity=1.5, "$\mathbf{35^\circ}$"] {angle = S--O--Q};
+				\pic [draw=valblue, fill=valblue!20, thick, angle radius=0.6cm, angle eccentricity=1.5, "$x$"] {angle = R--O--P};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			$x = $ \boxfill[1.5cm]
+		\end{center}
+	\end{multicols}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. Calcula el valor del ángulo $x$ en cada triángulo y luego \textbf{clasifícalo} según la medida de sus ángulos (Acutángulo, Rectángulo u Obtusángulo).} \hfill\textbf{(20\%)}
+	
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\textbf{A) Triángulo 1} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.2]
+				\draw[thick] (0,0) -- (4,0) -- (1.5, 2.5) -- cycle;
+				\node at (0.6, 0.3) {$55^\circ$};
+				\node at (3.2, 0.3) {$45^\circ$};
+				\node at (1.5, 1.8) {$x$};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			$x = $ \boxfill[1cm] \\
+			\vspace{0.3cm}
+			Tipo: \boxfill[4cm]
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{B) Triángulo 2} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}[scale=1.2]
+				\draw[thick] (0,0) -- (3,0) -- (0,3) -- cycle;
+				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Ángulo recto
+				\node at (2.2, 0.3) {$40^\circ$};
+				\node at (0.3, 2.2) {$x$};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			$x = $ \boxfill[1cm] \\
+			\vspace{0.3cm}
+			Tipo: \boxfill[4cm]
+		\end{center}
+	\end{multicols}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. El siguiente es un triángulo \textbf{isósceles} (las rayitas indican que tiene dos lados iguales). Sabiendo que el ángulo de la punta mide $40^\circ$, descubre cuánto miden los ángulos de su base ($x$ y $y$).} \hfill\textbf{(20\%)}
+
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.2]
+			\draw[thick] (0,0) -- (4,0) -- (2, 3.5) -- cycle;
+			% Marcas de lados iguales
+			\draw[thick] (0.8, 1.7) -- (1.2, 1.9);
+			\draw[thick] (3.2, 1.7) -- (2.8, 1.9);
+			
+			% Ángulo superior
+			\draw[fill=valblue!20, draw=valblue, thick] (2,3.5) -- (1.75, 3.06) arc (240:300:0.5) -- cycle;
+			\node at (2, 2.8) {$40^\circ$};
+			
+			\node at (0.6, 0.3) {$x$};
+			\node at (3.4, 0.3) {$y$};
+		\end{tikzpicture}
+	\end{center}
+	
+	\begin{center}
+		$x = $ \boxfill \hspace{1cm} $y = $ \boxfill 
+	\end{center}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 5 ---
+	\noindent \textbf{5.  Observa cuidadosamente las siguientes figuras. Cuenta la cantidad de lados que tiene cada una y escribe sobre el recuadro su \textbf{nombre matemático} correcto (por ejemplo: triángulo, cuadrilátero, pentágono, etc.).
+	} \hfill\textbf{(20\%)}
+
+	\vspace{0.5cm}
+	\begin{multicols}{3}
+		\begin{center}
+			\textbf{Figura A} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}
+				\node[regular polygon, regular polygon sides=5, minimum size=2.5cm, draw=valblue, fill=valblue!20, ultra thick] at (0,0) {};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			Nombre: \\ \boxfill[3cm]
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{Figura B} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}
+				% L-shape hexagon (irregular)
+				\draw[ultra thick, valred, fill=valred!20] (0,0) -- (2,0) -- (2,0.8) -- (0.8,0.8) -- (0.8,2) -- (0,2) -- cycle;
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			Nombre: \\ \boxfill[3cm]
+		\end{center}
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{Figura C} \\
+			\vspace{0.3cm}
+			\begin{tikzpicture}
+				\node[regular polygon, regular polygon sides=8, minimum size=2.5cm, draw=valgreen, fill=valgreen!20, ultra thick] at (0,0) {};
+			\end{tikzpicture} \\
+			\vspace{0.3cm}
+			Nombre: \\ \boxfill[3cm]
+		\end{center}
+	\end{multicols}
+	
+\end{document}
