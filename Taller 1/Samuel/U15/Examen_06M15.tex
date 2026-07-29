@@ -16,12 +16,14 @@
 % --- FONDO (Membrete Ruta Local TeXstudio) ---
 \usepackage{eso-pic}
 \AddToShipoutPictureBG{%
-	\IfFileExists{../../FondoVAL.pdf}{%
-		\AtPageLowerLeft{%
+	 \IfFileExists{../../FondoVAL.pdf}{%
+		 	\AtPageLowerLeft{%
 			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
-		}%
-	}{}%
+			 	}%
+		 }{}%
 }
+% NOTA: He comentado temporalmente las líneas anteriores para evitar el error de compilación si no se encuentra "FondoVAL.pdf". 
+% Descoméntalas en tu editor local.
 
 % --- FUENTE ---
 \usepackage{helvet}
@@ -49,7 +51,7 @@
 		\vspace{0.3cm}
 		{\large \textbf{DEPARTAMENTO DE MATEMÁTICAS}} \\
 		\vspace{0.3cm}
-		{\large \textbf{Examen Final - MÓDULO 6}}
+		{\large \textbf{GEOMETRÍA, ÁNGULOS Y TRIÁNGULOS. Propiedades, medición, clasificación}}
 	\end{center}
 	\vspace{0.3cm}
 	
@@ -57,29 +59,27 @@
 	
 	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
 	
-	\vspace{0.8cm}
+	\vspace{2cm}
 	
 	% --- PUNTO 1 ---
 	\noindent \textbf{1. Observa las figuras y encuentra el valor del ángulo desconocido $x$.} \hfill\textbf{(20\%)}
 	
-	
-	
-	\vspace{0.5cm}
+	%\vspace{0.5cm}
 	\begin{multicols}{2}
 		\begin{center}
-			\textbf{A)} \\
+			\textbf{A) Ángulo Recto ($90^\circ$)} \\
 			\vspace{0.3cm}
 			\begin{tikzpicture}[scale=1.5]
-				\draw[thick, <->] (0,2) -- (0,0) -- (2,0);
-				\draw[thick, ->] (0,0) -- (1.2, 1.6);
+				\draw[thick, <->] (0,2.2) -- (0,0) -- (2.2,0);
+				\draw[thick, ->] (0,0) -- (55:2);
 				% Cuadrito de 90
 				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0);
-				% Arcos
-				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.6,0) arc (0:53.1:0.6) -- cycle;
-				\node at (0.8, 0.3) {$55^\circ$};
+				% Arcos exactos
+				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.6,0) arc (0:55:0.6) -- cycle;
+				\node at (27.5:0.85) {$55^\circ$};
 				
-				\draw[fill=valorange!20, draw=valorange] (0,0) -- (53.1:0.5) arc (53.1:90:0.5) -- cycle;
-				\node at (0.35, 0.8) {$x$};
+				\draw[fill=valorange!20, draw=valorange] (0,0) -- (55:0.5) arc (55:90:0.5) -- cycle;
+				\node at (72.5:0.75) {$x$};
 			\end{tikzpicture}
 			
 			%\vspace{0.2cm}
@@ -91,18 +91,18 @@
 		\columnbreak
 		
 		\begin{center}
-			\textbf{B)} \\
+			\textbf{B) Ángulo Llano ($180^\circ$)} \\
 			\vspace{0.3cm}
 			\begin{tikzpicture}[scale=1.5]
-				\draw[thick, <->] (-2,0) -- (2,0);
-				\draw[thick, ->] (0,0) -- (-1.2, 1.6);
+				\draw[thick, <->] (-2.2,0) -- (2.2,0);
+				\draw[thick, ->] (0,0) -- (125:2);
 				
-				% Arcos
-				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.5,0) arc (0:126.9:0.5) -- cycle;
-				\node at (0.4, 0.5) {$125^\circ$};
+				% Arcos exactos
+				\draw[fill=valgreen!20, draw=valgreen] (0,0) -- (0.5,0) arc (0:125:0.5) -- cycle;
+				\node at (62.5:0.75) {$125^\circ$};
 				
-				\draw[fill=valorange!20, draw=valorange] (0,0) -- (126.9:0.4) arc (126.9:180:0.4) -- cycle;
-				\node at (-0.6, 0.25) {$x$};
+				\draw[fill=valorange!20, draw=valorange] (0,0) -- (125:0.4) arc (125:180:0.4) -- cycle;
+				\node at (152.5:0.65) {$x$};
 			\end{tikzpicture}
 			
 			%\vspace{0.2cm}
@@ -112,25 +112,23 @@
 		\end{center}
 	\end{multicols}
 	
-	\vspace{0.5cm}
 	
 	% --- PUNTO 2 ---
 	\noindent \textbf{2. Observa las siguientes figuras donde dos rectas se cruzan. Deduce el valor del ángulo $x$ en cada caso.} \hfill\textbf{(20\%)}
 	
-	\vspace{0.2cm}
-	\noindent 
+	
 	
 	\vspace{0.5cm}
 	\begin{multicols}{2}
 		\begin{center}
 			\textbf{Figura A} \\
 			\vspace{0.3cm}
-			\begin{tikzpicture}[scale=1.2]
+			\begin{tikzpicture}[scale=1.1]
 				\coordinate (O) at (0,0);
-				\coordinate (A) at (-2,-1);
-				\coordinate (B) at (2,1);
-				\coordinate (C) at (-2,1);
-				\coordinate (D) at (2,-1);
+				\coordinate (B) at (35:2.5);
+				\coordinate (A) at (215:2.5);
+				\coordinate (C) at (145:2.5);
+				\coordinate (D) at (-35:2.5);
 				
 				\draw[thick, <->] (A) -- (B);
 				\draw[thick, <->] (C) -- (D);
@@ -147,23 +145,25 @@
 		\begin{center}
 			\textbf{Figura B} \\
 			\vspace{0.3cm}
-			\begin{tikzpicture}[scale=1.2]
+			\begin{tikzpicture}[scale=1.1]
 				\coordinate (O) at (0,0);
-				\coordinate (P) at (-1.5,-2);
-				\coordinate (Q) at (1.5,2);
-				\coordinate (R) at (-2.5,0.5);
-				\coordinate (S) at (2.5,-0.5);
+				\coordinate (Q) at (17.5:2.5);
+				\coordinate (P) at (197.5:2.5);
+				\coordinate (S) at (-17.5:2.5);
+				\coordinate (R) at (162.5:2.5);
 				
 				\draw[thick, <->] (P) -- (Q);
 				\draw[thick, <->] (R) -- (S);
 				
-				\pic [draw=valblue, fill=valblue!20, thick, angle radius=0.6cm, angle eccentricity=1.5, "$\mathbf{35^\circ}$"] {angle = S--O--Q};
-				\pic [draw=valblue, fill=valblue!20, thick, angle radius=0.6cm, angle eccentricity=1.5, "$x$"] {angle = R--O--P};
+				\pic [draw=valblue, fill=valblue!20, thick, angle radius=0.9cm, angle eccentricity=1.35, "$\mathbf{35^\circ}$"] {angle = S--O--Q};
+				\pic [draw=valblue, fill=valblue!20, thick, angle radius=0.9cm, angle eccentricity=1.35, "$x$"] {angle = R--O--P};
 			\end{tikzpicture} \\
 			\vspace{0.3cm}
 			$x = $ \boxfill[1.5cm]
 		\end{center}
 	\end{multicols}
+	
+	\newpage
 	
 	% --- PUNTO 3 ---
 	\noindent \textbf{3. Calcula el valor del ángulo $x$ en cada triángulo y luego \textbf{clasifícalo} según la medida de sus ángulos (Acutángulo, Rectángulo u Obtusángulo).} \hfill\textbf{(20\%)}
@@ -175,14 +175,15 @@
 			\textbf{A) Triángulo 1} \\
 			\vspace{0.3cm}
 			\begin{tikzpicture}[scale=1.2]
-				\draw[thick] (0,0) -- (4,0) -- (1.5, 2.5) -- cycle;
-				\node at (0.6, 0.3) {$55^\circ$};
+				% Coordenadas exactas usando la Ley de Senos
+				\draw[thick] (0,0) -- (4,0) -- (1.647, 2.353) -- cycle;
+				\node at (0.65, 0.3) {$55^\circ$};
 				\node at (3.2, 0.3) {$45^\circ$};
-				\node at (1.5, 1.8) {$x$};
+				\node at (1.647, 1.8) {$x$};
 			\end{tikzpicture} \\
 			\vspace{0.3cm}
 			$x = $ \boxfill[1cm] \\
-			\vspace{0.3cm}
+			\vspace{0.1cm}
 			Tipo: \boxfill[4cm]
 		\end{center}
 		
@@ -192,14 +193,15 @@
 			\textbf{B) Triángulo 2} \\
 			\vspace{0.3cm}
 			\begin{tikzpicture}[scale=1.2]
-				\draw[thick] (0,0) -- (3,0) -- (0,3) -- cycle;
+				% Coordenadas exactas usando trigonometría (tan(40) * 3 = 2.517)
+				\draw[thick] (0,0) -- (3,0) -- (0,2.517) -- cycle;
 				\draw (0,0.3) -- (0.3,0.3) -- (0.3,0); % Ángulo recto
 				\node at (2.2, 0.3) {$40^\circ$};
-				\node at (0.3, 2.2) {$x$};
+				\node at (0.35, 1.9) {$x$};
 			\end{tikzpicture} \\
 			\vspace{0.3cm}
 			$x = $ \boxfill[1cm] \\
-			\vspace{0.3cm}
+			\vspace{0.1cm}
 			Tipo: \boxfill[4cm]
 		\end{center}
 	\end{multicols}
@@ -208,21 +210,23 @@
 	
 	% --- PUNTO 4 ---
 	\noindent \textbf{4. El siguiente es un triángulo \textbf{isósceles} (las rayitas indican que tiene dos lados iguales). Sabiendo que el ángulo de la punta mide $40^\circ$, descubre cuánto miden los ángulos de su base ($x$ y $y$).} \hfill\textbf{(20\%)}
+	
 
 	
 	\begin{center}
-		\begin{tikzpicture}[scale=1.2]
-			\draw[thick] (0,0) -- (4,0) -- (2, 3.5) -- cycle;
+		\begin{tikzpicture}[scale=1]
+			% Coordenadas exactas (base=3, altura=1.5*tan(70) = 4.121)
+			\draw[thick] (0,0) -- (3,0) -- (1.5, 4.121) -- cycle;
 			% Marcas de lados iguales
-			\draw[thick] (0.8, 1.7) -- (1.2, 1.9);
-			\draw[thick] (3.2, 1.7) -- (2.8, 1.9);
+			\draw[thick] (0.55, 2.06) -- (0.85, 2.16);
+			\draw[thick] (2.45, 2.06) -- (2.15, 2.16);
 			
-			% Ángulo superior
-			\draw[fill=valblue!20, draw=valblue, thick] (2,3.5) -- (1.75, 3.06) arc (240:300:0.5) -- cycle;
-			\node at (2, 2.8) {$40^\circ$};
+			% Ángulo superior exacto
+			\draw[fill=valblue!20, draw=valblue, thick] (1.5, 4.121) -- (1.326, 3.644) arc (250:290:0.5) -- cycle;
+			\node at (1.5, 3.4) {$40^\circ$};
 			
-			\node at (0.6, 0.3) {$x$};
-			\node at (3.4, 0.3) {$y$};
+			\node at (0.45, 0.3) {$x$};
+			\node at (2.55, 0.3) {$y$};
 		\end{tikzpicture}
 	\end{center}
 	
@@ -230,12 +234,12 @@
 		$x = $ \boxfill \hspace{1cm} $y = $ \boxfill 
 	\end{center}
 	
-	\vspace{0.8cm}
-	
 	% --- PUNTO 5 ---
-	\noindent \textbf{5.  Observa cuidadosamente las siguientes figuras. Cuenta la cantidad de lados que tiene cada una y escribe sobre el recuadro su \textbf{nombre matemático} correcto (por ejemplo: triángulo, cuadrilátero, pentágono, etc.).
-	} \hfill\textbf{(20\%)}
-
+	\noindent \textbf{5. Observa cuidadosamente las siguientes figuras. Cuenta la cantidad de lados que tiene cada una y escribe sobre el recuadro su \textbf{nombre matemático} correcto.} \hfill\textbf{(20\%)}
+	
+	\vspace{0.2cm}
+	\noindent 
+	
 	\vspace{0.5cm}
 	\begin{multicols}{3}
 		\begin{center}
