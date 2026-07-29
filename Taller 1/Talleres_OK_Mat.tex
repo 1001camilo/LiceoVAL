@@ -1,0 +1,1407 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO COMPLETO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[letterpaper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta} % Librería moderna y segura para flechas en TikZ
+
+% --- FUENTE INSTITUCIONAL ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- CONFIGURACIÓN DEL FONDO ---
+\AddToShipoutPictureBG{%
+	\IfFileExists{FondoVAL.pdf}{%
+		\AtPageLowerLeft{%
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{FondoVAL.pdf}%
+		}%
+	}{}%
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 01}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} NÚMEROS NATURALES. Introducción, valor posicional, adición y sustracción.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Analiza el número $4\,582\,309$ y realiza las siguientes acciones:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item Escribe el número en notación desarrollada (forma expandida).
+			\item Identifica qué dígito ocupa la posición de las centenas de mil y cuál es su valor real.
+			\item Escribe el número completo en palabras.
+		\end{enumerate}
+		
+		\item Ubica correctamente los números de forma vertical (respetando su valor posicional) y resuelve las siguientes operaciones:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $245\,678 + 134\,902 + 8\,540 = $
+			\item $5\,400\,000 - 1\,256\,384 = $
+		\end{enumerate}
+		
+		\item Realiza las operaciones indicadas a cada lado y compara los resultados colocando el signo mayor que ($>$), menor que ($<$) o igual ($=$) según corresponda:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $12\,500 + 4\,200 \quad \_\_\_\_\_\_ \quad 20\,000 - 3\,000$
+			\item $50\,000 - 15\,500 \quad \_\_\_\_\_\_ \quad 18\,000 + 16\,500$
+		\end{enumerate}
+		
+		\item La siguiente tabla muestra la cantidad de visitantes que recibió un parque natural durante los primeros tres meses del año:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Mes} & \textbf{Cantidad de Visitantes} \\
+				\midrule
+				Enero & $142\,580$ \\
+				Febrero & $98\,345$ \\
+				Marzo & $115\,900$ \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información de la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuántas personas en total visitaron el parque durante esos tres meses?
+			\item ¿Cuál es la diferencia exacta de visitantes entre el mes con mayor asistencia y el mes con menor asistencia?
+		\end{enumerate}
+		
+		\item El colegio tiene un presupuesto de $\$15\,000\,000$ destinado a renovar la sala de sistemas. Si deciden comprar tres computadores nuevos que en total cuestan $\$4\,850\,000$ y un proyector inteligente por $\$1\,250\,500$, ¿cuánto dinero sobrará del presupuesto inicial tras realizar estas dos compras?
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	\newpage
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 02}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} MULTIPLICACIÓN DE NÚMEROS NATURALES. Algoritmo, propiedades y problemas.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Ubica los factores de forma vertical y resuelve las siguientes multiplicaciones comprobando cada paso de tu proceso:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $3\,458 \times 46 = $
+			\item $12\,095 \times 327 = $
+		\end{enumerate}
+		
+		\item Aplica la propiedad distributiva de la multiplicación con respecto a la suma o la resta para resolver las siguientes operaciones. Debes mostrar cómo distribuyes los valores antes de dar el resultado final:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $8 \times (100 + 45) = $
+			\item $12 \times (50 - 5) = $
+		\end{enumerate}
+		
+		\item Resuelve los siguientes productos utilizando la estrategia de cálculo abreviado (cálculo mental con ceros finales). Escribe directamente la operación y el resultado final:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $450 \times 1\,000 = $
+			\item $12\,000 \times 300 = $
+			\item $705 \times 10\,000 = $
+		\end{enumerate}
+		
+		\item La siguiente tabla muestra la lista de compras que realizó el colegio para dotar la sala de artes:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lcc}
+				\toprule
+				\textbf{Artículo} & \textbf{Cantidad solicitada} & \textbf{Precio por unidad} \\
+				\midrule
+				Cajas de pintura & $25$ & $\$ 18\,500$ \\
+				Pinceles profesionales & $140$ & $\$ 3\,200$ \\
+				Lienzos para pintar & $50$ & $\$ 12\,400$ \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información de la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuál es el costo total que se debe pagar únicamente por las cajas de pintura?
+			\item Si el colegio compra todos los artículos descritos en la tabla, ¿cuál será el valor total de la factura?
+		\end{enumerate}
+		
+		\item Una empresa empacadora distribuye botellas de jugo en cajas de cartón. Se sabe que en cada caja caben exactamente $24$ botellas. Si un camión de reparto debe entregar $135$ cajas en un supermercado grande y $85$ cajas en una tienda de barrio, ¿cuántas botellas de jugo entregará en total el camión durante su recorrido?
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	\newpage
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 03}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} DIVISIÓN DE NÚMEROS NATURALES. Algoritmo, prueba y resolución de problemas.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Resuelve las siguientes divisiones utilizando el algoritmo vertical. Al finalizar, identifica para cada una cuál es el dividendo, el divisor, el cociente y el residuo:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $34\,560 \div 15 = $
+			\item $8\,904 \div 24 = $
+		\end{enumerate}
+		
+		\item Realiza las siguientes operaciones e indica si se trata de una división exacta o inexacta. Luego, realiza la prueba matemática (multiplicar el cociente por el divisor y sumar el residuo) para comprobar que tus resultados son correctos:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $14\,528 \div 32 = $
+			\item $7\,495 \div 14 = $
+		\end{enumerate}
+		
+		\item Calcula mentalmente los siguientes cocientes aplicando la estrategia de cancelación de ceros finales. Escribe la operación directa y su resultado:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $54\,000 \div 100 = $
+			\item $3\,200\,000 \div 1\,000 = $
+			\item $850 \div 10 = $
+		\end{enumerate}
+		
+		\item La biblioteca del colegio recibió una donación de libros nuevos que deben ser organizados en estantes. La siguiente tabla muestra la cantidad de libros recibidos por categoría:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Categoría} & \textbf{Cantidad de Libros} \\
+				\midrule
+				Literatura y Cuentos & $1\,450$ \\
+				Ciencias y Naturaleza & $980$ \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		Si en cada estante de la biblioteca caben exactamente $35$ libros, responde a partir de los datos:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuántos estantes completos se pueden llenar únicamente con los libros de Literatura y Cuentos? ¿Quedan libros sobrando?
+			\item ¿Cuántos estantes completos se llenarán con los libros de Ciencias y Naturaleza y cuántos libros faltarían para llenar un estante más de esta categoría?
+		\end{enumerate}
+		
+		\item El grado sexto está organizando una salida pedagógica a una reserva natural. En total asistirán $135$ estudiantes y $8$ profesores acompañantes. Para el transporte, la empresa de turismo ofrece autobuses que tienen una capacidad máxima de $40$ pasajeros cada uno. ¿Cuántos autobuses se deben alquilar en total para que todas las personas puedan viajar sentadas cómodamente? \textit{(Ten en cuenta lo que significa el residuo en esta situación para dar tu respuesta final).}
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 04}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} MÚLTIPLOS Y DIVISORES. Descomposición en factores primos, M.C.M. y M.C.D.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Realiza la descomposición en factores primos de los siguientes números. Al finalizar, expresa el resultado de cada uno utilizando notación de potenciación:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $120$
+			\item $315$
+			\item $504$
+		\end{enumerate}
+		
+		\item Determina el Máximo Común Divisor (M.C.D.) para cada uno de los siguientes grupos de números, mostrando todo el proceso de descomposición:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $45$ y $60$
+			\item $24$, $36$ y $48$
+		\end{enumerate}
+		
+		\item Calcula el Mínimo Común Múltiplo (M.C.M.) de los siguientes conjuntos de números, mostrando el procedimiento completo:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $14$ y $21$
+			\item $12$, $15$ y $20$
+		\end{enumerate}
+		
+		\item En una estación de transporte, tres rutas de autobuses inician su recorrido a las 6:00 a.m. en punto. La siguiente tabla muestra cada cuánto tiempo vuelve a pasar cada ruta por la estación:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Ruta de Autobús} & \textbf{Frecuencia de paso (cada...)} \\
+				\midrule
+				Ruta Escolar (A) & $15$ minutos \\
+				Ruta Urbana (B) & $20$ minutos \\
+				Ruta Intermunicipal (C) & $30$ minutos \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		Si las tres rutas salieron juntas por primera vez a las 6:00 a.m., responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuántos minutos mínimos deben transcurrir para que los tres autobuses vuelvan a coincidir al mismo tiempo en la estación?
+			\item ¿A qué hora exacta ocurrirá este nuevo encuentro?
+		\end{enumerate}
+		
+		\item Para un proyecto de la clase de artes, un estudiante tiene tres listones de madera que miden $120\text{ cm}$, $90\text{ cm}$ y $75\text{ cm}$ de longitud. El profesor le pide que corte los tres listones en trozos exactamente de la misma medida, buscando que estos trozos sean lo más grandes posible y que no sobre absolutamente nada de madera en ninguno de los listones originales. 
+		
+		¿De cuántos centímetros debe ser cada corte? Después de realizar todos los cortes, ¿cuántos trozos de madera obtendrá el estudiante en total?
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 05}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} JERARQUÍA DE LAS OPERACIONES. Orden de resolución y signos de agrupación.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Resuelve las siguientes expresiones matemáticas teniendo en cuenta el orden jerárquico de las operaciones (recuerda qué operaciones se resuelven primero cuando no hay paréntesis):
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $45 + 12 \times 4 - 30 \div 5 = $
+			\item $120 \div 8 + 5 \times 15 - 20 = $
+		\end{enumerate}
+		
+		\item Resuelve las siguientes expresiones eliminando paso a paso los signos de agrupación (primero paréntesis redondos, luego corchetes y finalmente llaves):
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $85 - [ 24 + (15 - 3 \times 4) ] + 10 = $
+			\item $2 \times \{ 40 - [ 5 \times (4 + 2) ] \} + 18 = $
+		\end{enumerate}
+		
+		\item Comprueba si las siguientes igualdades son verdaderas o falsas resolviendo ambos lados de la ecuación paso a paso. Al finalizar, escribe tu conclusión:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item $(15 + 5) \times 4 \quad = \quad 15 + 5 \times 4$
+			\item $60 \div (10 - 4) \times 2 \quad = \quad 60 \div 10 - 4 \times 2$
+		\end{enumerate}
+		
+		\item En la papelería escolar, un estudiante decide comprar $4$ cuadernos a $\$3\,500$ cada uno, $5$ esferos a $\$1\,200$ cada uno y un juego de reglas por $\$4\,800$. Si va a pagar toda su compra entregando un billete de $\$50\,000$, plantea \textbf{una sola expresión matemática} (utilizando signos de agrupación) que te permita calcular cuánto dinero le deben dar de cambio, y luego resuélvela paso a paso.
+		
+		\item Durante la feria de matemáticas, se organizó un concurso que otorga puntos a los participantes según la siguiente tabla:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Logro obtenido} & \textbf{Puntaje otorgado} \\
+				\midrule
+				Respuesta perfectamente correcta & $5$ puntos \\
+				Respuesta con procedimiento incompleto & $2$ puntos \\
+				Bono especial por rapidez & $3$ puntos \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		Un equipo logró conseguir $8$ respuestas perfectamente correctas, $4$ respuestas incompletas y, además, los jueces les otorgaron el bono especial por rapidez en $2$ ocasiones distintas. Escribe la expresión matemática combinada que representa el cálculo de su puntaje total y resuélvela para saber cuántos puntos consiguieron al final del torneo.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 06}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} FRACCIONES I. Multiplicación, división, recíproco y aplicaciones.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Resuelve las siguientes multiplicaciones con fracciones. Recuerda simplificar el resultado final a su mínima expresión siempre que sea posible:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $\frac{4}{7} \times \frac{5}{9} =$
+			\item $\frac{8}{15} \times \frac{3}{4} =$
+			\item $12 \times \frac{5}{6} =$
+		\end{enumerate}
+		
+		\item Efectúa las siguientes divisiones de fracciones utilizando el método de tu preferencia (multiplicación en cruz o multiplicando por el inverso). Simplifica tu respuesta final:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $\frac{7}{8} \div \frac{3}{5} =$
+			\item $\frac{9}{10} \div \frac{3}{2} =$
+			\item $\frac{15}{4} \div 5 =$
+		\end{enumerate}
+		
+		\item Escribe la fracción recíproca de cada uno de los siguientes números. Luego, realiza la multiplicación de la fracción original por su recíproco para demostrar paso a paso que el resultado siempre es igual a la unidad (el número $1$):
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, topsep=0.2cm]
+			\item $\frac{5}{8}$
+			\item $\frac{12}{7}$
+			\item $9$
+		\end{enumerate}
+		
+		\item La siguiente tabla muestra los ingredientes exactos necesarios para preparar \textbf{una sola porción} de la Torta Especial en la clase de culinaria del colegio:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Ingrediente} & \textbf{Cantidad para 1 porción} \\
+				\midrule
+				Harina de trigo & $\frac{3}{4}$ de kilogramo \\[0.2cm]
+				Azúcar morena & $\frac{1}{2}$ de kilogramo \\[0.2cm]
+				Mantequilla & $\frac{1}{8}$ de kilogramo \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		Si el chef del comedor necesita preparar \textbf{5 porciones completas} de esta torta para un evento escolar, plantea las operaciones correspondientes y determina qué cantidad exacta de cada ingrediente deberá utilizar en total.
+		
+		\item Para la decoración del coliseo durante la Semana Cultural, el comité de estudiantes compró un gran rollo de cinta roja que mide $\frac{45}{2}$ metros de largo en total. Si necesitan cortar moños que midan exactamente $\frac{3}{4}$ de metro cada uno, ¿cuántos moños completos podrán obtener de todo el rollo?
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	\newpage
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 07}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} FRACCIONES II. Adición y sustracción con denominadores iguales y diferentes.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Resuelve las siguientes sumas y restas de fracciones con igual denominador (homogéneas). Simplifica el resultado final siempre que sea posible:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $\frac{5}{12} + \frac{11}{12} - \frac{7}{12} =$
+			\item $\frac{9}{8} - \frac{3}{8} + \frac{5}{8} =$
+		\end{enumerate}
+		
+		\item Calcula el resultado de las siguientes adiciones y sustracciones de fracciones con diferente denominador (heterogéneas), hallando previamente el mínimo común múltiplo (m.c.m.) de los denominadores:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $\frac{3}{4} + \frac{5}{6} =$
+			\item $\frac{7}{10} - \frac{2}{5} =$
+			\item $\frac{2}{3} + \frac{1}{4} =$
+		\end{enumerate}
+		
+		\item Resuelve las siguientes operaciones combinadas con tres fracciones. Muestra todo el proceso para unificar denominadores y simplifica la respuesta hasta su mínima expresión:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $\frac{5}{6} - \frac{1}{3} + \frac{3}{4} =$
+			\item $\frac{11}{15} + \frac{2}{5} - \frac{1}{2} =$
+		\end{enumerate}
+		
+		\item Un atleta entrena diariamente en una pista de atletismo. La siguiente tabla registra la distancia en kilómetros que recorrió durante tres tramos de su entrenamiento de hoy:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Tramo del entrenamiento} & \textbf{Distancia recorrida (km)} \\
+				\midrule
+				Primer tramo & $\frac{3}{8}$ de km \\[0.2cm]
+				Segundo tramo & $\frac{1}{4}$ de km \\[0.2cm]
+				Tercer tramo & $\frac{5}{16}$ de km \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información dada en la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuál es la distancia total que recorrió el atleta en los tres tramos combinados?
+			\item Si su meta diaria era completar un recorrido total de $1$ kilómetro entero, ¿qué fracción de kilómetro le faltó por recorrer para alcanzar su objetivo?
+		\end{enumerate}
+		
+		\item En una jarra de cristal hay exactamente $\frac{7}{8}$ de litro de jugo de naranja recién exprimido. Durante el desayuno, Carlos bebe $\frac{1}{4}$ de litro de la jarra y Sofía bebe $\frac{3}{8}$ de litro del mismo jugo. Plantea la operación necesaria y determina qué fracción de litro de jugo queda disponible en la jarra al finalizar el desayuno.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 08}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} NÚMEROS MIXTOS. Conversiones y operaciones fundamentales.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Realiza los siguientes procesos de conversión mostrando la división o multiplicación correspondiente según el caso:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item Convierte las siguientes fracciones impropias a números mixtos: $\displaystyle \frac{17}{5}$, $\displaystyle \frac{29}{4}$, $\displaystyle \frac{38}{7}$.
+			\item Convierte los siguientes números mixtos a fracciones impropias: $\displaystyle 3 \frac{2}{5}$, $\displaystyle 5 \frac{1}{6}$, $\displaystyle 4 \frac{3}{8}$.
+		\end{enumerate}
+		
+		\item Resuelve las siguientes adiciones y sustracciones de números mixtos. Recuerda unificar los denominadores de las partes fraccionarias y expresar tu resultado final como un número mixto simplificado:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $\displaystyle 2 \frac{1}{4} + 3 \frac{2}{3} =$
+			\item $\displaystyle 5 \frac{1}{2} - 2 \frac{3}{4} =$
+		\end{enumerate}
+		
+		\item Convierte los números mixtos a fracciones impropias y resuelve las siguientes multiplicaciones y divisiones. Simplifica la respuesta final:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $\displaystyle 1 \frac{1}{2} \times 2 \frac{2}{5} =$
+			\item $\displaystyle 4 \frac{1}{2} \div 1 \frac{1}{2} =$
+		\end{enumerate}
+		
+		\item La siguiente tabla registra la cantidad de harina de distintos tipos que compró la cafetería del colegio para la preparación de panecillos durante la semana:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Tipo de Harina} & \textbf{Cantidad comprada (kg)} \\
+				\midrule
+				Harina de Trigo & $\displaystyle 4 \frac{1}{2}$ kg \\[0.2cm]
+				Harina de Avena & $\displaystyle 2 \frac{3}{4}$ kg \\[0.2cm]
+				Harina de Maíz  & $\displaystyle 1 \frac{1}{8}$ kg \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de los datos de la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuántos kilogramos de harina compró la cafetería en total sumando las tres variedades?
+			\item Si al finalizar la semana sobraron $\displaystyle 1 \frac{1}{4}$ kg de Harina de Trigo, ¿cuántos kilogramos de este tipo específico de harina se consumieron en las recetas?
+		\end{enumerate}
+		
+		\item Un sastre necesita exactamente $\displaystyle 2 \frac{1}{4}$ metros de tela para confeccionar un uniforme escolar completo. Si un acudiente le encarga la fabricación de $6$ uniformes idénticos para sus hijos, plantea las operaciones necesarias con números mixtos para determinar cuántos metros de tela deberá comprar el sastre en total.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 09}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} NÚMEROS DECIMALES I. Valor posicional, adición, sustracción y multiplicación.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Desarrolla las siguientes actividades sobre el sistema de numeración decimal:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item Escribe en palabras la lectura del número decimal $14.075$.
+			\item Ordena de menor a mayor el siguiente grupo de números decimales: $3.45, \quad 3.045, \quad 3.504, \quad 3.405$.
+			\item Identifica qué posición ocupa el dígito $7$ en el número $8.279$ (décimas, centésimas o milésimas) y escribe su valor en forma de fracción decimal.
+		\end{enumerate}
+		
+		\item Ubica los números decimales de forma vertical alineando estrictamente las comas decimales (añade ceros si es necesario para igualar las cifras) y resuelve:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $145.8 + 23.94 + 6.075 =$
+			\item $82.4 - 35.826 =$
+		\end{enumerate}
+		
+		\item Resuelve las siguientes multiplicaciones con números decimales. Muestra el procedimiento completo de la operación e indica cómo ubicaste la coma en el resultado final:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $42.6 \times 3.8 =$
+			\item $5.14 \times 0.25 =$
+			\item $18.9 \times 100 =$
+		\end{enumerate}
+		
+		\item La siguiente tabla muestra el costo por kilogramo de algunas frutas de excelente calidad en el mercado campesino local:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Fruta} & \textbf{Precio por kilogramo} \\
+				\midrule
+				Manzana Roja & $\$ 4\,200.50$ \\
+				Uva Isabela  & $\$ 6\,800.00$ \\
+				Pera Importada & $\$ 3\,500.25$ \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información de la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item Si un comprador adquiere $2.5\text{ kg}$ de Manzana Roja, ¿cuánto dinero exacto debe pagar por esta fruta?
+			\item Si otra persona compra $1.5\text{ kg}$ de Uva Isabela y $3\text{ kg}$ de Pera Importada, ¿cuál es el costo total de su compra?
+		\end{enumerate}
+		
+		\item Un atleta de alto rendimiento realiza sus entrenamientos de atletismo durante tres días a la semana. El lunes recorre $12.45\text{ km}$, el miércoles $15.8\text{ km}$ y el viernes $9.35\text{ km}$. Si su meta propuesta para la semana era alcanzar un recorrido total de $45\text{ km}$, plantea las operaciones correspondientes para determinar cuántos kilómetros recorrió efectivamente en total durante los tres días y cuántos kilómetros le faltaron para lograr su meta semanal.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 10}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} NÚMEROS DECIMALES II. División de decimales, cálculo abreviado y comparación.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Resuelve las siguientes divisiones con números decimales mostrando todo el procedimiento algorítmico necesario en cada caso:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $85.5 \div 5 =$
+			\item $126 \div 1.5 =$
+			\item $48.75 \div 2.5 =$
+		\end{enumerate}
+		
+		\item Efectúa los siguientes cocientes aplicando la regla de división abreviada por potencias de $10$ (desplazamiento de la coma hacia la izquierda). Escribe la operación completa y tu respuesta final:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $348.5 \div 10 =$
+			\item $72.4 \div 100 =$
+			\item $850 \div 1\,000 =$
+		\end{enumerate}
+		
+		\item Resuelve las operaciones indicadas a cada lado y compara los resultados obtenidos colocando el signo mayor que ($>$), menor que ($<$) o igual ($=$) según corresponda:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $18.6 \div 3 \quad \_\_\_\_\_\_ \quad 2.1 \times 3$
+			\item $45.2 \div 10 \quad \_\_\_\_\_\_ \quad 0.452 \times 10$
+		\end{enumerate}
+		
+		\item La siguiente tabla presenta el peso total acumulado de tres productos empacados en bultos idénticos para su distribución comercial:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lcc}
+				\toprule
+				\textbf{Producto} & \textbf{Cantidad de bultos} & \textbf{Peso total (kg)} \\
+				\midrule
+				Café orgánico & $12$ & $186.6\text{ kg}$ \\
+				Azúcar refinada & $15$ & $217.5\text{ kg}$ \\
+				Harina de trigo & $8$ & $124.8\text{ kg}$ \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información de la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuál es el peso exacto de un solo bulto de café orgánico?
+			\item ¿Cuál es el peso exacto de un solo bulto de azúcar refinada?
+			\item ¿Cuál de los tres productos tiene el bulto individual de mayor peso?
+		\end{enumerate}
+		
+		\item Una fábrica de productos químicos dispone de un recipiente industrial con $48.75$ litros de desinfectante líquido concentrado. Desean envasar todo el contenido en frascos plásticos con una capacidad individual de $0.75$ litros. Plantea la operación correspondiente y determina cuántos frascos completos lograrán envasar en total.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 11}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} NÚMEROS ENTEROS I. Introducción, recta numérica, adición y sustracción.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item A partir de tus conocimientos sobre los números positivos y negativos, realiza lo siguiente:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item Escribe el opuesto (también llamado inverso aditivo) de cada uno de los siguientes números: $-15$, $24$, $-8$, $0$.
+			\item Ordena el siguiente conjunto de números enteros estrictamente de menor a mayor: $5, \quad -12, \quad 0, \quad -3, \quad 8, \quad -1$.
+		\end{enumerate}
+		
+		\item Resuelve las siguientes operaciones con números enteros teniendo mucho cuidado con la ley de los signos para la suma y la resta:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $(-15) + 22 =$
+			\item $18 - (-5) =$
+			\item $(-9) - 14 =$
+		\end{enumerate}
+		
+		\item Efectúa las siguientes cadenas de operaciones combinadas de sumas y restas con números enteros. Muestra tu procedimiento paso a paso:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $(-12) + 7 - (-4) - 8 =$
+			\item $25 - 30 + (-5) + 10 =$
+		\end{enumerate}
+		
+		\item La siguiente tabla registra las temperaturas medidas en una ciudad en tres momentos diferentes de un día de invierno:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Hora de medición} & \textbf{Temperatura} \\
+				\midrule
+				6:00 a.m. & $-4^{\circ}\text{C}$ \\
+				12:00 m. (Mediodía) & $5^{\circ}\text{C}$ \\
+				8:00 p.m. & $-2^{\circ}\text{C}$ \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información de la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuántos grados exactamente subió o bajó la temperatura entre las 6:00 a.m. y el mediodía? Plantea la operación matemática.
+			\item Si a la medianoche la temperatura descendió $3^{\circ}\text{C}$ más en comparación con el registro de las 8:00 p.m., ¿cuál fue la temperatura exacta a la medianoche?
+		\end{enumerate}
+		
+		\item Una persona llega a su edificio y estaciona su automóvil en el sótano 3 (nivel $-3$). Luego, toma el ascensor y sube $8$ pisos para dejar unos documentos en su oficina. Más tarde, baja $4$ pisos para ir a la cafetería a almorzar. Plantea una sola expresión matemática con números enteros que represente estos movimientos y resuélvela para descubrir en qué piso se encuentra la cafetería.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	\newpage
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 12}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} NÚMEROS ENTEROS II. Multiplicación, división y operaciones combinadas.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Resuelve las siguientes multiplicaciones aplicando correctamente la ley de los signos para números enteros:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $(-8) \times (-7) =$
+			\item $12 \times (-5) =$
+			\item $(-4) \times 15 =$
+			\item $(-9) \times (-6) =$
+		\end{enumerate}
+		
+		\item Calcula el cociente de las siguientes divisiones exactas, recordando aplicar la ley de los signos:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $(-45) \div (-9) =$
+			\item $72 \div (-8) =$
+			\item $(-60) \div 12 =$
+			\item $(-100) \div (-25) =$
+		\end{enumerate}
+		
+		\item Resuelve las siguientes expresiones combinadas respetando la jerarquía de las operaciones (recuerda resolver primero los paréntesis y luego las multiplicaciones o divisiones antes que las sumas o restas):
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $(-3) \times [ (-4) + 6 ] =$
+			\item $(-20) \div 5 - (-4) \times 2 =$
+			\item $[ (-8) - (-2) ] \times (-5) =$
+		\end{enumerate}
+		
+		\item En un torneo de un videojuego escolar, los participantes pierden puntos de su marcador total cada vez que cometen una equivocación. La siguiente tabla muestra la penalización por cada tipo de error:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Tipo de error} & \textbf{Puntos enteros (Penalización)} \\
+				\midrule
+				Caer en la trampa de agua & $-15$ puntos \\
+				Tocar un obstáculo móvil & $-25$ puntos \\
+				Quedarse sin tiempo en el nivel & $-50$ puntos \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		Durante su partida, Camilo cayó en la trampa de agua $4$ veces, tocó un obstáculo móvil $3$ veces y se quedó sin tiempo $2$ veces. Utiliza la multiplicación y suma de números enteros para plantear la operación y determinar cuántos puntos en total se le deben descontar a Camilo.
+		
+		\item Un submarino de exploración científica necesita sumergirse en el océano. Durante un periodo de $6$ horas continuas, el registro de navegación indica un cambio de altitud total de $-450$ metros. Si el submarino descendió a un ritmo constante (la misma cantidad de metros cada hora), plantea la operación correspondiente con números enteros para calcular el cambio de altitud exacto por cada hora transcurrida.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	\newpage
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 13}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} INTRODUCCIÓN AL ÁLGEBRA. Lenguaje algebraico, valor numérico y reducción de términos semejantes.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Traduce las siguientes frases del lenguaje cotidiano al lenguaje algebraico utilizando la letra $x$ para representar \"un número desconocido\":
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item El doble de un número aumentado en cinco.
+			\item La tercera parte de un número disminuida en ocho.
+			\item El cuadrado de un número más el triple del mismo número.
+		\end{enumerate}
+		
+		\item Calcula el valor numérico exacto de las siguientes expresiones algebraicas, sabiendo que $a = 3$, $b = 5$ y $c = 2$. Muestra el paso a paso de la sustitución y la resolución:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $4a + 2b - c$
+			\item $5ab - 3c$
+			\item $a^2 + b^2$
+		\end{enumerate}
+		
+		\item Simplifica las siguientes expresiones algebraicas reduciendo (sumando o restando) únicamente los términos que son semejantes entre sí:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $5x + 3x - 2x =$
+			\item $4m + 7n - 2m + 3n =$
+			\item $8y - 3y + 5 + 2 =$
+		\end{enumerate}
+		
+		\item Una empresa de alquiler de bicicletas cobra una tarifa base fija de $\$5\,000$ solo por usar el servicio, más $\$2\,000$ adicionales por cada hora de uso. Si representamos la cantidad de horas de uso con la letra $h$:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item Escribe la expresión algebraica que permite calcular el costo total del alquiler por $h$ horas.
+			\item Si un estudiante alquila la bicicleta durante $4$ horas, utiliza la expresión que escribiste para calcular cuánto dinero exacto deberá pagar.
+		\end{enumerate}
+		
+		\item En la clase de geometría, el profesor dibuja un rectángulo en el tablero. Les indica que la altura del rectángulo mide una cantidad desconocida $x$, y que la base mide el triple de su altura ($3x$).
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item Escribe la expresión algebraica reducida que representa el perímetro de este rectángulo (recuerda que el perímetro es la suma de los cuatro lados).
+			\item Si el profesor revela que $x = 4\text{ cm}$, ¿cuál es el perímetro total del rectángulo en centímetros?
+		\end{enumerate}
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 14}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} ECUACIONES DE PRIMER GRADO. Propiedades de igualdad, despeje de incógnitas y modelación.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas y resuélvelos de forma ordenada, justificando cada respuesta con su respectivo procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Aplica las propiedades de la igualdad (sumar o restar la misma cantidad a ambos lados) para despejar la incógnita y hallar su valor en las siguientes ecuaciones aditivas:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $x + 24 = 60$
+			\item $y - 15 = 42$
+			\item $m + 18 = 5$
+		\end{enumerate}
+		
+		\item Aplica las propiedades de la igualdad (multiplicar o dividir a ambos lados) para despejar la incógnita en las siguientes ecuaciones multiplicativas:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $6x = 54$
+			\item $\displaystyle \frac{y}{4} = 12$
+			\item $8m = 104$
+		\end{enumerate}
+		
+		\item Resuelve las siguientes ecuaciones de dos pasos. Al finalizar, realiza la comprobación de cada una sustituyendo el valor encontrado en la ecuación original para verificar que la igualdad se cumple:
+		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
+			\item $3x + 12 = 33$
+			\item $5y - 8 = 42$
+		\end{enumerate}
+		
+		\item La siguiente tabla detalla la cuenta total que pagó un grupo de amigos al asistir al cine:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Concepto} & \textbf{Valor} \\
+				\midrule
+				Entradas al cine (Total) & $\$ 36\,000$ \\
+				$3$ Combos de palomitas iguales & $3x$ \\
+				\midrule
+				\textbf{Total pagado} & \textbf{$\$ 75\,000$} \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información de la tabla, escribe la ecuación de primer grado que modela esta situación financiera y resuélvela paso a paso para hallar el precio exacto de un solo combo de palomitas ($x$).
+		
+		\item En un proyecto de diseño, se debe dibujar un rectángulo cuyo perímetro total sea exactamente de $60\text{ cm}$. Si se sabe que la base del rectángulo mide $20\text{ cm}$ y su altura es una medida desconocida $h$, plantea la ecuación correspondiente al perímetro (recuerda que el perímetro es la suma de todos los lados) y despeja la incógnita para encontrar cuánto debe medir la altura.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 15}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} GEOMETRÍA I. Ángulos, clasificación, complemento/suplemento y triángulos.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno, reproduce los gráficos de forma aproximada y resuelve los problemas justificando tu procedimiento paso a paso.}
+	\vspace{0.6cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.8cm]
+		
+		\item Observa los siguientes ángulos dibujados a escala. Clasifica cada uno de ellos (en agudo, recto, obtuso o llano) basándote en su abertura visual y en la medida indicada:
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}
+				% Ángulo A: 135 grados
+				\begin{scope}[xshift=0cm]
+					\draw[thick, stealth-stealth] (-2,0) -- (0,0) -- (2,0);
+					\draw[thick, -stealth] (0,0) -- (135:2);
+					\draw (0.6,0) arc (0:135:0.6) node[midway, above right] {$135^\circ$};
+					\node at (0, -0.5) {\textbf{Figura A}};
+				\end{scope}
+				
+				% Ángulo B: 30 grados
+				\begin{scope}[xshift=6cm]
+					\draw[thick, stealth-stealth] (0,2) -- (0,0) -- (2.5,0);
+					\draw[thick, -stealth] (0,0) -- (30:2.5);
+					\draw (0.8,0) arc (0:30:0.8) node[midway, right=1mm] {$30^\circ$};
+					\node at (1, -0.5) {\textbf{Figura B}};
+				\end{scope}
+				
+				% Ángulo C: 90 grados
+				\begin{scope}[xshift=12cm]
+					\draw[thick, stealth-stealth] (0,2) -- (0,0) -- (2,0);
+					\draw (0,0) rectangle (0.3,0.3);
+					\node at (1, -0.5) {\textbf{Figura C}};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+		
+		\item Analiza los siguientes gráficos y calcula analíticamente la medida del ángulo desconocido ($x$ e $y$) aplicando los conceptos geométricos de ángulos \textbf{complementarios} y \textbf{suplementarios}:
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}
+				% Complementario
+				\begin{scope}[xshift=0cm]
+					\draw[thick, stealth-stealth] (0,3) -- (0,0) -- (3,0);
+					\draw[thick, -stealth] (0,0) -- (62:3.5);
+					\draw (1,0) arc (0:62:1) node[midway, right=2pt] {$62^\circ$};
+					\draw (62:1.2) arc (62:90:1.2) node[midway, above right=1pt] {$x$};
+					\draw (0,0) rectangle (0.3,0.3);
+				\end{scope}
+				
+				% Suplementario
+				\begin{scope}[xshift=8cm]
+					\draw[thick, stealth-stealth] (-3.5,0) -- (3,0);
+					\draw[thick, -stealth] (0,0) -- (118:3);
+					\draw (0.8,0) arc (0:118:0.8) node[midway, above right=2pt] {$118^\circ$};
+					\draw (118:0.5) arc (118:180:0.5) node[midway, above left=1pt] {$y$};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+		
+		\item Recordando la propiedad fundamental que dice que la suma de los ángulos internos de todo triángulo es exactamente $180^\circ$, determina la medida del ángulo $\theta$ en el siguiente triángulo trazado a escala:
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				\coordinate (A) at (0,0);
+				\coordinate (B) at (6,0);
+				\coordinate (C) at (6,4.5);
+				
+				\draw[thick] (A) -- (B) -- (C) -- cycle;
+				
+				\draw (1,0) arc (0:37:1) node[midway, right=4pt] {$37^\circ$};
+				\draw (5.6,0) rectangle (6,0.4);
+				\draw (6,3.5) arc (270:217:1) node[midway, below left=1pt] {$\theta$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\item Observa detenidamente las medidas de los lados de los siguientes triángulos. A partir de esa información visual y numérica, clasifica cada uno de ellos doblemente: según la longitud de sus \textbf{lados} y según la abertura de sus \textbf{ángulos}:
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}
+				% Triángulo Equilátero
+				\begin{scope}[xshift=0cm, scale=0.8]
+					\draw[thick] (0,0) -- (3,0) node[midway, below] {$4\text{ cm}$} -- (60:3) node[midway, above right] {$4\text{ cm}$} -- cycle;
+					\node[above left] at (1.5, 1.2) {$4\text{ cm}$};
+					\node at (1.5, -1) {\textbf{Triángulo 1}};
+				\end{scope}
+				
+				% Triángulo Isósceles Obtusángulo
+				\begin{scope}[xshift=5.5cm, scale=0.8]
+					\draw[thick] (0,0) -- (5,0) node[midway, below] {$6\text{ cm}$} -- (2.5, 1.5) node[midway, above right] {$3.5\text{ cm}$} -- cycle;
+					\node[above left] at (1.25, 0.75) {$3.5\text{ cm}$};
+					\node at (2.5, -1) {\textbf{Triángulo 2}};
+				\end{scope}
+				
+				% Triángulo Escaleno
+				\begin{scope}[xshift=12cm, scale=0.8]
+					\draw[thick] (0,0) -- (4,0) node[midway, below] {$7\text{ cm}$} -- (1, 3) node[midway, above right] {$5\text{ cm}$} -- cycle;
+					\node[above left] at (0.5, 1.5) {$4\text{ cm}$};
+					\node at (2, -1) {\textbf{Triángulo 3}};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+		
+		\item La siguiente figura representa el plano transversal de una rampa para patinetas. El piso horizontal y el soporte vertical forman un ángulo recto perfecto ($90^\circ$). Si el ángulo de inclinación en el suelo de la rampa mide $26^\circ$, plantea la operación geométrica correspondiente para descubrir cuánto mide el ángulo $\alpha$ en la parte más alta de la rampa.
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\filldraw[fill=gray!20, thick] (0,0) -- (7,0) -- (7,3.41) -- cycle;
+				\draw (7,0) rectangle (6.6, 0.4);
+				\draw (1.2,0) arc (0:26:1.2) node[midway, right=3pt] {$26^\circ$};
+				\draw (7,2.2) arc (270:206:1.2) node[midway, below left] {$\alpha$};
+				\node[below] at (3.5, 0) {Suelo};
+				\node[right] at (7, 1.7) {Soporte};
+				\node[above left] at (3.5, 1.7) {Rampa};
+			\end{tikzpicture}
+		\end{center}
+		
+		\item Los relojes análogos forman ángulos con sus manecillas (el horario y el minutero). Observa los siguientes relojes y, teniendo en cuenta que un giro completo representa $360^\circ$ divididos exactamente en las 12 horas, determina la medida real del ángulo interno que se forma en cada caso. Escribe si dicho ángulo es agudo, recto u obtuso.
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.8]
+				% Reloj a las 3:00
+				\begin{scope}[xshift=0cm]
+					\draw[thick] (0,0) circle (2);
+					\foreach \a in {1,2,...,12} { 
+						\draw (\a*30:1.8) -- (\a*30:2); 
+						\node at (90-\a*30:1.5) {\a}; 
+					}
+					\fill (0,0) circle (2pt);
+					\draw[thick, -stealth] (0,0) -- (90:1.6);
+					\draw[ultra thick, -stealth] (0,0) -- (0:1.1);
+					\draw (0.5,0) arc (0:90:0.5) node[midway, above right=1pt] {$?$};
+					\node at (0,-2.6) {\textbf{Hora: 3:00}};
+				\end{scope}
+				
+				% Reloj a las 5:00
+				\begin{scope}[xshift=8cm]
+					\draw[thick] (0,0) circle (2);
+					\foreach \a in {1,2,...,12} { 
+						\draw (\a*30:1.8) -- (\a*30:2); 
+						\node at (90-\a*30:1.5) {\a}; 
+					}
+					\fill (0,0) circle (2pt);
+					\draw[thick, -stealth] (0,0) -- (90:1.6);
+					\draw[ultra thick, -stealth] (0,0) -- (-60:1.1);
+					\draw (-60:0.5) arc (-60:90:0.5) node[midway, right=4pt] {$?$};
+					\node at (0,-2.6) {\textbf{Hora: 5:00}};
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 16}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} GEOMETRÍA II. Rectas paralelas y perpendiculares, perímetros y áreas de polígonos.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas, reproduce los gráficos cuando sea necesario y resuelve los ejercicios paso a paso justificando tus cálculos.}
+	\vspace{0.4cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.7cm]
+		
+		\item Observa las líneas representadas en el plano cartesiano de la figura. Identifica y escribe cuáles pares de rectas corresponden a líneas **paralelas** ($\parallel$) y cuáles a líneas **perpendiculares** ($\perp$).
+		
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.75]
+				\draw[help lines, color=gray!30, dashed] (-1,-1) grid (5,5);
+				\draw[-stealth] (-1,0) -- (5.2,0) node[right] {$x$};
+				\draw[-stealth] (0,-1) -- (0,5.2) node[above] {$y$};
+				
+				% Rectas paralelas
+				\draw[thick, blue] (0,1) -- (4,3) node[above right, black] {\small Recta 1};
+				\draw[thick, blue] (0,3) -- (4,5) node[above right, black] {\small Recta 2};
+				
+				% Recta perpendicular
+				\draw[thick, red] (1,4.5) -- (3,0.5) node[below right, black] {\small Recta 3};
+				
+				\node at (2,-1.5) {\textbf{Plano de Análisis de Rectas}};
+			\end{tikzpicture}
+		\end{center}
+		
+		\item Calcula el **perímetro** y el **área** exacta de cada una de las siguientes figuras geométricas regulares dadas sus dimensiones:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item Un cuadrado con una longitud de lado igual a $8.5\text{ cm}$.
+			\item Un rectángulo cuya base mide $14\text{ cm}$ y su altura mide $7.5\text{ cm}$.
+			\item Un triángulo cuyas longitudes de lados miden $5\text{ cm}$, $7\text{ cm}$ y $10\text{ cm}$, con una base de $10\text{ cm}$ y una altura perpendicular de $4\text{ cm}$.
+		\end{enumerate}
+		
+		\item Observa el diseño geométrico de la siguiente figura compuesta por cuadrículas a escala. Calcula el área total de la región sombreada sabiendo que cada cuadrito pequeño de la cuadrícula mide $1\text{ cm}$ de lado ($1\text{ cm}^2$ por cuadrito).
+		
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.6]
+				\draw[step=1cm,gray!40,very thin] (0,0) grid (6,4);
+				\fill[gray!60] (1,1) rectangle (5,3);
+				\draw[thick] (0,0) rectangle (6,4);
+				\node at (3,2) {\textbf{Región Sombreada}};
+				\draw[<->] (0,-0.3) -- (6,-0.3) node[midway, below] {$6\text{ cm}$};
+				\draw[<->] (-0.3,0) -- (-0.3,4) node[midway, left] {$4\text{ cm}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\item El departamento de mantenimiento del Liceo V.A.L. necesita cercar con malla de alambre un terreno rectangular destinado para la huerta escolar. Si el terreno mide $18.5\text{ metros}$ de largo y $12.4\text{ metros}$ de ancho, plantea la operación necesaria para calcular cuántos metros lineales de malla se deben comprar en total para rodear todo el terreno.
+		
+		\item La siguiente tabla muestra las dimensiones de las canchas deportivas ubicadas en la sede campestre del colegio:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lcc}
+				\toprule
+				\textbf{Cancha deportiva} & \textbf{Largo (Base)} & \textbf{Ancho (Altura)} \\
+				\midrule
+				Cancha de Baloncesto & $28\text{ m}$ & $15\text{ m}$ \\
+				Cancha de Voleibol & $18\text{ m}$ & $9\text{ m}$ \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de la información anterior, determina cuál es el **área total en metros cuadrados ($m^2$)** que ocupa cada una de las dos canchas deportivas.
+		
+		\item Un carpintero tiene una lámina de madera de forma cuadrada que mide $2\text{ metros}$ de lado. Desea recortar de su interior un espejo rectangular que mide $1.5\text{ metros}$ de largo por $1.2\text{ metros}$ de ancho. Plantea las operaciones aritméticas correspondientes para calcular cuántos metros cuadrados ($m^2$) de madera sobrarán en la lámina original tras realizar el recorte.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+\end{document}
