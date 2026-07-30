@@ -1322,7 +1322,7 @@
 	\end{center}
 	
 	\vspace{0.2cm}
-	\noindent \textbf{Tema:} GEOMETRÍA II. Rectas paralelas y perpendiculares, perímetros y áreas de polígonos.
+	\noindent \textbf{Tema:} GEOMETRÍA II. Rectas paralelas, perpendiculares, transversales, perímetros y áreas.
 	\vspace{0.2cm}
 	\hrule
 	\vspace{0.4cm}
@@ -1335,12 +1335,13 @@
 	
 	\begin{enumerate}[itemsep=0.7cm]
 		
-		\item Observa las líneas representadas en el plano cartesiano de la figura. Identifica y escribe cuáles pares de rectas corresponden a líneas **paralelas** ($\parallel$) y cuáles a líneas **perpendiculares** ($\perp$).
+		\item Observa las líneas representadas en el plano cartesiano de la figura. Identifica y escribe cuáles pares de rectas corresponden a líneas \textbf{paralelas} y cuáles a líneas \textbf{perpendiculares}.
 		
 		\vspace{0.2cm}
 		\begin{center}
 			\begin{tikzpicture}[scale=0.75]
 				\draw[help lines, color=gray!30, dashed] (-1,-1) grid (5,5);
+				% Ejes sin símbolos conflictivos
 				\draw[-stealth] (-1,0) -- (5.2,0) node[right] {$x$};
 				\draw[-stealth] (0,-1) -- (0,5.2) node[above] {$y$};
 				
@@ -1355,14 +1356,45 @@
 			\end{tikzpicture}
 		\end{center}
 		
-		\item Calcula el **perímetro** y el **área** exacta de cada una de las siguientes figuras geométricas regulares dadas sus dimensiones:
+		\item En la siguiente figura, las rectas $L_1$ y $L_2$ son estrictamente paralelas y están cortadas por una recta transversal $T$. Si se conoce que la medida del ángulo obtuso indicado es de $120^\circ$:
+		
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.95]
+				% Rectas paralelas L1 y L2 (usando stealth-stealth en vez de <->)
+				\draw[thick, blue, stealth-stealth] (-1,2) -- (5,2) node[right, black] {$L_1$};
+				\draw[thick, blue, stealth-stealth] (-1,0) -- (5,0) node[right, black] {$L_2$};
+				
+				% Secante T
+				\draw[thick, red, stealth-stealth] (0.5,-0.8) -- (3.2,2.8) node[above, black] {$T$};
+				
+				% Intersección superior L1
+				\draw (2.1,2) arc (180:53.13:0.4) node[midway, above left] {$120^\circ$};
+				\draw (2.9,2) arc (0:53.13:0.4) node[midway, above right] {$a$};
+				\draw (2.1,2) arc (180:233.13:0.4) node[midway, below left] {$b$};
+				\draw (2.9,2) arc (360:233.13:0.4) node[midway, below right] {$c$};
+				
+				% Intersección inferior L2
+				\draw (0.7,0) arc (180:53.13:0.4) node[midway, above left] {$d$};
+				\draw (1.5,0) arc (0:53.13:0.4) node[midway, above right] {$e$};
+				\draw (0.7,0) arc (180:233.13:0.4) node[midway, below left] {$f$};
+				\draw (1.5,0) arc (360:233.13:0.4) node[midway, below right] {$g$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item Encuentra el valor exacto de los ángulos $a$, $b$ y $c$, justificando tu respuesta según las propiedades de los ángulos opuestos por el vértice y suplementarios.
+			\item Determina la medida de los ángulos $d$, $e$, $f$ y $g$ identificando la relación que tienen con el ángulo de $120^\circ$ (correspondientes, alternos internos o alternos externos).
+		\end{enumerate}
+		
+		\item Calcula el \textbf{perímetro} y el \textbf{área} exacta de cada una de las siguientes figuras geométricas regulares dadas sus dimensiones:
 		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
 			\item Un cuadrado con una longitud de lado igual a $8.5\text{ cm}$.
 			\item Un rectángulo cuya base mide $14\text{ cm}$ y su altura mide $7.5\text{ cm}$.
 			\item Un triángulo cuyas longitudes de lados miden $5\text{ cm}$, $7\text{ cm}$ y $10\text{ cm}$, con una base de $10\text{ cm}$ y una altura perpendicular de $4\text{ cm}$.
 		\end{enumerate}
 		
-		\item Observa el diseño geométrico de la siguiente figura compuesta por cuadrículas a escala. Calcula el área total de la región sombreada sabiendo que cada cuadrito pequeño de la cuadrícula mide $1\text{ cm}$ de lado ($1\text{ cm}^2$ por cuadrito).
+		\item Observa el diseño geométrico de la siguiente figura compuesta por cuadrículas a escala. Calcula el área total de la región sombreada sabiendo que cada cuadrito pequeño de la cuadrícula mide $1\text{ cm}$ de lado (área de $1\text{ cm}^2$ por cuadrito).
 		
 		\vspace{0.2cm}
 		\begin{center}
@@ -1371,28 +1403,13 @@
 				\fill[gray!60] (1,1) rectangle (5,3);
 				\draw[thick] (0,0) rectangle (6,4);
 				\node at (3,2) {\textbf{Región Sombreada}};
-				\draw[<->] (0,-0.3) -- (6,-0.3) node[midway, below] {$6\text{ cm}$};
-				\draw[<->] (-0.3,0) -- (-0.3,4) node[midway, left] {$4\text{ cm}$};
+				% Acotaciones (usando stealth-stealth en vez de <->)
+				\draw[stealth-stealth] (0,-0.3) -- (6,-0.3) node[midway, below] {$6\text{ cm}$};
+				\draw[stealth-stealth] (-0.3,0) -- (-0.3,4) node[midway, left] {$4\text{ cm}$};
 			\end{tikzpicture}
 		\end{center}
 		
 		\item El departamento de mantenimiento del Liceo V.A.L. necesita cercar con malla de alambre un terreno rectangular destinado para la huerta escolar. Si el terreno mide $18.5\text{ metros}$ de largo y $12.4\text{ metros}$ de ancho, plantea la operación necesaria para calcular cuántos metros lineales de malla se deben comprar en total para rodear todo el terreno.
-		
-		\item La siguiente tabla muestra las dimensiones de las canchas deportivas ubicadas en la sede campestre del colegio:
-		
-		\begin{table}[h]
-			\centering
-			\begin{tabular}{lcc}
-				\toprule
-				\textbf{Cancha deportiva} & \textbf{Largo (Base)} & \textbf{Ancho (Altura)} \\
-				\midrule
-				Cancha de Baloncesto & $28\text{ m}$ & $15\text{ m}$ \\
-				Cancha de Voleibol & $18\text{ m}$ & $9\text{ m}$ \\
-				\bottomrule
-			\end{tabular}
-		\end{table}
-		
-		A partir de la información anterior, determina cuál es el **área total en metros cuadrados ($m^2$)** que ocupa cada una de las dos canchas deportivas.
 		
 		\item Un carpintero tiene una lámina de madera de forma cuadrada que mide $2\text{ metros}$ de lado. Desea recortar de su interior un espejo rectangular que mide $1.5\text{ metros}$ de largo por $1.2\text{ metros}$ de ancho. Plantea las operaciones aritméticas correspondientes para calcular cuántos metros cuadrados ($m^2$) de madera sobrarán en la lámina original tras realizar el recorte.
 		
@@ -1404,4 +1421,127 @@
 		\vspace{0.2cm}
 		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
 	\end{center}
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	%%%=========================================================================================================================================================
+	\newpage
+	% --- ENCABEZADO DEL TALLER ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\normalsize \textit{Hacia un Aprendizaje Significativo, Autónomo y en Libertad}}\\[0.2cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{Taller de Repaso MATEMÁTICAS 6º}\\[0.1cm]
+		\textbf{Código del Tema: 06M – 17}\\[0.1cm]
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Tema:} ESTADÍSTICA I. Población, muestra, tablas de frecuencias y diagramas de barras.
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.4cm}
+	
+	\noindent \textit{\textbf{Instrucciones:} Copia cuidadosamente cada uno de los siguientes enunciados en tu cuaderno de matemáticas, reproduce las tablas o gráficos requeridos y resuelve los ejercicios paso a paso justificando tus respuestas.}
+	\vspace{0.4cm}
+	
+	% --- SECCIÓN DE EJERCICIOS ---
+	\section*{Ejercicios de Práctica y Aplicación}
+	
+	\begin{enumerate}[itemsep=0.7cm]
+		
+		\item Lee con atención la siguiente situación e identifica los conceptos estadísticos solicitados: 
+		\textit{``El departamento de bienestar estudiantil del Liceo V.A.L. desea conocer cuál es el deporte preferido por los estudiantes de básica secundaria. Para ello, encuestan a $60$ estudiantes elegidos al azar de los grados sexto a noveno.''}
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuál es la **población** objeto de estudio en esta investigación?
+			\item ¿Cuál es la **muestra** seleccionada para la encuesta?
+			\item ¿La variable estadística analizada es **cualitativa** o **cuantitativa**? Justifica tu respuesta.
+		\end{enumerate}
+		
+		\item Durante una jornada de hábitos saludables, se le preguntó a un grupo de estudiantes cuál era su fruta favorita. Las respuestas obtenidas fueron: 
+		\textit{Manzana, Pera, Banano, Manzana, Pera, Manzana, Banano, Fresa, Pera, Manzana, Fresa, Banano, Manzana, Pera, Banano}.
+		Construye en tu cuaderno una tabla de frecuencias que incluya las columnas: \textbf{Fruta (Variable)}, \textbf{Conteo (Marca de conteo)} y \textbf{Frecuencia Absoluta ($f_i$)}. Al finalizar, indica cuál fue la fruta con mayor preferencia (moda).
+		
+		\item La siguiente tabla incompleta muestra los resultados de una encuesta aplicada a los estudiantes de sexto grado sobre su pasatiempo favorito en casa:
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{lcc}
+				\toprule
+				\textbf{Pasatiempo} & \textbf{Frecuencia Absoluta ($f_i$)} & \textbf{Frecuencia Relativa ($h_i$)} \\
+				\midrule
+				Leer libros & $12$ & $0.30$ \\
+				Practicar deporte & $16$ & $0.40$ \\
+				Jugar videojuegos & $8$ & $-$ \\
+				Escuchar música & $4$ & $0.10$ \\
+				\midrule
+				\textbf{Total} & \textbf{40} & \textbf{1.00} \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+		
+		A partir de los datos de la tabla, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuál es la frecuencia relativa correspondiente al pasatiempo de jugar videojuegos?
+			\item ¿Qué porcentaje exacto de estudiantes prefiere practicar deporte en su tiempo libre?
+		\end{enumerate}
+		
+		\item Observa el siguiente diagrama de barras que representa la cantidad de libros leídos por los estudiantes de sexto grado durante el periodo académico:
+		
+		\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=1]
+				% Ejes
+				\draw[-stealth] (0,0) -- (7,0) node[right] {\small Libros};
+				\draw[-stealth] (0,0) -- (0,5) node[above] {\small Estudiantes};
+				
+				% Barras
+				\fill[blue!40] (1,0) rectangle (1.6,2);
+				\draw[thick] (1,0) rectangle (1.6,2);
+				\node at (1.3,-0.3) {\small 1 libro};
+				\node at (1.3,2.3) {\small 5};
+				
+				\fill[blue!40] (2.5,0) rectangle (3.1,4);
+				\draw[thick] (2.5,0) rectangle (3.1,4);
+				\node at (2.8,-0.3) {\small 2 libros};
+				\node at (2.8,4.3) {\small 10};
+				
+				\fill[blue!40] (4,0) rectangle (4.6,3.2); % escalado 3.2
+				\draw[thick] (4,0) rectangle (4.6,3.2);
+				\node at (4.3,-0.3) {\small 3 libros};
+				\node at (4.3,3.5) {\small 8};
+				
+				\fill[blue!40] (5.5,0) rectangle (6.1,1.2);
+				\draw[thick] (5.5,0) rectangle (6.1,1.2);
+				\node at (5.8,-0.3) {\small 4 o más};
+				\node at (5.8,1.5) {\small 3};
+				
+				% Marcas eje y
+				\foreach \y/\val in {0/0, 0.8/2, 1.6/4, 2.4/6, 3.2/8, 4/10} {
+					\draw (-0.1,\y) -- (0,\y);
+					\node at (-0.4,\y) {\footnotesize \val};
+				}
+			\end{tikzpicture}
+		\end{center}
+		
+		A partir de la información visual del gráfico de barras, responde:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
+			\item ¿Cuántos estudiantes leyeron exactamente $2$ libros?
+			\item ¿Cuántos estudiantes en total conforman la muestra analizada en este estudio?
+		\end{enumerate}
+		
+		\item En una evaluación de matemáticas aplicada a un curso de $35$ estudiantes, las calificaciones cuantitativas obtenidas se agruparon de la siguiente manera: 
+		\textit{Insuficiente: $5$ estudiantes, Aceptable: $10$ estudiantes, Sobresaliente: $14$ estudiantes, Excelente: $6$ estudiantes}. 
+		Diseña una tabla de frecuencias absolutas y relativas que organice estos resultados y calcula qué porcentaje del curso obtuvo una calificación de Sobresaliente o Excelente.
+		
+		\item El comité ambiental del colegio registró durante 5 días de la semana la cantidad de bolsas plásticas recolectadas en las zonas verdes: \textit{Lunes: 14, Martes: 22, Miércoles: 18, Jueves: 25, Viernes: 16}. Con estos datos, construye en tu cuaderno un diagrama de barras vertical bien rotulado que represente fielmente la recolección diaria de residuos.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\rule{0.5\textwidth}{0.4pt} \\
+		\vspace{0.2cm}
+		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
+	\end{center}
+	
 \end{document}

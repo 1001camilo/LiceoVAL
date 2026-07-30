@@ -1,0 +1,291 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Margen de 1 pulgada en todos los lados
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+% --- FONDO (Membrete Ruta Local TeXstudio) ---
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	% \IfFileExists{../../FondoVAL.pdf}{%
+		% 	\AtPageLowerLeft{%
+			% 		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+			% 	}%
+		% }{}%
+}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES GEOMÉTRICOS ---
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes.geometric, patterns, angles, quotes}
+
+% --- COMANDOS PARA CAJAS DE RESPUESTA (FL) ---
+\definecolor{valdark}{RGB}{50, 50, 50}
+\newcommand{\boxfill}[1][1cm]{\tcbox[on line, size=minimal, colframe=black, colback=white, boxrule=0.8pt, arc=1mm, boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]{\hspace*{#1}\vphantom{M}}}
+
+\newcommand{\malla}[2]{
+	\draw[step=1, gray!40, thin] (0,0) grid (#1,#2);
+}
+
+% --- COMANDOS PARA ÁNGULOS (Misión 3) ---
+\newcommand{\drawTransversal}[1]{
+	\draw[thick, <->] (-2.5, 1.5) -- (2.5, 1.5);
+	\draw[thick, <->] (-2.5, 0) -- (2.5, 0);
+	\coordinate (P) at (0,0);
+	\coordinate (Q) at ({1.5/tan(#1)}, 1.5);
+	\draw[thick, <->, >=stealth] ($(P) - ({1.8*cos(#1)}, {1.8*sin(#1)})$) -- ($(Q) + ({1.8*cos(#1)}, {1.8*sin(#1)})$);
+}
+
+\newcommand{\marcarTR}[4]{ 
+	\draw[fill=#4!20, draw=#4, thick] (#1) -- ++(0.5,0) arc (0:#2:0.5) -- cycle;
+	\node at ($(#1) + ({#2/2}:0.8)$) {#3};
+}
+\newcommand{\marcarTL}[4]{ 
+	\draw[fill=#4!20, draw=#4, thick] (#1) -- ++(#2:0.5) arc (#2:180:0.5) -- cycle;
+	\node at ($(#1) + ({(#2+180)/2}:0.8)$) {#3};
+}
+\newcommand{\marcarBL}[4]{ 
+	\draw[fill=#4!20, draw=#4, thick] (#1) -- ++(180:0.5) arc (180:{180+#2}:0.5) -- cycle;
+	\node at ($(#1) + ({180+#2/2}:0.8)$) {#3};
+}
+\newcommand{\marcarBR}[4]{ 
+	\draw[fill=#4!20, draw=#4, thick] (#1) -- ++({180+#2}:0.5) arc ({180+#2}:360:0.5) -- cycle;
+	\node at ($(#1) + ({270+#2/2}:0.8)$) {#3};
+}
+
+% --- COLORES GEOMETRÍA ---
+\definecolor{valblue}{RGB}{41, 128, 185}
+\definecolor{valred}{RGB}{192, 57, 43}
+\definecolor{valgreen}{RGB}{39, 174, 96}
+\definecolor{valorange}{RGB}{211, 84, 0}
+
+\begin{document}
+	
+	% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}} \\
+		\vspace{0.2cm}
+		{\large \textbf{DEPARTAMENTO DE MATEMÁTICAS}} \\
+		\vspace{0.2cm}
+		{\large \textbf{Examen Final - MÓDULO 6}}
+	\end{center}
+	\vspace{0.1cm}
+	
+	\hfill \textbf{Código:} \textbf{06M-16 FL}
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. El Triángulo} \hfill\textbf{(20\%)}
+	
+	\vspace{0.1cm}
+	\noindent Observa el triángulo. Completa los espacios para hallar su Perímetro (suma de todos sus lados) y su Área (usando la fórmula $A = \frac{b \times h}{2}$).
+	
+	\vspace{0.2cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				\draw[ultra thick, valblue, fill=valblue!10] (0,0) -- (6,0) -- (2,4) -- cycle;
+				\draw[thick, dashed] (2,4) -- (2,0);
+				\draw (2,0.2) -- (2.2,0.2) -- (2.2,0); 
+				
+				% Medidas
+				\node at (3, -0.4) {$b = 12\text{ cm}$}; % Base
+				\node at (1.2, 1.8) {$h = 5\text{ cm}$}; % Altura
+				\node[rotate=63] at (-0.2, 2.0) {$6\text{ cm}$};
+				\node[rotate=-45] at (4.6, 2.2) {$9\text{ cm}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\columnbreak
+		
+		\textbf{Perímetro ($P$):} \\
+		\vspace{0.2cm}
+		$P =$ \boxfill $+$ \boxfill $+$ \boxfill  \\
+		\vspace{0.2cm}
+		$P =$ \boxfill[1.5cm] \text{cm} \\
+		
+		\vspace{0.4cm}
+		\textbf{Área ($A$):} \\
+		\vspace{0.2cm}
+		$A = \dfrac{\boxfill \times \boxfill}{2}$ \\
+		\vspace{0.2cm}
+		$A = $ \boxfill[1.5cm] \text{cm}$^2$
+	\end{multicols}
+	
+	\vspace{0.3cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. El Trapecio} \hfill\textbf{(20\%)}
+	
+	\vspace{0.1cm}
+	\noindent Completa los espacios para hallar el Perímetro y el Área del trapecio usando la fórmula $A = \frac{(B + b) \times h}{2}$.
+	
+	\vspace{0.2cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.85]
+				\draw[ultra thick, valorange, fill=valorange!10] (0,0) -- (7,0) -- (5,3) -- (2,3) -- cycle;
+				\draw[thick, dashed] (2,3) -- (2,0);
+				\draw (2,0.2) -- (2.2,0.2) -- (2.2,0);
+				
+				% Medidas
+				\node at (3.5, -0.4) {$B = 14\text{ cm}$};
+				\node at (3.5, 3.4) {$b = 8\text{ cm}$};
+				\node at (1.2, 1.5) {$h = 4\text{ cm}$};
+				\node[rotate=56] at (0.3, 1.6) {$5\text{ cm}$};
+				\node[rotate=-56] at (6.7, 1.6) {$5\text{ cm}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\columnbreak
+		
+		\textbf{Perímetro ($P$):} \\
+		\vspace{0.2cm}
+		$P =$ \boxfill $+$ \boxfill $+$ \boxfill $+$ \boxfill  \\
+		\vspace{0.2cm}
+		$P =$ \boxfill[1.5cm] \text{cm} \\
+		
+		\vspace{0.4cm}
+		\textbf{Área ($A$):} \\
+		\vspace{0.2cm}
+		$A = \dfrac{(\boxfill + \boxfill) \times \boxfill}{2}$ \\
+		\vspace{0.2cm}
+		$A = $ \boxfill[1.5cm] \text{cm}$^2$
+	\end{multicols}
+	
+	\vspace{0.3cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. El Polígono Regular} \hfill\textbf{(20\%)}
+	
+	\vspace{0.1cm}
+	\noindent Halla el Perímetro del \textbf{hexágono} (sumando sus 6 lados iguales). Luego, usa ese resultado para calcular su Área con la fórmula $A = \frac{P \times a}{2}$.
+	
+	\vspace{0.2cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				\node[regular polygon, regular polygon sides=6, minimum size=3.8cm, draw=valgreen, fill=valgreen!10, ultra thick] (hexa) at (0,0) {};
+				\fill (0,0) circle (3pt) node[above right] {Centro};
+				\draw[thick, dashed] (0,0) -- (hexa.side 1);
+				
+				% Medidas
+				\node at (0, -1) {$a = 3.5\text{ cm}$};
+				\node at (0, -2.4) {Lado ($L$) = $4\text{ cm}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\columnbreak
+		
+		\textbf{Perímetro ($P$):} \\
+		\vspace{0.2cm}
+		$P = 6 \times $ \boxfill \\
+		\vspace{0.2cm}
+		$P = $ \boxfill[1.5cm] \text{cm} \\
+		
+		\vspace{0.4cm}
+		\textbf{Área ($A$):} \\
+		\vspace{0.2cm}
+		$A = \dfrac{\boxfill \times \boxfill}{2}$ \\
+		\vspace{0.2cm}
+		$A = $ \boxfill[1.5cm] \text{cm}$^2$
+	\end{multicols}
+	
+	\newpage
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Descubriendo el Ángulo Oculto ($x$)} \hfill\textbf{(20\%)}
+	
+	\vspace{0.2cm}
+	\noindent Observa las siguientes rectas paralelas cortadas por una transversal. Identifica si la pareja de ángulos es \textbf{Congruente} (miden lo mismo) o \textbf{Suplementaria} (suman $180^\circ$). Luego, escribe cuánto mide el ángulo $x$.
+	
+	\vspace{0.5cm}
+	\begin{multicols}{2}
+		\begin{center}
+			\textbf{Figura A} \\
+			\vspace{0.2cm}
+			\begin{tikzpicture}[scale=0.8, font=\small]
+				\drawTransversal{70}
+				\marcarTR{P}{70}{$70^\circ$}{valred} 
+				\marcarBL{Q}{70}{$x$}{valblue}
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\textbf{Marca con una X:} \\
+		$[ \quad ]$ Son Congruentes ($=$) \\
+		$[ \quad ]$ Son Suplementarios ($180^\circ$) \\
+		\vspace{0.4cm}
+		Por lo tanto: \\
+		\vspace{0.2cm}
+		$x = $ \boxfill[1.5cm]
+		
+		\columnbreak
+		
+		\begin{center}
+			\textbf{Figura B} \\
+			\vspace{0.2cm}
+			\begin{tikzpicture}[scale=0.8, font=\small]
+				\drawTransversal{110}
+				\marcarTR{P}{110}{$110^\circ$}{valgreen} 
+				\marcarBR{Q}{110}{$x$}{valorange}
+			\end{tikzpicture}
+		\end{center}
+		
+		\vspace{0.2cm}
+		\textbf{Marca con una X:} \\
+		$[ \quad ]$ Son Congruentes ($=$) \\
+		$[ \quad ]$ Son Suplementarios ($180^\circ$) \\
+		\vspace{0.4cm}
+		Por lo tanto: \\
+		\vspace{0.2cm}
+		$x = $ \boxfill[1.5cm]
+	\end{multicols}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 5 ---
+	\noindent \textbf{5. Transformaciones: Aplica la Traslación} \hfill\textbf{(20\%)}
+	
+	\vspace{0.2cm}
+	\noindent Traslada (desliza) la figura contando los cuadritos en la cuadrícula. Te hemos dejado un punto rojo como guía en una de sus esquinas para que empieces a contar desde ahí.
+	
+	\vspace{0.2cm}
+	\textbf{Regla de Traslación:} Mueve la figura \textbf{6 cuadritos a la derecha} y \textbf{2 cuadritos hacia abajo}. ¡Dibuja y colorea la nueva figura en su posición final!
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.85]
+			% Cuadrícula
+			\malla{14}{7}
+			
+			% Figura original (Flecha)
+			\coordinate (A) at (2,4);
+			\coordinate (B) at (4,4);
+			\coordinate (C) at (4,5);
+			\coordinate (D) at (6,3.5);
+			\coordinate (E) at (4,2);
+			\coordinate (F) at (4,3);
+			\coordinate (G) at (2,3);
+			
+			\draw[ultra thick, valblue, fill=valblue!20] (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- cycle;
+			\fill[valred] (A) circle (5pt); % Punto rojo guía
+		\end{tikzpicture}
+	\end{center}
+	
+\end{document}
