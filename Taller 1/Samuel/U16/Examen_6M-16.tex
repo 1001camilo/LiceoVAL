@@ -16,11 +16,11 @@
 % --- FONDO (Membrete Ruta Local TeXstudio) ---
 \usepackage{eso-pic}
 \AddToShipoutPictureBG{%
-	% \IfFileExists{../../FondoVAL.pdf}{%
-		% 	\AtPageLowerLeft{%
-			% 		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
-			% 	}%
-		% }{}%
+	 \IfFileExists{../../FondoVAL.pdf}{%
+	 	\AtPageLowerLeft{%
+	 		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+	 	}%
+	 }{}%
 }
 
 % --- FUENTE ---
@@ -79,7 +79,7 @@
 		\vspace{0.2cm}
 		{\large \textbf{DEPARTAMENTO DE MATEMÁTICAS}} \\
 		\vspace{0.2cm}
-		{\large \textbf{Examen Final - MÓDULO 6}}
+		{\large \textbf{Examen de Matemáticas}}
 	\end{center}
 	\vspace{0.1cm}
 	
@@ -90,10 +90,9 @@
 	\vspace{0.6cm}
 	
 	% --- PUNTO 1 ---
-	\noindent \textbf{1. El Triángulo} \hfill\textbf{(20\%)}
+	\noindent \textbf{1.Observa el triángulo. Completa los espacios para hallar su Perímetro y su Área.} \hfill\textbf{(20\%)}
 	
-	\vspace{0.1cm}
-	\noindent Observa el triángulo. Completa los espacios para hallar su Perímetro (suma de todos sus lados) y su Área (usando la fórmula $A = \frac{b \times h}{2}$).
+
 	
 	\vspace{0.2cm}
 	\begin{multicols}{2}
@@ -105,9 +104,9 @@
 				
 				% Medidas
 				\node at (3, -0.4) {$b = 12\text{ cm}$}; % Base
-				\node at (1.2, 1.8) {$h = 5\text{ cm}$}; % Altura
-				\node[rotate=63] at (-0.2, 2.0) {$6\text{ cm}$};
-				\node[rotate=-45] at (4.6, 2.2) {$9\text{ cm}$};
+				\node at (3, 1.8) {$h = 5\text{ cm}$}; % Altura
+				\node[rotate=63] at (0.6, 2.0) {$6\text{ cm}$};
+				\node[rotate=-45] at (4.3, 2.2) {$9\text{ cm}$};
 			\end{tikzpicture}
 		\end{center}
 		
@@ -130,10 +129,9 @@
 	\vspace{0.3cm}
 	
 	% --- PUNTO 2 ---
-	\noindent \textbf{2. El Trapecio} \hfill\textbf{(20\%)}
+	\noindent \textbf{2. Completa los espacios para hallar el Perímetro y el Área del trapecio.} \hfill\textbf{(20\%)}
 	
-	\vspace{0.1cm}
-	\noindent Completa los espacios para hallar el Perímetro y el Área del trapecio usando la fórmula $A = \frac{(B + b) \times h}{2}$.
+	
 	
 	\vspace{0.2cm}
 	\begin{multicols}{2}
@@ -146,7 +144,7 @@
 				% Medidas
 				\node at (3.5, -0.4) {$B = 14\text{ cm}$};
 				\node at (3.5, 3.4) {$b = 8\text{ cm}$};
-				\node at (1.2, 1.5) {$h = 4\text{ cm}$};
+				\node at (3.2, 1.5) {$h = 4\text{ cm}$};
 				\node[rotate=56] at (0.3, 1.6) {$5\text{ cm}$};
 				\node[rotate=-56] at (6.7, 1.6) {$5\text{ cm}$};
 			\end{tikzpicture}
@@ -168,25 +166,23 @@
 		$A = $ \boxfill[1.5cm] \text{cm}$^2$
 	\end{multicols}
 	
-	\vspace{0.3cm}
-	
+	\newpage
 	% --- PUNTO 3 ---
-	\noindent \textbf{3. El Polígono Regular} \hfill\textbf{(20\%)}
+	\noindent \textbf{3. Halla el Perímetro del \textbf{hexágono}. Luego, usa ese resultado para calcular su Área con la fórmula.} \hfill\textbf{(20\%)}
 	
-	\vspace{0.1cm}
-	\noindent Halla el Perímetro del \textbf{hexágono} (sumando sus 6 lados iguales). Luego, usa ese resultado para calcular su Área con la fórmula $A = \frac{P \times a}{2}$.
+	
 	
 	\vspace{0.2cm}
 	\begin{multicols}{2}
 		\begin{center}
 			\begin{tikzpicture}[scale=0.9]
 				\node[regular polygon, regular polygon sides=6, minimum size=3.8cm, draw=valgreen, fill=valgreen!10, ultra thick] (hexa) at (0,0) {};
-				\fill (0,0) circle (3pt) node[above right] {Centro};
+				\fill (0,0) circle (3pt) node[above right] {};
 				\draw[thick, dashed] (0,0) -- (hexa.side 1);
 				
 				% Medidas
 				\node at (0, -1) {$a = 3.5\text{ cm}$};
-				\node at (0, -2.4) {Lado ($L$) = $4\text{ cm}$};
+				\node at (0, -2.4) {$l$ = $4\text{ cm}$};
 			\end{tikzpicture}
 		\end{center}
 		
@@ -206,13 +202,10 @@
 		$A = $ \boxfill[1.5cm] \text{cm}$^2$
 	\end{multicols}
 	
-	\newpage
 	
 	% --- PUNTO 4 ---
-	\noindent \textbf{4. Descubriendo el Ángulo Oculto ($x$)} \hfill\textbf{(20\%)}
+	\noindent \textbf{4. Observa las siguientes rectas paralelas cortadas por una transversal. Identifica si la pareja de ángulos es \textbf{Congruente}  o \textbf{Suplementaria}. Luego, escribe cuánto mide el ángulo $x$.} \hfill\textbf{(20\%)}
 	
-	\vspace{0.2cm}
-	\noindent Observa las siguientes rectas paralelas cortadas por una transversal. Identifica si la pareja de ángulos es \textbf{Congruente} (miden lo mismo) o \textbf{Suplementaria} (suman $180^\circ$). Luego, escribe cuánto mide el ángulo $x$.
 	
 	\vspace{0.5cm}
 	\begin{multicols}{2}
@@ -225,15 +218,9 @@
 				\marcarBL{Q}{70}{$x$}{valblue}
 			\end{tikzpicture}
 		\end{center}
+		Relación \boxfill[5cm]\\
 		
-		\vspace{0.2cm}
-		\textbf{Marca con una X:} \\
-		$[ \quad ]$ Son Congruentes ($=$) \\
-		$[ \quad ]$ Son Suplementarios ($180^\circ$) \\
-		\vspace{0.4cm}
-		Por lo tanto: \\
-		\vspace{0.2cm}
-		$x = $ \boxfill[1.5cm]
+		$x = $ \boxfill[2cm]
 		
 		\columnbreak
 		
@@ -246,45 +233,30 @@
 				\marcarBR{Q}{110}{$x$}{valorange}
 			\end{tikzpicture}
 		\end{center}
+		Relación \boxfill[5cm]\\
 		
-		\vspace{0.2cm}
-		\textbf{Marca con una X:} \\
-		$[ \quad ]$ Son Congruentes ($=$) \\
-		$[ \quad ]$ Son Suplementarios ($180^\circ$) \\
-		\vspace{0.4cm}
-		Por lo tanto: \\
-		\vspace{0.2cm}
-		$x = $ \boxfill[1.5cm]
+		$x = $ \boxfill[2cm]
 	\end{multicols}
 	
-	\vspace{0.6cm}
+	\newpage
 	
 	% --- PUNTO 5 ---
-	\noindent \textbf{5. Transformaciones: Aplica la Traslación} \hfill\textbf{(20\%)}
+	\noindent \textbf{5. Traslada la figura contando los cuadritos en la cuadrícula.} \hfill\textbf{(20\%)}
+	\vspace*{0.5cm}
 	
-	\vspace{0.2cm}
-	\noindent Traslada (desliza) la figura contando los cuadritos en la cuadrícula. Te hemos dejado un punto rojo como guía en una de sus esquinas para que empieces a contar desde ahí.
+	\noindent Mueve la figura \textbf{6 cuadritos a la derecha} y \textbf{2 cuadritos hacia abajo}. Dibuja la nueva figura en su posición final
 	
-	\vspace{0.2cm}
-	\textbf{Regla de Traslación:} Mueve la figura \textbf{6 cuadritos a la derecha} y \textbf{2 cuadritos hacia abajo}. ¡Dibuja y colorea la nueva figura en su posición final!
+
 	
-	\vspace{0.4cm}
 	\begin{center}
 		\begin{tikzpicture}[scale=0.85]
 			% Cuadrícula
 			\malla{14}{7}
 			
-			% Figura original (Flecha)
-			\coordinate (A) at (2,4);
-			\coordinate (B) at (4,4);
-			\coordinate (C) at (4,5);
-			\coordinate (D) at (6,3.5);
-			\coordinate (E) at (4,2);
-			\coordinate (F) at (4,3);
-			\coordinate (G) at (2,3);
+			% Figura original (basada en traslación.png)
+			\draw[ultra thick, valblue, fill=valblue!20] (1,4) -- (1,5) -- (3,3) -- (1,3) -- (1,4) -- cycle;
 			
-			\draw[ultra thick, valblue, fill=valblue!20] (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- cycle;
-			\fill[valred] (A) circle (5pt); % Punto rojo guía
+			\fill[valred] (1,3) circle (5pt); % Punto rojo guía
 		\end{tikzpicture}
 	\end{center}
 	
