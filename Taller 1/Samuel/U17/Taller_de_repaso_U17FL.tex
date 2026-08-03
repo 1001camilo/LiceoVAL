@@ -1,0 +1,254 @@
+% ╔══════════════════════════════════════════════════════════════════════╗
+% ║  LICEO V.A.L.  –  DEPARTAMENTO DE MATEMÁTICAS                        ║
+% ║  Taller de Repaso: Unidad 17 (06M-17 FL) |  Grado: 6°                ║
+% ╚══════════════════════════════════════════════════════════════════════╝
+\documentclass[12pt,letterpaper]{article}
+
+% ── Codificación y tipografía ──────────────────────────────────────────
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ── Geometría ─────────────────────────────────────────────────────────
+\usepackage[letterpaper,left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
+
+% ── Gráficos, color y símbolos ────────────────────────────────────────
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,calc,positioning}
+\usepackage[most]{tcolorbox} 
+\usepackage{array,tabularx,multicol,enumitem}
+
+% ── Paleta de Colores Liceo VAL ───────────────────────────────────────
+\definecolor{valblue}       {RGB}{  0, 84,166}
+\definecolor{valgreen}      {RGB}{  0,150, 64}
+\definecolor{valred}        {RGB}{200, 16, 46}
+\definecolor{valdark}       {RGB}{ 40, 40, 40}
+\definecolor{valorange}     {RGB}{230,100,  0}
+\definecolor{valgray}       {RGB}{245,245,245}
+\definecolor{vallightblue}  {RGB}{220,235,250} 
+
+% --- COLORES VIVOS PARA LA GRÁFICA CIRCULAR ---
+\definecolor{vividblue}     {RGB}{  0, 150, 255}
+\definecolor{vividred}      {RGB}{255,  50,  50}
+\definecolor{vividgreen}    {RGB}{  0, 200, 100}
+
+% ── Casilla de respuesta ──────────────────────────────────────────────
+\newcommand{\boxfill}[1][1.5cm]{%
+	\tikz[baseline=-0.5ex]%
+	\draw[valdark!60, fill=valgray, line width=0.8pt, rounded corners=1pt] (0,-0.3) rectangle (#1,0.3cm);%
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% ============================================================
+\begin{document}
+	
+	% ─────────────────────────────────────────────────────────────
+	% ENCABEZADO DEL TALLER
+	% ─────────────────────────────────────────────────────────────
+	\begin{center}
+		{\Large\bfseries\color{valblue} LICEO V.A.L.\ (VIDA, AMOR, LUZ)}\\[2pt]
+		{\large\bfseries DEPARTAMENTO DE MATEMÁTICAS -- GRADO 6\textdegree}\\[6pt]
+		\begin{tcolorbox}[enhanced,arc=3mm,boxrule=1.5pt,
+			colback=valblue,colframe=valdark,halign=center, top=4pt, bottom=4pt]
+			{\Large\bfseries\color{white} TALLER DE REPASO: UNIDAD 17}\\[2pt]
+			{\large\bfseries\color{yellow!90!white} Estadística: Lectura de tablas, gráficas y pictogramas}
+		\end{tcolorbox}
+		\vspace{2pt}
+		\begin{tcolorbox}[enhanced,arc=2mm,boxrule=1pt,colback=white,colframe=valblue,width=\linewidth]
+			\textbf{Nombre:} \rule{8cm}{0.5pt} \hfill \textbf{Fecha:} \rule{3cm}{0.5pt} %\hfill \textbf{Nota:} \boxfill[1.5cm]
+		\end{tcolorbox}
+	\end{center}
+	\vspace{-4pt}
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 1: TABLAS
+	% ─────────────────────────────────────────────────────────────
+	{\large\bfseries\color{valblue} 1. Análisis de Tablas }\\[4pt]
+	La siguiente tabla muestra la cantidad de frutas vendidas en la cafetería del colegio durante un recreo.
+	
+	\begin{minipage}[c]{0.45\linewidth}
+		\centering
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Grado} & \textbf{Manzanas} & \textbf{Bananos} & \textbf{Peras} \\ \hline
+			Cuarto & 20 & 15 & 10 \\ \hline
+			Quinto & 10 & 25 & 5  \\ \hline
+			Sexto  & 30 & 10 & 15 \\ \hline
+		\end{tabular}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[c]{0.52\linewidth}
+		\begin{enumerate}[label=\alph*), itemsep=0.3cm, leftmargin=*]
+			\small
+			\item ¿Cuántos \textbf{Bananos} compró el grado Quinto? \hfill\boxfill
+			\item ¿Qué grado compró más \textbf{Manzanas}? \hfill\boxfill[2cm]
+			\item ¿Cuántas \textbf{Peras} se vendieron? \hfill\boxfill
+			\item ¿Cuántas frutas en total compró el grado \textbf{Cuarto}? \hfill\boxfill
+		\end{enumerate}
+	\end{minipage}
+	
+	\vspace{12pt}\noindent\rule{\linewidth}{1pt}\vspace{12pt} 
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 2: BARRAS
+	% ─────────────────────────────────────────────────────────────
+	{\large\bfseries\color{valorange} 2. Gráfica de Barras }\\[4pt]
+	Observa la cantidad de libros leídos por 4 clubes de lectura en el año.
+	
+	\begin{minipage}[c]{0.48\linewidth}
+		\centering
+		\begin{tikzpicture}[x=1.2cm,y=0.06cm] % Escala ajustada para llegar a 60
+			% Cuadrícula cada 10 unidades
+			\foreach \y in {0,10,20,30,40,50,60} {
+				\draw[gray!30, line width=0.5pt] (0,\y) -- (5,\y);
+				\node[left, font=\bfseries\scriptsize, color=valdark] at (0,\y) {\y};
+			}
+			\draw[valdark, line width=1.2pt] (0,0) -- (0,65);
+			\draw[valdark, line width=1.2pt] (0,0) -- (5.2,0);
+			\node[rotate=90, font=\bfseries\scriptsize, color=valdark] at (-0.8, 30) {Libros Leídos};
+			
+			% Barras
+			\foreach \x/\y/\col/\name in {
+				1/40/valorange/Aventureros,
+				2/20/valorange/Exploradores,
+				3/60/valorange/Soñadores,
+				4/30/valorange/Viajeros%
+			} {
+				\path[fill=\col!75, draw=\col, line width=1pt] (\x-0.3,0) rectangle (\x+0.3,\y);
+				\node[below, font=\bfseries\scriptsize, color=valdark] at (\x,0) {\name};
+			}
+		\end{tikzpicture}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[c]{0.50\linewidth}
+		\begin{enumerate}[label=\alph*), itemsep=0.35cm, leftmargin=*]
+			\small
+			\item Libros leídos por los \textbf{Exploradores}: \hfill\boxfill
+			\item Club que leyó exactamente \textbf{60 libros}: \hfill\boxfill[2cm]
+			\item ¿Cuántos libros \textbf{más} leyeron los Aventureros que los Viajeros? \hfill\boxfill
+			\item ¿Cuántos libros leyeron los 4 clubes \textbf{en total}? \hfill\boxfill
+		\end{enumerate}
+	\end{minipage}
+	
+	\vspace{12pt}\noindent\rule{\linewidth}{1pt}\vspace{12pt}
+	\newpage
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 3: LÍNEAS
+	% ─────────────────────────────────────────────────────────────
+	{\large\bfseries\color{valgreen} 3. Gráfica de Líneas }\\[4pt]
+	La gráfica muestra la cantidad de visitantes que entraron a un parque durante cinco días de la semana. 
+	
+	\begin{minipage}[c]{0.52\linewidth}
+		\centering
+		\begin{tikzpicture}[x=1.2cm,y=0.5cm] % Escala adaptada
+			% Cuadrícula
+			\foreach \y/\ylab in {0/0, 1/20, 2/40, 3/60, 4/80, 5/100} {
+				\draw[gray!30, line width=0.5pt] (0,\y) -- (5.5,\y);
+				\node[left, font=\bfseries\scriptsize, color=valdark] at (0,\y) {\ylab};
+			}
+			\draw[valdark, line width=1.2pt] (0,0) -- (0,5.5);
+			\draw[valdark, line width=1.2pt] (0,0) -- (5.7,0);
+			
+			\node[rotate=90, font=\bfseries\scriptsize, color=valdark] at (-0.8, 2.7) {Visitantes};
+			
+			% Eje X marcas
+			\foreach \x/\name in {1/Lun, 2/Mar, 3/Mié, 4/Jue, 5/Vie} {
+				\draw[valdark, line width=1pt] (\x,0) -- (\x,-0.2);
+				\node[below, font=\bfseries\scriptsize] at (\x,-0.2) {\name};
+			}
+			
+			% Línea y puntos (Valores: Lun=40, Mar=80, Mie=60, Jue=60, Vie=100)
+			\draw[valgreen, line width=1.5pt] (1, 2) -- (2, 4) -- (3, 3) -- (4, 3) -- (5, 5);
+			\foreach \x/\y in {1/2, 2/4, 3/3, 4/3, 5/5} {
+				\filldraw[valdark, draw=white, line width=1pt] (\x,\y) circle (2.5pt);
+			}
+		\end{tikzpicture}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[c]{0.45\linewidth}
+		\begin{enumerate}[label=\alph*), itemsep=0.35cm, leftmargin=*]
+			\small
+			\item Visitantes el día \textbf{Miércoles}: \hfill\boxfill
+			\item Día con la \textbf{mayor} cantidad de visitantes: \hfill\boxfill[2cm]
+			\item Entre el lunes y el martes, ¿la cantidad de visitantes \textbf{subió o bajó}? \hfill\boxfill[2cm]
+			\item ¿En qué días la cantidad de visitantes se mantuvo \textbf{constante}? \hfill\boxfill[2cm]
+		\end{enumerate}
+	\end{minipage}
+	
+	\vspace{12pt}\noindent\rule{\linewidth}{1pt}\vspace{12pt}
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 4: PICTOGRAMA Y CIRCULAR
+	% ─────────────────────────────────────────────────────────────
+	{\large\bfseries\color{valred} 4. Pictograma y Gráfica Circular }\\[4pt]
+	
+	\begin{minipage}[t]{0.48\linewidth}
+		\textbf{A) Pictograma:} Venta de Pizzas. \\
+		\textit{Cada \tikz[baseline=-2pt]{\fill[valorange] (0,0) circle (0.15cm);} vale \textbf{20 pizzas}}
+		
+		\vspace{4pt}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|l|l|}
+			\hline
+			\rowcolor{valblue!15} \textbf{Mes} & \textbf{Pizzas vendidas} \\ \hline
+			Marzo & \tikz[baseline=-2pt]{\fill[valorange] (0,0) circle (0.15); \fill[valorange] (0.4,0) circle (0.15); \fill[valorange] (0.8,-0.15) arc (-90:90:0.15);} \\ \hline
+			Abril & \tikz[baseline=-2pt]{\fill[valorange] (0,0) circle (0.15); \fill[valorange] (0.4,0) circle (0.15); \fill[valorange] (0.8,0) circle (0.15); \fill[valorange] (1.2,0) circle (0.15);} \\ \hline
+		\end{tabular}
+		\vspace{6pt}
+		
+		\begin{enumerate}[label=\arabic*., itemsep=0.2cm, leftmargin=*]
+			\small
+			\item ¿Cuántas pizzas se vendieron en \textbf{Marzo}? \hfill\boxfill
+			\item ¿Cuántas pizzas se vendieron en \textbf{Abril}? \hfill\boxfill
+		\end{enumerate}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\textbf{B) Gráfica Circular:} 400 estudiantes encuestados sobre su color favorito.
+		
+		\vspace{4pt}
+		\begin{minipage}{0.45\linewidth}
+			\begin{tikzpicture}[scale=0.85]
+				% Azul 50%
+				\draw[fill=vividblue, draw=white, thick] (0,0) -- (90:2) arc (90:270:2) -- cycle;
+				% Rojo 25%
+				\draw[fill=vividred, draw=white, thick] (0,0) -- (270:2) arc (270:360:2) -- cycle;
+				% Verde 25%
+				\draw[fill=vividgreen, draw=white, thick] (0,0) -- (0:2) arc (0:90:2) -- cycle;
+				
+				% Porcentajes dentro de la gráfica
+				\node[font=\scriptsize\bfseries, white] at (180:1) {50\%};
+				\node[font=\scriptsize\bfseries, white] at (-45:1) {25\%};
+				\node[font=\scriptsize\bfseries, white] at (45:1) {25\%};
+			\end{tikzpicture}
+		\end{minipage}%
+		\begin{minipage}{0.5\linewidth}
+			% Convenciones
+			\begin{itemize}[label={}, itemsep=0.2cm, leftmargin=*]
+				\item \tikz[baseline=-2pt]{\fill[vividblue] (0,0) rectangle (0.3,0.3);} \small Azul
+				\item \tikz[baseline=-2pt]{\fill[vividred] (0,0) rectangle (0.3,0.3);} \small Rojo
+				\item \tikz[baseline=-2pt]{\fill[vividgreen] (0,0) rectangle (0.3,0.3);} \small Verde
+			\end{itemize}
+		\end{minipage}
+		
+		\vspace{0.4cm}
+		\begin{minipage}{\linewidth}
+			\begin{enumerate}[start=3, label=\arabic*., itemsep=0.2cm, leftmargin=*]
+				\small
+				\item Estudiantes que prefieren \textbf{Azul}: \hfill\boxfill[1cm]
+				\item Estudiantes que prefieren \textbf{Verde}: \hfill\boxfill[1cm]
+			\end{enumerate}
+		\end{minipage}
+	\end{minipage}
+	
+\end{document}

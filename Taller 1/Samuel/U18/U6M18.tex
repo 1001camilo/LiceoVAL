@@ -1,0 +1,2002 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{pifont}
+\usepackage{fontawesome5}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows.meta, shapes.geometric, positioning,
+	calc, patterns, backgrounds, decorations.markings}
+
+% --- COLORES ---
+\definecolor{valblue}       {RGB}{0,   74,  153}
+\definecolor{valgreen}      {RGB}{0,  153,   76}
+\definecolor{valred}        {RGB}{204,   0,    0}
+\definecolor{valdark}       {RGB}{ 30,  30,   30}
+\definecolor{valorange}     {RGB}{230, 115,    0}
+\definecolor{vallightblue}  {RGB}{220, 235,  255}
+\definecolor{vallightgreen} {RGB}{220, 255,  235}
+\definecolor{vallightred}   {RGB}{255, 220,  220}
+\definecolor{vallightorange}{RGB}{255, 240,  215}
+\definecolor{valgray}       {RGB}{248, 248,  248}
+\definecolor{valmid}        {RGB}{190, 190,  190}
+\definecolor{boxbg}         {RGB}{245, 245,  245}
+\definecolor{valpurple}     {RGB}{120,  40,  160}
+\definecolor{vallightpurple}{RGB}{235, 215,  255}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- CAJAS ---
+\usepackage[most]{tcolorbox}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,
+		keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+\newtcolorbox{concepto}[1]{breakable, colback=valblue!5,
+	colframe=valblue,
+	title={\ding{111}\;\textbf{Aprende el Concepto: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{truco}[1]{breakable, colback=valorange!5,
+	colframe=valorange,
+	title={\ding{51}\;\textbf{El Truco: #1}},
+	arc=2mm, boxrule=1pt, fonttitle=\large}
+\newtcolorbox{ejemplo}{breakable, colback=valgreen!5,
+	colframe=valgreen,
+	title={\ding{45}\;\textbf{Ejemplo}},
+	arc=2mm, boxrule=1pt}
+\newenvironment{practica}[1]{%
+	\vspace{0.4cm}
+	\noindent{\Large\textbf{\textcolor{valblue}{\ding{46}\;Practica: #1}}}
+	\vspace{0.1cm}\hrule\vspace{0.3cm}}{\vspace{0.3cm}}
+\newtcolorbox{espaciotrabajo}[1]{breakable, colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90, top=2mm, bottom=2mm}
+\newtcolorbox{espaciotrabajonb}[1]{colback=white,
+	colframe=valdark!40,
+	title={\small\textbf{Procedimiento: #1}},
+	arc=1mm, boxrule=0.6pt, coltitle=valdark!90, top=2mm, bottom=2mm}
+
+% --- CASILLAS ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!60, colback=boxbg, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+\newcommand{\boxstep}[1][2cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!40, colback=white, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+
+\setlength{\columnseprule}{0.4pt}
+
+% --- ESTILOS TIKZ GLOBALES ---
+\tikzset{
+	dato/.style={draw=valblue, fill=valblue!15, rounded corners=3pt,
+		minimum width=0.95cm, minimum height=0.95cm,
+		align=center, font=\bfseries\small, line width=1.2pt},
+	datom/.style={draw=valred, fill=valred!15, rounded corners=3pt,
+		minimum width=0.95cm, minimum height=0.95cm,
+		align=center, font=\bfseries\small, line width=2pt},
+	datoM/.style={draw=valgreen, fill=valgreen!20, rounded corners=3pt,
+		minimum width=0.95cm, minimum height=0.95cm,
+		align=center, font=\bfseries\small, line width=2pt},
+	capaA/.style={draw=valdark, fill=valorange!25, line width=1pt},
+	probbox/.style={draw=valpurple, fill=vallightpurple,
+		rounded corners=4pt, align=center,
+		font=\bfseries\small, line width=1.5pt}}
+
+% ============================================================
+\begin{document}
+	% ============================================================
+	
+	% ─── PORTADA ────────────────────────────────────────────────
+	\begin{center}
+		{\Huge\textbf{LICEO V.A.L.}}\\[0.5cm]
+		{\LARGE\textbf{MÓDULO DE AUTOAPRENDIZAJE}}\\[0.5cm]
+		{\Large\textbf{MATEMÁTICAS 6$^\circ$}}\\[0.5cm]
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
+			arc=3mm, boxrule=1.5pt]
+			\centering
+			\Huge\textbf{UNIDAD 18}\\[0.2cm]
+			\Large\textbf{Estadística y Probabilidad}\\[0.2cm]
+			\large ESTADISTICA. MEDIA, MEDIANA Y MODA, PROBABILIDAD. Conjunto de valores.
+		\end{tcolorbox}
+		%\vspace{0.6cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue,
+			width=12cm, arc=3mm, boxrule=1.5pt]
+			\centering%\vspace{0.3cm}
+			\textbf{Nombre:}\\[0.3cm]
+			\underline{\hspace{9cm}}\\[0.5cm]
+			\textbf{Código:}\;\textbf{06M-18 FL}
+			\hspace{1cm}\textbf{Año:}\;\underline{2026}
+			%\vspace{0.3cm}
+		\end{tcolorbox}
+		%\vspace{0.8cm}
+		\textit{``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''}
+	\end{center}
+	%\newpage
+	% =========================================================
+	%  MISIÓN 1 — CONJUNTO DE DATOS Y TABLAS DE FRECUENCIA
+	% =========================================================
+	\section*{Misión 1: El Conjunto de Datos}
+	
+	\begin{concepto}{¿Qué es un conjunto de datos?}
+		En estadística recopilamos \textbf{datos}: información numérica
+		sobre algo que queremos estudiar.
+		Un \textbf{conjunto de datos} es la colección organizada de todos
+		esos valores.
+		%\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				\node[draw=valdark, fill=valgray, rounded corners=6pt,
+				minimum width=13cm, minimum height=1.4cm,
+				align=center, font=\bfseries, line width=1.5pt,
+				text width=12.5cm] at (6,0)
+				{Calificaciones de 10 estudiantes en un examen:\\[4pt]
+					\textcolor{valblue}{\large $8,\; 6,\; 9,\; 8,\; 7,\; 10,\; 8,\; 6,\; 9,\; 8$}};
+				\node[font=\small\bfseries, text=valblue] at (6,-1.2)
+				{Este es el \textbf{conjunto de datos} (10 valores)};
+			\end{tikzpicture}
+		\end{center}
+		
+	%	\newpage
+		\textbf{Tabla de frecuencias:} organiza los datos mostrando cuántas
+		veces aparece cada valor. La columna ``Frecuencia'' indica cuántas
+		veces se repite cada dato.
+		
+		%\vspace{0.3cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\rowcolor{valblue!25}
+				\textbf{Valor (dato)}  & \textbf{Frecuencia(cuantas veces se repite)} \\
+				\hline
+				6   & 2 \\
+				\hline
+				7  & 1 \\
+				\hline
+				8  & 4 \\
+				\hline
+				9  & 2 \\
+				\hline
+				10 & 1 \\
+				\hline
+				\rowcolor{valblue!10}
+				\textbf{Total} & \textbf{10} \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{Datos:} colores de camisetas de \textbf{12} estudiantes:
+		
+		\textcolor{red}{Rojo}, \textcolor{blue}{Azul}, \textcolor{green}{Verde}, \textcolor{blue}{Azul}, \textcolor{red}{Rojo}, \textcolor{blue}{Azul}, \textcolor{green}{Verde}, \textcolor{blue}{Azul}, \textcolor{red}{Rojo}, \textcolor{blue}{Azul}, \textcolor{green}{Verde}, \textcolor{blue}{Azul}.
+		
+		%\vspace{0.3cm}
+		\textbf{Paso 1 — Listar valores distintos:}\quad
+		Rojo, Azul, Verde
+		
+		\textbf{Paso 2 — Contar cada uno:}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{3cm}|m{3.5cm}|m{2.5cm}|}
+				\hline
+				\rowcolor{valblue!20}\textbf{Color} & \textbf{Frecuencia} \\
+				\hline
+				Rojo  & 3 \\
+				\hline
+				Azul  & 6 \\
+				\hline
+				Verde & 3 \\
+				\hline
+				\rowcolor{valblue!10}\textbf{Total} & \textbf{12} \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\textbf{Paso 3 — Verificar:}\; $3+6+3 = 12$ \;\checkmark\;
+		\textbf{(debe coincidir con el total de datos)}
+	\end{ejemplo}
+	
+	\begin{practica}{Conjunto de datos y tablas de frecuencia}
+		%\vspace{-1cm}
+		
+		\begin{minipage}[c]{0.35\linewidth}
+		\textbf{A) Lee las tablas y responde:}
+		
+		%\vspace{0.2cm}
+		\textit{Tabla 1: Edades de estudiantes de 6\textdegree}
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|c|c|}
+				\hline
+				\rowcolor{valblue!20}
+				\textbf{Edad} & \textbf{Frecuencia} \\
+				\hline
+				10 & 2 \\
+				\hline
+				11 & 5 \\
+				\hline
+				12 & 4 \\
+				\hline
+				13 & 3 \\
+				\hline
+				\textbf{Total} & \textbf{14} \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{0.65\linewidth}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.35cm]
+			\item ¿Cuántos estudiantes tienen 11 años? \hfill \boxfill[2cm]
+			\item ¿Cuántos estudiantes participaron en total? \hfill \boxfill[2cm]
+			\item ¿Qué edad tiene la mayor frecuencia? \hfill \boxfill[2cm]
+			\item ¿Cuántos estudiantes tienen 10 o 13 años? \hfill \boxfill[2cm]
+			\item ¿Qué edad tiene la menor frecuencia? \hfill \boxfill[2cm]
+		\end{enumerate}
+		\end{minipage}
+		
+		
+		\begin{minipage}[c]{0.35\linewidth}
+	%\newpage		
+		%\vspace{0.2cm}
+		\begin{center}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|c|c|}
+				\hline
+				\rowcolor{valgreen!20}
+				\textbf{Goles} & \textbf{Frecuencia} \\
+				\hline
+				0 & 2 \\
+				\hline
+				1 & 4 \\
+				\hline
+				2 & 3 \\
+				\hline
+				3 & 3 \\
+				\hline
+				4 & 1 \\
+				\hline
+				\textbf{Total} & \textbf{13} \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\textit{Tabla 2: Número de goles por partido en un torneo}
+		
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{0.65\linewidth}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.35cm, start=6]
+			\item ¿En cuántos partidos no hubo goles? \hfill \boxfill[2cm]
+			\item ¿Cuántos partidos tuvieron 2 o más goles? \hfill \boxfill[2cm]
+			\item ¿Qué resultado fue el más frecuente? \hfill \boxfill[2cm]
+			\item ¿Cuántos partidos hubo en total? \hfill \boxfill[2cm]
+			\item ¿En cuántos partidos se marcó exactamente 3 goles? \hfill \boxfill[2cm]
+		\end{enumerate}
+	\end{minipage}
+	\newpage
+	
+% ─────────────────────────────────────────────────────────────
+% SECCIÓN B: CONSTRUCCIÓN DE TABLAS
+% ─────────────────────────────────────────────────────────────
+\textbf{B) Construye la tabla de frecuencias para cada conjunto de datos:}
+\vspace{0.4cm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=11]
+	\item 
+	\begin{minipage}[t]{0.42\linewidth}
+		\textbf{Datos:}\\ $3, 5, 3, 7, 5, 3, 7, 5, 3, 9$
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.55\linewidth}
+		\vspace{-0.4cm}
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|m{1.5cm}|m{2.5cm}|m{1.8cm}|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Valor} & \textbf{Frecuencia} \\ \hline & \\ \hline
+			 &  \\ \hline
+			 &  \\ \hline
+			 &  \\ \hline
+			\rowcolor{valblue!10}
+			\textbf{Total} &  \\ \hline
+		\end{tabular}
+	\end{minipage}
+	
+	\item 
+	\begin{minipage}[t]{0.42\linewidth}
+		\textbf{Notas de un examen:}\\ $4, 5, 3, 5, 4, 5, 2, 3, 5, 4, 3, 5$
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.55\linewidth}
+		\vspace{-0.4cm}
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|m{1.5cm}|m{2.5cm}|m{1.8cm}|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Nota} & \textbf{Frecuencia} \\ \hline
+			 &   \\ \hline
+			 &   \\ \hline
+			 &   \\ \hline
+			 &   \\ \hline
+			\rowcolor{valblue!10}
+			\textbf{Total} &  \\ \hline
+		\end{tabular}
+	\end{minipage}
+	
+	\item 
+	\begin{minipage}[t]{0.42\linewidth}
+		\textbf{Colores de canicas:}\\ Verde, Rojo, Azul, Verde, Rojo, Rojo, Azul, Verde, Rojo, Verde
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.55\linewidth}
+		\vspace{-0.4cm}
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|m{1.5cm}|m{2.5cm}|m{1.8cm}|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Color} & \textbf{Frecuencia} \\ \hline
+			&  \\ \hline
+			&  \\ \hline
+			&  \\ \hline
+			\rowcolor{valblue!10}\textbf{Total} & \\ \hline
+		\end{tabular}
+	\end{minipage}
+	
+	\item 
+	\begin{minipage}[t]{0.42\linewidth}
+		\textbf{Temperatura máxima de 10 días ($^\circ$C):}\\ $28, 30, 28, 32, 30, 28, 30, 32, 28, 30$
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.55\linewidth}
+		\vspace{-0.4cm}
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|m{1.5cm}|m{2.5cm}|m{1.8cm}|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Temp.}  & \textbf{Frecuencia} \\ \hline
+			& \\ \hline
+			& \\ \hline
+			& \\ \hline
+			\rowcolor{valblue!10}\textbf{Total} & \\ \hline
+		\end{tabular}
+	\end{minipage}
+	
+	\item 
+	\begin{minipage}[t]{0.42\linewidth}
+		\textbf{Número de hermanos de 12 compañeros:}\\ $0, 1, 2, 1, 0, 3, 1, 2, 1, 0, 1, 2$
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.55\linewidth}
+		\vspace{-0.4cm}
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|m{2cm}|m{2.2cm}|}
+			\hline
+			\rowcolor{valblue!15}
+			\textbf{Hermanos} & \textbf{Frecuencia} \\ \hline
+			&  \\ \hline
+			&  \\ \hline
+			&  \\ \hline
+			&  \\ \hline
+			\rowcolor{valblue!10}\textbf{Total} & \\ \hline
+		\end{tabular}
+	\end{minipage}
+\end{enumerate}
+
+\vspace{0.8cm}
+
+% ─────────────────────────────────────────────────────────────
+% SECCIÓN C: CONSTRUCCIÓN EN ESPACIO DE TRABAJO
+% ─────────────────────────────────────────────────────────────
+\textbf{C) Para los ejercicios 16 al 22, construye la tabla, calcula el total y responde la pregunta:}
+\vspace{0.4cm}
+
+\begin{multicols}{2}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0cm, start=16]
+		\item Puntos en basquetbol: \\$2, 3, 2, 2, 3, 1, 3, 2, 1, 2$.\\
+		¿Cuántos jugadores anotaron exactamente 2 puntos?
+		\begin{espaciotrabajo}{}
+			\vspace{5cm}
+			Respuesta: \boxfill[2cm]
+		\end{espaciotrabajo}
+		
+		\item Lados de figuras geométricas:\\
+		$3, 4, 3, 5, 4, 3, 4, 6, 3, 5, 4, 3, 4$.\\
+		¿Qué figura se dibujó más veces?
+		\begin{espaciotrabajo}{}
+			\vspace{5cm}
+			Respuesta: \boxfill[2cm]
+		\end{espaciotrabajo}
+		
+		\item Número de libros leídos en el mes:\\
+		$1, 2, 1, 3, 2, 1, 2, 1, 4, 2, 1, 3$.\\
+		¿Cuántos estudiantes leyeron más de 2 libros?
+		\begin{espaciotrabajo}{}
+			\vspace{5cm}
+			Respuesta: \boxfill[2cm]
+		\end{espaciotrabajo}
+		
+		\item Resultado al lanzar un dado 15 veces:\\
+		$3,1,4,2,3,6,1,3,5,3,2,4,3,1,5$.\\
+		¿Cuál número salió más veces?
+		\begin{espaciotrabajo}{}
+			\vspace{5cm}
+			Respuesta: \boxfill[2cm]
+		\end{espaciotrabajo}
+		
+		\item Tallas de zapatos:\\ $36, 38, 36, 40, 38, 36, 40, 38, 36, 42$.\\
+		¿Cuántos estudiantes calzan talla 38 o menos?
+		\begin{espaciotrabajo}{}
+			\vspace{5cm}
+			Respuesta: \boxfill[2cm]
+		\end{espaciotrabajo}
+		
+		\item Horas de televisión por día:\\ $1, 2, 3, 2, 1, 4, 2, 3, 2, 1, 2, 3$.\\
+		¿Cuántos días vieron más de 2 horas?
+		\begin{espaciotrabajo}{}
+			\vspace{5cm}
+			Respuesta: \boxfill[2cm]
+		\end{espaciotrabajo}
+		
+		\item Errores en prueba de ortografía:\\
+		$0, 1, 2, 0, 1, 3, 1, 0, 2, 1, 0, 1, 2, 0, 1$.\\
+		¿Cuántos no tuvieron ningún error?
+		\begin{espaciotrabajo}{}
+			\vspace{5cm}
+			Respuesta: \boxfill[2cm]
+		\end{espaciotrabajo}
+	\end{enumerate}
+\end{multicols}
+
+\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 2 — LA MODA
+	% =========================================================
+	\newpage
+	\section*{Misión 2: La Moda}
+	
+	\begin{concepto}{¿Qué es la Moda?}
+		La \textbf{moda} \large{($\hat{x}$)}, es el valor que \textbf{más se repite}
+		en un conjunto de datos.
+		
+		%\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.85]
+				% Datos visuales con cajas
+				\node[datom] at (0,0)   {8};
+				\node[dato] at (1.1,0) {6};
+				\node[datom] at (2.2,0) {8};
+				\node[dato] at (3.3,0) {7};
+				\node[datom] at (4.4,0) {8};
+				\node[dato] at (5.5,0) {6};
+				\node[datom] at (6.6,0) {8};
+				\node[dato] at (7.7,0) {9};
+				% Flecha y etiqueta
+				\draw[-{Stealth}, valred, line width=2pt]
+				(2.2,-1.0) -- (2.2,-0.6);
+				\draw[-{Stealth}, valred, line width=2pt]
+				(0,-1.0) -- (0,-0.6);
+				\draw[-{Stealth}, valred, line width=2pt]
+				(4.4,-1.0) -- (4.4,-0.6);
+				\draw[-{Stealth}, valred, line width=2pt]
+				(6.7,-1.0) -- (6.7,-0.6);
+				\node[font=\large\bfseries, text=valred] at (3.3,-1.6)
+				{Moda $= \mathbf{8}$ \small(aparece 4 veces)};
+				% Leyenda cajas
+				%%\node[datom, minimum width=0.6cm, minimum height=0.6cm] at (8.8,0) {};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{0.3cm}
+		\begin{tcolorbox}[enhanced, colback=vallightorange,
+			colframe=valorange, arc=3pt]
+			\textbf{Casos especiales:}
+			\begin{itemize}[itemsep=2pt]
+				\item \textbf{Sin moda:} todos los valores aparecen el mismo número
+				de veces.
+				\item \textbf{Dos modas (bimodal):} dos valores comparten la mayor
+				frecuencia.
+				\item \textbf{Tres o más modas:} varios valores empatan en frecuencia.
+			\end{itemize}
+		\end{tcolorbox}
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{Ejemplo 1 — Una sola moda:}
+		
+		Datos: $5, 3, 7, 3, 9, 3, 7, 5, 3$
+		
+		Frecuencias: \quad $3 \to 4$ veces\quad $5 \to 2$ veces
+		\quad $7 \to 2$ veces\quad $9 \to 1$ vez
+		
+		\textbf{Moda $= 3$} (el que más se repite)
+		
+		%\vspace{0.4cm}
+		\textbf{Ejemplo 2 — Dos modas:}
+		
+		Datos: $2, 5, 8, 5, 2, 9, 2, 5, 1$
+		
+		Frecuencias: \quad $2 \to 3$ veces\quad $5 \to 3$ veces
+		(empatan)\quad $8, 9, 1 \to 1$ vez cada uno
+		
+		\textbf{Moda $= 2$ y $5$} (ambos con la mayor frecuencia)
+		
+		%\vspace{0.4cm}
+		\textbf{Ejemplo 3 — Sin moda:}
+		
+		Datos: $1, 2, 3, 4, 5$ (cada uno aparece 1 vez)
+		
+		\textbf{No hay moda.}
+	\end{ejemplo}
+	
+	\begin{practica}{La Moda}
+		
+		\textbf{A) Encuentra la moda. Muestra la frecuencia de cada valor:}
+		
+		%\vspace{0.2cm}
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm]
+				\item $4, 7, 4, 9, 4, 7, 2$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $6, 6, 8, 9, 8, 6, 9, 8$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $1, 2, 3, 4, 5, 6$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $10, 10, 10, 5, 5, 5$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $3, 8, 3, 8, 3, 8, 7$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $15, 12, 15, 18, 12, 15$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $2, 4, 6, 8, 2, 4, 6, 8$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $0, 0, 5, 5, 0, 9$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $7, 7, 7, 7, 3, 3, 1$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $11, 22, 33, 11, 44, 22, 11$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $5, 5, 5, 5, 5, 5$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $9, 4, 7, 2, 6, 1$
+				\begin{espaciotrabajonb}{}
+					%\vspace{0.3cm}
+					$\hat{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.4cm}
+		\textbf{B) Lee las tablas de frecuencia e identifica la moda:}
+		
+		%\vspace{0.3cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=13]
+			\item
+			\begin{minipage}{0.45\textwidth}
+				\begin{center}
+					\renewcommand{\arraystretch}{1.5}
+					\begin{tabular}{|c|c|}
+						\hline \rowcolor{valblue!15}
+						\textbf{Valor} & \textbf{Frecuencia} \\
+						\hline
+						1 & 2 \\ \hline
+						2 & 5 \\ \hline
+						3 & 3 \\ \hline
+						4 & 1 \\ \hline
+					\end{tabular}
+				\end{center}
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.45\textwidth}
+				Moda $=$ \boxfill[2.5cm]\\[0.2cm]
+			\end{minipage}
+			
+			\item
+			\begin{minipage}{0.45\textwidth}
+				\begin{center}
+					\renewcommand{\arraystretch}{1.5}
+					\begin{tabular}{|c|c|}
+						\hline \rowcolor{valblue!15}
+						\textbf{Nota} & \textbf{Frecuencia} \\
+						\hline
+						3 & 3 \\ \hline
+						4 & 3 \\ \hline
+						5 & 1 \\ \hline
+						6 & 2 \\ \hline
+					\end{tabular}
+				\end{center}
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.45\textwidth}
+				Moda $=$ \boxfill[2.5cm]\\[0.2cm]
+			\end{minipage}
+			
+			\item
+			\begin{minipage}{0.45\textwidth}
+				\begin{center}
+					\renewcommand{\arraystretch}{1.5}
+					\begin{tabular}{|c|c|}
+						\hline \rowcolor{valblue!15}
+						\textbf{Goles} & \textbf{Frecuencia} \\
+						\hline
+						0 & 1 \\ \hline
+						1 & 4 \\ \hline
+						2 & 4 \\ \hline
+						3 & 2 \\ \hline
+					\end{tabular}
+				\end{center}
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.45\textwidth}
+				Moda $=$ \boxfill[2.5cm]\\[0.2cm]
+				Tipo: $\square$ Una moda\\
+				$\square$ Bimodal\\
+				$\square$ Sin moda
+			\end{minipage}
+			
+			\item
+			\begin{minipage}{0.45\textwidth}
+				\begin{center}
+					\renewcommand{\arraystretch}{1.5}
+					\begin{tabular}{|c|c|}
+						\hline \rowcolor{valblue!15}
+						\textbf{Dato} & \textbf{Frecuencia} \\
+						\hline
+						A & 2 \\ \hline
+						B & 2 \\ \hline
+						C & 2 \\ \hline
+					\end{tabular}
+				\end{center}
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.45\textwidth}
+				Tipo: $\square$ Una moda\\
+				$\square$ Bimodal\\
+				$\square$ Sin moda\\[0.2cm]
+			\end{minipage}
+		\end{enumerate}
+		
+		%\vspace{0.4cm}
+		\textbf{C) Contextos reales — encuentra la moda y úsala:}
+		
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=17]
+			
+			% ----------------------------------------------------
+			% EJERCICIO 17
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt} % Truco para alinear minipages arriba
+				Una tienda vendió las siguientes tallas de camiseta en un día:\\
+				\textcolor{valblue}{\textbf{S, M, L, M, XL, M, S, M, L, M.}}\\[0.2cm]
+				¿Cuál talla debe pedir más la tienda para el próximo pedido?
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					Moda $=$ \boxfill[2.5cm] \\[0.3cm]
+					Talla a pedir: \boxfill[2.5cm]
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 18
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Las notas de Pedro en matemáticas fueron:\\
+				\textcolor{valblue}{\textbf{7, 8, 9, 8, 6, 8, 7, 10, 8.}}\\[0.2cm]
+				¿Cuál fue la nota más frecuente? ¿Refleja bien su desempeño?
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					Moda $=$ \boxfill[2cm] \\[0.3cm]
+					Reflexión: \underline{\hspace{4.8cm}}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 19
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				En 10 lanzamientos de un dado se obtuvieron:\\
+				\textcolor{valblue}{\textbf{3, 1, 4, 3, 2, 5, 3, 6, 3, 4.}}\\[0.2cm]
+				¿Cuál cara salió más?
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					\vspace{0.15cm}
+					Moda $=$ \boxfill[2cm]
+					\vspace{0.15cm}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 20
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Los colores favoritos de 15 estudiantes:\\
+				\textcolor{valblue}{\textbf{Azul, Rojo, Verde, Azul, Azul, Rojo, Verde, Azul, Rojo, Azul, Verde, Azul, Rojo, Azul, Verde.}}
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					Moda $=$ \boxfill[2.5cm] \\[0.3cm]
+					¿Bimodal? \boxfill[1.5cm]
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 21
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Construye un conjunto de \textbf{8 datos} donde la moda sea el número \textbf{12}.
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					Mi conjunto: \underline{\hspace{5.2cm}}\\[0.3cm]
+					¿Cuántas veces aparece el 12? \boxfill[1cm]
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 22
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Construye un conjunto de \textbf{6 datos} que \textbf{no tenga moda}.
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					Mi conjunto: \underline{\hspace{5.2cm}}\\[0.3cm]
+					¿Por qué no tiene moda? \underline{\hspace{2.2cm}}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+		\end{enumerate}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 3 — LA MEDIANA
+	% =========================================================
+	\newpage
+	\section*{Misión 3: La Mediana}
+	
+	\begin{concepto}{¿Qué es la Mediana?}
+		La \textbf{mediana} ($\tilde{x}$) es el valor que queda en el \textbf{centro}
+		cuando los datos están ordenados de menor a mayor.
+		La mediana \textit{divide} el conjunto en dos mitades iguales.
+		
+		%\vspace{0.3cm}
+		\textbf{Proceso en 2 pasos:}
+		
+		\begin{enumerate}[label=\textcolor{valblue}{\bfseries Paso \arabic*.}]
+			\item \textbf{Ordena} los datos de menor a mayor.
+			\item \textbf{Ubica el valor central.}
+		\end{enumerate}
+		
+		%\vspace{0.3cm}
+		\begin{tcolorbox}[enhanced, colback=vallightblue,
+			colframe=valblue, arc=3pt]
+			\centering\bfseries
+			Si el número de datos es \textbf{impar}:
+			la mediana es el valor del \textbf{medio}.\\[6pt]
+			Si el número de datos es \textbf{par}:
+			la mediana es el \textbf{promedio} de los dos valores centrales.
+		\end{tcolorbox}
+		
+		%\vspace{0.3cm}
+		\textbf{Número impar de datos — Ejemplo:}\quad
+		$3,\,7,\,2,\,9,\,5\;\to\;2,\,3,\,\mathbf{5},\,7,\,9$\quad Me $=\mathbf{5}$
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				\node[dato] at (0,0)   {2};
+				\node[dato] at (1.1,0) {3};
+				\node[datoM] at (2.2,0) {5};
+				\node[dato] at (3.3,0) {7};
+				\node[dato] at (4.4,0) {9};
+				\draw[<->, valgreen, line width=1.5pt]
+				(0,-0.7) -- (2.0,-0.7)
+				node[midway, below, font=\small\bfseries, text=valgreen] {2 datos};
+				\draw[<->, valgreen, line width=1.5pt]
+				(2.4,-0.7) -- (4.4,-0.7)
+				node[midway, below, font=\small\bfseries, text=valgreen] {2 datos};
+				\draw[-{Stealth}, valgreen, line width=2pt]
+				(2.2,-1.4) -- (2.2,-0.6);
+				\node[font=\bfseries, text=valgreen] at (2.2,-1.7)
+				{Mediana $= 5$};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{0.3cm}
+		\textbf{Número par de datos — Ejemplo:}\quad
+		$4,\,8,\,2,\,6\;\to\;2,\,\mathbf{4},\,\mathbf{6},\,8$\quad Me $= \dfrac{4+6}{2} = \dfrac{10}{2} = \mathbf{5}$
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{Ejemplo 1 (impar):}
+		Edades: $12, 9, 15, 11, 13$
+		
+		Paso 1 (ordenar): $9, 11, \mathbf{12}, 13, 15$\quad (5 datos)
+		
+		Paso 2 (centro): el 3.\textsuperscript{er} valor es \textbf{12}.
+		
+		\textbf{Mediana $= 12$ años}
+		
+		%\vspace{0.3cm}
+		\textbf{Ejemplo 2 (par):}
+		Puntos: $6, 10, 4, 8, 2, 12$
+		
+		Paso 1 (ordenar): $2, 4, \mathbf{6, 8}, 10, 12$\quad (6 datos)
+		
+		Paso 2 (centro): los valores 3.\textsuperscript{o} y 4.\textsuperscript{o} son 6 y 8.
+		
+		Me $= \dfrac{6+8}{2} = \dfrac{14}{2} = \mathbf{7}$
+		
+		\textbf{Mediana $= 7$ puntos}
+	\end{ejemplo}
+	
+	\begin{practica}{La Mediana}
+		
+		\textbf{A) Ordena y encuentra la mediana:}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.95cm]
+				\item $5, 2, 8, 1, 9$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					N.\textdegree\; datos: \boxstep[0.7cm]
+					(¿par/impar?): \boxstep[1.2cm]\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $3, 7, 1, 5, 9, 11, 13$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $4, 8, 2, 6$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					Dos centrales: \boxstep[0.8cm] y \boxstep[0.8cm]\\[0.2cm]
+					Me $= \dfrac{\boxstep[0.8cm]+\boxstep[0.8cm]}{2}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $10, 20, 30, 40, 50, 60$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $7, 7, 7, 7, 7$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $15, 3, 9, 21, 6, 12$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $100, 50, 75, 25$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $8, 4, 12, 6, 2, 10, 14$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $1, 9$
+				\begin{espaciotrabajonb}{}
+					Me $= \dfrac{\boxstep[0.6cm]+\boxstep[0.6cm]}{2}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $5, 5, 8, 8, 3, 3$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $23, 17, 29, 11, 35, 5$
+				\begin{espaciotrabajonb}{}
+					Ordenados: \underline{\hspace{4cm}}\\[0.2cm]
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+				
+				\item $0, 4, 8, 12, 16, 20, 24, 28$
+				\begin{espaciotrabajonb}{}
+					$\tilde{x}=$ \boxfill[2cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.4cm}
+		\textbf{B) Contextos reales - Calculando la Mediana:}\vspace{0.2cm}
+		
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=17]
+			
+			% ----------------------------------------------------
+			% EJERCICIO 17
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt} % Truco para alinear arriba
+				Las temperaturas de una semana fueron (en $^\circ$C):\\
+				\textcolor{valblue}{\textbf{28, 32, 25, 30, 27, 31, 29.}}\\[0.2cm]
+				Halla la mediana de temperatura.
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					\vspace{0.2cm}
+					$\tilde{x}=$ \boxfill[2.5cm]
+					\vspace{0.2cm}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 18
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Alturas de 6 jugadores de baloncesto (cm):\\
+				\textcolor{valblue}{\textbf{175, 182, 168, 190, 178, 185.}}
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					\vspace{0.2cm}
+					$\tilde{x}=$ \boxfill[2.5cm]
+					\vspace{0.2cm}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 19
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Un estudiante obtuvo estas notas en el período:\\
+				\textcolor{valblue}{\textbf{6, 8, 7, 9, 5, 8, 7.}}\\[0.2cm]
+				Halla la mediana y di si está por encima o por debajo de 7.
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					\vspace{0.15cm}
+					$\tilde{x}=$ \boxfill[1.5cm]\quad ¿$>$ o $<$ que 7? \boxfill[1cm]
+					\vspace{0.15cm}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 20
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Un equipo anotó en 8 partidos:\\
+				\textcolor{valblue}{\textbf{2, 0, 3, 1, 2, 0, 4, 1.}}\\[0.2cm]
+				¿Cuál es la mediana de goles?
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					\vspace{0.2cm}
+					$\tilde{x}=$ \boxfill[2.5cm]
+					\vspace{0.2cm}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+			% ----------------------------------------------------
+			% EJERCICIO 21
+			% ----------------------------------------------------
+			\item 
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				Construye un conjunto de \textbf{5 datos} cuya mediana sea exactamente \textbf{10}:
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.48\linewidth}
+				\vspace{0pt}
+				\begin{espaciotrabajo}{}
+					Mi conjunto: \underline{\hspace{5.2cm}}\\[0.3cm]
+					Verifica ordenándolos: \underline{\hspace{3.8cm}}
+				\end{espaciotrabajo}
+			\end{minipage}
+			
+		\end{enumerate}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 4 — EL RANGO
+	% =========================================================
+	\newpage
+	\section*{Misión 4: El Rango}
+	
+	\begin{concepto}{¿Qué es el Rango?}
+		El \textbf{rango} (R) mide la \textbf{amplitud} o \textbf{dispersión}
+		de los datos: qué tanto se separan entre el mayor y el menor.
+		
+		%\vspace{0.3cm}
+		\begin{center}
+			\begin{tcolorbox}[enhanced, colback=valred!5, colframe=valred,
+				arc=3pt, width=0.7\textwidth]
+				\centering\Large\bfseries
+				$\text{Rango} = \text{Valor máximo} - \text{Valor mínimo}$
+			\end{tcolorbox}
+		\end{center}
+		
+		%\vspace{0.4cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				% Recta numérica
+				\draw[-{Stealth}, valdark, line width=1.5pt] (-0.5,0) -- (11,0);
+				% Marcas
+				\foreach \x/\v in {1/2, 3/5, 5/7, 7/9, 9/14} {
+					\draw[valdark, line width=1pt] (\x,0.15) -- (\x,-0.15);
+					\node[below, font=\small\bfseries] at (\x,-0.15) {\v};
+				}
+				% Resaltados
+				\fill[valred]   (1,0) circle (5pt) node[above, font=\small\bfseries, text=valred] {mín $=2$};
+				\fill[valblue]  (9,0) circle (5pt) node[above, font=\small\bfseries, text=valblue]{máx $=14$};
+				% Flecha doble
+				\draw[<->, valred, line width=2pt] (1,-0.7) -- (9,-0.7)
+				node[midway, below, font=\bfseries, text=valred]
+				{Rango $= 14-2 = \mathbf{12}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{0.3cm}
+		\textbf{Interpretación:} Un rango grande significa que los datos
+		están muy dispersos. Un rango pequeño significa que están muy
+		\textit{agrupados}.
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{Datos:} $8, 3, 15, 7, 11, 2, 9$
+		
+		Máximo $= 15$ \quad Mínimo $= 2$
+		
+		$R = 15 - 2 = \mathbf{13}$
+		
+		%\vspace{0.2cm}
+		\textbf{Interpretación:} Los datos se dispersan 13 unidades.
+	\end{ejemplo}
+	
+	\begin{practica}{El Rango — 22 ejercicios}
+		
+		\textbf{A) Calcula el rango de cada conjunto de datos (12 ejercicios):}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.85cm]
+				\item $\{4, 9, 2, 7, 5\}$
+				\begin{espaciotrabajonb}{}
+					Máx: \boxstep[0.8cm]\; Mín: \boxstep[0.8cm]\\[0.2cm]
+					$R=$ \boxstep[0.8cm]$-$\boxstep[0.8cm]$=$ \boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{3, 3, 3, 3, 3\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxstep[0.8cm]$-$\boxstep[0.8cm]$=$ \boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{10, 100, 50, 75, 25\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxstep[0.8cm]$-$\boxstep[0.8cm]$=$ \boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{0, 5, 10, 15, 20\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxstep[0.8cm]$-$\boxstep[0.8cm]$=$ \boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{87, 92, 78, 95, 83\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxstep[0.8cm]$-$\boxstep[0.8cm]$=$ \boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{1, 2\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxstep[0.8cm]$-$\boxstep[0.8cm]$=$ \boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{200, 50, 175, 125, 75\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxfill[2.5cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{6, 6, 10, 6, 6\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxfill[2.5cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{0, 4, 8, 12, 16, 20\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxfill[2.5cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{-3, -1, 2, 5, 8\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxstep[1cm]$-($\boxstep[1cm]$)=$ \boxfill[1.8cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{1000, 500, 750, 250\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxfill[2.5cm]
+				\end{espaciotrabajonb}
+				
+				\item $\{33, 44, 22, 55, 11, 66\}$
+				\begin{espaciotrabajonb}{}
+					$R=$ \boxfill[2.5cm]
+				\end{espaciotrabajonb}
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.4cm}
+		\textbf{B) Completa la tabla con Moda, Mediana y Rango (4 ejercicios):}
+		
+		%\vspace{0.3cm}
+		\renewcommand{\arraystretch}{2.0}
+		\begin{center}
+			\begin{tabular}{|m{5cm}|m{2.2cm}|m{2.2cm}|m{2.2cm}|}
+				\hline
+				\rowcolor{valblue!20}
+				\textbf{Conjunto de datos} & \textbf{Moda} &
+				\textbf{Mediana} & \textbf{Rango} \\
+				\hline
+				$\{2, 4, 4, 6, 8\}$ &
+				\boxfill[1.8cm] & \boxfill[1.8cm] & \boxfill[1.8cm] \\
+				\hline
+				$\{10, 10, 20, 30, 30\}$ &
+				\boxfill[1.8cm] & \boxfill[1.8cm] & \boxfill[1.8cm] \\
+				\hline
+				$\{3, 5, 7, 9, 11\}$ &
+				\boxfill[1.8cm] & \boxfill[1.8cm] & \boxfill[1.8cm] \\
+				\hline
+				$\{1, 2, 2, 3, 4, 4\}$ &
+				\boxfill[1.8cm] & \boxfill[1.8cm] & \boxfill[1.8cm] \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		%\vspace{0.4cm}
+		\textbf{C) Análisis y aplicación (6 ejercicios):}
+		
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm, start=17]
+			\item Las notas de dos estudiantes son:
+			\begin{itemize}
+				\item Ana: $8, 9, 7, 8, 9$\quad Rango de Ana: \boxfill[2cm]
+				\item Luis: $4, 10, 6, 10, 5$\quad Rango de Luis: \boxfill[2cm]
+			\end{itemize}
+			¿Quién es más \textit{constante} en sus notas? ¿Por qué?
+			\begin{espaciotrabajo}{}
+				\underline{\hspace{13cm}}
+			\end{espaciotrabajo}
+			
+			\item Las temperaturas máximas de dos ciudades esta semana:\\
+			Ciudad A: $28, 29, 28, 27, 29, 28, 30$ \quad $R_A =$ \boxfill[1.5cm]\\
+			Ciudad B: $18, 35, 22, 10, 31, 26, 15$ \quad $R_B =$ \boxfill[1.5cm]\\
+			¿Cuál ciudad tiene clima más variable? \boxfill[3cm]
+			
+			\item Construye un conjunto de 5 datos con rango $= 20$:
+			\begin{espaciotrabajo}{}
+				Mi conjunto: \underline{\hspace{9cm}}
+			\end{espaciotrabajo}
+			
+			\item Construye un conjunto de 4 datos con rango $= 0$:
+			\begin{espaciotrabajo}{}
+				Mi conjunto: \underline{\hspace{9cm}}
+			\end{espaciotrabajo}
+			
+			\item Si el mínimo es $5$ y el rango es $12$, ¿cuál es el máximo?
+			\hfill Máxi$\hat{x}=$ \boxfill[2cm]
+			
+			\item Si el máximo es $40$ y el rango es $25$, ¿cuál es el mínimo?
+			\hfill Míni$\hat{x}=$ \boxfill[2cm]
+		\end{enumerate}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 5 — PROBABILIDAD
+	% =========================================================
+	\newpage
+	\section*{Misión 5: Probabilidad Básica}
+	
+	\begin{concepto}{¿Qué es la Probabilidad?}
+		La \textbf{probabilidad} mide qué tan \textbf{probable} es que
+		ocurra un evento en un experimento. Se expresa como una
+		\textbf{fracción, decimal o porcentaje} entre 0 y 1.
+		
+		%\vspace{0.4cm}
+		\begin{center}
+			\begin{tcolorbox}[enhanced, colback=valpurple!6, colframe=valpurple,
+				arc=3pt, width=0.75\textwidth]
+				\centering\Large\bfseries
+				$P(\text{evento}) = \dfrac{\text{casos favorables}}{\text{casos totales posibles}}$
+			\end{tcolorbox}
+		\end{center}
+		
+		%\vspace{0.4cm}
+		\textbf{Escala de probabilidad:}
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.0]
+				% Línea
+				\draw[-{Stealth}, valdark, line width=2pt] (-0.5,0) -- (11.5,0);
+				% Puntos clave
+				\fill[valred]    (0,0)  circle (7pt);
+				\fill[valorange] (5,0)  circle (7pt);
+				\fill[valgreen]  (10,0) circle (7pt);
+				% Etiquetas arriba
+				\node[font=\bfseries, text=valred,    above] at (0,0.2)  {$0$};
+				\node[font=\bfseries, text=valorange, above] at (5,0.2)  {$\dfrac{1}{2}$};
+				\node[font=\bfseries, text=valgreen,  above] at (10,0.2) {$1$};
+				% Etiquetas abajo
+				\node[font=\small\bfseries, text=valred,    below, text width=2.8cm, align=center]
+				at (0,-0.35)    {IMPOSIBLE\\(nunca ocurre)};
+				\node[font=\small\bfseries, text=valorange, below, text width=3cm, align=center]
+				at (5,-0.35)    {IGUALMENTE\\PROBABLE};
+				\node[font=\small\bfseries, text=valgreen,  below, text width=2.8cm, align=center]
+				at (10,-0.35)   {SEGURO\\(siempre ocurre)};
+				% Gradiente texto
+				\node[font=\small, text=valdark] at (2.5,0.8)  {poco probable};
+				\node[font=\small, text=valdark] at (7.5,0.8)  {muy probable};
+			\end{tikzpicture}
+		\end{center}
+		
+		%\vspace{0.4cm}
+		\textbf{Ejemplo con un dado (6 caras: 1, 2, 3, 4, 5, 6):}
+		
+		\begin{center}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{5cm}|m{2.5cm}|m{3.5cm}|}
+				\hline
+				\rowcolor{valpurple!15}
+				\textbf{Evento} & \textbf{Fracción} & \textbf{Decimal} \\
+				\hline
+				Sacar el número 3 &
+				$\dfrac{1}{6}$ & $\approx 0.17$ \\
+				\hline
+				Sacar un número par (2,4,6) &
+				$\dfrac{3}{6} = \dfrac{1}{2}$ & $0.5$ \\
+				\hline
+				Sacar un número $> 0$ &
+				$\dfrac{6}{6} = 1$ & $1$ \\
+				\hline
+				Sacar el número 9 &
+				$\dfrac{0}{6} = 0$ & $0$ \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	
+	\begin{ejemplo}
+		\textbf{Una bolsa contiene:} 3 bolas rojas, 2 bolas azules
+		y 5 bolas verdes. Total: 10 bolas.
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				% Bolsa visual
+				\node[draw=valdark, fill=valgray, ellipse,
+				minimum width=5cm, minimum height=3cm,
+				line width=2pt] at (0,0) {};
+				% Bolas rojas
+				\fill[valred!80]  (-1.5, 0.4) circle (0.3cm);
+				\fill[valred!80]  (-0.8, 0.7) circle (0.3cm);
+				\fill[valred!80]  (-1.3,-0.3) circle (0.3cm);
+				\node[font=\small\bfseries, text=valred] at (-1.0,-0.9) {3 rojas};
+				% Bolas azules
+				\fill[valblue!80] (0.0, 0.5) circle (0.3cm);
+				\fill[valblue!80] (0.5, 0.0) circle (0.3cm);
+				\node[font=\small\bfseries, text=valblue] at (0.2,-0.9) {2 azules};
+				% Bolas verdes
+				\fill[valgreen!80] (1.2, 0.5) circle (0.3cm);
+				\fill[valgreen!80] (1.5,-0.2) circle (0.3cm);
+				\fill[valgreen!80] (0.8,-0.4) circle (0.3cm);
+				\fill[valgreen!80] (1.8, 0.6) circle (0.3cm);
+				\fill[valgreen!80] (1.0, 0.9) circle (0.3cm);
+				\node[font=\small\bfseries, text=valgreen] at (1.4,-0.9) {5 verdes};
+				% Total
+				\node[font=\bfseries, text=valdark] at (3.5,0)
+				{Total $=10$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{itemize}[itemsep=3pt]
+			\item $P(\text{roja}) = \dfrac{3}{10} = 0.3$
+			\item $P(\text{azul}) = \dfrac{2}{10} = \dfrac{1}{5} = 0.2$
+			\item $P(\text{verde}) = \dfrac{5}{10} = \dfrac{1}{2} = 0.5$
+			\item $P(\text{amarilla}) = \dfrac{0}{10} = 0$ (imposible)
+		\end{itemize}
+		
+		\textbf{Verificación:} $\dfrac{3}{10} + \dfrac{2}{10} + \dfrac{5}{10} = \dfrac{10}{10} = 1$ \;\checkmark
+	\end{ejemplo}
+	
+	\begin{practica}{Probabilidad — 22 ejercicios}
+		
+		\textbf{A) Lanza un dado justo de 6 caras. Calcula cada probabilidad (8 ejercicios):}
+		
+		%\vspace{0.2cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.85]
+				\draw[valdark, fill=valgray, line width=2pt, rounded corners=4pt]
+				(0,0) rectangle (1.2,1.2);
+				\node[font=\LARGE\bfseries] at (0.6,0.6) {?};
+				\node[font=\small, text=valdark] at (0.6,-0.35)
+				{Caras: $\{1,2,3,4,5,6\}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm]
+				\item $P(\text{obtener 4})$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+				
+				\item $P(\text{número impar})$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+				
+				\item $P(\text{número} \leq 2)$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+				
+				\item $P(\text{número} > 4)$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+				
+				\item $P(\text{obtener 8})$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+				
+				\item $P(\text{cualquier cara})$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+				
+				\item $P(\text{número par})$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+				
+				\item $P(\text{múltiplo de 3})$
+				\hfill $= \dfrac{\boxstep[0.6cm]}{\boxstep[0.6cm]} =$ \boxfill[1.5cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.4cm}
+		\textbf{B) Una bolsa tiene: 4 bolas amarillas, 3 verdes, 2 rojas y
+			1 azul (total: 10). Calcula (6 ejercicios):}
+		
+		\begin{multicols}{2}
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.6cm, start=9]
+				\item $P(\text{amarilla})$
+				\hfill $=$ \boxfill[2.2cm]
+				
+				\item $P(\text{verde})$
+				\hfill $=$ \boxfill[2.2cm]
+				
+				\item $P(\text{roja})$
+				\hfill $=$ \boxfill[2.2cm]
+				
+				\item $P(\text{azul})$
+				\hfill $=$ \boxfill[2.2cm]
+				
+				\item $P(\text{morada})$
+				\hfill $=$ \boxfill[2.2cm]
+				
+				\item $P(\text{no verde})$
+				\hfill $=$ \boxfill[2.2cm]
+			\end{enumerate}
+		\end{multicols}
+		
+		%\vspace{0.1cm}
+		Verifica: suma de todas las probabilidades $=$ \boxfill[2cm]
+		
+		%\vspace{0.4cm}
+		\textbf{C) Clasifica cada evento como Imposible (I), Posible (Po) o
+			Seguro (S) — 4 ejercicios:}
+		
+		%\vspace{0.2cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.5cm, start=15]
+			\item Al lanzar un dado de 6 caras, obtener el número 7.
+			
+			$P =$ \boxfill[1.5cm] \hfill Clasificación: \boxfill[1.5cm]
+			
+			\item Al lanzar una moneda, que caiga cara o sello.
+			
+			$P =$ \boxfill[1.5cm] \hfill Clasificación: \boxfill[1.5cm]
+			
+			\item Sacar una bola negra de una bolsa con 5 bolas blancas.
+			
+			$P =$ \boxfill[1.5cm] \hfill Clasificación: \boxfill[1.5cm]
+			
+			\item Al lanzar una moneda, que caiga cara.
+			
+			$P =$ \boxfill[1.5cm] \hfill Clasificación: \boxfill[1.5cm]
+		\end{enumerate}
+		
+		%\vspace{0.4cm}
+		\textbf{D) Problemas de aplicación (4 ejercicios):}
+		
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=19]
+			\item Un mazo tiene 52 cartas: 13 corazones, 13 tréboles, 13 diamantes
+			y 13 picas. Si se toma una carta al azar, ¿cuál es la probabilidad
+			de que sea un corazón?
+			\begin{espaciotrabajo}{}
+				Total: \boxstep[1cm]\quad
+				Favorables: \boxstep[1cm]\quad
+				$P = \dfrac{\;\;}{\;\;} =$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item En un salón hay 15 niñas y 12 niños. Se elige un estudiante
+			al azar. ¿Cuál es la probabilidad de que sea niña?
+			\begin{espaciotrabajo}{}
+				Total: \boxstep[1cm]\quad
+				Favorables: \boxstep[1cm]\quad
+				$P = \dfrac{\;\;}{\;\;} =$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Una ruleta tiene 8 secciones iguales numeradas del 1 al 8.
+			¿Cuál es la probabilidad de caer en un número mayor que 5?
+			\begin{espaciotrabajo}{}
+				Favorables: \{\ \underline{\hspace{3cm}}\ \}\quad
+				Total: \boxstep[0.8cm]\quad
+				$P =$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item En un concurso hay 20 boletas: 1 premio mayor, 4 premios
+			menores y 15 sin premio. ¿Cuál es la probabilidad de ganar
+			\textit{cualquier} premio?
+			\begin{espaciotrabajo}{}
+				Favorables: \boxstep[1cm]\quad
+				Total: \boxstep[1cm]\quad
+				$P =$ \boxfill[2cm]
+			\end{espaciotrabajo}
+		\end{enumerate}
+	\end{practica}
+	
+	% =========================================================
+	%  MISIÓN 6 — RETOS: TODOS LOS CONCEPTOS JUNTOS
+	% =========================================================
+	\newpage
+	\section*{Misión 6: Retos — Estadística Completa}
+	
+	\begin{concepto}{Resumen de Medidas Estadísticas}
+		%\vspace{0.2cm}
+		\renewcommand{\arraystretch}{1.6}
+		\begin{center}
+			\begin{tabular}{|m{2.8cm}|m{5cm}|m{4.5cm}|}
+				\hline
+				\rowcolor{valblue!25}
+				\textbf{Medida} & \textbf{¿Qué indica?} & \textbf{¿Cómo se calcula?} \\
+				\hline
+				\textbf{Moda} &
+				El valor más frecuente &
+				El que más se repite \\
+				\hline
+				\textbf{Mediana} &
+				El valor central &
+				Ordenar, hallar el medio \\
+				\hline
+				\textbf{Rango} &
+				La amplitud de los datos &
+				Máximo $-$ Mínimo \\
+				\hline
+				\textbf{Probabilidad} &
+				Qué tan probable es un evento &
+				$\dfrac{\text{favorables}}{\text{totales}}$ \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{concepto}
+	
+	\begin{practica}{Retos combinados — 22 ejercicios}
+		
+		\textbf{A) Para cada conjunto de datos, calcula Moda, Mediana y Rango
+			(8 ejercicios):}
+		
+		%\vspace{0.3cm}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.9cm]
+			\item Estatura de 7 estudiantes (cm): $140, 155, 148, 155, 162, 148, 155$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2cm]\quad
+				Mediana $=$ \boxfill[2cm]\quad
+				Rango $=$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Tiempo (min) que tardaron 8 estudiantes en resolver un problema:\\
+			$12, 8, 15, 8, 10, 12, 8, 14$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2cm]\quad
+				Mediana $=$ \boxfill[2cm]\quad
+				Rango $=$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Número de puntos en 9 partidos: $3,1,2,3,0,1,3,2,1$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2cm]\quad
+				Mediana $=$ \boxfill[2cm]\quad
+				Rango $=$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Precio (\$) de 6 artículos: $5000, 8000, 5000, 12000, 8000, 5000$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2.5cm]\quad
+				Mediana $=$ \boxfill[2.5cm]\quad
+				Rango $=$ \boxfill[2.5cm]
+			\end{espaciotrabajo}
+			
+			\item Temperatura máxima 7 días (\textdegree C): $28,30,28,25,32,28,30$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2cm]\quad
+				Mediana $=$ \boxfill[2cm]\quad
+				Rango $=$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Notas bimestrales: $6, 8, 7, 8, 9, 7, 8, 6$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2cm]\quad
+				Mediana $=$ \boxfill[2cm]\quad
+				Rango $=$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Goles de 10 delanteros en la temporada:
+			$5,12,8,5,15,8,3,5,8,10$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2cm]\quad
+				Mediana $=$ \boxfill[2cm]\quad
+				Rango $=$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Número de hermanos de 12 compañeros:
+			$0,1,0,2,1,3,0,1,2,0,1,0$
+			\begin{espaciotrabajo}{}
+				Datos ordenados: \underline{\hspace{9cm}}\\[0.3cm]
+				Moda $=$ \boxfill[2cm]\quad
+				Mediana $=$ \boxfill[2cm]\quad
+				Rango $=$ \boxfill[2cm]
+			\end{espaciotrabajo}
+		\end{enumerate}
+		
+		%\vspace{0.5cm}
+		\textbf{B) Problemas contextualizados con estadística y probabilidad
+			(8 ejercicios):}
+		
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.9cm, start=9]
+			\item Una bolsa contiene fichas con los números
+			$\{2, 4, 4, 6, 8, 4, 10, 6\}$.
+			Se saca una ficha al azar. Responde:
+			\begin{enumerate}[label=\textbf{\alph*)}]
+				\item Moda del conjunto: \boxfill[2cm]
+				\item Mediana del conjunto: \boxfill[2cm]
+				\item Rango: \boxfill[2cm]
+				\item $P(\text{sacar un 4}) =$ \boxfill[2.5cm]
+				\item $P(\text{sacar un número par}) =$ \boxfill[2.5cm]
+				\item $P(\text{sacar un número} > 7) =$ \boxfill[2.5cm]
+			\end{enumerate}
+			\begin{espaciotrabajo}{}
+				%\vspace{0.3cm}
+			\end{espaciotrabajo}
+			
+			\item En un salón se hizo una encuesta sobre el deporte favorito.
+			Los resultados fueron:
+			\begin{center}
+				\renewcommand{\arraystretch}{1.5}
+				\begin{tabular}{|m{3cm}|m{2.5cm}|}
+					\hline \rowcolor{valblue!15}
+					\textbf{Deporte} & \textbf{Estudiantes} \\
+					\hline
+					Fútbol     & 15 \\ \hline
+					Baloncesto & 8  \\ \hline
+					Natación   & 5  \\ \hline
+					Tenis      & 2  \\ \hline
+				\end{tabular}
+			\end{center}
+			\begin{enumerate}[label=\textbf{\alph*)}]
+				\item Total de estudiantes: \boxfill[2cm]
+				\item Moda (deporte más popular): \boxfill[3cm]
+				\item $P(\text{elegir aleatoriamente un estudiante de fútbol}) =$
+				\boxfill[2.5cm]
+				\item $P(\text{que le guste un deporte acuático}) =$
+				\boxfill[2.5cm]
+			\end{enumerate}
+			
+			\item El conjunto de datos $\{3, x, 7, 5, 9\}$ tiene mediana $= 6$.
+			¿Cuánto vale $x$? Muestra el razonamiento.
+			\begin{espaciotrabajo}{}
+				Los datos ordenados deben ser: \underline{\hspace{8cm}}\\[0.3cm]
+				Para que el 3.\textsuperscript{er} valor sea 6:\;
+				$x =$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item El conjunto $\{2, 5, 8, y, 12\}$ tiene rango $= 15$.
+			Sabiendo que $y > 12$, ¿cuánto vale $y$?
+			\begin{espaciotrabajo}{}
+				Rango $= y_{\text{máx}} - y_{\text{mín}}$\quad
+				$15 = y - $\boxstep[0.8cm]$\quad\rightarrow\quad y =$ \boxfill[2cm]
+			\end{espaciotrabajo}
+			
+			\item Un grupo de 5 números tiene moda $= 7$, mediana $= 7$
+			y rango $= 6$. Construye un conjunto que cumpla todas estas condiciones.
+			\begin{espaciotrabajo}{}
+				Mi conjunto: \underline{\hspace{9cm}}\\[0.3cm]
+				Verifica:\\
+				Moda $=$ \boxfill[1.8cm]\quad
+				Mediana $=$ \boxfill[1.8cm]\quad
+				Rango $=$ \boxfill[1.8cm]
+			\end{espaciotrabajo}
+			
+			\item Una maestra quiere saber si sus estudiantes estudian.
+			Tomó nota de las horas de estudio de 10 alumnos en una semana:
+			$2, 5, 3, 1, 5, 4, 5, 2, 3, 0$
+			
+			Construye la tabla de frecuencias, luego calcula:
+			\begin{center}
+				\renewcommand{\arraystretch}{1.7}
+				\begin{tabular}{|m{2.5cm}|m{3cm}|m{2.5cm}|}
+					\hline \rowcolor{valblue!15}
+					\textbf{Horas} & \textbf{Conteo} & \textbf{Frecuencia} \\
+					\hline & & \\ \hline & & \\ \hline & & \\
+					\hline & & \\ \hline & & \\
+					\hline \rowcolor{valblue!10}\textbf{Total} & & \\ \hline
+				\end{tabular}
+			\end{center}
+			Moda $=$ \boxfill[1.8cm]\quad
+			Mediana $=$ \boxfill[1.8cm]\quad
+			Rango $=$ \boxfill[1.8cm]\\[0.2cm]
+			$P(\text{estudiar 5h o más}) =$ \boxfill[2.5cm]
+			
+			\item \textbf{Diseña tu propio experimento estadístico:}
+			Pregunta a 10 compañeros cuántas mascotas tienen en casa.
+			Anota los datos, construye la tabla y calcula todo.
+			\begin{espaciotrabajo}{}
+				Mis datos: \underline{\hspace{10cm}}
+				%\vspace{0.2cm}
+				\begin{center}
+					\renewcommand{\arraystretch}{1.7}
+					\begin{tabular}{|m{2.5cm}|m{3cm}|m{2.5cm}|}
+						\hline \rowcolor{valblue!15}
+						\textbf{Mascotas} & \textbf{Conteo} & \textbf{Frecuencia} \\
+						\hline & & \\ \hline & & \\ \hline & & \\
+						\hline & & \\ \hline & & \\
+						\hline \rowcolor{valblue!10}\textbf{Total} & & \\ \hline
+					\end{tabular}
+				\end{center}
+				Moda $=$ \boxfill[1.8cm]\quad
+				Mediana $=$ \boxfill[1.8cm]\quad
+				Rango $=$ \boxfill[1.8cm]
+			\end{espaciotrabajo}
+		\end{enumerate}
+		
+		%\vspace{0.4cm}
+		\textbf{C) Retos FL de razonamiento (6 ejercicios):}
+		
+		\begin{tcolorbox}[colback=valblue!5, colframe=valblue,
+			title={\ding{111}\;\textbf{Retos de Análisis}},
+			arc=2mm, boxrule=1pt, fonttitle=\large]
+			
+			\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=17]
+				\item ¿Puede la moda ser mayor que la mediana?
+				Construye un ejemplo que lo demuestre y otro donde no ocurra.
+				\begin{espaciotrabajo}{}
+					Ejemplo donde Moda $>$ Mediana: \underline{\hspace{7cm}}\\[0.3cm]
+					Ejemplo donde Moda $\leq$ Mediana: \underline{\hspace{7cm}}
+				\end{espaciotrabajo}
+				
+				\item Un conjunto tiene 7 datos. La mediana es el dato en
+				la posición \boxfill[1.5cm] cuando están ordenados.
+				Si se agrega un dato más (8 datos), la mediana se calcula con los
+				datos en las posiciones \boxfill[1cm] y \boxfill[1cm].
+				
+				\item Andrea obtuvo notas: $6, 8, 7, 5, 9$.
+				Carlos obtuvo: $7, 7, 7, 7, 7$.
+				Ambos tienen la misma mediana $= 7$.
+				¿Quién es más constante? Usa el rango para justificar.
+				\begin{espaciotrabajo}{}
+					Rango de Andrea $=$ \boxfill[1.5cm]\quad
+					Rango de Carlos $=$ \boxfill[1.5cm]\\[0.2cm]
+					Más constante: \underline{\hspace{4cm}}\;
+					porque: \underline{\hspace{5cm}}
+				\end{espaciotrabajo}
+				
+				\item Si $P(\text{lluvia}) = \dfrac{3}{5}$, ¿cuál es la probabilidad
+				de que \textbf{no} llueva?
+				\begin{espaciotrabajo}{}
+					$P(\text{no lluvia}) = 1 - \dfrac{3}{5} =$ \boxfill[2.5cm]\\[0.2cm]
+					Regla general: $P(\text{evento}) + P(\text{no evento}) =$
+					\boxfill[1.5cm]
+				\end{espaciotrabajo}
+				
+				\item Un dado especial tiene caras: $\{1, 1, 2, 3, 3, 3\}$.
+				Calcula la moda de sus caras y la probabilidad de sacar un 3.
+				\begin{espaciotrabajo}{}
+					Moda $=$ \boxfill[1.5cm]\quad
+					$P(\text{sacar 3}) =$ \boxfill[2cm]\quad
+					$P(\text{sacar 1}) =$ \boxfill[2cm]
+				\end{espaciotrabajo}
+				
+				\item ¿Es posible que la mediana de un conjunto NO sea un valor
+				del conjunto? Construye un ejemplo que lo demuestre.
+				\begin{espaciotrabajo}{}
+					Mi ejemplo: \underline{\hspace{9cm}}\\[0.3cm]
+					Mediana $=$ \boxfill[2cm]\quad ¿Está en el conjunto?
+					\boxfill[1.5cm]
+				\end{espaciotrabajo}
+			\end{enumerate}
+		\end{tcolorbox}
+	\end{practica}
+	
+	% =========================================================
+	%  AUTOEVALUACIÓN FINAL
+	% =========================================================
+	\newpage
+	\section*{Autoevaluación Final}
+	
+	\begin{tcolorbox}[colback=boxbg, colframe=valmid, arc=2mm, boxrule=0.8pt]
+		\small\textit{Trabaja sin consultar el módulo.
+			Sé honesto: esto mide lo que realmente aprendiste.
+			Tiempo estimado: 40 minutos.}
+	\end{tcolorbox}
+	
+	%\vspace{0.4cm}
+	\noindent\textbf{Parte 1 — Completar conceptos}\hfill\small(5 puntos)
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm]
+		\item La medida estadística que indica el valor que \textbf{más se
+			repite} se llama \underline{\hspace{3.5cm}}.
+		\item La \underline{\hspace{3.5cm}} es el valor central de un
+		conjunto ordenado.
+		\item El rango se calcula restando el valor \underline{\hspace{2.5cm}}
+		del valor \underline{\hspace{2.5cm}}.
+		\item La probabilidad de un evento imposible es \underline{\hspace{1.5cm}}
+		y la de un evento seguro es \underline{\hspace{1.5cm}}.
+		\item En una tabla de frecuencias, la columna de frecuencia indica
+		cuántas veces \underline{\hspace{5cm}}.
+	\end{enumerate}
+	
+	%\vspace{0.5cm}
+	\noindent\textbf{Parte 2 — Selección múltiple}\hfill\small(4 puntos)
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.5cm]
+		\item ¿Cuál es la moda de $\{3, 5, 3, 7, 5, 3, 9\}$?
+		
+		\textbf{a)} 5\quad\textbf{b)} 3\quad\textbf{c)} 7\quad
+		\textbf{d)} No tiene moda
+		\hfill Rta: \boxfill[1.2cm]
+		
+		\item Los datos $\{2, 5, 8, 11, 14\}$ tienen mediana:
+		
+		\textbf{a)} 2\quad\textbf{b)} 14\quad\textbf{c)} 8\quad
+		\textbf{d)} 6.5
+		\hfill Rta: \boxfill[1.2cm]
+		
+		\item El rango de $\{4, 9, 2, 15, 7\}$ es:
+		
+		\textbf{a)} 11\quad\textbf{b)} 13\quad\textbf{c)} 7\quad
+		\textbf{d)} 15
+		\hfill Rta: \boxfill[1.2cm]
+		
+		\item Una bolsa tiene 3 bolas rojas y 7 azules.
+		$P(\text{sacar roja})$ es:
+		
+		\textbf{a)} $\dfrac{3}{7}$\quad\textbf{b)} $\dfrac{7}{10}$\quad
+		\textbf{c)} $\dfrac{3}{10}$\quad\textbf{d)} $\dfrac{1}{3}$
+		\hfill Rta: \boxfill[1.2cm]
+	\end{enumerate}
+	
+	%\vspace{0.5cm}
+	\noindent\textbf{Parte 3 — Aplicación completa}\hfill\small(5 puntos)
+	
+	%\vspace{0.3cm}
+	\textit{Las notas de un estudiante en 8 quices fueron:}
+	\[
+	7,\; 9,\; 8,\; 7,\; 10,\; 7,\; 8,\; 9
+	\]
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm]
+		\item Construye la tabla de frecuencias:
+		
+		\begin{center}
+			\renewcommand{\arraystretch}{1.8}
+			\begin{tabular}{|m{2.5cm}|m{3.5cm}|m{2.5cm}|}
+				\hline \rowcolor{valblue!15}
+				\textbf{Nota} & \textbf{Conteo} & \textbf{Frecuencia} \\
+				\hline & & \\ \hline & & \\ \hline & & \\ \hline & & \\
+				\hline \rowcolor{valblue!10}\textbf{Total} & & \\ \hline
+			\end{tabular}
+		\end{center}
+		
+		\item Calcula:
+		\begin{multicols}{3}
+			Moda $=$ \boxfill[2cm]\\[0.3cm]
+			Mediana $=$ \boxfill[2cm]\\[0.3cm]
+			Rango $=$ \boxfill[2cm]
+		\end{multicols}
+		\begin{espaciotrabajo}{}
+			%\vspace{1cm}
+		\end{espaciotrabajo}
+		
+		\item Si el estudiante toma el siguiente quiz y su nota se elige
+		al azar entre las posibles notas de su tabla:
+		
+		$P(\text{nota} = 7) =$ \boxfill[2.5cm]\quad
+		$P(\text{nota} \geq 9) =$ \boxfill[2.5cm]
+		
+		\item ¿Puede este estudiante afirmar que su nota ``típica'' es 7?
+		Usa la moda y la mediana para justificar tu respuesta:
+		\begin{espaciotrabajo}{}
+			%\vspace{1cm}
+			\underline{\hspace{13cm}}
+		\end{espaciotrabajo}
+	\end{enumerate}
+	
+	%\vspace{0.5cm}
+	\noindent\textbf{Parte 4 — Rejilla de autoevaluación}
+	
+	%\vspace{0.3cm}
+	\renewcommand{\arraystretch}{1.65}
+	\begin{center}
+		\begin{longtable}{|m{8.5cm}|c|c|c|}
+			\hline
+			\rowcolor{valdark!80}
+			\color{white}\textbf{Indicador} &
+			\color{white}\textbf{Lo logré} &
+			\color{white}\textbf{En proceso} &
+			\color{white}\textbf{Debo repasar} \\
+			\hline
+			\endfirsthead
+			\hline
+			\rowcolor{valdark!80}
+			\color{white}\textbf{Indicador} &
+			\color{white}\textbf{Lo logré} &
+			\color{white}\textbf{En proceso} &
+			\color{white}\textbf{Debo repasar} \\
+			\hline
+			\endhead
+			\hline
+			\endlastfoot
+			Organizo datos en tablas de frecuencia.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Leo e interpreto tablas de frecuencia.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Identifico la moda de un conjunto de datos.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Reconozco cuando un conjunto tiene dos modas o no tiene.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Hallo la mediana de un conjunto con número impar de datos.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Hallo la mediana de un conjunto con número par de datos.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Calculo el rango de un conjunto de datos.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Interpreto el rango para comparar la dispersión de datos.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Calculo probabilidades sencillas como fracción.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Clasifico eventos como imposibles, posibles o seguros.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+			Aplico las medidas estadísticas en situaciones reales.
+			& $\square$ & $\square$ & $\square$ \\
+			\hline
+		\end{longtable}
+	\end{center}
+	
+	%\vspace{0.6cm}
+	\begin{center}
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
+			width=0.75\textwidth, arc=3mm, boxrule=1.5pt]
+			\centering\itshape
+			``Hacia un Aprendizaje Significativo,
+			Autónomo y en Libertad'' --- Liceo V.A.L.
+		\end{tcolorbox}
+	\end{center}
+	
+\end{document}

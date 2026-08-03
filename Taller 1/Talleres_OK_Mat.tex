@@ -27,6 +27,49 @@
 	}{}%
 }
 
+% =====================================================================
+% PAQUETES NECESARIOS PARA EL SISTEMA DE RESPUESTAS
+% =====================================================================
+\usepackage[table]{xcolor}
+\usepackage{pifont}
+\usepackage[most]{tcolorbox}
+
+% --- COLORES INSTITUCIONALES VAL (Asegúrate de tenerlos) ---
+\definecolor{valblue}{RGB}{0, 84, 166}
+\definecolor{valdark}{RGB}{40, 40, 40}
+\definecolor{valred}{RGB}{200, 16, 46}
+
+% =====================================================================
+% INTERRUPTOR DE RESPUESTAS (ACTIVAR / DESACTIVAR)
+% =====================================================================
+\newif\ifmostrarrespuestas
+
+% ---> CAMBIA AQUÍ PARA MOSTRAR U OCULTAR EN TODO EL DOCUMENTO <---
+\mostrarrespuestastrue  % <-- Actívalo para ver las respuestas (Versión Docente)
+%\mostrarrespuestasfalse % <-- Actívalo para ocultar las respuestas (Versión Estudiante)
+
+% --- COMANDO DE CAJA DE RESPUESTA CONDICIONAL ---
+\newcommand{\respuesta}[1]{%
+	\ifmostrarrespuestas
+	\par\vspace{0.2cm}%
+	\begin{tcolorbox}[
+		enhanced,
+		colback=valred!5,         % Fondo muy clarito
+		colframe=valred,          % Borde rojo institucional
+		arc=2mm,                  % Bordes redondeados
+		boxrule=1pt,              % Grosor del borde
+		title={\small\bfseries\ding{51} Solución / Procedimiento},
+		coltitle=white,           % Letra del título blanca
+		boxed title style={colback=valred, arc=1mm}, % Cajita del título
+		top=3mm, bottom=3mm, left=3mm, right=3mm % Espaciado interno
+		]
+		#1
+	\end{tcolorbox}%
+	\par\vspace{0.1cm}%
+	\fi
+}
+% =====================================================================
+
 \begin{document}
 	
 	% --- ENCABEZADO DEL TALLER ---
@@ -59,17 +102,30 @@
 			\item Escribe el número completo en palabras.
 		\end{enumerate}
 		
+		\respuesta{$4000000+500000+80000+2000+300+0+9$}
+		
 		\item Ubica correctamente los números de forma vertical (respetando su valor posicional) y resuelve las siguientes operaciones:
 		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
 			\item $245\,678 + 134\,902 + 8\,540 = $
 			\item $5\,400\,000 - 1\,256\,384 = $
 		\end{enumerate}
+		\respuesta{\begin{enumerate}
+				\item 389120
+				\item 4143620 
+				\end{enumerate}
+		}
 		
 		\item Realiza las operaciones indicadas a cada lado y compara los resultados colocando el signo mayor que ($>$), menor que ($<$) o igual ($=$) según corresponda:
 		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
 			\item $12\,500 + 4\,200 \quad \_\_\_\_\_\_ \quad 20\,000 - 3\,000$
 			\item $50\,000 - 15\,500 \quad \_\_\_\_\_\_ \quad 18\,000 + 16\,500$
 		\end{enumerate}
+		\respuesta{
+			\begin{enumerate}
+				\item $16700<17000$
+				\item $34500=34500$ 
+			\end{enumerate}
+		}
 		
 		\item La siguiente tabla muestra la cantidad de visitantes que recibió un parque natural durante los primeros tres meses del año:
 		
@@ -91,17 +147,20 @@
 			\item ¿Cuántas personas en total visitaron el parque durante esos tres meses?
 			\item ¿Cuál es la diferencia exacta de visitantes entre el mes con mayor asistencia y el mes con menor asistencia?
 		\end{enumerate}
+		\respuesta{
+		\begin{enumerate}
+			\item 356825
+			\item 26680 
 		
+		\end{enumerate}
+		}
 		\item El colegio tiene un presupuesto de $\$15\,000\,000$ destinado a renovar la sala de sistemas. Si deciden comprar tres computadores nuevos que en total cuestan $\$4\,850\,000$ y un proyector inteligente por $\$1\,250\,500$, ¿cuánto dinero sobrará del presupuesto inicial tras realizar estas dos compras?
 		
+		\respuesta{
+		Sobra: $8\,899\,500$
+		}
+		
 	\end{enumerate}
-	
-	\vfill
-	\begin{center}
-		\rule{0.5\textwidth}{0.4pt} \\
-		\vspace{0.2cm}
-		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
-	\end{center}
 	
 	\newpage
 	%%%=========================================================================================================================================================
@@ -137,12 +196,24 @@
 			\item $3\,458 \times 46 = $
 			\item $12\,095 \times 327 = $
 		\end{enumerate}
+		\respuesta{
+		\begin{enumerate}
+			\item $159\,068$ 
+			\item $3\,955\,065$
+		\end{enumerate}
+		}
 		
 		\item Aplica la propiedad distributiva de la multiplicación con respecto a la suma o la resta para resolver las siguientes operaciones. Debes mostrar cómo distribuyes los valores antes de dar el resultado final:
 		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
 			\item $8 \times (100 + 45) = $
 			\item $12 \times (50 - 5) = $
 		\end{enumerate}
+		\respuesta{
+		\begin{enumerate}
+			\item $1160$
+			\item $540$
+		\end{enumerate}
+		}
 		
 		\item Resuelve los siguientes productos utilizando la estrategia de cálculo abreviado (cálculo mental con ceros finales). Escribe directamente la operación y el resultado final:
 		\begin{enumerate}[label=\alph*., itemsep=0.2cm, topsep=0.2cm]
@@ -150,6 +221,13 @@
 			\item $12\,000 \times 300 = $
 			\item $705 \times 10\,000 = $
 		\end{enumerate}
+		\respuesta{
+		\begin{enumerate}
+			\item $450\,000$
+			\item $3\,600\,000$
+			\item $7\,050\,000$
+		\end{enumerate}
+		}
 		
 		\item La siguiente tabla muestra la lista de compras que realizó el colegio para dotar la sala de artes:
 		
