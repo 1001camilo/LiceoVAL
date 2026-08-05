@@ -1,0 +1,128 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[letterpaper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifshowanswers
+
+% ---> MODO PROFESOR (Muestra respuestas en azul): Deja la siguiente línea sin comentar.
+% ---> MODO ESTUDIANTE (Deja el espacio en blanco para imprimir): Pon un % al inicio de la línea.
+\showanswerstrue % \showanswersfalse
+
+% --- COMANDOS PARA RESPUESTAS ---
+% Comando para preguntas abiertas (parámetro opcional: espacio en blanco, defecto 3cm)
+\newcommand{\respAbierta}[2][3cm]{
+	\ifshowanswers
+	\par\vspace{0.2cm}
+	\textbf{\textcolor{blue}{Respuesta:}} \textcolor{blue}{#2}
+	\vspace{0.2cm}
+	\else
+	\par\vspace{#1} % Espacio en blanco dinámico cuando se oculta
+	\fi
+}
+
+% Comando para Falso/Verdadero
+\newcommand{\respVF}[2]{
+	\ifshowanswers
+	\textbf{\textcolor{blue}{#1}} \textcolor{blue}{#2}
+	\else
+	(\quad) \vspace{0.8cm}
+	\fi
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+		\vspace{0.2cm}
+		\begin{tcolorbox}[colback=valblue, colframe=valdark, arc=2mm, boxrule=1pt, halign=center]
+			{\Large \textbf{\color{white} Taller de Repaso -- Trabajo en Cuaderno}}\\[0.1cm]
+			{\large \textbf{\color{yellow!90!white} Ciencias 2 - TAU 4: El Cielo y la Tierra}}
+		\end{tcolorbox}
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.5cm}
+	\begin{tcolorbox}[colback=gray!10!white, colframe=black, arc=1mm]
+		\textit{Instrucciones: Lee atentamente cada pregunta y resuelve este taller de 10 puntos \textbf{en tu cuaderno de ciencias}, basándote en la lectura del TAU 4 del libro.}
+	\end{tcolorbox}
+	
+	\vspace{0.5cm}
+	
+	% --- PREGUNTAS ---
+	\noindent \textbf{1. Los grandes personajes de la historia:} Durante el TAU 4 se mencionan figuras históricas que marcaron la ciencia antigua. Escribe en tu cuaderno quién fue cada uno de los siguientes personajes y por qué se les recuerda en la lectura:
+	\begin{itemize}[itemsep=0.1cm]
+		\item Aristóteles.
+		\item Alejandro Magno.
+		\item Santo Tomás de Aquino.
+	\end{itemize}
+	\respAbierta[3.5cm]{Aristóteles fue un filósofo griego que propuso que la Tierra era una esfera inmóvil en el centro del universo. Alejandro Magno fue su alumno y fundó la ciudad de Alejandría (pero murió antes de que se creara la gran biblioteca). Santo Tomás de Aquino integró la filosofía de Aristóteles con la doctrina de la Iglesia Católica al escribir su obra ``Suma Teológica''.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{2. Las dos regiones del Universo:} El filósofo Aristóteles creía que el Universo estaba dividido en dos partes. Dibuja un cuadro comparativo en tu cuaderno explicando las diferencias entre la \textbf{región sublunar} (donde vivimos) y la \textbf{región celeste}.
+	\respAbierta[3cm]{La región sublunar (debajo de la Luna) está compuesta por materia imperfecta, mortal y que cambia constantemente. La región celeste (más allá de la Luna) está compuesta por cuerpos perfectos, eternos y que se mueven de acuerdo con leyes inmutables.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{3. Las estrellas vagabundas:} Según el texto, ¿qué significa la palabra griega ``vagabundo'' y cuáles son los únicos cinco cuerpos de este tipo que los antiguos podían ver a simple vista (sin telescopio) en el cielo?
+	\respAbierta[2cm]{La palabra ``vagabundo'' significa planeta. Los únicos cinco planetas que se podían ver a simple vista eran Mercurio, Venus, Marte, Júpiter y Saturno.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{4. Las constelaciones:} Explica con tus propias palabras qué es una constelación. ¿Son agrupaciones reales formadas por la naturaleza o figuras inventadas por la imaginación humana para no perderse en el firmamento? 
+	\respAbierta[2cm]{Las constelaciones no son reales en el espacio; son figuras imaginarias creadas por los antiguos uniendo las estrellas con líneas invisibles para orientarse y no perderse en el firmamento.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{5. El engaño de los sentidos (El avión):} En la antigüedad, era ``lógico'' creer que la Tierra estaba completamente quieta en el centro del Universo. El autor utiliza el ejemplo de un viaje en un avión ultramoderno con las ventanillas cerradas. Explica en tu cuaderno cómo este ejemplo demuestra que la Tierra sí puede estarse moviendo a gran velocidad sin que nosotros lo sintamos.
+	\respAbierta[2.5cm]{Al viajar en un avión muy suave, sin turbulencias y con las ventanillas cerradas, no sentimos el movimiento. De la misma manera, la Tierra puede viajar por el espacio a gran velocidad sin que lo sintamos, ya que no tenemos referencias externas ni sacudidas.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{6. La salvación del conocimiento:} Tras la caída del Imperio Romano y durante la Edad Media, los europeos perdieron gran parte de la ciencia griega. Según la lectura, ¿qué cultura fue la encargada de traducir, conservar y estudiar las obras de Aristóteles para que no se perdieran para siempre?
+	\respAbierta[1.5cm]{Fueron los árabes quienes se encargaron de traducir, conservar y estudiar todo el conocimiento de Aristóteles y los antiguos griegos.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{7. Fanatismo en las universidades:} ¿Qué ocurrió en las primeras universidades europeas cuando la Iglesia adoptó las teorías de Aristóteles como la verdad absoluta? ¿Se permitía a los científicos contradecir las ideas del filósofo griego?
+	\respAbierta[2cm]{Las ideas de Aristóteles dominaron las enseñanzas y sus seguidores se volvieron fanáticos. Protegidos por la Iglesia Católica, prohibieron y persiguieron a cualquiera que intentara contradecir las ideas del filósofo griego.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{8. El valiente Giordano Bruno:} Giordano Bruno fue un pensador del Renacimiento que contradijo a Aristóteles y pagó un precio muy alto por ello. Escribe al menos tres ideas revolucionarias que él defendía sobre el Universo.
+	\respAbierta[2.5cm]{Bruno defendía que la Tierra flotaba en el espacio y dejaba de ser el centro del Universo, que el universo era totalmente infinito, y que las estrellas que vemos en el cielo son realmente otros soles que pueden tener sus propios planetas.}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{9. Falso o Verdadero:} Escribe las siguientes frases en tu cuaderno y coloca (V) si son verdaderas o (F) si son falsas, justificando tu respuesta para cada una:
+	\begin{itemize}[itemsep=0.1cm]
+		\item \textbf{A.} Aristóteles afirmaba que el Universo era infinito, lleno de sistemas solares y que no tenía un centro. \respVF{F}{- Aristóteles pensaba que el Universo era finito y que la Tierra inmóvil era el centro.}
+		\item \textbf{B.} La Lógica es la ciencia que estudia la manera correcta de pensar y sacar conclusiones sin cometer errores. \respVF{V}{- Esta ciencia fue uno de los aportes más grandes de Aristóteles.}
+		\item \textbf{C.} El planeta Plutón fue uno de los 5 planetas que los antiguos griegos observaban a simple vista caminando por la calle. \respVF{F}{- Plutón es imposible de ver a simple vista; los griegos solo veían hasta Saturno.}
+	\end{itemize}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{10. La Biblioteca de Alejandría:} Describe la importancia que tuvo la Gran Biblioteca de Alejandría para la ciencia antigua y cuenta brevemente qué trágico suceso acabó con la mayoría de sus invaluables documentos.
+	\respAbierta[2.5cm]{Fue el principal centro del saber del mundo antiguo porque albergaba prácticamente todo el conocimiento humano escrito en rollos de papiro. Lamentablemente, la mayoría de estos invaluables documentos se perdieron para siempre tras ser consumida por un gran incendio.}
+	
+	\vfill
+	\begin{center}
+		\textit{\color{valdark!70} ``El éxito es la suma de pequeños esfuerzos repetidos día tras día.''}
+	\end{center}
+	
+\end{document}
