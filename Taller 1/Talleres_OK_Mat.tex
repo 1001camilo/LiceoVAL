@@ -1,5 +1,8 @@
 \documentclass[12pt, letterpaper]{article}
 
+% --- COMANDO PERSONALIZADO: CAJITA GRIS (¡Esta es la línea que faltaba!) ---
+\newcommand{\boxfill}[1][1.5cm]{\fcolorbox{gray}{black!5}{\makebox[#1]{\rule{0pt}{0.45cm}\rule[-0.15cm]{0pt}{0pt}}}}
+
 % --- PREÁMBULO COMPLETO ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -763,7 +766,8 @@
 		\item Desarrolla las siguientes actividades sobre el sistema de numeración decimal:
 		\begin{enumerate}[label=\alph*., itemsep=0.3cm, topsep=0.2cm]
 			\item Escribe en palabras la lectura del número decimal $14.075$.
-			\item Ordena de menor a mayor el siguiente grupo de números decimales: $3.45, \quad 3.045, \quad 3.504, \quad 3.405$.
+			\item Ordena de menor a mayor el siguiente grupo de números decimales:\\
+			 $$3.45, \quad 3.045, \quad 3.504, \quad 3.405$$	.
 			\item Identifica qué posición ocupa el dígito $7$ en el número $8.279$ (décimas, centésimas o milésimas) y escribe su valor en forma de fracción decimal.
 		\end{enumerate}
 		
@@ -1621,5 +1625,137 @@
 		\vspace{0.2cm}
 		\textit{¡Tu esfuerzo constante es el pilar de un aprendizaje autónomo y en Libertad!}
 	\end{center}
+	\newpage
+	% --- ENCABEZADO ---
+	\begin{center}
+		\textbf{\Large TALLER DE REPASO} \\
+		\vspace{0.2cm}
+		\textbf{\large Matemáticas 6º -- Unidad 18}
+	\end{center}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1.} Observa la siguiente gráfica que muestra las ventas de una librería durante la semana. Los estudiantes deben deducir los valores exactos guiándose por las líneas de la cuadrícula:
+	\begin{center}
+		\begin{tikzpicture}[xscale=1.5, yscale=0.8]
+			% Grilla
+			\draw[gray!40, thin, dashed] (0,0) grid[xstep=5, ystep=1] (5,6);
+			% Ejes
+			\draw[thick, stealth-stealth] (0,6.5) -- (0,0) -- (5.5,0);
+			\node[rotate=90, font=\small] at (-0.8, 3) {Libros Vendidos};
+			% Marcas Y
+			\foreach \y/\val in {1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
+				\draw[thick] (-0.1,\y) -- (0.1,\y);
+				\node[left, font=\small] at (-0.2,\y) {\val};
+			}
+			% Barras
+			\fill[cyan!60, draw=black, thick] (0.6,0) rectangle (1.4,3);
+			\node[below, font=\small] at (1,0) {Lunes};
+			\fill[cyan!60, draw=black, thick] (1.6,0) rectangle (2.4,4.5);
+			\node[below, font=\small] at (2,0) {Martes};
+			\fill[cyan!60, draw=black, thick] (2.6,0) rectangle (3.4,2.5);
+			\node[below, font=\small] at (3,0) {Miérc.};
+			\fill[cyan!60, draw=black, thick] (3.6,0) rectangle (4.4,5);
+			\node[below, font=\small] at (4,0) {Jueves};
+		\end{tikzpicture}
+	\end{center}
+	Responde en tu cuaderno: a) ¿Cuántos libros se vendieron en total durante los cuatro días? b) ¿Qué porcentaje del total representan las ventas del día jueves? \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2.} Las calificaciones de 12 estudiantes en una prueba de matemáticas fueron las siguientes: 
+	\begin{center}
+		75, 80, 95, 75, 85, 100, 75, 90, 85, 80, 75, 95
+	\end{center}
+	Construye en tu cuaderno la tabla de frecuencias absolutas para estos datos y determina cuál es el rango de las calificaciones. \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3.} Utilizando el mismo conjunto de datos del punto anterior (las 12 calificaciones), calcula el valor exacto de la media aritmética, la mediana y la moda. Muestra todo el procedimiento de suma y división. \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4.} Para aprobar el semestre, la nota final de una asignatura se calcula usando los siguientes porcentajes: Tareas (20\%), Quices (30\%) y Examen Final (50\%). Si un estudiante obtuvo 90 en Tareas, 70 en Quices y 80 en el Examen Final, ¿cuál es su calificación definitiva? \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 5 ---
+	\noindent \textbf{5.} Una urna contiene 24 balotas idénticas en tamaño y textura: 8 son rojas, 10 son azules y 6 son verdes. Si se extrae una balota completamente al azar, calcula la probabilidad de sacar una balota que \textbf{no sea verde}. Expresa tu respuesta como una fracción simplificada a su mínima expresión. \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 6 ---
+	\noindent \textbf{6.} Al lanzar dos dados de seis caras normales (numerados del 1 al 6) al mismo tiempo, ¿cuántos resultados posibles forman el espacio muestral total? Escribe al menos 5 combinaciones posibles de ese espacio muestral. \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 7 ---
+	\noindent \textbf{7.} Teniendo en cuenta el lanzamiento de un solo dado de seis caras, clasifica los siguientes tres eventos como Seguro, Posible o Imposible, justificando matemáticamente cada elección: \\
+	a) Obtener un número múltiplo de 3. \\
+	b) Obtener un número mayor que 0. \\
+	c) Obtener un número primo par mayor que 3. \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 8 ---
+	\noindent \textbf{8.} Se realizó una encuesta a 200 personas sobre su deporte favorito. Los resultados se graficaron en un diagrama circular donde el fútbol representa el 45\%, el baloncesto el 30\%, la natación el 15\% y el tenis el resto. ¿Cuántas personas exactamente prefieren el tenis y cuántas prefieren el baloncesto? \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 9 ---
+	\noindent \textbf{9.} En un juego de cartas hay 20 naipes numerados del 1 al 20. Se barajan y se saca una carta al azar. Calcula la probabilidad de que la carta extraída sea un número primo o un múltiplo de 8. Expresa el resultado en fracción y en porcentaje. \hfill \textbf{(10\%)}
+	\vspace{0.4cm}
+	
+	% --- PUNTO 10 ---
+	\noindent \textbf{10.} En una pequeña empresa trabajan 6 personas. Los salarios mensuales de cinco empleados operativos son \$1.200.000, \$1.200.000, \$1.300.000, \$1.200.000 y \$1.400.000. El sexto empleado es el gerente, quien gana \$10.500.000. Calcula la media y la mediana de los salarios. Luego, argumenta por escrito cuál de las dos medidas representa de forma más justa y realista el sueldo de un trabajador típico en esta empresa. \hfill \textbf{(10\%)}
+	
+	% ─────────────────────────────────────────────────────────────
+	% SECCIÓN B: CONTEXTOS REALES
+	% ─────────────────────────────────────────────────────────────
+	\vspace{0.5cm}
+	\noindent \textbf{\Large B) Contextos reales: Aplicación de la Mediana}
+	\vspace{0.2cm}
+	\hrule
+	\vspace{0.5cm}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm, start=17]
+		
+		% --- Ejercicio 17 ---
+		\item Las temperaturas de una semana fueron (en $^\circ$C):
+		\textbf{28, 32, 25, 30, 27, 31, 29}. \\
+		Halla la mediana de temperatura. \\
+		\vspace{0.1cm}
+		\hspace*{0.5cm} \textbf{Me} $=$ \boxfill[2.5cm]
+		
+		% --- Ejercicio 18 ---
+		\item Alturas de 6 jugadores de baloncesto (cm):
+		\textbf{175, 182, 168, 190, 178, 185}. \\
+		Halla la mediana de las alturas. \\
+		\vspace{0.1cm}
+		\hspace*{0.5cm} \textbf{Me} $=$ \boxfill[2.5cm]
+		
+		% --- Ejercicio 19 ---
+		\item Un estudiante obtuvo estas notas en el período:
+		\textbf{6, 8, 7, 9, 5, 8, 7}. \\
+		Halla la mediana y di si está por encima o por debajo de 7. \\
+		\vspace{0.1cm}
+		\hspace*{0.5cm} \textbf{Me} $=$ \boxfill[2cm] \hspace{1cm} \textbf{¿$>$ o $<$ que 7?} \boxfill[1.5cm]
+		
+		% --- Ejercicio 20 ---
+		\item Un equipo anotó en 8 partidos la siguiente cantidad de goles: 
+		\textbf{2, 0, 3, 1, 2, 0, 4, 1}. \\
+		¿Cuál es la mediana de goles? \\
+		\vspace{0.1cm}
+		\hspace*{0.5cm} \textbf{Me} $=$ \boxfill[2.5cm]
+		
+		% --- Ejercicio 21 ---
+		\item Construye un conjunto de \textbf{5 datos} cuya mediana sea exactamente \textbf{10}: \\
+		\vspace{0.1cm}
+		\hspace*{0.5cm} \textbf{Mi conjunto:} \underline{\hspace{9.5cm}} \\[0.4cm]
+		\hspace*{0.5cm} \textbf{Verifica ordenándolos:} \underline{\hspace{8.1cm}}
+		
+		% --- Ejercicio 22 ---
+		\item Construye un conjunto de \textbf{6 datos} cuya mediana sea \textbf{7.5}: \\
+		\vspace{0.1cm}
+		\hspace*{0.5cm} \textbf{Mi conjunto:} \underline{\hspace{9.5cm}} \\[0.4cm]
+		\hspace*{0.5cm} \textbf{Valores centrales:} \boxfill[1cm] y \boxfill[1cm] \\[0.3cm]
+		\hspace*{0.5cm} \textbf{Me} $= \frac{\boxfill[1cm] + \boxfill[1cm]}{2} =$ \boxfill[2cm]
+		
+	\end{enumerate}
 	
 \end{document}
