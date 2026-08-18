@@ -1,0 +1,462 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{helvet}
+\usepackage{array}
+
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valblue}{RGB}{0,74,153}
+\definecolor{boxbg} {RGB}{245,245,245}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[most]{tcolorbox}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,
+		keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal,
+	colframe=valdark!60, colback=boxbg, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+
+% ============================================================
+\begin{document}
+	% ============================================================
+	
+	% ─── ENCABEZADO ─────────────────────────────────────────────
+	\begin{center}
+		{\Large\textbf{LICEO V.A.L.}}\\[0.25cm]
+		{\normalsize\textbf{DEPARTAMENTO DE MATEMÁTICAS}}\\[0.25cm]
+		\begin{tcolorbox}[colback=valblue!10, colframe=valblue,
+			width=14cm, arc=3mm, boxrule=1.5pt]
+			\centering
+			{\Large\textbf{EVALUACIÓN — UNIDAD 18}}\\[0.1cm]
+			\normalsize Estadística y Probabilidad: Media, Moda, Mediana, Rango y
+			Probabilidad\\[0.1cm]
+			\small Grado: 6\textdegree\quad
+			Código: 06M-18 FL\quad
+			Duración: 90 minutos
+		\end{tcolorbox}
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent
+	\textbf{Nombre:}\;\underline{\hspace{7.8cm}}
+	\hfill\textbf{Código:}\;\underline{\hspace{2.5cm}}
+	
+	\vspace{0.2cm}
+	\noindent
+	\textbf{Fecha:}\;\underline{\hspace{7.8cm}}
+	\hfill\textbf{Calificación:}\;\underline{\hspace{1.8cm}}/100
+	
+	\vspace{0.3cm}
+	\noindent\textit{\small Instrucciones: Muestra todos los procedimientos.
+		El separador decimal es la coma (,). Usa bolígrafo azul o negro.}
+	
+	\vspace{0.4cm}\noindent\rule{14cm}{0.8pt}\vspace{0.3cm}
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 1 — MEDIA Y MEDIA PONDERADA
+	% ─────────────────────────────────────────────────────────────
+	\noindent\textbf{1.\;Media aritmética y media ponderada}
+	\hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm}
+	\textbf{A)} Calcula la media aritmética de cada conjunto.
+	Muestra la suma y la división.
+	
+	\vspace{0.2cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.7cm]
+		\item Rendimiento de combustible (km/L) de 6 vehículos:\\
+		$10{,}5\;|\;12{,}0\;|\;9{,}8\;|\;13{,}4\;|\;11{,}2\;|\;10{,}1$
+		
+		\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+			Suma: \boxfill[3.5cm]\hfill $n=$ \boxfill[1.2cm]\\[0.3cm]
+			$\bar{x} = \dfrac{\boxfill[3cm]}{\boxfill[1.2cm]} =$ \boxfill[3cm]
+		\end{tcolorbox}
+		
+		\item Notas de 8 quices: $7;\;9;\;8;\;6;\;10;\;7;\;9;\;8$
+		
+		\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+			Suma: \boxfill[3.5cm]\hfill $n=$ \boxfill[1.2cm]\\[0.3cm]
+			$\bar{x} =$ \boxfill[3cm]
+		\end{tcolorbox}
+	\end{enumerate}
+	
+	\vspace{0.4cm}
+	\textbf{B)} Calcula la \textbf{media ponderada} del semestre de Sofía.
+	Muestra la columna Nota $\times$ Créditos.
+	
+	\vspace{0.2cm}
+	\renewcommand{\arraystretch}{1.7}
+	\begin{center}
+		\begin{tabular}{|m{4cm}|c|c|m{3.5cm}|}
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Materia} & \textbf{Nota} & \textbf{Créditos} &
+			\textbf{Nota $\times$ Créditos} \\
+			\hline
+			Matemáticas  & 8{,}0 & 4 & \boxfill[3cm] \\
+			\hline
+			Español      & 6{,}5 & 3 & \boxfill[3cm] \\
+			\hline
+			Ciencias     & 9{,}0 & 3 & \boxfill[3cm] \\
+			\hline
+			Inglés       & 7{,}0 & 2 & \boxfill[3cm] \\
+			\hline
+			\rowcolor{boxbg}
+			\textbf{Total} & --- & \boxfill[1.5cm] & \boxfill[3cm] \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	$\bar{x}_p = \dfrac{\boxfill[3cm]}{\boxfill[1.5cm]} =$ \boxfill[3cm]
+	
+	\vspace{0.4cm}
+	\textbf{C)} La media de 5 datos es $8$. Cuatro de ellos son:
+	$6,\;9,\;7,\;10$. Halla el dato que falta.
+	
+	\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+		Suma total necesaria: $8 \times 5 =$ \boxfill[2cm]\\[0.3cm]
+		Suma de los 4 datos: \boxfill[2cm]\hfill
+		Dato faltante: \boxfill[2.5cm]
+	\end{tcolorbox}
+	
+	\newpage
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 2 — MODA, MEDIANA Y RANGO
+	% ─────────────────────────────────────────────────────────────
+	\noindent\textbf{2.\;Moda, Mediana y Rango}
+	\hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm}
+	\textbf{A)} Dado el siguiente conjunto de datos, calcula las tres medidas.
+	Muestra el procedimiento.
+	
+	\vspace{0.1cm}
+	\begin{center}
+		\large$\{9;\;4;\;7;\;4;\;10;\;4;\;7;\;6;\;4;\;9\}$
+	\end{center}
+	
+	\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+		Datos ordenados: \underline{\hspace{9cm}}\\[0.4cm]
+		\textbf{Moda:}\hfill \boxfill[3cm]\\[0.3cm]
+		Tipo: $\square$ Una moda\quad $\square$ Bimodal\quad $\square$ Sin moda\\[0.4cm]
+		\textbf{Mediana:}\;
+		Centrales: \boxfill[1.5cm] y \boxfill[1.5cm]\;
+		Me $=\dfrac{\;\;\;+\;\;\;}{2}=$ \boxfill[2.5cm]\\[0.4cm]
+		\textbf{Rango:}\;Máx \boxfill[1.5cm]$-$ Mín \boxfill[1.5cm]$=$ \boxfill[2cm]
+	\end{tcolorbox}
+	
+	\vspace{0.4cm}
+	\textbf{B)} Para cada conjunto, escribe \textbf{solo} el valor
+	solicitado. No es necesario mostrar procedimiento.
+	
+	\vspace{0.2cm}
+	\renewcommand{\arraystretch}{1.8}
+	\begin{center}
+		\begin{tabular}{|m{6.5cm}|m{2.2cm}|m{2.2cm}|m{2.2cm}|}
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Conjunto de datos} & \textbf{Moda} &
+			\textbf{Mediana} & \textbf{Rango} \\
+			\hline
+			$\{3;\;5;\;3;\;7;\;5;\;3;\;9\}$ &
+			\boxfill[1.8cm] & \boxfill[1.8cm] & \boxfill[1.8cm] \\
+			\hline
+			$\{10;\;20;\;30;\;40;\;50\}$ &
+			\boxfill[1.8cm] & \boxfill[1.8cm] & \boxfill[1.8cm] \\
+			\hline
+			$\{6;\;6;\;8;\;9;\;8;\;6;\;9;\;8\}$ &
+			\boxfill[1.8cm] & \boxfill[1.8cm] & \boxfill[1.8cm] \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\textbf{C)} Un conjunto tiene $\{2;\;5;\;x;\;8;\;11\}$ y
+	\textbf{mediana $= 6$}.
+	¿Cuánto vale $x$? Justifica.
+	
+	\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+		\vspace{0.7cm}
+		$x =$ \boxfill[2.5cm]
+	\end{tcolorbox}
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 3 — TABLAS DE FRECUENCIA
+	% ─────────────────────────────────────────────────────────────
+	\vspace{0.3cm}
+	\noindent\textbf{3.\;Tablas de frecuencia e interpretación}
+	\hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm}
+	\textbf{A)} La siguiente tabla recoge los puntajes de 20 estudiantes
+	en un concurso de matemáticas.
+	
+	\vspace{0.2cm}
+	\begin{center}
+		\renewcommand{\arraystretch}{1.6}
+		\begin{tabular}{|c|c|}
+			\hline
+			\rowcolor{valblue!25}
+			\textbf{Puntaje} & \textbf{Frecuencia} \\
+			\hline
+			5  & 2 \\
+			\hline
+			6  & 3 \\
+			\hline
+			7  & 6 \\
+			\hline
+			8  & 5 \\
+			\hline
+			9  & 3 \\
+			\hline
+			10 & 1 \\
+			\hline
+			\rowcolor{boxbg}
+			\textbf{Total} & \textbf{20} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm]
+		\item ¿Cuántos estudiantes obtuvieron puntaje 7?
+		\hfill \boxfill[2cm]
+		
+		\item ¿Cuál es la moda del concurso?
+		\hfill \boxfill[2cm]
+		
+		\item ¿Cuántos estudiantes obtuvieron puntaje superior a 8?
+		\hfill \boxfill[2cm]
+		
+		\item Calcula la media usando la tabla
+		(puntaje $\times$ frecuencia en cada fila):
+		
+		\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\rowcolor{boxbg}
+				\textbf{Puntaje} & \textbf{Frecuencia} &
+				\textbf{Puntaje $\times$ Frec.} \\
+				\hline
+				5  & 2 & \boxfill[2cm] \\
+				\hline
+				6  & 3 & \boxfill[2cm] \\
+				\hline
+				7  & 6 & \boxfill[2cm] \\
+				\hline
+				8  & 5 & \boxfill[2cm] \\
+				\hline
+				9  & 3 & \boxfill[2cm] \\
+				\hline
+				10 & 1 & \boxfill[2cm] \\
+				\hline
+				\rowcolor{boxbg}\textbf{Total} & 20 & \boxfill[2cm] \\
+				\hline
+			\end{tabular}
+			
+			\vspace{0.2cm}
+			$\bar{x} = \dfrac{\text{suma total}}{\text{total estudiantes}}
+			= \dfrac{\boxfill[2.5cm]}{20} =$ \boxfill[3cm]
+		\end{tcolorbox}
+	\end{enumerate}
+	
+	\vspace{0.3cm}
+	\textbf{B)} Construye la tabla de frecuencias de los siguientes datos
+	y calcula la moda y el rango:
+	
+	\vspace{0.1cm}
+	Puntos anotados por partido: $2;\;3;\;1;\;2;\;3;\;2;\;1;\;4;\;2;\;3;\;2;\;1$
+	
+	\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+		\renewcommand{\arraystretch}{1.6}
+		\begin{tabular}{|c|c|}
+			\hline
+			\rowcolor{boxbg}
+			\textbf{Valor} & \textbf{Frecuencia} \\
+			\hline
+			\boxfill[2cm] & \boxfill[2cm] \\
+			\hline
+			\boxfill[2cm] & \boxfill[2cm] \\
+			\hline
+			\boxfill[2cm] & \boxfill[2cm] \\
+			\hline
+			\boxfill[2cm] & \boxfill[2cm] \\
+			\hline
+			\rowcolor{boxbg}\textbf{Total} & \boxfill[2cm] \\
+			\hline
+		\end{tabular}
+		\hfill
+		\begin{minipage}{0.38\textwidth}
+			Moda $=$ \boxfill[2.5cm]\\[0.5cm]
+			Rango $=$ \boxfill[2.5cm]
+		\end{minipage}
+	\end{tcolorbox}
+	
+	\newpage
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 4 — PROBABILIDAD
+	% ─────────────────────────────────────────────────────────────
+	\noindent\textbf{4.\;Probabilidad — Tipos de eventos y cálculo}
+	\hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm}
+	\textbf{A)} Clasifica cada evento escribiendo \textbf{C} (Certero),
+	\textbf{I} (Imposible), \textbf{P} (Probable) o \textbf{Im} (Improbable).
+	Luego escribe $P$ cuando sea calculable.
+	
+	\vspace{0.2cm}
+	\renewcommand{\arraystretch}{1.8}
+	\begin{center}
+		\begin{tabular}{|m{9cm}|m{1.5cm}|m{2.5cm}|}
+			\hline
+			\rowcolor{valblue!20}
+			\textbf{Evento} & \textbf{Tipo} & \textbf{$P$ (si aplica)} \\
+			\hline
+			Al lanzar un dado de 6 caras, obtener el número 7. &
+			\boxfill[1.2cm] & \boxfill[2.2cm] \\
+			\hline
+			Al lanzar una moneda, que caiga cara o sello. &
+			\boxfill[1.2cm] & \boxfill[2.2cm] \\
+			\hline
+			Sacar una bola roja de una bolsa con 9 rojas y 1 azul. &
+			\boxfill[1.2cm] & \boxfill[2.2cm] \\
+			\hline
+			Al lanzar un dado, obtener un número par. &
+			\boxfill[1.2cm] & \boxfill[2.2cm] \\
+			\hline
+			Sacar una bola verde de una bolsa con 5 bolas amarillas. &
+			\boxfill[1.2cm] & \boxfill[2.2cm] \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\textbf{B)} Una bolsa contiene 5 bolas azules, 3 bolas verdes y 2 bolas
+	rojas. Se saca una bola al azar. Calcula:
+	
+	\vspace{0.2cm}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.4cm]
+			\item Total de bolas: \boxfill[1.8cm]
+			\item $P(\text{azul}) =$ \boxfill[2.5cm]
+			\item $P(\text{verde}) =$ \boxfill[2.5cm]
+			\item $P(\text{roja}) =$ \boxfill[2.5cm]
+			\item $P(\text{amarilla}) =$ \boxfill[2.5cm]
+			\item Suma de todas las $P$: \boxfill[2cm]
+		\end{enumerate}
+	\end{multicols}
+	
+	\vspace{0.4cm}
+	\textbf{C)} Probabilidad en exámenes. Responde:
+	
+	\vspace{0.2cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.5cm]
+		\item Un estudiante \textit{adivina} una pregunta de \textbf{Falso/Verdadero}.
+		¿Cuál es la probabilidad de acertar?
+		\hfill $P =$ \boxfill[2.5cm]
+		
+		\item El mismo estudiante adivina una pregunta de \textbf{opción múltiple}
+		con opciones \textbf{A, B, C, D, E}. ¿Cuál es la probabilidad de acertar?
+		\hfill $P =$ \boxfill[2.5cm]
+		
+		\item Si el examen tiene 10 preguntas de Falso/Verdadero y el estudiante
+		adivina todas, ¿cuántas esperaría acertar en promedio?
+		\hfill \boxfill[2.5cm]
+		
+		\item ¿Por qué es importante estudiar en lugar de adivinar?
+		Usa los cálculos anteriores para argumentar.
+		
+		\vspace{0.1cm}
+		\underline{\hspace{12.5cm}}
+		
+		\underline{\hspace{12.5cm}}
+	\end{enumerate}
+	
+	% ─────────────────────────────────────────────────────────────
+	% PUNTO 5 — SITUACIONES CONTEXTUALES
+	% ─────────────────────────────────────────────────────────────
+	\vspace{0.3cm}
+	\noindent\textbf{5.\;Situaciones contextuales integrales}
+	\hfill\textbf{(20\%)}
+	
+	\vspace{0.3cm}
+	\textbf{Situación A — Cartuchos de impresora:}
+	Una empresa de sistemas compró cartuchos de tinta durante 10 semanas.
+	Las cantidades fueron:
+	\[4;\;8;\;6;\;4;\;4;\;8;\;6;\;10;\;4;\;6\]
+	
+	\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+		Datos ordenados: \underline{\hspace{9.5cm}}\\[0.4cm]
+		\begin{tabular}{llll}
+			\textbf{Media:} $\bar{x}=$\boxfill[2.5cm] &
+			\textbf{Mediana:} Me$=$\boxfill[2.5cm] &
+			\textbf{Moda:} Mo$=$\boxfill[2.5cm] &
+			\textbf{Rango:} R$=$\boxfill[2.5cm]
+		\end{tabular}
+		\vspace{0.2cm}
+		
+		\textit{Procedimiento (muestra aquí la suma para la media y los
+			centrales para la mediana):}
+		
+		\vspace{1.5cm}
+	\end{tcolorbox}
+	
+	\vspace{0.4cm}
+	\textbf{Situación B — Concurso escolar:}
+	En un concurso hay 25 boletas: 1 primer puesto, 4 segundos puestos
+	y 20 sin premio. Camila compra 1 boleta. Responde:
+	
+	\vspace{0.2cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.5cm]
+		\item $P(\text{ganar el primer puesto}) =$
+		\hfill \boxfill[3cm]
+		
+		\item $P(\text{ganar cualquier premio}) =$
+		\hfill \boxfill[3cm]
+		
+		\item $P(\text{no ganar nada}) =$
+		\hfill \boxfill[3cm]
+		
+		\item Verifica que: $P(\text{ganar}) + P(\text{no ganar}) =$
+		\hfill \boxfill[2cm]
+		
+		\item Si Camila compra 5 boletas (diferentes),
+		¿cuál es la probabilidad de que al menos una sea ganadora?
+		
+		\begin{tcolorbox}[colback=white, colframe=valdark!40, boxrule=0.5pt, arc=1mm]
+			Boletas ganadoras totales: \boxfill[1.5cm]\quad
+			Total boletas: \boxfill[1.5cm]\\[0.3cm]
+			Boletas de Camila: 5\quad
+			Boletas ganadoras de Camila: \boxfill[1.5cm]\\[0.3cm]
+			$P(\text{al menos una ganadora}) =$ \boxfill[3cm]
+		\end{tcolorbox}
+	\end{enumerate}
+	
+	% ─── PIE ────────────────────────────────────────────────────
+	\vspace{0.8cm}
+	\noindent\rule{14cm}{0.8pt}
+	\begin{center}
+		\small\textit{Revisa tu trabajo antes de entregar.}\\
+		``Hacia un Aprendizaje Significativo, Autónomo y en Libertad''
+		--- Liceo V.A.L.
+	\end{center}
+	
+\end{document}
