@@ -1,0 +1,122 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{tikz}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Fondo institucional obligatorio con ruta estricta
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+\begin{document}
+	
+% --- ENCABEZADO FORMATO OFICIAL ---
+\begin{center}
+	{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+	{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+	\textbf{EVALUACIÓN - MATEMÁTICAS 6º}\\[0.1cm]
+	Unidad 11: Combinaciones y conteo básico
+\end{center}
+
+
+\hfill \textbf{Código:} \textbf{06M-11 AC}\\
+
+\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+
+\vspace{0.6cm}
+
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Ana tiene 2 tipos de pan (blanco e integral) y 3 tipos de relleno (jamón, queso, pollo) para preparar un sándwich. Escribe o dibuja todas las combinaciones posibles que Ana puede armar eligiendo 1 pan y 1 relleno. (20\%)} \\
+	
+	
+	\vspace{0.3cm}
+	\noindent
+	Pan Blanco + \underline{\hspace{4cm}} \hspace{1cm} Pan Integral + \underline{\hspace{4cm}} \\
+	Pan Blanco + \underline{\hspace{4cm}} \hspace{1cm} Pan Integral + \underline{\hspace{4cm}} \\
+	Pan Blanco + \underline{\hspace{4cm}} \hspace{1cm} Pan Integral + \underline{\hspace{4cm}} \\
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Total de combinaciones:} \underline{\hspace{2cm}}
+	\vspace{0.8cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Un restaurante ofrece 2 tipos de bebidas (Jugo, Gaseosa) y 2 tipos de postre (Helado, Torta). Completa el diagrama de árbol para encontrar todas las combinaciones. (20\%)} \\
+	
+	
+	\vspace{0.5cm}
+	\begin{center}
+		\begin{tikzpicture}[
+			level 1/.style={sibling distance=7cm},
+			level 2/.style={sibling distance=3.5cm},
+			level distance=2.5cm, 
+			every node/.style={align=center}
+			]
+			\node {\textbf{Elige tu combo}}
+			child {node {\textbf{Jugo}}
+				child {node {Helado }}
+				child {node {Torta }}
+			}
+			child {node {\textbf{Gaseosa}}
+				child {node {\underline{\rule[-5mm]{1.5cm}{0.5pt}}}}
+				child {node {\underline{\rule[-5mm]{1.5cm}{0.5pt}}}}
+			};
+		\end{tikzpicture}
+	\end{center}
+	\vspace{0.3cm}
+	\noindent \textbf{Total de combos:} \underline{\hspace{2cm}}
+	\vspace{0.8cm}
+	\newpage
+	% --- PUNTO 3 ---
+	\noindent \textbf{3.  En una tienda venden 4 colores de camisetas y 3 modelos de pantaloneta. ¿Cuántas combinaciones diferentes de uniforme se pueden hacer? (20\%)} \\
+
+
+	
+	\vspace{0.3cm}
+	\noindent Grupo A (Colores de camiseta) = \underline{\hspace{1cm}} \\
+	\noindent Grupo B (Modelos de pantaloneta) = \underline{\hspace{1cm}} \\
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Operación:} \underline{\hspace{1cm}} $\times$ \underline{\hspace{1cm}} $=$ \underline{\hspace{1cm}} combinaciones en total.
+	\vspace{0.8cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Un menú infantil incluye 3 opciones de plato principal, 2 tipos de bebida y 2 tipos de fruta. ¿Cuántas combinaciones diferentes de menú completo se pueden pedir? (20\%)} \\
+	 
+	
+	\vspace{0.3cm}
+	\noindent Grupo A (Plato principal) = \underline{\hspace{1cm}} \\
+	\noindent Grupo B (Bebida) = \underline{\hspace{1cm}} \\
+	\noindent Grupo C (Fruta) = \underline{\hspace{1cm}} \\
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Operación:} \underline{\hspace{1cm}} $\times$ \underline{\hspace{1cm}} $\times$ \underline{\hspace{1cm}} $=$ \underline{\hspace{1cm}} combinaciones.
+	\vspace{0.8cm}
+	
+	% --- PUNTO 5 ---
+	\noindent \textbf{5. Una maleta tiene un candado de seguridad con 2 ruedas numéricas. Cada rueda tiene los números del 0 al 9 (es decir, 10 opciones cada rueda). ¿Cuántas claves diferentes de 2 dígitos existen para abrir el candado? (20\%)} \\
+	
+	
+	\vspace{0.3cm}
+	\noindent Rueda 1 = \underline{\hspace{1cm}} opciones \\
+	\noindent Rueda 2 = \underline{\hspace{1cm}} opciones \\
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Operación:} \underline{\hspace{1cm}} $\times$ \underline{\hspace{1cm}} $=$ \underline{\hspace{1cm}} claves posibles.
+	
+\end{document}
