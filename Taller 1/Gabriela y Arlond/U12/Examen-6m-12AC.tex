@@ -1,0 +1,225 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb} % <--- Esta es la solución al error \square
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- CAJITAS DE ANDAMIAJE ---
+\newcommand{\boxfill}[1][1.5cm]{\tcbox[on line, size=minimal,
+	colframe=black!60, colback=white, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+
+% --- FONDO INSTITUCIONAL ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+\begin{document}
+	
+		% --- ENCABEZADO FORMATO OFICIAL ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large DEPARTAMENTO DE CIENCIAS BÁSICAS}\\[0.1cm]
+		\textbf{EVALUACIÓN - MATEMÁTICAS 6º}\\[0.1cm]
+		Unidad 12: Medidas de longitud
+	\end{center}
+	
+	
+	\hfill \textbf{Código:} \textbf{06M-12 AC}\\
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Marca con una "X" la opción más razonable para medir la longitud de cada objeto, recordando el tamaño de las unidades (mm, cm, m, Km). (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\alph*), itemsep=0.4cm]
+		\item El grosor de tu borrador: \hspace{0.5cm} $\square$ 5 mm \hspace{0.5cm} $\square$ 5 cm \hspace{0.5cm} $\square$ 5 m
+		\item El largo de una cancha de fútbol: \hspace{0.5cm} $\square$ 100 cm \hspace{0.5cm} $\square$ 100 m \hspace{0.5cm} $\square$ 100 Km
+		\item La altura de una puerta de la casa: \hspace{0.4cm} $\square$ 2 mm \hspace{0.5cm} $\square$ 2 cm \hspace{0.5cm} $\square$ 2 m
+		\item La distancia entre dos ciudades: \hspace{0.7cm} $\square$ 15 m \hspace{0.7cm} $\square$ 15 cm \hspace{0.5cm} $\square$ 15 Km
+	\end{enumerate}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. Convierte las siguientes medidas utilizando la regla de la escalera métrica. (25\%)}
+	
+	\begin{center} 
+		\begin{tikzpicture}[x=1cm, y=1.3cm,
+			unidad/.style={draw=black, fill=blue!10, rounded corners=1mm, minimum width=2cm, minimum height=0.8cm, font=\bfseries\Large},
+			base/.style={draw=green!50!black, fill=green!15, rounded corners=1mm, minimum width=2cm, minimum height=0.8cm, font=\bfseries\Large}
+			]
+			
+			% ════ COLUMNA CENTRAL: Las 7 unidades ════════════════════════════
+			\node[unidad] (Km)  at (0, 6.0) {Km};   
+			\node[unidad] (Hm)  at (0, 4.8) {Hm};   
+			\node[unidad] (Dam) at (0, 3.6) {Dm};   
+			\node[base]   (M)   at (0, 2.4) {m};    
+			\node[unidad] (dm)  at (0, 1.2) {dm};   
+			\node[unidad] (CM)  at (0, 0.0) {cm};   
+			\node[unidad] (MM)  at (0,-1.2) {mm};   
+			
+			% Nombres completos a la izquierda de cada nodo 
+			\node[anchor=east, font=\small, color=black] at (-1.7,6.0) {kilómetro};
+			\node[anchor=east, font=\small, color=black] at (-1.7,4.8) {hectómetro};
+			\node[anchor=east, font=\small, color=black] at (-1.7,3.6) {decámetro};
+			\node[anchor=east, font=\small, color=green!50!black] at (-1.7,2.4) {\textbf{metro (BASE)}};
+			\node[anchor=east, font=\small, color=black] at (-1.7,1.2) {decímetro};
+			\node[anchor=east, font=\small, color=black] at (-1.7,0.0) {centímetro};
+			\node[anchor=east, font=\small, color=black] at (-1.7,-1.2) {milímetro};
+			
+			% ════ LADO DERECHO: Flechas ×10 bajando ══════════════════════════
+			\draw[->, >=stealth, orange, line width=1.6pt] (0.85,5.75) -- (0.85,5.05);
+			\node[font=\bfseries\small, color=orange] at (1.65,5.40) {$\times 10$};
+			
+			\draw[->, >=stealth, orange, line width=1.6pt] (0.85,4.55) -- (0.85,3.85);
+			\node[font=\bfseries\small, color=orange] at (1.65,4.20) {$\times 10$};
+			
+			\draw[->, >=stealth, orange, line width=1.6pt] (0.85,3.35) -- (0.85,2.65);
+			\node[font=\bfseries\small, color=orange] at (1.65,3.00) {$\times 10$};
+			
+			\draw[->, >=stealth, orange, line width=1.6pt] (0.85,2.15) -- (0.85,1.45);
+			\node[font=\bfseries\small, color=orange] at (1.65,1.80) {$\times 10$};
+			
+			\draw[->, >=stealth, orange, line width=1.6pt] (0.85,0.95) -- (0.85,0.25);
+			\node[font=\bfseries\small, color=orange] at (1.65,0.60) {$\times 10$};
+			
+			\draw[->, >=stealth, orange, line width=1.6pt] (0.85,-0.25) -- (0.85,-0.95);
+			\node[font=\bfseries\small, color=orange] at (1.65,-0.60) {$\times 10$};
+			
+			% ════ LADO IZQUIERDO: Flechas ÷10 subiendo ═══════════════════════
+			\draw[->, >=stealth, blue, line width=1.6pt] (-0.85,-0.95) -- (-0.85,-0.25);
+			\node[font=\bfseries\small, color=blue] at (-1.65,-0.60) {$\div 10$};
+			
+			\draw[->, >=stealth, blue, line width=1.6pt] (-0.85,0.25) -- (-0.85,0.95);
+			\node[font=\bfseries\small, color=blue] at (-1.65,0.60) {$\div 10$};
+			
+			\draw[->, >=stealth, blue, line width=1.6pt] (-0.85,1.45) -- (-0.85,2.15);
+			\node[font=\bfseries\small, color=blue] at (-1.65,1.80) {$\div 10$};
+			
+			\draw[->, >=stealth, blue, line width=1.6pt] (-0.85,2.65) -- (-0.85,3.35);
+			\node[font=\bfseries\small, color=blue] at (-1.65,3.00) {$\div 10$};
+			
+			\draw[->, >=stealth, blue, line width=1.6pt] (-0.85,3.85) -- (-0.85,4.55);
+			\node[font=\bfseries\small, color=blue] at (-1.65,4.20) {$\div 10$};
+			
+			\draw[->, >=stealth, blue, line width=1.6pt] (-0.85,5.05) -- (-0.85,5.75);
+			\node[font=\bfseries\small, color=blue] at (-1.65,5.40) {$\div 10$};
+			
+			% ════ LEYENDAS DE DIRECCIÓN ═══════════════════════════════════════
+			\draw[->, >=stealth, orange, line width=3pt] (2.8,5.8) -- (2.8,-1.0);
+			\node[font=\bfseries\small, color=orange, rotate=-90, align=center, text width=2.5cm] at (3.5, 2.4) {Unidades MENORES\\ $\times 10$ al bajar};
+			
+			\draw[->, >=stealth, blue, line width=3pt] (-5,-1.0) -- (-5,5.8);
+			\node[font=\bfseries\small, color=blue, rotate=90, align=center, text width=2.5cm] at (-6, 2.4) {Unidades MAYORES\\ $\div 10$ al subir};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\alph*), itemsep=0.5cm]
+		\item Convertir 4 m a cm: \hspace{0.5cm} $\boxfill[2cm] \times \boxfill[2cm] = $ \boxfill[2cm] cm
+		\item Convertir 5000 m a Km: \hspace{0.25cm} $\boxfill[2cm] \div \boxfill[2cm] = $ \boxfill[2cm] Km
+		\item Convertir 7 Km a m: \hspace{0.5cm} $\boxfill[2cm] \times \boxfill[2cm] = $ \boxfill[2cm] m
+		\item Convertir 80 cm a mm: \hspace{0.6cm} $\boxfill[2cm] \times \boxfill[2cm] = $ \boxfill[2cm] mm
+	\end{enumerate}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. Observa la siguiente regla y determina la medida de los objetos. Escribe el resultado en centímetros (cm) y luego en milímetros (mm). (25\%)}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tikzpicture}[x=1cm, y=1cm]
+			% Regla base
+			\fill[black!5] (0,0) rectangle (10,1.4);
+			\draw[black, thick] (0,0) rectangle (10,1.4);
+			
+			% Marcas largas (cm)
+			\foreach \x in {0,1,2,3,4,5,6,7,8,9,10} {
+				\draw[black, thick] (\x,0) -- (\x,0.8);
+				\node[font=\small\bfseries] at (\x,1.1) {\x};
+			}
+			
+			% Marcas medianas (5 mm)
+			\foreach \x in {0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5} {
+				\draw[black, thick] (\x,0) -- (\x,0.5);
+			}
+			
+			% Marcas cortas (1 mm)
+			\foreach \x in {0,...,9} {
+				\foreach \dx in {0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9} {
+					\draw[black] (\x+\dx,0) -- (\x+\dx,0.25);
+				}
+			}
+			\node[font=\small\bfseries] at (10.5,0.7) {cm};
+			
+			% --- BORRADOR REALISTA (Termina en 4 cm) ---
+			% Cuerpo rosado
+			\fill[pink] (0,-0.6) rectangle (4,-0.2);
+			% Fajita azul en el medio
+			\fill[blue!60] (1.5,-0.6) rectangle (2.5,-0.2);
+			% Borde
+			\draw[black, thick] (0,-0.6) rectangle (4,-0.2);
+			\node[font=\bfseries, right] at (4.2,-0.4) {Borrador};
+			
+			% --- LÁPIZ REALISTA (Termina en 7.5 cm) ---
+			% Borrador del lápiz (rosado)
+			\fill[pink] (0,-1.2) rectangle (0.5,-0.8);
+			% Abrazadera metálica (gris)
+			\fill[gray!50] (0.5,-1.2) rectangle (0.8,-0.8);
+			% Cuerpo del lápiz (amarillo)
+			\fill[yellow!90!orange] (0.8,-1.2) rectangle (6.5,-0.8);
+			% Punta de madera (café claro)
+			\fill[brown!50] (6.5,-1.2) -- (7.2,-1.0) -- (6.5,-0.8) -- cycle;
+			% Mina de grafito (negro/gris oscuro)
+			\fill[black!80] (7.2,-1.05) -- (7.5,-1.0) -- (7.2,-0.95) -- cycle;
+			% Borde general
+			\draw[black, thick] (0,-1.2) rectangle (6.5,-0.8);
+			\draw[black, thick] (6.5,-1.2) -- (7.5,-1.0) -- (6.5,-0.8) -- cycle;
+			\node[font=\bfseries, right] at (7.7,-1.0) {Lápiz};
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{0.4cm}
+	\begin{itemize}[label=--, itemsep=0.3cm]
+		\item El \textbf{Borrador} mide: \boxfill[1.5cm] cm, que equivale a \boxfill[1.5cm] mm.
+		\item El \textbf{Lápiz} mide: \boxfill[1.5cm] cm, que equivale a \boxfill[1.5cm] mm.
+	\end{itemize}
+	
+	\vspace{0.8cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Una modista tiene una cinta de tela de 120 cm de largo y necesita cortarla en 3 partes exactamente iguales. ¿Cuántos centímetros medirá cada parte? ¿A cuántos milímetros equivale esa medida final? (25\%)}
+	
+	\vspace{0.5cm}
+	\noindent \textbf{Paso 1:} Divide el largo de la cinta entre 3 partes para encontrar los centímetros.
+	\begin{center}
+		\boxfill[1.5cm] $\div$ \boxfill[1cm] $=$ \boxfill[2cm] \textbf{cm}
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Paso 2:} Convierte el resultado de centímetros (cm) a milímetros (mm).
+	\begin{center}
+		\boxfill[1.5cm] $\times$ \boxfill[1cm] $=$ \boxfill[2cm] \textbf{mm}
+	\end{center}
+	
+\end{document}

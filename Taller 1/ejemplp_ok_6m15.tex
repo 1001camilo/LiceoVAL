@@ -1,0 +1,155 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles, quotes, arrows.meta, calc}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- FONDO INSTITUCIONAL ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{center}
+		\textbf{\Large TALLER DE REPASO -- MATEMÁTICAS 6º} \\
+		\vspace{0.2cm}
+		\textbf{\large Unidad 15: Geometría, Ángulos y Triángulos}
+	\end{center}
+	\vspace{0.2cm}
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Código:} \textbf{06M-15} \\
+	\vspace{0.1cm}
+	\noindent \textbf{Fecha:} \underline{\hspace{4cm}}
+	\vspace{0.8cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1. Observa los siguientes ángulos trazados a escala. Utilizando únicamente tu razonamiento visual y las propiedades geométricas, clasifica cada ángulo (agudo, recto, obtuso o llano) y calcula matemáticamente su ángulo complementario y suplementario. (20\%)}
+	
+	\vspace{0.5cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.2]
+			% Ángulo 1: 35 grados
+			\begin{scope}[shift={(0,0)}]
+				\draw[<->, thick, >=stealth] (2.5,0) coordinate (A) -- (0,0) coordinate (O) -- (40:2.5) coordinate (B);
+				\draw[fill=gray!20] (O) -- (0.6,0) arc (0:40:0.6) -- cycle;
+				\node at (0.9, 0.35) {$40^\circ$};
+				\node[below] at (1.25, -0.2) {\textbf{Figura A}};
+			\end{scope}
+			
+			% Ángulo 2: 125 grados
+			\begin{scope}[shift={(6,0)}]
+				\draw[<->, thick, >=stealth] (2.5,0) coordinate (A) -- (0,0) coordinate (O) -- (125:2.5) coordinate (B);
+				\draw[fill=gray!20] (O) -- (0.5,0) arc (0:125:0.5) -- cycle;
+				\node at (0.3, 0.7) {$125^\circ$};
+				\node[below] at (1.25, -0.2) {\textbf{Figura B}};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2. En la siguiente figura, las rectas $L_1$ y $L_2$ son paralelas ($L_1 \parallel L_2$) y están cortadas por una transversal $L_3$. Si se sabe que la medida del ángulo marcado es de $115^\circ$, determina la medida exacta de los ángulos $a, b, c, x, y, z, w$, justificando tu respuesta (ej. "por ser opuestos por el vértice", "por ser alternos internos"). (20\%)}
+	
+	\vspace{0.5cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.2]
+			% Rectas paralelas
+			\draw[<->, thick, >=stealth] (-3, 1.5) -- (3, 1.5) node[right] {$L_1$};
+			\draw[<->, thick, >=stealth] (-3, -1.5) -- (3, -1.5) node[right] {$L_2$};
+			
+			% Transversal
+			\draw[<->, thick, >=stealth] (-1.5, -3) -- (1.5, 3) node[above] {$L_3$};
+			
+			% Intersección superior (0.75, 1.5)
+			% Ángulo dado 115° (Obtuso) - Ángulo de la transversal es aprox 63.4° respecto a la horizontal.
+			% 180 - 63.4 = 116.6 (Cercano a 115). Lo forzamos a 115°
+			\coordinate (I1) at (0.75, 1.5);
+			\draw (I1) ++(0.4,0) arc (0:63.4:0.4);
+			\node at (1.4, 1.7) {$a$};
+			
+			\draw (I1) ++(-0.4,0) arc (180:63.4:0.4);
+			\node at (0.3, 1.9) {$115^\circ$};
+			
+			\node at (0.3, 1.1) {$b$};
+			\node at (1.2, 1.1) {$c$};
+			
+			% Intersección inferior (-0.75, -1.5)
+			\coordinate (I2) at (-0.75, -1.5);
+			\node at (-0.1, -1.2) {$x$};
+			\node at (-1.3, -1.2) {$y$};
+			\node at (-1.3, -1.9) {$z$};
+			\node at (-0.1, -1.9) {$w$};
+		\end{tikzpicture}
+	\end{center}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3. Mide visualmente las proporciones de los siguientes triángulos y clasifícalos con dos nombres: uno según la longitud de sus lados (equilátero, isósceles, escaleno) y otro según la medida de sus ángulos internos (acutángulo, rectángulo, obtusángulo). (20\%)}
+	
+	\vspace{0.5cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% Triángulo 1: Rectángulo Escaleno
+			\begin{scope}[shift={(0,0)}]
+				\draw[thick] (0,0) -- (3,0) -- (0,4) -- cycle;
+				\draw (0.3,0) -- (0.3,0.3) -- (0,0.3); % Símbolo de ángulo recto
+				\node[below] at (1.5, -0.5) {\textbf{Triángulo 1}};
+			\end{scope}
+			
+			% Triángulo 2: Obtusángulo Isósceles
+			\begin{scope}[shift={(6,1)}]
+				\draw[thick] (0,0) -- (5,0) -- (2.5, 1.5) -- cycle;
+				% Marcas de congruencia
+				\draw[thick] (1.2, 0.6) -- (1.3, 0.85);
+				\draw[thick] (3.8, 0.6) -- (3.7, 0.85);
+				\node[below] at (2.5, -1.5) {\textbf{Triángulo 2}};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 4 ---
+	\noindent \textbf{4. Aplica el teorema de la suma de los ángulos internos de un triángulo para plantear una ecuación sencilla y encontrar el valor del ángulo desconocido "$x$" en cada una de las siguientes figuras. (20\%)}
+	
+	\vspace{0.5cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			% Figura A
+			\begin{scope}[shift={(0,0)}]
+				\draw[thick] (0,0) -- (4,0) -- (1,3) -- cycle;
+				\node at (0.6, 0.3) {$65^\circ$};
+				\node at (3.1, 0.3) {$45^\circ$};
+				\node at (1.1, 2.3) {$x$};
+			\end{scope}
+			
+			% Figura B (Triángulo rectángulo)
+			\begin{scope}[shift={(7,0)}]
+				\draw[thick] (0,0) -- (3,0) -- (3,3.5) -- cycle;
+				\draw (2.7,0) -- (2.7,0.3) -- (3,0.3); % Ángulo recto
+				\node at (0.8, 0.3) {$38^\circ$};
+				\node at (2.6, 2.7) {$x$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\vspace{0.5cm}
+	
+	% --- PUNTO 5 ---
+	\noindent \textbf{5. Problema de Aplicación: El diseño de un techo a dos aguas forma un triángulo isósceles perfecto para permitir que la nieve caiga. Si el ángulo que forma la punta más alta del techo (el vértice superior) mide $110^\circ$, ¿cuánto miden exactamente los dos ángulos de la base que se apoyan sobre las paredes de la casa? Justifica tu respuesta utilizando las propiedades de los triángulos isósceles. (20\%)}
+	
+\end{document}

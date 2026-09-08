@@ -1,0 +1,126 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PREÁMBULO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[letterpaper, top=2.2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{240,240,240}
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- MATEMÁTICAS 6º}
+\fancyhead[R]{\footnotesize \color{gray} CÓDIGO: 06M-18}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- CONFIGURACIÓN DE RESPUESTAS CONDICIONALES ---
+\newif\ifshowanswers
+% CAMBIA A \showanswerstrue PARA VER EL SOLUCIONARIO, O \showanswersfalse PARA LA VERSIÓN DEL ESTUDIANTE
+\showanswerstrue 
+
+% Comando de respuestas corregido (recibe 1 solo parámetro)
+\newcommand{\answer}[1]{
+	\ifshowanswers
+	\par\vspace{0.15cm}
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!60!white, arc=1mm, boxrule=0.5pt, title=\textbf{\footnotesize SOLUCIÓN (DOCENTE)}]
+		\color{blue!80!black}\footnotesize #1
+	\end{tcolorbox}
+	\par\vspace{0.15cm}
+	\else
+	\par\vspace{0.3cm}
+	\fi
+}
+
+\begin{document}
+	
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L.}}\\[0.1cm]
+		{\large \textbf{Taller de Repaso -- Trabajo en Cuaderno}}\\[0.1cm]
+		{\small \textbf{Materia: Matemáticas 6º} \quad | \quad \textbf{Unidad: Estadística II y Probabilidad} \quad | \quad \textbf{Código: 06M-18}}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Nombre del Estudiante:} \underline{\hspace{8cm}} \hfill \textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.4cm}
+	\begin{tcolorbox}[colback=valgray, colframe=valdark, arc=1mm, boxrule=0.8pt]
+		\textit{Instrucciones: Transcribe y resuelve cada uno de los siguientes puntos en tu cuaderno de matemáticas de forma ordenada. Escribe los procedimientos completos, justificaciones y operaciones para validar tu aprendizaje.}
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	% --- PREGUNTA 1 ---
+	\noindent \textbf{1. (Misión 1) [25\%]} Un grupo de estudiantes fue encuestado sobre el número de mascotas que tienen en sus hogares, obteniendo los siguientes datos:
+	\begin{center}
+		\textbf{1, \ 2, \ 0, \ 1, \ 3, \ 1, \ 2, \ 0, \ 1, \ 1, \ 0, \ 2}
+	\end{center}
+	\begin{enumerate}[label=\alph*)]
+		\item Construye la tabla de frecuencias para este conjunto de datos.
+		\item ¿Cuántos compañeros en total participaron en la encuesta? ¿Cuántos tienen exactamente 1 mascota?
+	\end{enumerate}
+	
+	\answer{
+		\textbf{a) Tabla de Frecuencias:}\\
+		\begin{tabular}{cc}\toprule \textbf{Mascotas (Dato)} & \textbf{Frecuencia} \\\midrule 0 & 3 \\ 1 & 5 \\ 2 & 3 \\ 3 & 1 \\\midrule \textbf{Total} & \textbf{12} \\\bottomrule\end{tabular}\\[0.2cm]
+		\textbf{b) Respuestas:} Participaron \textbf{12} compañeros (suma de frecuencias); exactamente \textbf{5} de ellos tienen 1 mascota.
+	}
+	
+	% --- PREGUNTA 2 ---
+	\noindent \textbf{2. (Misión 2) [25\%]} Utilizando la información recolectada en la Misión 1:
+	\begin{enumerate}[label=\alph*)]
+		\item Construye un diagrama de barras (recuerda nombrar los ejes).
+		\item Identifica cuál es la \textbf{moda} de este conjunto de datos y explica qué significa ese valor en el contexto de la encuesta.
+	\end{enumerate}
+	
+	\answer{
+		\textbf{a)} El estudiante debe dibujar un gráfico donde el eje $X$ sea la "Cantidad de mascotas" (0, 1, 2, 3) y el eje $Y$ sea la "Frecuencia" (número de estudiantes, llegando al menos al 5). Las alturas deben ser 3, 5, 3 y 1 respectivamente. \\
+		\textbf{b) Moda:} La moda es \textbf{1 mascota} (frecuencia de 5). Significa que lo más común en ese grupo de estudiantes es tener exactamente una mascota.
+	}
+	
+	% --- PREGUNTA 3 ---
+	\noindent \textbf{3. (Misión 3) [25\%]} Las notas obtenidas por Camila en sus evaluaciones de matemáticas durante el periodo fueron las siguientes: 
+	\begin{center}
+		\textbf{7, \ 8, \ 6, \ 9, \ 8, \ 10, \ 8}
+	\end{center}
+	\begin{enumerate}[label=\alph*)]
+		\item Calcula la media aritmética (promedio) de sus notas. Escribe la operación completa.
+		\item Encuentra la mediana de las notas de Camila. (Pista: ¡No olvides ordenar los datos primero!).
+	\end{enumerate}
+	
+	\answer{
+		\textbf{a) Media (Promedio):} Suma de los datos = $7 + 8 + 6 + 9 + 8 + 10 + 8 = 56$. Cantidad de datos ($n$) = 7. \\
+		Media = $\frac{56}{7} = \textbf{8}$. \\
+		\textbf{b) Mediana:} Ordenando los datos de menor a mayor: 6, 7, 8, \textbf{8}, 8, 9, 10. El dato central (posición 4) es el \textbf{8}. Por tanto, Mediana = 8.
+	}
+	
+	% --- PREGUNTA 4 ---
+	\noindent \textbf{4. (Misión 4) [25\%]} En una bolsa oscura de sorpresas hay \textbf{4 pelotas rojas, 3 pelotas azules y 5 pelotas verdes}. Si metes la mano y sacas una pelota al azar sin mirar:
+	\begin{enumerate}[label=\alph*)]
+		\item ¿Cuál es la probabilidad de sacar una pelota roja? (Exprésalo como fracción).
+		\item ¿Qué color de pelota es menos probable que saques? ¿Por qué?
+	\end{enumerate}
+	
+	\answer{
+		\textbf{a) Probabilidad (Roja):} Casos favorables = 4 (rojas). Casos posibles (total de pelotas) = $4 + 3 + 5 = 12$. \\
+		Probabilidad = $\mathbf{\frac{4}{12}}$ (Se puede simplificar a $\frac{1}{3}$).\\
+		\textbf{b) Menos probable:} El color \textbf{azul} es el menos probable de sacar porque es el que tiene la menor cantidad (frecuencia) en la bolsa (solo 3 pelotas).
+	}
+	
+\end{document}

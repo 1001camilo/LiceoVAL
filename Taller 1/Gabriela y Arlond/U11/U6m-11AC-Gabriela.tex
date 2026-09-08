@@ -1,0 +1,205 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb} 
+
+% --- FUENTE ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES ---
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valblue}{RGB}{0,74,153}
+\definecolor{valgreen}{RGB}{0,153,76}
+\definecolor{valorange}{RGB}{230,115,0}
+
+% --- CAJITAS DE ANDAMIAJE ---
+\newcommand{\boxfill}[1][2cm]{\tcbox[on line, size=minimal,
+	colframe=black!60, colback=white, boxrule=0.8pt, arc=1mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[#1]{\vphantom{M}}}}
+
+% --- MACROS PARA DINERO CON IMÁGENES REALES ---
+\newcommand{\billete}[1]{\includegraphics[height=1.5cm]{billete_#1.png}}
+\newcommand{\moneda}[1]{\includegraphics[height=1.2cm]{moneda_#1.png}}
+
+% --- FONDO INSTITUCIONAL ---
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{%
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}%
+	}%
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{center}
+		\textbf{\Large MÓDULO DE AUTOAPRENDIZAJE -- MATEMÁTICAS 6º} \\
+		\vspace{0.2cm}
+		\textbf{\large UNIDAD 11 AC} \\
+		\textbf{\large Matemáticas para la Vida: Mis Compras}
+	\end{center}
+	\vspace{0.2cm}
+	
+	\noindent \textbf{Nombre:} \underline{\hspace{8cm}} \hspace{1cm}\textbf{Código:} \textbf{06M-11 AC} \\
+	\vspace{0.4cm}
+	
+	% ---------------------------------------------------------
+	% MISIÓN 1
+	% ---------------------------------------------------------
+	\begin{tcolorbox}[colback=valblue!10, colframe=valblue, title=\textbf{Misión 1: Conozco mi Dinero}]
+		Para comprar, usamos billetes y monedas. Fíjate muy bien en el número y en los ceros de cada uno.
+	\end{tcolorbox}
+	\vspace{0.2cm}
+	
+	\noindent \textbf{Paso 1: Observa y reconoce el dinero real.} \\
+	Anota el número que ves en cada billete y moneda.
+	
+	\vspace{0.4cm}
+	\begin{itemize}[itemsep=0.6cm, label=\ding{51}]
+		\item \billete{2000} \hspace{0.5cm} Este billete vale: \$ \boxfill[2.5cm]
+		\item \billete{5000} \hspace{0.5cm} Este billete vale: \$ \boxfill[2.5cm]
+		\item \billete{10000} \hspace{0.5cm} Este billete vale: \$ \boxfill[2.5cm]
+		\item \moneda{500} \hspace{0.8cm} Esta moneda vale: \$ \boxfill[2.5cm]
+		\item \moneda{1000} \hspace{0.8cm} Esta moneda vale: \$ \boxfill[2.5cm]
+	\end{itemize}
+	
+	\vspace{0.6cm}
+	
+	% ---------------------------------------------------------
+	% MISIÓN 2
+	% ---------------------------------------------------------
+	\begin{tcolorbox}[colback=valgreen!10, colframe=valgreen, title=\textbf{Misión 2: El Total a Pagar}]
+		Cuando compramos varias cosas, debemos \textbf{SUMAR} los precios para saber el \textbf{TOTAL}. Usa tu calculadora.
+	\end{tcolorbox}
+	\vspace{0.2cm}
+	
+	\noindent \textit{Ejemplo: Jugo (\$ 2.000) + Galletas (\$ 1.500) = \textbf{Total: \$ 3.500}}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm]
+		\item Compro un \textbf{Sándwich de \$ 4.000} y una \textbf{Gaseosa de \$ 2.500}. \\
+		Mi operación en la calculadora: $4000 + 2500 = $ \\
+		\textbf{Total a pagar: \$} \boxfill[3cm]
+		
+		\item Compro un \textbf{Pan de \$ 1.500} y un \textbf{Jugo de \$ 2.000}. \\
+		Voy a pagar con un \billete{2000}, una \moneda{1000} y una \moneda{500}. \\
+		Mi operación en la calculadora: $2000 + 1000 + 500 = $ \\
+		\textbf{Total a pagar: \$} \boxfill[3cm]
+		
+		\item Compro un \textbf{Cuaderno de \$ 8.500} y un \textbf{Lápiz de \$ 1.200}. \\
+		Mi operación en la calculadora: \boxfill[2cm] $+$ \boxfill[2cm] $=$ \\
+		\textbf{Total a pagar: \$} \boxfill[3cm]
+	\end{enumerate}
+	
+	\newpage
+	
+	% ---------------------------------------------------------
+	% MISIÓN 3
+	% ---------------------------------------------------------
+	\begin{tcolorbox}[colback=valorange!10, colframe=valorange, title=\textbf{Misión 3: ¿Me alcanza el dinero?}]
+		Antes de pagar, debes mirar si el billete que tienes es \textbf{MAYOR} o \textbf{IGUAL} al Total. 
+		\begin{itemize}
+			\item Si tu dinero es \textbf{MAYOR}, ¡SÍ te alcanza!
+			\item Si tu dinero es \textbf{MENOR}, ¡NO te alcanza!
+		\end{itemize}
+	\end{tcolorbox}
+	\vspace{0.2cm}
+	
+	\noindent \textbf{Compara y marca con una "X" en la casilla correcta:}
+	
+	\vspace{0.4cm}
+	\renewcommand{\arraystretch}{2}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{El total a pagar es...} & \textbf{El dinero que tengo es...} & \textbf{¿Me alcanza?} & \textbf{¿NO me alcanza?} \\ \hline
+		\$ 8.000 & \billete{10000} & $\square$ SÍ & $\square$ NO \\ \hline
+		\$ 25.000 & \billete{20000} & $\square$ SÍ & $\square$ NO \\ \hline
+		\$ 3.500 & \billete{5000} & $\square$ SÍ & $\square$ NO \\ \hline
+		\$ 1.200 & \moneda{1000} & $\square$ SÍ & $\square$ NO \\ \hline
+	\end{tabular}
+	
+	\vspace{0.8cm}
+	
+	% ---------------------------------------------------------
+	% MISIÓN 4
+	% ---------------------------------------------------------
+	\begin{tcolorbox}[colback=valdark!10, colframe=valdark, title=\textbf{Misión 4: Mis Vueltas (Lo que me sobra)}]
+		Si te alcanzó para pagar, el cajero te debe devolver dinero. Eso se llama \textbf{vueltas}. Para saber de cuánto son tus vueltas, debes \textbf{RESTAR} en tu calculadora. \\
+		\textbf{Fórmula: (Valor de tu Dinero) $-$ (Total a Pagar) = Vueltas.}
+	\end{tcolorbox}
+	\vspace{0.2cm}
+	
+	\noindent \textit{Ejemplo: Pago con \$10.000. El total es \$8.000. \\
+		Mi calculadora: 10000 $-$ 8000 = \textbf{2.000 de vueltas.}}
+	
+	\vspace{0.4cm}
+	\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.8cm]
+		\item Compro un combo de \textbf{\$ 15.000}. Pago con un \billete{20000}. \\
+		Mi operación en la calculadora: $20000 - 15000 = $ \\
+		\textbf{Me dan de vueltas: \$} \boxfill[3cm]
+		
+		\item Compro un dulce de \textbf{\$ 500}. Pago con una \moneda{1000}. \\
+		Mi operación en la calculadora: $1000 - 500 = $ \\
+		\textbf{Me dan de vueltas: \$} \boxfill[3cm]
+	\end{enumerate}
+	
+	\newpage
+	
+	% ---------------------------------------------------------
+	% MISIÓN 5
+	% ---------------------------------------------------------
+	\begin{tcolorbox}[colback=valblue!5, colframe=black!60, title=\textbf{Misión 5: Lectura de Facturas}]
+		Cuando pagas en la tienda, te entregan un recibo de papel llamado \textbf{factura}. Allí dice qué compraste, el TOTAL que cobraron y el EFECTIVO (billete) que entregaste.
+	\end{tcolorbox}
+	\vspace{0.4cm}
+	
+	\noindent \textbf{Observa la siguiente factura y responde las preguntas:}
+	
+	\vspace{0.4cm}
+	\begin{center}
+		\begin{tcolorbox}[colback=white, colframe=gray!50, width=7.5cm, arc=0mm, boxrule=1pt, drop shadow=gray!30]
+			\begin{center}
+				\textbf{\large MINIMERCADO EL AHORRO}\\[0.1cm]
+				\tiny Fecha: 12/04/2026 \hspace{0.5cm} Hora: 14:30 \\
+				\vspace{0.2cm}
+				\hrule
+				\vspace{0.2cm}
+				\begin{tabular}{lr}
+					1 Jugo de Naranja & \$ 2.000 \\
+					1 Paquete Galletas & \$ 1.500 \\
+					1 Manzana Roja & \$ 1.000 \\
+				\end{tabular}
+				\vspace{0.2cm}
+				\hrule
+				\vspace{0.2cm}
+				\begin{tabular}{lr}
+					\textbf{TOTAL A PAGAR:} & \textbf{\$ 4.500} \\[0.2cm]
+					EFECTIVO RECIBIDO: & \$ 5.000 \\
+					VUELTAS: & \$ 500 \\
+				\end{tabular}
+				\vspace{0.2cm}
+				\hrule
+				\vspace{0.1cm}
+				\tiny ¡Gracias por su compra!
+			\end{center}
+		\end{tcolorbox}
+	\end{center}
+	
+	\vspace{0.6cm}
+	\begin{enumerate}[label=\textbf{\alph*.)}, itemsep=0.6cm]
+		\item ¿Cuánto costó el Paquete de Galletas? \hfill \textbf{\$} \boxfill[2.5cm]
+		\item ¿Cuál fue el \textbf{TOTAL A PAGAR}? \hfill \textbf{\$} \boxfill[2.5cm]
+		\item ¿Con qué billete (\textbf{Efectivo}) pagó el cliente? \hfill \textbf{\$} \boxfill[2.5cm]
+		\item ¿Cuánto dinero le dieron de \textbf{Vueltas}? \hfill \textbf{\$} \boxfill[2.5cm]
+	\end{enumerate}
+	
+\end{document}
