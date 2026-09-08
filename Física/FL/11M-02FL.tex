@@ -1,0 +1,123 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+
+% --- FUENTE SISTEMA ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Fondo institucional obligatorio del Liceo V.A.L.
+\AddToShipoutPictureBG{
+	\AtPageLowerLeft{
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+	}
+}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE CIENCIAS BÁSICAS}
+\fancyhead[R]{\footnotesize \color{gray} FÍSICA 11º}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+		{\large \textbf{EXAMEN DE FÍSICA: EL M.A.S. POSEE ENERGÍA.}}\\[0.1cm]
+		\textbf{CÓDIGO: 11F02 FL E}
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre del Estudiante:} \underline{\hspace{8.5cm}} \hfill \textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{CON CALCULADORA}
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1.} Se cuelga un objeto de $600\text{ g}$ a un resorte de constante $55\text{ N/m}$. Si este empieza a oscilar con una amplitud de $8\text{ cm}$, calcule:
+	\begin{enumerate}[label=\alph*), itemsep=0cm, leftmargin=0.8cm]
+		\item La energía asociada al resorte.
+		\item La velocidad cuando pasa por el punto de equilibrio.
+		\item Si el sistema se encontrara en reposo, ¿qué valor tendría la elongación?
+	\end{enumerate}
+	
+	\vspace{1cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2.} Una fuente genera $60\text{ pulsos}$ en $3\text{ segundos}$, produciendo ondas de $20\text{ cm}$ de longitud. Calcule:
+	\begin{enumerate}[label=\alph*), itemsep=0cm, leftmargin=0.8cm]
+		\item La frecuencia y el periodo asociados.
+		\item ¿Qué velocidad lleva la onda?
+		%\item ¿Qué distancia recorre la onda si han transcurrido $17\text{ segundos}$?
+	\end{enumerate}
+	
+	\vspace{1cm}
+	%\newpage
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3.} Utilizando el dibujo de la onda que se presenta a continuación, señala y nombra3 partes:
+	
+	\vspace{0.8cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.5, >=stealth]
+			\draw[thick, ->] (0, 0) -- (0, 2) node[right] {};
+			% Línea de equilibrio (eje x)
+			\draw[thick, ->] (-0.5, 0) -- (6.8, 0) node[right] {};
+			\draw[dashed, gray] (-0.5, 0) -- (6.5, 0);
+			%\node[left, font=\small] at (-0.5, 0) {\footnotesize Línea de equilibrio};
+			
+			% Dibujo de la onda senoidal
+			\draw[ultra thick, red, domain=0:6, samples=150] plot (\x, {1.2*sin(1.5708*\x r)});
+			
+			% Puntero 1: Cresta (en el primer pico x=1, y=1.2)
+			\draw[draw=black, thick, <-] (1, 1.25) -- (1, 2.0);
+			%\node[anchor=south, font=\small] at (1, 2.0) {Parte 1: \underline{\hspace{4.5cm}}};
+			
+			% Puntero 2: Valle (en el primer valle x=3, y=-1.2)
+			\draw[draw=black, thick, <-] (3, -1.25) -- (3, -2.0);
+			%\node[anchor=north, font=\small] at (3, -2.0) {Parte 2: \underline{\hspace{4.5cm}}};
+			
+			% Puntero 3: Longitud de onda (rango x=0 a x=4)
+			\draw[thick, <->, blue] (0, 1.5) -- (4, 1.5);
+			%\node[above, font=\small, color=blue] at (2, 1.5) {Parte 3: \underline{\hspace{4.5cm}}};
+			\draw[dashed, blue!50] (0, 0) -- (0, 1.6);
+			\draw[dashed, blue!50] (4, 0) -- (4, 1.6);
+			
+			% Puntero de Amplitud ya rotulado como andamiaje visual (de y=0 a y=1.2 en x=5)
+			\draw[thick, <->, violet] (5, 0) -- (5, 1.2);
+			%\node[right, font=\small, color=violet] at (5, 0.6) {};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{1.5cm}
+	\newpage
+	% --- PUNTO 4 ---
+	\noindent \textbf{4.} Responda Falso (\textbf{F}) o Verdadero (\textbf{V}) y justifique su respuesta:
+	\begin{enumerate}[label=\alph*), itemsep=0cm, leftmargin=0.8cm]
+		\item  La energía total de un sistema masa resorte es constante (no cambia) \underline{\hspace{1cm}} \\
+		
+		\item Las ondas electromagnéticas requieren de un medio de propagación para poder transportarse.\underline{\hspace{1cm}}
+	\end{enumerate}
+	
+
+	
+\end{document}
