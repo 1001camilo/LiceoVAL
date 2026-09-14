@@ -1,0 +1,242 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry} % Márgenes reducidos para más ahorro
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol} % <--- Paquete añadido para las columnas
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{245,247,250}
+\definecolor{valgreen}{RGB}{40,160,80}
+
+% --- FUENTE SISTEMA ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Fondo institucional del Liceo V.A.L.
+\IfFileExists{../../FondoVAL.pdf}{
+	\AddToShipoutPictureBG{
+		\AtPageLowerLeft{
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+		}
+	}
+}{}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE MATEMÁTICAS}
+\fancyhead[R]{\footnotesize \color{gray} CÓDIGO: 06M-11 (REFUERZO)}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- INTERRUPTOR DINÁMICO DE RESPUESTAS ---
+% \showanswerstrue  -> Versión Docente (Con Solucionario)
+% \showanswersfalse -> Versión Estudiante (Limpia)
+\newif\ifshowanswers
+\showanswerstrue
+
+\newcommand{\answer}[1]{
+	\ifshowanswers
+	\par\vspace{0.1cm}
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!60!white, arc=1mm, boxrule=0.5pt, title=\textbf{\footnotesize SOLUCIÓN PASO A PASO (DOCENTE)}]
+		\color{blue!80!black}\footnotesize #1
+	\end{tcolorbox}
+	\par\vspace{0.1cm}
+	\else
+	\par\vspace{0.2cm}
+	\fi
+}
+
+\begin{document}
+	
+	% --- ENCABEZADO PRINCIPAL ---
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L.}}\\[0.1cm]
+		{\large \textbf{Taller: Números Enteros}}\\[0.1cm]
+		{\small \textbf{Materia: Matemáticas 6º} \quad | \quad \textbf{Unidad: 06M-11} \quad | \quad \textbf{Tema: Orden, Suma, Resta y Aplicaciones}}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Nombre del Estudiante:} \underline{\hspace{8.5cm}} \hfill \textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.3cm}
+	
+	% ==========================================
+	% SECCIÓN 1: RECTA NUMÉRICA Y COMPARACIÓN
+	% ==========================================
+	\section*{\color{valblue} Parte 1: Orden en los Enteros ($>$, $<$, $=$)}
+	
+	\noindent \textbf{1.1.} Coloca el signo \textbf{$>$}, \textbf{$<$} o \textbf{$=$} según corresponda entre cada par de números:
+	\begin{multicols}{3}
+		\begin{enumerate}[label=\alph*), itemsep=0.1cm]
+			\item $-8$ \ \underline{\hspace{0.8cm}} \ $-10$
+			\item $-3$ \ \underline{\hspace{0.8cm}} \ $2$
+			\item $0$ \ \underline{\hspace{0.8cm}} \ $-5$
+			\item $-15$ \ \underline{\hspace{0.8cm}} \ $-12$
+			\item $-1$ \ \underline{\hspace{0.8cm}} \ $-99$
+			\item $|-7|$ \ \underline{\hspace{0.8cm}} \ $7$
+		\end{enumerate}
+	\end{multicols}
+	
+	\answer{
+		\textbf{Respuestas:} 
+		a) $>$ \quad b) $<$ \quad c) $>$ \quad d) $<$ \quad e) $>$ \quad f) $=$
+	}
+	
+	\noindent \textbf{1.2.} Ordena los siguientes conjuntos de números enteros de \textbf{MENOR a MAYOR}:
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\alph*), itemsep=0.1cm]
+			\item $\{ -4, \ 7, \ -9, \ 0, \ -1, \ 5 \}$ $\rightarrow$ \underline{\hspace{3.5cm}}
+			\item $\{ -12, \ -18, \ -3, \ -25, \ -8 \}$ $\rightarrow$ \underline{\hspace{3.5cm}}
+		\end{enumerate}
+	\end{multicols}
+	
+	\answer{
+		a) $-9, \ -4, \ -1, \ 0, \ 5, \ 7$ \quad 
+		b) $-25, \ -18, \ -12, \ -8, \ -3$
+	}
+	
+	% ==========================================
+	% SECCIÓN 2: SUMA DE ENTEROS
+	% ==========================================
+	\section*{\color{valblue} Parte 2: Suma de Números Enteros}
+	
+	\noindent \textbf{2.1.} Resuelve las siguientes adiciones:
+	\begin{multicols}{3}
+		\begin{enumerate}[label=\alph*), itemsep=0.1cm]
+			\item $2 + (-3) = $ \underline{\hspace{1cm}}
+			\item $7 + (-4) = $ \underline{\hspace{1cm}}
+			\item $(-6) + (-5) = $ \underline{\hspace{1cm}}
+			\item $(-10) + 4 = $ \underline{\hspace{1cm}}
+			\item $(-8) + 8 = $ \underline{\hspace{1cm}}
+			\item $15 + (-20) = $ \underline{\hspace{1cm}}
+		\end{enumerate}
+	\end{multicols}
+	
+	\answer{
+		a) $-1$ \quad b) $3$ \quad c) $-11$ \quad d) $-6$ \quad e) $0$ \quad f) $-5$
+	}
+	
+	% ==========================================
+	% SECCIÓN 3: RESTA Y DOBLE SIGNO
+	% ==========================================
+	\section*{\color{valblue} Parte 3: Resta de Números Enteros}
+	
+	\noindent \textbf{3.1.} Transforma primero a una suma y luego calcula el resultado final:
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\alph*), itemsep=0.1cm]
+			\item $-6 - (-2) \ \rightarrow \ -6 + 2 \ = \ $ \underline{\hspace{1cm}}
+			\item $5 - (-4) \ \rightarrow \ $ \underline{\hspace{2cm}} $ \ = \ $ \underline{\hspace{1cm}}
+			\item $-8 - (-10) \ \rightarrow \ $ \underline{\hspace{2cm}} $ \ = \ $ \underline{\hspace{1cm}}
+			\item $-12 - 5 \ \rightarrow \ $ \underline{\hspace{2cm}} $ \ = \ $ \underline{\hspace{1cm}}
+			\item $0 - (-7) \ \rightarrow \ $ \underline{\hspace{2cm}} $ \ = \ $ \underline{\hspace{1cm}}
+			\item $-3 - (-3) \ \rightarrow \ $ \underline{\hspace{2cm}} $ \ = \ $ \underline{\hspace{1cm}}
+		\end{enumerate}
+	\end{multicols}
+	
+	\answer{
+		a) $-6 + 2 = \mathbf{-4}$ \quad
+		b) $5 + 4 = \mathbf{9}$ \quad
+		c) $-8 + 10 = \mathbf{2}$ \quad
+		d) $-12 + (-5) = \mathbf{-17}$ \quad
+		e) $0 + 7 = \mathbf{7}$ \quad
+		f) $-3 + 3 = \mathbf{0}$
+	}
+	
+	% ==========================================
+	% SECCIÓN 4: OPERACIONES COMBINADAS
+	% ==========================================
+	\section*{\color{valblue} Parte 4: Operaciones Combinadas}
+	
+	\noindent \textbf{4.1.} Resuelve paso a paso:
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\alph*), itemsep=0.8cm]
+			\item $8 - (-3) + (-5) - 2$
+			\item $-10 + (-4) - (-6) + 1$
+			\item $15 - 8 + (-7) - (-4)$
+			\item $-5 - (-12) + 4 - 10$
+			\item $20 + (-15) - (-5) - 3$
+			\item $-8 + 6 - (-9) + (-2)$
+			\item $-14 - (-8) + (-3) - 5$
+			\item $7 - 12 + (-6) - (-11)$
+		\end{enumerate}
+	\end{multicols}
+	
+	\answer{
+		a) $8 + 3 - 5 - 2 = 11 - 5 - 2 = \mathbf{4}$\\
+		b) $-10 - 4 + 6 + 1 = -14 + 7 = \mathbf{-7}$\\
+		c) $15 - 8 - 7 + 4 = 7 - 7 + 4 = \mathbf{4}$\\
+		d) $-5 + 12 + 4 - 10 = 7 + 4 - 10 = \mathbf{1}$\\
+		e) $20 - 15 + 5 - 3 = 5 + 5 - 3 = \mathbf{7}$\\
+		f) $-8 + 6 + 9 - 2 = -2 + 9 - 2 = \mathbf{5}$\\
+		g) $-14 + 8 - 3 - 5 = -6 - 3 - 5 = \mathbf{-14}$\\
+		h) $7 - 12 - 6 + 11 = -5 - 6 + 11 = \mathbf{0}$
+	}
+	
+	\vspace{0.2cm}
+	
+	% ==========================================
+	% SECCIÓN 5: APLICACIONES DE LA VIDA REAL
+	% ==========================================
+	\section*{\color{valblue} Parte 5: Aplicaciones Prácticas}
+	
+	\noindent \textbf{5.1. El Ascensor:} Un ascensor se encuentra en el \textbf{sótano 3} (nivel $-3$). Luego sube \textbf{5 pisos}, baja \textbf{4 pisos} y finalmente sube \textbf{6 pisos}.
+	\begin{enumerate}[label=\alph*), itemsep=0cm]
+		%\item Escribe la expresión matemática de sumas y restas que representa el recorrido.
+		\item ¿En qué piso o sótano se encuentra el ascensor al final del recorrido?
+	\end{enumerate}
+	
+	\answer{
+		%a) $-3 + 5 - 4 + 6$ \quad 
+		a) $-3 + 5 = +2 \rightarrow +2 - 4 = -2 \rightarrow -2 + 6 = +4$. Está en el \textbf{Piso 4}.
+	}
+	
+	\vspace{0.2cm}
+	
+	\noindent \textbf{5.2. El Submarino:} Un submarino se encuentra sumergido a \textbf{120 metros bajo el nivel del mar} ($-120\text{ m}$). Para realizar una maniobra, asciende \textbf{45 metros} y luego vuelve a descender \textbf{30 metros}. ¿A qué profundidad se encuentra ahora?
+	
+	\answer{
+		Expresión: $-120 + 45 - 30$. Operando: $-120 + 45 = -75 \rightarrow -75 - 30 = -105$. Se encuentra a \textbf{105 metros bajo el nivel del mar}.
+	}
+	
+	\vspace{0.2cm}
+	
+	\noindent \textbf{5.3. Finanzas:} Don Carlos administra una tienda. El lunes tuvo una \textbf{pérdida de \$15.000}, el martes una \textbf{ganancia de \$40.000}, el miércoles una \textbf{pérdida de \$25.000} y el jueves una \textbf{ganancia de \$10.000}.
+	\begin{enumerate}[label=\alph*), itemsep=0cm]
+		%\item Expresa la situación financiera de cada día usando números enteros.
+		\item Calcula el saldo final al terminar el jueves. ¿Tuvo ganancia total o deuda?
+	\end{enumerate}
+	
+	\answer{
+		%a) L: $-15000$, M: $+40000$, Mi: $-25000$, J: $+10000$. \\
+		a) $-15000 + 40000 - 25000 + 10000 = (+50000) - (+40000) = \mathbf{+10.000}$. Tuvo una \textbf{ganancia de \$10.000}.
+	}
+	
+	\vspace{0.2cm}
+	
+	\noindent \textbf{5.4. Cambios de Temperatura:} A las 6:00 a.m. un termómetro marcaba una temperatura de \textbf{$-4^\circ\text{C}$} (bajo cero). Al mediodía, la temperatura subió \textbf{$12^\circ\text{C}$}, y a las 8:00 p.m. volvió a bajar \textbf{$15^\circ\text{C}$}.
+	\begin{enumerate}[label=\alph*), itemsep=0cm]
+		%\item Escribe la expresión matemática de sumas y restas que representa estos cambios.
+		\item ¿Qué temperatura marcaba el termómetro a las 8:00 p.m.?
+	\end{enumerate}
+	
+	\answer{
+		%a) $-4 + 12 - 15$ \\
+		a) $-4 + 12 = +8 \rightarrow +8 - 15 = -7$. La temperatura final era de \textbf{$-7^\circ\text{C}$}.
+	}
+	
+
+\end{document}

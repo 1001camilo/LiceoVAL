@@ -1,0 +1,131 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor} % Paquete añadido para el color de las respuestas
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+
+% --- FUENTE SISTEMA ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Fondo institucional obligatorio del Liceo V.A.L.
+\AddToShipoutPictureBG{
+	\AtPageLowerLeft{
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+	}
+}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE CIENCIAS BÁSICAS}
+\fancyhead[R]{\footnotesize \color{gray} FÍSICA 11º}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+	
+	% --- ENCABEZADO ---
+	\begin{center}
+		{\Large \textbf{LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+		{\large \textbf{EXAMEN DE FÍSICA: EL M.A.S. POSEE ENERGÍA.}}\\[0.1cm]
+		\hfill \textbf{CÓDIGO: 11F02 FL E} \textcolor{blue}{\textbf{(VERSIÓN PROFESOR)}}
+	\end{center}
+	
+	\vspace{0.3cm}
+	\noindent \textbf{Nombre del Estudiante:} \underline{\hspace{8.5cm}} \textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.2cm}
+	\hfill \textbf{CON CALCULADORA}
+	\vspace{0.6cm}
+	
+	% --- PUNTO 1 ---
+	\noindent \textbf{1.} Se cuelga un objeto de $600\text{ g}$ a un resorte de constante $55\text{ N/m}$. Si este empieza a oscilar con una amplitud de $8\text{ cm}$, calcule:
+	\begin{enumerate}[label=\alph*), itemsep=0.3cm, leftmargin=0.8cm]
+		\item La energía asociada al resorte.\\
+		\textcolor{blue}{\textbf{Solución:}  $m = 0.6 \text{ kg}$, $k = 55 \text{ N/m}$, $A = 0.08 \text{ m}$.\\
+			$E = \frac{1}{2} k \cdot A^2 = \frac{1}{2}(55 \text{ N/m})(0.08 \text{ m})^2 = 27.5(0.0064) = \mathbf{0.176 \text{ J}}$}
+		
+		\item La velocidad cuando pasa por el punto de equilibrio.\\
+		\textcolor{blue}{\textbf{Solución:} En el punto de equilibrio, toda la energía es cinética ($E_k = E_{total}$).\\
+			$\frac{1}{2} m \cdot v_{max}^2 = E \Rightarrow 0.5(0.6 \text{ kg}) \cdot v^2 = 0.176 \text{ J} \Rightarrow 0.3 \cdot v^2 = 0.176 \Rightarrow v = \sqrt{\frac{0.176}{0.3}} \approx \mathbf{0.766 \text{ m/s}}$}
+		
+		\item Si el sistema se encontrara en reposo, ¿qué valor tendría la elongación?(\textbf{\textit{Pista: Usa la ley de hooke}})\\
+		\textcolor{blue}{\textbf{Solución:} En equilibrio estático, la fuerza elástica iguala al peso: $F_k = F_g \Rightarrow k \cdot x = m \cdot g$\\
+			$55 \cdot x = (0.6)(9.8) \Rightarrow 55x = 5.88 \Rightarrow x = \frac{5.88}{55} \approx \mathbf{0.1069 \text{ m}}$ (o $\mathbf{10.69 \text{ cm}}$).\\
+			\textit{*Nota: Si utilizan $g=10 \text{ m/s}^2$, el resultado es $10.9 \text{ cm}$.}}
+	\end{enumerate}
+	
+	\vspace{0.4cm}
+	
+	% --- PUNTO 2 ---
+	\noindent \textbf{2.} Una fuente genera $60\text{ pulsos}$ en $3\text{ segundos}$, produciendo ondas de $20\text{ cm}$ de longitud. Calcule:
+	\begin{enumerate}[label=\alph*), itemsep=0.3cm, leftmargin=0.8cm]
+		\item La frecuencia y el periodo asociados.\\
+		\textcolor{blue}{\textbf{Solución:} Frecuencia ($f$) = $\frac{\text{No. de ciclos}}{\text{Tiempo}} = \frac{60}{3} = \mathbf{20 \text{ Hz}}$.\\
+			Periodo ($T$) = $\frac{1}{f} = \frac{1}{20 \text{ Hz}} = \mathbf{0.05 \text{ s}}$.}
+		
+		\item ¿Qué velocidad lleva la onda?\\
+		\textcolor{blue}{\textbf{Solución:} $v = \lambda \cdot f = (0.20 \text{ m}) \cdot (20 \text{ Hz}) = \mathbf{4 \text{ m/s}}$ (o $\mathbf{400 \text{ cm/s}}$).}
+	\end{enumerate}
+	
+	\vspace{0.6cm}
+	
+	% --- PUNTO 3 ---
+	\noindent \textbf{3.} Utilizando el dibujo de la onda que se presenta a continuación, señala y nombra sus partes:
+	
+	\vspace{0.8cm}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.5, >=stealth]
+			\draw[thick, ->] (0, 0) -- (0, 2) node[right] {};
+			% Línea de equilibrio (eje x)
+			\draw[thick, ->] (-0.5, 0) -- (6.8, 0) node[right] {};
+			\draw[dashed, gray] (-0.5, 0) -- (6.5, 0);
+			\node[left, font=\small, text=blue] at (-0.5, 0) {\textbf{Línea de equilibrio}};
+			
+			% Dibujo de la onda senoidal
+			\draw[ultra thick, red, domain=0:6, samples=150] plot (\x, {1.2*sin(1.5708*\x r)});
+			
+			% Puntero 1: Cresta 
+			\draw[draw=black, thick, <-] (1, 1.25) -- (1, 2.0) node[above, font=\small, text=blue] {\textbf{Cresta}};
+			
+			% Puntero 2: Valle 
+			\draw[draw=black, thick, <-] (3, -1.25) -- (3, -2.0) node[below, font=\small, text=blue] {\textbf{Valle}};
+			
+			% Puntero 3: Longitud de onda 
+			\draw[thick, <->, blue] (0, 1.5) -- (4, 1.5) node[midway, above, font=\small] {\textbf{Longitud de onda ($\lambda$)}};
+			\draw[dashed, blue!50] (0, 0) -- (0, 1.6);
+			\draw[dashed, blue!50] (4, 0) -- (4, 1.6);
+			
+			% Puntero de Amplitud 
+			\draw[thick, <->, violet] (5, 0) -- (5, 1.2) node[right, font=\small, text=blue] {\textbf{Amplitud ($A$)}};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{1.5cm}
+	%\newpage
+	% --- PUNTO 4 ---
+	\noindent \textbf{4.} Responda Falso (\textbf{F}) o Verdadero (\textbf{V}) y justifique su respuesta:
+	\begin{enumerate}[label=\alph*), itemsep=0.4cm, leftmargin=0.8cm]
+		\item  La energía total de un sistema masa resorte es constante (no cambia) \underline{\hspace{0.5cm}\textcolor{blue}{\textbf{ V }}\hspace{0.5cm}} \\
+		\textcolor{blue}{\textbf{Justificación:} Según el principio de conservación de la energía, la energía se transforma constantemente de potencial elástica a cinética y viceversa, pero la suma de ambas (energía mecánica total) permanece constante.}
+		
+		\item Las ondas electromagnéticas requieren de un medio de propagación para poder transportarse. \underline{\hspace{0.5cm}\textcolor{blue}{\textbf{ F }}\hspace{0.5cm}} \\
+		\textcolor{blue}{\textbf{Justificación:} Las ondas electromagnéticas pueden propagarse en el vacío (como la luz del sol llegando a la Tierra).}
+	\end{enumerate}
+	
+\end{document}
