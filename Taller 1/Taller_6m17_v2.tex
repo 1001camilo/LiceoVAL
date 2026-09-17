@@ -1,0 +1,351 @@
+\documentclass[11pt, letterpaper]{article}
+
+\newcommand{\cono}{\tikz[scale=0.15]{
+		\draw[fill=orange!30, draw=orange!60!black, line width=0.1pt] (0,0) -- (1,0) -- (0.5,-1.5) -- cycle; 
+		\draw[fill=red!50, draw=red!70!black, line width=0.1pt] (0.5,0.25) circle (0.45);
+}}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs} % Requerido para \toprule, \midrule y \bottomrule
+
+% --- FUENTE SISTEMA ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{245,247,250}
+
+% Fondo institucional del Liceo V.A.L.
+\IfFileExists{../../FondoVAL.pdf}{
+	\AddToShipoutPictureBG{
+		\AtPageLowerLeft{
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+		}
+	}
+}{}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE MATEMÁTICAS}
+\fancyhead[R]{\footnotesize \color{gray} MATEMÁTICAS 6º -- TAU 17 (06M-17)}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- INTERRUPTOR DINÁMICO DE RESPUESTAS ---
+% \showanswerstrue -> Muestra respuestas (Versión Docente)
+% \showanswersfalse -> Oculta respuestas (Versión Estudiante)
+\newif\ifshowanswers
+\showanswersfalse
+\newcommand{\answer}[1]{
+	\ifshowanswers
+	\par\vspace{0.15cm}
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!60!white, arc=1mm, boxrule=0.5pt, title=\textbf{\footnotesize SOLUCIÓN (DOCENTE)}]
+		\color{blue!80!black}\footnotesize #1
+	\end{tcolorbox}
+	\par\vspace{0.15cm}
+	\else
+	\par\vspace{0.3cm}
+	\fi
+}
+
+\begin{document}
+	\begin{center}
+		
+		{\small \textbf{Unidad: TAU 17}}
+	\end{center}
+
+	
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm]
+		
+		% --- BLOQUE 1: CONCEPTOS E IDENTIFICACIÓN ---
+		\item \textbf{Identificación y Conceptos Fundamentales de Gráficas Estadísticas:}
+		\begin{enumerate}[label=\alph*), itemsep=0.25cm]
+			\item Observa las opciones del siguiente recuadro y escribe la letra correspondiente (\textbf{A, B, C, D, E} o \textbf{F}) en cada una de las descripciones según el tipo de gráfica que representa:
+			\begin{center}
+				\begin{tcolorbox}[colback=valblue!10, colframe=valblue, arc=2mm, boxrule=0.8pt, width=0.95\textwidth]
+					\centering \small
+					\textbf{A.} Gráfica de Barras \quad \textbf{B.} Gráfica Circular (Pastel) \quad \textbf{C.} Pictografía \\
+					\textbf{D.} Gráfica de Líneas \quad \textbf{E.} Histograma \quad \textbf{F.} Polígono de Frecuencias
+				\end{tcolorbox}
+			\end{center}
+			\begin{itemize}[itemsep=0.15cm]
+				\item [\textbf{[\quad]}] Gráfica que utiliza barras verticales u horizontales separadas entre sí cuya altura representa frecuencias.
+				\item [\textbf{[\quad]}] Gráfica circular dividida en sectores que representa porcentajes o partes proporcionalmente de un total.
+				\item [\textbf{[\quad]}] Gráfica estadística que utiliza imágenes o íconos representativos para indicar cantidades de datos.
+				\item [\textbf{[\quad]}] Gráfica de puntos unidos por segmentos continuos que muestra variaciones o tendencias en el tiempo.
+				\item [\textbf{[\quad]}] Gráfica de barras adyacentes (unidas) que representan frecuencias en intervalos numéricos continuos.
+				\item [\textbf{[\quad]}] Gráfica formada por segmentos rectos que unen los puntos medios superiores de las barras de un histograma.
+			\end{itemize}
+			
+			
+		\end{enumerate}
+		
+		\answer{
+			\textbf{a) Relación de letras:}\\
+			- \textbf{A}: Gráfica de barras separadas.\\
+			- \textbf{B}: Gráfica circular dividida en sectores.\\
+			- \textbf{C}: Pictografía con íconos o dibujos.\\
+			- \textbf{D}: Gráfica de líneas continuas.\\
+			- \textbf{E}: Histograma con barras unidas por intervalos.\\
+			- \textbf{F}: Polígono de frecuencias uniendo puntos medios.\\
+			\textbf{b) Análisis teórico:}\\
+			- En la gráfica de barras las columnas van separadas (variables cualitativas o discretas), mientras que en el histograma las barras están unidas sin espacios (intervalos continuos).\\
+			- Tres árboles y medio: $(3 \times 400) + (0,5 \times 400) = 1.200 + 200 = \mathbf{1.400\text{ kilos}}$.
+		}
+		
+		% --- BLOQUE 2: BARRAS DOBLES ---
+		\item \textbf{Lectura de Gráficas de Barras Comparativas -- Cosecha Agrícola:}
+		La siguiente gráfica de barras dobles muestra la cosecha de Manzanas y Naranjas (en toneladas) obtenida por una finca durante cuatro trimestres:
+		\begin{center}
+			\begin{tikzpicture}[scale=0.85]
+				\draw[very thin, gray!30] (0,0) grid (9,5);
+				\draw[thick, ->] (0,0) -- (9.5,0) node[right] {\footnotesize Trimestre};
+				\draw[thick, ->] (0,0) -- (0,5.5) node[above] {\footnotesize Toneladas};
+				\foreach \y/\label in {1/50, 2/100, 3/150, 4/200, 5/250} {
+					\draw (0,\y) -- (-0.1,\y) node[left] {\footnotesize \label};
+				}
+				% T1
+				\draw[fill=valblue!80, draw=black] (0.8,0) rectangle (1.4, 3.0); % Manzanas: 150
+				\draw[fill=orange!70, draw=black] (1.4,0) rectangle (2.0, 2.0); % Naranjas: 100
+				\node[below] at (1.4,-0.2) {\footnotesize Trimestre 1};
+				% T2
+				\draw[fill=valblue!80, draw=black] (2.8,0) rectangle (3.4, 4.4); % Manzanas: 220
+				\draw[fill=orange!70, draw=black] (3.4,0) rectangle (4.0, 3.6); % Naranjas: 180
+				\node[below] at (3.4,-0.2) {\footnotesize Trimestre 2};
+				% T3
+				\draw[fill=valblue!80, draw=black] (4.8,0) rectangle (5.4, 2.4); % Manzanas: 120
+				\draw[fill=orange!70, draw=black] (5.4,0) rectangle (6.0, 4.0); % Naranjas: 200
+				\node[below] at (5.4,-0.2) {\footnotesize Trimestre 3};
+				% T4
+				\draw[fill=valblue!80, draw=black] (6.8,0) rectangle (7.4, 3.6); % Manzanas: 180
+				\draw[fill=orange!70, draw=black] (7.4,0) rectangle (8.0, 2.8); % Naranjas: 140
+				\node[below] at (7.4,-0.2) {\footnotesize Trimestre 4};
+				% Leyenda
+				\fill[valblue!80, draw=black] (1.0, 5.8) rectangle (1.4, 6.1);
+				\node[right] at (1.4, 5.95) {\tiny Manzanas};
+				\fill[orange!70, draw=black] (4.0, 5.8) rectangle (4.4, 6.1);
+				\node[right] at (4.4, 5.95) {\tiny Naranjas};
+			\end{tikzpicture}
+		\end{center}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item ¿En qué trimestre la cosecha de Naranjas superó a la de Manzanas y por cuántas toneladas?
+			\item Calcula la producción total acumulada de Manzanas a lo largo de todo el año (suma de los 4 trimestres).
+			\item ¿Cuál fue la diferencia entre la producción total de Manzanas y la de Naranjas en el Trimestre 2?
+		\end{enumerate}
+		
+		\answer{
+			a) En el \textbf{Trimestre 3} (Naranjas = 200 t, Manzanas = 120 t). La superó por $200 - 120 = \mathbf{80\text{ toneladas}}$.\\
+			b) Total Manzanas: $150 + 220 + 120 + 180 = \mathbf{670\text{ toneladas}}$.\\
+			c) Diferencia en Trimestre 2: Manzanas (220) - Naranjas (180) = $\mathbf{40\text{ toneladas}}$.
+		}
+		
+		% --- BLOQUE 3: BARRAS HORIZONTALES ---
+		\item \textbf{Análisis de Gráficas de Barras Horizontales -- Encuesta Deportiva:}
+		Un colegio encuestó a sus estudiantes sobre su deporte preferido, obteniendo los resultados reflejados en la siguiente gráfica de barras horizontales:
+		\begin{center}
+			\begin{tikzpicture}[yscale=0.65]
+				\draw[very thin, gray!30] (0,0) grid (8,5);
+				\draw[thick, ->] (0,0) -- (8.5,0) node[right] {\footnotesize Número de Estudiantes};
+				\draw[thick, ->] (0,0) -- (0,5.5);
+				\foreach \x/\val in {1/20, 2/40, 3/60, 4/80, 5/100, 6/120, 7/140, 8/160} {
+					\draw (\x,0) -- (\x,-0.1) node[below] {\footnotesize \val};
+				}
+				\draw[fill=valblue!70, draw=black] (0,4.2) rectangle (7.5, 4.7);
+				\node[right] at (7.6, 4.45) {\footnotesize Fútbol (150)};
+				\draw[fill=valblue!70, draw=black] (0,3.2) rectangle (5.0, 3.7);
+				\node[right] at (5.1, 3.45) {\footnotesize Baloncesto (100)};
+				\draw[fill=valblue!70, draw=black] (0,2.2) rectangle (4.0, 2.7);
+				\node[right] at (4.1, 2.45) {\footnotesize Natación (80)};
+				\draw[fill=valblue!70, draw=black] (0,1.2) rectangle (2.5, 1.7);
+				\node[right] at (2.6, 1.45) {\footnotesize Voleibol (50)};
+				\draw[fill=valblue!70, draw=black] (0,0.2) rectangle (1.0, 0.7);
+				\node[right] at (1.1, 0.45) {\footnotesize Tenis (20)};
+			\end{tikzpicture}
+		\end{center}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item ¿Cuántos estudiantes en total participaron en la encuesta de deportes?
+			\item ¿Cuántos estudiantes más prefieren el Fútbol en comparación con el Baloncesto?
+			\item Si se suman los estudiantes que eligieron Voleibol y Tenis, ¿alcanzan la cantidad de los que eligieron Natación? Justifica con cifras.
+		\end{enumerate}
+		
+		\answer{
+			a) Total de estudiantes encuestados: $150 + 100 + 80 + 50 + 20 = \mathbf{400\text{ estudiantes}}$.\\
+			b) Diferencia entre Fútbol y Baloncesto: $150 - 100 = \mathbf{50\text{ estudiantes más}}$.\\
+			c) Voleibol + Tenis = $50 + 20 = 70$ estudiantes. No alcanzan la cifra de Natación ($80$ estudiantes), ya que $70 < 80$.
+		}
+		
+		%\newpage
+		% --- BLOQUE 4: LÍNEAS Y MOVIMIENTO ---
+		\item \textbf{Gráfica de Líneas Continua -- Competencia en Bicicleta:}
+		La siguiente gráfica de líneas representa el recorrido en kilómetros de dos ciclistas (Carlos y Sofía) durante una prueba de entrenamiento a lo largo del tiempo:
+		\begin{center}
+			\begin{tikzpicture}[scale=0.95]
+				\draw[very thin, gray!30] (0,0) grid (7,5);
+				\draw[thick, ->] (0,0) -- (7.5,0) node[right] {\footnotesize Tiempo (Horas)};
+				\draw[thick, ->] (0,0) -- (0,5.5) node[above] {\footnotesize Distancia (km)};
+				\foreach \x/\label in {1/1h, 2/2h, 3/3h, 4/4h, 5/5h, 6/6h} {
+					\draw (\x,0) -- (\x,-0.1) node[below] {\footnotesize \label};
+				}
+				\foreach \y/\val in {1/10, 2/20, 3/30, 4/40, 5/50} {
+					\draw (0,\y) -- (-0.1,\y) node[left] {\footnotesize \val};
+				}
+				% Carlos (Rojo continuo)
+				\draw[ultra thick, red!80!black] (0,0) -- (2, 3.0) -- (3.5, 3.0) -- (6, 5.0);
+				% Sofía (Azul punteado)
+				\draw[ultra thick, valblue, dashed] (0,0) -- (2, 1.5) -- (3.5, 3.0) -- (6, 5.0);
+				\node[red!80!black, right] at (6, 4.7) {\small Carlos};
+				\node[valblue, right] at (6, 5.3) {\small Sofía};
+			\end{tikzpicture}
+		\end{center}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item ¿Cuántos kilómetros había recorrido Carlos en las primeras 2 horas y qué ocurrió con él entre las 2h y las 3,5h?
+			\item ¿En qué hora exacta Sofía alcanzó a Carlos y cuántos kilómetros habían recorrido ambos en ese punto?
+			\item ¿Cuál de los dos ciclistas ganó la prueba al llegar primero o cómo terminaron al cabo de 6 horas?
+		\end{enumerate}
+		
+		\answer{
+			a) En las primeras 2 horas Carlos recorrió \textbf{$30\text{ km}$}. Entre las 2h y 3,5h la gráfica es horizontal, lo que significa que \textbf{se detuvo a descansar} (la distancia se mantuvo constante en $30\text{ km}$).\\
+			b) Sofía alcanzó a Carlos exactamente a las \textbf{3,5 horas}, cuando ambos estaban a una distancia de \textbf{$30\text{ km}$}.\\
+			c) Ambos recorrieron $50\text{ km}$ en 6 horas y llegaron al mismo tiempo, de modo que \textbf{empataron al final del recorrido}.
+		}
+		
+
+		
+		% --- BLOQUE 6: PORCENTAJES Y BARRAS ---
+		\item \textbf{Barras Horizontales y Porcentajes -- Reciclaje de Residuos:}
+		Se midió el porcentaje de residuos sólidos reciclados en cinco municipios durante el último año:
+		\begin{center}
+			\begin{tikzpicture}[yscale=0.6]
+				\draw[very thin, gray!30] (0,0) grid (6,5);
+				\draw[thick, ->] (0,0) -- (6.5,0) node[right] {\footnotesize \% de Residuos Reciclados};
+				\draw[thick, ->] (0,0) -- (0,5.5);
+				\foreach \x/\val in {1/10\%, 2/20\%, 3/30\%, 4/40\%, 5/50\%} {
+					\draw (\x,0) -- (\x,-0.1) node[below] {\footnotesize \val};
+				}
+				\draw[fill=valblue!70, draw=black] (0,4.2) rectangle (4.5, 4.7);
+				\node[left] at (-0.1, 4.45) {\small Municipio A};
+				\node[right] at (4.5, 4.45) {\small 45\%};
+				\draw[fill=valblue!70, draw=black] (0,3.2) rectangle (3.0, 3.7);
+				\node[left] at (-0.1, 3.45) {\small Municipio B};
+				\node[right] at (3.0, 3.45) {\small 30\%};
+				\draw[fill=valblue!70, draw=black] (0,2.2) rectangle (1.8, 2.7);
+				\node[left] at (-0.1, 2.45) {\small Municipio C};
+				\node[right] at (1.8, 2.45) {\small 18\%};
+				\draw[fill=valblue!70, draw=black] (0,1.2) rectangle (2.5, 1.7);
+				\node[left] at (-0.1, 1.45) {\small Municipio D};
+				\node[right] at (2.5, 1.45) {\small 25\%};
+				\draw[fill=valblue!70, draw=black] (0,0.2) rectangle (1.0, 0.7);
+				\node[left] at (-0.1, 0.45) {\small Municipio E};
+				\node[right] at (1.0, 0.45) {\small 10\%};
+			\end{tikzpicture}
+		\end{center}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item ¿Cuál es el municipio con el mejor porcentaje de reciclaje y cuál es el de menor porcentaje?
+			\item ¿En cuántos puntos porcentuales supera el Municipio A al Municipio D?
+		\end{enumerate}
+		
+		\answer{
+			a) El mejor es el \textbf{Municipio A} (45\%) y el de menor porcentaje es el \textbf{Municipio E} (10\%).\\
+			b) Diferencia entre A y D: $45\% - 25\% = \mathbf{20\text{ puntos porcentuales}}$.
+		}
+		
+		%\newpage
+		% --- BLOQUE 7: LÍNEAS DOBLES / TENDENCIA HISTÓRICA ---
+		\item \textbf{Líneas Dobles -- Comparación de Ventas Tecnológicas:}
+		La gráfica muestra el historial de ventas anuales (en millones de dólares) de dos tiendas de tecnología (Tienda Alfa y Tienda Beta) entre 2018 y 2023:
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9]
+				\draw[very thin, gray!30] (0,0) grid (6,5);
+				\draw[thick, ->] (0,0) -- (6.5,0) node[right] {\footnotesize Año};
+				\draw[thick, ->] (0,0) -- (0,5.5) node[above] {\footnotesize Ventas (Millones \$)};
+				\foreach \x/\label in {1/2018, 2/2019, 3/2020, 4/2021, 5/2022, 6/2023} {
+					\draw (\x,0) -- (\x,-0.1) node[below] {\footnotesize \label};
+				}
+				\foreach \y/\val in {1/2, 2/4, 3/6, 4/8, 5/10} {
+					\draw (0,\y) -- (-0.1,\y) node[left] {\footnotesize \val};
+				}
+				% Alfa (Azul)
+				\draw[ultra thick, valblue, mark=*] plot coordinates { (1, 1.5) (2, 2.5) (3, 2.0) (4, 3.5) (5, 4.2) (6, 5.0) };
+				% Beta (Rojo)
+				\draw[ultra thick, red!80!black, mark=square*] plot coordinates { (1, 1.0) (2, 1.8) (3, 3.0) (4, 3.0) (5, 3.8) (6, 4.1) };
+				\node[valblue, right] at (6, 5.0) {\small Alfa (\$10M)};
+				\node[red!80!black, right] at (6, 4.1) {\small Beta (\$8.2M)};
+			\end{tikzpicture}
+		\end{center}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item ¿En qué único año la Tienda Beta tuvo mayores ventas que la Tienda Alfa?
+			\item ¿De cuánto fueron las ventas totales de la Tienda Alfa en el año 2023?
+			\item ¿Entre 2020 y 2023, qué tienda tuvo un crecimiento constante sin caídas?
+		\end{enumerate}
+		
+		\answer{
+			a) En el año \textbf{2020}, donde la Tienda Beta vendió $\$6\text{M}$ y Alfa cayó a $\$4\text{M}$.\\
+			b) En 2023 la Tienda Alfa vendió \textbf{$\$10\text{ millones de dólares}$}.\\
+			c) Ambas tiendas crecieron entre 2020 y 2023, pero la \textbf{Tienda Alfa} tuvo un crecimiento sostenido pasando de $\$4\text{M}$ a $\$10\text{M}$.
+		}
+		\newpage 
+		\item Una persona desea enviar un paquete de 3 lb a la Zona 4 de correo prioritario, y otro paquete de 1 lb a la Zona 3. Utilizando la siguiente tabla de tarifas postales de 2017 de tu libro de texto, calcula el costo total del envío de ambos paquetes:
+		
+		\begin{center}
+			\begin{tabular}{ccccc}
+				\toprule
+				\textbf{Peso} & \textbf{Zonas 1 y 2} & \textbf{Zona 3} & \textbf{Zona 4} & \textbf{Zona 5} \\
+				\midrule
+				1 lb & \$5,75 & \$6,26 & \$6,37 & \$6,53 \\
+				2 lb & \$6,33 & \$6,40 & \$6,63 & \$7,91 \\
+				3 lb & \$6,41 & \$7,16 & \$7,62 & \$9,22 \\
+				4 lb & \$6,62 & \$7,39 & \$8,46 & \$10,19 \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		
+		\answer{
+			Buscamos los valores en la tabla por intersección de fila (peso) y columna (zona):\\
+			- Paquete de 3 lb enviado a la Zona 4: \textbf{\$7,62}\\
+			- Paquete de 1 lb enviado a la Zona 3: \textbf{\$6,26}\\
+			Costo total = \$7,62 + \$6,26 = \textbf{\$13,88}
+		}
+		
+		
+		\item En la heladería \textit{Barney's Café}, se registró la venta diaria de helados de diferentes poblaciones a través de un pictograma. Si cada símbolo \cono\ equivale a \textbf{\$100}, ¿cuánto dinero en total gastaron los niños y los ancianos juntos en helados?
+		
+		\begin{center}
+			\begin{tabular}{rl}
+				\toprule
+				\textbf{Grupo de Clientes} & \textbf{Ventas de Helados (Cada \cono\ = \$100)} \\
+				\midrule
+				Niños: & \cono\ \cono\ \cono\ \cono\ \cono \\
+				Padres: & \cono\ \cono\ \cono\ \cono \\
+				Ancianos: & \cono\ \cono \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		
+		\answer{
+			- Contamos los símbolos para cada uno de los grupos indicados:\\
+			* Niños: 5 símbolos $\rightarrow$ 5 $\times$ \$100 = \$500.\\
+			* Ancianos: 2 símbolos $\rightarrow$ 2 $\times$ \$100 = \$200.\\
+			- Sumamos el total de dinero gastado por ambos grupos: \$500 + \$200 = \textbf{\$700}.\\
+			*(O de forma equivalente: 5 + 2 = 7 símbolos en total; 7 $\times$ \$100 = \textbf{\$700}).
+		}
+	\end{enumerate}
+\end{document}

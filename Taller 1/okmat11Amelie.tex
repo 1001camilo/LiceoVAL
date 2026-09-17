@@ -1,0 +1,120 @@
+\documentclass[11pt, letterpaper]{article}
+
+%% ─── PAQUETES ─────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, babel}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{helvet}
+
+%% ─── FONDO INSTITUCIONAL ──────────────────────────────────────────────
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{\includegraphics[width=\paperwidth,
+		height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+%% ─── COLORES INSTITUCIONALES ──────────────────────────────────────────
+\definecolor{valblue}    {RGB}{0,   74, 153}
+\definecolor{valdark}    {RGB}{ 30, 30,  30}
+
+%% ─── SIN ENCABEZADOS NI PIES DE PÁGINA ────────────────────────────────
+\pagestyle{empty}
+
+%%──────────────────────────────────────────────────────────────────────
+\begin{document}
+	%%──────────────────────────────────────────────────────────────────────
+	
+	\begin{center}
+		{\Large\bfseries\textcolor{valblue}{TALLER DE REPASO}}\\[6pt]
+		{\large\bfseries Matemáticas 6\textdegree{} -- Código: 06M-11}
+	\end{center}
+	\vspace{0.6cm}
+	
+	% ── PUNTO 1 ──
+	\noindent \textbf{1.} Escribe el número entero que representa cada una de las siguientes situaciones cotidianas y, posteriormente, ordénalos de forma ascendente (de menor a mayor):
+	\begin{enumerate}[label=\alph*), itemsep=0.1cm]
+		\item Un submarino navegando a 250 metros bajo el nivel del mar.
+		\item Un depósito a favor en una cuenta bancaria por \$ 15.000.
+		\item El nacimiento de un personaje histórico en el año 45 a.C.
+		\item Un cóndor volando a 120 metros de altitud.
+	\end{enumerate}
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 2 ──
+	\noindent \textbf{2.} Traza una recta numérica utilizando regla, ubica en ella los siguientes números enteros y determina, para cada uno, su valor absoluto (distancia al cero): $ -7, \ 4, \ -2, \ 9, \ -5 $.
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 3 ──
+	\noindent \textbf{3.} Determina el inverso aditivo de los siguientes números enteros y comprueba, planteando la ecuación respectiva, que la suma entre un número y su inverso aditivo siempre es cero: $ -34, \ 56, \ -128 $.
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 4 ──
+	\noindent \textbf{4.} Resuelve las siguientes adiciones de números enteros. Debes escribir el procedimiento paso a paso y especificar si sumaste o restaste los valores absolutos según la ley de signos:
+	\begin{enumerate}[label=\alph*), itemsep=0.1cm]
+		\item $(-45) + (-23)$
+		\item $78 + (-19)$
+		\item $(-102) + 54$
+	\end{enumerate}
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 5 ──
+	\noindent \textbf{5.} Transforma las siguientes sustracciones en sumas del opuesto (inverso aditivo) y calcula el resultado final justificando el signo:
+	\begin{enumerate}[label=\alph*), itemsep=0.1cm]
+		\item $56 - (-34)$
+		\item $(-89) - 12$
+		\item $(-45) - (-45)$
+	\end{enumerate}
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 6 ──
+	\noindent \textbf{6.} Resuelve la siguiente cadena de operaciones suprimiendo primero los paréntesis mediante la correcta aplicación de la ley de signos. Luego, agrupa y calcula el resultado final:
+	\begin{center}
+		$ 15 - (-8) + (-12) - 20 + (-5) $
+	\end{center}
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 7 ──
+	\noindent \textbf{7.} Calcula el resultado de la siguiente expresión matemática respetando la jerarquía de los signos de agrupación (resuelve primero los paréntesis y luego los corchetes):
+	\begin{center}
+		$ - [ 14 + (-8 - 5) ] - ( -3 + 12 ) $
+	\end{center}
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 8 ──
+	\noindent \textbf{8.} A las 6:00 a.m. un termómetro en una ciudad de Canadá marcaba $ -4^\circ\text{C} $. A las 10:00 a.m. la temperatura subió $ 7^\circ\text{C} $, a la 1:00 p.m. subió $ 5^\circ\text{C} $ más, y a las 8:00 p.m. bajó bruscamente $ 11^\circ\text{C} $. Plantea una única expresión polinómica con números enteros que represente la situación y determina la temperatura final a las 8:00 p.m.
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 9 ──
+	\noindent \textbf{9.} Un ascensor se encuentra en la planta baja (piso 0) de un rascacielos que tiene varios sótanos. Primero sube 8 pisos, luego baja 11 pisos, vuelve a subir 5 pisos y finalmente baja 4 pisos. ¿En qué piso se encuentra al final? Expresa todo el recorrido como una suma de números enteros.
+	\hfill \textbf{(10\%)}
+	
+	\vspace{0.4cm}
+	
+	% ── PUNTO 10 ──
+	\noindent \textbf{10.} El filósofo y matemático Pitágoras nació en el año 570 a.C. y murió en el año 495 a.C. Usando los números enteros para representar los años antes de Cristo, plantea la operación matemática correspondiente y calcula a qué edad murió. Justifica tu respuesta utilizando la recta numérica.
+	\hfill \textbf{(10\%)}
+	
+\end{document}

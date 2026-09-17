@@ -1,0 +1,177 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES --- 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish, es-noshorthands]{babel} 
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry} 
+\usepackage{graphicx} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{enumitem} 
+\usepackage{xcolor} 
+\usepackage{tikz} 
+\usetikzlibrary{arrows.meta} 
+\usepackage{fancyhdr} 
+\usepackage{eso-pic} 
+\usepackage[most]{tcolorbox} 
+
+% --- FUENTE SISTEMA --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault} 
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) --- 
+\definecolor{valblue}{RGB}{0,112,192} 
+\definecolor{valdark}{RGB}{30,30,30} 
+\definecolor{valgray}{RGB}{245,247,250} 
+
+
+
+% --- CONFIGURACIÓN DE PÁGINA --- 
+
+
+% --- INTERRUPTOR DINÁMICO DE RESPUESTAS --- 
+% \showanswerstrue -> Muestra respuestas (Docente) 
+% \showanswersfalse -> Oculta respuestas (Estudiante) 
+\newif\ifshowanswers 
+\showanswerstrue 
+
+\newcommand{\answer}[1]{ 
+	\ifshowanswers 
+	\par\vspace{0.15cm} 
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!60!white, arc=1mm, boxrule=0.5pt, title=\textbf{\footnotesize SOLUCIÓN PASO A PASO (DOCENTE)}] 
+		\color{blue!80!black}\footnotesize #1 
+	\end{tcolorbox} 
+	\par\vspace{0.15cm} 
+	\else 
+	\par\vspace{0.3cm} 
+	\fi 
+} 
+
+\begin{document} 
+	
+	\begin{center} 
+		{\large \textbf{TALLER DE REPASO: ÓPTICA - REFRACCIÓN DE LA LUZ Y LENTES}}\\[0.1cm] 
+		{\small \textbf{Física 11º} \quad  | \quad \textbf{TAU 6}} 
+	\end{center} 
+	
+	
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm] 
+		
+		\item Explica detalladamente en qué consiste el fenómeno de la dispersión cromática cuando un rayo de luz blanca incide sobre un prisma de vidrio. 
+		\answer{ 
+			\textbf{Concepto:} La dispersión cromática ocurre porque el índice de refracción ($n$) de un material transparente varía según la frecuencia de la luz incidente.\\ 
+			\textbf{Explicación física:} La luz violeta posee una mayor frecuencia que la roja. En el vidrio, las frecuencias más altas experimentan un mayor índice de refracción ($n_{\text{violeta}} > n_{\text{roja}}$), lo que provoca una mayor disminución de su velocidad y un mayor ángulo de desviación al refractarse. 
+		} 
+		
+		\item  Un rayo de luz monocromática viaja por el aire ($n_1 = 1,00$) e incide sobre la superficie de un bloque de diamante ($n_2 = 2,42$) con un ángulo de incidencia de $45^\circ$. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item ¿Cuál es el ángulo de refracción ($\theta_2$) dentro del diamante? 
+			\item ¿A qué velocidad se propaga la luz en el interior del diamante? ($c = 3 \times 10^8\text{ m/s}$) 
+		\end{enumerate} 
+		\answer{ 
+			a) Ley de Snell: $n_1 \sin\theta_1 = n_2 \sin\theta_2 \implies 1,00 \cdot \sin(45^\circ) = 2,42 \cdot \sin\theta_2$.\\ 
+			$\sin\theta_2 = \frac{0,7071}{2,42} \approx 0,2922 \implies \theta_2 = \arcsin(0,2922) \approx \mathbf{16,99^\circ}$.\\[0.1cm] 
+			b) Velocidad en el medio: $v = \frac{c}{n_2} = \frac{3 \times 10^8\text{ m/s}}{2,42} \approx \mathbf{1,24 \times 10^8\text{ m/s}}$. 
+		} 
+		
+		\item  Un rayo de luz se desplaza dentro de un recipiente con agua ($n_1 = 1,33$) e incide sobre una capa de aceite sintético ($n_2 = 1,48$) formando un ángulo de $35^\circ$ con la normal. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Determina el ángulo de refracción ($\theta_2$) en el aceite. 
+			\item Calcula la velocidad de la luz en el agua y en el aceite. 
+		\end{enumerate} 
+		\answer{ 
+			a) $n_1 \sin\theta_1 = n_2 \sin\theta_2 \implies 1,33 \cdot \sin(35^\circ) = 1,48 \cdot \sin\theta_2$.\\ 
+			$\sin\theta_2 = \frac{1,33 \cdot 0,5736}{1,48} \approx 0,5155 \implies \theta_2 = \arcsin(0,5155) \approx \mathbf{31,03^\circ}$.\\[0.1cm] 
+			b) Velocidad en agua: $v_{\text{agua}} = \frac{3 \times 10^8}{1,33} \approx \mathbf{2,26 \times 10^8\text{ m/s}}$.\\ 
+			Velocidad en aceite: $v_{\text{aceite}} = \frac{3 \times 10^8}{1,48} \approx \mathbf{2,03 \times 10^8\text{ m/s}}$. 
+		} 
+		
+		\item  Un rayo de luz se propaga en el interior de un bloque de vidrio crown ($n_1 = 1,52$) hacia la interfaz con el aire ($n_2 = 1,00$). 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Calcula el ángulo límite o crítico ($\theta_c$) para esta interfaz. 
+			\item Explica qué sucede con el rayo de luz si incide en la interfaz con un ángulo de $45^\circ$. 
+		\end{enumerate} 
+		\answer{ 
+			a) Condición para el ángulo crítico ($\theta_2 = 90^\circ$): $n_1 \sin\theta_c = n_2 \sin(90^\circ)$.\\ 
+			$\sin\theta_c = \frac{1,00}{1,52} \approx 0,6579 \implies \theta_c = \arcsin(0,6579) \approx \mathbf{41,14^\circ}$.\\[0.1cm] 
+			b) Como el ángulo de incidencia ($45^\circ$) es mayor que el ángulo crítico ($\theta_c \approx 41,14^\circ$), no se produce refracción hacia el aire; la luz experimenta una \textbf{reflexión interna total}. 
+		} 
+		
+		\item  Un objeto de $6\text{ cm}$ de altura se coloca a una distancia de $30\text{ cm}$ de una lente convergente cuya distancia focal es de $12\text{ cm}$. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item ¿A qué distancia ($d_i$) de la lente se forma la imagen? 
+			\item Determina la altura de la imagen ($h_i$) e indica si es real o virtual, e invertida o derecha. 
+		\end{enumerate} 
+		\answer{ 
+			a) $\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i} \implies \frac{1}{12} = \frac{1}{30} + \frac{1}{d_i} \implies \frac{1}{d_i} = \frac{1}{12} - \frac{1}{30} = \frac{3}{60} = \frac{1}{20} \implies d_i = \mathbf{20\text{ cm}}$.\\[0.1cm] 
+			b) Aumento: $A = -\frac{d_i}{d_o} = -\frac{20}{30} = -\frac{2}{3}$.\\ 
+			Altura: $h_i = \left(-\frac{2}{3}\right) \cdot 6\text{ cm} = \mathbf{-4\text{ cm}}$.\\ 
+			\textbf{Características:} La imagen es \textbf{real} ($d_i > 0$), \textbf{invertida} ($h_i < 0$) y reducida ($4\text{ cm} < 6\text{ cm}$). 
+		} 
+		
+		\item  Un sello postal de $3\text{ cm}$ de altura se ubica a $6\text{ cm}$ de una lente convergente de $15\text{ cm}$ de distancia focal. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Calcula la posición de la imagen ($d_i$). 
+			\item Determina el tamaño ($h_i$) de la imagen y explica sus características ópticas. 
+		\end{enumerate} 
+		\answer{ 
+			a) $\frac{1}{15} = \frac{1}{6} + \frac{1}{d_i} \implies \frac{1}{d_i} = \frac{1}{15} - \frac{1}{6} = \frac{-3}{30} = -\frac{1}{10} \implies d_i = \mathbf{-10\text{ cm}}$.\\[0.1cm] 
+			b) Aumento: $A = -\frac{-10}{6} = +\frac{5}{3}$. Altura: $h_i = \left(\frac{5}{3}\right) \cdot 3\text{ cm} = \mathbf{+5\text{ cm}}$.\\ 
+			\textbf{Características:} La imagen es \textbf{virtual} ($d_i < 0$), \textbf{derecha} ($h_i > 0$) y ampliada ($5\text{ cm} > 3\text{ cm}$). 
+		} 
+		
+		\item  Un objeto de $5\text{ cm}$ de altura se coloca a $20\text{ cm}$ de una lente divergente que posee una distancia focal de $10\text{ cm}$ ($f = -10\text{ cm}$). 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Determina la posición ($d_i$) y la altura ($h_i$) de la imagen. 
+			\item Explica brevemente el comportamiento de los rayos notables en una lente divergente. 
+		\end{enumerate} 
+		\answer{ 
+			a) $\frac{1}{-10} = \frac{1}{20} + \frac{1}{d_i} \implies \frac{1}{d_i} = -\frac{1}{10} - \frac{1}{20} = -\frac{3}{20} \implies d_i = \mathbf{-6,67\text{ cm}}$.\\ 
+			Altura: $A = -\frac{-6,67}{20} = +\frac{1}{3} \implies h_i = \left(\frac{1}{3}\right) \cdot 5\text{ cm} = \mathbf{+1,67\text{ cm}}$.\\[0.1cm] 
+			b) El rayo paralelo se refracta divergiendo de modo que su prolongación pasa por el foco del lado del objeto; el rayo central cruza el centro óptico sin desviarse. La imagen es \textbf{virtual, derecha y reducida}. 
+		} 
+		
+		\item Una lente biconvexa no simétrica se fabrica con vidrio de índice $n = 1,55$. Sus radios de curvatura son $R_1 = 12\text{ cm}$ y $R_2 = 18\text{ cm}$. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Calcula la distancia focal representativa ($f$) de la lente. 
+			\item Si se coloca un objeto a $25\text{ cm}$ de esta lente, ¿dónde se formará la imagen? 
+		\end{enumerate} 
+		\answer{ 
+			a) $\frac{1}{f} = (n - 1) \left(\frac{1}{R_1} + \frac{1}{R_2}\right) = (1,55 - 1) \left(\frac{1}{12} + \frac{1}{18}\right) = 0,55 \cdot \frac{5}{36} = \frac{2,75}{36} \implies f = \mathbf{13,09\text{ cm}}$.\\[0.1cm] 
+			b) $\frac{1}{d_i} = \frac{1}{13,09} - \frac{1}{25} \approx 0,07639 - 0,04 = 0,03639 \implies d_i \approx \mathbf{27,48\text{ cm}}$ al otro lado de la lente. 
+		} 
+		
+		\item Al ubicar un objeto a $10\text{ cm}$ de una lente biconvexa no simétrica de radios $R_1 = 15\text{ cm}$ y $R_2 = 20\text{ cm}$, se observa que su imagen real se proyecta en una pantalla ubicada a $30\text{ cm}$ de la lente. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Calcula la distancia focal ($f$) de esta lente. 
+			\item Determina el índice de refracción ($n$) del material transparente utilizado. 
+		\end{enumerate} 
+		\answer{ 
+			a) $\frac{1}{f} = \frac{1}{10} + \frac{1}{30} = \frac{4}{30} \implies f = \mathbf{7,5\text{ cm}}$.\\[0.1cm] 
+			b) $\frac{1}{7,5} = (n - 1) \left(\frac{1}{15} + \frac{1}{20}\right) \implies \frac{2}{15} = (n - 1) \cdot \frac{7}{60} \implies n - 1 = \frac{120}{105} = \frac{8}{7} \implies n \approx \mathbf{2,14}$. 
+		} 
+		
+		\item  Responde Verdadero (\textbf{V}) o Falso (\textbf{F}) y justifica detalladamente tu respuesta: 
+		\begin{enumerate}[label=\alph*), itemsep=0.4cm] 
+			\item \underline{\hspace{1.2cm}} La velocidad de la luz en cualquier medio material transparente es siempre menor a $3 \times 10^8\text{ m/s}$.\\ 
+			\textbf{Justificación:} \underline{\hspace{13.8cm}}\\ 
+			\underline{\hspace{15.3cm}} 
+			\item \underline{\hspace{1.2cm}} En una lente divergente, la imagen de un objeto real siempre se forma virtual, derecha y de menor tamaño que el objeto.\\ 
+			\textbf{Justificación:} \underline{\hspace{13.8cm}}\\ 
+			\underline{\hspace{15.3cm}} 
+			\item \underline{\hspace{1.2cm}} El fenómeno de reflexión interna total puede ocurrir cuando la luz pasa del aire ($n=1,0$) hacia el agua ($n=1,33$).\\ 
+			\textbf{Justificación:} \underline{\hspace{13.8cm}}\\ 
+			\underline{\hspace{15.3cm}} 
+		\end{enumerate} 
+		\answer{ 
+			a) \textbf{V}. De acuerdo con la relatividad y la electrodinámica, la velocidad máxima $c = 3 \times 10^8\text{ m/s}$ solo se alcanza en el vacío. En cualquier medio transparente $n > 1$, de modo que $v = c/n < c$.\\[0.1cm] 
+			b) \textbf{V}. Para cualquier posición de un objeto real frente a una lente divergente, las prolongaciones de los rayos refractados forman una imagen virtual, derecha y reducida.\\[0.1cm] 
+			c) \textbf{F}. La reflexión interna total requiere que la luz pase de un medio de mayor índice de refracción a uno de menor índice ($n_1 > n_2$). Del aire al agua ($n_1 < n_2$) siempre hay refracción hacia la normal. 
+		} 
+		
+	\end{enumerate} 
+
+	
+\end{document}
