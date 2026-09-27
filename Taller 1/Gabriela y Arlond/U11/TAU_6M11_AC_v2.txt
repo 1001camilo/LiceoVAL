@@ -1,0 +1,712 @@
+\documentclass[11pt]{article}
+
+%% ─── PAQUETES ─────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+% Márgenes reducidos al máximo para aprovechar todo el papel
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{pifont}
+\usepackage{fontawesome5}
+\usepackage[most]{tcolorbox}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric, arrows.meta, shadows}
+\renewcommand{\familydefault}{\sfdefault}
+
+%% ─── FONDO INSTITUCIONAL ──────────────────────────────────────────────
+\AddToShipoutPictureBG{%
+	\AtPageLowerLeft{\includegraphics[width=\paperwidth,
+		height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}}}
+
+%% ─── COLORES ──────────────────────────────────────────────────────────
+\definecolor{valblue}    {RGB}{0,   74, 153}
+\definecolor{valgreen}   {RGB}{0,  153,  76}
+\definecolor{valorange}  {RGB}{230,115,   0}
+\definecolor{valdark}    {RGB}{ 30, 30,  30}
+\definecolor{valred}     {RGB}{200,  30,  30}
+\definecolor{valpurple}  {RGB}{100,  30, 160}
+\definecolor{valnavy}    {RGB}{ 10,  30,  80}
+\definecolor{fondopag}   {RGB}{252, 252, 252}
+\definecolor{linetip}    {RGB}{245, 248, 255}
+\definecolor{boxbg}      {RGB}{248, 248, 248}
+
+%% ─── SIN ENCABEZADOS NI PIES DE PÁGINA ────────────────────────────────
+\pagestyle{empty}
+
+%% ─── MACROS BÁSICOS ──────────────────────────────────────────────────
+\newcommand{\boxfill}[1][3cm]{%
+	\tcbox[on line,enhanced,size=minimal,
+	colframe=valblue!40, colback=linetip,
+	boxrule=1pt, arc=2mm,
+	boxsep=4pt, left=4pt, right=4pt, top=4pt, bottom=4pt,
+	drop shadow={opacity=0.10}]%
+	{\makebox[#1]{\vphantom{Hg}}}}
+
+\newcommand{\casilla}{%
+	\tcbox[on line,enhanced,size=minimal,
+	colframe=valdark!50, colback=white,
+	boxrule=1.2pt, arc=2mm,
+	boxsep=3pt, left=2pt, right=2pt, top=2pt, bottom=2pt]%
+	{\makebox[0.65cm]{\vphantom{X}}}}
+
+%% ─── MACROS DE DINERO (AJUSTADOS PARA COLUMNAS) ───────────────────────
+\newcommand{\billete}[2]{%           {valor_num}{nombre_texto}
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=boxbg, colframe=valblue!25,
+		arc=4mm, boxrule=0.8pt,
+		left=4pt, right=4pt, top=4pt, bottom=4pt,
+		drop shadow={opacity=0.08,shadow xshift=1.5pt,shadow yshift=-1.5pt}]
+		\begin{minipage}[c]{0.15\linewidth}
+			\centering
+			\textcolor{valblue}{\textbf{\large\$#1}}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.40\linewidth}
+			\centering
+			\includegraphics[width=\linewidth,height=2.2cm,
+			keepaspectratio=true]{billete_#1_frente.png}\\[2pt]
+			{\tiny\textcolor{valdark!60}{\textsc{Frente}}}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.40\linewidth}
+			\centering
+			\includegraphics[width=\linewidth,height=2.2cm,
+			keepaspectratio=true]{billete_#1_reverso.png}\\[2pt]
+			{\tiny\textcolor{valdark!60}{\textsc{Reverso}}}
+		\end{minipage}
+		\vspace{2pt}
+		\begin{center}
+			{\small\bfseries\textcolor{valblue}{#2}}
+		\end{center}
+\end{tcolorbox}}
+
+\newcommand{\moneda}[2]{%            {valor_num}{nombre_texto}
+	\begin{tcolorbox}[enhanced,breakable,
+		colback=boxbg, colframe=valpurple!20,
+		arc=4mm, boxrule=0.8pt,
+		left=4pt, right=4pt, top=4pt, bottom=4pt,
+		drop shadow={opacity=0.08}]
+		\begin{minipage}[c]{0.18\linewidth}
+			\centering
+			\textcolor{valpurple}{\textbf{\normalsize\$#1}}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.38\linewidth}
+			\centering
+			\includegraphics[width=1.8cm,height=1.8cm,
+			keepaspectratio=true]{moneda_#1_cara.png}\\[2pt]
+			{\tiny\textcolor{valdark!60}{\textsc{Cara}}}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.38\linewidth}
+			\centering
+			\includegraphics[width=1.8cm,height=1.8cm,
+			keepaspectratio=true]{moneda_#1_sello.png}\\[2pt]
+			{\tiny\textcolor{valdark!60}{\textsc{Sello}}}
+		\end{minipage}
+		\vspace{2pt}
+		\begin{center}
+			{\small\bfseries\textcolor{valpurple}{#2}}
+		\end{center}
+\end{tcolorbox}}
+
+%% ─── ENTORNOS PEDAGÓGICOS ─────────────────────────────────────────────
+\newtcolorbox{aprender}[2]{%         {color}{titulo}
+	enhanced,breakable,
+	colback=#1!6, colframe=#1,
+	title={\faBook\quad\textbf{#2}},
+	fonttitle=\bfseries\normalsize,
+	attach boxed title to top left={yshift=-2.5mm, xshift=6mm},
+	boxed title style={colback=#1, arc=2mm, sharp corners=south,
+		boxrule=0pt, left=6pt, right=6pt},
+	arc=4mm, boxrule=1.2pt,
+	before skip=6pt, after skip=6pt,
+	left=8pt, right=8pt, top=10pt, bottom=6pt}
+
+\newtcolorbox{actividad}[3]{%        {color}{numero}{titulo}
+	enhanced,breakable,
+	colback=white, colframe=#1,
+	title={\textbf{\large\protect\ding{46}\;Actividad #2} --- #3},
+	fonttitle=\bfseries\normalsize,
+	attach boxed title to top left={yshift=-2.5mm, xshift=6mm},
+	boxed title style={colback=#1, arc=2mm, sharp corners=south,
+		boxrule=0pt, left=6pt, right=6pt, coltext=white},
+	arc=4mm, boxrule=1.2pt,
+	before skip=6pt, after skip=6pt,
+	left=8pt, right=8pt, top=10pt, bottom=6pt}
+
+\newtcolorbox{pasobox}[2]{%          {color}{titulo}
+	enhanced,breakable,
+	colback=#1!8, colframe=#1!60,
+	title={\faCogs\quad\textbf{#2}},
+	fonttitle=\bfseries\normalsize,
+	attach boxed title to top left={yshift=-2.5mm, xshift=6mm},
+	boxed title style={colback=#1!70, arc=2mm, sharp corners=south,
+		boxrule=0pt, left=6pt, right=6pt, coltext=white},
+	arc=4mm, boxrule=1pt,
+	before skip=6pt, after skip=6pt,
+	left=8pt, right=8pt, top=10pt, bottom=6pt}
+
+\newtcolorbox{calculadora}{
+	enhanced,
+	colback=valdark!92, colframe=valdark,
+	arc=5mm, boxrule=2pt,
+	left=10pt, right=10pt, top=8pt, bottom=8pt,
+	before skip=6pt, after skip=6pt,
+	drop shadow={opacity=0.3,shadow xshift=2pt,shadow yshift=-2pt}}
+
+\newtcolorbox{tip}[1]{%              {color}
+	enhanced,
+	colback=#1!10, colframe=#1!60,
+	arc=3mm, boxrule=0.8pt,
+	left=6pt, right=6pt, top=4pt, bottom=4pt,
+	before skip=4pt, after skip=4pt}
+
+\newtcolorbox{autoevaluacion}{
+	enhanced,breakable,
+	colback=linetip, colframe=valblue,
+	title={\faStar\;\textbf{¿Qué aprendí? --- Mi autoevaluación}},
+	fonttitle=\bfseries\large, colbacktitle=valblue, coltitle=white,
+	arc=4mm, boxrule=1.5pt,
+	before skip=10pt, after skip=10pt,
+	left=10pt, right=10pt, top=8pt, bottom=8pt}
+
+\newcounter{numpaso}
+\newcommand{\resetpasos}{\setcounter{numpaso}{0}}
+\newcommand{\paso}[1]{%
+	\stepcounter{numpaso}%
+	\vspace{4pt}\noindent
+	\begin{tikzpicture}[baseline=(n.base)]
+		\node[circle, draw=#1, fill=#1, inner sep=0pt,
+		minimum size=20pt, text=white,
+		font=\bfseries\small] (n)
+		{\thenumpaso};
+	\end{tikzpicture}\hspace{6pt}}
+
+%% ─── BANDA DE MISIÓN (MODIFICADA: SIN NEWPAGE) ────────────────────────
+\newcommand{\misionbanner}[4]{%  {color}{icono}{numero}{titulo}
+	\par\vspace{0.6cm}
+	\begin{tcolorbox}[enhanced,
+		colback=#1, colframe=#1,
+		arc=0mm, boxrule=0pt,
+		left=12pt, right=12pt, top=10pt, bottom=10pt,
+		before skip=0pt, after skip=8pt,
+		width=\linewidth+3.6cm, enlarge left by=-1.8cm]
+		\begin{minipage}[c]{0.10\linewidth}
+			\centering
+			{\fontsize{30}{32}\selectfont\textcolor{white!60!#1}{#2}}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.88\linewidth}
+			\textcolor{white!50!#1}{\small\bfseries\MakeUppercase{Misión #3}}\\
+			{\fontsize{18}{22}\selectfont\bfseries\textcolor{white}{#4}}
+		\end{minipage}
+\end{tcolorbox}}
+
+%%──────────────────────────────────────────────────────────────────────
+\begin{document}
+	%%──────────────────────────────────────────────────────────────────────
+	
+	%% ════════════════════════════════════════════════════════════════════
+	%%  PORTADA (MÁS COMPACTA)
+	%% ════════════════════════════════════════════════════════════════════
+	\begin{center}
+		{\LARGE\bfseries LICEO V.A.L.}\\[0.2cm]
+		{\normalsize Módulo de Autoaprendizaje --- Matemáticas 6\textdegree}\\[0.3cm]
+		
+		\begin{tcolorbox}[colback=valblue!12, colframe=valblue,
+			arc=4mm, boxrule=2pt, width=0.9\linewidth]
+			\centering
+			{\fontsize{20}{24}\selectfont\bfseries\textcolor{valblue}{Unidad 11}}\\[0.1cm]
+			{\LARGE\bfseries Matemáticas para la Vida: Mis Compras}\\[0.1cm]
+			{\small Código: 06M-11 AC}
+		\end{tcolorbox}
+		\vspace{0.2cm}
+		\begin{tcolorbox}[colback=white, colframe=valblue,
+			arc=3mm, boxrule=1.5pt, width=0.8\linewidth]
+			\centering
+			\textbf{Nombre:}\\[0.3cm]
+			\underline{\hspace{7cm}}\hspace{1cm}\textbf{Año:}\;\underline{\hspace{2cm}}
+		\end{tcolorbox}
+	\end{center}
+	
+	%% ════════════════════════════════════════════════════════════════════
+	%%  MISIÓN 1 — CONOZCO MIS BILLETES
+	%% ════════════════════════════════════════════════════════════════════
+	\misionbanner{valblue}{\faMoneyBill}{1}{Conozco mis Billetes}
+	
+	\begin{aprender}{valblue}{¿Qué es un billete?}
+		Un \textbf{billete} tiene \textbf{dos caras}. El número grande que ves en el billete es su \textbf{valor}. Ese número te dice cuánto dinero tienes.
+	\end{aprender}
+	
+	\begin{multicols}{2}
+		\billete{2000}{DOS MIL PESOS}
+		\billete{5000}{CINCO MIL PESOS}
+		\billete{10000}{DIEZ MIL PESOS}
+		\billete{20000}{VEINTE MIL PESOS}
+		\billete{50000}{CINCUENTA MIL PESOS}
+		\billete{100000}{CIEN MIL PESOS}
+	\end{multicols}
+	
+	\vspace{6pt}
+	\begin{actividad}{valblue}{1}{¿Cuánto vale este billete?}
+		Lee el número que ves en el billete y escríbelo en la caja.
+		
+		\vspace{4pt}
+		\renewcommand{\arraystretch}{1.6}
+		\begin{center}
+			\begin{tabular}{|m{7.5cm}|m{4.5cm}|}
+				\hline
+				\rowcolor{valblue!15}
+				\textbf{\textcolor{valblue}{Descripción del Billete}} & \textbf{\textcolor{valblue}{¿Cuánto vale?}} \\ \hline
+				El billete \textbf{verde} que tiene el número más grande & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				El billete \textbf{morado} & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				El billete \textbf{naranja} & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				El billete \textbf{rojo} & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				El billete \textbf{azul} & \textbf{\$}\;\boxfill[3cm] \\ \hline
+			\end{tabular}
+		\end{center}
+	\end{actividad}
+	
+	\begin{actividad}{valblue}{2}{Ordena los billetes de menor a mayor}
+		Escribe los valores en orden, del billete más pequeño al billete más grande.
+		
+		\vspace{6pt}
+		\begin{center}
+			\large
+			\boxfill[1.6cm] $<$ \boxfill[1.6cm] $<$ \boxfill[1.6cm] $<$ \boxfill[1.6cm] $<$ \boxfill[1.6cm] $<$ \boxfill[1.6cm]
+		\end{center}
+	\end{actividad}
+	
+	
+	%% ════════════════════════════════════════════════════════════════════
+	%%  MISIÓN 2 — CONOZCO MIS MONEDAS
+	%% ════════════════════════════════════════════════════════════════════
+	\misionbanner{valpurple}{\faCoins}{2}{Conozco mis Monedas}
+	
+	\begin{aprender}{valpurple}{¿Qué es una moneda?}
+		Una \textbf{moneda} es de metal. También tiene dos caras: la \textbf{cara} y el \textbf{sello}. Las monedas valen \textbf{menos} que los billetes.
+	\end{aprender}
+	
+	\begin{multicols}{2}
+		\moneda{50}{CINCUENTA PESOS}
+		\moneda{100}{CIEN PESOS}
+		\moneda{200}{DOSCIENTOS PESOS}
+		\moneda{500}{QUINIENTOS PESOS}
+		\moneda{1000}{MIL PESOS}
+	\end{multicols}
+	
+		\begin{actividad}{valpurple}{3}{¿Es billete o moneda?}
+			Marca con una \textbf{X} en la columna correcta.
+			
+			\vspace{4pt}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{center}
+				\begin{tabular}{|m{4cm}|c|c|}
+					\hline
+					\rowcolor{valpurple!15}
+					\textbf{Descripción} & \textbf{\faCoins} & \textbf{\faMoneyBill} \\ \hline
+					Vale \$50 y es metal & \casilla & \casilla \\ \hline
+					Vale \$20.000 (papel) & \casilla & \casilla \\ \hline
+					Vale \$500 y es metal & \casilla & \casilla \\ \hline
+					Vale \$100.000 (papel) & \casilla & \casilla \\ \hline
+				\end{tabular}
+			\end{center}
+		\end{actividad}
+		
+		\begin{actividad}{valpurple}{4}{Ordena de menor a mayor}
+			Ordena los valores de las monedas.
+			
+			\vspace{12pt}
+			\begin{center}
+				\large
+				\boxfill[1.1cm] $<$\boxfill[1.1cm] $<$\boxfill[1.1cm] $<$\boxfill[1.1cm] $<$ \boxfill[1.1cm]
+			\end{center}
+		\end{actividad}
+	
+	%% ════════════════════════════════════════════════════════════════════
+	%%  MISIÓN 3 — EL TOTAL
+	%% ════════════════════════════════════════════════════════════════════
+	\misionbanner{valorange}{\faCalculator}{3}{¿Cuánto cuesta todo? --- El Total}
+	
+	\begin{aprender}{valorange}{¿Qué es el TOTAL?}
+		El \textbf{TOTAL} es la suma de los precios de todo lo que vas a comprar. Para encontrarlo, \textbf{suma los precios en tu calculadora}.
+	\end{aprender}
+	
+	\begin{actividad}{valorange}{5}{Compra \#1 --- En la tienda del barrio}
+		\begin{minipage}[c]{0.5\linewidth}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{0.8cm}|m{4.5cm}|m{2.5cm}|}
+				\hline \rowcolor{valorange!20} & \textbf{Producto} & \textbf{Precio} \\ \hline
+				\faLeaf & Leche 1 litro & \textbf{\$3.800} \\ \hline
+				\faBreadSlice & Pan tajado & \textbf{\$4.200} \\ \hline
+			\end{tabular}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.45\linewidth}
+			\begin{calculadora}
+				\textcolor{white!70!valdark}{\small\faKeyboard\; En tu calculadora:}\\[2pt]
+				\textcolor{yellow}{\large\bfseries 3800 \;+\; 4200 \;=}
+			\end{calculadora}
+			{\large \textbf{TOTAL = \$}\;\boxfill[3.5cm]}
+		\end{minipage}
+	\end{actividad}
+	
+	\begin{actividad}{valorange}{6}{Compra \#2 --- Tres productos}
+		\begin{minipage}[c]{0.5\linewidth}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{5.5cm}|m{2.5cm}|}
+				\hline \rowcolor{valorange!20}\textbf{Producto} & \textbf{Precio} \\ \hline
+				Gaseosa pequeña & \textbf{\$1.500} \\ \hline
+				Galletas         & \textbf{\$2.200} \\ \hline
+				Jabón de baño   & \textbf{\$2.500} \\ \hline
+			\end{tabular}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.45\linewidth}
+			\begin{calculadora}
+				\textcolor{white!70!valdark}{\small\faKeyboard\; En tu calculadora:}\\[2pt]
+				\textcolor{yellow}{\large\bfseries 1500 + 2200 + 2500 =}
+			\end{calculadora}
+			{\large \textbf{TOTAL = \$}\;\boxfill[3.5cm]}
+		\end{minipage}
+	\end{actividad}
+	
+	
+	%% ════════════════════════════════════════════════════════════════════
+	%%  MISIÓN 4 — ¿ME ALCANZA?
+	%% ════════════════════════════════════════════════════════════════════
+	\misionbanner{valgreen}{\faBalanceScale}{4}{¿Me alcanza el dinero?}
+	
+	\begin{aprender}{valgreen}{La pregunta más importante antes de pagar}
+		Antes de ir a la caja debes preguntarte si tu dinero es \textbf{MAYOR o IGUAL al TOTAL}.
+	\end{aprender}
+	
+	\begin{actividad}{valgreen}{7}{¿Me alcanza?}
+		\begin{minipage}[c]{0.45\linewidth}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{3.5cm}|m{3.5cm}|}
+				\hline \rowcolor{valgreen!20} \textbf{\faWallet\;Tienes} & \textbf{\faShoppingCart\;Pagas} \\ \hline
+				\begin{center}\textcolor{valgreen}{\textbf{\large \$100.000}}\end{center} & \begin{center}\textbf{\large \$85.000}\end{center} \\ \hline
+			\end{tabular}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.5\linewidth}
+			\begin{tip}{valgreen}
+				\textbf{\$100.000 es MAYOR que \$85.000.} ¡Sí alcanza!
+			\end{tip}
+			\casilla\;\textbf{SÍ ALCANZA} \hspace{0.5cm} \casilla\;\textbf{NO ALCANZA}
+		\end{minipage}
+	\end{actividad}
+	
+\begin{actividad}{valgreen}{8}{¿Me alcanza? --- Tabla completa}
+	Calcula el TOTAL primero, luego decide si te alcanza.
+	
+	\vspace{4pt}
+	\renewcommand{\arraystretch}{1.6}
+	\begin{center}
+		\begin{tabular}{|m{4.8cm}|m{2.5cm}|m{2.5cm}|m{3.5cm}|}
+			\hline \rowcolor{valgreen!20} \textbf{Precios a sumar} & \textbf{Total} & \textbf{Mi dinero} & \textbf{¿Alcanza?} \\ \hline
+			\$3.800 + \$2.500 & \$\;\boxfill[1.5cm] & \$5.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$6.000 + \$5.400 + \$3.900 & \$\;\boxfill[1.5cm] & \$20.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$25.500 + \$45.200 & \$\;\boxfill[1.5cm] & \$100.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$12.000 + \$9.800 & \$\;\boxfill[1.5cm] & \$20.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$1.500 + \$2.200 & \$\;\boxfill[1.5cm] & \$5.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$15.000 + \$6.500 & \$\;\boxfill[1.5cm] & \$50.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$4.800 + \$3.200 + \$1.000 & \$\;\boxfill[1.5cm] & \$10.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$32.000 + \$25.000 & \$\;\boxfill[1.5cm] & \$50.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+			\$8.500 + \$1.500 & \$\;\boxfill[1.5cm] & \$10.000 & \casilla\;SÍ\;\casilla\;NO \\ \hline
+		\end{tabular}
+	\end{center}
+\end{actividad}
+	
+	%% ════════════════════════════════════════════════════════════════════
+	%%  MISIÓN 5 — LAS VUELTAS
+	%% ════════════════════════════════════════════════════════════════════
+	\misionbanner{valred}{\ding{214}}{5}{Las Vueltas (el cambio)}
+	
+	\begin{aprender}{valred}{¿Qué son las Vueltas?}
+		Ese dinero que te devuelven se llama \textbf{VUELTAS}. Usa tu calculadora:
+		\textbf{VUELTAS = Billete que diste \;$-$\; Total a Pagar}
+	\end{aprender}
+	
+	\begin{actividad}{valred}{9}{Vueltas en monedas --- Situación \#1}
+		\begin{minipage}[c]{0.45\linewidth}
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabular}{|m{3.5cm}|m{3.5cm}|}
+				\hline \rowcolor{valred!15} \textbf{\faShoppingCart\;Total} & \textbf{\faMoneyBill\;Entregó} \\ \hline
+				\begin{center}\textbf{\large \$4.150}\end{center} & \begin{center}\textcolor{valblue}{\textbf{\large \$5.000}}\end{center} \\ \hline
+			\end{tabular}
+		\end{minipage}\hfill
+		\begin{minipage}[c]{0.5\linewidth}
+			\begin{calculadora}
+				\textcolor{yellow}{\large\bfseries 5000 \;$-$\; 4150 \;=}
+			\end{calculadora}
+			{\large\textbf{\textcolor{valred}{VUELTAS = \$}\;\boxfill[2.5cm]}}
+		\end{minipage}
+		
+		\vspace{6pt}
+		¿Con qué monedas te dan esto? Escribe:\;\boxfill[9.5cm]
+	\end{actividad}
+	
+	\begin{actividad}{valred}{10}{Tabla de Vueltas --- Completa con la calculadora}
+		\vspace{4pt}
+		\renewcommand{\arraystretch}{1.6}
+		\begin{center}
+			\begin{tabular}{|m{3.5cm}|m{3.5cm}|m{4.5cm}|}
+				\hline \rowcolor{valred!20} \textbf{Total a pagar} & \textbf{Billete dado} & \textbf{Vueltas} \\ \hline
+				\$6.400  & \$10.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$12.800 & \$20.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$3.650  & \$5.000  & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$72.450 & \$100.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$18.550 & \$20.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$43.200 & \$50.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$8.150  & \$10.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$1.300  & \$2.000  & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$34.900 & \$50.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+				\$89.650 & \$100.000 & \textbf{\$}\;\boxfill[3cm] \\ \hline
+			\end{tabular}
+		\end{center}
+	\end{actividad}
+\newpage	
+%% ════════════════════════════════════════════════════════════════════
+%%  MISIÓN 6 — LEO MI FACTURA
+%% ════════════════════════════════════════════════════════════════════
+\misionbanner{valnavy}{\faReceipt}{6}{Leo mi Factura (Recibo)}
+
+\begin{aprender}{valnavy}{¿Qué es una factura?}
+	Ese papel tiene tres números clave: \textbf{TOTAL A PAGAR}, \textbf{EFECTIVO} (el billete) y \textbf{VUELTAS}.
+\end{aprender}
+
+\noindent
+\begin{minipage}[t]{0.42\linewidth}
+	\vspace{0pt} % Truco para alinear perfectamente la parte superior
+	\begin{tcolorbox}[enhanced, colback=white, colframe=valdark, arc=2mm, boxrule=1.5pt, drop shadow={opacity=0.15,shadow xshift=2pt,shadow yshift=-2pt}]
+		\begin{center}
+			{\large\bfseries DROGUERÍA EL SOL}\\[2pt]
+			{\small Cra. 8 \# 22-11}\\[4pt]
+			\rule{5.5cm}{0.6pt}\\[4pt]
+			\renewcommand{\arraystretch}{1.4}
+			\begin{tabular}{lr}
+				Shampoo         & \$8.500 \\
+				Pasta dental    & \$3.900 \\
+				Jabón líquido   & \$5.200 \\
+				Desodorante     & \$6.800 \\
+			\end{tabular}\\[4pt]
+			\rule{5.5cm}{0.6pt}\\[4pt]
+			\textcolor{valred}{\bfseries TOTAL:\hfill\$24.400}\\[3pt]
+			\textcolor{valgreen}{\bfseries EFECTIVO:\hfill\$50.000}\\[3pt]
+			\textcolor{valorange}{\bfseries VUELTAS:\hfill\$25.600}\\[4pt]
+			\rule{5.5cm}{0.6pt}\\[3pt]
+			{\small Gracias por su compra}
+		\end{center}
+	\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.55\linewidth}
+	\vspace{0pt} % Truco para alinear perfectamente la parte superior
+	\begin{actividad}{valnavy}{11}{Lee la factura y responde}
+		\raggedright % <--- ESTO EVITA QUE EL TEXTO SE ESTIRE FEO
+		\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=6pt, leftmargin=15pt]
+			\item ¿Cuántos productos compraron?\\[2pt]
+			\boxfill[2.5cm]
+			\item ¿Cuál fue el \textbf{TOTAL A PAGAR}?\\[2pt]
+			\textbf{\$}\;\boxfill[3.5cm]
+			\item ¿Con qué billete pagaron?\\[2pt]
+			\textbf{\$}\;\boxfill[3.5cm]
+			\item ¿Cuánto fueron las \textbf{VUELTAS}?\\[2pt]
+			\textbf{\$}\;\boxfill[3.5cm]
+			\item Comprueba: \$50.000 $-$ \$24.400 =\\[2pt]
+			\textbf{\$}\;\boxfill[3.5cm]\\[4pt]
+			¿Coincide con las Vueltas?\quad \casilla\;SÍ \hspace{0.5cm} \casilla\;NO
+		\end{enumerate}
+	\end{actividad}
+\end{minipage}
+	
+%% ════════════════════════════════════════════════════════════════════
+%%  MISIÓN 7 — MI COMPRA COMPLETA
+%% ════════════════════════════════════════════════════════════════════
+\misionbanner{valblue!70!valgreen}{\faStar}{7}{Mi Compra Completa}
+
+\begin{tcolorbox}[enhanced, colback=boxbg, colframe=valdark!25, arc=4mm, boxrule=0.8pt, left=10pt, right=10pt, top=8pt, bottom=8pt, breakable]
+	\begin{center}
+		{\large\bfseries\faWallet\quad Tienes en tu billetera: \textcolor{valblue}{\$100.000}}\\[8pt]
+	\end{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{tabular}{|m{6cm}|m{3.5cm}|}
+			\hline \rowcolor{valblue!15} \textbf{Producto} & \textbf{Precio} \\ \hline
+			Arroz 1\;kg & \textbf{\$4.500} \\ \hline
+			Aceite $\frac{1}{4}$\;litro & \textbf{\$6.000} \\ \hline
+			Huevos (6 unidades) & \textbf{\$5.400} \\ \hline
+			Sal & \textbf{\$1.200} \\ \hline
+		\end{tabular}
+	\end{center}
+\end{tcolorbox}
+
+\begin{multicols}{2}
+	\resetpasos
+	\begin{pasobox}{valorange}{Paso 1 --- Calcula TOTAL}
+		En la calculadora: \boxfill[3cm]\;\textbf{=}\\[6pt]
+		{\large\bfseries\textcolor{valorange}{TOTAL = \$}\;\boxfill[2.5cm]}
+	\end{pasobox}
+	
+	\resetpasos
+	\begin{pasobox}{valgreen}{Paso 2 --- ¿Alcanza?}
+		Dinero: \$100.000 vs. Total\\[6pt]
+		\casilla\;\textbf{SÍ} \hspace{0.5cm} \casilla\;\textbf{NO ALCANZA}
+	\end{pasobox}
+\end{multicols}
+
+\begin{pasobox}{valred}{Paso 3 --- Calcula las Vueltas}
+	Calculadora: \$100.000 $-$ \$\;\boxfill[2cm]\;= \hspace{1cm} {\large\bfseries\textcolor{valred}{VUELTAS = \$}\;\boxfill[3cm]}
+\end{pasobox}
+
+\begin{actividad}{valblue!70!valgreen}{12}{Escribe tu propio recibo}
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=white, colframe=valdark, arc=2mm, boxrule=1.8pt, width=9.5cm, left=12pt, right=12pt, top=10pt, bottom=10pt, drop shadow={opacity=0.18,shadow xshift=3pt,shadow yshift=-3pt}, breakable]
+			\begin{center}
+				{\large\bfseries MI TIQUETE DE COMPRA}\\[4pt]
+				\rule{7.5cm}{0.6pt}\\[6pt]
+				\renewcommand{\arraystretch}{1.6}
+				\begin{tabular}{lr}
+					Arroz 1\;kg                  & \$4.500 \\
+					Aceite $\frac{1}{4}$\;litro  & \$6.000 \\
+					Huevos (6)                   & \$5.400 \\
+					Sal                          & \$1.200 \\
+				\end{tabular}\\[6pt]
+				\rule{7.5cm}{0.6pt}\\[4pt]
+				\textcolor{valred}{\bfseries TOTAL A PAGAR:\hfill \$\;\boxfill[2.8cm]}\\[4pt]
+				\textcolor{valgreen}{\bfseries EFECTIVO:\hfill \$\;\boxfill[2.8cm]}\\[4pt]
+				\textcolor{valorange}{\bfseries VUELTAS:\hfill \$\;\boxfill[2.8cm]}
+			\end{center}
+		\end{tcolorbox}
+	\end{center}
+\end{actividad}
+
+%% ── SEGUNDA COMPRA ──────────────────────────────────────────────
+\vspace{0.6cm}
+\begin{center}
+	{\Large\bfseries\textcolor{valblue}{\faShoppingBasket\; Segunda Compra: Útiles Escolares}}
+\end{center}
+\vspace{0.2cm}
+
+\begin{tcolorbox}[enhanced, colback=boxbg, colframe=valdark!25, arc=4mm, boxrule=0.8pt, left=10pt, right=10pt, top=8pt, bottom=8pt, breakable]
+	\begin{center}
+		{\large\bfseries\faWallet\quad Tienes en tu billetera: \textcolor{valblue}{\$50.000}}\\[8pt]
+	\end{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{tabular}{|m{6cm}|m{3.5cm}|}
+			\hline \rowcolor{valblue!15} \textbf{Producto} & \textbf{Precio} \\ \hline
+			Cuaderno grande & \textbf{\$12.500} \\ \hline
+			Caja de colores & \textbf{\$15.000} \\ \hline
+			Lápiz y Borrador & \textbf{\$4.200} \\ \hline
+			Pegante & \textbf{\$3.300} \\ \hline
+		\end{tabular}
+	\end{center}
+\end{tcolorbox}
+
+\begin{multicols}{2}
+	\resetpasos
+	\begin{pasobox}{valorange}{Paso 1 --- Calcula TOTAL}
+		En la calculadora: \boxfill[3cm]\;\textbf{=}\\[6pt]
+		{\large\bfseries\textcolor{valorange}{TOTAL = \$}\;\boxfill[2.5cm]}
+	\end{pasobox}
+	
+	\resetpasos
+	\begin{pasobox}{valgreen}{Paso 2 --- ¿Alcanza?}
+		Dinero: \$50.000 vs. Total\\[6pt]
+		\casilla\;\textbf{SÍ} \hspace{0.5cm} \casilla\;\textbf{NO ALCANZA}
+	\end{pasobox}
+\end{multicols}
+
+\begin{pasobox}{valred}{Paso 3 --- Calcula las Vueltas}
+	Calculadora: \$50.000 $-$ \$\;\boxfill[2cm]\;= \hspace{1cm} {\large\bfseries\textcolor{valred}{VUELTAS = \$}\;\boxfill[3cm]}
+\end{pasobox}
+
+\begin{actividad}{valblue!70!valgreen}{13}{Escribe el recibo}
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=white, colframe=valdark, arc=2mm, boxrule=1.8pt, width=9.5cm, left=12pt, right=12pt, top=10pt, bottom=10pt, drop shadow={opacity=0.18,shadow xshift=3pt,shadow yshift=-3pt}, breakable]
+			\begin{center}
+				{\large\bfseries PAPELERÍA EL ESTUDIANTE}\\[4pt]
+				\rule{7.5cm}{0.6pt}\\[6pt]
+				\renewcommand{\arraystretch}{1.6}
+				\begin{tabular}{lr}
+					Cuaderno grande              & \$12.500 \\
+					Caja de colores              & \$15.000 \\
+					Lápiz y Borrador             & \$4.200 \\
+					Pegante                      & \$3.300 \\
+				\end{tabular}\\[6pt]
+				\rule{7.5cm}{0.6pt}\\[4pt]
+				\textcolor{valred}{\bfseries TOTAL A PAGAR:\hfill \$\;\boxfill[2.8cm]}\\[4pt]
+				\textcolor{valgreen}{\bfseries EFECTIVO:\hfill \$\;\boxfill[2.8cm]}\\[4pt]
+				\textcolor{valorange}{\bfseries VUELTAS:\hfill \$\;\boxfill[2.8cm]}
+			\end{center}
+		\end{tcolorbox}
+	\end{center}
+\end{actividad}
+
+%% ── TERCERA COMPRA ──────────────────────────────────────────────
+\vspace{0.6cm}
+\begin{center}
+	{\Large\bfseries\textcolor{valblue}{\faIceCream\; Tercera Compra: Antojos en la Tienda}}
+\end{center}
+\vspace{0.2cm}
+
+\begin{tcolorbox}[enhanced, colback=boxbg, colframe=valdark!25, arc=4mm, boxrule=0.8pt, left=10pt, right=10pt, top=8pt, bottom=8pt, breakable]
+	\begin{center}
+		{\large\bfseries\faWallet\quad Tienes en tu billetera: \textcolor{valblue}{\$10.000}}\\[8pt]
+	\end{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{tabular}{|m{6cm}|m{3.5cm}|}
+			\hline \rowcolor{valblue!15} \textbf{Producto} & \textbf{Precio} \\ \hline
+			Helado de chocolate & \textbf{\$3.500} \\ \hline
+			Paquete de galletas & \textbf{\$2.200} \\ \hline
+			Jugo en caja & \textbf{\$1.800} \\ \hline
+			Chocolatina & \textbf{\$1.500} \\ \hline
+		\end{tabular}
+	\end{center}
+\end{tcolorbox}
+
+\begin{multicols}{2}
+	\resetpasos
+	\begin{pasobox}{valorange}{Paso 1 --- Calcula TOTAL}
+		En la calculadora: \boxfill[3cm]\;\textbf{=}\\[6pt]
+		{\large\bfseries\textcolor{valorange}{TOTAL = \$}\;\boxfill[2.5cm]}
+	\end{pasobox}
+	
+	\resetpasos
+	\begin{pasobox}{valgreen}{Paso 2 --- ¿Alcanza?}
+		Dinero: \$10.000 vs. Total\\[6pt]
+		\casilla\;\textbf{SÍ} \hspace{0.5cm} \casilla\;\textbf{NO ALCANZA}
+	\end{pasobox}
+\end{multicols}
+
+\begin{pasobox}{valred}{Paso 3 --- Calcula las Vueltas}
+	Calculadora: \$10.000 $-$ \$\;\boxfill[2cm]\;= \hspace{1cm} {\large\bfseries\textcolor{valred}{VUELTAS = \$}\;\boxfill[3cm]}
+\end{pasobox}
+
+\begin{actividad}{valblue!70!valgreen}{14}{Escribe el recibo}
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=white, colframe=valdark, arc=2mm, boxrule=1.8pt, width=9.5cm, left=12pt, right=12pt, top=10pt, bottom=10pt, drop shadow={opacity=0.18,shadow xshift=3pt,shadow yshift=-3pt}, breakable]
+			\begin{center}
+				{\large\bfseries TIENDAS EL BARRIO}\\[4pt]
+				\rule{7.5cm}{0.6pt}\\[6pt]
+				\renewcommand{\arraystretch}{1.6}
+				\begin{tabular}{lr}
+					Helado de chocolate          & \$3.500 \\
+					Paquete de galletas          & \$2.200 \\
+					Jugo en caja                 & \$1.800 \\
+					Chocolatina                  & \$1.500 \\
+				\end{tabular}\\[6pt]
+				\rule{7.5cm}{0.6pt}\\[4pt]
+				\textcolor{valred}{\bfseries TOTAL A PAGAR:\hfill \$\;\boxfill[2.8cm]}\\[4pt]
+				\textcolor{valgreen}{\bfseries EFECTIVO:\hfill \$\;\boxfill[2.8cm]}\\[4pt]
+				\textcolor{valorange}{\bfseries VUELTAS:\hfill \$\;\boxfill[2.8cm]}
+			\end{center}
+		\end{tcolorbox}
+	\end{center}
+\end{actividad}
+	
+\end{document}

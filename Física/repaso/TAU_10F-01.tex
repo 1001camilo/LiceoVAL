@@ -1,0 +1,338 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[table]{xcolor} % <-- CORREGIDO: Se añadió [table] para permitir \rowcolor
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% --- FUENTE SISTEMA ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{245,247,250}
+
+% Fondo institucional del Liceo V.A.L.
+\IfFileExists{../../FondoVAL.pdf}{
+	\AddToShipoutPictureBG{
+		\AtPageLowerLeft{
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+		}
+	}
+}{}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE CIENCIAS BÁSICAS}
+\fancyhead[R]{\footnotesize \color{gray} FÍSICA 10º -- TAU 1 (10F--01)}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- INTERRUPTOR DINÁMICO DE RESPUESTAS ---
+% \showanswerstrue -> Muestra respuestas (Versión Docente)
+% \showanswersfalse -> Oculta respuestas (Versión Estudiante)
+\newif\ifshowanswers
+\showanswerstrue % Cambia a \showanswersfalse para ocultarlas
+
+\newcommand{\answer}[1]{
+	\ifshowanswers
+	\par\vspace{0.15cm}
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!60!white, arc=1mm, boxrule=0.5pt, title=\textbf{\footnotesize SOLUCIÓN PASO A PASO (DOCENTE)}]
+		\color{blue!80!black}\footnotesize #1
+	\end{tcolorbox}
+	\par\vspace{0.15cm}
+	\else
+	\par\vspace{0.3cm}
+	\fi
+}
+
+\begin{document}
+	
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS -- GRADO 10º}}\\[0.1cm]
+		{\large \textbf{TALLER DE REPASO: TAU 1 -- INICIANDO EN LA FÍSICA Y EL PROCESO DE LA MEDIDA}}\\[0.1cm]
+		{\small \textbf{Física 10º} \quad | \quad \textbf{Código: 10F--01 / 10F01P} \quad | \quad \textbf{Unidades, Conversiones y Vectores}}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Nombre del Estudiante:} \underline{\hspace{8.5cm}} \hfill \textbf{Fecha:} \underline{\hspace{3cm}}
+	
+	\vspace{0.3cm}
+	\begin{tcolorbox}[colback=valgray, colframe=valdark, arc=1mm, boxrule=0.8pt]
+		\textit{\textbf{Instrucciones:} Resuelve los siguientes 10 puntos en tu cuaderno de física de forma limpia y ordenada. Muestra todos los procedimientos matemáticos, la cancelación de unidades por el método de factores de conversión y la fundamentación conceptual en cada respuesta. Se permite el uso de calculadora científica.}
+	\end{tcolorbox}
+	\vspace{0.3cm}
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm]
+		
+		% PUNTO 1
+		\item \textbf{(10\%) Fundamentos de la Física y Método Científico:}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Define con tus propias palabras qué es una \textbf{magnitud física} y explica la diferencia fundamental entre una variable medida experimentalmente y un objeto o propiedad no medible.
+			\item Clasifica los siguientes elementos indicando si corresponde a una \textbf{Magnitud Física} (M) o \textbf{No es Magnitud} (N):
+			\begin{itemize}[itemsep=0.1cm]
+				\item [\textbf{[\quad]}] La masa de un bloque de acero.
+				\item [\textbf{[\quad]}] La alegría de ganar un partido.
+				\item [\textbf{[\quad]}] El tiempo transcurrido en un experimento.
+				\item [\textbf{[\quad]}] La belleza de un paisaje de montaña.
+				\item [\textbf{[\quad]}] La temperatura corporal de un paciente.
+			\end{itemize}
+		\end{enumerate}
+		
+		\answer{
+			\textbf{a) Definición:} Una magnitud física es toda propiedad de un cuerpo o fenómeno natural que se puede medir cuantitativamente mediante un número y una unidad patrón estándar. Propiedades como sentimientos o apreciaciones estéticas no son magnitudes porque no se pueden medir con un instrumento unificado.\\[0.1cm]
+			\textbf{b) Clasificación:} \\
+			- Masa: \textbf{M} (Magnitud) \\
+			- Alegría: \textbf{N} (No es magnitud) \\
+			- Tiempo: \textbf{M} (Magnitud) \\
+			- Belleza: \textbf{N} (No es magnitud) \\
+			- Temperatura: \textbf{M} (Magnitud)
+		}
+		
+		% PUNTO 2
+		\item \textbf{(10\%) Magnitudes Fundamentales vs. Derivadas y sus Instrumentos:} 
+		Completa la siguiente tabla clasificando cada magnitud física como \textbf{Fundamental} o \textbf{Derivada}, indicando su unidad estándar en el Sistema Internacional (SI) y el instrumento de medición adecuado:
+		
+		% CORREGIDO: Se usa tabularx para que no se salga de los márgenes
+		\begin{center}
+			\small
+			\renewcommand{\arraystretch}{1.5}
+			\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+				\hline
+				\rowcolor{valblue}
+				\color{white}\textbf{Magnitud} & \color{white}\textbf{Tipo (Fundamental / Derivada)} & \color{white}\textbf{Unidad SI (Nombre y Símbolo)} & \color{white}\textbf{Instrumento de Medida} \\
+				\hline
+				Longitud & & & \\ \hline
+				Masa & & & \\ \hline
+				Velocidad & & & \\ \hline
+				Tiempo & & & \\ \hline
+				Densidad & & & \\
+				\hline
+			\end{tabularx}
+		\end{center}
+		
+		\answer{
+			\textbf{Solución de la tabla:}
+			\begin{itemize}[itemsep=0.1cm]
+				\item \textbf{Longitud:} Fundamental | Metro ($\text{m}$) | Regla, flexómetro o calibrador pie de rey.
+				\item \textbf{Masa:} Fundamental | Kilogramo ($\text{kg}$) | Balanza o báscula.
+				\item \textbf{Velocidad:} Derivada | Metro por segundo ($\text{m/s}$) | Velocímetro / fotocelda y cronómetro.
+				\item \textbf{Tiempo:} Fundamental | Segundo ($\text{s}$) | Cronómetro o reloj atómico.
+				\item \textbf{Densidad:} Derivada | Kilogramo por metro cúbico ($\text{kg/m}^3$) | Densímetro o medición de masa (balanza) y volumen (probeta).
+			\end{itemize}
+		}
+		
+		% PUNTO 3
+		\item \textbf{(10\%) Prefijos del Sistema Internacional (Múltiplos y Submúltiplos):} 
+		Utiliza la tabla de prefijos decimales ($10^{12}$ a $10^{-12}$) para responder los siguientes cuestionamientos:
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Expresa $5,4\text{ GHz}$ (Gigahertz) en hertz ($\text{Hz}$) mediante potencias de 10.
+			\item Un glóbulo rojo tiene un diámetro aproximado de $8\ \mu\text{m}$ (micrómetros). ¿A cuántos metros ($\text{m}$) equivale esta longitud?
+			\item Si la memoria de un disco duro es de $2\text{ TB}$ (Terabytes), ¿cuántos Bytes ($\text{B}$) de almacenamiento representa?
+		\end{enumerate}
+		
+		\answer{
+			\textbf{Soluciones con prefijos del SI:}
+			\begin{itemize}[itemsep=0.15cm]
+				\item a) Giga ($\text{G}$) equivale a $10^9$. Por tanto: $5,4\text{ GHz} = \mathbf{5,4 \times 10^9\text{ Hz}}$ ($5.400.000.000\text{ Hz}$).
+				\item b) Micro ($\mu$) equivale a $10^{-6}$. Por tanto: $8\ \mu\text{m} = \mathbf{8 \times 10^{-6}\text{ m}}$ ($0,000008\text{ m}$).
+				\item c) Tera ($\text{T}$) equivale a $10^{12}$. Por tanto: $2\text{ TB} = \mathbf{2 \times 10^{12}\text{ B}}$ ($2.000.000.000.000\text{ Bytes}$).
+			\end{itemize}
+		}
+		
+		% PUNTO 4
+		\item \textbf{(10\%) Conversión de Unidades de Longitud, Masa y Tiempo:} 
+		Aplica el método de \textbf{factores de conversión} (mostrando de forma explícita la simplificación de unidades) para realizar las siguientes transformaciones:
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Convertir $850\text{ pies}$ ($\text{ft}$) a metros ($\text{m}$). \quad (\textit{Dato: $1\text{ ft} = 0,3048\text{ m}$})
+			\item Convertir $0,45\text{ toneladas}$ ($\text{ton}$) a gramos ($\text{g}$). \quad (\textit{Dato: $1\text{ ton} = 1.000\text{ kg}$, $1\text{ kg} = 1.000\text{ g}$})
+			\item Convertir $3,5\text{ horas}$ ($\text{h}$) a segundos ($\text{s}$). \quad (\textit{Dato: $1\text{ h} = 3.600\text{ s}$})
+		\end{enumerate}
+		
+		\answer{
+			\textbf{Desarrollo paso a paso por factores de conversión:}
+			\begin{itemize}[itemsep=0.2cm]
+				\item a) $850\text{ ft} \times \left(\frac{0,3048\text{ m}}{1\text{ ft}}\right) = 850 \times 0,3048 = \mathbf{259,08\text{ m}}$.
+				\item b) $0,45\text{ ton} \times \left(\frac{1.000\text{ kg}}{1\text{ ton}}\right) \times \left(\frac{1.000\text{ g}}{1\text{ kg}}\right) = 0,45 \times 10^6 = \mathbf{450.000\text{ g}}$ ($4,5 \times 10^5\text{ g}$).
+				\item c) $3,5\text{ h} \times \left(\frac{3.600\text{ s}}{1\text{ h}}\right) = 3,5 \times 3.600 = \mathbf{12.600\text{ s}}$.
+			\end{itemize}
+		}
+		
+		% PUNTO 5
+		\item \textbf{(10\%) Conversión de Unidades Compuestas (Velocidad y Densidad):} 
+		En física es indispensable transformar unidades compuestas al Sistema Internacional. Realiza los siguientes ejercicios:
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item La velocidad máxima de un automóvil en autopista es de $108\text{ km/h}$. Expresa dicha velocidad en metros por segundo ($\text{m/s}$).
+			\item La densidad del aluminio es de $2,7\text{ g/cm}^3$. Transforma esta densidad a kilogramos por metro cúbico ($\text{kg/m}^3$). \quad (\textit{Dato: $1\text{ kg} = 1.000\text{ g}$, $1\text{ m}^3 = 10^6\text{ cm}^3$})
+		\end{enumerate}
+		
+		\answer{
+			\textbf{Procedimiento explícito:}
+			\begin{itemize}[itemsep=0.2cm]
+				\item a) $108\text{ }\frac{\text{km}}{\text{h}} \times \left(\frac{1.000\text{ m}}{1\text{ km}}\right) \times \left(\frac{1\text{ h}}{3.600\text{ s}}\right) = \frac{108.000}{3.600} = \mathbf{30\text{ m/s}}$.
+				\item b) $2,7\text{ }\frac{\text{g}}{\text{cm}^3} \times \left(\frac{1\text{ kg}}{1.000\text{ g}}\right) \times \left(\frac{10^6\text{ cm}^3}{1\text{ m}^3}\right) = 2,7 \times \frac{1.000.000}{1.000} = 2,7 \times 1.000 = \mathbf{2.700\text{ kg/m}^3}$.
+			\end{itemize}
+		}
+		
+		% PUNTO 6
+		\item \textbf{(10\%) Notación Científica y Operaciones de Potencias de 10:}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Escribe los siguientes números en notación científica ($C \times 10^e$, con $1 \le C < 10$):
+			\begin{itemize}[itemsep=0.1cm]
+				\item Distancia media de la Tierra al Sol: $149.600.000.000\text{ m} \rightarrow$ \underline{\hspace{4cm}}
+				% CORREGIDO: Se forzó un salto de línea para evitar el overfull hbox.
+				\item Masa de un electrón: \\ $0,000000000000000000000000000000911\text{ kg} \rightarrow$ \underline{\hspace{4cm}}
+			\end{itemize}
+			\item Resuelve las siguientes operaciones expresando el resultado final en notación científica:
+			\begin{itemize}[itemsep=0.15cm]
+				\item $(4,2 \times 10^5) \times (3,0 \times 10^4) = $ \underline{\hspace{4cm}}
+				\item $\frac{8,4 \times 10^{-3}}{2,1 \times 10^{-7}} = $ \underline{\hspace{4cm}}
+			\end{itemize}
+		\end{enumerate}
+		
+		\answer{
+			\textbf{Soluciones en notación científica:}
+			\begin{itemize}[itemsep=0.15cm]
+				\item \textbf{a)} 
+				\begin{itemize}
+					\item $149.600.000.000\text{ m} = \mathbf{1,496 \times 10^{11}\text{ m}}$.
+					\item $0,000000000000000000000000000000911\text{ kg} = \mathbf{9,11 \times 10^{-31}\text{ kg}}$.
+				\end{itemize}
+				\item \textbf{b)}
+				\begin{itemize}
+					\item $(4,2 \times 3,0) \times 10^{5+4} = 12,6 \times 10^9 = \mathbf{1,26 \times 10^{10}}$.
+					\item $\left(\frac{8,4}{2,1}\right) \times 10^{-3 - (-7)} = 4,0 \times 10^{-3 + 7} = \mathbf{4,0 \times 10^4}$.
+				\end{itemize}
+			\end{itemize}
+		}
+		
+		% PUNTO 7
+		\item \textbf{(10\%) Análisis Dimensional y Coherencia de Ecuaciones:} 
+		El análisis dimensional verifica si una fórmula física es correcta mediante el álgebra de dimensiones básicas: Longitud $[L]$, Masa $[M]$ y Tiempo $[T]$.
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Determina las dimensiones de la aceleración ($a = \frac{v}{t}$) y de la fuerza ($F = m \cdot a$).
+			\item Verifica si la siguiente ecuación del movimiento es dimensionalmente homogénea:
+			\[ d = v_0 \cdot t + \frac{1}{2} a \cdot t^2 \]
+			donde $d$ es distancia $[L]$, $v_0$ es velocidad $[L T^{-1}]$, $a$ es aceleración $[L T^{-2}]$ y $t$ es tiempo $[T]$.
+		\end{enumerate}
+		
+		\answer{
+			\textbf{Demostración dimensional paso a paso:}
+			\begin{itemize}[itemsep=0.15cm]
+				\item a) Dimensiones de velocidad: $[v] = [L T^{-1}]$. \\
+				Aceleración: $[a] = \frac{[v]}{[t]} = \frac{[L T^{-1}]}{[T]} = \mathbf{[L T^{-2}]}$. \\
+				Fuerza: $[F] = [m] \cdot [a] = \mathbf{[M L T^{-2}]}$ (equivale a Newtons).
+				\item b) Evaluamos cada término de la ecuación $d = v_0 \cdot t + \frac{1}{2} a \cdot t^2$:
+				\begin{itemize}
+					\item Lado izquierdo: $[d] = \mathbf{[L]}$.
+					\item Primer término del lado derecho: $[v_0 \cdot t] = [L T^{-1}] \cdot [T] = \mathbf{[L]}$.
+					\item Segundo término del lado derecho (las constantes adimensionales como $1/2$ no tienen dimensiones): $[\frac{1}{2} a \cdot t^2] = [L T^{-2}] \cdot [T^2] = \mathbf{[L]}$.
+				\end{itemize}
+				Como todos los términos tienen dimensiones de Longitud $[L]$, la ecuación es \textbf{dimensionalmente homogénea y correcta}.
+			\end{itemize}
+		}
+		
+		% PUNTO 8
+		\item \textbf{(10\%) Magnitudes Escalares vs. Magnitudes Vectoriales:}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Explica la diferencia principal entre una cantidad \textbf{escalar} y una cantidad \textbf{vectorial}.
+			\item Dibuja en el recuadro un vector en un plano cartesiano que represente un desplazamiento de $5\text{ cm}$ orientado a $37^\circ$ al Norte del Este. Señala sus componentes: \textbf{Magnitud}, \textbf{Dirección} (ángulo) y \textbf{Sentido} (flecha).
+			\item Clasifica las siguientes magnitudes en el recuadro correspondiente: 
+			\textit{Temperatura ($25^\circ\text{C}$), Velocidad ($80\text{ km/h}$ al Norte), Masa ($5\text{ kg}$), Fuerza ($50\text{ N}$ hacia abajo), Tiempo ($12\text{ s}$), Desplazamiento ($10\text{ m}$ al Este)}.
+		\end{enumerate}
+		
+		\begin{center}
+			\small
+			\begin{tabular}{|p{7.5cm}|p{7.5cm}|}
+				\hline
+				\rowcolor{valblue}
+				\color{white}\centering\textbf{Magnitudes Escalares} & \color{white}\centering\arraybackslash\textbf{Magnitudes Vectoriales} \\
+				\hline
+				\rule{0pt}{1.5cm} & \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\answer{
+			\textbf{Solución de escalares y vectores:}
+			\begin{itemize}[itemsep=0.15cm]
+				\item a) Una cantidad \textbf{escalar} queda totalmente definida con un número (módulo) y una unidad de medida. Una cantidad \textbf{vectorial} requiere además una dirección (ángulo) y un sentido de orientación espacial.
+				\item b) En el dibujo del vector: La longitud de la flecha ($5\text{ cm}$) representa la magnitud, la inclinación de $37^\circ$ respecto al eje X positivo representa la dirección, y la punta de la flecha hacia el primer cuadrante marca el sentido.
+				\item c) Clasificación: \\
+				- \textbf{Escalares:} Temperatura ($25^\circ\text{C}$), Masa ($5\text{ kg}$), Tiempo ($12\text{ s}$). \\
+				- \textbf{Vectoriales:} Velocidad ($80\text{ km/h}$ al Norte), Fuerza ($50\text{ N}$ hacia abajo), Desplazamiento ($10\text{ m}$ al Este).
+			\end{itemize}
+		}
+		
+		% PUNTO 9
+		\item \textbf{(10\%) Práctica de Laboratorio -- El Proceso de la Medida y Márgenes de Error (10F01P):} 
+		En la práctica de laboratorio "El proceso de la medida", un grupo de estudiantes midió el diámetro de una esfera de aluminio utilizando dos instrumentos diferentes:
+		\begin{itemize}
+			\item Medición con regla escolar básica: $2,5\text{ cm}$ ($\pm 0,1\text{ cm}$).
+			\item Medición con calibrador pie de rey: $2,46\text{ cm}$ ($\pm 0,01\text{ cm}$).
+			\item El valor teórico real de fábrica es de $2,48\text{ cm}$.
+		\end{itemize}
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Calcula el porcentaje de error ($\% E$) de la medida obtenida con la regla escolar utilizando la fórmula:
+			\[ \% E = \left| \frac{\text{Valor Teórico} - \text{Valor Experimental}}{\text{Valor Teórico}} \right| \times 100\% \]
+			\item Calcula el porcentaje de error ($\% E$) de la medida obtenida con el calibrador pie de rey.
+			\item Explica cuál de los dos instrumentos ofreció una mayor \textbf{precisión} y \textbf{exactitud} en la práctica.
+		\end{enumerate}
+		
+		\answer{
+			\textbf{Cálculo de márgenes de error:}
+			\begin{itemize}[itemsep=0.2cm]
+				\item a) Error con Regla escolar: $\% E = \left| \frac{2,48 - 2,5}{2,48} \right| \times 100\% = \left| \frac{-0,02}{2,48} \right| \times 100\% \approx \mathbf{0,806\%}$.
+				\item b) Error con Calibrador pie de rey: $\% E = \left| \frac{2,48 - 2,46}{2,48} \right| \times 100\% = \left| \frac{0,02}{2,48} \right| \times 100\% \approx \mathbf{0,806\%}$.
+				\item c) \textbf{Análisis de precisión y exactitud:} Ambos instrumentos resultaron ofrecer idéntica \textbf{exactitud} (el porcentaje de error respecto al valor teórico es el mismo). Sin embargo, el calibrador pie de rey ofrece una mayor \textbf{precisión} debido a su menor incertidumbre o sensibilidad de escala ($\pm 0,01\text{ cm}$ frente a $\pm 0,1\text{ cm}$ de la regla), permitiendo realizar mediciones centesimales.
+			\end{itemize}
+		}
+		
+		% PUNTO 10
+		\item \textbf{(10\%) Problema Integrado de Aplicación Real:} 
+		Un camión cisterna transporta $15.000\text{ litros}$ ($\text{L}$) de aceite mineral que tiene una densidad de $0,85\text{ g/cm}^3$. Durante el trayecto, viaja a una velocidad constante de $72\text{ km/h}$ durante un tiempo de $45\text{ minutos}$.
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Convierte el volumen transportado a metros cúbicos ($\text{m}^3$) y la densidad a $\text{kg/m}^3$. \quad (\textit{Dato: $1\text{ m}^3 = 1.000\text{ L}$})
+			\item Calcula la masa total del aceite transportado en kilogramos ($\text{kg}$) y exprésala en notación científica. \quad (\textit{Fórmula: $\text{Masa} = \text{Densidad} \times \text{Volumen}$})
+			\item Convierte la velocidad a $\text{m/s}$ y calcula la distancia total recorrida en metros ($\text{m}$) durante los $45\text{ minutos}$. \quad (\textit{Fórmula: $d = v \cdot t$})
+		\end{enumerate}
+		
+		\answer{
+			\textbf{Solución integrada paso a paso:}
+			\begin{itemize}[itemsep=0.2cm]
+				\item a) Volumen: $15.000\text{ L} \times \left(\frac{1\text{ m}^3}{1.000\text{ L}}\right) = \mathbf{15\text{ m}^3}$. \\
+				Densidad: $0,85\text{ g/cm}^3 \times 1.000 = \mathbf{850\text{ kg/m}^3}$.
+				\item b) Masa: $m = \text{Densidad} \times \text{Volumen} = 850\text{ kg/m}^3 \times 15\text{ m}^3 = \mathbf{12.750\text{ kg}}$. \\
+				En notación científica: $\mathbf{1,275 \times 10^4\text{ kg}}$.
+				\item c) Velocidad: $72\text{ km/h} = \mathbf{20\text{ m/s}}$. \\
+				Tiempo: $45\text{ min} \times 60\text{ s/min} = \mathbf{2.700\text{ s}}$. \\
+				Distancia: $d = v \cdot t = 20\text{ m/s} \times 2.700\text{ s} = \mathbf{54.000\text{ m}}$ ($54\text{ km}$ o $5,4 \times 10^4\text{ m}$).
+			\end{itemize}
+		}
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\textit{\color{valdark!70} ``El rigor en la medición y el análisis es el primer paso para comprender las leyes del universo.'' -- Liceo V.A.L.}
+	\end{center}
+	
+\end{document}
