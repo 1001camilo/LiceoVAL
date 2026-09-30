@@ -1,0 +1,130 @@
+\documentclass[11pt, letterpaper]{article} 
+
+% --- PAQUETES --- 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish, es-noshorthands]{babel} 
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} 
+\usepackage{graphicx} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{enumitem} 
+\usepackage{xcolor} 
+\usepackage{fancyhdr} 
+\usepackage{eso-pic} 
+
+% --- FUENTE SISTEMA --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault} 
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) --- 
+\definecolor{valblue}{RGB}{0,112,192} 
+\definecolor{valdark}{RGB}{30,30,30} 
+\definecolor{valgray}{RGB}{245,247,250} 
+
+% Fondo institucional (opcional si dispones de la imagen) 
+\IfFileExists{../../FondoVAL.pdf}{ 
+	\AddToShipoutPictureBG{ 
+		\AtPageLowerLeft{ 
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf} 
+		} 
+	} 
+}{} 
+
+% --- CONFIGURACIÓN DE PÁGINA --- 
+\pagestyle{fancy} 
+\fancyhf{} 
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE CIENCIAS BÁSICAS} 
+\fancyhead[R]{\footnotesize \color{gray} FÍSICA 11º} 
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt} 
+
+% --- INTERRUPTOR DE RESPUESTAS (Muestra u oculta la solución) --- 
+\newif\ifshowanswers 
+\showanswersfalse % Cambiar a \showanswerstrue para ver el solucionario 
+
+% SE CORRIGIÓ [3] POR [1] YA QUE SOLO SE USA UN ARGUMENTO
+\newcommand{\answer}[1]{ 
+	\ifshowanswers 
+	\par\vspace{0.15cm} 
+	{\color{blue!80!black}\small\textbf{Solución:} #1} 
+	\par\vspace{0.15cm} 
+	\else 
+	\par\vspace{0.3cm} 
+	\fi 
+} 
+
+\begin{document} 
+	
+	\begin{center} 
+		{\Large \textbf{\color{valblue} LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm] 
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm] 
+		{\large \textbf{EXAMEN DE FÍSICA: MOVIMIENTO ONDULATORIO}}\\[0.1cm] 
+		\hfill \textbf{11 F -- 03. FL} 
+	\end{center} 
+	\vspace{0.2cm} 
+	
+	\noindent \textbf{NOMBRE:} \underline{\hspace{8.5cm}} \hfill \textbf{FECHA:} \underline{\hspace{3cm}} 
+	\vspace{0.2cm} 
+	
+	\hfill\noindent \textbf{CON CALCULADORA} 
+	\vspace{0.4cm} 
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm] 
+		
+		% --- PUNTO 1 --- 
+		\item \textbf{25\% \quad ¿A qué fenómeno corresponden los siguientes enunciados?} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item Dos ondas al encontrarse pueden generar una onda de mayor tamaño o de menor tamaño que cualquiera de las ondas iniciales. \underline{\hspace{6cm}} 
+			\answer{\textbf{Interferencia} (constructiva o destructiva).} 
+			
+			\item Al encontrarse con un obstáculo, una onda cambia su dirección devolviendose.\\
+			 \underline{\hspace{6cm}} 
+			\answer{\textbf{Reflexión}} 
+		\end{enumerate} 
+		
+		% --- PUNTO 2 --- 
+		\item \textbf{25\% \quad Una onda de $1.5\text{ m}$ de amplitud vibra a razón de $2.3\text{ Hz}$ avanzando $750\text{ cm}$ en $3\text{ segundos}$. Determine en el Sistema Internacional:} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item Ecuación de la onda si se desplaza hacia la derecha. 
+			\answer{ Datos: $A = 1.5\text{ m}$, $f = 2.3\text{ Hz} \implies \omega = 2\pi f = 4.6\pi\text{ rad/s} \approx 14.45\text{ rad/s}$.\\ 
+				Velocidad: $v = \frac{7.5\text{ m}}{3\text{ s}} = 2.5\text{ m/s}$.\\ 
+				Longitud de onda: $\lambda = \frac{v}{f} = \frac{2.5}{2.3} \approx 1.087\text{ m} \implies k = \frac{2\pi}{\lambda} = 1.84\pi\text{ rad/m} \approx 5.78\text{ rad/m}$.\\ 
+				Ecuación hacia la derecha: $y(x,t) = 1.5 \sin(1.84\pi x - 4.6\pi t)$ \quad (o $y(x,t) = 1.5 \sin(5.78 x - 14.45 t)$). } 
+			
+			\item Ecuación de la onda si se desplaza hacia la izquierda. 
+			\answer{ Ecuación hacia la izquierda: $y(x,t) = 1.5 \sin(1.84\pi x + 4.6\pi t)$ \quad (o $y(x,t) = 1.5 \sin(5.78 x + 14.45 t)$). } 
+		\end{enumerate} 
+		
+		% --- PUNTO 3 --- 
+		\item \textbf{25\% \quad Una onda se mueve de acuerdo con la función $y(x,t) = 4.5 \sin(4x + 6\pi t)$, determine:} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item Periodo y amplitud. 
+			\answer{ Estructura $y(x,t) = A \sin(kx + \omega t)$:\\ 
+				$\bullet$ Amplitud $A = \mathbf{4.5\text{ m}}$.\\ 
+				$\bullet$ $\omega = 6\pi\text{ rad/s} \implies T = \frac{2\pi}{\omega} = \frac{2\pi}{6\pi} = \mathbf{\frac{1}{3}\text{ s}} \approx \mathbf{0.33\text{ s}}$. } 
+			
+			\item Velocidad de propagación. 
+			\answer{ $\bullet$ Número de onda $k = 4\text{ rad/m}$.\\ 
+				$\bullet$ Velocidad $v = \frac{\omega}{k} = \frac{6\pi}{4} = \mathbf{1.5\pi\text{ m/s}} \approx \mathbf{4.71\text{ m/s}}$ (hacia la izquierda). } 
+		\end{enumerate} 
+		
+		% --- PUNTO 4 --- 
+		\item \textbf{25\% \quad Una onda incide del aire ($n=1$) a razón de $200\text{ m/s}$ y con un ángulo de inclinación de $48^\circ$ hacia un medio que tiene un índice de $1,4$. Determine:} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item Ángulo de refracción. 
+			\answer{ Ley de Snell: $n_1 \sin(\theta_1) = n_2 \sin(\theta_2)$ con $n_1 = 1.0$ (aire).\\ 
+				$1.0 \cdot \sin(48^\circ) = 1.4 \cdot \sin(\theta_2) \implies \sin(\theta_2) = \frac{0.7431}{1.4} \approx 0.5308$.\\ 
+				$\theta_2 = \arcsin(0.5308) \approx \mathbf{32,06^\circ}$. } 
+			
+			\item Velocidad en el medio. 
+			\answer{ Velocidad en el segundo medio: $v_2 = \frac{v_1}{n_2} = \frac{200\text{ m/s}}{1.4} \approx \mathbf{142,86\text{ m/s}}$. } 
+		\end{enumerate} 
+		
+	\end{enumerate} 
+	\vfill 
+	\begin{center} 
+		\textit{\color{gray} ``Hacia un Aprendizaje Significativo, Autónomo y en Libertad'' -- Liceo V.A.L.} 
+	\end{center} 
+\end{document}

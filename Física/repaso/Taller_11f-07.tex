@@ -1,0 +1,300 @@
+\documentclass[11pt, letterpaper]{article} 
+
+% --- PAQUETES --- 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish, es-noshorthands]{babel} 
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry} 
+\usepackage{graphicx} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{enumitem} 
+\usepackage[table]{xcolor} 
+\usepackage{tikz} 
+\usetikzlibrary{arrows.meta} 
+\usepackage{fancyhdr} 
+\usepackage{eso-pic} 
+\usepackage[most]{tcolorbox} 
+\usepackage{booktabs} 
+\usepackage{tabularx} 
+
+% --- FUENTE SISTEMA --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault} 
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) --- 
+\definecolor{valblue}{RGB}{0,112,192} 
+\definecolor{valdark}{RGB}{30,30,30} 
+\definecolor{valgray}{RGB}{245,247,250} 
+\definecolor{valpurple}{RGB}{100,30,160} 
+
+% --- CONFIGURACIÓN DE PÁGINA --- 
+
+
+% =================================================================== 
+% INTERRUPTOR DINÁMICO DE RESPUESTAS: 
+% \showanswerstrue -> Muestra respuestas (Solucionario Docente) 
+% \showanswersfalse -> Oculta respuestas (Versión Estudiante) 
+% =================================================================== 
+\newif\ifshowanswers 
+\showanswersfalse % Cambiar a \showanswerstrue para el solucionario 
+
+\newcommand{\answer}[1]{ 
+	\ifshowanswers 
+	\par\vspace{0.15cm} 
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!60!white, arc=1mm, boxrule=0.5pt, title=\textbf{\footnotesize SOLUCIÓN PASO A PASO (DOCENTE)}] 
+		\color{blue!80!black}\footnotesize #1 
+	\end{tcolorbox} 
+	\par\vspace{0.15cm} 
+	\else 
+	\par\vspace{0.3cm} 
+	\fi 
+} 
+
+\begin{document} 
+	
+	\begin{center} 
+		
+		{\large \textbf{TALLER DE REPASO: FENÓMENOS ELECTROSTÁTICOS Y LEY DE COULOMB}}\\[0.1cm] 
+		{\small \textbf{Física 11º} \quad | \quad \textbf{Código: 11F--07} } 
+	\end{center} 
+
+	
+	
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm] 
+		
+		% PUNTO 1 
+		\item \textbf{ Métodos de Electrificación e Interacción por Frotamiento:} 
+		Se sabe que al frotar una barra de vidrio con una tela de seda, la barra cede electrones adquiriendo carga positiva ($+$) y la seda se carga negativamente ($-$). Asimismo, al frotar una barra de ebonita (o plástico) con un trozo de lana, la ebonita gana electrones adquiriendo carga negativa ($-$) y la lana queda cargada positivamente ($+$). 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Indique el tipo de interacción electrostática (\textbf{Atracción} o \textbf{Repulsión}) que se presenta entre los siguientes pares de objetos frotados e indique la razón física: 
+			\begin{itemize}[itemsep=0.1cm] 
+				\item Vidrio frotado y ebonita frotada: \underline{\hspace{5cm}} 
+				\item Seda frotada y lana frotada: \underline{\hspace{5cm}} 
+				\item Vidrio frotado y lana frotada: \underline{\hspace{5cm}} 
+			\end{itemize} 
+			\item Explica la diferencia cualitativa entre la electrificación por \textbf{frotamiento} y la electrificación por \textbf{inducción}. 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Tipo de interacción por ley de signos:} 
+			\begin{itemize}[itemsep=0.1cm] 
+				\item Vidrio ($+$) y ebonita ($-$): \textbf{Atracción} (cargas de diferente signo se atraen). 
+				\item Seda ($-$) y lana ($+$): \textbf{Atracción} (cargas de diferente signo se atraen). 
+				\item Vidrio ($+$) y lana ($+$): \textbf{Repulsión} (cargas de igual signo se repelen). 
+			\end{itemize} 
+			\textbf{b) Diferencia entre frotamiento e inducción:} 
+			En el frotamiento hay contacto directo y transferencia real de electrones entre dos cuerpos de diferente afinidad electrónica. En la inducción no hay contacto directo; el cuerpo cargado induce un reordenamiento o polarización de cargas en el cuerpo neutro sin transferirle carga inicialmente. 
+		} 
+		
+		% PUNTO 2 
+		\item \textbf{ Cuantización y Conservación de la Carga Eléctrica:} 
+		Un cuerpo metálico inicialmente neutro es electrizado por contacto, transfiriéndosele un exceso de $3,75 \times 10^{13}\text{ electrones}$. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Determina el signo y el valor total de la carga eléctrica adquirida $q$, expresada en Coulombs ($\text{C}$) y en microcoulombs ($\mu\text{C}$). 
+			\item Enuncia el \textbf{Principio de Conservación de la Carga Eléctrica} y explica por qué la carga eléctrica es una magnitud cuantizada. 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Cálculo de la carga total:} 
+			Como gana electrones, la carga adquirida es negativa: 
+			\\[ q = - n \cdot e = -(3,75 \times 10^{13}) \cdot (1,6 \times 10^{-19}\text{ C}) = \mathbf{-6,0 \times 10^{-6}\text{ C}} = \mathbf{-6,0\text{ }\mu\text{C}} \\] 
+			\textbf{b) Conservación y cuantización:} 
+			El principio de conservación establece que en todo sistema aislado la carga eléctrica total permanece constante (no se crea ni se destruye, solo se transfiere). Se dice que la carga está cuantizada porque cualquier carga libre $q$ en la naturaleza siempre es un múltiplo entero de la carga elemental $e$ ($q = n \cdot e$). 
+		} 
+		
+		% PUNTO 3 
+		\item \textbf{ Ley de Coulomb Directa y Variación Proporcional:} 
+		Dos pequeñas esferas conductoras cargadas con $q_1 = +8\text{ }\mu\text{C}$ y $q_2 = -2\text{ }\mu\text{C}$ se encuentran situadas en el aire a una distancia de $12\text{ cm}$ ($0,12\text{ m}$). 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Calcula la magnitud de la fuerza eléctrica entre las esferas e indica si es de atracción o de repulsión. 
+			\item Si la distancia entre las dos esferas se reduce a la tercera parte ($r' = 4\text{ cm}$), ¿por qué factor se multiplica la fuerza inicial? Calcula el nuevo valor de la fuerza $F'$. 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Magnitud de la fuerza inicial:} 
+			\\[ F = k \frac{|q_1 \cdot q_2|}{r^2} = (9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot \frac{(8 \times 10^{-6}\text{ C}) \cdot (2 \times 10^{-6}\text{ C})}{(0,12\text{ m})^2} \\] 
+			\\[ F = (9 \times 10^9) \cdot \frac{1,6 \times 10^{-11}}{0,0144} = \mathbf{10,0\text{ N}} \quad \text{(\textbf{Fuerza de Atracción}, pues tienen signos opuestos)} \\] 
+			\textbf{b) Cambio proporcional con la distancia:} 
+			Dado que $F \propto \frac{1}{r^2}$, al reducir la distancia a la tercera parte ($r' = r/3$), la fuerza se multiplica por un factor de $3^2 = 9$. 
+			\\[ F' = 9 \cdot F = 9 \cdot (10,0\text{ N}) = \mathbf{90,0\text{ N}} \\] 
+		} 
+		
+		% PUNTO 4 
+		\item \textbf{ Ley de Coulomb - Despeje de Carga y Distancia Desconocida:} 
+		Dos cargas puntuales $q_1 = +15\text{ }\mu\text{C}$ y $q_2$ desconocida se repelen con una fuerza de $54\text{ N}$ cuando están separadas una distancia de $10\text{ cm}$ ($0,10\text{ m}$). 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Determina el signo y la magnitud de la carga $q_2$ en microcoulombs ($\mu\text{C}$). 
+			\item ¿A qué distancia $r''$ deberían colocarse para que la fuerza de repulsión se reduzca a $6\text{ N}$? 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Despeje y signo de $q_2$:} 
+			Al ser una fuerza de repulsión y $q_1 > 0$, la carga $q_2$ debe ser obligatoriamente \textbf{positiva} ($+$). 
+			\\[ F = k \frac{q_1 \cdot q_2}{r^2} \implies q_2 = \frac{F \cdot r^2}{k \cdot q_1} \\] 
+			\\[ q_2 = \frac{(54\text{ N}) \cdot (0,10\text{ m})^2}{(9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot (15 \times 10^{-6}\text{ C})} = \frac{0,54}{135000} = \mathbf{4,0 \times 10^{-6}\text{ C}} = \mathbf{+4,0\text{ }\mu\text{C}} \\] 
+			\textbf{b) Despeje de la nueva distancia:} 
+			Para reducir la fuerza de $54\text{ N}$ a $6\text{ N}$ (un factor de $\frac{54}{6} = 9$), la distancia debe triplicarse ($r'' = 3 \cdot r$): 
+			\\[ r'' = \sqrt{\frac{k \cdot q_1 \cdot q_2}{F''}} = \sqrt{\frac{(9 \times 10^9) \cdot (15 \times 10^{-6}) \cdot (4 \times 10^{-6})}{6}} = \sqrt{\frac{0,54}{6}} = \sqrt{0,09} = \mathbf{0,30\text{ m}} = \mathbf{30\text{ cm}} \\] 
+		} 
+		\newpage 
+		
+		% PUNTO 5 
+		\item \textbf{ Superposición de Fuerzas en 1D (3 Cargas Colineales):} 
+		Tres cargas puntuales se ubican sobre el eje X en el aire: $q_1 = +5\text{ }\mu\text{C}$ en $x_1 = 0\text{ cm}$, $q_2 = -3\text{ }\mu\text{C}$ en $x_2 = 10\text{ cm}$, y $q_3 = +8\text{ }\mu\text{C}$ en $x_3 = 20\text{ cm}$. 
+		\begin{center} 
+			\begin{tikzpicture}[scale=1.2, >=stealth] 
+				\draw[thick, ->] (-0.5,0) -- (6.5,0) node[right] {$x\text{ (cm)}$}; 
+				% Carga 1 
+				\fill[valblue] (0,0) circle (0.25) node[white] {\small $+$}; 
+				\node[below=8pt] at (0,0) {\small $q_1 = +5\mu\text{C}$}; 
+				\node[above=4pt] at (0,0) {\small $x=0$}; 
+				% Carga 2 
+				\fill[red!80!black] (2.5,0) circle (0.25) node[white] {\small $-$}; 
+				\node[below=8pt] at (2.5,0) {\small $q_2 = -3\mu\text{C}$}; 
+				\node[above=4pt] at (2.5,0) {\small $x=10\text{ cm}$}; 
+				% Carga 3 
+				\fill[valblue] (5.0,0) circle (0.25) node[white] {\small $+$}; 
+				\node[below=8pt] at (5.0,0) {\small $q_3 = +8\mu\text{C}$}; 
+				\node[above=4pt] at (5.0,0) {\small $x=20\text{ cm}$}; 
+				% Cotas 
+				\draw[<->, gray] (0,-1.0) -- (2.5,-1.0) node[midway, below] {\tiny $10\text{ cm}$}; 
+				\draw[<->, gray] (2.5,-1.0) -- (5.0,-1.0) node[midway, below] {\tiny $10\text{ cm}$}; 
+			\end{tikzpicture} 
+		\end{center} 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Dibuja el diagrama de vectores de fuerza que actúan exclusivamente sobre la partícula central $q_2$. 
+			\item Calcula la magnitud de la fuerza neta que ejercen $q_1$ y $q_3$ sobre la partícula $q_2$. 
+			\item ¿Hacia qué dirección se movería la partícula $q_2$ si se deja libre (hacia la izquierda o hacia la derecha)? 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Diagrama sobre $q_2$:} 
+			Como $q_1 (+)$ atrae a $q_2 (-)$, la fuerza $\vec{F}_{12}$ apunta hacia la \textbf{izquierda} ($-\hat{i}$). Como $q_3 (+)$ atrae a $q_2 (-)$, la fuerza $\vec{F}_{32}$ apunta hacia la \textbf{derecha} ($+\hat{i}$).\\[0.1cm] 
+			\textbf{b) Cálculo de las componentes vectoriales:} 
+			\begin{itemize}[itemsep=0.1cm] 
+				\item Distancia $r_{12} = 0,10\text{ m}$: $F_{12} = (9 \times 10^9) \cdot \frac{(5 \times 10^{-6}) \cdot (3 \times 10^{-6})}{(0,10)^2} = \frac{0,135}{0,01} = 13,5\text{ N}$ (hacia la izquierda). 
+				\item Distancia $r_{32} = 0,10\text{ m}$: $F_{32} = (9 \times 10^9) \cdot \frac{(8 \times 10^{-6}) \cdot (3 \times 10^{-6})}{(0,10)^2} = \frac{0,216}{0,01} = 21,6\text{ N}$ (hacia la derecha). 
+			\end{itemize} 
+			Fuerza neta resultante: $F_{\text{neta}} = F_{32} - F_{12} = 21,6\text{ N} - 13,5\text{ N} = \mathbf{8,1\text{ N}}$.\\[0.1cm] 
+			\textbf{c) Dirección:} 
+			La fuerza resultante apunta hacia la \textbf{derecha} ($+\hat{i}$) porque la atracción ejercida por $q_3$ es mayor. 
+		} 
+		
+		% PUNTO 6 
+		\item \textbf{ Superposición de Fuerzas en 2D (Distribución Rectangular/Triangular):} 
+		En un sistema cartesiano bidimensional se colocan tres cargas: $q_1 = -4\text{ }\mu\text{C}$ en el origen $(0,0)$, $q_2 = +6\text{ }\mu\text{C}$ sobre el eje Y en el punto $(0, 30\text{ cm})$, y $q_3 = +9\text{ }\mu\text{C}$ sobre el eje X en el punto $(40\text{ cm}, 0)$. 
+		\begin{center} 
+			\begin{tikzpicture}[scale=1.1, >=stealth] 
+				\draw[thick, ->] (-0.5,0) -- (5.0,0) node[right] {$x\text{ (cm)}$}; 
+				\draw[thick, ->] (0,-0.5) -- (0,4.0) node[above] {$y\text{ (cm)}$}; 
+				% Carga 1 
+				\fill[red!80!black] (0,0) circle (0.22) node[white] {\small $-$}; 
+				\node[below left] at (0,0) {\small $q_1 = -4\mu\text{C}$}; 
+				% Carga 2 
+				\fill[valblue] (0,3.0) circle (0.22) node[white] {\small $+$}; 
+				\node[left=4pt] at (0,3.0) {\small $q_2 = +6\mu\text{C}$ $(0, 30\text{ cm})$}; 
+				% Carga 3 
+				\fill[valblue] (4.0,0) circle (0.22) node[white] {\small $+$}; 
+				\node[below=4pt] at (4.0,0) {\small $q_3 = +9\mu\text{C}$ $(40\text{ cm}, 0)$}; 
+				% Líneas de unión 
+				\draw[dashed, gray] (0,0) -- (0,3.0); 
+				\draw[dashed, gray] (0,0) -- (4.0,0); 
+			\end{tikzpicture} 
+		\end{center} 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Dibuja el diagrama de vectores de las fuerzas $\vec{F}_{21}$ y $\vec{F}_{31}$ actuando sobre $q_1$. 
+			\item Calcula las magnitudes de las fuerzas componentes $F_x$ y $F_y$ sobre $q_1$. 
+			\item Determina la magnitud de la fuerza neta $F_{\text{neta}}$ recibida por $q_1$ y el ángulo $\theta$ que forma con el eje X positivo. 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Diagrama vectorial:} 
+			$q_2 (+)$ atrae a $q_1 (-)$ hacia arriba ($\vec{F}_y = +\hat{j}$). 
+			$q_3 (+)$ atrae a $q_1 (-)$ hacia la derecha ($\vec{F}_x = +\hat{i}$).\\[0.1cm] 
+			\textbf{b) Magnitudes de componentes:} 
+			\begin{itemize}[itemsep=0.1cm] 
+				\item Componente en Y ($r_y = 0,30\text{ m}$): $F_y = (9 \times 10^9) \cdot \frac{(4 \times 10^{-6}) \cdot (6 \times 10^{-6})}{(0,30)^2} = \frac{0,216}{0,09} = \mathbf{2,4\text{ N}}$ ($+\hat{j}$). 
+				\item Componente en X ($r_x = 0,40\text{ m}$): $F_x = (9 \times 10^9) \cdot \frac{(4 \times 10^{-6}) \cdot (9 \times 10^{-6})}{(0,40)^2} = \frac{0,324}{0,16} = \mathbf{2,025\text{ N}}$ ($+\hat{i}$). 
+			\end{itemize} 
+			\textbf{c) Magnitud resultante y dirección:} 
+			\\[ F_{\text{neta}} = \sqrt{F_x^2 + F_y^2} = \sqrt{(2,025)^2 + (2,4)^2} = \sqrt{4,100625 + 5,76} = \sqrt{9,860625} \approx \mathbf{3,14\text{ N}} \\] 
+			\\[ \theta = \arctan\left(\frac{F_y}{F_x}\right) = \arctan\left(\frac{2,4}{2,025}\right) = \arctan(1,1852) \approx \mathbf{49,84^\circ} \quad \text{(en el primer cuadrante)} \\] 
+		} 
+		\newpage
+		% PUNTO 7 
+		\item \textbf{ Análisis Comparativo: Ley Gravitacional de Newton vs. Ley de Coulomb:} 
+		Completa el siguiente cuadro comparativo indicando dos semejanzas y dos diferencias fundamentales entre la Ley de Gravitación Universal ($F_g = G \frac{m_1 m_2}{r^2}$) y la Ley de Coulomb ($F_e = k \frac{|q_1 q_2|}{r^2}$): 
+		\begin{center} 
+			\small 
+			\begin{tabularx}{\textwidth}{|X|X|} 
+				\hline 
+				\rowcolor{valblue} \color{white}\textbf{Semejanzas} & \color{white}\textbf{Diferencias} \\ \hline 
+				1. & 1. \\[1cm] \hline 
+				2. & 2. \\[1cm] \hline 
+			\end{tabularx} 
+		\end{center} 
+		\answer{ 
+			\textbf{Semejanzas:} 
+			\begin{enumerate} 
+				\item Ambas son fuerzas centrales de acción a distancia que disminuyen inversamente con el cuadrado de la distancia ($F \propto \frac{1}{r^2}$). 
+				\item Ambas dependen del producto de propiedades intrínsecas fundamentales de la materia (masas $m_1, m_2$ en gravitacional y cargas $q_1, q_2$ en electrostática). 
+			\end{enumerate} 
+			\textbf{Diferencias:} 
+			\begin{enumerate} 
+				\item La fuerza gravitacional es exclusivamente de atracción, mientras que la fuerza electrostática puede ser tanto de atracción (signos opuestos) como de repulsión (mismo signo). 
+				\item La constante electrostática ($k \approx 9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2$) es inmensamente mayor que la constante gravitacional ($G \approx 6,67 \times 10^{-11}\text{ N}\cdot\text{m}^2/\text{kg}^2$), haciendo que la interacción electrostática sea órdenes de magnitud más intensa a nivel atómico. 
+			\end{enumerate} 
+		} 
+		
+		% PUNTO 8 
+		\item \textbf{ Campo Eléctrico y Fuerza sobre Carga de Prueba:} 
+		Una carga puntual fija $Q = +12\text{ }\mu\text{C}$ genera un campo eléctrico en el espacio libre que la rodea. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Calcula la intensidad del campo eléctrico $E$ producido a una distancia de $30\text{ cm}$ ($0,30\text{ m}$) de dicha carga e indica su sentido radial. 
+			\item Si en dicho punto se coloca una carga de prueba $q_0 = -2\text{ nC}$ ($1\text{ nC} = 10^{-9}\text{ C}$), determina la magnitud y dirección de la fuerza eléctrica que experimenta. 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Campo eléctrico $E$:} 
+			\\[ E = k \frac{|Q|}{r^2} = (9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot \frac{12 \times 10^{-6}\text{ C}}{(0,30\text{ m})^2} = \frac{1,08 \times 10^5}{0,09} = \mathbf{1,2 \times 10^6\text{ N/C}} \\] 
+			Sentido: Radialmente \textbf{hacia afuera} (al ser $Q$ positiva).\\[0.1cm] 
+			\textbf{b) Fuerza sobre la carga de prueba $q_0$:} 
+			\\[ F = |q_0| \cdot E = (2 \times 10^{-9}\text{ C}) \cdot (1,2 \times 10^6\text{ N/C}) = \mathbf{2,4 \times 10^{-3}\text{ N}} = \mathbf{2,4\text{ mN}} \\] 
+			Dirección: Radialmente \textbf{hacia adentro} (atracción hacia la carga $+Q$, opuesta al sentido del campo $E$ porque $q_0$ es negativa). 
+		} 
+		
+		% PUNTO 9 
+		\item \textbf{ Equilibrio Electrostático entre Cargas del Mismo Signo:} 
+		Dos cargas fijas $q_A = +4\text{ }\mu\text{C}$ y $q_B = +16\text{ }\mu\text{C}$ están separadas por una distancia $d = 60\text{ cm}$ sobre el eje X. 
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm] 
+			\item Explica por qué en el punto de equilibrio (donde la fuerza neta o el campo eléctrico se anula) una tercera carga $q_C$ debe ubicarse obligatoriamente \textbf{entre ambas cargas} y no por fuera de ellas. 
+			\item Calcula la distancia $x$ (medida desde la carga $q_A$) donde se logra dicho equilibrio electrostático. 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Justificación de la posición interlineal:} 
+			Como ambas cargas $q_A$ y $q_B$ tienen el mismo signo ($+$), los campos eléctricos o fuerzas producidas sobre $q_C$ solo tienen sentidos opuestos en los puntos intermedios comprendidos entre $q_A$ y $q_B$. Por fuera de ellas, ambas fuerzas apuntan en el mismo sentido y nunca se cancelarían.\\[0.1cm] 
+			\textbf{b) Cálculo algebraico de la distancia $x$:} 
+			Sea $x$ la distancia desde $q_A$, entonces la distancia desde $q_B$ es $(0,60 - x)$. 
+			\\[ F_{AC} = F_{BC} \implies k \frac{q_A \cdot |q_C|}{x^2} = k \frac{q_B \cdot |q_C|}{(0,60 - x)^2} \implies \frac{q_A}{x^2} = \frac{q_B}{(0,60 - x)^2} \\] 
+			Reemplazando $q_A = 4$ y $q_B = 16$: 
+			\\[ \frac{4}{x^2} = \frac{16}{(0,60 - x)^2} \\] 
+			Aplicando raíz cuadrada a ambos lados: 
+			\\[ \frac{2}{x} = \frac{4}{0,60 - x} \implies 2(0,60 - x) = 4x \implies 1,20 - 2x = 4x \implies 6x = 1,20 \\] 
+			\\[ x = \frac{1,20}{6} = \mathbf{0,20\text{ m}} = \mathbf{20\text{ cm}} \quad \text{(medidos desde la carga } q_A) \\] 
+		} 
+		
+		% PUNTO 10 
+		\item \textbf{ Evaluación de Enunciados Conceptuales (Falso o Verdadero):} 
+		Responde Verdadero (\textbf{V}) o Falso (\textbf{F}) a cada enunciado y justifica tu respuesta basándote en las leyes de la electrostática: 
+		\begin{enumerate}[label=\alph*), itemsep=0.4cm] 
+			\item \underline{\hspace{1.2cm}} En un conductor metálico en equilibrio electrostático, todo el exceso de carga se distribuye exclusivamente en su superficie exterior y el campo eléctrico en su interior es nulo. \\ \textbf{Justificación:} \underline{\hspace{14cm}} \\ \underline{\hspace{16cm}} 
+			\item \underline{\hspace{1.2cm}} Al frotar dos cuerpos neutros entre sí, se genera nueva carga eléctrica positiva en uno y negativa en el otro, aumentando la carga neta total del universo. \\ \textbf{Justificación:} \underline{\hspace{14cm}} \\ \underline{\hspace{16cm}} 
+			\item \underline{\hspace{1.2cm}} Un cuerpo cargado eléctricamente puede atraer a pequeños objetos neutros (como trozos de papel) gracias a un fenómeno conocido como polarización electrostática. \\ \textbf{Justificación:} \underline{\hspace{14cm}} \\ \underline{\hspace{16cm}} 
+		\end{enumerate} 
+		\answer{ 
+			\textbf{a) Verdadero (V)}.\\[0.05cm] 
+			\textbf{Justificación:} Las cargas de igual signo en un conductor se repelen libremente hasta alcanzar la mayor separación posible, alojándose en la superficie exterior. Como consecuencia, las cargas no se mueven y el campo eléctrico neto en el interior es cero (Efecto Jaula de Faraday).\\[0.1cm] 
+			\textbf{b) Falso (F)}.\\[0.05cm] 
+			\textbf{Justificación:} Por el Principio de Conservación de la Carga, la carga no se crea ni se destruye. En el frotamiento solo ocurre una transferencia de electrones de un cuerpo a otro; la carga total neta del sistema aislado sigue siendo exactamente igual a cero.\\[0.1cm] 
+			\textbf{c) Verdadero (V)}.\\[0.05cm] 
+			\textbf{Justificación:} El campo del objeto cargado provoca una reubicación microscópica de las cargas en las moléculas del cuerpo neutro (polarización), atrayendo las cargas de signo opuesto más cercanas a la superficie y generando una fuerza neta de atracción. 
+		} 
+		
+	\end{enumerate} 
+
+\end{document}

@@ -1,0 +1,120 @@
+\documentclass[11pt, letterpaper]{article} 
+
+% --- PAQUETES --- 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish, es-noshorthands]{babel} 
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} 
+\usepackage{graphicx} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{enumitem} 
+\usepackage{xcolor} 
+\usepackage{fancyhdr} 
+\usepackage{eso-pic} 
+
+% --- FUENTE SISTEMA --- 
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault} 
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) --- 
+\definecolor{valblue}{RGB}{0,112,192} 
+\definecolor{valdark}{RGB}{30,30,30} 
+\definecolor{valgray}{RGB}{245,247,250} 
+
+% Fondo institucional (opcional si dispones de la imagen) 
+\IfFileExists{../../FondoVAL.pdf}{ 
+	\AddToShipoutPictureBG{ 
+		\AtPageLowerLeft{ 
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf} 
+		} 
+	} 
+}{} 
+
+% --- CONFIGURACIÓN DE PÁGINA --- 
+\pagestyle{fancy} 
+\fancyhf{} 
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE CIENCIAS BÁSICAS} 
+\fancyhead[R]{\footnotesize \color{gray} FÍSICA 11º -- REPASO} 
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt} 
+
+% --- INTERRUPTOR DE RESPUESTAS --- 
+\newif\ifshowanswers 
+% =================================================================
+% CAMBIA ESTE VALOR: \showanswerstrue (Muestra) | \showanswersfalse (Oculta)
+\showanswerstrue 
+% =================================================================
+
+\newcommand{\answer}[1]{ 
+	\ifshowanswers 
+	\par\vspace{0.15cm} 
+	{\color{valblue}\small\textbf{Solución:}\\ #1} 
+	\par\vspace{0.15cm} 
+	\else 
+	\par\vspace{3.5cm} % Espacio en blanco para que el estudiante responda
+	\fi 
+} 
+
+\begin{document} 
+	
+	\begin{center} 
+		{\large \textbf{TALLER DE REPASO: MOVIMIENTO ONDULATORIO}}
+	\end{center} 
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm] 
+		
+		% --- PUNTO 1 --- 
+		\item \textbf{ Una onda mecánica se propaga siguiendo la función $y(x,t) = 3.2 \sin(5x - 8\pi t)$, determine con base en ella:} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item La amplitud de la onda y su periodo. 
+			\answer{ Según la estructura $y(x,t) = A \sin(kx - \omega t)$:\\ 
+				$\bullet$ Amplitud $A = \mathbf{3.2\text{ m}}$.\\ 
+				$\bullet$ Frecuencia angular $\omega = 8\pi\text{ rad/s} \implies T = \frac{2\pi}{\omega} = \frac{2\pi}{8\pi} = \mathbf{0.25\text{ s}}$ (o $\frac{1}{4}\text{ s}$). } 
+			
+			\item Su velocidad de propagación y la dirección en la que viaja. 
+			\answer{ $\bullet$ Número de onda $k = 5\text{ rad/m}$.\\ 
+				$\bullet$ Velocidad $v = \frac{\omega}{k} = \frac{8\pi}{5} = \mathbf{1.6\pi\text{ m/s}} \approx \mathbf{5.02\text{ m/s}}$.\\
+				$\bullet$ Como el signo entre $kx$ y $\omega t$ es negativo, la onda viaja hacia la \textbf{derecha}. } 
+		\end{enumerate} 
+		
+		% --- PUNTO 2 --- 
+		\item \textbf{ Un haz de ondas viaja por el aire a una velocidad de $340\text{ m/s}$. Dicho haz incide con un ángulo de $35^\circ$ sobre un cristal cuyo índice de refracción es $1,6$. Determine:} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item La nueva velocidad de refracción. 
+			\answer{ Sabiendo que $v_2 = \frac{v_1 \cdot n_1}{n_2}$ o $v_2 = \frac{v_1}{n_2}$ (porque viene del aire):\\
+				$v_2 = \frac{340\text{ m/s}}{1.6} = \mathbf{212.5\text{ m/s}}$. } 
+			
+			\item El ángulo de refracción con el que entra al cristal. 
+			\answer{ Aplicamos la Ley de Snell: $n_1 \sin(\theta_1) = n_2 \sin(\theta_2)$.\\ 
+				$1.0 \cdot \sin(35^\circ) = 1.6 \cdot \sin(\theta_2) \implies \sin(\theta_2) = \frac{0.5735}{1.6} \approx 0.3584$.\\ 
+				$\theta_2 = \arcsin(0.3584) \approx \mathbf{20.99^\circ}$ (o $21^\circ$). } 
+		\end{enumerate} 
+		
+		% --- PUNTO 3 --- 
+		\item \textbf{ Lea atentamente las definiciones e indique a qué fenómeno ondulatorio hace referencia cada una:} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item Cuando una onda choca contra una barrera u obstáculo que no puede atravesar y rebota regresando por el mismo medio de propagación. \underline{\hspace{5cm}} 
+			\answer{\textbf{Reflexión}.} 
+			
+			\item Es el fenómeno que ocurre cuando dos o más ondas se superponen en un mismo punto del espacio, pudiendo sumar sus amplitudes o anularse entre sí. \underline{\hspace{5cm}} 
+			\answer{\textbf{Interferencia} (constructiva o destructiva).} 
+		\end{enumerate} 
+		
+		% --- PUNTO 4 --- 
+		\item \textbf{ Un generador produce una onda con una amplitud de $2.0\text{ m}$ que vibra a una frecuencia de $1.8\text{ Hz}$. Se observa que la onda logra avanzar $1200\text{ cm}$ en un tiempo de $4\text{ segundos}$. Determine en el Sistema Internacional (SI):} 
+		\begin{enumerate}[label=\alph*., itemsep=0.4cm, leftmargin=0.8cm] 
+			\item La ecuación de la onda si asumimos que se desplaza hacia la izquierda. 
+			\answer{ Datos iniciales: $A = 2.0\text{ m}$, $f = 1.8\text{ Hz} \implies \omega = 2\pi(1.8) = 3.6\pi\text{ rad/s} \approx 11.31\text{ rad/s}$.\\ 
+				Velocidad real: $1200\text{ cm} = 12\text{ m}$. Luego $v = \frac{12\text{ m}}{4\text{ s}} = 3.0\text{ m/s}$.\\ 
+				Longitud de onda: $\lambda = \frac{v}{f} = \frac{3.0}{1.8} \approx 1.667\text{ m} \implies k = \frac{2\pi}{\lambda} = \frac{2\pi}{1.667} = 1.2\pi\text{ rad/m} \approx 3.77\text{ rad/m}$.\\ 
+				Ecuación hacia la \textbf{izquierda} (signo positivo): $y(x,t) = 2.0 \sin(1.2\pi x + 3.6\pi t)$ \quad (o $y(x,t) = 2.0 \sin(3.77 x + 11.31 t)$). } 
+			
+			\item La ecuación de la onda si se desplazara hacia la derecha. 
+			\answer{ Ecuación hacia la \textbf{derecha} (signo negativo): $y(x,t) = 2.0 \sin(1.2\pi x - 3.6\pi t)$ \quad (o $y(x,t) = 2.0 \sin(3.77 x - 11.31 t)$). } 
+		\end{enumerate} 
+		
+	\end{enumerate} 
+	
+\end{document}

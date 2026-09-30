@@ -1,0 +1,83 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{helvet}
+\usepackage[most]{tcolorbox}
+\usepackage{eso-pic}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{245,247,250}
+
+% --- FONDO INSTITUCIONAL ---
+\IfFileExists{../../FondoVAL.pdf}{
+	\AddToShipoutPictureBG{
+		\AtPageLowerLeft{
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+		}
+	}
+}{}
+
+\begin{document}
+	
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+		{\large \textbf{TALLER DE REPASO: INICIACIÓN A LA FÍSICA}}\\[0.1cm]
+		{\small \textbf{Física 10º} \quad | \quad \textbf{Código: 10F--01} \quad | \quad \textbf{TAU 1}}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Nombre del Estudiante:} \underline{\hspace{8.5cm}} \hfill \textbf{Fecha:} \underline{\hspace{3cm}}
+	\vspace{0.4cm}
+	
+	\begin{tcolorbox}[colback=valgray, colframe=valdark, arc=1mm, boxrule=0.8pt]
+		\textit{\textbf{Instrucciones:} Resuelve los siguientes puntos justificando cada procedimiento matemáticamente. Debes evidenciar el uso de factores de conversión y el análisis dimensional riguroso utilizando corchetes ($[L], [M], [T]$). Se permite el uso de calculadora.}
+	\end{tcolorbox}
+	\vspace{0.4cm}
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm]
+		
+		\item \textbf{Conversiones Directas:} Utilizando factores de conversión, transforma las siguientes medidas a las unidades solicitadas, mostrando el proceso de cancelación.
+		\begin{enumerate}[label=\alph*), itemsep=0.3cm]
+			\item $126 \text{ km/h}$ a $\text{m/s}$
+			\item $720000 \text{ cm}^3$ a $\text{m}^3$
+			\item $3.5 \text{ gal}$ a litros y a $\text{cm}^3$
+		\end{enumerate}
+		
+		\item \textbf{Problemas Aplicados con Geometría y Densidad:}
+		\begin{enumerate}[label=\alph*), itemsep=0.4cm]
+			\item El volumen de un recipiente esférico es de $113.04 \text{ litros}$, determina el radio exacto de la esfera expresado en \textbf{metros}.
+			\item Un cilindro macizo tiene un radio de $8 \text{ cm}$ y una altura de $1.2 \text{ pies}$. Si su masa es de $5.5 \text{ kg}$, calcula su volumen y determina su densidad expresada en unidades del Sistema Internacional
+		\end{enumerate}
+		
+		\item \textbf{Análisis Dimensional (Homogeneidad):} Determina, si las siguientes ecuaciones son dimensionalmente homogéneas:
+		\begin{enumerate}[label=\alph*), itemsep=0.3cm]
+			\item $v = a \cdot t - \frac{3 \cdot x}{t}$
+			\item $x = 2a \cdot t^2 - v \cdot t$
+		\end{enumerate}
+	
+		\newpage
+		\item \textbf{Análisis Dimensional (Hallar Constantes Físicas):} Si la variable $a$ representa la aceleración y $t$ representa el tiempo, determina mediante igualación de dimensiones cuáles deben ser las unidades fundamentales de las constantes físicas $\alpha$, $\beta$ y $\gamma$ para que la siguiente ecuación cumpla con el principio de homogeneidad:
+		$$v = \alpha t + \beta xt + \gamma t^3$$
+		
+		\item \textbf{Análisis Deductivo y Proporciones:} Un estudiante midió la densidad de un líquido en el laboratorio y obtuvo $0.92 \text{ g/ml}$. Otro estudiante afirma que, si se expresa en el Sistema Internacional, la densidad equivale a $920 \text{ kg/m}^3$. Comprueba si esta equivalencia es correcta.
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\textit{\color{valdark!70} ``Hacia un Aprendizaje Significativo, Autónomo y en Libertad'' -- Liceo V.A.L.}
+	\end{center}
+	
+\end{document}
