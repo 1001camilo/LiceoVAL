@@ -28,8 +28,6 @@
 \definecolor{valgray}{RGB}{245,247,250} 
 \definecolor{valpurple}{RGB}{100,30,160} 
 
-% --- CONFIGURACIÓN DE PÁGINA --- 
-
 
 % =================================================================== 
 % INTERRUPTOR DINÁMICO DE RESPUESTAS: 
@@ -37,7 +35,7 @@
 % \showanswersfalse -> Oculta respuestas (Versión Estudiante) 
 % =================================================================== 
 \newif\ifshowanswers 
-\showanswersfalse % Cambiar a \showanswerstrue para el solucionario 
+\showanswerstrue % Cambiar a \showanswerstrue para el solucionario 
 
 \newcommand{\answer}[1]{ 
 	\ifshowanswers 
@@ -54,13 +52,9 @@
 \begin{document} 
 	
 	\begin{center} 
-		
 		{\large \textbf{TALLER DE REPASO: FENÓMENOS ELECTROSTÁTICOS Y LEY DE COULOMB}}\\[0.1cm] 
 		{\small \textbf{Física 11º} \quad | \quad \textbf{Código: 11F--07} } 
 	\end{center} 
-
-	
-	
 	
 	\begin{enumerate}[leftmargin=*, itemsep=0.8cm] 
 		
@@ -97,7 +91,7 @@
 		\answer{ 
 			\textbf{a) Cálculo de la carga total:} 
 			Como gana electrones, la carga adquirida es negativa: 
-			\\[ q = - n \cdot e = -(3,75 \times 10^{13}) \cdot (1,6 \times 10^{-19}\text{ C}) = \mathbf{-6,0 \times 10^{-6}\text{ C}} = \mathbf{-6,0\text{ }\mu\text{C}} \\] 
+			\[ q = - n \cdot e = -(3,75 \times 10^{13}) \cdot (1,6 \times 10^{-19}\text{ C}) = \mathbf{-6,0 \times 10^{-6}\text{ C}} = \mathbf{-6,0\text{ }\mu\text{C}} \] 
 			\textbf{b) Conservación y cuantización:} 
 			El principio de conservación establece que en todo sistema aislado la carga eléctrica total permanece constante (no se crea ni se destruye, solo se transfiere). Se dice que la carga está cuantizada porque cualquier carga libre $q$ en la naturaleza siempre es un múltiplo entero de la carga elemental $e$ ($q = n \cdot e$). 
 		} 
@@ -111,11 +105,11 @@
 		\end{enumerate} 
 		\answer{ 
 			\textbf{a) Magnitud de la fuerza inicial:} 
-			\\[ F = k \frac{|q_1 \cdot q_2|}{r^2} = (9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot \frac{(8 \times 10^{-6}\text{ C}) \cdot (2 \times 10^{-6}\text{ C})}{(0,12\text{ m})^2} \\] 
-			\\[ F = (9 \times 10^9) \cdot \frac{1,6 \times 10^{-11}}{0,0144} = \mathbf{10,0\text{ N}} \quad \text{(\textbf{Fuerza de Atracción}, pues tienen signos opuestos)} \\] 
+			\[ F = k \frac{|q_1 \cdot q_2|}{r^2} = (9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot \frac{(8 \times 10^{-6}\text{ C}) \cdot (2 \times 10^{-6}\text{ C})}{(0,12\text{ m})^2} \] 
+			\[ F = (9 \times 10^9) \cdot \frac{1,6 \times 10^{-11}}{0,0144} = \mathbf{10,0\text{ N}} \quad \text{(\textbf{Fuerza de Atracción}, pues tienen signos opuestos)} \] 
 			\textbf{b) Cambio proporcional con la distancia:} 
 			Dado que $F \propto \frac{1}{r^2}$, al reducir la distancia a la tercera parte ($r' = r/3$), la fuerza se multiplica por un factor de $3^2 = 9$. 
-			\\[ F' = 9 \cdot F = 9 \cdot (10,0\text{ N}) = \mathbf{90,0\text{ N}} \\] 
+			\[ F' = 9 \cdot F = 9 \cdot (10,0\text{ N}) = \mathbf{90,0\text{ N}} \] 
 		} 
 		
 		% PUNTO 4 
@@ -128,13 +122,13 @@
 		\answer{ 
 			\textbf{a) Despeje y signo de $q_2$:} 
 			Al ser una fuerza de repulsión y $q_1 > 0$, la carga $q_2$ debe ser obligatoriamente \textbf{positiva} ($+$). 
-			\\[ F = k \frac{q_1 \cdot q_2}{r^2} \implies q_2 = \frac{F \cdot r^2}{k \cdot q_1} \\] 
-			\\[ q_2 = \frac{(54\text{ N}) \cdot (0,10\text{ m})^2}{(9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot (15 \times 10^{-6}\text{ C})} = \frac{0,54}{135000} = \mathbf{4,0 \times 10^{-6}\text{ C}} = \mathbf{+4,0\text{ }\mu\text{C}} \\] 
+			\[ F = k \frac{q_1 \cdot q_2}{r^2} \implies q_2 = \frac{F \cdot r^2}{k \cdot q_1} \] 
+			\[ q_2 = \frac{(54\text{ N}) \cdot (0,10\text{ m})^2}{(9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot (15 \times 10^{-6}\text{ C})} = \frac{0,54}{135000} = \mathbf{4,0 \times 10^{-6}\text{ C}} = \mathbf{+4,0\text{ }\mu\text{C}} \] 
 			\textbf{b) Despeje de la nueva distancia:} 
 			Para reducir la fuerza de $54\text{ N}$ a $6\text{ N}$ (un factor de $\frac{54}{6} = 9$), la distancia debe triplicarse ($r'' = 3 \cdot r$): 
-			\\[ r'' = \sqrt{\frac{k \cdot q_1 \cdot q_2}{F''}} = \sqrt{\frac{(9 \times 10^9) \cdot (15 \times 10^{-6}) \cdot (4 \times 10^{-6})}{6}} = \sqrt{\frac{0,54}{6}} = \sqrt{0,09} = \mathbf{0,30\text{ m}} = \mathbf{30\text{ cm}} \\] 
+			\[ r'' = \sqrt{\frac{k \cdot q_1 \cdot q_2}{F''}} = \sqrt{\frac{(9 \times 10^9) \cdot (15 \times 10^{-6}) \cdot (4 \times 10^{-6})}{6}} = \sqrt{\frac{0,54}{6}} = \sqrt{0,09} = \mathbf{0,30\text{ m}} = \mathbf{30\text{ cm}} \] 
 		} 
-		\newpage 
+		 
 		
 		% PUNTO 5 
 		\item \textbf{ Superposición de Fuerzas en 1D (3 Cargas Colineales):} 
@@ -213,10 +207,11 @@
 				\item Componente en X ($r_x = 0,40\text{ m}$): $F_x = (9 \times 10^9) \cdot \frac{(4 \times 10^{-6}) \cdot (9 \times 10^{-6})}{(0,40)^2} = \frac{0,324}{0,16} = \mathbf{2,025\text{ N}}$ ($+\hat{i}$). 
 			\end{itemize} 
 			\textbf{c) Magnitud resultante y dirección:} 
-			\\[ F_{\text{neta}} = \sqrt{F_x^2 + F_y^2} = \sqrt{(2,025)^2 + (2,4)^2} = \sqrt{4,100625 + 5,76} = \sqrt{9,860625} \approx \mathbf{3,14\text{ N}} \\] 
-			\\[ \theta = \arctan\left(\frac{F_y}{F_x}\right) = \arctan\left(\frac{2,4}{2,025}\right) = \arctan(1,1852) \approx \mathbf{49,84^\circ} \quad \text{(en el primer cuadrante)} \\] 
+			\[ F_{\text{neta}} = \sqrt{F_x^2 + F_y^2} = \sqrt{(2,025)^2 + (2,4)^2} = \sqrt{4,100625 + 5,76} = \sqrt{9,860625} \approx \mathbf{3,14\text{ N}} \] 
+			\[ \theta = \arctan\left(\frac{F_y}{F_x}\right) = \arctan\left(\frac{2,4}{2,025}\right) = \arctan(1,1852) \approx \mathbf{49,84^\circ} \quad \text{(en el primer cuadrante)} \] 
 		} 
-		\newpage
+		
+		
 		% PUNTO 7 
 		\item \textbf{ Análisis Comparativo: Ley Gravitacional de Newton vs. Ley de Coulomb:} 
 		Completa el siguiente cuadro comparativo indicando dos semejanzas y dos diferencias fundamentales entre la Ley de Gravitación Universal ($F_g = G \frac{m_1 m_2}{r^2}$) y la Ley de Coulomb ($F_e = k \frac{|q_1 q_2|}{r^2}$): 
@@ -251,10 +246,10 @@
 		\end{enumerate} 
 		\answer{ 
 			\textbf{a) Campo eléctrico $E$:} 
-			\\[ E = k \frac{|Q|}{r^2} = (9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot \frac{12 \times 10^{-6}\text{ C}}{(0,30\text{ m})^2} = \frac{1,08 \times 10^5}{0,09} = \mathbf{1,2 \times 10^6\text{ N/C}} \\] 
+			\[ E = k \frac{|Q|}{r^2} = (9 \times 10^9\text{ N}\cdot\text{m}^2/\text{C}^2) \cdot \frac{12 \times 10^{-6}\text{ C}}{(0,30\text{ m})^2} = \frac{1,08 \times 10^5}{0,09} = \mathbf{1,2 \times 10^6\text{ N/C}} \] 
 			Sentido: Radialmente \textbf{hacia afuera} (al ser $Q$ positiva).\\[0.1cm] 
 			\textbf{b) Fuerza sobre la carga de prueba $q_0$:} 
-			\\[ F = |q_0| \cdot E = (2 \times 10^{-9}\text{ C}) \cdot (1,2 \times 10^6\text{ N/C}) = \mathbf{2,4 \times 10^{-3}\text{ N}} = \mathbf{2,4\text{ mN}} \\] 
+			\[ F = |q_0| \cdot E = (2 \times 10^{-9}\text{ C}) \cdot (1,2 \times 10^6\text{ N/C}) = \mathbf{2,4 \times 10^{-3}\text{ N}} = \mathbf{2,4\text{ mN}} \] 
 			Dirección: Radialmente \textbf{hacia adentro} (atracción hacia la carga $+Q$, opuesta al sentido del campo $E$ porque $q_0$ es negativa). 
 		} 
 		
@@ -270,21 +265,21 @@
 			Como ambas cargas $q_A$ y $q_B$ tienen el mismo signo ($+$), los campos eléctricos o fuerzas producidas sobre $q_C$ solo tienen sentidos opuestos en los puntos intermedios comprendidos entre $q_A$ y $q_B$. Por fuera de ellas, ambas fuerzas apuntan en el mismo sentido y nunca se cancelarían.\\[0.1cm] 
 			\textbf{b) Cálculo algebraico de la distancia $x$:} 
 			Sea $x$ la distancia desde $q_A$, entonces la distancia desde $q_B$ es $(0,60 - x)$. 
-			\\[ F_{AC} = F_{BC} \implies k \frac{q_A \cdot |q_C|}{x^2} = k \frac{q_B \cdot |q_C|}{(0,60 - x)^2} \implies \frac{q_A}{x^2} = \frac{q_B}{(0,60 - x)^2} \\] 
+			\[ F_{AC} = F_{BC} \implies k \frac{q_A \cdot |q_C|}{x^2} = k \frac{q_B \cdot |q_C|}{(0,60 - x)^2} \implies \frac{q_A}{x^2} = \frac{q_B}{(0,60 - x)^2} \] 
 			Reemplazando $q_A = 4$ y $q_B = 16$: 
-			\\[ \frac{4}{x^2} = \frac{16}{(0,60 - x)^2} \\] 
+			\[ \frac{4}{x^2} = \frac{16}{(0,60 - x)^2} \] 
 			Aplicando raíz cuadrada a ambos lados: 
-			\\[ \frac{2}{x} = \frac{4}{0,60 - x} \implies 2(0,60 - x) = 4x \implies 1,20 - 2x = 4x \implies 6x = 1,20 \\] 
-			\\[ x = \frac{1,20}{6} = \mathbf{0,20\text{ m}} = \mathbf{20\text{ cm}} \quad \text{(medidos desde la carga } q_A) \\] 
+			\[ \frac{2}{x} = \frac{4}{0,60 - x} \implies 2(0,60 - x) = 4x \implies 1,20 - 2x = 4x \implies 6x = 1,20 \] 
+			\[ x = \frac{1,20}{6} = \mathbf{0,20\text{ m}} = \mathbf{20\text{ cm}} \quad \text{(medidos desde la carga } q_A) \] 
 		} 
 		
 		% PUNTO 10 
 		\item \textbf{ Evaluación de Enunciados Conceptuales (Falso o Verdadero):} 
 		Responde Verdadero (\textbf{V}) o Falso (\textbf{F}) a cada enunciado y justifica tu respuesta basándote en las leyes de la electrostática: 
 		\begin{enumerate}[label=\alph*), itemsep=0.4cm] 
-			\item \underline{\hspace{1.2cm}} En un conductor metálico en equilibrio electrostático, todo el exceso de carga se distribuye exclusivamente en su superficie exterior y el campo eléctrico en su interior es nulo. \\ \textbf{Justificación:} \underline{\hspace{14cm}} \\ \underline{\hspace{16cm}} 
-			\item \underline{\hspace{1.2cm}} Al frotar dos cuerpos neutros entre sí, se genera nueva carga eléctrica positiva en uno y negativa en el otro, aumentando la carga neta total del universo. \\ \textbf{Justificación:} \underline{\hspace{14cm}} \\ \underline{\hspace{16cm}} 
-			\item \underline{\hspace{1.2cm}} Un cuerpo cargado eléctricamente puede atraer a pequeños objetos neutros (como trozos de papel) gracias a un fenómeno conocido como polarización electrostática. \\ \textbf{Justificación:} \underline{\hspace{14cm}} \\ \underline{\hspace{16cm}} 
+			\item \underline{\hspace{1.2cm}} En un conductor metálico en equilibrio electrostático, todo el exceso de carga se distribuye exclusivamente en su superficie exterior y el campo eléctrico en su interior es nulo. \\ \textbf{Justificación:} \underline{\hspace{13cm}} \\ \underline{\hspace{14.5cm}} 
+			\item \underline{\hspace{1.2cm}} Al frotar dos cuerpos neutros entre sí, se genera nueva carga eléctrica positiva en uno y negativa en el otro, aumentando la carga neta total del universo. \\ \textbf{Justificación:} \underline{\hspace{13cm}} \\ \underline{\hspace{14.5cm}} 
+			\item \underline{\hspace{1.2cm}} Un cuerpo cargado eléctricamente puede atraer a pequeños objetos neutros (como trozos de papel) gracias a un fenómeno conocido como polarización electrostática. \\ \textbf{Justificación:} \underline{\hspace{13cm}} \\ \underline{\hspace{14.5cm}} 
 		\end{enumerate} 
 		\answer{ 
 			\textbf{a) Verdadero (V)}.\\[0.05cm] 
@@ -296,5 +291,5 @@
 		} 
 		
 	\end{enumerate} 
-
+	
 \end{document}
