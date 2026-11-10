@@ -1,0 +1,110 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Paquetes requeridos ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{float}
+
+% --- Configuración de hipervínculos ---
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	citecolor=blue
+}
+
+\title{\textbf{Taller de Física: Actividad Exploratoria y Cinemática}}
+\author{\textbf{}}
+%\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Actividad Exploratoria: Conceptos Fundamentales}
+	
+	\subsection{Definiciones de conceptos}
+	
+	\begin{itemize}
+		\item \textbf{Caída libre:} Movimiento rectilíneo, hacia abajo, que ocurre cuando se deja caer un objeto desde cierta altura.
+		\item \textbf{Movimiento parabólico:} Tipo de movimiento que se genera al lanzar algo con cierta inclinación, por ejemplo al disparar un cañón.
+		\item \textbf{Trayectoria:} Es el recorrido de un cuerpo o la ``huella'' que deja al moverse.
+		\item \textbf{Gravedad:} Es la aceleración que aparece cerca de objetos con masa; el valor en la superficie terrestre es aproximadamente $9{,}8\,\text{m/s}^2$.
+		\item \textbf{Velocidad:} Es el cambio de posición con respecto al tiempo.
+		\item \textbf{Altura:} Es la distancia que hay desde un punto de referencia hasta otro situado verticalmente por encima de él.
+	\end{itemize}
+	
+	\subsection{Para los dibujos}
+	Se proponen las siguientes situaciones para los dibujos:
+	
+	\begin{enumerate}
+		\item \textbf{Caída libre:} Silueta de un edificio alto y una mano soltando una esfera hacia el suelo.
+		\item \textbf{Movimiento parabólico:} Un jugador de baloncesto o un cañón disparando un proyectil con un ángulo de elevación, trazando una trayectoria en forma de parábola hacia el objetivo.
+		\item \textbf{Trayectoria:} Un avión en vuelo dejando una estela punteada continua que indica el camino espacial recorrido.
+		\item \textbf{Gravedad:} El planeta Tierra con un objeto descendiendo hacia su superficie, acompañado por un vector de aceleración vertical $\vec{g}$ orientado hacia el centro de masa terrestre.
+		\item \textbf{Velocidad:} Un automóvil en línea recta sobre una vía con la leyenda de $t=0$ y el mismo carro más adelante con la leyenda de $t=5$ o cualesquiera números diferentes.
+		\item \textbf{Altura:} Una torre o estructura vertical con una cota de medida ($h$ o $y$) que conecta la base de referencia con la cúspide.
+	\end{enumerate}
+	
+	\subsection{Comparación con los Conceptos de google}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\begin{tabularx}{\textwidth}{l p{3.8cm} p{4.2cm} X}
+			\toprule
+			\textbf{Concepto} & \textbf{Definición del Cuaderno} & \textbf{Definición Formal} & \textbf{Comparación} \\
+			\midrule
+			\textbf{Caída libre} & Movimiento vertical descendente al soltar un objeto. & Movimiento de un cuerpo bajo la influencia exclusiva de un campo gravitatorio, sin resistencia del medio. & Coinciden en el descenso, pero la formal habla estrictamente sobre la fricción con el aire. \\
+			\addlinespace
+			\textbf{Mov. parabólico} & Movimiento originado al lanzar algo con inclinación. & Movimiento bidimensional resultante de componer un MRU horizontal con un MRUA vertical bajo la gravedad. & La intuitiva capta el lanzamiento angular; la formal explica la composición en ejes cartesianos independientes. \\
+			\addlinespace
+			\textbf{Trayectoria} & Recorrido o ``huella'' espacial del cuerpo. & Lugar geométrico de las sucesivas posiciones que ocupa un punto material en movimiento. & La metáfora de la ``huella'' describe con precisión el concepto geométrico de la curva de posiciones. \\
+			\addlinespace
+			\textbf{Gravedad} & Aceleración cerca de masas ($9{,}8\,\text{m/s}^2$ en la Tierra). & Fuerza de atracción gravitatoria mutua o aceleración producida por un campo gravitacional sobre una masa testigo. & Ambas visiones son válidas; la versión formal enfatiza la interacción mutua entre masas. \\
+			\addlinespace
+			\textbf{Velocidad} & Cambio de posición respecto al tiempo. & Magnitud vectorial que define el desplazamiento instantáneo por unidad de tiempo: $\vec{v} = \frac{d\vec{r}}{dt}$. & La definición informal rescata la tasa temporal y la formal especifica su carácter vectorial y direccional. \\
+			\addlinespace
+			\textbf{Altura} & Distancia desde un punto hacia otro más arriba. & Distancia o coordenada vertical medida sobre un eje ortogonal a partir de un nivel de referencia fijado. & Coinciden plenamente; la formal explicita la necesidad de fijar un marco de referencia ($y_0$). \\
+			\bottomrule
+		\end{tabularx}
+		\caption{Contraste entre definiciones intuitivas y formalismo físico.}
+		\label{tab:comparacion_conceptos}
+	\end{table}
+	
+	\vspace{1em}
+	\section{Ensayo Crítico: El Mito de la Caída Libre y la Física Real}
+	
+	\subsection*{Introducción}
+	El análisis expuesto por el ingeniero aeroespacial Sergio Hidalgo pone en discusión un postulado clásico ampliamente difundido: la afirmación de que todos los objetos caen exactamente con la misma rapidez sin importar su masa. Si bien este enunciado suele transmitirse como una regla universal en la educación básica, su validez depende estrictamente de condiciones ideales que no se corresponden con el entorno de la atmósfera terrestre.
+	
+	\subsection*{Desarrollo: La Hipótesis del Vacío versus la Resistencia Aerodinámica}
+	El principio de Galileo Galilei, comprobado de manera célebre por la misión Apolo XV en la Luna al dejar caer una pluma y un martillo, establece que en el \emph{vacío} la aceleración gravitacional es idéntica para cualquier cuerpo:
+	\begin{equation}
+		g \approx 9{,}81\,\text{m/s}^2
+	\end{equation}
+	En dicho escenario, al no existir atmósfera, la masa del objeto no influye en el tiempo de caída.
+	
+	Sin embargo, en el mundo real existe la atmósfera, lo que genera una \textbf{fuerza de arrastre aerodinámico} ($F_d$) que se opone al movimiento descendente:
+	\begin{equation}
+		F_d = \frac{1}{2}\,\rho\,v^2\,C_d\,A
+	\end{equation}
+	donde $\rho$ representa la densidad del aire, $v$ la velocidad instantánea, $C_d$ el coeficiente aerodinámico de arrastre y $A$ el área de la sección transversal expuesta.
+	
+	A medida que un cuerpo cae y acelera, la fuerza de rozamiento se incrementa proporcionalmente al cuadrado de la velocidad ($v^2$) hasta igualar la fuerza del peso ($P = m \cdot g$). Cuando ambas fuerzas se equilibran ($\sum F_y = 0$), la aceleración neta se anula y el cuerpo alcanza su denominada \textbf{velocidad terminal} ($v_t$):
+	\begin{equation}
+		v_t = \sqrt{\frac{2\,m\,g}{\rho\,C_d\,A}}
+	\end{equation}
+	
+	Esta ecuación demuestra que la masa ($m$) sí interviene de forma decisiva en la velocidad terminal. Dos personas que caen juntas en un salto tándem duplican la masa pero mantienen un área frontal similar, alcanzando una velocidad terminal sensiblemente mayor a la de un paracaidista individual. De igual manera, el salto de Félix Baumgartner desde más de $39.000\,\text{m}$ de altitud permitió superar la barrera del sonido debido a que la densidad atmosférica ($\rho$) a esa altura es drásticamente menor a la de la superficie terrestre.
+	
+	\subsection*{Conclusión}
+	El estudio de este fenómeno demuestra que la física real no debe reducirse a fórmulas memorizadas bajo condiciones ideales. Comprender el papel de la resistencia aerodinámica y de la velocidad límite permite superar los mitos escolares y reconocer la complejidad con la que interactúan las fuerzas en nuestro entorno cotidiano.
+	
+\end{document}

@@ -1,0 +1,247 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{245,247,250}
+
+% =================================================================
+% CONFIGURACIÓN PARA MOSTRAR / OCULTAR RESPUESTAS
+% =================================================================
+\newif\ifmostrarrespuestas
+
+% ---> MODO PROFESOR (Muestra respuestas en azul): Deja la siguiente línea activa.
+\mostrarrespuestastrue
+
+% ---> MODO ESTUDIANTE (Oculta respuestas): Descomenta la siguiente línea.
+% \mostrarrespuestasfalse
+
+\newcommand{\respuesta}[1]{
+	\ifmostrarrespuestas
+	\par\vspace{0.2cm}
+	\begin{tcolorbox}[colback=blue!5!white, colframe=valblue, boxrule=0.5pt, arc=1mm, left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+		\footnotesize \textbf{\textcolor{valblue}{Solución:}} \textcolor{blue!80!black}{#1}
+	\end{tcolorbox}
+	\vspace{0.2cm}
+	\fi
+}
+% =================================================================
+
+% --- FONDO INSTITUCIONAL (Opcional si tienes el archivo en tu carpeta) ---
+\IfFileExists{../../FondoVAL.pdf}{
+	\AddToShipoutPictureBG{
+		\AtPageLowerLeft{
+			\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+		}
+	}
+}{}
+
+% --- ENCABEZADO Y PIE DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE CIENCIAS BÁSICAS}
+\fancyhead[R]{\footnotesize \color{gray} FÍSICA 10º -- TAU 2 (10F--02)}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+	
+	% --- TÍTULO ---
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+		{\large \textbf{TALLER DE REPASO: EL MOVIMIENTO (MU Y MUA)}}\\[0.1cm]
+		{\small \textbf{Física 10º} \quad | \quad \textbf{Código: 10F -- 02} \quad | \quad \textbf{TAU 2} \quad 
+			\ifmostrarrespuestas \textcolor{valblue}{\textbf{(VERSIÓN PROFESOR)}} \else \textbf{(VERSIÓN ESTUDIANTE)} \fi}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{Nombre del Estudiante:} \underline{\hspace{8.2cm}} \hfill \textbf{Fecha:} \underline{\hspace{3cm}}
+	\vspace{0.3cm}
+	
+	% --- CAJA DE ECUACIONES DEL TAU 2 ---
+	\begin{tcolorbox}[colback=valgray, colframe=valdark, arc=1mm, boxrule=0.8pt, title=\textbf{Modelos Matemáticos del TAU 2 (10F--02)}]
+		\small
+		\begin{itemize}[leftmargin=*, itemsep=0.1cm, topsep=0pt]
+			\item \textbf{Movimiento Uniforme (MU)} ($v = \text{constante}$, $a = 0$): 
+			\quad $v = \dfrac{x_f - x_0}{t_f - t_0}$ \quad ó \quad $v = \dfrac{d}{t} \quad \mathbf{(2.I)}$
+			\item \textbf{Movimiento Uniforme Acelerado / Variado (MUA / MUV)} ($a = \text{constante} \neq 0$):
+			$$a = \frac{v_f - v_0}{t} \quad \mathbf{(2.II)} \qquad\qquad x = x_0 + v_0 \cdot t + \frac{a \cdot t^2}{2} \quad \mathbf{(2.III)} \qquad\qquad v_f^2 = v_0^2 + 2a \cdot \Delta x \quad \mathbf{(2.IV)}$$
+		\end{itemize}
+		\textit{Instrucciones: Resuelva cada situación en el Sistema Internacional (m, s, m/s, $\text{m/s}^2$), mostrando las conversiones de unidades, la identificación de datos, el despeje algebraico y el análisis de signos.}
+	\end{tcolorbox}
+	
+	\vspace{0.3cm}
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.6cm]
+		
+		% --- PUNTO 1 ---
+		\item \textbf{(Reconocimiento y diferenciación entre MU y MUA)} Analice las siguientes dos situaciones independientes, realice las conversiones de unidades necesarias y responda:
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm]
+			\item \textbf{Caso A:} Un ciclista se desplaza en línea recta a razón de $25\text{ m/s}$ y, $12\text{ segundos}$ después, observa que su velocímetro marca $90\text{ km/h}$. ¿Qué tipo de movimiento presenta? ¿Qué espacio recorre en este tiempo?
+			\item \textbf{Caso B:} Un motociclista viaja por una autopista a $108\text{ km/h}$ y, tras $5\text{ segundos}$, su velocidad es de $18\text{ m/s}$. ¿El motociclista acelera o desacelera? ¿Qué tipo de movimiento presenta y qué distancia recorre en ese intervalo?
+		\end{enumerate}
+		\respuesta{
+			\textbf{a) Caso A:} Convertimos $90\text{ km/h}$ a $\text{m/s}$: $90 \times \frac{1000}{3600} = 25\text{ m/s}$. Como $v_0 = v_f = 25\text{ m/s}$, no hay cambio de velocidad ($a = 0\text{ m/s}^2$), por tanto presenta \textbf{Movimiento Uniforme (MU)}. Distancia con ec. (2.I): $d = v \cdot t = 25\text{ m/s} \cdot 12\text{ s} = \mathbf{300\text{ m}}$.\\[0.1cm]
+			\textbf{b) Caso B:} Convertimos $108\text{ km/h}$ a $\text{m/s}$: $v_0 = 30\text{ m/s}$. Al pasar a $v_f = 18\text{ m/s}$ en $t = 5\text{ s}$, su velocidad disminuye (\textbf{desacelera}), presentando un \textbf{Movimiento Uniforme Desacelerado $\text{MUA}(-)$}.\\
+			Con ec. (2.II): $a = \frac{18 - 30}{5} = \mathbf{-2.4\text{ m/s}^2}$. Con ec. (2.III): $x = 0 + 30(5) + \frac{(-2.4)(5)^2}{2} = 150 - 30 = \mathbf{120\text{ m}}$.
+		}
+		
+		% --- PUNTO 2 ---
+		\item \textbf{(Velocidades negativas y sistema de referencia)} Un dron de monitoreo se mueve en línea recta. En el instante inicial ($t_0 = 0\text{ s}$) está en la posición $x_0 = 150\text{ m}$ a la derecha de la estación base y se desplaza con velocidad constante hasta la posición $x_f = 30\text{ m}$ en el instante $t_f = 10\text{ s}$.
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm]
+			\item Utilizando la fórmula de la pendiente vista en el TAU ($v = \frac{x_f - x_0}{t_f - t_0}$), calcule la velocidad del dron y explique qué significa físicamente su signo negativo.
+			\item Si en $t = 10\text{ s}$ (llevando esa velocidad negativa) el dron frena uniformemente hasta quedar en reposo en $4\text{ s}$, ¿cuál es el valor y signo de su aceleración durante el frenado?
+		\end{enumerate}
+		\respuesta{
+			\textbf{a)} $v = \frac{30\text{ m} - 150\text{ m}}{10\text{ s} - 0\text{ s}} = \frac{-120\text{ m}}{10\text{ s}} = \mathbf{-12\text{ m/s}}$. El signo negativo indica que el dron se desplaza en sentido contrario al sistema de referencia positivo (regresando hacia el origen).\\[0.1cm]
+			\textbf{b)} Datos: $v_0 = -12\text{ m/s}$, $v_f = 0\text{ m/s}$ (reposo), $t = 4\text{ s}$. Con ec. (2.II): $a = \frac{0 - (-12\text{ m/s})}{4\text{ s}} = \mathbf{+3\text{ m/s}^2}$. La aceleración resulta positiva porque la fuerza de frenado apunta hacia el sentido positivo para oponerse a la velocidad negativa.
+		}
+		
+		% --- PUNTO 3 ---
+		\item \textbf{(Desaceleración y uso de la ecuación 2.IV)} Una locomotora lleva una velocidad de $126\text{ km/h}$, cuando al aproximarse a una estación aplica los frenos deteniéndose por completo luego de recorrer $245\text{ m}$.
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm]
+			\item Calcule la aceleración (desaceleración) de la locomotora utilizando la ecuación \textbf{(2.IV)}.
+			\item Determine cuánto tiempo tardó en detenerse utilizando la ecuación \textbf{(2.II)}.
+		\end{enumerate}
+		\respuesta{
+			Convertimos: $v_0 = 126\text{ km/h} = 35\text{ m/s}$; $v_f = 0\text{ m/s}$; $\Delta x = 245\text{ m}$.\\[0.1cm]
+			\textbf{a)} De $v_f^2 = v_0^2 + 2a\Delta x \implies 0 = (35)^2 + 2a(245) \implies -1225 = 490a \implies a = \frac{-1225}{490} = \mathbf{-2.5\text{ m/s}^2}$.\\[0.1cm]
+			\textbf{b)} De $a = \frac{v_f - v_0}{t} \implies t = \frac{0 - 35\text{ m/s}}{-2.5\text{ m/s}^2} = \mathbf{14\text{ s}}$.
+		}
+		
+		% --- PUNTO 4 ---
+		\item \textbf{(Movimiento combinado en tres etapas: $\text{MUA}(+)$, $\text{MU}$ y $\text{MUA}(-)$)} Un vehículo parte del reposo y aumenta su velocidad a razón de $2.5\text{ m/s}^2$ durante $0.2\text{ minutos}$ (\textbf{Etapa A}). Al cabo de este tiempo, se desplaza con movimiento uniforme recorriendo $0.9\text{ km}$ (\textbf{Etapa B}), cuando el conductor observa un letrero de ``PARE'' y aplica los frenos, deteniéndose $5\text{ segundos}$ después (\textbf{Etapa C}).
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm]
+			\item Realice el esquema de datos para las etapas A, B y C indicando el tipo de movimiento en cada una.
+			\item Calcule la aceleración experimentada en la Etapa C.
+			\item ¿Qué distancia total recorrió y qué tiempo empleó en total? (Exprese en metros y segundos).
+		\end{enumerate}
+		\respuesta{
+			\textbf{Etapa A ($\text{MUA}(+)$):} $v_{0A}=0$, $a_A=2.5\text{ m/s}^2$, $t_A = 0.2\text{ min} = 12\text{ s}$.\\
+			$v_{fA} = 0 + (2.5)(12) = \mathbf{30\text{ m/s}}$. Distancia A: $x_A = 0 + 0 + \frac{2.5(12)^2}{2} = \mathbf{180\text{ m}}$.\\[0.1cm]
+			\textbf{Etapa B ($\text{MU}$):} $v_B = v_{fA} = 30\text{ m/s}$, $d_B = 0.9\text{ km} = \mathbf{900\text{ m}}$. Tiempo B: $t_B = \frac{900\text{ m}}{30\text{ m/s}} = \mathbf{30\text{ s}}$.\\[0.1cm]
+			\textbf{Etapa C ($\text{MUA}(-)$):} $v_{0C} = 30\text{ m/s}$, $v_{fC} = 0\text{ m/s}$, $t_C = 5\text{ s}$.\\
+			Aceleración C: $a_C = \frac{0 - 30}{5} = \mathbf{-6\text{ m/s}^2}$. Distancia C: $x_C = 30(5) + \frac{(-6)(5)^2}{2} = 150 - 75 = \mathbf{75\text{ m}}$.\\[0.1cm]
+			\textbf{Totales:} $x_{\text{total}} = 180 + 900 + 75 = \mathbf{1155\text{ m}}$ \quad | \quad $t_{\text{total}} = 12 + 30 + 5 = \mathbf{47\text{ s}}$.
+		}
+		
+		% --- PUNTO 5 ---
+		\item \textbf{(Movimiento por etapas con distancia inicial)} Un automóvil que se encuentra en reposo inicia su recorrido a razón de $2\text{ m/s}^2$. Después de recorrer $400\text{ m}$ (\textbf{Tramo 1}), mantiene su velocidad constante durante $15\text{ s}$ (\textbf{Tramo 2}), momento en que ve un semáforo en rojo y aplica los frenos a razón de $-4\text{ m/s}^2$ hasta detenerse (\textbf{Tramo 3}).
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm]
+			\item ¿Qué velocidad alcanzó al final del Tramo 1 y cuánto tiempo tardó en recorrer esos primeros $400\text{ m}$?
+			\item ¿Qué distancia recorrió en total y cuánto tiempo empleó en todo el trayecto?
+		\end{enumerate}
+		\respuesta{
+			\textbf{Tramo 1 ($\text{MUA}(+)$):} Con ec. (2.IV): $v_{f1}^2 = 0 + 2(2)(400) = 1600 \implies v_{f1} = \mathbf{40\text{ m/s}}$. Tiempo 1: $t_1 = \frac{40 - 0}{2} = \mathbf{20\text{ s}}$.\\[0.1cm]
+			\textbf{Tramo 2 ($\text{MU}$):} $v_2 = 40\text{ m/s}$, $t_2 = 15\text{ s} \implies x_2 = 40 \cdot 15 = \mathbf{600\text{ m}}$.\\[0.1cm]
+			\textbf{Tramo 3 ($\text{MUA}(-)$):} $v_{03} = 40\text{ m/s}$, $v_{f3} = 0$, $a_3 = -4\text{ m/s}^2 \implies t_3 = \frac{0 - 40}{-4} = \mathbf{10\text{ s}}$.\\
+			Distancia 3: $x_3 = 40(10) + \frac{(-4)(10)^2}{2} = 400 - 200 = \mathbf{200\text{ m}}$.\\[0.1cm]
+			\textbf{Totales:} $x_{\text{total}} = 400 + 600 + 200 = \mathbf{1200\text{ m}}$ \quad | \quad $t_{\text{total}} = 20 + 15 + 10 = \mathbf{45\text{ s}}$.
+		}
+		
+		% --- PUNTO 6 ---
+		\item \textbf{(Análisis gráfico de un movimiento con velocidades y aceleraciones negativas)} La siguiente gráfica de velocidad contra tiempo ($v$ vs. $t$) describe el movimiento rectilíneo de un vehículo de pruebas:
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=0.18]
+				% Cuadrícula
+				\draw[very thin, gray!30] (0,-25) grid[xstep=5, ystep=5] (42,30);
+				% Ejes
+				\draw[thick, ->] (0,-25) -- (0,32) node[above] {\textbf{$v\text{ (m/s)}$}};
+				\draw[thick, ->] (0,0) -- (45,0) node[right] {\textbf{$t\text{ (s)}$}};
+				
+				% Etiquetas eje Y
+				\foreach \y in {-20, -10, 10, 20, 25}
+				\draw (0,\y) -- (-0.8,\y) node[left, font=\footnotesize] {\y};
+				\node[left, font=\footnotesize] at (-0.5,0) {0};
+				
+				% Etiquetas eje X
+				\foreach \x in {10, 25, 30, 40}
+				\draw (\x,0) -- (\x,-1.5) node[below, font=\footnotesize] {\x};
+				
+				% Líneas punteadas guía
+				\draw[dashed, gray] (10,0) -- (10,25) -- (0,25);
+				\draw[dashed, gray] (25,0) -- (25,25);
+				\draw[dashed, gray] (40,0) -- (40,-20) -- (0,-20);
+				
+				% Gráfica
+				\draw[ultra thick, valblue] (0,10) node[right, text=black, font=\footnotesize\bfseries] {A} 
+				-- (10,25) node[above, text=black, font=\footnotesize\bfseries] {B} 
+				-- (25,25) node[above, text=black, font=\footnotesize\bfseries] {C} 
+				-- (30,0) node[above right, text=black, font=\footnotesize\bfseries] {D} 
+				-- (40,-20) node[right, text=black, font=\footnotesize\bfseries] {E};
+				
+				% Puntos
+				\foreach \p in {(0,10), (10,25), (25,25), (30,0), (40,-20)}
+				\filldraw[valdark] \p circle (0.6);
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm]
+			\item Clasifique el tipo de movimiento en cada tramo (AB, BC, CD y DE) y calcule la aceleración correspondiente usando la pendiente de la recta ($a = \frac{v_f - v_0}{t_f - t_0}$).
+			\item ¿Qué ocurre físicamente con el movimiento del vehículo entre $t = 30\text{ s}$ y $t = 40\text{ s}$ (tramo DE)?
+			\item Calcule el desplazamiento en cada tramo, la posición final en $t = 40\text{ s}$ (asumiendo $x_0 = 0$) y la distancia total recorrida.
+		\end{enumerate}
+		\respuesta{
+			\textbf{a)} \textbf{AB:} $\text{MUA}(+)$, $a_{AB} = \frac{25-10}{10-0} = \mathbf{1.5\text{ m/s}^2}$. \quad \textbf{BC:} $\text{MU}$, $a_{BC} = \frac{25-25}{25-10} = \mathbf{0\text{ m/s}^2}$.\\
+			\textbf{CD:} $\text{MUA}(-)$, $a_{CD} = \frac{0-25}{30-25} = \mathbf{-5\text{ m/s}^2}$. \quad \textbf{DE:} $\text{MUA}$ en sentido negativo, $a_{DE} = \frac{-20-0}{40-30} = \mathbf{-2\text{ m/s}^2}$.\\[0.1cm]
+			\textbf{b)} En $t=30\text{ s}$ el vehículo se detiene ($v=0$) e invierte su sentido de marcha, acelerando en reversa (en contra del sentido positivo de referencia) hasta alcanzar una velocidad de $-20\text{ m/s}$.\\[0.1cm]
+			\textbf{c)} $x_{AB} = 10(10) + \frac{1.5(10)^2}{2} = \mathbf{175\text{ m}}$; \quad $x_{BC} = 25(15) = \mathbf{375\text{ m}}$; \quad $x_{CD} = 25(5) + \frac{(-5)(5)^2}{2} = \mathbf{62.5\text{ m}}$; \quad $\Delta x_{DE} = 0(10) + \frac{(-2)(10)^2}{2} = \mathbf{-100\text{ m}}$.\\
+			\textbf{Posición final:} $x_f = 175 + 375 + 62.5 - 100 = \mathbf{512.5\text{ m}}$. \quad \textbf{Distancia total:} $d = 175 + 375 + 62.5 + 100 = \mathbf{712.5\text{ m}}$.
+		}
+		
+		% --- PUNTO 7 ---
+		\item \textbf{(Persecución: MU vs. MUA)} Un vehículo transita con velocidad constante por una avenida donde el límite de velocidad es de $50\text{ km/h}$. Un agente de tránsito detecta que el vehículo va $22\text{ km/h}$ por encima de lo establecido y, justo cuando pasa a su lado, inicia la persecución desde el reposo en su motocicleta a razón de $2.5\text{ m/s}^2$.
+		\begin{enumerate}[label=\alph*., itemsep=0.2cm]
+			\item ¿En cuánto tiempo alcanza el agente al vehículo infractor?
+			\item ¿Qué distancia recorrieron ambos vehículos desde que inició la persecución?
+		\end{enumerate}
+		\respuesta{
+			Velocidad constante del infractor (MU): $v_i = 50 + 22 = 72\text{ km/h} = \mathbf{20\text{ m/s}} \implies x_i = 20t$.\\
+			Movimiento del agente ($\text{MUA}(+)$): $v_{0p} = 0$, $a_p = 2.5\text{ m/s}^2 \implies x_p = \frac{2.5t^2}{2} = 1.25t^2$.\\[0.1cm]
+			\textbf{a)} Igualando posiciones ($x_i = x_p$): $20t = 1.25t^2 \implies t = \frac{20}{1.25} = \mathbf{16\text{ s}}$.\\[0.1cm]
+			\textbf{b)} Distancia recorrida: $x = 20\text{ m/s} \cdot 16\text{ s} = \mathbf{320\text{ m}}$.
+		}
+		
+		% --- PUNTO 8 ---
+		\item \textbf{(Análisis Conceptual)} Responda Falso (\textbf{F}) o Verdadero (\textbf{V}) y justifique sus respuestas con ejemplos:
+		\begin{enumerate}[label=\alph*., itemsep=0.25cm]
+			\item La aceleración negativa se debe siempre a que el objeto se acerca a la posición que representa la coordenada cero en el sistema de referencia. \underline{\hspace{1cm}}
+			\item En un movimiento donde la velocidad es negativa se puede indicar que la dirección del desplazamiento se está haciendo en contra de la referencia positiva. \underline{\hspace{1cm}}
+			\item Cuando existe velocidad positiva, la aceleración siempre va a ser positiva. \underline{\hspace{1cm}}
+			\item Los tipos de movimiento se caracterizan de acuerdo con el comportamiento de la velocidad. \underline{\hspace{1cm}}
+		\end{enumerate}
+		\respuesta{
+			\textbf{a) F:} Una aceleración negativa mientras se avanza hacia adelante indica disminución de la velocidad (frenado), aunque el móvil se esté alejando del origen $x=0$.\\
+			\textbf{b) V:} Al ser $v = \frac{x_f - x_0}{t_f - t_0}$, un signo negativo implica que $x_f < x_0$, desplazándose en sentido opuesto a la referencia.\\
+			\textbf{c) F:} Si un auto avanza en sentido positivo ($v > 0$) pero frena ante un semáforo, su aceleración es negativa ($a < 0$).\\
+			\textbf{d) V:} Si la velocidad es constante se tiene un MU ($a=0$), y si la velocidad varía uniformemente en el tiempo se tiene un MUA ($a = \text{constante} \neq 0$).
+		}
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\footnotesize \textit{\color{valdark!70} ``Hacia un Aprendizaje Significativo y Autónomo'' -- Liceo V.A.L.}
+	\end{center}
+	
+\end{document}

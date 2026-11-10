@@ -1,0 +1,264 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% --- FUENTE SISTEMA ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{245,247,250}
+\definecolor{valpurple}{RGB}{100,30,160}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize \color{gray} LICEO V.A.L. -- DEPARTAMENTO DE CIENCIAS BÁSICAS}
+\fancyhead[R]{\footnotesize \color{gray} FÍSICA 11º -- TAU 4 (11F--04)}
+\fancyfoot[C]{\footnotesize \color{gray} Página \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+% INTERRUPTOR DINÁMICO DE RESPUESTAS:
+% \showanswerstrue  -> Muestra respuestas (Solucionario Docente)
+% \showanswersfalse -> Oculta respuestas (Versión Estudiante)
+% ===================================================================
+\newif\ifshowanswers
+\showanswerstrue % Cambiar a \showanswerstrue para el solucionario
+
+\newcommand{\answer}[1]{%
+	\ifshowanswers
+	\par\vspace{0.15cm}
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!60!white, arc=1mm, boxrule=0.5pt, title=\textbf{\footnotesize SOLUCIÓN PASO A PASO (DOCENTE)}]
+		\color{blue!80!black}\footnotesize #1
+	\end{tcolorbox}
+	\par\vspace{0.15cm}
+	\else
+	\par\vspace{0.3cm}
+	\fi
+}
+
+\begin{document}
+	
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+		{\large \textbf{TALLER DE REPASO: PRINCIPIOS DE ACÚSTICA Y SONIDO}}\\[0.1cm]
+		{\small \textbf{Física 11º} \quad | \quad \textbf{Código: 11F--04 } \quad | \quad \textbf{TAU 4} }
+	\end{center}
+	
+
+	
+	\vspace{0.3cm}
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm]
+		
+		% PUNTO 1
+		\item  Identifique la característica del sonido (Tono, Intensidad o Timbre) a la que hace referencia cada una de las siguientes afirmaciones y justifique brevemente su respuesta:
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Permite diferenciar la nota \textit{La} emitida por una flauta dulce y la misma nota \textit{La} emitida por un clarinete con el mismo volumen: \underline{\hspace{5cm}}
+			\item Permite distinguir y clasificar los sonidos en agudos y graves según su frecuencia: \underline{\hspace{5cm}}
+			\item Permite clasificar los sonidos en fuertes y débiles, relacionándose con la amplitud de la onda y la potencia que atraviesa una unidad de área ($I = P/A$): \underline{\hspace{5cm}}
+		\end{enumerate}
+		\answer{
+			\textbf{a) Timbre:} El timbre permite distinguir dos sonidos que tienen el mismo tono (frecuencia) y la misma intensidad (volumen) pero son emitidos por fuentes o instrumentos diferentes, ya que depende de la forma de la onda y los armónicos que acompañan a la frecuencia fundamental.\\
+			\textbf{b) Tono:} El tono es la característica por la cual distinguimos sonidos graves y agudos, y está determinado por la frecuencia de la onda (si la frecuencia es alta el tono es agudo, y si es baja el tono es grave).\\
+			\textbf{c) Intensidad:} La intensidad clasifica los sonidos en fuertes y débiles (``volumen''), depende de la amplitud de la onda y equivale a la potencia acústica por unidad de área ($I = P/A$).
+		}
+		
+		% PUNTO 2
+		\item  La velocidad del sonido en el aire se calcula de manera aproximada en función de la temperatura $T$ (en $^\circ\text{C}$) mediante la expresión $v \approx 331 + 0,61 \cdot T \ \mathbf{(I)}$.
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Calcule la velocidad del sonido en un día caluroso en el que la temperatura ambiental registra $30^\circ\text{C}$.
+			\item Si un instrumento musical emite la nota \textit{La} de $440\text{ Hz}$ en dicho ambiente a $30^\circ\text{C}$, determine la longitud de onda ($\lambda$) de este sonido en el aire recordando que $v = \lambda \cdot f$.
+		\end{enumerate}
+		\answer{
+			\textbf{a) Cálculo de la velocidad a $T = 30^\circ\text{C}$ con la ecuación (I):}
+			\[ v \approx 331 + 0,61 \cdot (30) = 331 + 18,3 = \mathbf{349,3\text{ m/s}} \]
+			\textbf{b) Longitud de onda despejada de $v = \lambda \cdot f$:}
+			\[ \lambda = \frac{v}{f} = \frac{349,3\text{ m/s}}{440\text{ Hz}} \approx \mathbf{0,794\text{ m}} \ (\mathbf{79,4\text{ cm}}) \]
+		}
+		
+		% PUNTO 3
+		\item  Para la detección de un cañón submarino, el sonar de un barco emite ultrasonidos hacia el fondo del mar. Sabiendo que la velocidad del sonido en el agua de mar es de $1530\text{ m/s}$ y que el eco sonoro tarda $1,6\text{ s}$ en llegar de regreso al barco:
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Explique qué fenómeno del sonido se produce cuando la onda choca contra la superficie dura del fondo marino.
+			\item ¿A qué distancia ($d$) debajo del barco se encuentra el fondo del cañón marino?
+		\end{enumerate}
+		\answer{
+			\textbf{a) Fenómeno del sonido:} Se produce la \textbf{reflexión del sonido}, en la cual la onda sonora choca contra una superficie dura y se refleja produciendo el eco.\\[0.1cm]
+			\textbf{b) Cálculo de la distancia ($d$):} El tiempo de $1,6\text{ s}$ corresponde al recorrido de ida y vuelta del pulso sonoro, por lo que el tiempo de bajada hasta el fondo es la mitad: $t = \frac{1,6\text{ s}}{2} = 0,8\text{ s}$. Despejando de $v = \frac{d}{t}$:
+			\[ d = v \cdot t = (1530\text{ m/s}) \cdot (0,8\text{ s}) = \mathbf{1224,0\text{ m}} \]
+		}
+		
+		% PUNTO 4
+		\item  Una fuente sonora puntual colocada en el centro de una cancha deportiva produce una potencia acústica $P = 180\text{ W}$ que se propaga de manera uniforme en todas las direcciones.
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item ¿Cuál es la intensidad ($I$) de este sonido a una distancia $r = 12\text{ m}$ de la fuente? Exprese su respuesta en $\text{W/m}^2$.
+			\item ¿Cuál es el nivel de intensidad ($B$) en decibelios ($\text{db}$) en ese mismo punto, sabiendo que $I_0 = 10^{-12}\text{ W/m}^2$?
+		\end{enumerate}
+		\answer{
+			\textbf{a) Intensidad del sonido a $r = 12\text{ m}$ aplicando la ecuación (II):}
+			\[ I = \frac{P}{4\pi \cdot r^2} = \frac{180\text{ W}}{4\pi \cdot (12\text{ m})^2} = \frac{180}{4\pi \cdot 144} = \frac{180}{1809,56} \approx \mathbf{0,0995\text{ W/m}^2} \ (\mathbf{9,95 \times 10^{-2}\text{ W/m}^2}) \]
+			\textbf{b) Nivel de intensidad ($B$) aplicando la ecuación (III):}
+			\[ B = 10 \cdot \log\left(\frac{I}{10^{-12}}\right) = 10 \cdot \log\left(\frac{9,95 \times 10^{-2}}{10^{-12}}\right) = 10 \cdot \log(9,95 \times 10^{10}) \approx 10 \cdot (10,9978) \approx \mathbf{109,98\text{ db}} \ (\approx \mathbf{110\text{ db}}) \]
+		}
+		
+		% PUNTO 5
+		\item  La intensidad sonora de una banda musical en un estadio es equivalente a la intensidad de $400$ trompetas idénticas sonando simultáneamente. Si el nivel de intensidad total de la banda es $B = 90\text{ db}$:
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Calcule cuál es la intensidad física total ($I$) de las $400$ trompetas en $\text{W/m}^2$.
+			\item Halle la intensidad física de una sola trompeta y calcule cuál es el nivel de intensidad ($B$) en $\text{db}$ producido por \textbf{una sola trompeta}.
+		\end{enumerate}
+		\answer{
+			\textbf{a) Intensidad física total ($I$) despejando de la ecuación (III):}
+			\[ B = 10 \cdot \log\left(\frac{I}{10^{-12}}\right) \implies 90 = 10 \cdot \log\left(\frac{I}{10^{-12}}\right) \implies \frac{90}{10} = \log\left(\frac{I}{10^{-12}}\right) \implies 9 = \log\left(\frac{I}{10^{-12}}\right) \]
+			Aplicando base $10$ en ambos lados:
+			\[ 10^9 = \frac{I}{10^{-12}} \implies I = 10^9 \cdot 10^{-12} = \mathbf{10^{-3}\text{ W/m}^2} \ (\mathbf{0,001\text{ W/m}^2}) \]
+			\textbf{b) Nivel de intensidad de una sola trompeta:} Como las $400$ trompetas son idénticas, la intensidad de una sola trompeta es:
+			\[ I_{\text{1 trompeta}} = \frac{10^{-3}\text{ W/m}^2}{400} = \mathbf{2,5 \times 10^{-6}\text{ W/m}^2} \]
+			Reemplazando este valor en la ecuación \textbf{(III)}:
+			\[ B = 10 \cdot \log\left(\frac{2,5 \times 10^{-6}}{10^{-12}}\right) = 10 \cdot \log(2,5 \times 10^6) \approx 10 \cdot (6,3979) \approx \mathbf{63,98\text{ db}} \]
+		}
+		
+		%\newpage
+		
+		% PUNTO 6
+		\item  Una cuerda de violín tiene una longitud $L = 60\text{ cm}$ ($0,60\text{ m}$), una masa $m = 2,4\text{ g}$ ($0,0024\text{ kg}$) y se tensiona con una fuerza $F = 160\text{ N}$.
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Calcule la densidad lineal ($\mu_0$) de la cuerda en $\text{kg/m}$.
+			\item Calcule la frecuencia del primer armónico o modo fundamental.
+			\item Calcule la frecuencia emitida cuando la cuerda vibra en su tercer modo o tercer armónico.
+		\end{enumerate}
+		\answer{
+			\textbf{a) Masa por unidad de longitud ($\mu_0$) con la ecuación (V):}
+			\[ \mu_0 = \frac{m}{L} = \frac{0,0024\text{ kg}}{0,60\text{ m}} = \mathbf{0,004\text{ kg/m}} \]
+			\textbf{b) Frecuencia del $1^{\text{er}}$ modo o primer armónico ($n = 1$) con la ecuación (IV):}
+			\[ f_1 = \frac{1}{2L} \cdot \sqrt{\frac{F}{\mu_0}} = \frac{1}{2 \cdot (0,60\text{ m})} \cdot \sqrt{\frac{160\text{ N}}{0,004\text{ kg/m}}} = \frac{1}{1,20} \cdot \sqrt{40000} = \frac{200}{1,20} \approx \mathbf{166,67\text{ Hz}} \]
+			\textbf{c) Frecuencia del $3^{\text{er}}$ modo o tercer armónico ($n = 3$) con la ecuación (IV):}
+			\[ f_3 = \frac{3}{2L} \cdot \sqrt{\frac{F}{\mu_0}} = \frac{3}{2 \cdot (0,60\text{ m})} \cdot \sqrt{\frac{160\text{ N}}{0,004\text{ kg/m}}} = \frac{3}{1,20} \cdot 200 = \frac{600}{1,20} = \mathbf{500,0\text{ Hz}} \]
+		}
+		
+		% PUNTO 7
+		\item  Una cuerda de longitud $L = 2,0\text{ m}$ y masa $m = 20\text{ g}$ se encuentra tensionada entre dos soportes fijos y vibra con una frecuencia $f_n = 60\text{ Hz}$ en el modo de vibración representado en la siguiente figura:
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=0.9, >=stealth]
+				% Eje central
+				\draw[dashed, gray] (0,0) -- (12,0);
+				% Onda estacionaria para el 4to modo (n=4)
+				\draw[ultra thick, valblue, domain=0:12, samples=200] plot (\x, {0.8*sin(60*\x)});
+				\draw[ultra thick, valblue!50!white, dashed, domain=0:12, samples=200] plot (\x, {-0.8*sin(60*\x)});
+				% Soportes en los extremos
+				\fill[valdark] (-0.2,-1) rectangle (0,1);
+				\fill[valdark] (12,-1) rectangle (12.2,1);
+				% Nodos
+				\fill[red!80!black] (0,0) circle (0.08);
+				\fill[red!80!black] (3,0) circle (0.08);
+				\fill[red!80!black] (6,0) circle (0.08);
+				\fill[red!80!black] (9,0) circle (0.08);
+				\fill[red!80!black] (12,0) circle (0.08);
+				% Etiquetas de los 4 segmentos del 4to modo
+				\node[above=4pt, valpurple] at (1.5,0.8) {\tiny $1^{\text{er}}$ segmento};
+				\node[above=4pt, valpurple] at (4.5,0.8) {\tiny $2^{\text{do}}$ segmento};
+				\node[above=4pt, valpurple] at (7.5,0.8) {\tiny $3^{\text{er}}$ segmento};
+				\node[above=4pt, valpurple] at (10.5,0.8) {\tiny $4^{\text{to}}$ segmento};
+				\draw[<->, gray] (0,-1.1) -- (12,-1.1) node[midway, below] {\small $L = 2,0\text{ m}$};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Identifique a qué modo o armónico ($n$) corresponde la figura y calcule la densidad lineal ($\mu_0$) de la cuerda.
+			\item Calcule con qué fuerza ($F$) está tensionada la cuerda.
+			\item Calcule la frecuencia del $1^{\text{er}}$ modo o primer armónico de esta cuerda empleando la ecuación.
+		\end{enumerate}
+		\answer{
+			\textbf{a) Modo de vibración y densidad lineal ($\mu_0$):} Al observar los $4$ segmentos en la figura, corresponde al \textbf{$4^{\text{to}}$ modo o $4^{\text{to}}$ armónico ($n = 4$)}. Con la ecuación \textbf{(V)}:
+			\[ \mu_0 = \frac{m}{L} = \frac{0,02\text{ kg}}{2,0\text{ m}} = \mathbf{0,01\text{ kg/m}} \]
+			\textbf{b) Fuerza de tensión ($F$) despejando de la ecuación (IV) para $n = 4$ y $f_4 = 60\text{ Hz}$:}
+			\[ f_n = \frac{n}{2L} \cdot \sqrt{\frac{F}{\mu_0}} \implies 60 = \frac{4}{2 \cdot (2,0)} \cdot \sqrt{\frac{F}{0,01}} \implies 60 = 1 \cdot \sqrt{\frac{F}{0,01}} \]
+			Elevando ambos lados al cuadrado:
+			\[ (60)^2 = \frac{F}{0,01} \implies 3600 = \frac{F}{0,01} \implies F = 3600 \cdot 0,01 = \mathbf{36,0\text{ N}} \]
+			\textbf{c) Frecuencia del $1^{\text{er}}$ armónico ($n = 1$) aplicando la ecuación (IV):}
+			\[ f_1 = \frac{1}{2L} \cdot \sqrt{\frac{F}{\mu_0}} = \frac{1}{2 \cdot (2,0\text{ m})} \cdot \sqrt{\frac{36,0\text{ N}}{0,01\text{ kg/m}}} = \frac{1}{4,0} \cdot \sqrt{3600} = \frac{60}{4,0} = \mathbf{15,0\text{ Hz}} \]
+		}
+		
+		% PUNTO 8
+		\item  Un tubo de órgano tiene una longitud $L = 85\text{ cm}$. Suponga la velocidad del sonido en el aire como $v = 340\text{ m/s}$.
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item Si el tubo es \textbf{abierto}, calcule la longitud de onda ($\lambda_3$) y la frecuencia ($f_3$) correspondientes a su tercer modo ($n = 3$).
+			\item Si el tubo es \textbf{cerrado}, calcule la longitud de onda ($\lambda_3$) y la frecuencia ($f_3$) correspondientes a su tercer modo ($n = 3$).
+			\item Calcule la frecuencia del sonido fundamental ($n = 1$) para ambos tubos (abierto y cerrado).
+		\end{enumerate}
+		\answer{
+			\textbf{a) Tubo Abierto en el tercer modo ($n = 3$) con las ecuaciones (VIb) y (VIIb):}
+			\[ \lambda_3 = \frac{2L}{n} = \frac{2 \cdot (0,85\text{ m})}{3} = \frac{1,70\text{ m}}{3} \approx \mathbf{0,567\text{ m}} \qquad ; \qquad f_3 = \frac{n \cdot v}{2L} = \frac{3 \cdot (340\text{ m/s})}{2 \cdot (0,85\text{ m})} = \frac{1020}{1,70} = \mathbf{600,0\text{ Hz}} \]
+			\textbf{b) Tubo Cerrado en el tercer modo ($n = 3$) con las ecuaciones (VIa) y (VIIa):}
+			\[ \lambda_3 = \frac{4L}{2n - 1} = \frac{4 \cdot (0,85\text{ m})}{2(3) - 1} = \frac{3,40\text{ m}}{5} = \mathbf{0,68\text{ m}} \qquad ; \qquad f_3 = \frac{v \cdot (2n - 1)}{4L} = \frac{(340\text{ m/s}) \cdot (2(3) - 1)}{4 \cdot (0,85\text{ m})} = \frac{340 \cdot 5}{3,40} = \mathbf{500,0\text{ Hz}} \]
+			\textbf{c) Sonido fundamental ($n = 1$) en ambos tubos:}
+			\[ f_{1\text{ (abierto)}} = \frac{1 \cdot (340\text{ m/s})}{2 \cdot (0,85\text{ m})} = \mathbf{200,0\text{ Hz}} \qquad ; \qquad f_{1\text{ (cerrado)}} = \frac{(340\text{ m/s}) \cdot (2(1) - 1)}{4 \cdot (0,85\text{ m})} = \mathbf{100,0\text{ Hz}} \]
+			Para una misma longitud $L$, la frecuencia fundamental de un tubo abierto es el doble de la de un tubo cerrado.
+		}
+		
+		% PUNTO 9
+		\item  La sirena de una ambulancia emite un sonido con una frecuencia propia $f = 600\text{ Hz}$ mientras viaja con una velocidad constante $v_f = 90\text{ km/h}$ ($25\text{ m/s}$). Un observador se encuentra en reposo ($v_0 = 0\text{ m/s}$) sobre la acera. Suponga $v = 340\text{ m/s}$.
+		\begin{enumerate}[label=\alph*), itemsep=0.2cm]
+			\item ¿Qué frecuencia ($f'$) percibe el observador en reposo cuando la ambulancia se \textbf{acerca} a él?
+			\item ¿Qué frecuencia ($f'$) percibe el observador en reposo cuando la ambulancia se \textbf{aleja} de él?
+		\end{enumerate}
+		\answer{
+			\textbf{a) Cuando la fuente se acerca al observador en reposo ($v_0 = 0\text{ m/s}$, $v_f$ se toma negativa en la ecuación VIII):}
+			\[ f' = f \cdot \left(\frac{v \pm v_0}{v - v_f}\right) = 600\text{ Hz} \cdot \left(\frac{340 + 0}{340 - 25}\right) = 600 \cdot \left(\frac{340}{315}\right) \approx 600 \cdot (1,07937) \approx \mathbf{647,62\text{ Hz}} \]
+			\textbf{b) Cuando la fuente se aleja del observador en reposo ($v_0 = 0\text{ m/s}$, $v_f$ se toma positiva en la ecuación VIII):}
+			\[ f' = f \cdot \left(\frac{v \pm v_0}{v + v_f}\right) = 600\text{ Hz} \cdot \left(\frac{340 + 0}{340 + 25}\right) = 600 \cdot \left(\frac{340}{365}\right) \approx 600 \cdot (0,93151) \approx \mathbf{558,90\text{ Hz}} \]
+		}
+		
+		% PUNTO 10
+		\item Explica si son verdaderas (\textbf{V}) o falsas (\textbf{F}) las siguientes afirmaciones justificando tu respuesta:
+		\begin{enumerate}[label=\alph*), itemsep=0.4cm]
+			\item \underline{\hspace{1.2cm}} En el espacio exterior nadie puede oír un sonido porque este es una onda mecánica de presión que necesita un medio material elástico para propagarse. \\[0.15cm]
+			\textbf{Justificación:} \hrulefill \\[0.15cm]
+			\mbox{}\hrulefill
+			\item \underline{\hspace{1.2cm}} La velocidad del sonido en el aire es independiente de la temperatura ambiental y depende únicamente de la frecuencia emitida por la fuente sonora. \\[0.15cm]
+			\textbf{Justificación:} \hrulefill \\[0.15cm]
+			\mbox{}\hrulefill
+			\item \underline{\hspace{1.2cm}} Dos sonidos que tienen exactamente la misma intensidad y la misma frecuencia son indistinguibles para el oído humano, sin importar cuál sea la fuente sonora que los emita. \\[0.15cm]
+			\textbf{Justificación:} \hrulefill \\[0.15cm]
+			\mbox{}\hrulefill
+		\end{enumerate}
+		\answer{
+			\textbf{a) Verdadero (V)}.\\[0.05cm]
+			\textbf{Justificación:} El sonido es una onda mecánica longitudinal (onda de presión) producida por la vibración de un objeto en un medio elástico (sólido, líquido o gas); en el vacío no existen partículas que se compriman y extiendan para propagarlo.\\[0.1cm]
+			\textbf{b) Falso (F)}.\\[0.05cm]
+			\textbf{Justificación:} La velocidad del sonido depende de las características del medio (elasticidad y densidad) y de su temperatura, tal como lo expresa el modelo $v \approx 331 + 0,61 \cdot T \ \mathbf{(I)}$, por lo que a mayor temperatura del aire, mayor es la velocidad del sonido.\\[0.1cm]
+			\textbf{c) Falso (F)}.\\[0.05cm]
+			\textbf{Justificación:} Aunque dos sonidos tengan el mismo tono (frecuencia) y la misma intensidad (volumen), podemos distinguirlos gracias al \textbf{timbre}, ya que cada instrumento o voz emite diferentes armónicos simultáneamente junto con la frecuencia fundamental.
+		}
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\textit{\color{valdark!70} ``Hacia un Aprendizaje Significativo y Autónomo'' -- Liceo V.A.L.}
+	\end{center}
+	
+\end{document}

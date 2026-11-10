@@ -1,0 +1,208 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-noshorthands]{babel}
+\usepackage[top=2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+\usepackage[most]{tcolorbox}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLORES INSTITUCIONALES (LICEO V.A.L.) ---
+\definecolor{valblue}{RGB}{0,112,192}
+\definecolor{valdark}{RGB}{30,30,30}
+\definecolor{valgray}{RGB}{245,247,250}
+
+% Fondo institucional obligatorio del Liceo V.A.L.
+\AddToShipoutPictureBG{
+	\AtPageLowerLeft{
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{../../FondoVAL.pdf}
+	}
+}
+
+\begin{document}
+	
+	\begin{center}
+		{\Large \textbf{\color{valblue} LICEO V.A.L. (Vida, Amor, Luz)}}\\[0.1cm]
+		{\large \textbf{DEPARTAMENTO DE CIENCIAS BÁSICAS}}\\[0.1cm]
+		{\large \textbf{EXAMEN DE FÍSICA: NATURALEZA DE LA
+				LUZ. REFLEXIÓN}}\\[0.1cm]
+		{\small \textbf{Física 11$^{\circ}$} \quad | \quad \textbf{Código: 11F -- 05} \quad | \quad \textbf{CON CALCULADORA}}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent \textbf{NOMBRE:} \underline{\hspace{8.5cm}} \hfill \textbf{FECHA:} \underline{\hspace{3cm}}
+	\vspace{0.3cm}
+	
+	
+	
+	\begin{enumerate}[leftmargin=*, itemsep=0.8cm]
+		
+		% PUNTO 1
+		\item \textbf{(25\%)}
+		Se tiene un espejo cóncavo con una distancia focal de $15\text{ cm}$.
+		\begin{enumerate}[label=\alph*.), itemsep=0.3cm]
+			\item ¿A qué distancia se debe colocar un objeto de $5\text{ cm}$ de altura para que su imagen se forme a $30\text{ cm}$ del espejo?
+			\item ¿Cuál es la altura de la imagen?
+		\end{enumerate}
+		
+	
+			\small			
+				\[\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i} \qquad|\qquad A = \frac{h_i}{h_o} = -\frac{d_i}{d_o} \]
+		
+		
+		% PUNTO 2
+		\item \textbf{(25\%)} A $8\text{ cm}$ de un espejo convexo de $10\text{ cm}$ de radio, se coloca un objeto de $4\text{ cm}$ de altura.
+		\begin{enumerate}[label=\alph*.), itemsep=0.3cm]
+			\item ¿A qué distancia se forma la imagen?
+			\item ¿Cuál es el tamaño de la imagen?
+		\end{enumerate}
+		
+	
+			\small
+			\[f = \frac{R}{2}  \qquad|\qquad  \frac{1}{f} = \frac{1}{d_i} - \frac{1}{d_o} \qquad|\qquad A = \frac{h_i}{h_o} = -\frac{d_i}{d_o}\]
+			
+		
+		
+		% PUNTO 3
+		\item \textbf{(25\%)}
+		De acuerdo con las siguientes imágenes que representan el comportamiento de los rayos de luz al incidir sobre espejos esféricos, indique cuál es la opción \textbf{correcta} y justifique su elección:
+		
+		\vspace{0.3cm}
+		\begin{center}
+			\begin{tikzpicture}[scale=0.85, >=Stealth]
+				% Opción a
+				\begin{scope}[shift={(0,0)}]
+					\draw[thick] (-1.5,-1.5) rectangle (1.5,1.5);
+					\node at (-1.9,1.2) {\textbf{a.}};
+					\draw[dashed] (-1.5,0) -- (1.5,0);
+					
+					% Espejo convexo
+					\draw[thick] (0.4, 1.2) to[bend left=-55] (0.4, -1.2); 
+					
+					% Foco y Centro
+					\node[below, font=\tiny] at (0.3, 0) {F};
+					\draw (0.3, 0.05) -- (0.3, -0.05);
+					\node[below, font=\tiny] at (1.0, 0) {C};
+					\draw (1.0, 0.05) -- (1.0, -0.05);
+					
+					% Rayo Incidente (Intersección exacta)
+					\draw[red] (-1.5, 0.6) -- (-0.08, 0.6);
+					\draw[red, ->] (-1.5, 0.6) -- (-0.79, 0.6);
+					
+					% Rayo Virtual
+					\draw[red, dashed] (-0.08, 0.6) -- (0.3, 0);
+					
+					% Rayo Reflejado
+					\draw[red] (-0.08, 0.6) -- (-0.65, 1.5);
+					\draw[red, ->] (-0.08, 0.6) -- (-0.365, 1.05);
+				\end{scope}
+				
+				% Opción b
+				\begin{scope}[shift={(4.5,0)}]
+					\draw[thick] (-1.5,-1.5) rectangle (1.5,1.5);
+					\node at (-1.9,1.2) {\textbf{b.}};
+					\draw[dashed] (-1.5,0) -- (1.5,0);
+					
+					% Espejo convexo
+					\draw[thick] (0.1, 1.2) to[bend left=-55] (0.1, -1.2); 
+					
+					% Foco y Centro
+					\node[below, font=\tiny] at (0.3, 0) {F};
+					\draw (0.3, 0.05) -- (0.3, -0.05);
+					\node[below, font=\tiny] at (1.0, 0) {C};
+					\draw (1.0, 0.05) -- (1.0, -0.05);
+					
+					% Rayo incidente 
+					\draw[blue, ->] (-0.28, 0.8) -- (0.3, 0);
+					\draw[blue, ->] (-1.5, 1.16) -- (-0.28, 0.8);
+					
+					% Rayo despues apuntando a F
+					%\draw[blue] (-1.5, 1.16) -- (0.3, 0);
+					%\draw[blue, ->] (-1.5, 1.16) -- (-0.6, 0.58);
+				\end{scope}
+				
+				% Opción c
+				\begin{scope}[shift={(9,0)}]
+					\draw[thick] (-1.5,-1.5) rectangle (1.5,1.5);
+					\node at (-1.9,1.2) {\textbf{c.}};
+					\draw[dashed] (-1.5,0) -- (1.5,0);
+					
+					% Espejo cóncavo 
+					\draw[thick] (0.14, 1.2) to[bend right=-55] (0.14, -1.2);
+					
+					% Foco y Centro 
+					\node[below, font=\tiny] at (-0.5, 0) {C};
+					\draw (-0.5, 0.05) -- (-0.5, -0.05);
+					\node[below, font=\tiny] at (0.2, 0) {F};
+					\draw (0.2, 0.05) -- (0.2, -0.05);
+					
+					% Rayo Incidente
+					\draw[red] (-1.5, 0.6) -- (0.58, 0.6);
+					\draw[red, ->] (-1.5, 0.6) -- (-0.46, 0.6);
+					
+					% Rayo Reflejado (erróneo a propósito)
+					\draw[red] (0.58, 0.6) -- (1.5, 1.1);
+					\draw[red, ->] (0.58, 0.6) -- (1.04, 0.85);
+				\end{scope}
+				
+				% Opción d
+				\begin{scope}[shift={(13.5,0)}]
+					\draw[thick] (-1.5,-1.5) rectangle (1.5,1.5);
+					\node at (-1.9,1.2) {\textbf{d.}};
+					\draw[dashed] (-1.5,0) -- (1.5,0);
+					
+					% Espejo cóncavo
+					\draw[thick] (0.14, 1.2) to[bend right=-55] (0.14, -1.2);
+					
+					% Foco y Centro
+					\node[below, font=\tiny] at (-0.3, 0) {C};
+					\draw (-0.3, 0.05) -- (-0.3, -0.05);
+					\node[below, font=\tiny] at (0.4, 0) {F};
+					\draw (0.4, 0.05) -- (0.4, -0.05);
+					
+					% Rayo incidente (pasa por C)
+					\draw[blue] (-1.5, 0.63) -- (0.65, -0.5);
+					\draw[blue, ->] (-1.5, 0.63) -- (-0.42, 0.06); 
+					
+					% Rayo reflejado (erróneo pasando por F)
+					\draw[blue] (0.65, -0.5) -- (-0.35, 1.5);
+					\draw[blue, ->] (0.65, -0.5) -- (0.15, 0.5);
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+		
+		
+		
+		% PUNTO 4
+		\item \textbf{(25\%)}
+		Responda Falso (\textbf{F}) o Verdadero (\textbf{V}) a cada una de las siguientes afirmaciones y justifique su respuesta con base en las leyes de la reflexión estudiadas en el TAU 5:
+		
+		\begin{enumerate}[label=\alph*.), itemsep=0.4cm]
+			\item Los espejos planos producen únicamente imágenes virtuales, derechas y del mismo tamaño que el objeto, por lo que la afirmación ``\textit{Los espejos planos producen imágenes virtuales y reales}'' es: \underline{\hspace{1.5cm}} \\
+			
+			
+			\item Al incidir sobre una superficie rugosa o irregular, los rayos de un haz de luz se reflejan en distintas direcciones, por lo que la afirmación ``\textit{Los rayos de un haz de luz no siempre se reflejan en una misma dirección al incidir sobre una superficie}'' es: \underline{\hspace{1.5cm}} \\
+			
+		\end{enumerate}
+		
+		
+		
+	\end{enumerate}
+	
+	\vfill
+	\begin{center}
+		\textit{\color{valdark!70} ``Hacia un Aprendizaje Significativo, Autónomo y en Libertad'' -- Liceo V.A.L.}
+	\end{center}
+	
+\end{document}
